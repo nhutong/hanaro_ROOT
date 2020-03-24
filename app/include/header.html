@@ -1,0 +1,101 @@
+    <!--#share_btn-->
+    
+    <div id="share_btn" onclick="share_btn();">      
+        <div class="share_btn_inner">
+            <img src="../images/share_btn.png" alt="공유하기">  
+        </div>  
+    </div>
+
+    <div id="share_list">
+       <ul>
+           <li><a href="#"><img src="../images/share.png" alt="공유하기">공유하기</a></li>
+           <li><a href="../mypage/my_coupon.html"><img src="../images/coupon.png" alt="쿠폰">쿠폰</a></li>
+           <li><a href="../mypage/stamp.html"><img src="../images/stamps.png" alt="스탬프">스탬프</a></li>
+       </ul>  
+    </div>
+    
+    
+     <!--#aside starts-->
+    <div id="aside">
+		<div id="aside_black"></div>
+        <div id="aside_wrap">
+            <div class="close_button"><img src="../images/close_btn.png" alt="닫기"></div>
+            <div class="aside_login" onclick="login();"><a href="#">로그인</a></div>
+            <div class="aside_mypage nullHide"><a href="#">마이페이지<img src="../images/down.png" alt="메뉴 내리기"></a>
+            <ul class="nullHide">
+                <li><a href="#" onclick="my_info();">나의 정보</a></li>
+                <li><a href="#" onclick="my_coupon();">쿠폰</a></li>
+                <li><a href="#" onclick="my_stamp();">스탬프</a></li>
+                <li><a href="#" onclick="my_del();">주문/배송</a></li>
+            </ul></div>
+            <div class="aside_category">
+                <ul>
+                    
+                    <li class="nullHide"><a href="#" onclick="cart();">장바구니</a></li>
+                    <li><a href="#" onclick="notice();">공지사항</a></li>
+                    <li class="nullHide"><a href="#" onclick="qna();">1:1문의하기</a></li>
+                    <li><a href="#" onclick="offline();">매장찾기</a></li>
+                    <li><a href="#" onclick="setting();">설정</a></li>
+
+                </ul>
+            </div>    
+             <div id="aside_tos"><a href="#" onclick="tos();">이용약관</a></div>
+            
+        </div>
+    </div>
+    <!--header starts-->
+    <header>
+        <h1>
+            <a href="../home/main.html">
+                <img src="../images/logo.png" alt="하나로마트">
+                <span class="store_name" id="cpName"></span>
+            </a>
+        </h1>
+        <div class="aside_btn">
+            <a href="#"> <img src="../images/menu.png" alt="네비게이션 열기"> </a>
+        </div>
+        <div id="header_inner_wrap">
+            <div id="cart">
+                <a href="../home/zzim.html"> <img src="../images/like.png" alt="찜하기"> </a>
+                <span class="header_alert" id="zzimCount"></span>
+            </div><div 
+            id="alert">
+                <a href="../home/push.html"> <img src="../images/alert.png" alt="알림창"> </a>
+                <span class="header_alert" id="pushCount">1</span>
+            </div><div 
+            id="search">
+                <a href="../home/search.html"> <img src="../images/search.png" alt="검색"> </a>
+            </div>
+        </div>
+        <nav>
+            <ul id="headerMenuArea">
+                
+<!--                <li><a href="#" onclick="home();" class="home">홈</a></li>-->
+                <li><a href="#" class="home">홈</a></li>
+<!--                <li onclick="m_leaflet();"><a href="#">전단행사</a></li>-->
+                <li><a href="#">전단행사</a></li>
+                <li><a href="#">MENU3</a></li>
+                <li><a href="#">MENU4</a></li>
+                <li><a href="#">MENU5</a></li>
+                <li><a href="#">MENU6</a></li>
+<!--                <li><a href="#" onclick="shop();">장보기</a></li>-->
+                <li><a href="#">장보기</a></li>
+                
+            </ul>
+        </nav>
+        
+    </header>
+	<script>
+	if (localStorage.getItem("tel") == null)
+	{
+		$(".nullHide").hide();
+	}else{
+	
+		$(".nullHide").show();
+	}
+			if (localStorage.getItem("tel") == null){
+			result += '	<a href="../login/login.html">로그인</a>';
+		}else{
+			result += '	<a href="#" onclick="localStorage.clear(); alert(\'로그아웃 되었습니다. 이용해주셔서 감사합니다.\'); deleteAllCookies();">로그아웃</a>';
+		}
+	</script>

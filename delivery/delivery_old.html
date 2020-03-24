@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>농협유통</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- jquery-ui style css -->
+    <link rel="stylesheet" href="../css/jquery-ui.css" />
+
+
+</head>
+
+<body>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" id="my_data">
+<!-- 				<li><i class="far fa-user"></i></li> -->
+<!-- 				<li class="user_name">이중호님</li> -->
+<!-- 				<li class="user_email">1234567-08</li> -->
+<!-- 				<li class="startup_fg">본사마스터(본사)</li> -->
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+<!-- 				<li class="active" onclick="delivery();">기본배송정보</li> -->
+<!-- 				<li onclick="delivery_time();">실시간 회차</li> -->
+<!-- 				<li onclick="manage_order();">주문관리</li> -->
+            </ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>기본배송정보</h4>
+			 <div class="store_list_wrap"> <span class="store_list_name">판매장</span><div class="nh_store_list">
+                        <select id="company" class="sort_select">
+                        </select>
+                    </div>
+                </div>
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                       <!--delivery_wrap start-->
+                        <div class="delivery_wrap">
+                            <table class="delivery_outer_table">
+                                <tbody>
+                                    <tr>
+                                        <th>배송가능구역</th>
+                                        <td>
+                                            <!-- <input type="text" id="sample4_roadAddress"> -->
+                                            <button onclick="openZipSearch()" class="post_num">주소검색</button>
+                                            <div id="dongList"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>배송가능금액</th>
+                                        <td>
+                                            <input type="text" id="del_price">&nbsp;원 이상
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>배송불가일</th>
+                                        <td class="no_del_check">
+                                            <input type="checkbox" id="noDeliveryWeekend">
+                                            <label for="noDeliveryWeekend">주말</label>
+                                            <input type="checkbox" id="noDeliveryHoliday">
+                                            <label for="noDeliveryHoliday">공휴일</label>
+                                            <input type="checkbox" id="noDeliveryDay">
+                                            <label for="noDeliveryDay">특정요일지정</label>
+                                            <select id="noDeliveryDay">
+                                                <option value="MON"> 매주 월요일</option>
+                                                <option value="TUE"> 매주 화요일</option>
+                                                <option value="WED"> 매주 수요일</option>
+                                                <option value="THU"> 매주 목요일</option>
+                                                <option value="FRI"> 매주 금요일</option>
+                                                <option value="SAT"> 매주 토요일</option>
+                                                <option value="SUN"> 매주 일요일</option>                                                
+                                            </select>
+                                            <br/>
+                                            <input type="checkbox" id="noDeliveryPeriod">                                            
+                                            <label for="noDeliveryPeriod">특정기간지정</label>                                            
+                                            <input type="text" id="start_date" placeholder="20191101"> ~ 
+                                            <input type="text" id="end_date" placeholder="20191131">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>배송가능시간<br>(회차)</th>
+                                        <td>
+                                            <table class="delivery_inner_table">
+                                                <tr>
+                                                    <th>회차</th>
+                                                    <th>배송가능시간</th>
+                                                    <th>자동마감</th>
+                                                    <th>조정</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>1</th>
+                                                        <td>
+                                                            <select id="choiceTimeFrom" name="time_start">                                                                                                                             
+                                                                <option value="0000">00:00</option> 
+                                                                <option value="0100">01:00</option> 
+                                                                <option value="0200">02:00</option>
+                                                                <option value="0300">03:00</option>
+                                                                <option value="0400">04:00</option>
+                                                                <option value="0500">05:00</option>
+                                                                <option value="0600">06:00</option>
+                                                                <option value="0700">07:00</option>
+                                                                <option value="0800">08:00</option>                                                                        
+                                                                <option value="0900">09:00</option>
+                                                                <option value="1000">10:00</option>
+                                                                <option value="1100">11:00</option>
+                                                                <option value="1200">12:00</option>
+                                                                <option value="1300">13:00</option>
+                                                                <option value="1400">14:00</option>
+                                                                <option value="1500">15:00</option>
+                                                                <option value="1600">16:00</option>
+                                                                <option value="1700">17:00</option>
+                                                                <option value="1800">18:00</option>
+                                                                <option value="1900">19:00</option>
+                                                                <option value="2000">20:00</option>
+                                                                <option value="2100">21:00</option>
+                                                                <option value="2200">22:00</option>
+                                                                <option value="2300">23:00</option>
+                                                                <option value="2400">24:00</option>
+                                                            </select>
+                                                            &nbsp;-&nbsp;
+                                                            <select id="choiceTimeEnd" name="time_end">                                                                                                                                 
+                                                                <option value="0000">00:00</option> 
+                                                                <option value="0100">01:00</option> 
+                                                                <option value="0200">02:00</option>
+                                                                <option value="0300">03:00</option>
+                                                                <option value="0400">04:00</option>
+                                                                <option value="0500">05:00</option>
+                                                                <option value="0600">06:00</option>
+                                                                <option value="0700">07:00</option>
+                                                                <option value="0800">08:00</option>                                                                        
+                                                                <option value="0900">09:00</option>
+                                                                <option value="1000">10:00</option>
+                                                                <option value="1100">11:00</option>
+                                                                <option value="1200">12:00</option>
+                                                                <option value="1300">13:00</option>
+                                                                <option value="1400">14:00</option>
+                                                                <option value="1500">15:00</option>
+                                                                <option value="1600">16:00</option>
+                                                                <option value="1700">17:00</option>
+                                                                <option value="1800">18:00</option>
+                                                                <option value="1900">19:00</option>
+                                                                <option value="2000">20:00</option>
+                                                                <option value="2100">21:00</option>
+                                                                <option value="2200">22:00</option>
+                                                                <option value="2300">23:00</option>
+                                                                <option value="2400">24:00</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            자동마감&nbsp;<input type="text" class="del_num_tea">&nbsp;건
+                                                        </td>
+                                                        <td>
+                                                            <button id="deliveryDelBtn">삭제</button>
+                                                            <button id="deliveryEditBtn">수정</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>2</th>
+                                                        <td>
+                                                            <select id="choiceTimeFrom" name="time_start">                                                                                                                                 
+                                                                <option value="0000">00:00</option> 
+                                                                <option value="0100">01:00</option> 
+                                                                <option value="0200">02:00</option>
+                                                                <option value="0300">03:00</option>
+                                                                <option value="0400">04:00</option>
+                                                                <option value="0500">05:00</option>
+                                                                <option value="0600">06:00</option>
+                                                                <option value="0700">07:00</option>
+                                                                <option value="0800">08:00</option>                                                                        
+                                                                <option value="0900">09:00</option>
+                                                                <option value="1000">10:00</option>
+                                                                <option value="1100">11:00</option>
+                                                                <option value="1200">12:00</option>
+                                                                <option value="1300">13:00</option>
+                                                                <option value="1400">14:00</option>
+                                                                <option value="1500">15:00</option>
+                                                                <option value="1600">16:00</option>
+                                                                <option value="1700">17:00</option>
+                                                                <option value="1800">18:00</option>
+                                                                <option value="1900">19:00</option>
+                                                                <option value="2000">20:00</option>
+                                                                <option value="2100">21:00</option>
+                                                                <option value="2200">22:00</option>
+                                                                <option value="2300">23:00</option>
+                                                                <option value="2400">24:00</option>
+                                                            </select>
+                                                            &nbsp;-&nbsp;
+                                                            <select id="choiceTimeEnd" name="time_end">                                                            
+                                                                <option value="0000">00:00</option> 
+                                                                <option value="0100">01:00</option> 
+                                                                <option value="0200">02:00</option>
+                                                                <option value="0300">03:00</option>
+                                                                <option value="0400">04:00</option>
+                                                                <option value="0500">05:00</option>
+                                                                <option value="0600">06:00</option>
+                                                                <option value="0700">07:00</option>
+                                                                <option value="0800">08:00</option>                                                                        
+                                                                <option value="0900">09:00</option>
+                                                                <option value="1000">10:00</option>
+                                                                <option value="1100">11:00</option>
+                                                                <option value="1200">12:00</option>
+                                                                <option value="1300">13:00</option>
+                                                                <option value="1400">14:00</option>
+                                                                <option value="1500">15:00</option>
+                                                                <option value="1600">16:00</option>
+                                                                <option value="1700">17:00</option>
+                                                                <option value="1800">18:00</option>
+                                                                <option value="1900">19:00</option>
+                                                                <option value="2000">20:00</option>
+                                                                <option value="2100">21:00</option>
+                                                                <option value="2200">22:00</option>
+                                                                <option value="2300">23:00</option>
+                                                                <option value="2400">24:00</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            자동마감&nbsp;<input type="text" class="del_num_tea">&nbsp;건
+                                                        </td>
+                                                        <td>
+                                                            <button id="deliveryDelBtn">삭제</button>
+                                                            <button id="deliveryEditBtn">수정</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>3</th>
+                                                        <td>
+                                                            <select id="choiceTimeFrom" name="time_start">                                                                                                                                
+                                                                <option value="0000">00:00</option> 
+                                                                <option value="0100">01:00</option> 
+                                                                <option value="0200">02:00</option>
+                                                                <option value="0300">03:00</option>
+                                                                <option value="0400">04:00</option>
+                                                                <option value="0500">05:00</option>
+                                                                <option value="0600">06:00</option>
+                                                                <option value="0700">07:00</option>
+                                                                <option value="0800">08:00</option>                                                                        
+                                                                <option value="0900">09:00</option>
+                                                                <option value="1000">10:00</option>
+                                                                <option value="1100">11:00</option>
+                                                                <option value="1200">12:00</option>
+                                                                <option value="1300">13:00</option>
+                                                                <option value="1400">14:00</option>
+                                                                <option value="1500">15:00</option>
+                                                                <option value="1600">16:00</option>
+                                                                <option value="1700">17:00</option>
+                                                                <option value="1800">18:00</option>
+                                                                <option value="1900">19:00</option>
+                                                                <option value="2000">20:00</option>
+                                                                <option value="2100">21:00</option>
+                                                                <option value="2200">22:00</option>
+                                                                <option value="2300">23:00</option>
+                                                                <option value="2400">24:00</option>
+                                                            </select>
+                                                            &nbsp;-&nbsp;
+                                                            <select id="choiceTimeEnd" name="time_end">                                                                
+                                                                <option value="0000">00:00</option> 
+                                                                <option value="0100">01:00</option> 
+                                                                <option value="0200">02:00</option>
+                                                                <option value="0300">03:00</option>
+                                                                <option value="0400">04:00</option>
+                                                                <option value="0500">05:00</option>
+                                                                <option value="0600">06:00</option>
+                                                                <option value="0700">07:00</option>
+                                                                <option value="0800">08:00</option>                                                                        
+                                                                <option value="0900">09:00</option>
+                                                                <option value="1000">10:00</option>
+                                                                <option value="1100">11:00</option>
+                                                                <option value="1200">12:00</option>
+                                                                <option value="1300">13:00</option>
+                                                                <option value="1400">14:00</option>
+                                                                <option value="1500">15:00</option>
+                                                                <option value="1600">16:00</option>
+                                                                <option value="1700">17:00</option>
+                                                                <option value="1800">18:00</option>
+                                                                <option value="1900">19:00</option>
+                                                                <option value="2000">20:00</option>
+                                                                <option value="2100">21:00</option>
+                                                                <option value="2200">22:00</option>
+                                                                <option value="2300">23:00</option>
+                                                                <option value="2400">24:00</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            자동마감&nbsp;<input type="text" class="del_num_tea">&nbsp;건
+                                                        </td>
+                                                        <td>
+                                                            <button id="deliveryDelBtn">삭제</button>
+                                                            <button id="deliveryEditBtn">수정</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="delivery_submit_btn">
+                                <button id="deliverySubmit">저장</button>
+                            </div>
+                        </div>   
+                       <!--delivery_wrap end-->
+                    </div>
+                </div>
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+  
+<!-- bootstrap -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script>
+    // jQuery import 바로아래에 넣어 주면 됩니다.
+    // Cannot read property 'msie' of undefined 에러 나올때
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+</script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/popper.min.js" ></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script> <!-- 우편번호 -->
+<script src="../js/delivery/delivery.js"></script>
+</body>
+</html>

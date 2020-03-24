@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+	
+	<script src="../js/google.3.4.1.jquery.min.js"></script>
+	<script src="../js/link.js"></script>
+	<script src="../js/common2.js"></script>
+</head>
+
+<body>
+
+
+<div id="wrap" class="wrap">
+	<div id="nav_header"></div>
+	<div class="mynh_bg">
+		<div class="left_menu">
+			<ul class="my_data" onclick="user_update();" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu"></ul>
+		</div>
+
+		<div class="mynh_con">
+			<h4>로그</h4>
+			<div class="log_period_wrap">
+			
+<!-- 			    <span id="log_down"><img src="../images/excel.png" alt="엑셀다운로드"></span> -->
+			    <span class="logSavedWrap">- 보관기간 : <span id="logPeriod">14일</span></span>
+			</div>
+			<div class="tab_container">
+				<div id="tab1" class="tab_content">
+					
+					<table cellpadding="0" cellspacing="0" class="log_table" style="table-layout : fixed; word-break : break-all;">
+						<tr>
+							<th width="30%">일시</th>
+							<th width="20%">USER</th>
+							<th width="50%">조작</th>
+						</tr>
+						<tbody id="tab1_table">
+						</tbody>
+					</table>
+					
+				</div>
+				<!--pagination start-->
+                          <div class="pagination_wrap" style="width:900px">
+                                <ul class="pagination justify-content-center" id="pagination" style="margin-top : 20px;">
+                                </ul>
+                         </div>
+
+			</div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- bootstrap -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/sha256.js"></script>
+<script src="../js/log.js"></script>
+</body>
+</html>

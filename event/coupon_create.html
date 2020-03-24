@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+<!-- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/4.3.1.bootstrap.min.js">
+
+	<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+
+	<!-- 20190920 Datapicker 를 위한 추가 김나영 -->
+<!-- 	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" /> -->
+	<link rel="stylesheet" href="../css/jqueryui.com.1.8.18.jquery-ui.css" />
+
+   
+</head>
+
+<body>
+
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data"  id="my_data">
+<!-- 				<li><i class="far fa-user"></i></li> -->
+<!-- 				<li class="user_name">이중호님</li> -->
+<!-- 				<li class="user_email">1234567-08</li> -->
+<!-- 				<li class="startup_fg">본사마스터(본사)</li> -->
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+<!-- 				<li onclick="event_list();">이벤트</li> -->
+<!-- 				<li class="active" onclick="coupon();">쿠폰</li> -->
+<!-- 				<li onclick="stamp();">스탬프</li> -->
+<!-- 				<li onclick="stamp_num();">스탬프 확인번호</li> -->
+			</ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>쿠폰</h4>
+			
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                      <!--coupon_edit_wrap start-->
+                      <div class="coupon_edit_wrap">
+<!--                           <div class="coupon_pop_btn_wrap"> -->
+<!--                               <button class="coupon_pop_btn" onclick="coupon_popup();">쿠폰POP출력</button> -->
+<!--                           </div> -->
+                          <table class="coupon_edit_table" style="table-layout : fixed; word-break : break-all;">
+                              <tr>
+                                  <th width="20%">쿠폰명</th>
+                                  <td class="item_name" width="80%"><input type="text" id="coupon_name"></td>
+                              </tr>                            
+                              <tr>
+                                  <th>수량제한</th>
+                                  <td><input type="text" class="price_input" id="limit_qty">매 <span style="font-size:12px;color: blueviolet;"> ※ 1~9999까지 입력(무제한일 경우, 9999로 등록하신 뒤, 수정시 9999를 지워주시면 적용됩니다.)</span></td>
+                              </tr>
+                              <tr>
+                                  <th>쿠폰 사용시<br>유의사항</th>
+                                  <td>
+									<textarea name="coupon_detail" id="coupon_detail">
+[쿠폰 사용시 유의사항]
+-앱쿠폰은 하나로마트 회원만 사용 가능합니다.
+-쿠폰을 다운받으신 매장에서만 사용 가능합니다.
+-매장 계산대에서 본 쿠폰을 제시해주세요.
+-할인 조건은 최종결제금액 기준으로 적용됩니다.
+-일부 쿠폰과 중복사용이 불가합니다.
+-쿠폰의 상품 및 사용조건은 변동될 수 있습니다.
+-현금과 교환되지 않으며 양도가 불가능 합니다.
+-사용하신 쿠폰은 즉시 소멸됩니다.
+-재결제 시에는 쿠폰적용이 불가합니다.
+-일부품목은 적용이 제외됩니다.
+-쿠폰 적용 시, 타 영수증과 합산불가하며 한 개의 영수증을 분할하여 사용할 수 없습니다.
+-식자재매장, 임대매장, 일부코너 상품은 사용이 불가합니다.
+									</textarea>
+                                  </td>
+                              </tr>
+                              <tr>
+                                <th>판매장</th>
+                                <td>
+                                <select id="company" class="sort_select">
+                                    <option value="-1" selected disabled>판매장 선택</option>
+                                </select><button id="companyAddBtn">추가</button>
+                                <!-- <div class="selected_option">양재점</div> -->
+                                </td>
+                            </tr>
+                              <tr>
+                                  <th>적용기간</th>
+                                  <td>
+                                      <input type="text" id="start_date">
+                                      <span class="date_to">~</span>
+                                      <input type="text" id="end_date">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>쿠폰타입</th>
+                                  <td>
+                                  <select name="couponType" id="coupon_type" placeholder="쿠폰타입">
+                                          <option value="PRODUCT">상품할인</option>
+                                          <option value="BILLING">결제할인</option>
+                                      </select>
+                                  </td>
+                              </tr>
+                              <tr id="product_area">
+                                  <th>(*)상품코드</th>
+                                  <td><input type="text" id="product_code">&nbsp;<input type="text" id="product_name" placeholder="상품명"> <span style="font-size:12px;color: blueviolet;">※ 상품명은 반드시 입력해야하며, 수정이 불가하므로 신중히 입력바랍니다</span></td>
+                              </tr>
+                              <tr>
+                                  <th>(*)쿠폰코드</th>
+                                  <td><input type="text" id="coupon_code"> <span style="font-size:12px;color: blueviolet;">※ 쿠폰코드는 13자리이며, 중복되어서는 안됩니다. (경제통합시스템에서 쿠폰 생성 후 사용)</span></td>
+                              </tr>
+                              <tr>
+                                <th>(*)쿠폰할인가</th>
+                                <td><input type="text" class="price_input" id="discount_price">원</td>
+                              </tr>
+                              <tr id="price_area">
+                                  <th>특정금액 이상</th>
+                                  <td><input type="text" class="price_input" id="min_price">원</td>
+                              </tr>
+							   <tr>
+                                <th>스탬프용 쿠폰여부</th>
+                                <td>
+                                    <select id="status_stamp" class="sort_select">
+                                        <option value="NOSTAMP" selected> 일반쿠폰</option>
+                                        <option value="STAMP">스탬프용 쿠폰</option>
+                                    </select>
+                                    </td>
+							  </tr>
+                              <tr>
+                                <th>반영여부</th>
+                                <td>
+                                    <select id="status_cd" class="sort_select">
+                                        <option value="APPLY" selected>반영</option>
+                                        <option value="NOAPPLY">미반영</option>
+                                    </select>
+                                    </td>
+                              </tr>
+                          </table>
+                          <div class="coupon_edit_btn_wrap">
+                            <button id="couponEditSubmit">등록하기</button>
+                          </div>
+                      </div>
+                      <!--coupon_edit_wrap end-->
+                    </div>
+                </div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+<script src="../js/popper.min.js" ></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+// jQuery import 바로아래에 넣어 주면 됩니다.
+// Cannot read property 'msie' of undefined 에러 나올때
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
+</script>
+<script src="../js/coupon/coupon_create.js"></script>
+
+</body>
+</html>

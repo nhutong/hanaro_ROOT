@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="../css/pagination.css" rel="stylesheet"><!-- Pagination.js : https://pagination.js.org/ -->
+
+	<!-- fontawesome style css -->
+	<link href="../css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" onclick="user_update();" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu"></ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>관리자</h4>
+			<div class="tab_container">
+				<div id="tab1" class="tab_content">
+					<p class="filter">
+						검색결과 <span class="font-bold">총 5개</span>
+						<select class="sort_select">
+							<option>전체보기</option>
+						</select>
+					</p>
+					<table cellpadding="0" cellspacing="0" class="planb_table" style="table-layout : fixed; word-break : break-all;">
+						<tr>
+							<th width="12.5%">사번</th>
+							<th width="12.5%">휴대폰번호</th>
+							<th width="12.5%">판매장</th>
+							<th width="12.5%">이름</th>
+							<th width="12.5%">역할</th>
+							<th width="12.5%">상태</th>
+							<th width="12.5%">수정일자</th>
+							<th width="12.5%">등록일자</th>
+						</tr>
+						<tbody id="tab1_table">
+						</tbody>
+					</table>
+				</div>
+				<!-- #tab1 -->
+				<div class="btn_box2">
+					<span class="admin_btn sign_up_menu" onclick="manage_create();">등록</span>
+				</div>
+				
+				<div class="pagination">
+					<div id="pagination" class="pagination_wrap"></div>
+				</div>
+			</div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../js/google.3.4.1.jquery.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+
+<script src="../js/bootstrap.min.js"></script>
+
+<script src="../js/manage.js"></script>
+</body>
+</html>

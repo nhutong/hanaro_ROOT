@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>농협유통</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+<!-- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/4.3.1.bootstrap.min.js">
+
+	<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+
+	<!-- 20190920 Datapicker 를 위한 추가 김나영 -->
+<!-- 	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" /> -->
+	<link rel="stylesheet" href="../css/jqueryui.com.1.8.18.jquery-ui.css" />
+
+</head>
+
+<body>
+
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+			</ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>쿠폰</h4>
+			
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                      <!--coupon_edit_wrap start-->
+                      <div class="coupon_edit_wrap">
+                          <table class="coupon_edit_table" style="table-layout : fixed; word-break : break-all;">
+                              <tr>
+                                  <th width="20%">쿠폰명</th>
+                                  <td class="item_name" width="80%"><input type="text" id="coupon_name"></td>
+                              </tr>                            
+                              <tr>
+                                  <th>수량제한</th>
+                                  <td><input type="text" class="price_input" id="limit_qty">매</td>
+                              </tr>
+                              <tr>
+                                  <th>쿠폰 사용시<br>유의사항</th>
+                                  <td>
+									<textarea name="coupon_detail" id="coupon_detail">
+
+									</textarea>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>지점명</th>
+                                  <td id="company_name">                                                                            
+                                      
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>적용기간</th>
+                                  <td>
+                                      <input type="text" id="start_date">
+                                      <span class="date_to">~</span>
+                                      <input type="text" id="end_date">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>쿠폰타입</th>
+                                  <td>
+                                  <select name="couponType" id="coupon_type" placeholder="쿠폰타입">
+                                          <option value="PRODUCT">상품할인</option>
+                                          <option value="BILLING">결제할인</option>
+                                      </select>
+                                  </td>
+                              </tr>
+                              <tr id="product_area">
+                                  <th>(*)상품코드</th>
+                                  <td><input type="text" id="product_code"></td>
+                              </tr>
+                              <tr>
+                                  <th>(*)쿠폰코드</th>
+                                  <td><input type="text" id="coupon_code"></td>
+                              </tr>
+                              <tr>
+                                <th>(*)쿠폰할인가</th>
+                                <td><input type="text" class="price_input" id="discount_price">원</td>
+                              </tr>
+                              <tr id="price_area">
+                                  <th>특정금액 이상</th>
+                                  <td><input type="text" class="price_input" id="min_price">원</td>
+                              </tr>
+							   <tr>
+                                <th>스탬프용 쿠폰여부</th>
+                                <td>
+                                    <select id="status_stamp" class="sort_select">
+                                        <option value="N" selected> 일반쿠폰</option>
+                                        <option value="Y">스탬프용 쿠폰</option>
+                                    </select>
+                                    </td>
+							  </tr>
+                              <tr>
+                                <th>반영여부</th>
+                                <td>
+                                    <select id="status_cd" class="sort_select">
+                                        <option value="APPLY" selected>반영</option>
+                                        <option value="NOAPPLY">미반영</option>
+                                    </select>
+                                    </td>
+                            </tr>
+                          </table>
+                          <div class="coupon_edit_btn_wrap">
+                            <button id="couponEditDel">삭제하기</button>
+                            <button id="couponEditSubmit">반영하기</button>
+                          </div>
+                      </div>
+                      <!--coupon_edit_wrap end-->
+                    </div>
+                </div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+<script src="../js/popper.min.js" ></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+// jQuery import 바로아래에 넣어 주면 됩니다.
+// Cannot read property 'msie' of undefined 에러 나올때
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
+</script>
+<script src="../js/coupon/coupon_edit.js"></script>
+
+</body>
+</html>

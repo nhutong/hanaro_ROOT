@@ -1,0 +1,31 @@
+﻿<?php
+header("Access-Control-Allow-Headers: X-Requested-With, X-Prototype-Version");
+header("Content-Type:text/html;charset=utf-8");
+
+// Check for empty fields
+if(empty($_POST['name'])      ||
+   empty($_POST['email'])     ||
+   empty($_POST['phone'])     ||
+   empty($_POST['message'])   ||
+   !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
+   {
+   echo "No arguments Provided!";
+   return false;
+   }
+   
+$name = strip_tags(htmlspecialchars(urldecode($_POST['name'])));
+$email_address = strip_tags(htmlspecialchars($_POST['email']));
+$phone = strip_tags(htmlspecialchars(urldecode($_POST['phone'])));
+$message = strip_tags(htmlspecialchars(urldecode($_POST['message'])));
+ 
+// Create the email and send the message
+$to = 'jhlee@it7.kr'; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
+$email_subject = "Website Contact Form: $name";
+$email_subject = "=?EUC-KR?B?".base64_encode(iconv("UTF-8","EUC-KR", $email_subject))."?="; //한글 깨짐현황 해결
+
+$email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
+$headers = "From: noreply@it7.kr\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
+$headers .= "Reply-To: $email_address";   
+mail($to,$email_subject,$email_body,$headers);
+return true;      
+?>

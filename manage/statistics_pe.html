@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+	
+	<script src="../js/google.3.4.1.jquery.min.js"></script>
+	<script src="../js/link.js"></script>
+	<script src="../js/common2.js"></script>
+</head>
+
+<body>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="wrap" class="wrap">
+	<div id="nav_header"></div>
+	<div class="mynh_bg">
+		<div class="left_menu">
+			<ul class="my_data" onclick="user_update();" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu"></ul>
+		</div>
+
+		<div class="mynh_con">
+			<h4>기간통계</h4>
+			<div class="stat_period_wrap">
+			    <select name="statStore" id="sort_select">
+			    </select>
+			    <select name="statYear" id="statYear">
+					<option value="2020">2020</option>
+			        <option value="2021">2021</option>
+					<option value="2022">2022</option>
+					<option value="2023">2023</option>
+					<option value="2024">2024</option>
+					<option value="2025">2025</option>
+					<option value="2026">2026</option>
+					<option value="2027">2027</option>
+					<option value="2028">2028</option>
+					<option value="2029">2029</option>
+					<option value="2030">2030</option>
+			    </select>
+			    <select name="statMonth" id="statMonth">
+			        <option value="01">1</option>
+			        <option value="02">2</option>
+			        <option value="03">3</option>
+			        <option value="04">4</option>
+			        <option value="05">5</option>
+			        <option value="06">6</option>
+			        <option value="07">7</option>
+			        <option value="08">8</option>
+			        <option value="09">9</option>
+			        <option value="10">10</option>
+			        <option value="11">11</option>
+			        <option value="12">12</option>
+			    </select>
+			    
+<!-- 			    <span id="stat_down"><img src="../images/excel.png" alt="엑셀다운로드"></span> -->
+			    
+			</div>
+			<div class="tab_container">
+				<div id="tab1" class="tab_content">
+					
+					<table cellpadding="0" cellspacing="0" class="stat_table" style="table-layout : fixed; word-break : break-all;">
+						<tr>
+							<th rowspan="2" width="10%">Day</th>
+							<th rowspan="2" width="10%">가입자</th>
+							<th colspan="9" width="75%">접속자</th>		
+						</tr>
+						<tbody id="tab1_table">					
+						</tbody>
+					</table>
+					<!-- <span class="baseDateWrap">기준일시 : <span id="baseDate">2019-08-10 02:25:11</span></span> -->
+				</div>
+				<!-- #tab1 -->
+				<p id="paging_area" class="paging_area"></p>
+				
+				
+			</div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- bootstrap -->
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/sha256.js"></script>
+<script src="../js/statistics_pe.js"></script>
+</body>
+</html>

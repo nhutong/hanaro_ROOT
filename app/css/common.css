@@ -1,0 +1,121 @@
+
+@charset "utf-8";
+/*@import url("http://fonts.googleapis.com/earlyaccess/notosanskr.css");*/
+@import url("../css/notosanskr.css");
+
+@font-face{
+    font-family:"농협체M";
+    src: url(../font/nonghyupM.ttf) format('truetype')
+	src: url(../font/nonghyupM.eot) format('embedded-opentype');
+
+}
+
+html{overflow-x:hidden;}
+t{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:"Noto Sans KR", sans-serif !important;font-size:15px;letter-spacing: -.5px !important;}
+/*body,input,textarea,select,button,table{font-family:"Spoqa Han Sans", sans-serif;font-size:15px;}*/
+
+input:focus{outline: none;}
+img,fieldset{border:0}
+ul,ol{list-style:none;}
+em,address{font-style:normal}
+th{text-align:left}
+a{text-decoration:none;color:#555;}
+a:hover,a:active,a:focus{}
+.blind{position:absolute;top:0;left:0;width:1px;height:1px;overflow:hidden;visibility:hidden;font-size:0;line-height:0}
+hr{display:none}
+* {box-sizing: content-box;-webkit-box-sizing:content-box;}
+h4{font-weight:400;color:#888;}
+
+
+.headerActive{
+    border-bottom : 3px solid #55B190;
+}
+
+.headerActive a{
+	color: #55B190;
+	font-weight : 500;
+}
+.noCont{
+    
+    text-align: center;
+    color : #777;
+    font-size: 13px;
+}
+
+
+/*2020-02-18 주석처리 한 부분 - 나영*/
+
+/*체크박스*/
+
+/* The container */
+.container {
+  display: inline-block;
+  position: relative;
+  padding : 0 20px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+    vertical-align: middle;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border : 1px solid #ccc;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #f0f0f0;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 7px;
+  border: solid #555;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*2020-02-18 주석처리 한 부분 - 나영*/

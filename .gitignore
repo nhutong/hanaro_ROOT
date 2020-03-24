@@ -1,0 +1,6 @@
+# image directory
+upload/
+
+# connection file
+back/00_include/dbConn.jsp
+back/00_include/dbConn_before.jsp

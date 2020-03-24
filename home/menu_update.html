@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>하나로마트</title>
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- common style css -->
+    <link href="../css/common.css" rel="stylesheet" type="text/css">
+    <!-- index style css -->
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <!-- bootstrap style css -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- fontawesome style css -->
+<!--     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+
+    <!-- sortable css -->
+   <link rel="stylesheet" href="../css/jquery_ui.css">
+   
+
+    <script src="../js/google.3.4.1.jquery.min.js"></script>
+    <script src="../js/link.js"></script>
+    <script src="../js/common2.js"></script>
+    <!--Sortable-->
+    <script src="../js/jquery-1.12.4.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+      <script>
+      $(function(){
+        //$("#sortable").sortable({
+             //items: "li:not(.ui-state-disabled)"
+        //});
+      })
+      </script>
+</head>
+
+<body>
+
+    <div id="wrap" class="wrap">
+        <div id="nav_header">
+		</div>
+        <div class="myplanb_bg">
+            <div class="left_menu">
+                <ul class="my_data" id="my_data">
+				</ul>
+                <ul class="myplanb_menu" id="myplanb_menu">
+                </ul>
+            </div>
+            <div class="myplanb_con">
+                <h4>메뉴관리</h4>
+                <div class="store_list_wrap"> <span class="store_list_name">판매장</span><div class="nh_store_list">
+                        <select class="sort_select" id="sort_select">
+                        </select>
+                    </div>
+                </div>
+                <div class="tab_container">
+					<span class="sortable_exp"> 
+                        [메뉴 순서변경] 메뉴를 클릭한 채로 원하는 위치에 끌어다 놓은 후, 팝업 확인 클릭 <br/>
+                        [숨기기] 메뉴 아래 숨기기 체크박스 체크하고 선택메뉴 숨기기 클릭 - 숨긴메뉴는 고객앱에서 보이지 않습니다.
+					</span>
+					
+                    <ul id="sortable" class="menu_order_change">
+                    </ul>
+                    <!-- #tab1 -->
+                    <div class="btn_box2 nh_store_btn"> 
+						<!-- <span class="admin_btn sign_up_menu" onclick="home();">반영하기</span> -->
+						<span class="admin_btn sign_up_menu" id="applyBtn">선택메뉴 숨기기</span>
+					</div>
+                       <!--iframe 들어갈 자리-->
+                       <div class="menu_update_iframe">
+					      <div class="iframe_wrap">
+						     <iframe id="nh_main" src="../app/home/main.html" frameborder="0" width="340px" height="540px" class="home_iframe"></iframe>
+                          </div>
+                       </div>
+					</div>
+              
+            </div>
+   
+             <div class="myplanb_footer"> ㈜농협유통 Co. ltd. All right reserved. </div>
+        </div>
+    </div>
+    <script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/sha256.js"></script>
+    <script src="../js/menu_update.js"></script>
+</body>
+
+</html>

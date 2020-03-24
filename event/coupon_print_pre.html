@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+
+
+</head>
+
+<body>
+    
+    <div class="coupon_print_wrap">
+        <!--왼쪽 프린트파트 Wrap 시작-->
+        <div class="coupon_print_lft">
+        <!--A4사이즈 2480 x 3508-->
+            <div class="coupon01">
+                <!--상단바 이미지-->
+                <div class="coupon_a4_01">
+                    <img src="../images/coupon_pop_top.png" alt="상단">
+                </div>
+                <!--앱쿠폰할인상품-->
+                <div class="coupon_a4_02">
+                    앱 쿠폰 할인상품
+                </div>
+                <!--기간-->
+                <div class="coupon_a4_03" id="a4Date">
+                    [기간 : <span id="a4StartDate">00-00</span>~<span id="a4EndDate">00-00</span>]
+                </div>
+                <!--상품명-->
+                <div class="coupon_a4_04" id="a4PdName1">
+                    제품명을 입력하세요
+                </div>
+                <!--상품정보 및 이미지-->
+                <div class="coupon_a4_05">
+                    <div class="a4_05_lft">
+                        <div class="a4_01" id="a4Count">0g(0g*0T)</div>
+                        <div class="a4_02" id="a4Weight">0원/0g</div>
+                        <div class="a4_03" id="a4PdName2">원산지</div>
+                        <div class="a4_04" id="a4Limit">0개 한정</div>
+                        <div class="a4_05" id="a4Qr"></div>
+                    </div>
+                    <div class="a4_05_rgt" id="a4_pd_img">
+                    </div>
+                </div>
+                <!--상품가격 및 할인가격-->
+                <div class="coupon_a4_06">
+                    <div class="a4_06_lft">
+                        <span class="a4_hanaro">하나로마트</span>
+                        <span class="a4_06_coupon">앱쿠폰할인</span>
+                        <span class="a4_06_price" id="a4Discount">0원</span>
+                    </div>
+                    <div class="a4_06_rgt">
+                        <div class="a4_price_before" id="a4BeforePrice">0원</div>
+                        <div class="a4_price_after"><span class="a4_price_after_tag">앱쿠폰할인가</span><span id="a4AfterPrice">0원</span></div>
+                    </div>
+                </div>
+                <!--하단설명-->
+                <div class="coupon_a4_07">
+                    <span class="pop_pd_info" id="a4PdInfo">구글플레이스토어/앱스토어'하나로마트'검색 > 앱 다운로드 > 쿠폰 다운로드</span>
+                </div>
+            </div>
+        
+        <!--A3사이즈 4960 x 3508-->
+        <div class="coupon02">
+                <!--상단바이미지-->
+                <div class="coupon_a3_01">
+                    <img src="../images/coupon_pop_top.png" alt="상단">
+                </div>
+                <!--앱쿠폰할인상품-->
+                <div class="coupon_a3_02">
+                    앱 쿠폰 할인상품
+                    <!--기간-->
+                <div class="coupon_a3_03" id="a3Date">
+                    [기간 : <span id="a3StartDate">00-00</span>~<span id="a3EndDate">00-00</span>]
+                </div>
+                </div>
+                
+                <!--상품명-->
+                <div class="coupon_a3_04" id="a3PdName1">
+                    제품명을 입력하세요
+                </div>
+                <!--상품정보 및 이미지-->
+                <div class="coupon_a3_05">
+                    
+                        <div class="a3_01" id="a3Count">0g(0g*0T)</div>
+                        <div class="a3_02" id="a3Weight">0원/0g</div>
+                        <div class="a3_03" id="a3PdName2">원산지</div>
+                        <div class="a3_04" id="a3Limit">0개 한정</div>
+                        
+                   
+                </div>
+                <!--상품가격 및 할인가격-->
+                <div class="coupon_a3_06">
+                    <div class="a3_06_lft">
+                        <div class="a3_qrcode" id="a3Qr"></div>
+                        <div class="a3_sale">
+                           <span class="a3_hanaro">하나로마트</span>
+                            <span class="a3_06_coupon">앱쿠폰할인</span>
+                            <span class="a3_06_price" id="a3Discount">2,000원</span> 
+                        </div>
+                    </div>
+                    <div class="a4_03_rgt">
+                        <div class="a3_price_before" id="a3BeforePrice">0원</div>
+                        <div class="a3_price_after"><span class="a3_price_after_tag">앱쿠폰할인가</span><span id="a3AfterPrice">0원</span></div>
+                    </div>
+                </div>
+                <!--하단설명-->
+                <div class="coupon_a3_07">
+                    <span class="pop_pd_info">구글플레이스토어/앱스토어'하나로마트'검색 > 앱 다운로드 > 쿠폰 다운로드</span>
+                </div>
+            
+        </div>
+        <!--엔드매대사이즈 200 x 70-->
+        <div class="coupon03">
+           <div class="r200_lft">
+               <div class="coupon_200_01">
+                   <span>
+                      
+                       앱<br>
+                       할인
+                   </span>
+               </div>
+           </div>
+           <div class="r200_rgt">
+               <div class="coupon_200_02" id="r200PdName1">
+                   제품명을 입력하세요
+               </div>
+               <div class="coupon_r200_03">
+                   <div class="r200_01" id="r200Count">0g(0g*0T)</div>
+                   <div class="r200_02" id="r200Weight">0원/0g</div>
+                   <div class="r200_04" id="r200Limit">0개 한정</div>
+               </div>
+               <div class="coupon_r200_04">
+                   <div class="r200_04_lft">
+                        <div class="r200_sale">
+                           <span class="r200_hanaro">하나로마트</span>
+                            <span class="r200_06_coupon">앱쿠폰할인</span>
+                            <span class="r200_06_price" id="r200Discount">0원</span> 
+                        </div>
+						<div class="r200_qrcode" id="r200Qr"></div>
+                    </div>
+                    <div class="r200_04_rgt">
+                        <div class="r200_price_before" id="r200BeforePrice">0원</div>
+                        <div class="r200_price_after"><span class="r200_price_after_tag">앱쿠폰할인가</span><span id="r200AfterPrice">0원</span></div>
+                    </div>
+                    <span class="pop_pd_info">구글플레이스토어/앱스토어'하나로마트'검색 > 앱 다운로드 > 쿠폰 다운로드</span>
+               </div>
+              
+               
+           </div>
+            
+        </div>
+        </div>
+
+    </div>
+    
+	<script src="../js/google.3.4.1.jquery.min.js"></script>
+	<script src="../js/link.js"></script>
+	<script src="../js/common2.js"></script>
+     <script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+    <script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/coupon/coupon_print.js"></script>
+    <script type="text/javascript" src="../js/jquery-barcode.js"></script>
+</body>
+</html>

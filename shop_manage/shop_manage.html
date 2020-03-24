@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>하나로마트</title>
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-Equiv="Cache-Control" Content="no-cache" />
+    <meta http-Equiv="Pragma" Content="no-cache" />
+    <meta http-Equiv="Expires" Content="0" />
+
+    <!-- common style css -->
+    <link href="../css/common.css" rel="stylesheet">
+    <!-- index style css -->
+    <link href="../css/index.css" rel="stylesheet">
+    
+    <!-- bootstrap style css -->
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- fontawesome style css -->
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<!-- 20190916 Datapicker 를 위한 추가 이중호 -->
+	<link rel="stylesheet" href="/css/jquery.com.1.8.18.jquery-ui.css" />
+     
+</head>
+<body>
+    <div id="wrap" class="wrap">
+		<div id="nav_header">
+		</div>
+        <div class="myplanb_bg">
+            <div class="left_menu">
+                <ul class="my_data" onclick="user_update();" id="my_data">
+                </ul>
+                <ul class="myplanb_menu" id="myplanb_menu">
+                </ul>
+            </div>
+            <div class="myplanb_con">
+                <h4>장보기 관리</h4>
+                <div class="store_list_wrap"> 
+                    <span class="store_list_name">판매장</span><div class="nh_store_list">
+                        <select class="sort_select" id="sort_select">
+                        </select>
+                    </div>
+                </div>
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                        <div class="iframe_wrap">
+						<!-- 좌측 앱 화면 -->
+                        <iframe id="nh_leaflet" src="../app/m_leaflet/m_leaflet.html" frameborder="0" width="340px" height="540px" class="nh_leaflet_iframe"></iframe>
+                        </div>
+                        <div class="leaflet_edit_wrap">
+                            <!--1-->
+                            <div class="leaflet_btn_wrap">
+                               
+                                <button class="leaflet_new">새상품추가</button>
+								<button class="leaflet_del" onclick="delete_btn();">상품 삭제</button>
+								
+								<div class="fr">
+<!-- 									<button class="leaflet_del_prod" onclick="delete_jdbtn();">전단 삭제</button> -->
+									<div class="new_leaflet_wrap" onclick="prod_create();">             
+										<span>상품 대량추가하기</span>                                
+									</div> 
+								</div>
+                            </div>
+                            <!--2-->
+                            <div class="leaflet_date">      
+                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
+							    <input type="hidden" id="jd_no">
+<!--                                 <div class="date_radio"> -->
+<!--                                     <input type="radio" name="showhide"><label for="showhide">반영</label> -->
+<!--                                     <input type="radio" name="showhide"><label for="showhide">미반영</label> -->
+<!--                                 </div> -->
+                                <input type="text" placeholder="기간을 입력하세요" id="from_date_origin">
+                                <span>~</span>
+                                <input type="text" placeholder="기간을 입력하세요" id="to_date_origin">
+                                <button class="leaflet_submit" id="category_update_btn">확인</button>                               
+                            </div>
+                            <!--3-->
+                            <div class="leaflet_banner">
+                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span> 
+                                <span>배너 이미지는828*422입니다. <br>
+								[배너 숨기기/되살리기]생성된 배너 클릭<br>
+                                [순서변경]마우스로 배너를 누른 상태에서, 원하는 순서에 끌어다 놓고 순서정렬 클릭</span>
+                               <ul id="sortable">
+                                   <li class="ui-state-default leaflet_banner_hover"><img src="../images/no_img.png" alt="이미지가없습니다">
+                                   <span>숨기기</span>
+                                   </li>
+                                   <li class="ui-state-default leaflet_banner_hover"><img src="../images/no_img.png" alt="이미지가없습니다">
+                                   <span>숨기기</span></li>
+                                   <li class="ui-state-default leaflet_banner_hover"><img src="../images/no_img.png" alt="이미지가없습니다">
+                                   <span>숨기기</span></li>
+                                   <li class="ui-state-default leaflet_banner_hover"><img src="../images/no_img.png" alt="이미지가없습니다">
+                                   <span>숨기기</span></li>
+                                   <li class="ui-state-default leaflet_banner_hover"><img src="../images/no_img.png" alt="이미지가없습니다">
+                                   <span>숨기기</span></li>
+                                   <li class="ui-state-default leaflet_banner_hover"><img src="../images/no_img.png" alt="이미지가없습니다">
+                                   <span>숨기기</span></li>
+                                   <li class="ui-state-default leaflet_banner_hover"><img src="../images/no_img.png" alt="이미지가없습니다">
+                                   <span>숨기기</span></li>
+<!-- 								   <li class="ui-state-disabled leaflet_banner_add" id="banner_add_btn">이미지 추가하기</li> -->
+                               </ul>
+
+							   <!-- <form enctype="multipart/form-data" action="" method="POST"> -->
+								   <input type="file" id="uploadFile" name="uploadFile">
+								   <button class="leaflet_submit" id="banner_add_btn">업로드</button>
+							   <!-- </form> -->
+							   	   
+							   <input type="hidden" id="new_banner_path" value="">
+<!-- 							   <button class="leaflet_submit" id="banner_add_btn">업로드</button> -->
+<!-- 							   <ul> -->
+<!-- 									<li class="ui-state-disabled leaflet_banner_add">이미지 추가하기</li> -->
+<!-- 							   </ul> -->
+                                <button class="leaflet_submit" id="banner_edit_btn">등록하기</button>
+                            </div>
+
+                            <!--4-->
+                            <div class="leaflet_image">
+                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
+								<input type="hidden" id="jd_prod_con_no_prod_thum">
+								<input type="hidden" id="pd_no_thum">
+								<input type="hidden" id="pd_code_thum">
+                                <input type="text" placeholder="검색하실 상품명 또는 상품태그를 입력하세요" id="searchText">
+                                <button class="leaflet_search" id="thum_search_btn">검색</button><br>
+                                <span>* 상품명 또는 상품태그 일부 검색하면 비슷한 사진을 찾아드려요! 예)사과</span>
+                                <ul id="searchResultGroup">
+<!--                                     <li> -->
+<!--                                     <img src="../images/nh_item1.jpg" alt="상품사진1"> -->
+<!--                                     </li> -->
+<!--                                     <li> -->
+<!--                                     <img src="../images/nh_item2.jpg" alt="상품사진1"> -->
+<!--                                     </li> -->
+<!--                                     <li> -->
+<!--                                     <img src="../images/nh_item3.jpg" alt="상품사진1"> -->
+<!--                                     </li> -->
+<!--                                     <li class="leaflet_image_add">이미지 추가하기</li> -->
+                                </ul>
+<!-- 								<form enctype="multipart/form-data" action="" method="POST"> -->
+								   <input type="file" id="uploadFile_thum" name="uploadFile">
+								   <button class="leaflet_submit" id="thum_add_btn">이미지 추가하기</button>
+<!-- 							   </form> -->
+							   <input type="hidden" id="new_thum_path" value="">
+
+<!--                                 <button class="leaflet_submit">확인</button> -->
+                            </div>
+                            <!--5-->
+                            <div class="leaflet_goods_name">
+                               <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
+							    <input type="hidden" id="jd_prod_con_no_prod_name">
+                                <input type="text" placeholder="상품명을 입력하세요" id="pd_name">
+                                <button class="leaflet_submit" id="pd_name_btn">확인</button>
+                            </div>
+                            <!--6-->
+                            <div class="leaflet_goods_price">
+                               <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
+							    <input type="hidden" id="jd_prod_con_no_price">
+                                <input type="text" placeholder="상품가격을 입력하세요" id="price">
+                                <span class="price_won">원</span>
+                                <button class="leaflet_submit" id="price_btn">확인</button>
+                            </div>
+                            <!--7-->
+                            <div class="leaflet_discount">
+                               <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>                               
+                                <h5>혜택 및 상품 정보 안내</h5>
+                                <div id="table">
+                                
+                                    <table class="table">
+                                      <tr>
+<!--                                         <th contenteditable="false">삭제</th> -->
+                                        <th>할인종류</th>
+                                        <th>할인금액/혜택</th>
+                                        <th>기간</th>
+                                        <th>혜택상세</th>                                       
+                                      </tr>
+
+                                      <!-- 카드할인 -->
+                                      <tr class="hide table-line">
+<!--                                         <td rowspan=2 contenteditable="false"> -->
+<!-- 											<span class="table-remove">-</span> -->
+<!--                                         </td>                                      -->
+                                        <td rowspan=2>
+											<div class="icon_select">
+												<img src="../images/leaflet_icon1.png" alt="카드할인">
+											</div>
+										</td>
+                                        <td rowspan=2>
+                                          <input type="text" placeholder="예시: 1000" id="card_discount" onkeyup="javascript:Tcheck(this);"></td>
+										<td>
+                                          <input type="text" placeholder="예시: 2019-09-01" id="card_discount_from_date">
+                                          </td>	
+										<td><textarea name="card_info" id="card_info" cols="15" rows="2" placeholder="예시: NH, NHBC, KB, 삼성 (KBBC 제외)"></textarea></td>
+									  </tr>									
+									  <tr>                                       
+										<td>
+										     <input type="text" placeholder="예시: 2019-09-05" id="card_discount_end_date">
+										</td> 
+										<td><textarea name="card_restrict" id="card_restrict" cols="15" rows="2" placeholder="예시: 1인 1봉 한정"></textarea></td>
+                                      </tr>
+
+									  <!-- 쿠폰할인 -->
+                                      <tr class="hide table-line">
+<!--                                         <td contenteditable="false"> -->
+<!-- 											<span class="table-remove">-</span> -->
+<!--                                         </td>                                       -->
+                                        <td contenteditable="false">
+											<div class="icon_select">
+												<img src="../images/leaflet_icon2.png" alt="쿠폰할인">
+											</div>
+										</td>
+                                        <td><input type="text" placeholder="예시: 500" id="coupon_discount" onkeyup="javascript:Tcheck(this);"></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                      </tr>
+
+									  <!-- 다다익선 -->
+                                      <tr class="hide table-line">
+<!--                                         <td contenteditable="false"> -->
+<!-- 											<span class="table-remove">-</span> -->
+<!--                                         </td> -->
+                                        <td>
+											<div class="icon_select">
+												<img src="../images/leaflet_icon3.png" alt="다다익선">
+											</div>
+										</td>
+                                        <td><input type="text" placeholder="예시: 2+1" id="dadaiksun"></td>
+                                        <td>-</td>
+                                        <td><textarea name="dadaiksun_info" id="dadaiksun_info" cols="15" rows="2" placeholder="예시: 농심 제품 2개이상 구매 시 1개 무료 증정"></textarea></td>
+                                      </tr>
+
+                                    </table>
+                              </div>
+                               <span class="discount_notice">※상품의 가격 및 내용은 공급자 사정에 따라 다소 변경될 수 있으며 조기품절 될 수 있습니다. <br> ※일부 상품 사진은 이미지컷입니다. <br> ※카드/쿠폰할인,다다익선은 매장방문고객에 한합니다.</span>
+                                <button class="leaflet_submit" id="sale_btn">확인</button>                                
+                            </div>
+                            
+                            <!--new_item_wrap-->                        
+                            <div class="new_item_wrap">
+                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span> 
+                                <table class="table">
+                                    <tbody>
+<!--                                         <tr> -->
+<!--                                             <td> -->
+<!-- 												<input type="checkbox" id="order_deactive" name="blank_chk">빈칸만들기 -->
+<!-- 											</td> -->
+<!--                                             <td>*는 필수입력 항목입니다.</td> -->
+<!--                                         </tr> -->
+                                        <tr>
+                                            <td>순서</td>
+                                            <td>
+                                                <select name="new_item_order" id="pd_order">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>상품코드*</td>
+                                            <td class="deact_empty"><input type="text" id="pd_code"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>상품명*</td>
+                                            <td class="deact_empty"><input type="text" id="pd_name_new"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>판매가*</td>
+                                            <td class="deact_empty"><input type="text" id="pd_price" onkeyup="javascript:Tcheck(this);"></td>
+                                        </tr>
+<!--                                         <tr> -->
+<!--                                             <td>카드할인</td> -->
+<!--                                             <td class="deact_empty"><input type="text" id="card_discount1" onkeyup="javascript:Tcheck(this);"></td> -->
+<!--                                         </tr> -->
+<!--                                         <tr> -->
+<!--                                             <td>카드시작일</td> -->
+<!--                                             <td class="deact_empty"><input type="text" id="card_startDate"></td> -->
+<!--                                         </tr> -->
+<!--                                         <tr> -->
+<!--                                             <td>카드종료일</td> -->
+<!--                                             <td class="deact_empty"><input type="text" id="card_endDate"></td> -->
+<!--                                         </tr> -->
+<!--                                         <tr> -->
+<!--                                             <td>카드정보</td> -->
+<!--                                             <td class="deact_empty"><input type="text" id="card_info1"></td> -->
+<!--                                         </tr> -->
+<!--                                         <tr> -->
+<!--                                             <td>카드한정</td> -->
+<!--                                             <td class="deact_empty"><input type="text" id="card_restrict1"></td> -->
+<!--                                         </tr> -->
+<!--                                         <tr> -->
+<!--                                             <td>쿠폰할인</td> -->
+<!--                                             <td class="deact_empty"><input type="text" id="coupon_discount1" onkeyup="javascript:Tcheck(this);"></td> -->
+<!--                                         </tr> -->
+<!--                                         <tr> -->
+<!--                                             <td>다다익선</td> -->
+<!--                                             <td class="deact_empty"><input type="text" id="dadaiksun1"></td> -->
+<!--                                         </tr> -->
+<!--                                         <tr> -->
+<!--                                             <td>다다익선정보</td> -->
+<!--                                             <td class="deact_empty"><input type="text" id="dadaiksun_info1"></td> -->
+<!--                                         </tr> -->
+                                        <tr>
+                                            <td>기타정보</td>
+                                            <td class="deact_empty"><input type="text" id="etc_info"></td>
+                                        </tr>                                        
+                                    </tbody>                                                                       
+                                </table>
+                                <button class="leaflet_submit" id="pd_create_btn">추가하기</button>                     
+<!--
+								<div class="new_leaflet_wrap" onclick="leaflet_create();">             
+									<span>새로운 전단 제작하기</span>                                
+								</div>            
+-->
+                            </div>
+                                                       
+                        </div>                       
+                    </div>              
+                </div>               
+                <div class="myplanb_footer"> ㈜농협유통 Co. ltd. All right reserved. </div>
+            </div>
+        </div>
+    </div>
+
+	<script src="/js/jquery-1.12.4.js"></script>
+	<!-- 해더 및 쿠키 정의 -->
+	<script src="../js/common2.js"></script>
+    <script src="../js/link.js"></script>
+<!--     <script src="../js/leaflet_table.js"></script> -->
+<!--     <script src="../js/leaflet_banner.js"></script> -->
+    <script src="../js/shop_manage_new.js"></script>
+    <!--Sortable-->
+	<script language="javascript" src="/js/google.jqueryui.1.8.22.jquery-ui.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/sortable.js"></script>
+
+	<script>
+	// jQuery import 바로아래에 넣어 주면 됩니다.
+	// Cannot read property 'msie' of undefined 에러 나올때
+	jQuery.browser = {};
+	(function () {
+		jQuery.browser.msie = false;
+		jQuery.browser.version = 0;
+		if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+			jQuery.browser.msie = true;
+			jQuery.browser.version = RegExp.$1;
+		}
+	})();
+	</script>
+	<script src="/js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="../js/bootstrap.min.js"></script>
+    <script src="../js/shop_manage.js"></script>
+	<script>
+		$.datepicker.setDefaults({
+			dateFormat: 'yy-mm-dd',
+			prevText: '이전 달',
+			nextText: '다음 달',
+			monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			showMonthAfterYear: true,
+			yearSuffix: '년'
+		});
+		$(function() {
+			$("#card_discount_from_date").datepicker();
+			$("#card_discount_end_date").datepicker();
+		});
+	</script>
+     
+</body>
+</html>

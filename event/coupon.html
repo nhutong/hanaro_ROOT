@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+<!-- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+	<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+
+    <link href="../css/pagination.css" rel="stylesheet"><!-- Pagination.js : https://pagination.js.org/ -->	
+   
+</head>
+
+<body>
+
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+			</ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>쿠폰</h4>
+			
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                        <!--coupon_wrap start-->
+                        <div class="coupon_wrap">
+							<div class="guide_tip">
+							   ※[쿠폰 일괄등록] 상품쿠폰만 가능하며, 미반영 상태로 리스팅 됩니다. <br>
+							   사용하시려면, 쿠폰명을 눌러서 상태를 반영으로 변경하시기 바랍니다.
+							</div>
+                            <div class="coupon_upload_wrap">
+								<span class="coupon_upload_form">*쿠폰 양식 :</span> <a href="/download/coupon_upload.xls">coupon_upload.xls</a>
+								<div class="coupon_upload_file_add">
+									<form enctype="multipart/form-data" action="/include/fileUpload.jsp" method="POST">
+										<input type="file" id="uploadFile" name="uploadFile">
+									</form>
+									<input type="hidden" id="excel_path" value="">
+									<button class="coupon_submit" id="couponListFileUpload" onclick="coupon_file_upload()">파일 업로드</button>
+								</div>
+								<button id="couponUploadSubmit" onclick="coupon_upload_create();">
+									일괄 등록하기
+								</button>								                                
+                            </div>
+                            <table class="coupon_table" style="table-layout : fixed; word-break : break-all;">
+                                <thead>
+									<tr>
+										<th width="7%">No</th>
+										<th width="17%">상품할인/결제할인</th>
+										<th width="17%">쿠폰명</th>
+										<th width="17%">상품코드</th>										
+										<th width="15%">지점명</th>
+										<th width="10%">상태</th>
+										<th width="14%">적용기간</th>
+										<th width="10%">등록자</th>
+										<th width="12%">등록일자</th>
+										<th width="12%">쿠폰POP</th>
+									</tr>
+								</thead>
+								
+                                <tbody id="couponList">
+                                </tbody>
+                                
+                            </table>
+                            
+                        </div>
+                        <!--coupon_wrap end-->
+                        <!--pagination start-->
+                         <div class="pagination">
+							<div id="pagination" class="pagination_wrap"></div>
+						</div>                               
+                         <!--pagination end-->
+                         <!--submit_btn start-->
+                         <div class="coupon_submit_wrap">
+                             <button id="couponSubmit" onclick="coupon_create();">
+                                 등록
+                             </button>
+                         </div>
+                         <!--submit_btn end-->
+                    </div>
+                </div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+<script src="../js/popper.min.js" ></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/coupon/coupon.js"></script>
+
+
+</body>
+</html>

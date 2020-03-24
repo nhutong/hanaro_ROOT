@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../css/pagination.css" rel="stylesheet"><!-- Pagination.js : https://pagination.js.org/ -->
+
+	<!-- fontawesome style css -->
+	<link href="../css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+
+            <ul class="my_data" onclick="user_update();" id="my_data">
+                </ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+			</ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>공지사항 관리</h4>
+			 <div class="store_list_wrap"> <span class="store_list_name">판매장</span><div class="nh_store_list">
+                        <select class="sort_select" id="sort_select">
+                        </select>
+                    </div>
+                </div>
+                <div class="tab_all">
+                    <div id="tab1" class="tab_content">
+                        
+                        <div class="menu_notice_table_wrap">
+                            
+                            <table class="menu_notice_table">
+                                <thead>
+                                    <tr>
+                                        <th width="10%">No.</th>
+                                        <th width="50%">제목</th>
+                                        <th width="25%">등록일자</th>
+<!--                                         <th width="15%">매장명</th> -->
+                                    </tr>
+                                    
+                                </thead>
+                                <tbody id="manageNoticeTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                
+                </div>
+							<!-- #tab1 -->
+				<div class="btn_box2">
+					<span class="admin_btn sign_up_menu" onclick="menu_create_popup();">등록</span>
+				</div>
+				
+				<div class="pagination">
+					<div id="pagination" class="pagination_wrap"></div>
+				</div>
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../js/google.3.4.1.jquery.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+<script src="../js/jquery.validate.min.js"></script><!-- jQuery Validation Plugin : https://jqueryvalidation.org/ -->
+<script src="../js/localization/messages_ko.min.js"></script><!-- jQuery Validation Plugin : https://jqueryvalidation.org/ -->
+
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/menunotice.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- fontawesome style css -->
+	<link href="../css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="wrap" class="wrap">
+	<div id="nav_header"></div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" onclick="user_update();" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu"></ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>관리자</h4>
+			<div class="tab_container">
+				<form id="tab1" class="tab_content">
+					<table cellpadding="0" cellspacing="0" class="create_table">
+						<tr>
+							<th>사번</th>
+							<td><input type="text" id="empNo" name="empNo" placeholder="사번입력"></td>
+						</tr>
+						<tr>
+							<th>휴대폰번호</th>
+							<td>								
+								<select id="cellphone1" name="cellphone1" class="wd100p">
+									<option>010</option>
+									<option>011</option>
+									<option>016</option>
+									<option>017</option>
+									<option>018</option>
+								</select>
+								-
+								<input type="text" id="cellphone2" name="cellphone2" class="wd100p" placeholder="1234">-
+								<input type="text" id="cellphone3" name="cellphone3" class="wd100p" placeholder="4567">
+							</td>
+						</tr>
+						<tr>
+							<th>이름</th>
+							<td><input type="text" id="name" name="name" placeholder="이름 입력"></td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td><input type="text" id="email" name="email" placeholder="example@nonghyup.kr"></td>
+						</tr>
+						<tr>
+							<th>패스워드</th>
+							<td><input type="password" id="password" name="password" placeholder="********"></td>
+						</tr>
+						<tr>
+							<th>패스워드확인</th>
+							<td><input type="password" id="password_confirm" name="password_confirm" placeholder="********"></td>
+						</tr>
+						<tr>
+							<th>판매장</th>
+							<td>
+								<select id="company" name="company"></select>
+							</td>
+						</tr>
+						<tr>
+							<th>역할</th>
+							<td>
+								<select id="role" name="role"></select>
+							</td>
+						</tr>
+					</table>
+				</form>
+				<!-- #tab1 -->
+				<p id="paging_area" class="paging_area"></p>
+				<div class="btn_box2">
+					<span class="admin_btn sign_up_menu" onclick="createManager();">등록</span>
+					<span class="admin_btn2 sign_up_menu" onclick="history_back();">취소</span>
+				</div>
+			</div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../js/google.3.4.1.jquery.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/jquery.validate.min.js"></script><!-- jQuery Validation Plugin : https://jqueryvalidation.org/ -->
+<script src="../js/localization/messages_ko.min.js"></script><!-- jQuery Validation Plugin : https://jqueryvalidation.org/ -->
+
+<script src="../js/bootstrap.min.js"></script>
+
+<script src="../js/sha256.js"></script>
+<script src="../js/manage_create.js"></script>
+</body>
+</html>

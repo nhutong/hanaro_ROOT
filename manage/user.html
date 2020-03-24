@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+		<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="../css/pagination.css" rel="stylesheet"><!-- Pagination.js : https://pagination.js.org/ -->
+		<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+</head>
+
+<body>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="wrap" class="wrap">
+	<div id="nav_header"></div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" onclick="user_update();" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu"></ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>회원</h4>
+			
+			<div class="tab_container">
+				<div id="tab1" class="tab_content" style="overflow-x:scroll;">
+					<div class="user_search_wrap">
+					    <input id="keyword" type="text" placeholder="검색어를 입력하세요"><button id="btnUserSearch">검색</button>
+					    <span id="user_down" style="cursor: pointer;"><img src="../images/excel.png" alt="엑셀다운로드"></span>
+					</div>
+					<table cellpadding="0" cellspacing="0" class="user_table" style="table-layout : fixed; word-break:break-all;">
+						<thead>
+							<tr>
+								<th rowspan="2" width="6%">no</th>
+								<th rowspan="2" width="8%">매장</th>
+								<th rowspan="2" width="10%">휴대폰번호</th>
+								<th rowspan="2" width="8%">이름</th>
+								<th rowspan="2" width="8%">회원번호</th>
+								<th colspan="6" width="33%">동의 </th>
+								<th rowspan="2" width="11%">최근 주문주소</th>
+								<th rowspan="2" width="6%">주문건수</th>
+								<th rowspan="2" width="6%">총<br>구매금액</th>
+								<th rowspan="2" width="6%">메모</th>
+							</tr>
+							<tr>
+								
+								<th>개인정보</th>
+								<th>일자</th>
+								<th>광고
+									<div class="border_box">
+										<select id="push" style="position : absolute; bottom : -23px; left : 0px; width : 50px;">
+										<option value="">전체</option> 
+										<option value="Y">동의</option>
+										<option value="N">비동의</option>
+										</select>
+									</div>
+								</th>
+								<th>동의일  </th>
+								<th>해제일 </th>
+								<th>위치
+									<div class="border_box">
+										<select id="location" style="position : absolute; bottom : -23px; left : 0px;width : 50px;">
+										<option value="">전체</option> 
+										<option value="Y">동의</option>
+										<option value="N">비동의</option>
+										</select>
+									</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody id="tab1_table"></tbody>
+					</table>
+				</div>
+				<!-- #tab1 -->
+				<!--pagination start-->
+				<div class="btn_box2"></div>
+                           <div class="pagination" style="width : 1200px;">
+								<div id="pagination" class="pagination_wrap"></div>
+							</div>
+			</div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- basic modal -->
+<div class="modal fade" id="memoModal" tabindex="-1" role="dialog" aria-labelledby="memoModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel"> 고객 메모 </h4>
+		</div>
+		<div class="modal-body" id="modal-body" >
+			<textarea data-member-no="-1" name="memo" id="memo" style="width: 100%; height: 200px; padding=10px; font-size: 13px;">
+			</textarea>
+
+		</div>
+		<div class="modal-footer">
+			<button type="button" id="btnClose" class="btn btn-primary" data-dismiss="modal" style="background-color: #00b140; width:100px">닫기</button>
+			<button type="button" id="btnSave" class="btn btn-primary" style="background-color: #00b140; width:100px">저장하기</button>
+		</div>
+		</div>
+	</div>
+</div>
+	  
+
+<!-- bootstrap -->
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+<script src="../js/popper.min.js" ></script>
+<script src="../js/lib/xlsx.full.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/user.js"></script>
+</body>
+</html>
