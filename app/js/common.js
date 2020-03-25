@@ -70,7 +70,7 @@ function getHeader(rcVm_p_no){
 //	result += '		   <li><a href="../mypage/my_coupon.html"><img src="../images/coupon.png" alt="쿠폰">쿠폰</a></li>';
 //	result += '		   <li><a href="../mypage/stamp.html"><img src="../images/stamps.png" alt="스탬프">스탬프</a></li>';
 	result += '		   <li><a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"><img src="../images/coupon.png" alt="쿠폰">쿠폰</a></li>';
-	result += '		   <li><a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"><img src="../images/stamps.png" alt="스탬프">스탬프</a></li>';
+	// result += '		   <li><a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"><img src="../images/stamps.png" alt="스탬프">스탬프</a></li>';
 	result += '	   </ul>';
 	result += '	</div>';
 	result += '	<div id="aside">';
@@ -122,10 +122,13 @@ function getHeader(rcVm_p_no){
 	result += '			</div><div ';
 	result += '			id="alert">';
 	result += '				<a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"> <img src="../images/alert.png" alt="알림창"> </a>';
-	result += '			</div><div ';
-	result += '			id="search">';
-	result += '				<a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"> <img src="../images/search.png" alt="검색"> </a>';
-	result += '			</div>';
+    result += '			</div>';
+    // 모바일앱 출시 전 돋보기 버튼 숨기기    
+    // result += '			</div><div ';
+	// result += '			id="search">';
+	// result += '				<a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"> <img src="../images/search.png" alt="검색"> </a>';
+    // result += '			</div>';
+    
 	result += '		</div>';
 	result += '		<nav>';
 	result += '			<ul id="headerMenuArea">     ';
