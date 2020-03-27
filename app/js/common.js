@@ -581,7 +581,7 @@ function deleteAllCookies()
   function getCpName(vm_cp_no){
 
 	$.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletCpName.jsp?random=' + (Math.random()*99999), 
+        url:'../back/02_app/mLeafletCpName.jsp?random=' + (Math.random()*99999), 
         data : {vm_cp_no: vm_cp_no},
         method : 'GET' 
     }).done(function(result){

@@ -65,7 +65,7 @@ $(function () {
 	  if ((event.button == 2) || (event.which == 3)) {
 
 		/* 20191227 도메인뒤 역슬래쉬 삭제 */
-		var newURL = "https://www.nhhanaromart.com" + window.location.pathname;
+		var newURL = "../images/Icon-512.png" + window.location.pathname;
 		//console.log(newURL+"?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+getCookie("jd_no"));
 		getShortURL(newURL+"?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+getCookie("jd_no"));
 		

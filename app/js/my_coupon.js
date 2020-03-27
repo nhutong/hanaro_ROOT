@@ -96,9 +96,9 @@ function couponList(rcv_vm_cp_no){
 				
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
 				}
                 text +='     </div>';
                 text +='     <div class="product_detail">';
@@ -123,9 +123,9 @@ function couponList(rcv_vm_cp_no){
                 text +='        <div class="coupon_thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
 				}
                 text +='        </div>';
                 text +='        <div class="coupon_barcode_wrap">';
@@ -227,9 +227,9 @@ function couponListIng(rcv_vm_cp_no){
 					text +='     <div class="thumb_wrap">';
 					if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
 				}
 					text +='     </div>';
 					text +='     <div class="product_detail">';
@@ -254,9 +254,9 @@ function couponListIng(rcv_vm_cp_no){
 					text +='        <div class="coupon_thumb_wrap">';
 					if (jsonResult_notice[i].coupon_type == "BILLING")
 					{
-						text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+						text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 					}else{
-						text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+						text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
 					}
 					text +='        </div>';
 					text +='        <div class="coupon_barcode_wrap">';
@@ -357,9 +357,9 @@ function couponListEnd(rcv_vm_cp_no){
                 text +='     <div class="thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
 				}
                 text +='     </div>';
                 text +='     <div class="product_detail">';
@@ -384,9 +384,9 @@ function couponListEnd(rcv_vm_cp_no){
 				text +='        <div class="coupon_thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
 				}
 				text +='        </div>';
 				text +='        <div class="coupon_barcode_wrap">';

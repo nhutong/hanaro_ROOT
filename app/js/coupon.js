@@ -69,7 +69,7 @@ function couponList(rcv_vm_cp_no){
 		var text = '';
 
 		$.ajax({
-			url:'https://www.nhhanaromart.com/back/02_app/mCoupon.jsp?random=' + (Math.random()*99999), 
+			url:'../back/02_app/mCoupon.jsp?random=' + (Math.random()*99999), 
 			data : {userCompanyNo: rcv_vm_cp_no},
 			method : 'GET' 
 		}).done(function(result){
@@ -94,13 +94,13 @@ function couponList(rcv_vm_cp_no){
                 text +='     <div class="thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt="이미지없음"></a>';
+					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt="이미지없음"></a>';
 				}else{
                     
                     if(jsonResult_notice[i].img_path == null){
-                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                          text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
                        }else{
-                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+                          text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
                        }
 				}
                 text +='     </div>';
@@ -147,7 +147,7 @@ function couponListIng(rcv_vm_cp_no){
 		var text = '';
 
 		$.ajax({
-			url:'https://www.nhhanaromart.com/back/02_app/mCouponIng.jsp?random=' + (Math.random()*99999), 
+			url:'../back/02_app/mCouponIng.jsp?random=' + (Math.random()*99999), 
 			data : {userCompanyNo: rcv_vm_cp_no},
 			method : 'GET' 
 		}).done(function(result){
@@ -171,12 +171,12 @@ function couponListIng(rcv_vm_cp_no){
 					text +='     <div class="thumb_wrap">';
 					if (jsonResult_notice[i].coupon_type == "BILLING")
 					{
-						text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+						text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 					}else{
                         if(jsonResult_notice[i].img_path == null){
-                              text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                              text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
                            }else{
-                              text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+                              text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
                            }
 					}
 					text +='     </div>';
@@ -223,7 +223,7 @@ function couponListEnd(rcv_vm_cp_no){
 		var text = '';
 
 		$.ajax({
-			url:'https://www.nhhanaromart.com/back/02_app/mCouponEnd.jsp?random=' + (Math.random()*99999), 
+			url:'../back/02_app/mCouponEnd.jsp?random=' + (Math.random()*99999), 
 			data : {userCompanyNo: rcv_vm_cp_no},
 			method : 'GET' 
 		}).done(function(result){
@@ -247,12 +247,12 @@ function couponListEnd(rcv_vm_cp_no){
                 text +='     <div class="thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
-					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
                     if(jsonResult_notice[i].img_path == null){
-                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                          text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
                        }else{
-                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+                          text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
                        }
 				}
                 text +='     </div>';

@@ -67,7 +67,7 @@ function myDelList(){
 					//li 내부 아이템                    
 					text +=' <tr>';
                     text +='     <th rowspan="2" class="del_item_img">';
-					text +='	 <img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].item_pd_name+'"></th>';
+					text +='	 <img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].item_pd_name+'"></th>';
                     text +='     <th colspan="2">'+jsonResult_notice[i].item_pd_name+'</th>';
                     text +='</tr>';
                     text +='<tr>';
