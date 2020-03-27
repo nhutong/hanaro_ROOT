@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+
+</head>
+
+<body>
+
+        <div id="wrap" class="wrap">
+            <div id="nav_header">
+            </div>
+            <div class="myplanb_bg">
+                <div class="left_menu">
+                    <ul class="my_data" id="my_data">
+                    </ul>
+                    <ul class="myplanb_menu" id="myplanb_menu">
+                    </ul>
+                </div>
+
+                <div class="myplanb_con">
+                    <h4>푸시 &gt; PUSH</h4>
+						<div class="store_list_wrap"> <span class="store_list_name">판매장</span><div class="nh_store_list">
+                        <select class="sort_select" id="sort_select">
+                        </select>
+                    </div>
+                </div>
+                        <div class="tab_container">
+                            <div id="tab1" class="tab_content">
+                                <!--push_wrap start-->
+                                <div class="push_wrap">
+
+                                    <table class="push_table" style="table-layout : fixed; word-break : break-all;">
+                                        <thead>
+											<tr>
+												<th width="8%">No</th>
+<!-- 												<th width="12%">PUSH 제목</th> -->
+												<th width="16%">PUSH 내용</th>
+												<th width="18%">링크</th>
+												<th width="11%">대상지점</th>
+												<th width="15%">등록/전송시각</th>
+												<th width="10%">전송수</th>
+<!-- 												<th width="10%">수신수</th> -->
+											</tr>
+										</thead>
+                                        <tbody id="pushList">
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                                <!--push_wrap end-->
+
+                                <!--pagination start-->
+                                  <div class="pagination_wrap" style="width : 940px;">
+                                        <ul class="pagination justify-content-center" id="pagination">
+                                            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                        </ul>
+                                 </div>
+                                 <!--pagination end-->
+                                 <!--submit_btn start-->
+                                 <div class="push_submit_btn_wrap">
+                                     <button id="pushSubmit" onclick="push_send();">
+                                         PUSH 발송
+                                     </button>
+                                 </div>
+                                 <!--submit_btn end-->
+                            </div>
+                        </div>
+
+                    <div class="myplanb_footer">
+                        ㈜농협유통 Co. ltd. All right reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+	<script src="../js/google.3.4.1.jquery.min.js"></script>
+	<script src="../js/link.js"></script>
+	<script src="../js/common2.js"></script>
+    <script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+    <script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/push.js"></script>
+    
+</body>
+</html>

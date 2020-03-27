@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- fontawesome style css -->
+	<link rel="stylesheet" href="../css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<!-- 20190917 Datapicker 를 위한 추가 김나영 -->
+    <!-- <link rel="stylesheet" href="../css/jquery-ui.css" /> -->
+<!--     <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" /> -->
+	<link rel="stylesheet" href="../css/jqueryui.com.1.8.18.jquery-ui.css" />
+
+</head>
+
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="wrap" class="wrap">
+        <div id="nav_header">
+        </div>
+        <div class="myplanb_bg">
+            <div class="left_menu">
+                <ul class="my_data"  id="my_data">
+                </ul>
+                <ul class="myplanb_menu" id="myplanb_menu">
+                </ul>
+            </div>
+    
+            <div class="myplanb_con">
+                <h4>이벤트&sol;쿠폰 &gt; 이벤트</h4>
+                    <div class="tab_container">
+                        <div id="tab1" class="tab_content">
+                         
+                          <!--event_create_wrap start-->
+                            
+                             <div class="event_create_wrap">
+                                <div class="event_create_lft">
+                                  <!--팝업파일 넣는 자리-->
+                                  <h5>이벤트 배너</h5>
+                                   <form action="" method="post">
+                                    <input id="inputImgUpload" type="file">
+                                    <label for="inputImgUpload" class="guide_tip">※[이벤트배너 권장사이즈_최대] 800px*400px</label>
+                                   </form>
+                                    <div id="eventImg" style="width:400px; height:200px">
+                                        <!--img 미리보기 자리-->
+                                        <img width="400px" height="200px" id="imgPreview" src="../images/image_unknown_02.png">
+                                    </div>
+                                <br/>
+                                    <!--팝업파일 넣는 자리 끝-->
+                                    <h5>이벤트 상세</h5>
+                                     <!--팝업파일 넣는 자리-->
+                                     <form action="" method="post">
+                                        <input id="inputDetailImgUpload" type="file">
+                                        <label for="inputDetailImgUpload" class="guide_tip">※[이벤트상세 권장사이즈_최대] 800px*1200px</label>
+                                        </form>
+                                         <div id="detailImg">
+                                             <!--img 미리보기 자리-->
+                                             <img width="400px" height="600px" id="detailImgPreview" src="../images/image_unknown_03.png">
+                                         </div>
+                                         <!--팝업파일 넣는 자리 끝-->
+                                </div>                         
+                                
+                                <div class="event_create_rgt">
+                                    <table class="event_create_table" style="table-layout : fixed; word-break:break-all;">
+                                        <tbody>
+                                            <tr>
+                                                <th width="20%">제목</th>
+                                                <td width="80%"><input type="text" id="eventTitle" placeholder="이벤트 제목"></td>
+                                            </tr>
+                                            <tr>
+                                                <th >기간</th>
+                                                <td class="event_date">
+                                                    <input type="text" placeholder="2019-09-01" id="event_start_date">
+                                                    <span class="event_to">~</span>
+                                                    <input type="text" placeholder="2019-09-07" id="event_end_date">
+                                                </td>                                            
+                                            </tr>
+                                            <tr>
+                                                <th>판매장</th>
+                                                <td>
+                                                <select id="company" class="sort_select">
+                                                    <option value="-1" selected="true" disabled="disabled">판매장 선택</option>
+                                                </select><button id="companyAddBtn">추가</button>
+                                                <!-- <div class="selected_option">양재점</div> -->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>반영여부</th>
+                                                <td>
+                                                    <select id="activated" class="sort_select">
+                                                        <option value="Y" selected>반영</option>
+                                                        <option value="N">미반영</option>
+                                                    </select>
+                                                    </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h5>상세페이지</h5>
+                                    <table class="event_create_table2">
+                                        <tr>
+                                            <th><input type="checkbox" id="eventLink"><label for="eventLink">Link</label></th>
+                                            <td><input type="text" id="linkUrl" placeholder="ex) home/event.html"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-indent:-16px;padding-left:25px;">
+                                             ※ 체크박스 선택 시 팝업 상세이미지 하단에 [보러가기] 버튼이 생성되며 <br/>버튼을 누르면 위에 설정된 링크로 이동합니다.    
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="event_create_btn" >
+                                        <button id="btneventCreate">등록</button>
+                                        <!-- <button id="btneventCreate">등록/수정</button> -->
+                                        <!-- <button id="btneventDelete">삭제</button> -->
+                                    </div>
+                                </div>
+                             </div>
+                              <!--event_create_wrap ends-->
+                        </div>
+                    </div>
+                <div class="myplanb_footer">
+                    ㈜농협유통 Co. ltd. All right reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery-ui.min.js"></script>
+        <script src="../js/link.js"></script>
+        <script src="../js/common2.js"></script>
+        <script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+        <script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+        <script src="../js/popper.min.js" ></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+        // jQuery import 바로아래에 넣어 주면 됩니다.
+        // Cannot read property 'msie' of undefined 에러 나올때
+        jQuery.browser = {};
+        (function () {
+            jQuery.browser.msie = false;
+            jQuery.browser.version = 0;
+            if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                jQuery.browser.msie = true;
+                jQuery.browser.version = RegExp.$1;
+            }
+        })();
+        </script>
+        <script src="../js/event/event_create.js"></script>
+    </body>
+</html>

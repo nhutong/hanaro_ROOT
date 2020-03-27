@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+	<!-- fontawesome style css -->
+	<link href="../css/all.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+            <ul class="my_data" id="my_data">
+            </ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+			</ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>홈 &gt; 홈화면</h4>
+			 <div class="store_list_wrap"> <span class="store_list_name">판매장</span><div class="nh_store_list">
+                        <select class="sort_select" id="sort_select">
+                        </select>
+                    </div>
+                </div>
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                        <div class="iframe_wrap">
+                        <iframe id="nh_main" src="../app/home/main.html" frameborder="0" width="340px" height="540px" class="home_iframe"></iframe>
+                        </div>
+                        <div class="home_edit_wrap">
+            
+                          <div class="home_edit_btm">
+                              <h5>관리자게시판</h5>
+                                <div class="prod_lft_btn_wrap">
+                                   <div class="prod_search">
+                                      <input type="text" id="searchKeyword" name="searchKeyword" placeholder="제목,작성자"><button class="prod_search_btn" onclick="home_post_search();">검색</button>
+                                   </div>
+                               </div>
+                              <table class="home_notice_table" style="table-layout : fixed; word-break : break-all;">
+                                  <thead>
+									  <tr>
+										  <th width="10%">No</th>
+										  <th width="45%">제목</th>
+										  <th width="15%">작성자</th>
+										  <th width="20%">작성일</th>
+										  <th width="10%">조회</th>
+									  </tr>
+								  </thead>								  
+                                  <tbody id="tab1_table"></tbody>
+                              </table>
+
+                              <div class="home_write_btn">
+                                  <button type="button" onclick="home_post_create()">새글작성</button>
+                              </div>
+
+                            <div class="pagination" style="width : inherit;">
+<!-- 								<div id="pagination" class="pagination_wrap"></div> -->
+								<div class="pagination_wrap">
+									<ul class="pagination justify-content-center" id="pagination" style="width : 50%; margin : 10px auto;">
+									</ul>
+								</div>
+							</div>
+                            </div>
+
+                          <div id="home_post_wrap" style="display:none;">
+							<form>
+								<table>
+									<tr>
+										<td>제목</td>
+										<td><select id="notice_fg">
+												<option value="NOTICE">상단공지</option>
+												<option value="POST" selected>일반게시물</option>
+											</select><input type="text" name="title" id="post_title"></td>
+									</tr>
+									<tr>
+										<td>내용</td>
+										<td><textarea name="content" cols="30" rows="5" id="post_content"></textarea></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<button type="button" onclick="canclePost()">취소</button>
+											<button type="button" onclick="createPost()">등록</button>
+										</td>
+									</tr>
+								</table>
+							</form>
+						  </div>
+
+                        </div>
+    
+                    </div>
+                
+                </div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../js/google.3.4.1.jquery.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+<script src="../js/home.js"></script>
+</body>
+</html>

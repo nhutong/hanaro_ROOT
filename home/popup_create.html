@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- fontawesome style css -->
+	<link rel="stylesheet" href="../css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<!-- 20190917 Datapicker 를 위한 추가 김나영 -->
+    <!-- <link rel="stylesheet" href="../css/jquery-ui.css" /> -->
+    <link rel="stylesheet" href="../css/jquery.com.1.8.18.jquery-ui.css" />
+
+</head>
+
+<body>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+			</ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>홈 &gt; 팝업</h4>
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                     
+                      <!--popup_create_wrap start-->
+						 
+                         <div class="popup_create_wrap">
+                            <div class="popup_create_lft">
+                              <!--팝업파일 넣는 자리-->
+                               <form action="" method="post">
+                                   <input id="inputImgUpload" type="file">
+									<!-- 이미지사이즈 가이드추가 20200109 김나영  -->
+								   <label for="inputImgUpload" class="guide_tip_pop">※[팝업 권장 사이즈_최대] 500px*450px</label>
+                               </form>
+							   
+                                <div id="popupImg">
+                                    <!--img 미리보기 자리-->
+                                    <img id="imgPreview" src="../images/image_unknown2.png">                                    
+                                </div>
+                                <!--팝업파일 넣는 자리 끝-->
+                            </div>
+                            
+                            <div class="popup_create_rgt">
+                                <table class="popup_create_table">
+                                    <tbody>
+                                        <tr>
+                                            <th>팝업 제목</th>
+                                            <td><input type="text" id="popupTitle" placeholder="팝업제목을 넣어주세요"></td>
+                                        </tr>
+                                        <tr>
+                                            <th rowspan="2">적용기간</th>
+                                            <td>
+                                               <select name="popupDate" id="popupDate" >
+                                                <option value="1">계속</option>
+                                                <option value="2">날짜입력</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                           
+                                            <td class="popup_date">
+                                                <input type="text" placeholder="2019-09-01" id="popup_from_date">
+                                                <span class="popup_to">~</span>
+                                                <input type="text" placeholder="2019-09-07" id="popup_end_date">
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <th>적용범위</th>
+                                            <td>
+                                                <select class="sort_select" id="company">
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>게시여부</th>
+                                            <td>
+                                                <select id="showFlag" class="sort_select">
+                                                    <option value="Y" selected>게시</option>
+                                                    <option value="N">숨김</option>
+                                                </select>
+                                                </td>
+                                            </tr>
+                                        <tr>
+                                            <th>Link</th>
+                                            <td><input type="text" id="linkUrl"placeholder="ex) home/popup.html"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="popup_create_btn" >
+                                    <button id="btnPopupCreate">등록하기</button>
+                                </div>
+                            </div>
+                         </div>
+                          <!--popup_create_wrap ends-->
+                    </div>
+                </div>
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+    <script src="../js/google.3.4.1.jquery.min.js"></script>
+    <script src="../js/link.js"></script>
+    <script src="../js/common2.js"></script>
+    <script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+    <script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+    <script src="../js/jquery-ui.min.js"></script>
+    <script>
+	// jQuery import 바로아래에 넣어 주면 됩니다.
+	// Cannot read property 'msie' of undefined 에러 나올때
+	jQuery.browser = {};
+	(function () {
+		jQuery.browser.msie = false;
+		jQuery.browser.version = 0;
+		if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+			jQuery.browser.msie = true;
+			jQuery.browser.version = RegExp.$1;
+		}
+	})();
+	</script>
+    <script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
+	<script>
+	// jQuery import 바로아래에 넣어 주면 됩니다.
+	// Cannot read property 'msie' of undefined 에러 나올때
+	jQuery.browser = {};
+	(function () {
+		jQuery.browser.msie = false;
+		jQuery.browser.version = 0;
+		if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+			jQuery.browser.msie = true;
+			jQuery.browser.version = RegExp.$1;
+		}
+	})();
+	</script>
+    <script src="../js/popup_create.js"></script>
+</body>
+</html>

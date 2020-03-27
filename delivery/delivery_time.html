@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+            </ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>실시간회차</h4>
+			 <div class="store_list_wrap"> <span class="store_list_name">판매장</span><div class="nh_store_list">
+                        <select class="sort_select" id="company">
+                        </select>
+                    </div>
+                </div>
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                        <!--delivery_time_wrap start-->
+                        
+                        <div class="delivery_time_wrap">
+                            <div class="delivery_time_btn">
+                                <a href="delivery.html"><button id="deliveryTimeEdit">기본회차 수정하기</button></a>
+                            </div>
+                            <table class="delivery_time_table" style="table-layout : fixed; word-break : break-all;">
+                                <tr>
+                                    <th width="15%">회차</th>
+                                    <th width="20%">배송가능시간</th>                                    
+                                    <th width="25%">상태</th>
+                                    <th width="20%">자동마감 건수</th>
+                                    <th width="20%">현 주문 건수</th>
+                                </tr>
+                                <tbody id="deliveryRoundList">                                 
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        
+                        <!--delivery_time_wrap end-->
+                    </div>
+                </div>
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+    
+
+<!-- bootstrap -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script>
+    // jQuery import 바로아래에 넣어 주면 됩니다.
+    // Cannot read property 'msie' of undefined 에러 나올때
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+</script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/popper.min.js" ></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/delivery/deliveryTime.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+    <meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- fontawesome style css -->
+	<link href="../css/all.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="home_read_wrap">
+        <form id="home_post_form">
+            <table>
+            <tbody id="home_read_table">
+				<tr class="home_read_title">
+					<th>제목</th>
+					<td colspan="6">
+						<select id="notice_fg">
+							<option value="NOTICE">상단공지</option>
+							<option value="POST" selected>일반게시물</option>
+						</select>
+						<span id="post_title"></span>
+						<input type="text" id="post_title_input">
+					</td>
+				</tr>
+				<tr class="home_read_sub">
+					<td width="20%"></td>
+					<td width="20%"></td>
+					<td class="home_read_sml">작성자</td>
+					<td><span id="vm_name"></span></td>
+					<td class="home_read_sml">작성일</td>
+					<td><span id="reg_date"></span></td>
+				</tr>
+				<tr class="home_read_text">
+					<td colspan="6">
+						<div style="width: 100%;border: 0px;resize: none;" id="post_content"></div>
+						<textarea style="width: 100%;border: 0px;resize: none;" id="post_content_textarea"></textarea>
+					</td>
+				</tr>
+			</tbody>
+            </table>
+            <div class="read_btn_wrap">
+                <button id="readEditBtn">수정</button>
+				<button id="actEditBtn">수정하기</button>
+                <button id="readDelBtn">삭제</button>
+            </div>
+        </form>
+		<!-- 댓글달기-->
+        <div class="home_read_comment">
+            <form id="home_comment_form">
+                <textarea name="commentContent" id="homeComment"></textarea>
+                <button type="button" id="homeCommentSubmit" onclick="createCommentOfPost()">댓글등록</button>
+            </form>
+			<!-- 댓글 리스트-->
+            <div id="home_comment_div" class="comment_list_wrap">
+			</div>
+        </div>
+    </div>
+    
+<script src="../js/google.3.4.1.jquery.min.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/home_read.js"></script>
+</body>
+</html>

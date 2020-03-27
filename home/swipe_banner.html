@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>하나로마트</title>
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- common style css -->
+    <link href="../css/common.css" rel="stylesheet" type="text/css">
+    <!-- index style css -->
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <!-- bootstrap style css -->
+<!-- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+	<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+
+    <!-- sortable css -->
+   <link rel="stylesheet" href="../css/jquery_ui.css">
+</head>
+
+
+<body>
+
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" id="my_data" onclick="user_update();">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+			</ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>홈 &gt; 스와이프 배너</h4>
+             <div class="store_list_wrap"> <span class="store_list_name">판매장</span><div class="nh_store_list">
+                        <select class="sort_select" id="sort_select">
+                        </select>
+                    </div>
+                </div>
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                        <!--swipe_banner_wrap 시작-->
+                         <div class="swipe_banner_wrap">※ 스와이프배너에 리스팅될 이벤트를 선택하시기 바랍니다.<br><br>
+                             <div class="swipe_banner_cont">
+                                 <ul id="sortable">
+                                    <!--1-->
+                                     <li class="ui-state-default">
+                                         <img src="../images/no_img2.png" id="imgBanner1" class="bannerImg" alt="이미지없음">
+                                         <table>
+                                             <tbody>
+                                                 <tr>
+                                                     <th>이벤트선택</th>
+                                                     <td>
+                                                         <select name="swipeBannerList" class="swipeBannerList"  id="swipeBannerList1">
+                                                             <option value="-1">선택하기</option>
+                                                         </select>
+                                                     </td>
+                                                     <td><input type="checkbox" class="bannerCheck" id="swipeOff1"> 반영
+                                                     <select style="width:40px;" id="banner_order1" name="banner_order" class="banner_order">
+                                                        <option value="1" selected>1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+                                                    </select></td>
+                                                     
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                     </li>
+                                     <!--2-->
+                                     <li class="ui-state-default">
+                                         <img src="../images/no_img2.png" class="bannerImg" id="imgBanner2" alt="이미지없음">
+                                         <table>
+                                             <tbody>
+                                                 <tr>
+                                                     <th>이벤트선택</th>
+                                                     <td>
+                                                         <select name="swipeBannerList" class="swipeBannerList" id="swipeBannerList2">
+                                                            <option value="-1">선택하기</option>
+                                                         </select>
+                                                     </td>
+                                                     <td><input type="checkbox" class="bannerCheck" id="swipeOff2"> 반영
+                                                     <select style="width:40px;" id="banner_order2" name="banner_order" class="banner_order">
+                                                        <option value="1">1</option>
+                                                        <option value="2" selected>2</option>
+                                                        <option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+                                                    </select></td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                     </li>
+                                     <!--3-->
+                                     <li class="ui-state-default">
+                                         <img src="../images/no_img2.png" class="bannerImg" id="imgBanner3" alt="이미지없음">
+                                         <table>
+                                             <tbody>
+                                                 <tr>
+                                                     <th>이벤트선택</th>
+                                                     <td>
+                                                         <select name="swipeBannerList" class="swipeBannerList"  id="swipeBannerList3">
+                                                            <option value="-1">선택하기</option>
+                                                         </select>
+                                                     </td>
+                                                     <td><input type="checkbox" class="bannerCheck" id="swipeOff3"> 반영
+                                                     <select style="width:40px;" id="banner_order3" name="banner_order" class="banner_order">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3" selected>3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+                                                    </select></td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                     </li>
+									 <!--4-->
+                                     <li class="ui-state-default">
+                                         <img src="../images/no_img2.png" class="bannerImg" id="imgBanner4" alt="이미지없음">
+                                         <table>
+                                             <tbody>
+                                                 <tr>
+                                                     <th>이벤트선택</th>
+                                                     <td>
+                                                         <select name="swipeBannerList" class="swipeBannerList"  id="swipeBannerList4">
+                                                            <option value="-1">선택하기</option>
+                                                         </select>
+                                                     </td>
+                                                     <td><input type="checkbox" class="bannerCheck" id="swipeOff4"> 반영
+                                                     <select style="width:40px;" id="banner_order4" name="banner_order" class="banner_order">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+														<option value="4" selected >4</option>
+														<option value="5">5</option>
+                                                    </select></td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                     </li>
+									 <!--5-->
+                                     <li class="ui-state-default">
+                                         <img src="../images/no_img2.png" class="bannerImg" id="imgBanner5" alt="이미지없음">
+                                         <table>
+                                             <tbody>
+                                                 <tr>
+                                                     <th>이벤트선택</th>
+                                                     <td>
+                                                         <select name="swipeBannerList" class="swipeBannerList"  id="swipeBannerList5">
+                                                            <option value="-1">선택하기</option>
+                                                         </select>
+                                                     </td>
+                                                     <td><input type="checkbox" class="bannerCheck" id="swipeOff5"> 반영
+                                                     <select style="width:40px;" id="banner_order5" name="banner_order" class="banner_order">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5" selected >5</option>
+                                                    </select></td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                     </li>
+                                     <!--Swipe banner ends-->
+                                 </ul>
+                                 <div class="banner_submit_wrap">
+                                        <button id="bannerUpdate" onclick="updateBanner();"> 저장하기 </button>
+                                 </div>
+                             </div>
+                         </div>
+                        <!--swipe_banner_wrap 끝-->
+                    </div>
+                </div>
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Sortable 때문에 삭제-->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+ <!--Sortable-->
+<!--     <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+	<script src="../js/jquery-1.12.4.js"></script>
+
+    <script src="../js/jquery-ui.js"></script>
+<!--       <script> -->
+<!--       $(function(){ -->
+<!--         $("#sortable").sortable({ -->
+<!--              items: "li:not(.ui-state-disabled)" -->
+<!--         }); -->
+<!--  -->
+<!--       }) -->
+<!--       </script> -->
+
+<!-- <script src="../js/jquery.com.jquery-3.3.1.min.js"></script> -->
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/popper.min.js" ></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/sha256.js"></script>
+<script src="../js/swipe_banner.js"></script>
+</body>
+</html>

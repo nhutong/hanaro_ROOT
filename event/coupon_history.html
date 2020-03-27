@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>(주)농협유통</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- fontawesome style css -->
+<!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="../css/all.css">
+	
+	<script src="../js/google.3.4.1.jquery.min.js"></script>
+	<script src="../js/link.js"></script>
+	<script src="../js/common2.js"></script>
+</head>
+
+<body>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="wrap" class="wrap">
+	<div id="nav_header"></div>
+	<div class="mynh_bg">
+		<div class="left_menu">
+			<ul class="my_data" onclick="user_update();" id="my_data">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu"></ul>
+		</div>
+
+		<div class="mynh_con">
+			<h4>이벤트&sol;쿠폰 &gt; 쿠폰 히스토리</h4>
+			<div class="stat_period_wrap coupon_search_wrap">
+			    <select name="statStore" id="sort_select">
+			    </select>
+			    <div class="coupon_search_wrap">
+					    <input id="keyword" type="text" placeholder="검색어를 입력하세요"><button id="btnUserSearch">검색</button>
+					</div>
+			    
+<!-- 			    <span id="stat_down"><img src="../images/excel.png" alt="엑셀다운로드"></span> -->
+			    
+			</div>
+			<div class="tab_container">
+				<div id="tab1" class="tab_content">
+					
+					<table cellpadding="0" cellspacing="0" class="stat_table" style="table-layout : fixed; word-break : break-all;">
+						<thead>
+						<tr>	    
+						    <th width="20%">기준일자</th>
+						    <th width="10%">매장명</th>
+						    <th width="20%">전화번호</th>
+						    <th width="12%">앱회원번호</th>
+						    <th width="20%">쿠폰코드</th>
+						    <th width="10%">사용여부</th>				   
+						</tr>
+						</thead>
+						<tbody id="tab1_table">								  					
+						</tbody>
+					</table>
+
+				</div>
+				<!-- #tab1 -->
+				<p id="paging_area" class="paging_area"></p>
+				
+				
+			</div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- bootstrap -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/sha256.js"></script>
+<script src="../js/coupon/coupon_history.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>하나로마트</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- fontawesome style css -->
+	<link rel="stylesheet" href="/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<!--Google Font style css-->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet"> -->
+	<link href="/css/googleNotoSansKR.css" rel="stylesheet">
+	<!-- jquery CDN -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+	<script src="/js/google.3.4.1.jquery.min.js"></script>
+	<script src="../js/common.js"></script>
+</head>
+<body style="background-color:rgba(0,0,0,0.5);">
+<div id="wrap">
+	<!-- Modal -->
+	<div>
+	  <div class="modal-dialog modal-dialog-scrollable modal-sm" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+		      <h1><img src="../images/logo_1.png" alt="로고"></h1>
+		  </div>
+		  <div class="modal-body">
+			<div class="input-group mb-2">
+			  <input type="text" class="form-control login_form wd200" id="user_number" placeholder="사번 입력" aria-label="Username" aria-describedby="basic-addon1">		  
+			</div>
+			<div class="input-group mb-2">
+			  <input type="password" class="form-control login_form" id="user_pw" placeholder="비밀번호 입력" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+			<div class="login_save">
+			</div>
+			<button type="button" class="btn btn-primary btn-lg btn-block" onclick="pb_login();">로그인</button>
+		  </div>
+		  <div class="modal-footer">
+			<span class="modal_sign_btn" onclick="signup();">회원가입</span>
+			<span class="modal_sign_btn" onclick="find_pw1();">비밀번호 재설정</span>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+<!-- bootstrap -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+<script src="/js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+<script src="/js/4.3.1.bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="../js/link.js"></script>
+<script src="../js/sha256.js"></script>
+<script src="../js/index.js"></script>
+	
+</body>
+</html>

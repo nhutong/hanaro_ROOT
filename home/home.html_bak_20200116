@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>(주)농협유통</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../css/pagination.css" rel="stylesheet"><!-- Pagination.js : https://pagination.js.org/ -->
+
+	<!-- fontawesome style css -->
+	<link href="../css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+<!--
+			<ul class="my_data" onclick="user_update();">
+				<li><i class="far fa-user"></i></li>
+				<li class="user_name">이중호님</li>
+				<li class="user_email">1234567-08</li>
+				<li class="startup_fg">본사마스터(본사)</li>
+			</ul>
+-->
+            <ul class="my_data" id="my_data">
+                </ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+<!-- 				<li class="active" onclick="home();">홈화면</li> -->
+<!-- 				<li onclick="home_notice();">긴급공지</li> -->
+<!-- 				<li onclick="swipe_banner();">스와이프 배너</li> -->
+<!-- 				<li onclick="popup();">팝업</li> -->
+<!-- 				<li onclick="menu_create();">메뉴생성</li> -->
+<!-- 				<li onclick="menu_update();">메뉴관리</li> -->
+			</ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>HOME</h4>
+			 <div class="store_list_wrap"> <span class="store_list_name">판매장</span><div class="nh_store_list">
+                        <select class="sort_select" id="sort_select">
+                        </select>
+                    </div>
+                </div>
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                        <div class="iframe_wrap">
+                        <iframe id="nh_main" src="../app/home/main.html" frameborder="0" width="340px" height="540px" class="home_iframe"></iframe>
+                        </div>
+                        <div class="home_edit_wrap">
+            
+                          <div class="home_edit_btm">
+                              <h5>관리자게시판</h5>
+                                <div class="prod_lft_btn_wrap">
+                                   <div class="prod_search">
+                                      <input type="text" id="searchKeyword" name="searchKeyword" placeholder="제목,작성자"><button class="prod_search_btn" onclick="home_post_search();">검색</button>
+                                   </div>
+                               </div>
+                              <table style="table-layout : fixed; word-break : break-all;">
+                                  <tr>
+                                      <th width="10%">No.</th>
+                                      <th width="45%">제목</th>
+                                      <th width="15%">작성자</th>
+                                      <th width="20%">작성일</th>
+                                      <th width="10%">조회</th>
+                                  </tr>
+                                  <tbody id="tab1_table"></tbody>
+                              </table>
+
+                              <div class="home_write_btn">
+                                  <button type="button" onclick="home_post_create()">새글작성</button>
+                              </div>
+
+                            <div class="pagination" style="width : inherit;">
+								<div id="pagination" class="pagination_wrap"></div>
+							</div>
+                            </div>
+
+                          <div id="home_post_wrap"></div>
+
+                        </div>
+    
+                    </div>
+                
+                </div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../js/google.3.4.1.jquery.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+<script src="../js/jquery.validate.min.js"></script><!-- jQuery Validation Plugin : https://jqueryvalidation.org/ -->
+<script src="../js/localization/messages_ko.min.js"></script><!-- jQuery Validation Plugin : https://jqueryvalidation.org/ -->
+
+<script src="../js/bootstrap.min.js"></script>
+
+<script src="../js/home.js"></script>
+</body>
+</html>

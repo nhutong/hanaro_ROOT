@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>하나로마트</title>
+
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- common style css -->
+	<link href="../css/common.css" rel="stylesheet">
+	<!-- index style css -->
+	<link href="../css/index.css" rel="stylesheet">
+	<!-- bootstrap style css -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../css/pagination.css" rel="stylesheet"><!-- Pagination.js : https://pagination.js.org/ -->
+
+	<!-- fontawesome style css -->
+	<link rel="stylesheet" href="../css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">  
+</head>
+
+<body>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="wrap" class="wrap">
+	<div id="nav_header">
+	</div>
+	<div class="myplanb_bg">
+		<div class="left_menu">
+			<ul class="my_data" id="my_data" onclick="user_update();">
+			</ul>
+			<ul class="myplanb_menu" id="myplanb_menu">
+			</ul>
+		</div>
+
+		<div class="myplanb_con">
+			<h4>홈 &gt; 팝업</h4>
+			
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                      <!--popup_list_wrap start-->
+                         <div class="popup_list_wrap">
+                             
+                             <table class="popup_table">
+                                 <tr>
+                                     <th>No.</th>
+                                     <th>팝업제목</th>
+                                     <th>이미지</th>
+                                     <th>적용범위</th>
+                                     <th>적용기간</th>
+                                     <th>등록자</th>
+                                     <th>등록일자</th>
+                                 </tr>
+                                 <tbody id="popupListTbody">
+                                 </tbody>
+                             </table>
+
+                         </div>
+                          <!--popup_list_wrap ends-->                          
+                           <div class="pagination">
+								<div id="pagination" class="pagination_wrap"></div>
+							</div>
+                         
+                         <!--submit_btn start-->
+                         
+                         <div id="popup_submit" class="popup_submit_wrap">
+                             <!-- <button id="popupSubmit" onclick="popup_create();">등록 </button> -->
+                         </div>
+                         
+                         <!--submit_btn end-->
+                         
+                         
+                    </div>
+                
+                </div>
+			
+			<div class="myplanb_footer">
+				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- bootstrap -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common2.js"></script>
+<script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
+<script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
+<script src="../js/popper.min.js" ></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/popup_list.js"></script>
+</body>
+</html>
