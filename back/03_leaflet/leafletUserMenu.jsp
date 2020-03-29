@@ -13,8 +13,8 @@
 	JSONObject bdListJSON = new JSONObject();
 	
 	try{
-
-		sql = " SELECT a.menu_no, a.menu_name, a.menu_type_cd, min(b.jd_no) AS jd_no "
+		//sql = " SELECT a.menu_no, a.menu_name, a.menu_type_cd, min(b.jd_no) AS jd_no "
+		sql = " SELECT a.menu_no, concat(a.menu_name, if(a.hide_fg='Y','(숨겨짐)','')) as menu_name, a.menu_type_cd, min(b.jd_no) AS jd_no "
 		+" from vm_menu AS a "
 		+" left outer JOIN ( SELECT jd_no, menu_no from vm_jundan " 
 		+" 					 where ref_company_no = '"+userCompanyNo+"' "
@@ -23,6 +23,8 @@
 		+" WHERE ref_cp_no = "+userCompanyNo
 		+" GROUP BY a.menu_no, a.menu_name, a.menu_type_cd "
 		+" order by order_number asc  ;" ;
+
+
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);

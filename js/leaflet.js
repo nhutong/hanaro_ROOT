@@ -620,8 +620,14 @@ $("#searchText").on("keyup",function(){
 				var data = JSON.parse(result);
 				$("#searchResultGroup").empty();
 				$("#searchResultGroup").css({overflow:'scroll', height:'400px', textAlign:'left'});
-				data['imgList'].forEach(function(item, index){                        
-					$("#searchResultGroup").append('<li onclick="thumnailUpdate('+item['img_no']+')"><img src="/upload/'+item['img_path']+'"></li>');
+				var i = 1;
+				data['imgList'].forEach(function(item, index){
+					if ( i % 4 == 0 ){
+						$("#searchResultGroup").append('<li onclick="thumnailUpdate('+item['img_no']+')"><img src="/upload/'+item['img_path']+'"></li><br>');
+					}else{
+						$("#searchResultGroup").append('<li onclick="thumnailUpdate('+item['img_no']+')"><img src="/upload/'+item['img_path']+'"></li>');
+					}					
+					i++;
 				});
 				
 			}

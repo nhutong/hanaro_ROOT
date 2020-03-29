@@ -1473,14 +1473,19 @@ span.shopUrl:hover{
 
 .leaflet_image ul li{
     display: inline-block;
-    margin: 10px;
+    margin: 5px;
     font-size: 13px;
 }
 
+
 .leaflet_image ul li img{
-    width: 100px;
-    
+    width: 90px;
 }
+
+.leaflet_image ul li img:hover{
+    width: 180px;
+}
+
 
 .leaflet_image_add{
     border: 1px dotted #969696;
