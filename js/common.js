@@ -31,33 +31,160 @@ function setCookie1(name,value,days) {
 }
 
 function getHeader(){
-	var url;
+	
 	if(getCookie("userNo") == ""){
-		url = '../include/header_login.html'
-		$.ajax({
-			url:url,
-			type:'GET',
-			async:false
-		}).done(function(result){ 
-			$("#nav_header").append(result);
-		});
+		// 로그인 전
+		$("#nav_header").append('<div class="top_menu_bg"><div class="top_menu"><h1><img src="../images/logo.png" onclick="home();" class="logo_img"></h1><p class="logout"></p></div></div>');
+		
 	}else{
-		url = '../include/header.html'
-		$.ajax({
-			url:url,
-			type:'GET',
-			async:false
-		}).done(function(result){
-			$("#nav_header").append(result);
-		});
-	}
+		// 로그인 후
+		$("#nav_header").append('<div class="top_menu_bg"><div class="top_menu"><h1><img src="../images/logo.png" onclick="home();" class="logo_img"></h1><ul class="tabs myplanb_tab"></ul><p class="logout"><span class="admin_btn" onclick="deleteAllCookies();login();">로그아웃</span></p></div></div>');
+
+		// 권한코드 가져오기
+		var userRoleCd = getCookie('userRoleCd');
+
+		// 메뉴 추가
+		var $ul = $("#nav_header ul.myplanb_tab");
+		$ul.append('<li rel="tab1" class="nav_home" onclick="home();">홈</li>');
+		$ul.append('<li rel="tab2" class="nav_leaflet" onclick="leaflet();">행사/전단</li>');
+		$ul.append('<li rel="tab3" class="nav_event" onclick="event_list();">이벤트/쿠폰</li>');
+		$ul.append('<li rel="tab4" class="nav_shop_manage" onclick="shop_manage();">장보기</li>');
+		$ul.append('<li rel="tab5" class="nav_product" onclick="prod_master();">상품</li>');
+		$ul.append('<li rel="tab6" class="nav_delivery" onclick="delivery();">배송</li>');
+		$ul.append('<li rel="tab7" class="nav_push" onclick="push();">푸시</li>');
+		
+        // $ul.append('<li rel="tab7" class="nav_pop">종이전단/POP</li>');
+		$ul.append('<li rel="tab8" class="nav_detail" onclick="menunotice();">공지/문의</li');
+
+		if(userRoleCd === 'ROLE1'){ 
+			// 본사관리자의 경우 운영 메뉴 추가 (관리자 페이지로 이동)
+			$ul.append('<li rel="tab9" class="nav_manage" onclick="manage();">운영</li>');
+		} else if(userRoleCd === 'ROLE2'){ 
+			// 판매장관리자의 경우 운영 메뉴 추가 (판매장 페이지로 이동)
+			$ul.append('<li rel="tab9" class="nav_manage" onclick="shop();">운영</li>');
+		} else if(userRoleCd === 'ROLE3'){
+			$ul.empty();
+			$ul.append('<li rel="tab1" class="nav_home" onclick="home();">홈</li>');
+			$ul.append('<li rel="tab6" class="nav_delivery" onclick="manage_order();">배송</li>');
+		}
+	}    
 }
+
+// function getHeader(){
+	// var url;
+	// if(getCookie("userNo") == ""){
+	// 	url = '../include/header_login.html'
+	// 	$.ajax({
+	// 		url:url,
+	// 		type:'GET',
+	// 		async:false
+	// 	}).done(function(result){ 
+	// 		$("#nav_header").append(result);
+	// 	});
+	// }else{
+	// 	url = '../include/header.html'
+	// 	$.ajax({
+	// 		url:url,
+	// 		type:'GET',
+	// 		async:false
+	// 	}).done(function(result){
+	// 		$("#nav_header").append(result);
+	// 	});	
+	// }
+// }
 
 function getLeft(){
 	if(getCookie("userNo") == ""){
 
 	}else{
 		$("#my_data").append('<li><img src="../images/nh_icon_user.png" alt="회원정보" width="31px" height="37px"></li><li class="user_name">'+getCookie("userName")+'님</li><li class="user_email">'+getCookie("usercellPhone")+'</li><li class="startup_fg">'+getCookie("userRoleName")+'('+getCookie("userCompanyName")+')</li>');
+		$("#my_data").click(function(){
+			user_update();
+		});
+	}
+}
+
+function getLeftMenu(menu) {
+	// 권한코드 가져오기
+	var userRoleCd = getCookie('userRoleCd');
+
+	var $leftmenu = $('#myplanb_menu');
+
+	switch(menu) {
+		case 'manage':
+			if(userRoleCd === 'ROLE1'){ 
+				// 본사관리자만 표시
+                $leftmenu.empty();
+				$leftmenu.append('<li id="myplanb_menu_manage" onclick="manage();">관리자</li>');
+				$leftmenu.append('<li id="myplanb_menu_log_list" onclick="log_list();">로그</li>');
+			}
+			$leftmenu.append('<li id="myplanb_menu_shop" onclick="shop();">판매장</li>');
+			$leftmenu.append('<li id="myplanb_menu_user" onclick="user();">회원</li>');
+			$leftmenu.append('<li id="myplanb_menu_statistics_cu" onclick="statistics_cu();">누적 통계</li>');
+			$leftmenu.append('<li id="myplanb_menu_statistics_pe" onclick="statistics_pe();">기간 통계</li>');
+			break;
+
+		case 'home':
+			if(userRoleCd === 'ROLE3'){ 
+				// 배송관리자 표시 안 함
+				$leftmenu.empty();
+				$leftmenu.append('<li id="nh_home_home" onclick="home();">홈화면</li>');
+			}else{
+				$leftmenu.empty();
+				$leftmenu.append('<li id="nh_home_home" onclick="home();">홈화면</li>');
+				$leftmenu.append('<li id="nh_home_notice" onclick="home_notice();">긴급공지</li>');
+				$leftmenu.append('<li id="nh_home_swipe" onclick="swipe_banner();">스와이프 배너</li>');
+				$leftmenu.append('<li id="nh_home_popup" onclick="popup();">팝업</li>');
+				if(userRoleCd === 'ROLE1'){ 
+					// 본사관리자만 표시
+					$leftmenu.append('<li id="nh_home_menu_create" onclick="menu_create();">메뉴생성</li>');
+				}
+				$leftmenu.append('<li id="nh_home_menu_edit" onclick="menu_update();">메뉴관리</li>');
+			}
+			break;
+			
+		case 'event':
+			$leftmenu.empty();
+			$leftmenu.append('<li id="nh_event_list" onclick="event_list();">이벤트</li>');
+			$leftmenu.append('<li id="nh_event_coupon" onclick="coupon();">쿠폰</li>');
+			$leftmenu.append('<li id="nh_event_coupon_history" onclick="coupon_history();">- 쿠폰히스토리</li>');
+			$leftmenu.append('<li id="nh_event_stamp" onclick="stamp();">스탬프</li>');
+			$leftmenu.append('<li id="nh_event_stamp_num" onclick="stamp_num();">- 스탬프 확인번호</li>');
+			$leftmenu.append('<li id="nh_event_stamp_history" onclick="stamp_history();">- 스탬프 히스토리</li>');
+			break;
+
+		case 'product':
+			$leftmenu.empty();
+			$leftmenu.append('<li id="nh_product_prodmaster" onclick="prod_master();">상품마스터</li>');
+			if(userRoleCd === 'ROLE1'){ 
+				// 본사관리자만 표시
+				$leftmenu.append('<li id="nh_product_imgmaster" onclick="img_master();">이미지마스터</li>');
+			}
+			$leftmenu.append('<li id="nh_product_storeimgmaster" onclick="store_imgmaster();">판매장 상품이미지</li>');
+			break;
+
+		case 'delivery':
+			$leftmenu.empty();
+			$leftmenu.append('<li id="nh_delivery_delivery" onclick="delivery();">기본배송정보</li>');
+			$leftmenu.append('<li id="nh_delivery_delivery_time" onclick="delivery_time();">실시간 회차</li>');
+			$leftmenu.append('<li id="nh_delivery_manage_order" onclick="manage_order();">주문관리</li>');
+			if(userRoleCd === 'ROLE3'){ 
+				$leftmenu.empty();
+				$leftmenu.append('<li id="nh_delivery_manage_order" onclick="manage_order();">주문관리</li>');
+			}
+			break;
+
+		case 'push':
+			$leftmenu.empty();
+			$leftmenu.append('<li id="nh_push_push" onclick="push();">PUSH</li>');
+			break;
+            
+        case 'managemenu':
+			$leftmenu.empty();
+			$leftmenu.append('<li id="nh_manage_menu" onclick="menunotice();">공지사항 관리</li>');
+			$leftmenu.append('<li id="nh_manage_qna" onclick="menuqna();">1:1문의</li>');
+			break;
+
 
 	}
 }
@@ -208,79 +335,6 @@ function leadingZeros(n, digits) {
   return zero + n;
 }
 
-function getLeftMenu(menu) {
-	// 권한코드 가져오기
-	var userRoleCd = getCookie('userRoleCd');
-
-	var $leftmenu = $('#myplanb_menu');
-
-	switch(menu) {
-		case 'manage':
-			if(userRoleCd === 'ROLE1'){ 
-				// 본사관리자만 표시
-                $leftmenu.empty();
-				$leftmenu.append('<li id="myplanb_menu_manage" onclick="manage();">관리자</li>');
-				$leftmenu.append('<li id="myplanb_menu_log_list" onclick="log_list();">로그</li>');
-			}
-			$leftmenu.append('<li id="myplanb_menu_shop" onclick="shop();">판매장</li>');
-			$leftmenu.append('<li id="myplanb_menu_user" onclick="user();">회원</li>');
-			$leftmenu.append('<li id="myplanb_menu_statistics_cu" onclick="statistics_cu();">누적 통계</li>');
-			$leftmenu.append('<li id="myplanb_menu_statistics_pe" onclick="statistics_pe();">기간 통계</li>');
-			break;
-
-		case 'home':
-			$leftmenu.empty();
-			$leftmenu.append('<li id="nh_home_home" onclick="home();">홈화면</li>');
-			$leftmenu.append('<li id="nh_home_notice" onclick="home_notice();">긴급공지</li>');
-			$leftmenu.append('<li id="nh_home_swipe" onclick="swipe_banner();">스와이프 배너</li>');
-			$leftmenu.append('<li id="nh_home_popup" onclick="popup();">팝업</li>');
-			if(userRoleCd === 'ROLE1'){ 
-				// 본사관리자만 표시
-				$leftmenu.append('<li id="nh_home_menu_create" onclick="menu_create();">메뉴생성</li>');
-			}
-			$leftmenu.append('<li id="nh_home_menu_edit" onclick="menu_update();">메뉴관리</li>');
-			break;
-
-		case 'event':
-			$leftmenu.empty();
-			$leftmenu.append('<li id="nh_event_list" onclick="event_list();">이벤트</li>');
-			$leftmenu.append('<li id="nh_event_coupon" onclick="coupon();">쿠폰</li>');
-			$leftmenu.append('<li id="nh_event_stamp" onclick="stamp();">스탬프</li>');
-			$leftmenu.append('<li id="nh_event_stamp_num" onclick="stamp_num();">스탬프 확인번호</li>');
-			break;
-
-		case 'product':
-			$leftmenu.empty();
-			$leftmenu.append('<li id="nh_product_prodmaster" onclick="prod_master();">상품마스터</li>');
-			if(userRoleCd === 'ROLE1'){ 
-				// 본사관리자만 표시
-				$leftmenu.append('<li id="nh_product_imgmaster" onclick="img_master();">이미지마스터</li>');
-			}
-			$leftmenu.append('<li id="nh_product_storeimgmaster" onclick="store_imgmaster();">판매장 상품이미지</li>');
-			break;
-
-		case 'delivery':
-			$leftmenu.empty();
-			$leftmenu.append('<li id="nh_delivery_delivery" onclick="delivery();">기본배송정보</li>');
-			$leftmenu.append('<li id="nh_delivery_delivery_time" onclick="delivery_time();">실시간 회차</li>');
-			$leftmenu.append('<li id="nh_delivery_manage_order" onclick="manage_order();">주문관리</li>');
-			break;
-
-		case 'push':
-			$leftmenu.empty();
-			$leftmenu.append('<li id="nh_push_push" onclick="push();">PUSH</li>');
-			break;
-            
-        case 'managemenu':
-			$leftmenu.empty();
-			$leftmenu.append('<li id="nh_manage_menu" onclick="menunotice();">공지사항 관리</li>');
-			$leftmenu.append('<li id="nh_manage_qna" onclick="menuqna();">1:1문의</li>');
-			break;
-
-
-	}
-}
-
 // 우상단 판매장을 리스팅한다.
 function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
 
@@ -308,7 +362,6 @@ function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
 				}
 //                $("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'">'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
             });
-
 			if (getCookie("userRoleCd") == "ROLE2" )
 			{
 				setCookie1("onSelectCompanyNo",$("#sort_select").val());
