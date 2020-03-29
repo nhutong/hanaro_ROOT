@@ -120,7 +120,7 @@ function eventList(rcv_vm_cp_no){
 
 					text +='<div class="event_list">';       
 					text +='	<div class="event_thumb">';
-					text +='	   <a href="#"><img src="https://www.nhhanaromart.com'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
+					text +='	   <a href="#"><img src="..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
 					text +='	<div class="event_detail">';
 					text +='		<a href="#" class="event_name">'+jsonResult_notice[i].event_title+'</a>';
@@ -135,9 +135,9 @@ function eventList(rcv_vm_cp_no){
 					
 					// if (jsonResult_notice[i].link_url == "")
 					// {
-					// 	text +='	   <a href="#"><img src="https://www.nhhanaromart.com'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
+					// 	text +='	   <a href="#"><img src="..'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
 					// }else{
-					// 	text +='	   <a href="'+jsonResult_notice[i].link_url+'"><img src="https://www.nhhanaromart.com'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
+					// 	text +='	   <a href="'+jsonResult_notice[i].link_url+'"><img src="..'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
 					// }				
 
 					// text +='	</div>';
@@ -147,12 +147,12 @@ function eventList(rcv_vm_cp_no){
 					/* 20200316 수정시작 */
 					if (jsonResult_notice[i].eventLink == "N")
                     {
-                        text +='	   <img src="http://www.it7.kr:8080'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
+                        text +='	   <img src="'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
                         text +='	</div>';
                         //text +='	  <p></p>'; 
 //                        text +='	  <button onclick="joinEvent('+jsonResult_notice[i].event_no+');">참여하기</button>';                          
                     }else{
-                        text +='	   <img src="http://www.it7.kr:8080'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
+                        text +='	   <img src="'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
                         text +='	</div>';
                         //text +='	  <p></p>'; 
 //                        text +='	  <button onclick="window.open(\''+jsonResult_notice[i].link_url+'\');">자세히 보기</button>';  
@@ -210,7 +210,7 @@ function eventListIng(rcv_vm_cp_no){
 
 					text +='<div class="event_list">';       
 					text +='	<div class="event_thumb">';
-					text +='	   <a href="#"><img src="https://www.nhhanaromart.com'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
+					text +='	   <a href="#"><img src="..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
 					text +='	<div class="event_detail">';
 					text +='		<a href="#" class="event_name">'+jsonResult_notice[i].event_title+'</a>';
@@ -225,9 +225,9 @@ function eventListIng(rcv_vm_cp_no){
 
 					// if (jsonResult_notice[i].link_url == "")
 					// {
-					// 	text +='	   <a href="#"><img src="https://www.nhhanaromart.com'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
+					// 	text +='	   <a href="#"><img src="..'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
 					// }else{
-					// 	text +='	   <a href="'+jsonResult_notice[i].link_url+'"><img src="https://www.nhhanaromart.com'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
+					// 	text +='	   <a href="'+jsonResult_notice[i].link_url+'"><img src="..'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
 					// }
 
 					// text +='	</div>';
@@ -237,12 +237,12 @@ function eventListIng(rcv_vm_cp_no){
 					/* 20200316 수정시작 */
 					if (jsonResult_notice[i].eventLink == "N")
                     {
-                        text +='	   <img src="http://www.it7.kr:8080'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
+                        text +='	   <img src="'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
                         text +='	</div>';
                         //text +='	  <p></p>'; 
 //                        text +='	  <button onclick="joinEvent('+jsonResult_notice[i].event_no+');">참여하기</button>';                          
                     }else{
-                        text +='	   <img src="http://www.it7.kr:8080'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
+                        text +='	   <img src="'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
                         text +='	</div>';
                         //text +='	  <p></p>'; 
 //                        text +='	  <button onclick="window.open(\''+jsonResult_notice[i].link_url+'\');">자세히 보기</button>';  
@@ -301,7 +301,7 @@ function eventListEnd(rcv_vm_cp_no){
 
 					text +='<div class="event_list">';       
 					text +='	<div class="event_thumb">';
-					text +='	   <a href="#"><img src="https://www.nhhanaromart.com'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
+					text +='	   <a href="#"><img src="..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
 					text +='	<div class="event_detail">';
 					text +='		<a href="#" class="event_name">'+jsonResult_notice[i].event_title+'</a>';
@@ -316,9 +316,9 @@ function eventListEnd(rcv_vm_cp_no){
 
 					// if (jsonResult_notice[i].link_url == "")
 					// {
-					// 	text +='	   <a href="#"><img src="https://www.nhhanaromart.com'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
+					// 	text +='	   <a href="#"><img src="..'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
 					// }else{
-					// 	text +='	   <a href="'+jsonResult_notice[i].link_url+'"><img src="https://www.nhhanaromart.com'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
+					// 	text +='	   <a href="'+jsonResult_notice[i].link_url+'"><img src="..'+jsonResult_notice[i].detail_img_url+'" alt="이미지"></a>';
 					// }
 
 					// text +='	</div>';
@@ -328,12 +328,12 @@ function eventListEnd(rcv_vm_cp_no){
 					/* 20200316 수정시작 */
 					if (jsonResult_notice[i].eventLink == "N")
                     {
-                        text +='	   <img src="http://www.it7.kr:8080'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
+                        text +='	   <img src="'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
                         text +='	</div>';
                         //text +='	  <p></p>'; 
 //                        text +='	  <button onclick="joinEvent('+jsonResult_notice[i].event_no+');">참여하기</button>';                          
                     }else{
-                        text +='	   <img src="http://www.it7.kr:8080'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
+                        text +='	   <img src="'+jsonResult_notice[i].detail_img_url+'" alt="이미지">';
                         text +='	</div>';
                         //text +='	  <p></p>'; 
 //                        text +='	  <button onclick="window.open(\''+jsonResult_notice[i].link_url+'\');">자세히 보기</button>';  

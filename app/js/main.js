@@ -198,7 +198,7 @@ function sliderLi(rcv_vm_cp_no){
 			for(var i in jsonResult_notice){
 				
 				text +='<li><a href="../home/event.html?event_no='+jsonResult_notice[i].event_no+'">';
-				// text +='	<img src="https://www.nhhanaromart.com'+jsonResult_notice[i].img_url+'" alt="">';
+				// text +='	<img src="..'+jsonResult_notice[i].img_url+'" alt="">';
 				text +='	<img src="'+jsonResult_notice[i].img_url+'" alt="">';
 				text +='	</a></li>';
 

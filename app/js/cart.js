@@ -80,7 +80,7 @@ function getCpName(vm_cp_no){
 			    text += '<div class="figure figure3">';
 			    text += '	<div class="thumb_wrap">';
 			    text += '		   <a href="#">';
-				text += '        	<img src="https://www.nhhanaromart.com'+item['img_path']+'" alt="'+item['pd_name']+'">';
+				text += '        	<img src="..'+item['img_path']+'" alt="'+item['pd_name']+'">';
 				text += '       	</a>';
 				text += '	<div class="product_detail">';
 				text += '			<a href="#" class="product">'+item['pd_name']+'</a>';
