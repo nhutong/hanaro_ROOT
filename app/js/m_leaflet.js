@@ -98,12 +98,12 @@ $(function () {
 						method : 'GET' 
 					}).done(function(result){
 
-						console.log("CompanyName=========================================");
+						console.log("leafletPdConOrderUpdate=========================================");
 						if(result == ('NoN') || result == 'list error' || result == 'empty'){
 							console.log(result);
 						}else{
 							$("#cpName").empty();
-							console.log("============= notice callback ========================");
+							console.log("============= leafletPdConOrderUpdate callback ========================");
 							console.log(result);
 							
 						}
@@ -183,12 +183,12 @@ function getCpName(vm_cp_no){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("CompanyName=========================================");
+        console.log("getCpName=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
             $("#cpName").empty();
-            console.log("============= notice callback ========================");
+            console.log("============= getCpName callback ========================");
             console.log(result);
             var data = JSON.parse(result);
             
@@ -372,7 +372,7 @@ function getBanner(rcv_jd_no_b) {
         }else{
             $(".bxslider").html("");
 
-            console.log("============= notice callback ========================");
+            console.log("============= Banner callback ========================");
             console.log(result);
 			$(".bxslider").css({minHeight:'75px', height:'75px', position:'relative'});
 
@@ -414,7 +414,7 @@ function getBannerList(rcv_jd_no_p_b) {
 			window.parent.$("#sortable").empty();
 
         }else{
-            console.log("============= bannerParentList callback ========================");
+            console.log("============= bannerParentList callback1 ========================");
             console.log(result);
             var data = JSON.parse(result);
 
@@ -460,7 +460,7 @@ function getBannerList(rcv_jd_no_p_b) {
 					if(result == ('NoN') || result == 'exception error' || result == 'empty'){
 						console.log(result);
 					}else{
-						console.log("============= notice callback ========================");
+						console.log("============= bannerParentList callback2 ========================");
 						console.log(result);
 						alert("숨기기 수정이 완료되었습니다.");
 
@@ -485,7 +485,7 @@ function getPdContent(rcv_jd_no) {
     }).done(function(result){
 
 		var text = "";
-        console.log("noticeList=========================================");
+        console.log("PdContent=========================================");
         if(result.trim() == 'NoN' || result == 'list error' || result == 'empty'){
             console.log(result);
 
@@ -494,7 +494,7 @@ function getPdContent(rcv_jd_no) {
 			$("#item_list_inner_wrap").empty();
 			$("#item_list_inner_wrap").append(text);
         }else{
-            console.log("============= notice callback ========================");
+            console.log("============= PdContent callback ========================");
             console.log(result);
             var data = JSON.parse(result);
 
@@ -748,12 +748,12 @@ function setSaleDetail(rcvJdProdConNo){
 			method : 'GET'  
 		}).done(function(result){
 
-			console.log("noticeList=========================================");
+			console.log("SaleDetail=========================================");
 			if(result == ('NoN') || result == 'list error' || result == 'empty'){
 				console.log(result);
 			}else{
 				$("#noticeList").html("");
-				console.log("============= notice callback ========================");
+				console.log("============= SaleDetail callback ========================");
 				console.log(result);
 				var data = JSON.parse(result);
 
@@ -885,11 +885,11 @@ function addRmZzim(rcv_jd_prod_con_no){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        console.log("RmZzim=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
             console.log(result);
         }else{
-            console.log("============= notice callback ========================");
+            console.log("============= RmZzim callback ========================");
             console.log(result);
         }
     });
