@@ -25,17 +25,22 @@ $(function(){
 	setTimeout(function(){ clickEventApp(); }, 2000);
 
 	/* 팝업을 바인딩한다. */
+	console.log("== addModal =========================================");
 	adModal();
 	
 	/* 슬라이더를 바인딩한다. */
+	console.log("== sliderLi =========================================");	
 	sliderLi(vm_cp_no);
 	
 	/* 긴급공지를 바인딩한다. */
-    noticeBox(vm_cp_no);
+	console.log("== noticeBox =========================================");	
+	noticeBox(vm_cp_no);
 
 	/* 메인의 단 및 내용을 형성한다. */
+	console.log("== bodyContent =========================================");	
 	bodyContent(vm_cp_no);
 
+	console.log("== logInsert =========================================");	
 	logInsert(localStorage.getItem("memberNo"), vm_cp_no, "-1");
 })
 
@@ -552,11 +557,11 @@ function addRmZzim(rcv_jd_prod_con_no){
     }).done(function(result){
 		
 		alert("모바일 앱을 통해서만 사용할 수 있습니다.");
-//        console.log("noticeList=========================================");
+//        console.log("addRmZzim=========================================");
 //        if(result == ('NoN') || result == 'exception error' || result == 'empty'){
 //            console.log(result);
 //        }else{
-//            console.log("============= notice callback ========================");
+//            console.log("============= addRmZzim callback ========================");
 //            console.log(result);
 //        }
     });

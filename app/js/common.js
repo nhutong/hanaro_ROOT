@@ -168,11 +168,11 @@ function getHeaderMenu(ff_vm_cp_no) {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("dataCategoryList=========================================");
+        console.log("getHeaderMenu=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
-            console.log("============= dataCategoryList callback ========================");
+            console.log("============= getHeaderMenu callback ========================");
             console.log(result);
             var data = JSON.parse(result);
 
@@ -250,7 +250,7 @@ function getMenuListDefault(rcvCompanyNo) {
 
 		var text = "";
 				   
-        console.log("menuList=========================================");
+        console.log("getMenuListDefault=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
 			if (rcvCompanyNo == 0)
@@ -266,7 +266,7 @@ function getMenuListDefault(rcvCompanyNo) {
 		
         }else{
 
-            console.log("============= notice callback ========================");
+            console.log("============= getMenuListDefault callback ========================");
             console.log(result);
             var data = JSON.parse(result);
 			
@@ -581,17 +581,17 @@ function deleteAllCookies()
   function getCpName(vm_cp_no){
 
 	$.ajax({
-        url:'../back/02_app/mLeafletCpName.jsp?random=' + (Math.random()*99999), 
+        url:'/back/02_app/mLeafletCpName.jsp?random=' + (Math.random()*99999), 
         data : {vm_cp_no: vm_cp_no},
         method : 'GET' 
     }).done(function(result){
 
-        console.log("CompanyName=========================================");
+        console.log("getCpName=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
             $("#cpName").empty();
-            console.log("============= notice callback ========================");
+            console.log("============= getCpName callback ========================");
             console.log(result);
             var data = JSON.parse(result);
             
@@ -612,11 +612,11 @@ function logInsert(rcvNo, rcv_vm_cp_no, rcv_menu_no){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        console.log("logInsert=========================================");
         if(result.trim() == 'NoN' || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
-            console.log("============= notice callback ========================");
+            console.log("============= logInsert callback ========================");
             console.log(result);
         }
     });

@@ -87,12 +87,12 @@ function prodList(rcvPageNo, rcvSearchText) {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        console.log("postlist=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
             $("#tab1_table").html("");
-            console.log("============= notice callback ========================");
+            console.log("============= postlist callback ========================");
             console.log(result);
             var data = JSON.parse(result);
 			var text = "";
@@ -159,11 +159,11 @@ function createPost() {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        console.log("postinsert=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
             console.log(result);
         }else{
-            console.log("============= notice callback ========================");
+            console.log("============= postinsert callback ========================");
             console.log(result);
             alert("등록이 완료되었습니다.");
 			home();
@@ -180,12 +180,12 @@ function prodList_paging(rcvPageNo, rcvSearchText) {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        console.log("prodlist_paging=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
             $("#pagination").html("");
-            console.log("============= notice callback ========================");
+            console.log("============= prodlist_paging callback ========================");
             console.log(result);
             var data = JSON.parse(result);
 

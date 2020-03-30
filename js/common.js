@@ -344,12 +344,12 @@ function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        console.log("getManagerList=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
             $("#noticeList").html("");
-            console.log("============= notice callback ========================");
+            console.log("============= getManagerList callback ========================");
             console.log(result);
             var data = JSON.parse(result);
 
