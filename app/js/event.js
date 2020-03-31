@@ -120,7 +120,7 @@ function eventList(rcv_vm_cp_no){
 
 					text +='<div class="event_list">';       
 					text +='	<div class="event_thumb">';
-					text +='	   <a href="#"><img src="..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
+					text +='	   <a href="#"><img src="../..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
 					text +='	<div class="event_detail">';
 					text +='		<a href="#" class="event_name">'+jsonResult_notice[i].event_title+'</a>';
@@ -210,7 +210,7 @@ function eventListIng(rcv_vm_cp_no){
 
 					text +='<div class="event_list">';       
 					text +='	<div class="event_thumb">';
-					text +='	   <a href="#"><img src="..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
+					text +='	   <a href="#"><img src="../..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
 					text +='	<div class="event_detail">';
 					text +='		<a href="#" class="event_name">'+jsonResult_notice[i].event_title+'</a>';
