@@ -68,6 +68,7 @@ function getHeader(rcVm_p_no){
 	result += '	   <ul>';
 	result += '		   <li class="share_inner_btn"><a href="#"><img src="../images/share.png" alt="공유하기">공유하기</a></li>';
 //	result += '		   <li><a href="../mypage/my_coupon.html"><img src="../images/coupon.png" alt="쿠폰">쿠폰</a></li>';
+// 스탬프 숨기기 200401
 //	result += '		   <li><a href="../mypage/stamp.html"><img src="../images/stamps.png" alt="스탬프">스탬프</a></li>';
 	result += '		   <li><a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"><img src="../images/coupon.png" alt="쿠폰">쿠폰</a></li>';
 	// result += '		   <li><a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"><img src="../images/stamps.png" alt="스탬프">스탬프</a></li>';
@@ -86,7 +87,7 @@ function getHeader(rcVm_p_no){
 	result += '			<ul class="nullHide">';
 	result += '				<li><a href="#" onclick="my_info();">나의 정보</a></li>';
 	result += '				<li><a href="#" onclick="my_coupon();">쿠폰</a></li>';
-	result += '				<li><a href="#" onclick="my_stamp();">스탬프</a></li>';
+//	result += '				<li><a href="#" onclick="my_stamp();">스탬프</a></li>'; // 스탬프 숨김 200401
 //	result += '				<li><a href="#" onclick="my_del();">주문/배송</a></li>';
 	result += '			</ul></div>';
 	result += '			<div class="aside_category">';
