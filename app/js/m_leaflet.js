@@ -279,60 +279,16 @@ function getDateInterval() {
 				}else{
 					$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')</li>');
 				}
-
-//				//파라미터로 받은 전단번호가 없다면( 관리자웹을 통해 접근한 경우 )
-//				if (jd_no == "")
-//				{
-//					// 해당메뉴에 매핑된 최초전단을 설정한다.
-//					if (decodeURIComponent(item['init_fg']) == 'Y')
-//					{
-//						init_jd_no = decodeURIComponent(item['jd_no']);
-//						setCookie1("jd_no",init_jd_no, 1);
-//						setTimeout(function(){ date_slider(Number(index)); }, 500);
-//						getPdContent(getCookie("jd_no"));
-//
-//					}
-//
-//				//파라미터로 받은 전단번호가 있다면( 링크를 통해 전단번호까지 받은 경우 )
-//				}else{
-//					// 해당메뉴에 매핑된 최초전단을 설정한다.
-//					if (decodeURIComponent(item['jd_no']) == jd_no)
-//					{
-//						init_jd_no = decodeURIComponent(item['jd_no']);
-//						setCookie1("jd_no",init_jd_no, 1);
-//						setTimeout(function(){ date_slider(Number(index)); }, 500);
-//						getPdContent(jd_no);
-//					}
-//				}
-
-				/* 20200229 수정 시작 */
-				// 관리자웹을 통해서 접근한 경우
-				var isInIFrame = ( window.location != window.parent.location );
-				if (isInIFrame == true)
-				{
-					// 해당메뉴에 매핑된 최초전단을 설정한다.
-					if (decodeURIComponent(item['init_fg']) == 'Y')
-					{
-						init_jd_no = decodeURIComponent(item['jd_no']);
-						setCookie1("jd_no",init_jd_no, 1);
-						setTimeout(function(){ date_slider(Number(index)); }, 500);
-						getPdContent(getCookie("jd_no"));
-					}
-				// 파라미터로 받은 전단번호가 있다면( 링크를 통해 전단번호까지 받은 경우 )
-				}else{
-					// 해당메뉴에 매핑된 최초전단을 설정한다.
-					if (decodeURIComponent(item['jd_no']) == jd_no)
-					{
-						init_jd_no = decodeURIComponent(item['jd_no']);
-						setCookie1("jd_no",init_jd_no, 1);
-						setTimeout(function(){ date_slider(Number(index)); }, 500);
-						getPdContent(jd_no);
-					}
-				}
-				/* 20200229 수정 끝 */
+				init_jd_no = decodeURIComponent(item['jd_no']);
+				setCookie1("jd_no",init_jd_no, 1);
+				setTimeout(function(){ date_slider(Number(index)); }, 100);
 		
 				setCookie1("curJd"+index, decodeURIComponent(item['jd_no']));
-			});
+
+				if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 출력 , 슬라이드 오늘자로 이동 필요
+					getPdContent(getCookie("jd_no"));
+				}
+			});			
         }
     });
 }
