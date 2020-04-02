@@ -48,9 +48,9 @@ function getHeader(){
 		$ul.append('<li rel="tab1" class="nav_home" onclick="home();">홈</li>');
 		$ul.append('<li rel="tab2" class="nav_leaflet" onclick="leaflet();">행사/전단</li>');
 		$ul.append('<li rel="tab3" class="nav_event" onclick="event_list();">이벤트/쿠폰</li>');
-		$ul.append('<li rel="tab4" class="nav_shop_manage" onclick="shop_manage();">장보기</li>');
+//		$ul.append('<li rel="tab4" class="nav_shop_manage" onclick="shop_manage();">장보기</li>');
 		$ul.append('<li rel="tab5" class="nav_product" onclick="prod_master();">상품</li>');
-		$ul.append('<li rel="tab6" class="nav_delivery" onclick="delivery();">배송</li>');
+//		$ul.append('<li rel="tab6" class="nav_delivery" onclick="delivery();">배송</li>');
 		$ul.append('<li rel="tab7" class="nav_push" onclick="push();">푸시</li>');
 		
         // $ul.append('<li rel="tab7" class="nav_pop">종이전단/POP</li>');
@@ -148,9 +148,9 @@ function getLeftMenu(menu) {
 			$leftmenu.append('<li id="nh_event_list" onclick="event_list();">이벤트</li>');
 			$leftmenu.append('<li id="nh_event_coupon" onclick="coupon();">쿠폰</li>');
 			$leftmenu.append('<li id="nh_event_coupon_history" onclick="coupon_history();">- 쿠폰히스토리</li>');
-			$leftmenu.append('<li id="nh_event_stamp" onclick="stamp();">스탬프</li>');
-			$leftmenu.append('<li id="nh_event_stamp_num" onclick="stamp_num();">- 스탬프 확인번호</li>');
-			$leftmenu.append('<li id="nh_event_stamp_history" onclick="stamp_history();">- 스탬프 히스토리</li>');
+			// $leftmenu.append('<li id="nh_event_stamp" onclick="stamp();">스탬프</li>');
+			// $leftmenu.append('<li id="nh_event_stamp_num" onclick="stamp_num();">- 스탬프 확인번호</li>');
+			// $leftmenu.append('<li id="nh_event_stamp_history" onclick="stamp_history();">- 스탬프 히스토리</li>');
 			break;
 
 		case 'product':

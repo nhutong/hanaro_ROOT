@@ -386,12 +386,12 @@ function getMenuListDefault(rcvCompanyNo) {
 				text += '	 </div>';
 				text += '</li>';
 
-				text += '<li class="ui-state-default">';
-				text += '	<div class="menu_update_top">장보기</div>';
-				text += '    <div class="menu_update_bot">';
-				text +='		<input type="checkbox" name="jang_fg" value="N">';
-				text += '	 </div>';
-				text += '</li>';
+				// text += '<li class="ui-state-default">';
+				// text += '	<div class="menu_update_top">장보기</div>';
+				// text += '    <div class="menu_update_bot">';
+				// text +='		<input type="checkbox" name="jang_fg" value="N">';
+				// text += '	 </div>';
+				// text += '</li>';
 
 
 
@@ -438,19 +438,19 @@ function getMenuListDefault(rcvCompanyNo) {
 
 
 
-					text += '<li class="ui-state-default">';
-					text += '	<div class="menu_update_top">장보기</div>';
-					text += '    <div class="menu_update_bot">';
+				// 	text += '<li class="ui-state-default">';
+				// 	text += '	<div class="menu_update_top">장보기</div>';
+				// 	text += '    <div class="menu_update_bot">';
 
-					if ( jsonResult_menu[i].jang_fg == "Y" )
-				   {
-						text +='     <input type="checkbox" name="jang_fg" value="Y" checked>';
-				   }else{
-						text +='     <input type="checkbox" name="jang_fg" value="N">';
-				   }
+				// 	if ( jsonResult_menu[i].jang_fg == "Y" )
+				//    {
+				// 		text +='     <input type="checkbox" name="jang_fg" value="Y" checked>';
+				//    }else{
+				// 		text +='     <input type="checkbox" name="jang_fg" value="N">';
+				//    }
 					
-					text += '    </div>';
-					text += '</li>';
+				// 	text += '    </div>';
+				// 	text += '</li>';
 			}
 
 			$("#sortable").append(text);
