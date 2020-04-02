@@ -73,28 +73,17 @@
 		"        <meta charset=\"utf-8\">" +
 		"" +
 		"    </head>" +
-		"    <body style=\"width:720px;\">" +
-		"       <header style=\"background-color:#335DB3; height:52px; box-sizing:border-box; padding-left:30px; padding-top:7px;\">" +		
-		"            " +
-		"        </header>" +
-		"        <section>" +
-		"" +
-		"            <p style=\"height:38px; margin:0; background-color:#F4F4F6; box-sizing:border-box; padding-left:30px; border-bottom:1px solid #DFDFDF; line-height:38px; font-size:13px;\"></p>" +
-		"            <section style=\"padding:38px 30px; background-color:#EEEEEE;\">" +
-		"                <h3 style=\"font-size:26px; font-weight:600; margin:0; margin-bottom:13px;\">  농협유통 이메일 인증코드 </h3>" +
+		"    <body>" +
+		"            <section style=\"padding:15px; text-align:center; width:300px; border:1px solid #eeeeee; background-color:#f8f8f8;\">" +
+		"                <h3 style=\"font-size:14px; font-weight:600; color:#55b190;\">관리자 인증코드 </h3>" +
 		"" +
 		"" + "인증코드<br/>"+ran+
 		"                    " +
-		"                    </div><p style=\"line-height: 1;\">(주)농협유통 Co. ltd. All right reserved</p>" +
-		"                </div>" +
+		"                    </section><p style=\"width:330px; text-align:center;font-size:12px; margin-top:30px;\">(주)농협유통 Co. ltd. All right reserved</p>" +
+		"                " +
 		"            </section>" +
-		"        </section>" +
 		"    </body>" +
 		"</html>";
-
-
-
-
 	
 %>
 
