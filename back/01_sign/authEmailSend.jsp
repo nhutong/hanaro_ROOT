@@ -80,8 +80,6 @@
 		"" + "인증코드<br/>"+ran+
 		"                    " +
 		"                    </section><p style=\"width:330px; text-align:center;font-size:12px; margin-top:30px;\">(주)농협유통 Co. ltd. All right reserved</p>" +
-		"                " +
-		"            </section>" +
 		"    </body>" +
 		"</html>";
 	
