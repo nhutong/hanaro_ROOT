@@ -81,10 +81,13 @@
 
 		//===============================================================================================================
 		
+
 		// 엑셀 업로드
-		/*Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));*//*0326김수경수정*/
-		Workbook workbook = Workbook.getWorkbook(new File("C:/Program Files/Apache Software Foundation/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
+		//Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)); //0326김수경수정
+		Workbook workbook = Workbook.getWorkbook(new File(request.getRealPath("/upload/")+excel_path));
 	
+		//System.out.println("aaa");
+
 		Sheet sheet = workbook.getSheet(0);
 		int row = sheet.getRows();
 		int col = 0;
