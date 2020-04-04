@@ -296,42 +296,15 @@ function getDateInterval() {
 					$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')</li>');
 				}
 
-				//파라미터로 받은 전단번호가 없다면
-				if (jd_no == "")
-				{
-					// 해당메뉴에 매핑된 최초전단을 설정한다.
-					if (decodeURIComponent(item['init_fg']) == 'Y')
-					{
-						init_jd_no = decodeURIComponent(item['jd_no']);
-						setCookie1("jd_no",init_jd_no, 1);
-
-//						setTimeout(function(){ date_slider(Number(index)); }, 1500);
-						setTimeout(function(){ date_slider(Number(index)); }, 500);
-
-//						setTimeout(function(){ getPdContent(getCookie("jd_no")); }, 1500);
-						getPdContent(getCookie("jd_no"));
-
-					}
-				//파라미터로 받은 전단번호가 있다면
-				}else{
-					// 해당메뉴에 매핑된 최초전단을 설정한다.
-					if (decodeURIComponent(item['jd_no']) == jd_no)
-					{
-						init_jd_no = decodeURIComponent(item['jd_no']);
-						setCookie1("jd_no",init_jd_no, 1);
-
-//						setTimeout(function(){ date_slider(Number(index)); }, 1500);
-						setTimeout(function(){ date_slider(Number(index)); }, 500);
-
-						getPdContent(jd_no);
-					}
-				}
-
+				init_jd_no = decodeURIComponent(item['jd_no']);
+				setCookie1("jd_no",decodeURIComponent(item['jd_no']), 1);
 				setCookie1("curJd"+index, decodeURIComponent(item['jd_no']));
-			});
 
-//			date_slider();
-//			getPdContent(getCookie("jd_no"));
+				if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 일자슬라이드 선택 및 상세내역 출력
+					setTimeout(function(){ date_slider(Number(index)); }, 100);
+					getPdContent(decodeURIComponent(item['jd_no']));
+				}
+			});
         }
     });
 }
