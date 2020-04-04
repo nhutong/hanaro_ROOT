@@ -279,14 +279,14 @@ function getDateInterval() {
 				}else{
 					$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')</li>');
 				}
-				init_jd_no = decodeURIComponent(item['jd_no']);
-				setCookie1("jd_no",init_jd_no, 1);
 
+				init_jd_no = decodeURIComponent(item['jd_no']);
+				setCookie1("jd_no",decodeURIComponent(item['jd_no']), 1);
 				setCookie1("curJd"+index, decodeURIComponent(item['jd_no']));
 
 				if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 일자슬라이드 선택 및 상세내역 출력
 					setTimeout(function(){ date_slider(Number(index)); }, 100);
-					getPdContent(getCookie("jd_no"));
+					getPdContent(decodeURIComponent(item['jd_no']));
 				}
 			});			
         }
