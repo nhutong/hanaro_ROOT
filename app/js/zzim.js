@@ -20,7 +20,7 @@
         if(result.trim() == 'NoN' || result == 'list error' || result == 'empty'){
             console.log(result);
 
-			text +='<div class="list_no_item">찜한 상품이 없습니다.</div>'
+			text +='<div class="list_no_item">찜한 상품이 없습니다.<br> 마음에 드는 상품을 찜해두었다가 매장에서 확인하세요!</div>'
 
 			$("#zzimListWrap").empty();
 			$("#zzimListWrap").append(text);
