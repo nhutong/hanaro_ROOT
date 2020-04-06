@@ -112,6 +112,7 @@ div.modal-header {
     float: inherit;
     margin: auto;
     width: 950px;
+    padding-left:150px;
 }
 
 .myplanb_tab li {
