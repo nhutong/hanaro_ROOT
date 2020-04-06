@@ -44,7 +44,7 @@ function saveCoupon(rcvCouponNo, asisCnt){
 			
 		console.log("noticeList=========================================");
 		if(result == 'dup'){
-			alert("이미 쿠폰을 받으셨습니다.")
+			alert("이미 받으셨거나 사용완료된 쿠폰입니다.")
 		}else if(asisCnt == 0){
 			alert("남은 수량이 없습니다.");
 		}else if(result == 'exception error'){
