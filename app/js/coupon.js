@@ -38,13 +38,15 @@ function saveCoupon(rcvCouponNo, asisCnt){
 
 	$.ajax({
 		url:'/back/02_app/mCouponJoin.jsp?random=' + (Math.random()*99999), 
-		data : {couponNo: rcvCouponNo, memberNo: localStorage.getItem("memberNo")},
+		data : {couponNo: rcvCouponNo, memberNo: localStorage.getItem("memberNo"), telNo: localStorage.getItem("tel")},		
 		method : 'GET' 
 	}).done(function(result){
 			
 		console.log("noticeList=========================================");
 		if(result == 'dup'){
 			alert("이미 받으셨거나 사용완료된 쿠폰입니다.")
+		}else if(result == 'dup_rejoin'){
+			alert("(rejoin)이미 받으셨거나 사용완료된 쿠폰입니다.")			
 		}else if(asisCnt == 0){
 			alert("남은 수량이 없습니다.");
 		}else if(result == 'exception error'){
