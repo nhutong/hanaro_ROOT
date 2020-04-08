@@ -104,7 +104,7 @@ function getHeader(rcVm_p_no){
 	result += '	</div>';
 
 
-	// result += '	<header>';  // 20200408 헤더 메뉴 제거
+	result += '	<header>';  // 20200408 헤더 메뉴 제거
 	// result += '		<h1>';
 	// result += '			<a href="#">';
 	// result += '				<img src="../images/logo.png" alt="하나로마트">';
@@ -126,8 +126,8 @@ function getHeader(rcVm_p_no){
 	// result += '				<a href="#"> <img src="../images/search.png" alt="검색"> </a>';
 	// result += '			</div>';
 	// result += '		</div>';
-	// result += '		<nav>';
-	// result += '			<ul id="headerMenuArea">     ';  // 20200408 헤더 메뉴 제거
+	result += '		<nav>';
+	result += '			<ul id="headerMenuArea">     ';  // 20200408 헤더 메뉴 제거
 
 
 	// //result += '				<li><a href="#" class="home">홈</a></li>';
@@ -139,9 +139,9 @@ function getHeader(rcVm_p_no){
 	// //result += '				<li><a href="#">장보기</a></li>';					
 
 
-	// result += '			</ul>';  // 20200408 헤더 메뉴 제거
-	// result += '		</nav>';		
-	// result += '	</header>';
+	result += '			</ul>';  // 20200408 헤더 메뉴 제거
+	result += '		</nav>';		
+	result += '	</header>';
 	
 	
 	$("#nav_header").append(result);
@@ -160,14 +160,13 @@ function getHeader(rcVm_p_no){
 }
 
 // header menu를 셋팅한다.
-function getHeaderMenu(ff_vm_cp_no) {
-
+function getHeaderMenu(ff_vm_cp_no) { 
     $.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletHeaderMenu.jsp?random=' + (Math.random()*99999), 
+		url:'/back/02_app/mLeafletHeaderMenu.jsp?random=' + (Math.random()*99999), 
         data : {userCompanyNo: ff_vm_cp_no},
         method : 'GET' 
     }).done(function(result){
-
+		
         console.log("dataCategoryList=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
@@ -243,7 +242,8 @@ function getHeaderMenu(ff_vm_cp_no) {
 function getMenuListDefault(rcvCompanyNo) {
 
     $.ajax({
-        url:'https://www.nhhanaromart.com/back/04_home/menuCreateSelectDefault.jsp?random=' + (Math.random()*99999),
+		//url:'https://www.nhhanaromart.com/back/04_home/menuCreateSelectDefault.jsp?random=' + (Math.random()*99999),
+		url:'/back/04_home/menuCreateSelectDefault.jsp?random=' + (Math.random()*99999),
 		data : {userCompanyNo: rcvCompanyNo},
         method : 'GET' 
     }).done(function(result){
@@ -524,7 +524,7 @@ function zzimCount(rcvTel, rcv_vm_cp_no){
 function pushCount(rcvTel){
 
     $.ajax({
-        url:'https://www.nhhanaromart.com/back/04_home/push.jsp?random=' + (Math.random()*99999), 
+        url:'/back/04_home/push.jsp?random=' + (Math.random()*99999), 
         data : {tel: rcvTel},
         method : 'GET' 
     }).done(function(result){
@@ -581,7 +581,7 @@ function deleteAllCookies()
   function getCpName(vm_cp_no){
 
 	$.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletCpName.jsp?random=' + (Math.random()*99999), 
+        url:'/back/02_app/mLeafletCpName.jsp?random=' + (Math.random()*99999), 
         data : {vm_cp_no: vm_cp_no},
         method : 'GET' 
     }).done(function(result){
@@ -607,7 +607,7 @@ function deleteAllCookies()
 function logInsert(rcvTel, rcv_vm_cp_no, rcv_menu_no){
 
     $.ajax({
-        url:'https://www.nhhanaromart.com/back/00_include/logInsert.jsp?random=' + (Math.random()*99999), 
+        url:'/back/00_include/logInsert.jsp?random=' + (Math.random()*99999), 
         data : {stel: rcvTel, svm_cp_no: rcv_vm_cp_no, srcv_menu_no: rcv_menu_no, pageName: window.location.pathname},
         method : 'GET' 
     }).done(function(result){
