@@ -30,27 +30,16 @@ function setCookie1(name,value,days) {
 	document.cookie = name+"="+value+"; path=/";
 }
 
-function getHeader(){
-	var url;
-	if(getCookie("userNo") == ""){
-		url = '../include/header_login.html'
-		$.ajax({
-			url:url,
-			type:'GET',
-			async:false
-		}).done(function(result){ 
-			$("#nav_header").append(result);
-		});
-	}else{
-		url = '../include/header.html'
-		$.ajax({
-			url:url,
-			type:'GET',
-			async:false
-		}).done(function(result){
-			$("#nav_header").append(result);
-		});
-	}
+function getHeader(){	
+
+		// 권한코드 가져오기
+		var userRoleCd = getCookie('userRoleCd');
+		if(userRoleCd === 'ROLE1'){ 	
+		} else if(userRoleCd === 'ROLE2'){ 
+		} else if(userRoleCd === 'ROLE3'){
+			$("nav ul #leaflet").hide();
+		}
+	    
 }
 
 function getLeft(){
@@ -387,7 +376,6 @@ function getLeftMenu(menu) {
 
 	}
 }
-
 // 우상단 판매장을 리스팅한다.
 function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
 
@@ -418,8 +406,8 @@ function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
 
 			if (getCookie("userRoleCd") == "ROLE2" )
 			{
-				setCookie1("onSelectCompanyNo",$("#sort_select").val());
-				localStorage.setItem("vm_cp_no",$("#sort_select").val());
+				setCookie1("onSelectCompanyNo",getCookie("userCompanyNo"));
+				localStorage.setItem("vm_cp_no",getCookie("userCompanyNo"));
 				if( $("#nh_main").length > 0 ){
 					document.getElementById("nh_main").src = "../app/home/main.html?vm_cp_no="+$("#sort_select").val();
 				}
