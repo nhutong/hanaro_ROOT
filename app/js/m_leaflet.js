@@ -199,49 +199,51 @@ function getCpName(vm_cp_no){
         }
     });
 	getDateInterval();
+	getBanner(jd_no);
 }
 
 var isInIFrame = ( window.location != window.parent.location );
-if (isInIFrame == true)
-{
-	/*배너 이미지파일 업로더*/
-	var enterUpload = window.parent.document.getElementById('banner_add_btn');
-	enterUpload.addEventListener('click', function(evt){
-		var inputFile = window.parent.document.getElementById('uploadFile');
-		new bannerUpload(inputFile, function(result){
-			window.parent.$("#new_banner_path").val(result);			
-			jd_no = getCookie("jd_no");
-			if ( result == null || chrLen(result) == 0)
-			{
-				alert("배너 이미지를 업로드하시기 바랍니다.");
-				return false;
-			}else{
-				bannerInsert(result);	
-			}					
+	if (isInIFrame == true)
+	{
+		/*배너 이미지파일 업로더*/
+		var enterUpload = window.parent.document.getElementById('banner_add_btn');
+		enterUpload.addEventListener('click', function(evt){
+			var inputFile = window.parent.document.getElementById('uploadFile');
+			new bannerUpload(inputFile, function(result){
+				window.parent.$("#new_banner_path").val(result);			
+				var jd_no = getCookie("jd_no");
+				if ( result == null || chrLen(result) == 0)
+				{
+					alert("배너 이미지를 업로드하시기 바랍니다.");
+					return false;
+				}else{
+					bannerInsert(result);	
+				}					
+			});
 		});
-	});
-}else{
+	}else{
 }
 
 function bannerInsert(rcvResult){
-	$.ajax({
-		url:'/back/03_leaflet/leafletBannerInsert.jsp?random=' + (Math.random()*99999),
-		data : {jd_no: jd_no, img_path: rcvResult},
-		method : 'GET' 
-	}).done(function(result){
 
-		console.log("noticeList=========================================");
-		if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-			console.log(result);
-		}else{
-			$("#noticeList").html("");
-			console.log("============= notice callback ========================");
-			console.log(result);
-		}
-	});
-	alert("배너 업로드 완료하였습니다.");
-	$(parent.document).find(".leaflet_banner").removeClass("active");
-	window.location.reload();
+	$.ajax({
+				url:'/back/03_leaflet/leafletBannerInsert.jsp?random=' + (Math.random()*99999),
+				data : {jd_no: jd_no, img_path: rcvResult},
+				method : 'GET' 
+				}).done(function(result){
+
+					console.log("noticeList=========================================");
+					if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+						console.log(result);
+					}else{
+						$("#noticeList").html("");
+						console.log("============= notice callback ========================");
+						console.log(result);
+					}
+				});
+				alert("배너 업로드 완료하였습니다.");
+				$(parent.document).find(".leaflet_banner").removeClass("active");
+				window.location.reload();
 
 }
 
@@ -278,14 +280,13 @@ function getDateInterval() {
 					$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')</li>');
 				}
 
-				setCookie1("curJd"+index, decodeURIComponent(item['jd_no']));	//슬라이딩 화살표 클릭 시 해당일자 배너, 상품리스트 조회에 사용됨				
+				init_jd_no = decodeURIComponent(item['jd_no']);
+				setCookie1("jd_no",decodeURIComponent(item['jd_no']), 1);
+				setCookie1("curJd"+index, decodeURIComponent(item['jd_no']));
 
 				if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 일자슬라이드 선택 및 상세내역 출력
-					setCookie1("jd_no",decodeURIComponent(item['jd_no']), 1);					
 					setTimeout(function(){ date_slider(Number(index)); }, 100);
 					getPdContent(decodeURIComponent(item['jd_no']));
-
-					getBanner(decodeURIComponent(item['jd_no']));
 				}
 			});			
         }
