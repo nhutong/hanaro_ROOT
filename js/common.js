@@ -55,8 +55,6 @@ function getHeader(){
 		
         // $ul.append('<li rel="tab7" class="nav_pop">종이전단/POP</li>');
 		$ul.append('<li rel="tab8" class="nav_detail" onclick="menunotice();">공지/문의</li');
-		$ul.append('<li><a href="http://172.16.9.22/download/admin_manual.pdf" target="_blank" style="color:#fff;text-decoration:none;border:2px solid #55b190;padding:4px 5px;border-radius:10px;">매뉴얼</a></li');
-
 		if(userRoleCd === 'ROLE1'){ 
 			// 본사관리자의 경우 운영 메뉴 추가 (관리자 페이지로 이동)
 			$ul.append('<li rel="tab9" class="nav_manage" onclick="manage();">운영</li>');
@@ -68,6 +66,7 @@ function getHeader(){
 			$ul.append('<li rel="tab1" class="nav_home" onclick="home();">홈</li>');
 			$ul.append('<li rel="tab6" class="nav_delivery" onclick="manage_order();">배송</li>');
 		}
+		$ul.append('<li><a href="http://172.16.9.22/download/admin_manual.pdf" target="_blank" style="color:#fff;text-decoration:none;border:2px solid #55b190;padding:4px 5px;border-radius:10px;">매뉴얼</a></li');
 	}    
 }
 
