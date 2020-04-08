@@ -101,6 +101,8 @@ function pb_login(){
 				}
 			}else if( userLoginData[0]['userRoleCd'] == "ROLE3" ){
 				manage_order();
+			}else if( userLoginData[0]['userRoleCd'] == "ROLE1" ){
+				leaflet();
 			}
 
 		}
