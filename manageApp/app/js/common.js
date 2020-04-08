@@ -60,11 +60,11 @@ function getHeader(rcVm_p_no){
 	
 	var result = '';
 	 
-	result += '	<div id="share_btn" onclick="share_btn();">	';		
-	result += '		<div class="share_btn_inner">	';
-	result += '			<img src="../images/share_btn.png" alt="공유하기">';
-	result += '		</div>';
-	result += '	</div>';
+	// result += '	<div id="share_btn" onclick="share_btn();">	';		// 20200408 + 버튼 숨김
+	// result += '		<div class="share_btn_inner">	';
+	// result += '			<img src="../images/share_btn.png" alt="공유하기">';
+	// result += '		</div>';
+	// result += '	</div>';
 	result += '	<div id="share_list">';  
 	result += '	   <ul>';
 	result += '		   <li class="share_inner_btn"><a href="#"><img src="../images/share.png" alt="공유하기">공유하기</a></li>';
@@ -102,40 +102,46 @@ function getHeader(rcVm_p_no){
 	result += '			 <div id="aside_tos"><a href="#" onclick="tos();">이용약관 및<br>개인정보처리방침</a></div>';		
 	result += '		</div>';
 	result += '	</div>';
-	result += '	<header>';
-	result += '		<h1>';
-	result += '			<a href="#">';
-	result += '				<img src="../images/logo.png" alt="하나로마트">';
-	result += '				<span class="store_name" id="cpName"></span>';
-	result += '			</a>';
-	result += '		</h1>';
-	result += '		<div class="aside_btn">';
-	result += '			<a href="#"> <img src="../images/menu.png" alt="네비게이션 열기"> </a>';
-	result += '		</div>';
-	result += '		<div id="header_inner_wrap">';
-	result += '			<div id="cart">';
-	result += '				<a href="#"> <img src="../images/like.png" alt="찜하기"> </a>';
 
-	result += '			</div><div ';
-	result += '			id="alert">';
-	result += '				<a href="#"> <img src="../images/alert.png" alt="알림창"> </a>';
-	result += '			</div><div ';
-	result += '			id="search">';
-	result += '				<a href="#"> <img src="../images/search.png" alt="검색"> </a>';
-	result += '			</div>';
-	result += '		</div>';
-	result += '		<nav>';
-	result += '			<ul id="headerMenuArea">     ';
-	//result += '				<li><a href="#" class="home">홈</a></li>';
-	//result += '				<li><a href="#">전단행사</a></li>';
-	//result += '				<li><a href="#">MENU3</a></li>';
-	//result += '				<li><a href="#">MENU4</a></li>';
-	//result += '				<li><a href="#">MENU5</a></li>';
-	//result += '				<li><a href="#">MENU6</a></li>';
-	//result += '				<li><a href="#">장보기</a></li>';					
-	result += '			</ul>';
-	result += '		</nav>';		
-	result += '	</header>';
+
+	// result += '	<header>';  // 20200408 헤더 메뉴 제거
+	// result += '		<h1>';
+	// result += '			<a href="#">';
+	// result += '				<img src="../images/logo.png" alt="하나로마트">';
+	// result += '				<span class="store_name" id="cpName"></span>';
+	// result += '			</a>';
+	// result += '		</h1>';
+	// result += '		<div class="aside_btn">';
+	// result += '			<a href="#"> <img src="../images/menu.png" alt="네비게이션 열기"> </a>';
+	// result += '		</div>';
+	// result += '		<div id="header_inner_wrap">';
+	// result += '			<div id="cart">';
+	// result += '				<a href="#"> <img src="../images/like.png" alt="찜하기"> </a>';
+
+	// result += '			</div><div ';
+	// result += '			id="alert">';
+	// result += '				<a href="#"> <img src="../images/alert.png" alt="알림창"> </a>';
+	// result += '			</div><div ';
+	// result += '			id="search">';
+	// result += '				<a href="#"> <img src="../images/search.png" alt="검색"> </a>';
+	// result += '			</div>';
+	// result += '		</div>';
+	// result += '		<nav>';
+	// result += '			<ul id="headerMenuArea">     ';  // 20200408 헤더 메뉴 제거
+
+
+	// //result += '				<li><a href="#" class="home">홈</a></li>';
+	// //result += '				<li><a href="#">전단행사</a></li>';
+	// //result += '				<li><a href="#">MENU3</a></li>';
+	// //result += '				<li><a href="#">MENU4</a></li>';
+	// //result += '				<li><a href="#">MENU5</a></li>';
+	// //result += '				<li><a href="#">MENU6</a></li>';
+	// //result += '				<li><a href="#">장보기</a></li>';					
+
+
+	// result += '			</ul>';  // 20200408 헤더 메뉴 제거
+	// result += '		</nav>';		
+	// result += '	</header>';
 	
 	
 	$("#nav_header").append(result);
