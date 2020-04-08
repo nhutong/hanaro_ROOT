@@ -2,10 +2,15 @@
 @charset "utf-8";
 @import url("../css/notosanskr.css");
 
+/*2020-04-08 웹폰트 속도 및 호환 제고 - 김수경*/
+
 @font-face{
     font-family:"농협체M";
-    src: url(../font/nonghyupM.ttf) format('truetype')
-	src: url(../font/nonghyupM.eot) format('embedded-opentype');
+    src: local("농협체M"),
+    url(../font/NonghyupM.woff2) format("woff2"),
+    url(../font/NongHyupM.woff) format("woff"),
+    url(../font/nonghyupM.ttf) format("truetype"),
+	  url(../font/nonghyupm.eot) format("embedded-opentype");
 
 }
 
