@@ -242,8 +242,8 @@ function getHeaderMenu(ff_vm_cp_no) {
 function getMenuListDefault(rcvCompanyNo) {
 
     $.ajax({
-		//url:'https://www.nhhanaromart.com/back/04_home/menuCreateSelectDefault.jsp?random=' + (Math.random()*99999),
 		url:'/back/04_home/menuCreateSelectDefault.jsp?random=' + (Math.random()*99999),
+		//url:'https://www.nhhanaromart.com/back/04_home/menuCreateSelectDefault.jsp?random=' + (Math.random()*99999),
 		data : {userCompanyNo: rcvCompanyNo},
         method : 'GET' 
     }).done(function(result){
