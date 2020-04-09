@@ -11,23 +11,29 @@ $(function () {
 	// 앱 또는 모바웹을 통해서 개인정보동의 화면부터 접근할 경우, 메인화면에 도달하면,
 	// 판매장 정보가 셋팅된 상태이다. 이 판매장번호를 통해 해당 판매장의 메뉴리스트를
 	// 해더에 셋팅한다. 셋팅후 메뉴번호가 없을 경우에 대비하여, 최초 로딩할 메뉴번호를 로컬스토리지에 셋팅하고, getDateInterval()을 호출한다.
-	if (vm_cp_no == "" || vm_cp_no == "undefined" )
+
+	// if (vm_cp_no == "") console.log("11111111111111");
+	
+	// if( vm_cp_no == null) console.log("2222222222222");
+	
+	// if( vm_cp_no == "undefined") console.log("3333333333333333");
+	
+	// if( typeof vm_cp_no == "undefined") console.log("444444444444444444");
+	
+	
+	if (vm_cp_no == "")
 	{
-		// 웹에서 로그인을 통한 접근이 아닐경우
-		if (localStorage.getItem("vm_cp_no") == null || localStorage.getItem("vm_cp_no") == "undefined")
-		{
-			// 일단 양재점으로 셋팅한다.
-			vm_cp_no = 2;
-		// 웹이나 앱에서 로그인을 통한 정상적인 접근일 경우,
-		}else{
-			vm_cp_no = localStorage.getItem("vm_cp_no");
-		}
+	    vm_cp_no = getCookie("userCompanyNo");
 	}
 
 	logInsert(localStorage.getItem("tel"), vm_cp_no, menu_no);
 
 	getHeader(vm_cp_no);
-    //stopHeader();
+	//stopHeader();
+	
+	//$("header").hide(); //해더 숨김
+
+
 	getLeft();
 
 	setTimeout(function(){ getCpName(vm_cp_no); }, 1500);

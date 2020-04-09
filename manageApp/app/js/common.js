@@ -104,31 +104,31 @@ function getHeader(rcVm_p_no){
 
 
 	result += '	<header>';  // 20200408 헤더 메뉴 제거
-	result += '		<h1>';
-	result += '			<a href="#">';
-	result += '				<img src="../images/logo.png" alt="하나로마트">';
-	result += '				<span class="store_name" id="cpName"></span>';
-	result += '			</a>';
-	result += '		</h1>';
-	result += '		<div class="aside_btn">';
-	result += '			<a href="#"> <img src="../images/menu.png" alt="네비게이션 열기"> </a>';
-	result += '		</div>';
-	result += '		<div id="header_inner_wrap">';
-	result += '			<div id="cart">';
-	result += '				<a href="#"> <img src="../images/like.png" alt="찜하기"> </a>';
 
-	result += '			</div><div ';
-	result += '			id="alert">';
-	result += '				<a href="#"> <img src="../images/alert.png" alt="알림창"> </a>';
-	result += '			</div><div ';
-	result += '			id="search">';
-	result += '				<a href="#"> <img src="../images/search.png" alt="검색"> </a>';
-	result += '			</div>';
-	result += '		</div>';// 20200408 헤더 메뉴 제거
+	// result += '		<h1>';
+	// result += '			<a href="#">';
+	// result += '				<img src="../images/logo.png" alt="하나로마트">';
+	// result += '				<span class="store_name" id="cpName"></span>';
+	// result += '			</a>';
+	// result += '		</h1>';
+	// result += '		<div class="aside_btn">';
+	// result += '			<a href="#"> <img src="../images/menu.png" alt="네비게이션 열기"> </a>';
+	// result += '		</div>';
+	// result += '		<div id="header_inner_wrap">';
+	// result += '			<div id="cart">';
+	// result += '				<a href="#"> <img src="../images/like.png" alt="찜하기"> </a>';
+
+	// result += '			</div><div ';
+	// result += '			id="alert">';
+	// result += '				<a href="#"> <img src="../images/alert.png" alt="알림창"> </a>';
+	// result += '			</div><div ';
+	// result += '			id="search">';
+	// result += '				<a href="#"> <img src="../images/search.png" alt="검색"> </a>';
+	// result += '			</div>';
+	// result += '		</div>';// 20200408 헤더 메뉴 제거
 
 	result += '		<nav>';
 	result += '			<ul id="headerMenuArea">     ';  
-
 
 	// //result += '				<li><a href="#" class="home">홈</a></li>';
 	// //result += '				<li><a href="#">전단행사</a></li>';
@@ -174,8 +174,9 @@ function getHeaderMenu(ff_vm_cp_no) {
             console.log("============= dataCategoryList callback ========================");
             console.log(result);
             var data = JSON.parse(result);
-
-			var text = '<li id="headerHome"><a href="#" class="home">홈</a></li>';
+		
+			var text = '';
+			//text = '<li id="headerHome"><a href="#" class="home">홈</a></li>';
 
             data['DateCategoryList'].forEach(function(item, index){                        
                 $("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
@@ -257,11 +258,10 @@ function getMenuListDefault(rcvCompanyNo) {
 			{
 			}else{
 
-				text += '<li id="headerCoupon"><a href="#" onclick="coupon();">쿠폰</a></li>';
-				text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';
-				text += '<li id="headerShop"><a href="#" onclick="shop();">장보기</a></li>';
-
-				$("#headerMenuArea").append(text);
+				// text += '<li id="headerCoupon"><a href="#" onclick="coupon();">쿠폰</a></li>';
+				// text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';
+				// text += '<li id="headerShop"><a href="#" onclick="shop();">장보기</a></li>';
+				//$("#headerMenuArea").append(text);
 			}
 		
         }else{
@@ -275,19 +275,19 @@ function getMenuListDefault(rcvCompanyNo) {
 			for(var i in jsonResult_menu){
 					if ( jsonResult_menu[i].coupon_fg == "N" )
 				   {
-						text += '<li id="headerCoupon"><a href="#" onclick="coupon();">쿠폰</a></li>';
+						//text += '<li id="headerCoupon"><a href="#" onclick="coupon();">쿠폰</a></li>';
 				   }else{
 				   }		
 
 					if ( jsonResult_menu[i].event_fg == "N" )
 				   {
-						text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';
+						//text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';
 				   }else{
 				   }
 
 					if ( jsonResult_menu[i].jang_fg == "N" )
 				   {
-						text += '<li id="headerShop"><a href="#" onclick="shop();">장보기</a></li>';
+						//text += '<li id="headerShop"><a href="#" onclick="shop();">장보기</a></li>';
 				   }else{
 				   }
 			}
@@ -605,7 +605,6 @@ function deleteAllCookies()
 
 /*  로그 insert하기 20200103*/
 function logInsert(rcvTel, rcv_vm_cp_no, rcv_menu_no){
-	console.log("aaaaaaaa:",rcvTel,"/",rcv_vm_cp_no,"/",rcv_menu_no);
     $.ajax({
         url:'/back/00_include/logInsert.jsp?random=' + (Math.random()*99999), 
         data : {stel: rcvTel, svm_cp_no: rcv_vm_cp_no, srcv_menu_no: rcv_menu_no, pageName: window.location.pathname},

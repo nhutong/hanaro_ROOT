@@ -5,7 +5,17 @@ $(function () {
 	vm_cp_no = getParameterByName('vm_cp_no');   // 판매장번호
 	jd_no = getParameterByName('jd_no');   // 전단번호
 
-	if (vm_cp_no == "" || vm_cp_no == "undefined")
+	
+	// if (vm_cp_no == "") console.log("11111111111111");
+	
+	// if( vm_cp_no == null) console.log("2222222222222");
+	
+	// if( vm_cp_no == "undefined") console.log("3333333333333333");
+	
+	// if( typeof vm_cp_no == "undefined") console.log("444444444444444444");
+
+
+	if (vm_cp_no == "")
 	{
 		//로그인한 판매장의 판매장번호를 로그인한 쿠키정보에서 가져온다.
 		vm_cp_no = getCookie("userCompanyNo");
