@@ -17,7 +17,6 @@
 		// 해당 판매장의 메뉴를 리스팅한다..
 
 		sql = " SELECT a.menu_no, a.menu_name, a.menu_type_cd, a.order_number, min(b.jd_no) AS jd_no "
-//		sql = " SELECT a.menu_no, a.menu_name, a.menu_type_cd, a.order_number, '' AS jd_no "
 		+" from vm_menu AS a "
 		+" inner join vm_company as c "
 		+ " on a.ref_cp_no = c.vm_cp_no "

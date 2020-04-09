@@ -390,7 +390,6 @@ function getLeftMenu(menu) {
 
 // 우상단 판매장을 리스팅한다.
 function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
-
     $.ajax({
         url:'/back/03_leaflet/leafletManagerList.jsp?random=' + (Math.random()*99999),
 		data : {userCompanyNo: rcvCompanyNo},
