@@ -36,31 +36,36 @@ $(function(){
 ////버튼 클릭시 쿠폰 저장
 function saveCoupon(rcvCouponNo, asisCnt){
 
-	$.ajax({
-		url:'/back/02_app/mCouponJoin.jsp?random=' + (Math.random()*99999), 
-		data : {couponNo: rcvCouponNo, memberNo: localStorage.getItem("memberNo")},
-		method : 'GET' 
-	}).done(function(result){
-			
-		console.log("noticeList=========================================");
-		if(result == 'dup'){
-			alert("이미 받으셨거나 사용완료된 쿠폰입니다.")
-		}else if(asisCnt == 0){
-			alert("남은 수량이 없습니다.");
-		}else if(result == 'exception error'){
-			console.log(result);
-		}else{
-			console.log("============= notice callback ========================");
-			console.log(result);
-            var resultCoupon = confirm("쿠폰을 받으셨습니다. 받은 쿠폰을 바로 확인하시겠습니까?");
-            if(resultCoupon){
-                location.href="../mypage/my_coupon.html"
+    var resultCoupon = confirm("쿠폰을 받으시겠습니까?");
+    if(resultCoupon){
+        $.ajax({
+            url:'https://www.nhhanaromart.com/back/02_app/mCouponJoin.jsp?random=' + (Math.random()*99999), 
+            data : {couponNo: rcvCouponNo, memberNo: localStorage.getItem("memberNo"), telNo: localStorage.getItem("tel")},
+            method : 'GET' 
+        }).done(function(result){
+
+            console.log("saveCoupon========================================="+rcvCouponNo+"/"+localStorage.getItem("memberNo")+"/"+localStorage.getItem("tel"));
+            if(result == 'dup'){
+                alert("이미 받으셨거나 사용완료된 쿠폰입니다.")
+			}else if(result == 'dup_rejoin'){
+                alert("(재가입)사용된 쿠폰입니다.")
+            }else if(result == 'over'){
+                alert("이 쿠폰은 마감되었습니다.")
+            }else if(result == 'exception error'){
+                console.log(result);
             }else{
+                console.log("============= saveCoupon callback ========================");
+                console.log(result);
+
+				//location.href="../mypage/my_coupon.html";
+				coupon();
                 alert("쿠폰을 받으셨습니다. 다운로드한 쿠폰은 마이페이지에서 확인가능합니다.");
             }
-		}
-	});
-
+        });       
+      }else{
+           //alert("쿠폰받기를 취소하셨습니다.");
+           return false;
+    }
 }
 
 /* 쿠폰 - 전체 */
@@ -116,9 +121,19 @@ function couponList(rcv_vm_cp_no){
 				text +='         <a href="#" class="dicount_date">';
 				text +=' 		    <span>'+jsonResult_notice[i].start_date+'</span>~';
                 text +='             <span>'+jsonResult_notice[i].end_date+'</span>';
-                text +='         </a>';
-                text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')">쿠폰받기</button>';
-                if(jsonResult_notice[i].asisCnt < "1"){
+				text +='         </a>';
+				
+				if(jsonResult_notice[i].mc_get_fg == "Y"){
+					if(jsonResult_notice[i].staff_cert_fg == "Y"){
+						text +='         <div class="get_button" style="background-color:#EAEAEA; color:#8C8C8C" >사용완료</div>';
+					}else{
+						text +='         <div class="get_button" style="background-color:#EAEAEA " >받은쿠폰</div>';	
+					}
+				}else{
+					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+				}
+
+                if(jsonResult_notice[i].asisCnt < 0){
                    text +='         <span class="discount_left">&nbsp;</span>';                   
                 }else{
                    text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
@@ -193,8 +208,18 @@ function couponListIng(rcv_vm_cp_no){
 					text +=' 		    <span>'+jsonResult_notice[i].start_date+'</span>~';
 					text +='             <span>'+jsonResult_notice[i].end_date+'</span>';
 					text +='         </a>';
-					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')">쿠폰받기</button>';
-                    if(jsonResult_notice[i].asisCnt < "1"){
+
+					if(jsonResult_notice[i].mc_get_fg == "Y"){
+						if(jsonResult_notice[i].staff_cert_fg == "Y"){
+							text +='         <div class="get_button" style="background-color:#EAEAEA; color:#8C8C8C" >사용완료</div>';
+						}else{
+							text +='         <div class="get_button" style="background-color:#EAEAEA " >받은쿠폰</div>';	
+						}
+					}else{
+						text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+					}
+
+                    if(jsonResult_notice[i].asisCnt < 0){
                        text +='         <span class="discount_left">&nbsp;</span>';                   
                     }else{
                        text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
@@ -268,9 +293,19 @@ function couponListEnd(rcv_vm_cp_no){
                 text +='         <a href="#" class="dicount_date">';
 				text +=' 		    <span>'+jsonResult_notice[i].start_date+'</span>~';
                 text +='             <span>'+jsonResult_notice[i].end_date+'</span>';
-                text +='         </a>';
-                text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')">쿠폰받기</button>';
-                if(jsonResult_notice[i].asisCnt < "1"){
+				text +='         </a>';
+				
+				if(jsonResult_notice[i].mc_get_fg == "Y"){
+					if(jsonResult_notice[i].staff_cert_fg == "Y"){
+						text +='         <div class="get_button" style="background-color:#EAEAEA; color:#8C8C8C" >사용완료</div>';
+					}else{
+						text +='         <div class="get_button" style="background-color:#EAEAEA " >받은쿠폰</div>';	
+					}
+				}else{
+					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+				}
+
+                if(jsonResult_notice[i].asisCnt < 0){
                    text +='         <span class="discount_left">&nbsp;</span>';                   
                 }else{
                    text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';

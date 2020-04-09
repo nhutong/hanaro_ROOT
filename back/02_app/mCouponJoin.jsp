@@ -10,6 +10,8 @@
 <%	
 	String couponNo = (request.getParameter("couponNo")==null)? "0":request.getParameter("couponNo");
 	String memberNo = (request.getParameter("memberNo")==null)? "0":request.getParameter("memberNo");
+	String telNo    = (request.getParameter("telNo")==null)? "0":request.getParameter("telNo");
+	
 	String member_no_select = "";
 	
 	//중복 체크
@@ -27,8 +29,24 @@
 			return;
 		}
 
+	//과거 다운이력 체크
+		sql = "select a.mc_no from vm_member_coupon as a "
+			+ " where a.tel_no = "+telNo
+			+ "   and a.coupon_no = "+couponNo
+			+ "   and a.staff_cert_fg = 'Y' ";
+
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery(sql);
+		rs.last(); 	
+		int rejoinCount = rs.getRow(); // 현재 커서의 row Index값을 저장 
+		if(rejoinCount > 0){
+			out.clear();
+			out.print("dup_rejoin");
+			return;
+		}		
+
 	// 수량 체크
-	sql = " SELECT a.coupon_no, a.limit_qty, ifnull(count(b.mc_no),0) AS mc_cnt "
+	    sql = " SELECT a.coupon_no, a.limit_qty, ifnull(count(b.mc_no),0) AS mc_cnt "
 	    + " FROM vm_coupon AS a "
 	    + " LEFT OUTER JOIN vm_member_coupon AS b "
 	    + " ON a.coupon_no = b.coupon_no "
@@ -71,8 +89,8 @@
 
 			member_no_select = rs.getString("no");   // 전단 번호
 
-			sql = " insert into vm_member_coupon (coupon_no, member_no, reg_date) "
-			 +" values ("+couponNo+", '"+member_no_select+"', now())";
+			sql = " insert into vm_member_coupon (coupon_no, member_no, reg_date, tel_no) "
+			 +" values ("+couponNo+", '"+member_no_select+"', now(), '"+telNo+"')";
 			
 		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();

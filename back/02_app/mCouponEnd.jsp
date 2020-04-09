@@ -9,30 +9,13 @@
 
 <%	
 	String userCompanyNo = (request.getParameter("userCompanyNo")==null)? "0":request.getParameter("userCompanyNo");
+	String memberNo = (request.getParameter("memberNo")==null)? "0":request.getParameter("memberNo");
 
 	JSONObject bdListJSON = new JSONObject();
 	
 	try{
-		
-//		sql = " SELECT a.coupon_no, a.discount_price, min(c.img_path) as img_path, a.coupon_type, date_format(a.start_date,'%m-%d') as start_date, date_format(a.end_date,'%m-%d') AS end_date, b.pd_name, "
-//			+" (a.limit_qty - ifnull(d.coupon_save_cnt,0)) AS asisCnt "
-//			+" from vm_coupon AS a "
-//			+" LEFT outer JOIN vm_product AS b "
-//			+" ON a.product_code = b.pd_code "
-//			+" LEFT OUTER JOIN vm_product_image AS c "
-//			+" ON b.pd_no = c.ref_pd_no "
-//			+" LEFT OUTER JOIN ( SELECT coupon_no, ifnull(count(mc_no),0) AS coupon_save_cnt FROM vm_member_coupon GROUP BY coupon_no ) AS d "
-//			+" ON a.coupon_no = d.coupon_no "
-//			+" WHERE a.company_no = "+userCompanyNo
-//			+" AND a.status_cd = 'APPLY' "
-//			+" and left(a.start_date,10) <= left(now(),10) "
-//			+" and left(a.end_date,10) >= left(now(),10) "
-//			+" and a.coupon_type = 'BILLING' "
-//			+" GROUP BY a.coupon_no, a.discount_price, a.coupon_type, date_format(a.start_date,'%m-%d'), date_format(a.end_date,'%m-%d'), b.pd_name, (a.limit_qty - ifnull(d.coupon_save_cnt,0)) "
-//			+" order by a.end_date desc ";
-
 		sql = " SELECT a.coupon_no, a.discount_price, case when min(c.img_path) IS NULL then min(cc.img_path) ELSE min(c.img_path) end as img_path, a.coupon_type, date_format(a.start_date,'%m-%d') as start_date, date_format(a.end_date,'%m-%d') AS end_date, ifnull(a.product_name,'') as pd_name, a.min_price, "
-			+" (a.limit_qty - ifnull(d.coupon_save_cnt,0)) AS asisCnt "
+			+" (a.limit_qty - ifnull(d.coupon_save_cnt,0)) AS asisCnt, (case when e.mc_no is NULL then 'N' ELSE 'Y' END) AS mc_get_fg, IFNULL(e.staff_cert_fg,'N') AS staff_cert_fg "
 			+" from vm_coupon AS a "
 			+" LEFT outer JOIN vm_product AS b "
 			+" ON a.product_code = b.pd_code "
@@ -42,13 +25,14 @@
 			+" ON b.group_tag = cc.group_tag "
 			+" LEFT OUTER JOIN ( SELECT coupon_no, ifnull(count(mc_no),0) AS coupon_save_cnt FROM vm_member_coupon GROUP BY coupon_no ) AS d "
 			+" ON a.coupon_no = d.coupon_no "
+			+" LEFT outer JOIN vm_member_coupon AS e "
+			+" ON a.coupon_no = e.coupon_no and e.member_no = "+memberNo			
 			+" WHERE a.company_no = "+userCompanyNo
 			+" AND a.status_cd = 'APPLY' "
 			+" AND ifnull(a.stamp_fg,'N') = 'N' "
-//			+" and left(a.start_date,10) <= left(now(),10) "
 			+" and left(a.end_date,10) >= left(now(),10) "
 			+" and a.coupon_type = 'BILLING' "
-			+" GROUP BY a.coupon_no, a.discount_price, a.coupon_type, date_format(a.start_date,'%m-%d'), date_format(a.end_date,'%m-%d'), a.product_name, (a.limit_qty - ifnull(d.coupon_save_cnt,0)), a.min_price "
+			+" GROUP BY a.coupon_no, a.discount_price, a.coupon_type, date_format(a.start_date,'%m-%d'), date_format(a.end_date,'%m-%d'), a.product_name, (a.limit_qty - ifnull(d.coupon_save_cnt,0)), a.min_price, (case when e.mc_no is NULL then 'N' ELSE 'Y' END), IFNULL(e.staff_cert_fg,'N') "
 			+" order by a.end_date desc ";
 
 		stmt = conn.createStatement();
@@ -81,7 +65,9 @@
 			String asisCnt = rs.getString("asisCnt");   // 전단배너 번호
 			String pd_name = rs.getString("pd_name");   // 전단배너 번호
 			String min_price = rs.getString("min_price");
-			
+			String mc_get_fg = rs.getString("mc_get_fg"); //받았는지
+			String staff_cert_fg = rs.getString("staff_cert_fg"); //사용했는지
+						
 			JSONObject obj = new JSONObject();
 						
 			obj.put("coupon_no", coupon_no);
@@ -93,7 +79,9 @@
 			obj.put("asisCnt", asisCnt);
 			obj.put("pd_name", pd_name);
 			obj.put("min_price", min_price);
-			
+			obj.put("mc_get_fg", mc_get_fg);
+			obj.put("staff_cert_fg", staff_cert_fg);
+
 			if(obj != null){
 				arr.add(obj);
 			}
