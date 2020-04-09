@@ -11,13 +11,13 @@ $(function () {
 	// 앱 또는 모바웹을 통해서 개인정보동의 화면부터 접근할 경우, 메인화면에 도달하면,
 	// 판매장 정보가 셋팅된 상태이다. 이 판매장번호를 통해 해당 판매장의 메뉴리스트를
 	// 해더에 셋팅한다. 셋팅후 메뉴번호가 없을 경우에 대비하여, 최초 로딩할 메뉴번호를 로컬스토리지에 셋팅하고, getDateInterval()을 호출한다.
-	if (vm_cp_no == "")
+	if (vm_cp_no == "" || vm_cp_no == "undefined" )
 	{
 		// 웹에서 로그인을 통한 접근이 아닐경우
-		if (localStorage.getItem("vm_cp_no") == null)
+		if (localStorage.getItem("vm_cp_no") == null || localStorage.getItem("vm_cp_no") == "undefined")
 		{
 			// 일단 양재점으로 셋팅한다.
-			vm_cp_no = 1;
+			vm_cp_no = 2;
 		// 웹이나 앱에서 로그인을 통한 정상적인 접근일 경우,
 		}else{
 			vm_cp_no = localStorage.getItem("vm_cp_no");
@@ -65,7 +65,7 @@ $(function () {
 	  if ((event.button == 2) || (event.which == 3)) {
 
 		/* 20191227 도메인뒤 역슬래쉬 삭제 */
-		var newURL = "https://www.nhhanaromart.com" + window.location.pathname;
+		var newURL = "" + window.location.pathname;
 		//console.log(newURL+"?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+getCookie("jd_no"));
 		getShortURL(newURL+"?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+getCookie("jd_no"));
 		
@@ -93,17 +93,17 @@ $(function () {
 				//DB 저장순서.
 
 					$.ajax({
-						url:'https://www.nhhanaromart.com/back/03_leaflet/leafletPdConOrderUpdate.jsp?random=' + (Math.random()*99999), 
+						url:'/back/03_leaflet/leafletPdConOrderUpdate.jsp?random=' + (Math.random()*99999), 
 						data : {orderArray: localStorage.getItem("Array_1")},
 						method : 'GET' 
 					}).done(function(result){
 
-						console.log("CompanyName=========================================");
+						console.log("leafletPdConOrderUpdate=========================================");
 						if(result == ('NoN') || result == 'list error' || result == 'empty'){
 							console.log(result);
 						}else{
 							$("#cpName").empty();
-							console.log("============= notice callback ========================");
+							console.log("============= leafletPdConOrderUpdate callback ========================");
 							console.log(result);
 							
 						}
@@ -129,6 +129,10 @@ $(function () {
 });
 
 //header 멈추기
+function test(){
+	console.log("!!!!!!!!!!!!!!!!");
+}
+
 
 function moveAlive(){
 	$("#item_list_inner_wrap").sortable("enable");
@@ -171,16 +175,16 @@ function copy_to_clipboard(str) {
 function getShortURL(rcvURL){
 
 	$.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletNaverShortURL.jsp?random=' + (Math.random()*99999), 
+        url:'/back/02_app/mLeafletNaverShortURL.jsp?random=' + (Math.random()*99999), 
         data : {rcvText: encodeURIComponent(rcvURL)},
         method : 'GET' 
     }).done(function(result){
 
-        console.log("getShortURL=========================================");
+        console.log("mLeafletNaverShortURL=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             //console.log(result);
         }else{
-            console.log("============= getShortURL callback ========================");
+            console.log("============= mLeafletNaverShortURL callback ========================");
             console.log(result);
             var data = result.trim();
 			var data = JSON.parse(data);
@@ -194,17 +198,17 @@ function getShortURL(rcvURL){
 function getCpName(vm_cp_no){
 
 	$.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletCpName.jsp?random=' + (Math.random()*99999), 
+        url:'/back/02_app/mLeafletCpName.jsp?random=' + (Math.random()*99999), 
         data : {vm_cp_no: vm_cp_no},
         method : 'GET' 
     }).done(function(result){
 
-        console.log("CompanyName=========================================");
+        console.log("mLeafletCpName=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
             $("#cpName").empty();
-            console.log("============= notice callback ========================");
+            console.log("============= mLeafletCpName callback ========================");
             console.log(result);
             var data = JSON.parse(result);
             
@@ -243,17 +247,17 @@ var isInIFrame = ( window.location != window.parent.location );
 function bannerInsert(rcvResult){
 
 	$.ajax({
-				url:'https://www.nhhanaromart.com/back/03_leaflet/leafletBannerInsert.jsp?random=' + (Math.random()*99999),
+				url:'/back/03_leaflet/leafletBannerInsert.jsp?random=' + (Math.random()*99999),
 				data : {jd_no: jd_no, img_path: rcvResult},
 				method : 'GET' 
 				}).done(function(result){
 
-					console.log("noticeList=========================================");
+					console.log("leafletBannerInsert=========================================");
 					if(result == ('NoN') || result == 'exception error' || result == 'empty'){
 						console.log(result);
 					}else{
 						$("#noticeList").html("");
-						console.log("============= notice callback ========================");
+						console.log("============= leafletBannerInsert callback ========================");
 						console.log(result);
 					}
 				});
@@ -265,23 +269,24 @@ function bannerInsert(rcvResult){
 
 // 전단 기간을 가져온다
 function getDateInterval() {
-
 	if (menu_no == "")
 	{
 		menu_no = localStorage.getItem("initMenuNo");
 	}
 
+	//alert(vm_cp_no,"/",menu_no);
+
     $.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletDateCategory.jsp?random=' + (Math.random()*99999), 
+        url:'/back/02_app/mLeafletDateCategory.jsp?random=' + (Math.random()*99999), 
         data : {userCompanyNo: vm_cp_no, menuNo: menu_no},
         method : 'GET' 
     }).done(function(result){
 
-        console.log("dataCategoryList=========================================");
+        console.log("mLeafletDateCategory=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
-            console.log("============= dataCategoryList callback ========================");
+            console.log("============= mLeafletDateCategory callback ========================");
             console.log(result);
             var data = JSON.parse(result);
 
@@ -327,7 +332,7 @@ function getDateThree(jdNo, startDate, endDate){
 function getBanner(rcv_jd_no_b) {
 
     $.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletBanner.jsp?random=' + (Math.random()*99999), 
+        url:'/back/02_app/mLeafletBanner.jsp?random=' + (Math.random()*99999), 
         data : {userCompanyNo: vm_cp_no, menuNo: menu_no, jd_no: rcv_jd_no_b},
         method : 'GET' 
     }).done(function(result){
@@ -374,7 +379,7 @@ function getBannerList(rcv_jd_no_p_b) {
 	window.parent.cssRetach();
 	$(parent.document).find(".leaflet_del").hide();
     $.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletBannerList.jsp?random=' + (Math.random()*99999), 
+        url:'/back/02_app/mLeafletBannerList.jsp?random=' + (Math.random()*99999), 
         data : {userCompanyNo: vm_cp_no, menuNo: menu_no, jd_no: rcv_jd_no_p_b},
         method : 'GET' 
     }).done(function(result){
@@ -423,7 +428,7 @@ function getBannerList(rcv_jd_no_p_b) {
 				bannerHoverId = $(this).attr("id");
 
 				$.ajax({
-					url:'https://www.nhhanaromart.com/back/03_leaflet/leafletBannerHide.jsp?random=' + (Math.random()*99999),
+					url:'/back/03_leaflet/leafletBannerHide.jsp?random=' + (Math.random()*99999),
 					data : {jb_no: bannerHoverId }
 				}).done(function(result){
 
@@ -450,7 +455,7 @@ function getBannerList(rcv_jd_no_p_b) {
 function getPdContent(rcv_jd_no) {
 
     $.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletPdContent.jsp?random=' + (Math.random()*99999), 
+        url:'/back/02_app/mLeafletPdContent.jsp?random=' + (Math.random()*99999), 
         data : {jd_no: rcv_jd_no, tel: localStorage.getItem("tel")},
         method : 'GET' 
     }).done(function(result){
@@ -489,7 +494,7 @@ function getPdContent(rcv_jd_no) {
 
 				text += '<div class="figure '+figure_type_cd+'" id='+item['jd_prod_con_no']+'>'
                 text += '   <div class="thumb_wrap">'
-                text += '		<a href="#" onclick="setThumImg('+item['jd_prod_con_no']+', '+item['pd_no']+', \''+item['pd_code']+'\');"><img src="https://www.nhhanaromart.com'+item['img_path']+'" alt="'+item['pd_name']+'"></a>'
+                text += '		<a href="#" onclick="setThumImg('+item['jd_prod_con_no']+', '+item['pd_no']+', \''+item['pd_code']+'\');"><img src="'+item['img_path']+'" alt="'+item['pd_name']+'"></a>'
                 text += '		<div class="thumb_info">'
 				
 				if(isInIFrame == true){
@@ -564,7 +569,7 @@ function getPdContent(rcv_jd_no) {
 				text += '       <div class="leaflet_modal_wrap">'
 				text += '    	  <div class="modal_cls"><img src="../images/leaflet_cls.png" alt="리플렛닫기"></div>'
 				text += '    	  <div class="leaflet_thumb_wrap">'
-				text += '    		 <img src="https://www.nhhanaromart.com'+item['img_path']+'" alt="'+item['pd_name']+'">'
+				text += '    		 <img src="'+item['img_path']+'" alt="'+item['pd_name']+'">'
 				text += '    	  </div>'
 				text += '    	  <div class="leaflet_modal_title">'+item['pd_name']+'</div>'
 				text += '    	  <div class="leaflet_modal_price">'+comma(item['price'])+'원</div>'
@@ -714,7 +719,7 @@ function setPdDetail(rcvJdProdConNo, rcvPdName, rcvPrice){
 		setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
 
 		$.ajax({
-			url:'https://www.nhhanaromart.com/back/03_leaflet/leafletProdSaleDetail.jsp?random=' + (Math.random()*99999), 
+			url:'/back/03_leaflet/leafletProdSaleDetail.jsp?random=' + (Math.random()*99999), 
 			data : {jd_prod_con_no: rcvJdProdConNo},
 			method : 'GET'  
 		}).done(function(result){
@@ -802,7 +807,7 @@ function stopHeader(){
 /* 찜하기 버튼 클릭한다. */
 function addRmZzim(rcv_jd_prod_con_no){
 	$.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletZzim.jsp?random=' + (Math.random()*99999),
+        url:'/back/02_app/mLeafletZzim.jsp?random=' + (Math.random()*99999),
 		data : {
 			tel: localStorage.getItem("tel"), 
 			jd_prod_con_no: rcv_jd_prod_con_no, 
