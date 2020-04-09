@@ -57,7 +57,6 @@ function getCookie(cookieName) {
 }
 
 function getHeader(rcVm_p_no){
-	
 	var result = '';
 	 
 	// result += '	<div id="share_btn" onclick="share_btn();">	';		// 20200408 + 버튼 숨김
@@ -105,29 +104,30 @@ function getHeader(rcVm_p_no){
 
 
 	result += '	<header>';  // 20200408 헤더 메뉴 제거
-	// result += '		<h1>';
-	// result += '			<a href="#">';
-	// result += '				<img src="../images/logo.png" alt="하나로마트">';
-	// result += '				<span class="store_name" id="cpName"></span>';
-	// result += '			</a>';
-	// result += '		</h1>';
-	// result += '		<div class="aside_btn">';
-	// result += '			<a href="#"> <img src="../images/menu.png" alt="네비게이션 열기"> </a>';
-	// result += '		</div>';
-	// result += '		<div id="header_inner_wrap">';
-	// result += '			<div id="cart">';
-	// result += '				<a href="#"> <img src="../images/like.png" alt="찜하기"> </a>';
+	result += '		<h1>';
+	result += '			<a href="#">';
+	result += '				<img src="../images/logo.png" alt="하나로마트">';
+	result += '				<span class="store_name" id="cpName"></span>';
+	result += '			</a>';
+	result += '		</h1>';
+	result += '		<div class="aside_btn">';
+	result += '			<a href="#"> <img src="../images/menu.png" alt="네비게이션 열기"> </a>';
+	result += '		</div>';
+	result += '		<div id="header_inner_wrap">';
+	result += '			<div id="cart">';
+	result += '				<a href="#"> <img src="../images/like.png" alt="찜하기"> </a>';
 
-	// result += '			</div><div ';
-	// result += '			id="alert">';
-	// result += '				<a href="#"> <img src="../images/alert.png" alt="알림창"> </a>';
-	// result += '			</div><div ';
-	// result += '			id="search">';
-	// result += '				<a href="#"> <img src="../images/search.png" alt="검색"> </a>';
-	// result += '			</div>';
-	// result += '		</div>';
+	result += '			</div><div ';
+	result += '			id="alert">';
+	result += '				<a href="#"> <img src="../images/alert.png" alt="알림창"> </a>';
+	result += '			</div><div ';
+	result += '			id="search">';
+	result += '				<a href="#"> <img src="../images/search.png" alt="검색"> </a>';
+	result += '			</div>';
+	result += '		</div>';// 20200408 헤더 메뉴 제거
+
 	result += '		<nav>';
-	result += '			<ul id="headerMenuArea">     ';  // 20200408 헤더 메뉴 제거
+	result += '			<ul id="headerMenuArea">     ';  
 
 
 	// //result += '				<li><a href="#" class="home">홈</a></li>';
@@ -605,18 +605,18 @@ function deleteAllCookies()
 
 /*  로그 insert하기 20200103*/
 function logInsert(rcvTel, rcv_vm_cp_no, rcv_menu_no){
-
+	console.log("aaaaaaaa:",rcvTel,"/",rcv_vm_cp_no,"/",rcv_menu_no);
     $.ajax({
         url:'/back/00_include/logInsert.jsp?random=' + (Math.random()*99999), 
         data : {stel: rcvTel, svm_cp_no: rcv_vm_cp_no, srcv_menu_no: rcv_menu_no, pageName: window.location.pathname},
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        console.log("logInsert=========================================");
         if(result.trim() == 'NoN' || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
-            console.log("============= notice callback ========================");
+            console.log("============= logInsert callback ========================");
             console.log(result);
         }
     });
