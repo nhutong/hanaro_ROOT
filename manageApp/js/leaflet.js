@@ -5,7 +5,7 @@ $(function () {
 	vm_cp_no = getParameterByName('vm_cp_no');   // 판매장번호
 	jd_no = getParameterByName('jd_no');   // 전단번호
 
-	if (vm_cp_no == "")
+	if (vm_cp_no == "" || vm_cp_no == "undefined")
 	{
 		//로그인한 판매장의 판매장번호를 로그인한 쿠키정보에서 가져온다.
 		vm_cp_no = getCookie("userCompanyNo");

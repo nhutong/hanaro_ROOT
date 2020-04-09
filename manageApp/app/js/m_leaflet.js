@@ -129,10 +129,6 @@ $(function () {
 });
 
 //header 멈추기
-function test(){
-	console.log("!!!!!!!!!!!!!!!!");
-}
-
 
 function moveAlive(){
 	$("#item_list_inner_wrap").sortable("enable");
