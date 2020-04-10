@@ -104,28 +104,28 @@
 		// 상태가 승인요청(REQUESTED) -> 승인완료(APPROVED) 변경된 경우, 승인완료 메일 발송
 		if("REQUESTED".equals((String)previous.get("statusCd")) && "APPROVED".equals(status)) {
 			String emailContent = 
-				"<!DOCTYPE html>" +
-				"<html>" +
+			"<!DOCTYPE html>" +
+			"<html>" +
 			"    <head>" +
 			"        <meta charset=\"utf-8\">" +
 			"    </head>" +
-			"     <body style=\"width:720px;\">" +
-				"				<div style=\"width:80vmin; font-size:6vmin;\">" +
-				"				<div style=\"text-align:center;\">" +
-				"		       <h1 style=\"font-family:'Noto Sans KR', sans-serif; letter-spacing: -1px;  font-size:0.46875em; color:#121212; border-bottom:1px solid #eeeeee; margin-top:2%; padding-bottom:1.502%;\">하나로마트 관리자 완료</h1>" +
-				"				   <article style=\"padding:4.8986% 4.1666%;\">" +
-				"				     <h2 style=\"font-family:'Noto Sans KR', sans-serif; font-size:0.4375em; letter-spacing:-0.025em; font-weight:500; color:#222222; margin:0 0 1.6891% 0; font-weight: 500;\">" + name +  "(" +  empNo + ")님</h2>" +
-				"				     <p style=\"font-family:'Noto Sans KR', sans-serif; margin:3.3783% 0 0 0; font-size:0.375em; color:#666666; letter-spacing:-0.025em; line-height:1.4583em;\">하나로마트 관리자 승인이 완료되었습니다.<br> <a href=\"http://hanaro.it7.kr\" style=\"text-decoration: none; color:#666666;\">www.nhhanaromart.com</a></p>" +
-				"				   </article>" +
-				"				   <p style=\"font-size:0.34375em; font-weight:300; margin:0;\">" +
-				"				     <span style=\"font-family:'Noto Sans KR', sans-serif; color:#121212; line-height:1.3636em; letter-spacing:-0.025em;\">문의 사항은 아래의 메일 주소로 보내주세요.</span><br/>" +
-				"				     <span style=\"font-family:'Noto Sans KR', sans-serif; color:#5ba1d0; line-height:1.3636em;\">E-mail: kacmapp1995@gmail.com</span><br/>" +
-				"				     <span style=\"font-family:'Noto Sans KR', sans-serif; display:inline-block; margin-top:3.2094%; color:#121212; font-weight:500; letter-spacing:-0.025em;\">감사합니다.</span>" +
-				"				   </p>" +
-				"				</div>" +
-				"				<div style=\"text-align:center; font-size:0.25em; background-color:#f6f6f6; padding:2.8716% 0; margin-top:7.45%; color:#7b7b7b;\"><span>(주)농협유통 Co. ltd. All right reserved</span></div>" +
-				"				</div>" +
-				"    </body>" +
+			"    <body style=\"width:720px;\">" +
+			"				<div style=\"width:92.5vmin; font-size:10vmin;\">" +
+			"				<div style=\"text-align:center;\">" +
+			"		       <h1 style=\"font-family:'Noto Sans KR', sans-serif; letter-spacing: -1px;  font-size:0.46875em; color:#121212; border-bottom:1px solid #eeeeee; margin-top:8.1081%; margin-bottom:7.0945%; padding-bottom:1.502%;\">회원가입 승인 완료</h1>" +
+			"				   <article style=\"padding:4.8986% 4.1666%; margin-bottom:6.5878%;\">" +
+			"				     <h2 style=\"font-family:'Noto Sans KR', sans-serif; font-size:0.4375em; letter-spacing:-0.025em; font-weight:500; color:#222222; margin:0 0 1.6891% 0; font-weight: 500;\">" + name +  "(" +  empNo + ")님</h2>" +
+			"				     <p style=\"font-family:'Noto Sans KR', sans-serif; margin:3.3783% 0 0 0; font-size:0.375em; color:#666666; letter-spacing:-0.025em; line-height:1.4583em;\">하나로마트 관리자 승인이 완료되었습니다.<br> www.nhhanaromart.com</a></p>" +
+			"				   </article>" +
+			"				   <p style=\"font-size:0.34375em; font-weight:300; margin:0;\">" +
+			"				     <span style=\"font-family:'Noto Sans KR', sans-serif; color:#121212; line-height:1.3636em; letter-spacing:-0.025em;\">문의 사항은 아래의 메일 주소로 보내주세요.</span><br/>" +
+			"				     <span style=\"font-family:'Noto Sans KR', sans-serif; color:#5ba1d0; line-height:1.3636em;\">E-mail:kacmapp1995@gmail.com</span><br/>" +
+			"				     <span style=\"font-family:'Noto Sans KR', sans-serif; display:inline-block; margin-top:3.2094%; color:#121212; font-weight:500; letter-spacing:-0.025em;\">감사합니다.</span>" +
+			"				   </p>" +
+			"				</div>" +
+			"				<div style=\"text-align:center; font-size:0.25em; background-color:#f6f6f6; padding:2.8716% 0; margin-top:7.45%; color:#7b7b7b;\"><span>(주)농협유통 Co. ltd. All right reserved</span></div>" +
+			"				</div>" +
+			"    </body>" +
 			"</html>";
 			Properties props = new Properties(); 
 			props.put("mail.smtp.host", "smtp.gmail.com"); 
