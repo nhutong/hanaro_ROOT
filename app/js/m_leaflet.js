@@ -199,7 +199,7 @@ function getCpName(vm_cp_no){
         }
     });
 	getDateInterval();
-	getBanner(jd_no);
+	getBanner(jd_no);	
 }
 
 var isInIFrame = ( window.location != window.parent.location );
@@ -225,25 +225,25 @@ var isInIFrame = ( window.location != window.parent.location );
 }
 
 function bannerInsert(rcvResult){
-
+	var jd_no = getCookie("jd_no");
 	$.ajax({
-				url:'/back/03_leaflet/leafletBannerInsert.jsp?random=' + (Math.random()*99999),
-				data : {jd_no: jd_no, img_path: rcvResult},
-				method : 'GET' 
-				}).done(function(result){
+		url:'/back/03_leaflet/leafletBannerInsert.jsp?random=' + (Math.random()*99999),
+		data : {jd_no: jd_no, img_path: rcvResult},
+		method : 'GET' 
+	}).done(function(result){
 
-					console.log("noticeList=========================================");
-					if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-						console.log(result);
-					}else{
-						$("#noticeList").html("");
-						console.log("============= notice callback ========================");
-						console.log(result);
-					}
-				});
-				alert("배너 업로드 완료하였습니다.");
-				$(parent.document).find(".leaflet_banner").removeClass("active");
-				window.location.reload();
+		console.log("noticeList=========================================");
+		if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+			console.log(result);
+		}else{
+			$("#noticeList").html("");
+			console.log("============= notice callback ========================");
+			console.log(result);
+		}
+	});
+	alert("배너 업로드 완료하였습니다.");
+	$(parent.document).find(".leaflet_banner").removeClass("active");
+	window.location.reload();
 
 }
 

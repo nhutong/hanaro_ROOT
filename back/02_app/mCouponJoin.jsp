@@ -66,8 +66,7 @@
 
 		}
 
-		if ( limit_qty == 0 ){
-
+		if ( limit_qty < 0 ){ //무제한쿠폰
 		}else{
 			if ( mc_cnt >= limit_qty ){
 				out.clear();
