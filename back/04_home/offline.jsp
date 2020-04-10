@@ -19,10 +19,10 @@
 	try{
 
 		if ( longtitude.equals("0") ){
-			sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME, a.VM_TEL, a.lat, a.lng, a.VM_delivery_FG, a.VM_START_TIME, a.VM_END_TIME, a.VM_OFF_NOTE FROM vm_company AS a WHERE a.VM_CP_NO <> 0 and a.VM_sales_FG = 'Y' "; 
+			sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME, a.VM_TEL, a.lat, a.lng, a.VM_delivery_FG, a.VM_START_TIME, a.VM_END_TIME, a.VM_OFF_NOTE FROM vm_company AS a WHERE a.VM_CP_NO <> 0 and a.VM_sales_FG = 'Y' order by a.vm_cp_name asc "; 
 		}else{
 			sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME, a.VM_TEL, a.lat, a.lng, a.VM_delivery_FG, a.VM_START_TIME, a.VM_END_TIME, a.VM_OFF_NOTE FROM vm_company AS a WHERE a.VM_CP_NO <> 0 and a.VM_sales_FG = 'Y' "
-			     +" order by ((a.lng - "+longti+")*(a.lng - "+longti+") + (a.lat - "+lati+")*(a.lat - "+lati+")) asc; ";
+			     +" order by ((a.lng - "+longti+")*(a.lng - "+longti+") + (a.lat - "+lati+")*(a.lat - "+lati+")) asc, a.vm_cp_name asc ; ";
 		}
 	
 		stmt = conn.createStatement();

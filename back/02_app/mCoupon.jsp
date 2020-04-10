@@ -16,7 +16,7 @@
 	try{
 		sql = " SELECT a.coupon_no, a.coupon_name, a.discount_price, case when min(c.img_path) IS NULL then min(cc.img_path) ELSE min(c.img_path) end as img_path, " 
 			+" a.coupon_type, date_format(a.start_date,'%m-%d') as start_date, date_format(a.end_date,'%m-%d') AS end_date, ifnull(a.product_name,'') as pd_name, a.min_price, "
-			+" (a.limit_qty - ifnull(d.coupon_save_cnt,0)) AS asisCnt, (case when e.mc_no is NULL then 'N' ELSE 'Y' END) AS mc_get_fg, IFNULL(e.staff_cert_fg,'N') AS staff_cert_fg "
+			+" a.limit_qty, (a.limit_qty - ifnull(d.coupon_save_cnt,0)) AS asisCnt, (case when e.mc_no is NULL then 'N' ELSE 'Y' END) AS mc_get_fg, IFNULL(e.staff_cert_fg,'N') AS staff_cert_fg "
 			+" from vm_coupon AS a "
 			+" LEFT outer JOIN vm_product AS b "
 			+" ON a.product_code = b.pd_code "
@@ -32,8 +32,8 @@
 			+" AND a.status_cd = 'APPLY' "
 			+" AND ifnull(a.stamp_fg,'N') = 'N' "
 			+" and left(a.end_date,10) >= left(now(),10) "
-			+" GROUP BY a.coupon_no, a.coupon_name, a.discount_price, a.coupon_type, date_format(a.start_date,'%m-%d'), date_format(a.end_date,'%m-%d'), a.product_name, (a.limit_qty - ifnull(d.coupon_save_cnt,0)), a.min_price, (case when e.mc_no is NULL then 'N' ELSE 'Y' END), IFNULL(e.staff_cert_fg,'N') "
-			+" order by a.end_date desc ";
+			+" GROUP BY a.coupon_no, a.coupon_name, a.discount_price, a.coupon_type, date_format(a.start_date,'%m-%d'), date_format(a.end_date,'%m-%d'), a.product_name, a.limit_qty, (a.limit_qty - ifnull(d.coupon_save_cnt,0)), a.min_price, (case when e.mc_no is NULL then 'N' ELSE 'Y' END), IFNULL(e.staff_cert_fg,'N') "
+			+" order by a.end_date desc, a.coupon_no ";
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -63,11 +63,14 @@
 			String coupon_type = rs.getString("coupon_type");   // 전단배너 번호
 			String start_date = rs.getString("start_date");   // 전단배너 번호
 			String end_date = rs.getString("end_date");   // 전단배너 번호
+			String limit_qty = rs.getString("limit_qty");   // 전단배너 번호
 			String asisCnt = rs.getString("asisCnt");   // 전단배너 번호
 			String pd_name = rs.getString("pd_name");   // 전단배너 번호
 			String min_price = rs.getString("min_price");
 			String mc_get_fg = rs.getString("mc_get_fg"); //받았는지
 			String staff_cert_fg = rs.getString("staff_cert_fg"); //사용했는지
+
+
 
 			JSONObject obj = new JSONObject();
 						
@@ -78,6 +81,7 @@
 			obj.put("coupon_type", coupon_type);
 			obj.put("start_date", start_date);
 			obj.put("end_date", end_date);
+			obj.put("limit_qty", limit_qty);
 			obj.put("asisCnt", asisCnt);
 			obj.put("pd_name", pd_name);
 			obj.put("min_price", min_price);

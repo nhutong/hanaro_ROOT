@@ -14,9 +14,9 @@
 	
 	try{
 	
-		sql = " SELECT a.app_version  "
+		sql = " SELECT max(a.app_version) as app_version "
 			 +" FROM app_version AS a "
-			 +" WHERE a.platform = '"+platform+"' ";
+			 +" WHERE del_yn = 'N' and a.platform = '"+platform+"' ";
 	
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
