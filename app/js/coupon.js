@@ -136,7 +136,9 @@ function couponList(rcv_vm_cp_no){
                 if(jsonResult_notice[i].asisCnt < 0){
                    text +='         <span class="discount_left">&nbsp;</span>';                   
                 }else{
-                   text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
+//				   text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
+				   text +='         <span class="discount_left">'+jsonResult_notice[i].asisCnt+'개 남음</span>';
+
                 }
                 text +='     </div>';
 				text +=' </div>';
@@ -222,7 +224,8 @@ function couponListIng(rcv_vm_cp_no){
                     if(jsonResult_notice[i].asisCnt < 0){
                        text +='         <span class="discount_left">&nbsp;</span>';                   
                     }else{
-                       text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
+	//					text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
+                       text +='         <span class="discount_left">'+jsonResult_notice[i].asisCnt+'개 남음</span>';
                     }
 					text +='     </div>';
 					text +=' </div>';
@@ -308,7 +311,8 @@ function couponListEnd(rcv_vm_cp_no){
                 if(jsonResult_notice[i].asisCnt < 0){
                    text +='         <span class="discount_left">&nbsp;</span>';                   
                 }else{
-                   text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
+					text +='         <span class="discount_left">'+jsonResult_notice[i].asisCnt+'개 남음</span>';
+ //                  text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
                 }
                 text +='     </div>';
 				text +=' </div>';
