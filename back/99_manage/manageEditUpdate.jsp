@@ -115,7 +115,7 @@
 			"		       <h1 style=\"font-family:'Noto Sans KR', sans-serif; letter-spacing: -1px;  font-size:0.46875em; color:#121212; border-bottom:1px solid #eeeeee; margin-top:8.1081%; margin-bottom:7.0945%; padding-bottom:1.502%;\">회원가입 승인 완료</h1>" +
 			"				   <article style=\"padding:4.8986% 4.1666%; margin-bottom:6.5878%;\">" +
 			"				     <h2 style=\"font-family:'Noto Sans KR', sans-serif; font-size:0.4375em; letter-spacing:-0.025em; font-weight:500; color:#222222; margin:0 0 1.6891% 0; font-weight: 500;\">" + name +  "(" +  empNo + ")님</h2>" +
-			"				     <p style=\"font-family:'Noto Sans KR', sans-serif; margin:3.3783% 0 0 0; font-size:0.375em; color:#666666; letter-spacing:-0.025em; line-height:1.4583em;\">하나로마트 관리자 승인이 완료되었습니다.<br><span sytle="color:#000; text-decoration:none;">www.nhhanaromart.com</span></p>" +
+			"				     <p style=\"font-family:'Noto Sans KR', sans-serif; margin:3.3783% 0 0 0; font-size:0.375em; color:#666666; letter-spacing:-0.025em; line-height:1.4583em;\">하나로마트 관리자 승인이 완료되었습니다.<br><span sytle=\"color:#000; text-decoration:none;\">www.nhhanaromart.com</span></p>" +
 			"				   </article>" +
 			"				   <p style=\"font-size:0.34375em; font-weight:300; margin:0;\">" +
 			"				     <span style=\"font-family:'Noto Sans KR', sans-serif; color:#121212; line-height:1.3636em; letter-spacing:-0.025em;\">문의 사항은 아래의 메일 주소로 보내주세요.</span><br/>" +
