@@ -125,10 +125,14 @@ function couponList(rcv_vm_cp_no){
 				
 				if(jsonResult_notice[i].mc_get_fg == "Y"){
 					if(jsonResult_notice[i].staff_cert_fg == "Y"){
-						text +='         <div class="get_button" style="background-color:#EAEAEA; color:#8C8C8C" >사용완료</div>';
+						// 쿠폰 버튼 css 조정 및 받은쿠폰 눌렀을 때 my쿠폰으로 이동(김수경 0410)
+					//	text +='         <div class="get_button" style="background-color:#EAEAEA; color:#8C8C8C" >사용완료</div>';
+						text +='         <button style="backgroud-color:#EAEAEA; color:#8C8C8C">사용완료</button>';					
 					}else{
-						text +='         <div class="get_button" style="background-color:#EAEAEA " >받은쿠폰</div>';	
+					//	text +='         <div class="get_button" style="background-color:#EAEAEA " >받은쿠폰</div>';	
+						text +='         <button style="backgroud-color:#EAEAEA; color:#55B190" onclick="location href='../mypage/my_coupon.html'">받은쿠폰</button>';	
 					}
+					//김수경 0410 수정
 				}else{
 					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
 				}
