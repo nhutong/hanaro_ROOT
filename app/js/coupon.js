@@ -95,8 +95,14 @@ function couponList(rcv_vm_cp_no){
 			for(var i in jsonResult_notice){
 
 				text +=' <div class="coupon_cont figure">';
-				text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
-                text +='     <div class="thumb_wrap">';
+
+				if( jsonResult_notice[i].discount_price == 0 ){
+					text +=' 	<div class="discount_info">무료증정</div>';
+				}else{
+					text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+				}
+
+				text +='     <div class="thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
 					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt="이미지없음"></a>';
@@ -125,14 +131,10 @@ function couponList(rcv_vm_cp_no){
 				
 				if(jsonResult_notice[i].mc_get_fg == "Y"){
 					if(jsonResult_notice[i].staff_cert_fg == "Y"){
-						// 쿠폰 버튼 css 조정 및 받은쿠폰 눌렀을 때 my쿠폰으로 이동(김수경 0410)
-					//	text +='         <div class="get_button" style="background-color:#EAEAEA; color:#8C8C8C" >사용완료</div>';
-						text +='         <button style="backgroud-color:#EAEAEA; color:#8C8C8C">사용완료</button>';					
+						text +='         <div class="get_button" style="font-size:13px; background-color:#EAEAEA; color:#8C8C8C; padding:5px 0px">사용완료</div>';
 					}else{
-					//	text +='         <div class="get_button" style="background-color:#EAEAEA " >받은쿠폰</div>';	
-						text +='         <button style="backgroud-color:#EAEAEA; color:#55B190" onclick="location href='../mypage/my_coupon.html'">받은쿠폰</button>';	
+						text +='         <div class="get_button" style="font-size:13px; background-color:#5E5E5F; color:#FFF; padding:5px 0px">받은쿠폰</div>';	
 					}
-					//김수경 0410 수정
 				}else{
 					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
 				}
@@ -188,7 +190,11 @@ function couponListIng(rcv_vm_cp_no){
 				for(var i in jsonResult_notice){
 
 					text +=' <div class="coupon_cont figure">';
-					text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+					if( jsonResult_notice[i].discount_price == 0 ){
+						text +=' 	<div class="discount_info">무료증정</div>';
+					}else{
+						text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+					}
 					text +='     <div class="thumb_wrap">';
 					if (jsonResult_notice[i].coupon_type == "BILLING")
 					{
@@ -217,9 +223,9 @@ function couponListIng(rcv_vm_cp_no){
 
 					if(jsonResult_notice[i].mc_get_fg == "Y"){
 						if(jsonResult_notice[i].staff_cert_fg == "Y"){
-							text +='         <div class="get_button" style="background-color:#EAEAEA; color:#8C8C8C" >사용완료</div>';
+							text +='         <div class="get_button" style="font-size:13px; background-color:#EAEAEA; color:#8C8C8C; padding:5px 0px">사용완료</div>';
 						}else{
-							text +='         <div class="get_button" style="background-color:#EAEAEA " >받은쿠폰</div>';	
+							text +='         <div class="get_button" style="font-size:13px; background-color:#5E5E5F; color:#FFF; padding:5px 0px">받은쿠폰</div>';	
 						}
 					}else{
 						text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
@@ -275,7 +281,11 @@ function couponListEnd(rcv_vm_cp_no){
 			for(var i in jsonResult_notice){
 
 				text +=' <div class="coupon_cont figure">';
-				text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+				if( jsonResult_notice[i].discount_price == 0 ){
+					text +=' 	<div class="discount_info">무료증정</div>';
+				}else{
+					text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+				}
                 text +='     <div class="thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
@@ -304,9 +314,9 @@ function couponListEnd(rcv_vm_cp_no){
 				
 				if(jsonResult_notice[i].mc_get_fg == "Y"){
 					if(jsonResult_notice[i].staff_cert_fg == "Y"){
-						text +='         <div class="get_button" style="background-color:#EAEAEA; color:#8C8C8C" >사용완료</div>';
+						text +='         <div class="get_button" style="font-size:13px; background-color:#EAEAEA; color:#8C8C8C; padding:5px 0px">사용완료</div>';
 					}else{
-						text +='         <div class="get_button" style="background-color:#EAEAEA " >받은쿠폰</div>';	
+						text +='         <div class="get_button" style="font-size:13px; background-color:#5E5E5F; color:#FFF; padding:5px 0px">받은쿠폰</div>';	
 					}
 				}else{
 					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
