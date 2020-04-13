@@ -13,7 +13,7 @@
 	try{
 
 		//sql = "delete from vm_member where no = '"+memberNo+"'; ";
-		sql = "update vm_member SET tel = concat(date_format(NOW(),"%Y%m%d%H%i%S"),'_',tel), mem_resign_date = now(), mem_resign_fg = 'Y' where no = '"+memberNo+"'; ";
+		sql = "update vm_member SET tel = concat(date_format(NOW(),'%Y%m%d%H%i%S'),'_',tel), mem_resign_date = now(), mem_resign_fg = 'Y' where no = '"+memberNo+"'; ";
 		//out.print(sql);	
 		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();
