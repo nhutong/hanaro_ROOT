@@ -34,7 +34,7 @@ function getHeader(){
 	
 	if(getCookie("userNo") == ""){
 		// 로그인 전
-		$("#nav_header").append('<div class="top_menu_bg"><div class="top_menu"><h1><img src="../images/logo.png" onclick="home();" class="logo_img"></h1><p class="logout"></p></div></div>');
+		$("#nav_header").append('<div class="top_menu_bg"><div class="top_menu"><h1><img src="../images/logo.png" onclick="login();" class="logo_img"></h1><p class="logout"></p></div></div>');
 		
 	}else{
 		// 로그인 후
