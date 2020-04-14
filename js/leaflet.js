@@ -133,14 +133,14 @@ function getLeftNav(rcv_vm_cp_no) {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
 			$('#myplanb_menu').empty();
         }else{
             $("#noticeList").html("");
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             var data = JSON.parse(result);
 
 			$('#myplanb_menu').empty();
@@ -308,12 +308,12 @@ function delete_btn(){
 			method : 'GET' 
 		}).done(function(result){
 
-			console.log("noticeList=========================================");
+			//console.log("noticeList=========================================");
 			if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-				console.log(result);
+				//console.log(result);
 			}else{
-				console.log("============= notice callback ========================");
-				console.log(result);
+				//console.log("============= notice callback ========================");
+				//console.log(result);
 				alert("삭제 완료되었습니다.");
 				$('#nh_leaflet').get(0).contentDocument.location.reload();
 				setTimeout(function(){ cssRetach(); }, 1500);
@@ -334,12 +334,12 @@ function delete_jdbtn(){
 			method : 'GET' 
 		}).done(function(result){
 
-			console.log("noticeList=========================================");
+			//console.log("noticeList=========================================");
 			if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-				console.log(result);
+				//console.log(result);
 			}else{
-				console.log("============= notice callback ========================");
-				console.log(result);
+				//console.log("============= notice callback ========================");
+				//console.log(result);
 				alert("삭제 완료되었습니다.");
 //				$('#nh_leaflet').get(0).contentDocument.location.reload();
 //				setTimeout(function(){ cssRetach(); }, 2000);
@@ -424,13 +424,13 @@ $("#category_update_btn").on("click",function(){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
             $("#noticeList").html("");
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             alert("수정이 완료되었습니다.");
 			$('#nh_leaflet').get(0).contentDocument.location.reload();
 			setTimeout(function(){ cssRetach(); }, 1500);
@@ -455,13 +455,13 @@ $("#banner_edit_btn").on("click",function(){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
             $("#noticeList").html("");
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             alert("수정이 완료되었습니다.");
 			$('#nh_leaflet').get(0).contentDocument.location.reload();
 			$(".leaflet_banner").removeClass("active");
@@ -495,12 +495,12 @@ function thumnailInsert(imgPath){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
 			
 			thumnailUpdate(result);
 
@@ -526,12 +526,12 @@ function thumnailUpdate(imgNo){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             alert("이미지 수정이 완료되었습니다.");
             $("#searchText").val("");
             $("#searchResultGroup").empty();
@@ -554,13 +554,13 @@ function getPdOrder() {
         method : 'GET'
     }).done(function(result){
 
-        console.log("PdOrderList=========================================");
+        //console.log("PdOrderList=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
             $("#noticeList").html("");
-            console.log("============= PdOrderList callback ========================");
-            console.log(result);
+            //console.log("============= PdOrderList callback ========================");
+            //console.log(result);
             var data = JSON.parse(result);
 
 			$('#pd_order').empty();
@@ -610,13 +610,13 @@ $("#searchText").on("keyup",function(){
 			method : 'GET' 
 		}).done(function(result){
 
-			console.log("noticeList=========================================");
+			//console.log("noticeList=========================================");
 			if(result == ('NoN') || result == 'list error' || result == 'empty'){
-				console.log(result);
+				//console.log(result);
 				$("#searchResultGroup").empty();
 			}else{
-				console.log("============= notice callback ========================");
-				console.log(result);
+				//console.log("============= notice callback ========================");
+				//console.log(result);
 				var data = JSON.parse(result);
 				$("#searchResultGroup").empty();
 				$("#searchResultGroup").css({overflow:'scroll', height:'400px', textAlign:'left'});
@@ -652,13 +652,13 @@ $("#thum_search_btn").on("click",function(){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
 			$("#searchResultGroup").empty();
         }else{
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             var data = JSON.parse(result);
 			$("#searchResultGroup").empty();
 			$("#searchResultGroup").css({overflow:'scroll', height:'400px', textAlign:'left'});
@@ -748,13 +748,13 @@ $("#sale_btn").on("click",function(){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
             $("#noticeList").html("");
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             alert("등록이 완료되었습니다.");
             $("#card_discount,#card_discount_from_date,#card_discount_end_date,#card_info,#card_restrict,#coupon_discount,#dadaiksun,#dadaiksun_info").val("");
 			$(document).find(".leaflet_discount").removeClass("active");  
@@ -781,13 +781,13 @@ $("#pd_name_btn").on("click",function(){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
             $("#noticeList").html("");
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             alert("수정이 완료되었습니다.");
 			$('#nh_leaflet').get(0).contentDocument.location.reload();
             $("#pd_name").val("");
@@ -814,13 +814,13 @@ $("#price_btn").on("click",function(){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
             $("#noticeList").html("");
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             alert("수정이 완료되었습니다.");
 			$('#nh_leaflet').get(0).contentDocument.location.reload();
             $("#price").val("");
@@ -879,13 +879,13 @@ $("#pd_create_btn").on("click",function(){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
 //            $("#noticeList").html("");
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             alert("등록이 완료되었습니다.");
 			$('#nh_leaflet').get(0).contentDocument.location.reload();
 

@@ -14,10 +14,12 @@
 	
 	try{
 		//sql = " SELECT a.menu_no, a.menu_name, a.menu_type_cd, min(b.jd_no) AS jd_no "
-		sql = " SELECT a.menu_no, concat(a.menu_name, if(a.hide_fg='Y','(숨겨짐)','')) as menu_name, a.menu_type_cd, min(b.jd_no) AS jd_no "
+		//sql = " SELECT a.menu_no, concat(a.menu_name, if(a.hide_fg='Y','(숨겨짐)','')) as menu_name, a.menu_type_cd, min(b.jd_no) AS jd_no "
+		sql = " SELECT a.menu_no, concat(a.menu_name, if(a.hide_fg='Y','(숨겨짐)','')) as menu_name, a.menu_type_cd, ifnull(max(b.jd_no),-1) AS jd_no " //오늘자 전단이 없으면 jd_no=-1
 		+" from vm_menu AS a "
 		+" left outer JOIN ( SELECT jd_no, menu_no from vm_jundan " 
 		+" 					 where ref_company_no = '"+userCompanyNo+"' "
+		+"                     and ( from_date <= NOW() AND to_date >= NOW() ) "
 		+" ) AS b "
 		+" ON a.menu_no = b.menu_no "
 		+" WHERE ref_cp_no = "+userCompanyNo

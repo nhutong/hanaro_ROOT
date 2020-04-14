@@ -98,13 +98,13 @@ $(function () {
 						method : 'GET' 
 					}).done(function(result){
 
-						console.log("leafletPdConOrderUpdate=========================================");
+						//console.log("leafletPdConOrderUpdate=========================================");
 						if(result == ('NoN') || result == 'list error' || result == 'empty'){
-							console.log(result);
+							//console.log(result);
 						}else{
 							$("#cpName").empty();
-							console.log("============= leafletPdConOrderUpdate callback ========================");
-							console.log(result);
+							//console.log("============= leafletPdConOrderUpdate callback ========================");
+							//console.log(result);
 							
 						}
 					});
@@ -160,15 +160,15 @@ function getShortURL(rcvURL){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("getShortURL=========================================");
+        //console.log("getShortURL=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             //console.log(result);
         }else{
-            console.log("============= getShortURL callback ========================");
-            console.log(result);
+            //console.log("============= getShortURL callback ========================");
+            //console.log(result);
             var data = result.trim();
 			var data = JSON.parse(data);
-			console.log(data["result"].url);
+			//console.log(data["result"].url);
 			newShortURL = data["result"].url;
         }
     });
@@ -183,13 +183,13 @@ function getCpName(vm_cp_no){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("getCpName=========================================");
+        //console.log("getCpName=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
             $("#cpName").empty();
-            console.log("============= getCpName callback ========================");
-            console.log(result);
+            //console.log("============= getCpName callback ========================");
+            //console.log(result);
             var data = JSON.parse(result);
             
 			data['CompanyName'].forEach(function(item, index){ 
@@ -199,7 +199,6 @@ function getCpName(vm_cp_no){
         }
     });
 	getDateInterval();
-	getBanner(jd_no);	
 }
 
 var isInIFrame = ( window.location != window.parent.location );
@@ -232,13 +231,13 @@ function bannerInsert(rcvResult){
 		method : 'GET' 
 	}).done(function(result){
 
-		console.log("noticeList=========================================");
+		//console.log("noticeList=========================================");
 		if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-			console.log(result);
+			//console.log(result);
 		}else{
 			$("#noticeList").html("");
-			console.log("============= notice callback ========================");
-			console.log(result);
+			//console.log("============= notice callback ========================");
+			//console.log(result);
 		}
 	});
 	alert("배너 업로드 완료하였습니다.");
@@ -249,7 +248,7 @@ function bannerInsert(rcvResult){
 
 // 전단 기간을 가져온다
 function getDateInterval() {
-
+	//console.log("vm_cp_no"+vm_cp_no+"menu_no"+menu_no+"jd_no"+jd_no);
 	if (menu_no == "")
 	{
 		menu_no = localStorage.getItem("initMenuNo");
@@ -261,12 +260,12 @@ function getDateInterval() {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("dataCategoryList=========================================");
+        //console.log("dataCategoryList=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
-            console.log("============= dataCategoryList callback ========================");
-            console.log(result);
+            //console.log("============= dataCategoryList callback ========================");
+            //console.log(result);
             var data = JSON.parse(result);
 
 			$("#title_anibox").empty();
@@ -284,10 +283,22 @@ function getDateInterval() {
 				setCookie1("jd_no",decodeURIComponent(item['jd_no']), 1);
 				setCookie1("curJd"+index, decodeURIComponent(item['jd_no']));
 
-				if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 일자슬라이드 선택 및 상세내역 출력
-					setTimeout(function(){ date_slider(Number(index)); }, 100);
-					getPdContent(decodeURIComponent(item['jd_no']));
+				console.log("fetch jd_no:"+decodeURIComponent(item['jd_no'])+", today_fg:"+decodeURIComponent(item['today_fg']));
+
+				if(jd_no == ""){
+					if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 일자슬라이드 선택 및 상세내역 출력
+						setTimeout(function(){ date_slider(Number(index)); }, 100);
+						getBanner(decodeURIComponent(item['jd_no']));
+						getPdContent(decodeURIComponent(item['jd_no']));
+					}
+				}else{
+					if (decodeURIComponent(item['jd_no']) == jd_no){
+						setTimeout(function(){ date_slider(Number(index)); }, 100);
+						getBanner(decodeURIComponent(item['jd_no']));
+						getPdContent(decodeURIComponent(item['jd_no']));
+					}
 				}
+				
 			});			
         }
     });
@@ -316,11 +327,11 @@ function getBanner(rcv_jd_no_b) {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("BannerList=========================================");
+        //console.log("BannerList=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
 			$(".bxslider").html("");
 
-            console.log(result);
+            //console.log(result);
 			$(".bx-wrapper").css({minHeight:'3px', height:'3px'});
 			$(".bx-pager-item").hide();
 
@@ -328,8 +339,8 @@ function getBanner(rcv_jd_no_b) {
         }else{
             $(".bxslider").html("");
 
-            console.log("============= Banner callback ========================");
-            console.log(result);
+            //console.log("============= Banner callback ========================");
+            //console.log(result);
 			$(".bxslider").css({minHeight:'75px', height:'75px', position:'relative'});
 
             var data = JSON.parse(result);
@@ -363,15 +374,15 @@ function getBannerList(rcv_jd_no_p_b) {
         data : {userCompanyNo: vm_cp_no, menuNo: menu_no, jd_no: rcv_jd_no_p_b},
         method : 'GET' 
     }).done(function(result){
-		console.log(result);
-        console.log("bannerParentList=========================================");
+		//console.log(result);
+        //console.log("bannerParentList=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
 
 			window.parent.$("#sortable").empty();
 
         }else{
-            console.log("============= bannerParentList callback1 ========================");
-            console.log(result);
+            //console.log("============= bannerParentList callback1 ========================");
+            //console.log(result);
             var data = JSON.parse(result);
 
 			window.parent.$("#sortable").empty();
@@ -397,7 +408,7 @@ function getBannerList(rcv_jd_no_p_b) {
 								var li = $(this);
 								strItems += li.attr("id") + ':' + i + ',';
 							});
-							console.log(strItems);
+							//console.log(strItems);
 							setCookie1("bannerOrderStr",strItems);
 							}
 			   });
@@ -412,12 +423,12 @@ function getBannerList(rcv_jd_no_p_b) {
 					data : {jb_no: bannerHoverId }
 				}).done(function(result){
 
-					console.log("noticeList=========================================");
+					//console.log("noticeList=========================================");
 					if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-						console.log(result);
+						//console.log(result);
 					}else{
-						console.log("============= bannerParentList callback2 ========================");
-						console.log(result);
+						//console.log("============= bannerParentList callback2 ========================");
+						//console.log(result);
 						alert("숨기기 수정이 완료되었습니다.");
 
 						$(parent.document).find(".leaflet_banner").removeClass("active");
@@ -441,17 +452,17 @@ function getPdContent(rcv_jd_no) {
     }).done(function(result){
 
 		var text = "";
-        console.log("PdContent=========================================");
+        //console.log("PdContent=========================================");
         if(result.trim() == 'NoN' || result == 'list error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
 
 			text +='<div class="list_no_item">준비중입니다.</div>'
 
 			$("#item_list_inner_wrap").empty();
 			$("#item_list_inner_wrap").append(text);
         }else{
-            console.log("============= PdContent callback ========================");
-            console.log(result);
+            //console.log("============= PdContent callback ========================");
+            //console.log(result);
             var data = JSON.parse(result);
 
             data['PdContentList'].forEach(function(item, index){    
@@ -704,13 +715,13 @@ function setSaleDetail(rcvJdProdConNo){
 			method : 'GET'  
 		}).done(function(result){
 
-			console.log("SaleDetail=========================================");
+			//console.log("SaleDetail=========================================");
 			if(result == ('NoN') || result == 'list error' || result == 'empty'){
-				console.log(result);
+				//console.log(result);
 			}else{
 				$("#noticeList").html("");
-				console.log("============= SaleDetail callback ========================");
-				console.log(result);
+				//console.log("============= SaleDetail callback ========================");
+				//console.log(result);
 				var data = JSON.parse(result);
 
 				data['saleList'].forEach(function(item, index){                        
@@ -841,12 +852,12 @@ function addRmZzim(rcv_jd_prod_con_no){
         method : 'GET' 
     }).done(function(result){
 
-        console.log("RmZzim=========================================");
+        //console.log("RmZzim=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
         }else{
-            console.log("============= RmZzim callback ========================");
-            console.log(result);
+            //console.log("============= RmZzim callback ========================");
+            //console.log(result);
         }
     });
 }

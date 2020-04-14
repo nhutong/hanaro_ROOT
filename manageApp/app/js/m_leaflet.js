@@ -221,7 +221,6 @@ function getCpName(vm_cp_no){
         }
     });
 	getDateInterval();
-	getBanner(jd_no);
 }
 
 var isInIFrame = ( window.location != window.parent.location );
@@ -307,10 +306,20 @@ function getDateInterval() {
 				setCookie1("jd_no",decodeURIComponent(item['jd_no']), 1);
 				setCookie1("curJd"+index, decodeURIComponent(item['jd_no']));
 
-				if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 일자슬라이드 선택 및 상세내역 출력
-					setTimeout(function(){ date_slider(Number(index)); }, 100);
-					getPdContent(decodeURIComponent(item['jd_no']));
+				if(jd_no == ""){
+					if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 일자슬라이드 선택 및 상세내역 출력
+						setTimeout(function(){ date_slider(Number(index)); }, 100);
+						getBanner(decodeURIComponent(item['jd_no']));
+						getPdContent(decodeURIComponent(item['jd_no']));
+					}
+				}else{
+					if (decodeURIComponent(item['jd_no']) == jd_no){
+						setTimeout(function(){ date_slider(Number(index)); }, 100);
+						getBanner(decodeURIComponent(item['jd_no']));
+						getPdContent(decodeURIComponent(item['jd_no']));
+					}
 				}
+				
 			});
         }
     });
