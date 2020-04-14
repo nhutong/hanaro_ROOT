@@ -8,12 +8,13 @@
 <%@ include file = "../00_include/dbConn.jsp" %>
 
 <%	
-	String tel = (request.getParameter("tel")==null)? "0":request.getParameter("tel");
+	String memberNo = (request.getParameter("memberNo")==null)? "0":request.getParameter("memberNo");
 	
 	try{
 
-		sql = "delete from vm_member where tel = '"+tel+"'; ";
-//out.print(sql);	
+		//sql = "delete from vm_member where no = '"+memberNo+"'; ";
+		sql = "update vm_member SET tel = concat(date_format(NOW(),'%Y%m%d%H%i%S'),'_',tel), mem_resign_date = now(), mem_resign_fg = 'Y' where no = '"+memberNo+"'; ";
+		//out.print(sql);	
 		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();
 
