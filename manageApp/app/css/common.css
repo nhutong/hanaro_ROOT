@@ -9,9 +9,9 @@
   font-family:"농협체M";
   src: local("농협체M"),
   url(../font/NonghyupM.woff2) format("woff2"),
-  url(../font/NongHyupM.woff) format("woff"),
-  url(../font/nonghyupM.ttf) format("truetype"),
-  url(../font/nonghyupm.eot) format("embedded-opentype");
+  url(../font/NonghyupM.woff) format("woff"),
+  url(../font/NonghyupM.ttf) format("truetype"),
+  url(../font/NonghyupM.eot) format("embedded-opentype");
 
 }
 
