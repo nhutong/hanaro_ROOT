@@ -393,8 +393,11 @@ span.shopUrl:hover{
 
 
 .store_list_wrap{
-    width: 940px;
+    /* width: 940px; */
+    display: block;
+    float: center;
     text-align: right;
+    padding: 0px 40px 0px 0px;
 }
 
 .store_list_wrap .store_list_name,
@@ -402,7 +405,6 @@ span.shopUrl:hover{
     display: inline-block;
     font-size: 13px;
     border:1px solid #e0e0e0;
-    
 }
 
 .store_list_wrap .store_list_name{

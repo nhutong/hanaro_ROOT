@@ -1,4 +1,4 @@
-var newShortURL;
+//var newShortURL;
 
 $(function () {
 	
@@ -65,14 +65,20 @@ $(function () {
 	  if ((event.button == 2) || (event.which == 3)) {
 
 		/* 20191227 도메인뒤 역슬래쉬 삭제 */
-		var newURL = "../images/Icon-512.png" + window.location.pathname;
-		//console.log(newURL+"?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+getCookie("jd_no"));
-		getShortURL(newURL+"?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+getCookie("jd_no"));
-		
-		setTimeout(function(){ 
+		//var newURL = "../images/Icon-512.png" + window.location.pathname;
+		var newURL = "https://www.nhhanaromart.com";
+		var newURLParameter = newURL+"?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+getCookie("jd_no"); 
+		console.log("before:"+newURLParameter);
+		getShortURL(newURLParameter, function(newShortURL){
+			console.log("after:"+newShortURL);
 			copy_to_clipboard(newShortURL);
-			alert("붙여넣어 사용하시기 바랍니다.");
-		}, 2000);
+			alert("붙여넣어 사용하시기 바랍니다."+newShortURL);
+		});
+		//setTimeout(function(){ 
+		//	console.log("after:"+newShortURL);
+		// 	copy_to_clipboard(newShortURL);
+		// 	alert("붙여넣어 사용하시기 바랍니다."+newShortURL);
+		//}, 2000);
 	  }
 	});
 
@@ -152,24 +158,25 @@ function copy_to_clipboard(str) {
 
 
 // 단축 URL 을 구성한다.
-function getShortURL(rcvURL){
-
+function getShortURL(rcvURL, cb){
 	$.ajax({
         url:'/back/02_app/mLeafletNaverShortURL.jsp?random=' + (Math.random()*99999), 
         data : {rcvText: encodeURIComponent(rcvURL)},
         method : 'GET' 
     }).done(function(result){
-
         //console.log("getShortURL=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            //console.log(result);
+			//console.log(result);
+			cb(result);
         }else{
             //console.log("============= getShortURL callback ========================");
             //console.log(result);
             var data = result.trim();
-			var data = JSON.parse(data);
+			data = JSON.parse(data);
 			//console.log(data["result"].url);
-			newShortURL = data["result"].url;
+			data = data["result"].url;
+			//console.log("data:"+data);
+			cb(data);
         }
     });
 }
@@ -298,7 +305,7 @@ function getDateInterval() {
 						getPdContent(decodeURIComponent(item['jd_no']));
 					}
 				}
-				
+
 			});			
         }
     });
