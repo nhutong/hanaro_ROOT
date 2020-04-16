@@ -1166,22 +1166,69 @@ header nav ul li.active a{
     font-weight: 500;
 }
 
-/*tos*/
-
-.tos_cont{
-    padding: 20px 10px 0;
-}
-
-.tos_cont p{
-    font-size: 13px;
-    background-color:#fff;
-    margin: 10px 20px;
-    padding: 10px;
-    height: 300px;
-    overflow: scroll;
-    border: 1px solid #e3e3e3;
+	/*tos  이용약관*/
+    .tos_cont{
+        padding: 20px 10px 0;
+    }
+    .tos_cont div{
+        font-size: 13px;
+        background-color:#fff;
+        margin: 10px 20px;
+        padding: 10px;
+        height: 300px;
+        overflow: scroll;
+        border: 1px solid #e3e3e3;   
+    }
+    .tos_cont .t_tit{
+       color:#565656;
+    }
+    .tos_cont .t_tit>h4{
+        font-size:15px;
+        margin:13px 0;
+        font-weight:600;
+        color:#000;
+    }
+    .tos_cont .t_tit>h5{
+        font-size:14px;
+        font-weight:500;
+        color:#292929;
+        margin:10px 0;
+    }
+    .tos_cont .t_tit p.tit_1{
+        font-size: 13px;
+        font-weight:400;
+        padding-left:5px;
+        line-height:18px;
+    }
+    .tos_cont .t_tit p.tit_1 span{
+        color:#0042ff;
+    }
+    .circlednum_type{
+        font-size: 13px;
+        line-height:18px;
+        text-indent:-14px;
+        padding-left:18px;
+    }
+    .circlednum_type li{
+        padding-bottom:2px;
+        
+    }
+    .circlednum_type_1{
+        font-size: 13px;
+        line-height:18px;
+        text-indent:-8px;
+        padding-left:15px;
+        margin:3px 0;
+    }
+    .circlednum_type_2{
+        font-size: 13px;
+        line-height:18px;
+        text-indent:-16px;
+        padding-left:18px;
+        margin:3px 0;
+    }
+    /*tos end*/
     
-}
 
 /*slide_btn*/
 
