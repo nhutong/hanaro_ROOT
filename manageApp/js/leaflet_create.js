@@ -252,7 +252,7 @@ $("#jundan_excel_new").on("click",function(){
         console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
             console.log(result);
-			alert("전단컨텐츠 양식에 맞는 파일로 업로드하시기 바랍니다.");
+			alert("전단 양식에 맞는 파일로 업로드하시기 바랍니다.");
         }else if(result == ('Dup')){
 			alert("중복된 전단기간이 존재합니다. 전단기간을 수정해주시기 바랍니다.");
 		}else if(result == ('NoN0')){

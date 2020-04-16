@@ -173,7 +173,7 @@
 
 					/* 이미지마스터에 insert 한다. */
 
-					// 신규입력한 전단컨텐츠상품의 전단번호를 temp 테이블에서 select 한다.
+					// 신규입력한 전단상품의 전단번호를 temp 테이블에서 select 한다.
 					sql = " select pd_no as ref_pd_no from vm_product where pd_code =  '" + fileName_img_zip + "'; " ;
 
 					stmt = conn.createStatement();
@@ -231,7 +231,7 @@
 
 			/* 이미지마스터에 insert 한다. */
 
-			// 신규입력한 전단컨텐츠상품의 전단번호를 temp 테이블에서 select 한다.
+			// 신규입력한 전단상품의 전단번호를 temp 테이블에서 select 한다.
 			sql = " select pd_no as ref_pd_no from vm_product where pd_code =  '" + fileName_img + "'; " ;
 
 			stmt = conn.createStatement();

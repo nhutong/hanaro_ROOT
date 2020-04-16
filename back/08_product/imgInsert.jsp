@@ -72,7 +72,7 @@
 			//입력정보 끝================================================================================
 			//========================================================================================
 
-				// 신규입력한 전단컨텐츠상품의 전단번호를 temp 테이블에서 select 한다.
+				// 신규입력한 전단상품의 전단번호를 temp 테이블에서 select 한다.
 				sql = " select pd_no as ref_pd_no from vm_product where pd_code =  '" + string1 + "'; " ;
 
 				stmt = conn.createStatement();
@@ -91,7 +91,7 @@
 					ref_pd_no = rs.getInt("ref_pd_no");     // 신규 전단번호
 				}
 
-				// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+				// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 				sql = "insert into vm_product_image (img_path, ref_pd_no, pd_code, group_tag, std_fg, reg_no, reg_date) "
 					+" values('"+string4+"', "+ref_pd_no+", '"+string1+"', '"+string3+"', 'N', '"+reg_no+"', now()); ";
 

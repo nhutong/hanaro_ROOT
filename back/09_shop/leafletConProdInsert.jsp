@@ -17,7 +17,7 @@
 
 	try{
 
-		// 신규입력한 전단컨텐츠상품의 전단번호를 temp 테이블에서 select 한다.
+		// 신규입력한 전단상품의 전단번호를 temp 테이블에서 select 한다.
 		sql = " select jd_no as exist_jd_no from vm_shop_jundan where ref_company_no =  '" + userCompanyNo + "'; " ;
 
 		stmt = conn.createStatement();
@@ -123,7 +123,7 @@
 			//입력정보 끝================================================================================
 			//========================================================================================
 
-			// 신규입력한 전단컨텐츠상품의 상품번호(내부용)를 select 한다.
+			// 신규입력한 전단상품의 상품번호(내부용)를 select 한다.
 			sql = " select pd_no from vm_product "
 			    + " where pd_code = '"+string1+"'; ";
 
@@ -147,7 +147,7 @@
 			}else{
 			}
 				
-			// 신규입력한 전단컨텐츠상품에 매핑할 이미지번호를 select 한다.
+			// 신규입력한 전단상품에 매핑할 이미지번호를 select 한다.
 			String img_no = "";
 			if (pd_no.equals("")){
 				img_no = "";	
@@ -166,7 +166,7 @@
 				rs.beforeFirst();		
 		
 				while(rs.next()){
-					img_no = rs.getString("img_no");     // 신규 전단컨텐츠상품번호	
+					img_no = rs.getString("img_no");     // 신규 전단상품번호	
 				}
 				if (img_no.equals("")){
 					img_no = "";
@@ -180,7 +180,7 @@
 			if(string0 == ""){
 			}else{
 				
-				// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+				// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 				sql = "insert into vm_shop_jundan_prod_content (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, etc) "
 					+" values("+exist_jd_no+", '"+string0+"', '"+pd_no+"', '"+img_no+"', '"+string2+"', '"+string3+"', '"+string4+"'); ";
 

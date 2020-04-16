@@ -19,7 +19,7 @@
 
 	try{	
 
-		// 신규입력한 전단컨텐츠상품의 전단번호를 temp 테이블에서 select 한다.
+		// 신규입력한 전단상품의 전단번호를 temp 테이블에서 select 한다.
 		sql = " select jd_no as exist_jd_no from vm_shop_jundan where ref_company_no =  '" + userCompanyNo + "'; " ;
 
 		stmt = conn.createStatement();
@@ -45,7 +45,7 @@
 		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();
 
-		// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+		// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 		sql = "insert into vm_shop_jundan_prod_content (ref_jd_no, order_number, pd_name, price, etc, reg_no, reg_date ) "
 		   +" values( '"
 		+exist_jd_no+"', "+pd_order+", '"+pd_name+"', '"+pd_price+"', '"+etc_info+"', '"+user_no+"', now());";
@@ -53,7 +53,7 @@
 		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();
 
-		// 신규입력한 전단컨텐츠상품의 전단컨텐츠상품번호를 select 한다.
+		// 신규입력한 전단상품의 전단상품번호를 select 한다.
 		sql = " select max(jd_prod_con_no) as jd_prod_con_no_last from vm_shop_jundan_prod_content;";
 	
 		stmt = conn.createStatement();
@@ -69,7 +69,7 @@
 				
 		while(rs.next()){
 			
-			String jd_prod_con_no_last = rs.getString("jd_prod_con_no_last");     // 신규 전단컨텐츠상품번호	
+			String jd_prod_con_no_last = rs.getString("jd_prod_con_no_last");     // 신규 전단상품번호	
 
 			// 신규입력받은 상품코드의 상품번호(내부관리용)를 select 한다.
 			sql = " SELECT a.pd_no as pd_no FROM vm_product AS a WHERE a.pd_code = '"+pd_code+"';";
@@ -83,10 +83,10 @@
 				//out.print("NoN");
 				//return;
 
-				String pd_no = "";     // 신규 전단컨텐츠상품의 상품번호(내부관리용)	
+				String pd_no = "";     // 신규 전단상품의 상품번호(내부관리용)	
 				String ref_img_no = "";
 
-				// 신규입력된 전단컨텐츠상품의 매핑상품번호로 update 한다.
+				// 신규입력된 전단상품의 매핑상품번호로 update 한다.
 				sql = "update vm_shop_jundan_prod_content set ref_pd_no = '"+pd_no+"', ref_img_no = '"+ref_img_no+"' "
 				+" where jd_prod_con_no = "+jd_prod_con_no_last+"";
 		
@@ -98,16 +98,16 @@
 					
 			while(rs.next()){
 				
-				String pd_no = rs.getString("pd_no");     // 신규 전단컨텐츠상품의 상품번호(내부관리용)	
+				String pd_no = rs.getString("pd_no");     // 신규 전단상품의 상품번호(내부관리용)	
 
-				// 신규입력된 전단컨텐츠상품의 매핑상품번호로 update 한다.
+				// 신규입력된 전단상품의 매핑상품번호로 update 한다.
 				sql = "update vm_shop_jundan_prod_content set ref_pd_no = '"+pd_no+"'  "
 				+" where jd_prod_con_no = "+jd_prod_con_no_last+"";
 		
 				pstmt = conn.prepareStatement(sql);
 				pstmt.executeUpdate();
 
-				// 신규입력된 전단컨텐츠상품의 매핑될 이미지번호를 select 한다.
+				// 신규입력된 전단상품의 매핑될 이미지번호를 select 한다.
 				sql =" SELECT tot.* FROM ( " 
 					+" SELECT aa.* "
 					+"	FROM ( "
@@ -154,10 +154,10 @@
 					if( pd_no.equals("0") ){
 						ref_img_no = "70026";
 					}else{
-						ref_img_no = rs.getString("img_no");     // 신규 전단컨텐츠상품에 매핑할 이미지번호	
+						ref_img_no = rs.getString("img_no");     // 신규 전단상품에 매핑할 이미지번호	
 					}
 
-					// 신규입력된 전단컨텐츠상품의 매핑상품번호로 update 한다.
+					// 신규입력된 전단상품의 매핑상품번호로 update 한다.
 					sql = "update vm_shop_jundan_prod_content set ref_img_no = '"+ref_img_no+"'  "
 					+" where jd_prod_con_no = "+jd_prod_con_no_last+"";
 			

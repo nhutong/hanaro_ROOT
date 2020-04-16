@@ -37,7 +37,7 @@
 		JSONArray arr = new JSONArray();		
 		while(rs.next()){
 			
-			zzim_cnt		   = rs.getString("zzim_cnt");						  // 전단컨텐츠 상품번호
+			zzim_cnt		   = rs.getString("zzim_cnt");						  // 전단 상품번호
 			
 			JSONObject obj = new JSONObject();
 

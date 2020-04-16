@@ -100,7 +100,7 @@
 	
 			if ( dataTypeCd.equals("INSERT") ){
 
-				// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+				// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 				sql = "insert into vm_product (pd_code, pd_name, group_tag, reg_no, reg_date) "
 					+" values('"+string1+"', '"+string2+"', '"+string3+"', '"+reg_no+"', now()); ";
 
@@ -109,7 +109,7 @@
 
 			}else{
 
-				// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+				// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 				sql = "update vm_product "
 				    +" set pd_name = '"+string2+"', "
 					+" group_tag = '"+string3+"', "
