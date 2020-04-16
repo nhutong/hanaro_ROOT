@@ -1,6 +1,6 @@
 $(function () {
 
-	//  var Result = getParameterByName('Test'); // 결과 : 111 //
+	//  var Result = getParameterByName('Test'); // 결과 : 111
 	var searchTextbox = getParameterByName('searchText');
 	if (searchTextbox == "undefined")
 	{
