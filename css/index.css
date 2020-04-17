@@ -1733,9 +1733,6 @@ span.discount_notice{
     text-indent: -10px;
 }
 
-.leaflet_create_cont ul li:nth-last-child(){
-    text-align:center
-}
 .leaflet_create_date input{
     padding: 5px;
     width: 120px;
