@@ -1725,14 +1725,17 @@ span.discount_notice{
     font-size:13px;
     color:#5e5e5f;
     text-align:left;
-    padding:3px;
+    padding:15px;
     line-height: 1.5em;
 }
-.leaflet_intro_txt>li{
+.leaflet_create_cont ul li{
     padding:6px;
     text-indent: -6px;
 }
 
+.leaflet_create_cont ul li:nth-last-child(){
+    text-align:center
+}
 .leaflet_create_date input{
     padding: 5px;
     width: 120px;
