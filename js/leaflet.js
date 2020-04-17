@@ -181,7 +181,7 @@ function getLeftNav(rcv_vm_cp_no) {
 							$(".leaflet_del_prod").show();
 							// 새상품추가 버튼을 보여준다.
 							$(".leaflet_new").show();
-							// 선택된 전단가 없다면
+							// 선택된 전단이 없다면
 							if ( getCookie("jd_prod_con_no") == "" )
 							{
 								// 상품삭제 버튼을 숨긴다.
@@ -241,7 +241,7 @@ function getLeftNav(rcv_vm_cp_no) {
 							$(".leaflet_del_prod").show();
 							// 새상품추가 버튼을 보여준다.
 							$(".leaflet_new").show();
-							// 선택된 전단가 없다면
+							// 선택된 전단이 없다면
 							if ( getCookie("jd_prod_con_no") == "" )
 							{
 								// 상품삭제 버튼을 숨긴다.
