@@ -2625,6 +2625,56 @@ button#bannerUpdate{
     box-shadow: none;
     border-radius: 5px;
 }
+
+.popup_link_table{
+    width: 800px;
+    font-size: 14px;  
+    border: 1px solid #e0e0e0;
+    table-layout: fixed;
+    word-break: break-all;
+ }
+ 
+ .popup_link_table tr td img{
+    width: 40px;
+ }
+ 
+ .popup_link_table th {
+    font-size: 13px;
+    padding: 14px 8px;
+    font-weight: bold;
+    background-color: #e0e0e0;
+    text-align: center;
+    
+ }
+ 
+ .popup_link_table th span{
+    font-size: 10px;
+    cursor: pointer;
+ }
+ .popup_link_table th span.active{
+    color: #55B190;
+ }
+ 
+ .popup_link_table th span:hover{
+    color: #55B190;
+ }
+ 
+ .popup_link_table tr:nth-child(2n) td{
+    background-color: #f0f0f0;
+ }
+ 
+ .popup_link_table tr td{
+    padding: 14px 16px;
+    font-size: 13px;
+    text-align: center;
+ }
+ 
+
+
+
+
+
+
 /*coupon_history start*/
 
 .coupon_search_wrap{

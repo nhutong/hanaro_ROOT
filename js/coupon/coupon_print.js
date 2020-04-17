@@ -233,4 +233,9 @@ function onPopPrint(){
 //          }
           
 //}
- 
+
+
+
+// var mapContainer = document.getElementById('coupon01');
+// document.body.innerHTML = mapContainer.innerHTML;
+// window.print();
