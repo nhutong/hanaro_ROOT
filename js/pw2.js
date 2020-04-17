@@ -38,7 +38,7 @@ $("#signup_btn").on("click", function(){
 
 
 function main(){
-	location.href = '/';
+	location.href = '/kacm/';
 }
 
 //비밀번호 영문+숫자조합 체크

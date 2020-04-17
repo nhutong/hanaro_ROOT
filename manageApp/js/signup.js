@@ -111,7 +111,7 @@ $("#signup_btn").on("click", function(){
 		console.log(result);
 		if(result.trim() === 'SUCCESS'){
 			alert(user_name+"님 등록 되셨습니다");
-			location.href = '/';
+			location.href = '/kacm'';
 		}else if(result.trim() === 'empno'){
 			alert(user_numb + " 이미 등록된 사번입니다.");
 			return;
