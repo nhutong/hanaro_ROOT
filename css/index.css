@@ -1705,7 +1705,14 @@ span.discount_notice{
     margin-top: 20px;
     padding: 10px;
 }
-
+.leaflet_create_cont_1{
+    width: 540px;
+    background-color: #fff;
+    border: 1px solid #d0d0d0;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+}
 
 .leaflet_create_cont span,
 .leaflet_create_cont a{   
@@ -1728,7 +1735,7 @@ span.discount_notice{
     padding:15px;
     line-height: 1.5em;
 }
-.leaflet_create_cont ul li{
+.leaflet_create_cont_1 ul li{
     padding:9px;
     text-indent: -10px;
 }
