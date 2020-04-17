@@ -31,8 +31,8 @@
     int maxSize  = 1024*1024*1000;       
  
     // 웹서버 컨테이너 경로
-    //String root = request.getSession().getServletContext().getRealPath("/");
-    String root = request.getRealPath("/upload/");
+    String root = request.getSession().getServletContext().getRealPath("/");
+    //String root = request.getRealPath("/upload/");
 //    String root = "C:\\Users\\visualwave17\\Desktop\\JSP_TEST\\test\\";
 //  	out.print(root);
     // 파일 저장 경로(ex : /home/tour/web/ROOT/upload)

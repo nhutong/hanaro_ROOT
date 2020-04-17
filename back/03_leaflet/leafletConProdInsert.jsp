@@ -84,7 +84,8 @@
 
 		// 엑셀 업로드
 		//Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)); //0326김수경수정
-		Workbook workbook = Workbook.getWorkbook(new File(request.getRealPath("/upload/")+excel_path));
+		//Workbook workbook = Workbook.getWorkbook(new File(request.getRealPath("/upload/")+excel_path)); //
+		  Workbook workbook = Workbook.getWorkbook(new File(request.getSession().getServletContext().getRealPath("/upload/")+excel_path));
 	
 		//System.out.println("aaa");
 
