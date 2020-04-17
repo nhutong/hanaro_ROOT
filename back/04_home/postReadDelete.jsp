@@ -15,7 +15,7 @@
 
 	try{
 
-		// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+		// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 		sql = " delete from vm_notice  "
 			+ " where post_no = '"+post_no+"'; ";
 

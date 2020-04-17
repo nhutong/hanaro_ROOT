@@ -119,7 +119,7 @@
 				out.print("product_code_not_exist");
 				return;
 			}else{
-				// 신규입력한 전단컨텐츠상품의 상품번호(내부용)를 select 한다.
+				// 신규입력한 전단상품의 상품번호(내부용)를 select 한다.
 				/*
 				sql = " select pd_no from vm_product "
 					+ " where pd_code = '"+product_code+"'; ";

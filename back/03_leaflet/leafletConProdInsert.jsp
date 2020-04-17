@@ -57,7 +57,7 @@
 		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();
 
-		// 신규입력한 전단컨텐츠상품의 전단번호를 temp 테이블에서 select 한다.
+		// 신규입력한 전단상품의 전단번호를 temp 테이블에서 select 한다.
 		/* 특가형전단일경우, 일단 임시로 하나의 전단을 만든다. 후반부 여러개의 전단이 일자만큼 생성된다. */
 		sql = " select max(jd_no) as new_jd_no from vm_jundan_temp ";
 
@@ -84,7 +84,7 @@
 
 		// 엑셀 업로드
 		//Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)); //0326김수경수정
-		Workbook workbook = Workbook.getWorkbook(new File(request.getRealPath("/upload/")+excel_path));
+		Workbook workbook = Workbook.getWorkbook(new File(request.getRealPath("/upload/")+excel_path)); 
 	
 		//System.out.println("aaa");
 
@@ -339,7 +339,7 @@
 			//입력정보 끝================================================================================
 			//========================================================================================
 
-			// 신규입력한 전단컨텐츠상품의 상품번호(내부용)를 select 한다.
+			// 신규입력한 전단상품의 상품번호(내부용)를 select 한다.
 			sql = " select pd_no from vm_product "
 			    + " where pd_code = '"+string1+"'; ";
 
@@ -364,7 +364,7 @@
 			}else{
 			}
 				
-			// 신규입력한 전단컨텐츠상품에 매핑할 이미지번호를 select 한다.(상품별 여러 이미지중, 가장 최근에 등록된 이미지를 매핑한다.)
+			// 신규입력한 전단상품에 매핑할 이미지번호를 select 한다.(상품별 여러 이미지중, 가장 최근에 등록된 이미지를 매핑한다.)
 			String img_no = "";
 			if (pd_no.equals("")){
 				img_no = "";	
@@ -394,7 +394,7 @@
 				// 기간 전단형일 경우
 				if ( menu_type_cd.equals("MENU1") || menu_type_cd.equals("MENU2") || menu_type_cd.equals("MENU3") ){
 
-					// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+					// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 					sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, ";
 					
 					// 카드시작일 여부
@@ -429,7 +429,7 @@
 				/* 특가형일 경우, 임시생성된 전단번호, 특가시작일과 특가종료일을 전단상품컨텐츠테이블에 입력한다. */
 				}else{
 
-					// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+					// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 					sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, ";
 					
 					// 카드시작일 여부

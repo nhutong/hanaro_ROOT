@@ -21,7 +21,7 @@
 
 	try{
 
-		// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+		// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 		sql = " insert into vm_push_message (ms_content, vm_cp_no, event_no, reg_no, reg_date, pm_hour, pm_min, pm_img_path) "
 			+ " values('[광고] "+pushTopTxt+" 수신거부 | 메뉴>설정>동의 해제', '"+vm_cp_no+"', '"+event_no+"', '"+reg_no+"', now(), '"+pushSendHr+"', '"+pushSendMin+"', '"+pm_img_path+"'); ";
 //out.print(sql);

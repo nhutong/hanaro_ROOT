@@ -38,7 +38,7 @@
 
  	try {
 
-		// 신규입력한 전단컨텐츠상품의 전단컨텐츠상품번호를 select 한다.
+		// 신규입력한 전단상품의 전단상품번호를 select 한다.
 		sql = " select vm_no as vm_no from vm_user where vm_emp_no = '"+empNo+"'; ";
 	
 		stmt = conn.createStatement();
