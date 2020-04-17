@@ -1708,11 +1708,29 @@ span.discount_notice{
 
 
 .leaflet_create_cont span,
-.leaflet_create_cont a{
-    
+.leaflet_create_cont a{   
     font-size: 13px;
     display: inline-block;
     margin-bottom: 5px;
+}
+.leaflet_text{
+    font-size:12px;
+    margin-bottom:2px;
+}
+
+.leaflet_txt_save{
+    color:#ff2222;
+}
+.leaflet_intro_txt{
+    font-size:13px;
+    color:#5e5e5f;
+    text-align:left;
+    padding:3px;
+    line-height: 1.5em;
+}
+.leaflet_intro_txt>li{
+    padding:6px;
+    text-indent: -6px;
 }
 
 .leaflet_create_date input{
@@ -1739,7 +1757,7 @@ span.discount_notice{
     font-size: 14px;
     color: #333;
     margin-top: 5px;
-    height:100px;
+    height:130px;
 }
 
 .leaflet_file_add input{
