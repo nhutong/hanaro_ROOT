@@ -58,7 +58,8 @@
 			+" 		on a.menu_no = b.menu_no "
 			+" 		WHERE a.ref_company_no = "+userCompanyNo
 			+" 		AND a.menu_no = "+menuNo
-			+" 		AND a.to_date >= date_add(now(), INTERVAL -1 week) "
+			+"      AND a.from_date >= date_add(now(), INTERVAL -1 WEEK) "
+			+"      AND a.to_date <= date_add(now(), INTERVAL 1 WEEK) "
 			+" 		UNION ALL "
 			+" 		SELECT '-1' as jd_no, NOW() AS from_date, "
 			+" 		    ( SELECT b.menu_type_cd FROM vm_menu AS b WHERE b.menu_no = "+menuNo+" ) AS menu_type_cd, "
@@ -112,7 +113,8 @@
 			+" on a.menu_no = b.menu_no "
 			+" WHERE a.ref_company_no = "+userCompanyNo
 			+" AND a.menu_no = "+menuNo
-			+" AND a.to_date >= date_add(now(), INTERVAL -1 week) "
+			+" AND a.from_date >= date_add(now(), INTERVAL -1 WEEK) "
+			+" AND a.to_date <= date_add(now(), INTERVAL 1 WEEK) "
 			+" order by a.from_date asc ;";
 		}
 
