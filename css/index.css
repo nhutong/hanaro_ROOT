@@ -1729,8 +1729,8 @@ span.discount_notice{
     line-height: 1.5em;
 }
 .leaflet_create_cont ul li{
-    padding:6px;
-    text-indent: -6px;
+    padding:9px;
+    text-indent: -10px;
 }
 
 .leaflet_create_cont ul li:nth-last-child(){
