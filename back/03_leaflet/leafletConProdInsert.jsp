@@ -508,7 +508,7 @@
 				oneDay_end_date_max = rs.getString("oneDay_end_date_max");
 			}
 
-			sql = " SELECT a.db_date from time_dimension AS a WHERE a.db_date >= '"+oneDay_start_date_min+"' AND a.db_date >= '"+oneDay_end_date_max+"' ";
+			sql = " SELECT a.db_date from time_dimension AS a WHERE a.db_date >= '"+oneDay_start_date_min+"' AND a.db_date <= '"+oneDay_end_date_max+"' ";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 		
@@ -538,7 +538,7 @@
 				+" a.oneDay_start_date, a.oneDay_end_date "
 				+" from vm_jundan_prod_content AS a "
 				+" INNER JOIN vm_jundan AS b "
-				+" ON a.oneDay_start_date >= b.from_date and a.oneDay_end_date >= b.from_date and a.ref_jd_no = "+ new_jd_no
+				+" ON a.oneDay_start_date <= b.from_date and a.oneDay_end_date >= b.from_date and a.ref_jd_no = "+ new_jd_no
 				+" WHERE b.ref_company_no = '"+userCompanyNo+"' "
 				+" AND b.menu_no = '"+menu_no+"'; ";
 
