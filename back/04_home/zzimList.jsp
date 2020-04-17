@@ -73,35 +73,35 @@
 		while(rs.next()){
 			
 			String menu_type_cd		   = rs.getString("menu_type_cd");
-			String jd_prod_con_no		   = rs.getString("jd_prod_con_no");						  // 전단컨텐츠 상품번호
-			String img_path			       = rs.getString("img_path");					              // 전단컨텐츠 상품이미지경로
+			String jd_prod_con_no		   = rs.getString("jd_prod_con_no");						  // 전단 상품번호
+			String img_path			       = rs.getString("img_path");					              // 전단 상품이미지경로
 
-			String pd_name				   = rs.getString("pd_name");								  // 전단컨텐츠 상품명
-			String price				   = rs.getString("price");									  // 전단컨텐츠 판매가
-			String card_discount		   = rs.getString("card_discount");							  // 전단컨텐츠 카드할인가격
+			String pd_name				   = rs.getString("pd_name");								  // 전단 상품명
+			String price				   = rs.getString("price");									  // 전단 판매가
+			String card_discount		   = rs.getString("card_discount");							  // 전단 카드할인가격
 			
 			String card_discount_from_date = "";
 			if ( rs.getString("card_discount_from_date") == null ){
 
 			}else{
-				card_discount_from_date = rs.getString("card_discount_from_date").substring(5,10); // 전단컨텐츠 카드할인시작일
+				card_discount_from_date = rs.getString("card_discount_from_date").substring(5,10); // 전단 카드할인시작일
 			}
 			
 			String card_discount_end_date = "";
 			if ( rs.getString("card_discount_end_date") == null ){
 				
 			}else{
-				card_discount_end_date = rs.getString("card_discount_end_date").substring(5,10); // 전단컨텐츠 카드할인시작일
+				card_discount_end_date = rs.getString("card_discount_end_date").substring(5,10); // 전단 카드할인시작일
 			}
 
-			String card_info			   = rs.getString("card_info");								  // 전단컨텐츠 카드정보
-			String card_restrict		   = rs.getString("card_restrict");							  // 전단컨텐츠 카드한정
-			String coupon_discount		   = rs.getString("coupon_discount");						  // 전단컨텐츠 쿠폰할인
-			String dadaiksun			   = rs.getString("dadaiksun");								  // 전단컨텐츠 다다익선
-			String dadaiksun_info		   = rs.getString("dadaiksun_info");						  // 전단컨텐츠 다다익선정보
-			String etc					   = rs.getString("etc");									  // 전단컨텐츠 기타정보
-			String pd_no				   = rs.getString("pd_no");									  // 전단컨텐츠 매핑상품번호
-			String pd_code				   = rs.getString("pd_code");								  // 전단컨텐츠 상품코드
+			String card_info			   = rs.getString("card_info");								  // 전단 카드정보
+			String card_restrict		   = rs.getString("card_restrict");							  // 전단 카드한정
+			String coupon_discount		   = rs.getString("coupon_discount");						  // 전단 쿠폰할인
+			String dadaiksun			   = rs.getString("dadaiksun");								  // 전단 다다익선
+			String dadaiksun_info		   = rs.getString("dadaiksun_info");						  // 전단 다다익선정보
+			String etc					   = rs.getString("etc");									  // 전단 기타정보
+			String pd_no				   = rs.getString("pd_no");									  // 전단 매핑상품번호
+			String pd_code				   = rs.getString("pd_code");								  // 전단 상품코드
 			String vmjz_no				   = rs.getString("vmjz_no");
 
 			String from_date			   = rs.getString("from_date");

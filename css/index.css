@@ -393,9 +393,7 @@ span.shopUrl:hover{
 
 
 .store_list_wrap{
-    /* width: 940px; */
     display: block;
-    float: center;
     text-align: right;
     padding: 0px 40px 0px 0px;
 }

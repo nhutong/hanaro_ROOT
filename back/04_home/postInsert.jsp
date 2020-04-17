@@ -18,7 +18,7 @@
 
 	try{
 
-		// 전달받은 정보를 바탕으로 전단컨텐츠상품을 insert 한다.
+		// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 		sql = " insert into vm_notice (post_type_cd, title, content, reg_no, reg_date, lst_no, lst_date) "
 			+ " values('"+noticeFg+"', '"+post_title+"', '"+post_content+"', '"+reg_no+"', now(), '"+reg_no+"', now()); ";
 
