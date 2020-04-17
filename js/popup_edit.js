@@ -53,7 +53,7 @@ $(function () {
 	});
 
 	$('#popupEdit').on('click', function(){	
-		if(!confirm("수정하시겠습니까?")) return; 
+		if(!confirm("수정하시겠습니까??")) return; 
 		var imgUrl =$('#imgPreview').attr('src');
 		var popupTitle = $('#popupTitle').val();
 		var popupDateType = $('#popupDate').val();
@@ -108,9 +108,13 @@ $(function () {
 	
 	});
 
-});
-	
+	$("#company").on("change",function(){
+		getLinkList();
+	});	
 
+
+
+});
 
 function getCompanyList(){
 	$.get("/back/00_include/getCompanyList.jsp",
@@ -119,6 +123,7 @@ function getCompanyList(){
 			companyList = resultJSON['list'];
 			if(companyList.lengh) return;
 			setCompanyOptions(companyList);
+			getLinkList(); //사업장 변경 시 링크 다시 가져옮			
 		}
 	);
 }
@@ -157,3 +162,66 @@ function getPopupInfo(popupNo){
 
 		});
 }
+
+function getLinkList(){
+	var companyNo = $('#company').val();
+	var formData = {
+		companyNo: companyNo
+	};
+	//console.log(companyNo);
+	$.get('/back/04_home/popupGetLinkList.jsp',
+		formData,
+		function(result) {
+			//console.log(result);
+			var Linklist = result['list'];
+			var text = '';	
+			text +='    <tr>';
+			text +='        <td>HOME</td>' ;
+			text +='        <td>home/main.html</td>' ;
+			text +='        <td></td>' ;
+			//text +='        <td><button id="popupLinkButton">적용</button></td>' ;			
+			text +='    </tr>';			
+			$(Linklist).each( function (idx, linkeach) {
+				text +='    <tr>';
+				text +='        <td>' + linkeach.select_name  + '</td>' ;
+				text +='        <td>' + linkeach.select_value + '</td>' ;
+				text +='        <td></td>' ;
+				//text +='        <td><button id="popupLinkButton" onclick="setLinkPaste()">적용</button></td>' ;							
+				text +='    </tr>';
+			});
+			$('#popup_link_list').empty();					
+			$('#popup_link_list').append(text);	
+
+			// $("#popupLinkButton").on("click",function(e){
+			// 	//$('#linkUrl').val();
+			// 	e.preventDefault();
+			// 	var idx = $("table td").index($(e.target));
+			// 	//console.log("aaaa"+idx);
+			// 	var tr = $(this);
+			// 	var td = tr.children();
+			// 	//console.log(td.eq(1).text());
+		
+			// 	$('#linkUrl').val() = td.eq(1).text();
+
+			// 	console.log("aaaaaaaaaaaaaaaaaaaaaaa"+td.eq(1).text());
+		
+			// });		
+			
+			// var popLinkBtn = document.getElementById('popupLinkButton');
+			// popLinkBtn.addEventListener('click', function(e){
+			// 	e.preventDefault();
+			// 	// var tr = $(this);
+			// 	// var td = tr.children();				
+			// 	// console.log("aaaaaaaaaaaaaaaaaaaaaaa"+td.eq(1).text());
+			// 	console.log(e);
+			// });
+			
+			
+		});
+}
+
+// function setLinkPaste(){
+// 	var tr = $(this);
+// 	console.log(tr.parent());
+// 	//var popLinkBtn = document.getElementById('popupLinkButton');
+// }

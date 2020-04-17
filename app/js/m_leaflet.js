@@ -255,7 +255,7 @@ function bannerInsert(rcvResult){
 
 // 전단 기간을 가져온다
 function getDateInterval() {
-	//console.log("vm_cp_no"+vm_cp_no+"menu_no"+menu_no+"jd_no"+jd_no);
+	console.log("[getDateInterval]vm_cp_no"+vm_cp_no+"menu_no"+menu_no+"jd_no"+jd_no);
 	if (menu_no == "")
 	{
 		menu_no = localStorage.getItem("initMenuNo");

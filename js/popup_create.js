@@ -93,7 +93,9 @@ $(function () {
 	
 	});
 
-
+	$("#company").on("change",function(){
+		getLinkList();
+	});	
 	
 });
 
@@ -105,6 +107,7 @@ function getCompanyList(){
 			companyList = resultJSON['list'];
 			if(companyList.lengh) return;
 			setCompanyOptions(companyList);
+			getLinkList(); //사업장 변경 시 링크 다시 가져옮			
 		}
 	);
 }
@@ -116,4 +119,36 @@ function setCompanyOptions(companyList){
 		options += '<option value=' + company.VM_CP_NO + '>' +company.VM_CP_NAME + '</option>' ;		
 	});
 	$('#company').append(options);	
+}
+
+function getLinkList(){
+	var companyNo = $('#company').val();
+	var formData = {
+		companyNo: companyNo
+	};
+	//console.log(companyNo);
+	$.get('/back/04_home/popupGetLinkList.jsp',
+		formData,
+		function(result) {
+			//console.log(result);
+			var Linklist = result['list'];
+			var text = '';	
+			text +='    <tr>';
+			text +='        <td>HOME</td>' ;
+			text +='        <td>home/main.html</td>' ;
+			text +='        <td></td>' ;
+			//text +='        <td><button id="popupLinkButton">적용</button></td>' ;			
+			text +='    </tr>';			
+			$(Linklist).each( function (idx, linkeach) {
+				text +='    <tr>';
+				text +='        <td>' + linkeach.select_name  + '</td>' ;
+				text +='        <td>' + linkeach.select_value + '</td>' ;
+				text +='        <td></td>' ;
+				//text +='        <td><button id="popupLinkButton" onclick="setLinkPaste()">적용</button></td>' ;							
+				text +='    </tr>';
+			});
+			$('#popup_link_list').empty();					
+			$('#popup_link_list').append(text);	
+			
+		});
 }

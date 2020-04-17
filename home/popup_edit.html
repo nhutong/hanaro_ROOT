@@ -36,82 +36,97 @@
 
 		<div class="myplanb_con">
 			<h4>홈 &gt; 팝업</h4>
-                <div class="tab_container">
-                    <div id="tab1" class="tab_content">
-                     
-                      <!--popup_create_wrap start-->
-                        
-                         <div class="popup_edit_wrap">
-                            <div class="popup_edit_lft">
-                               <!--0323추가mh  <p class="guide_tip_pop">※[팝업 권장 사이즈_최대] 500px*450px</p>-->
-                              <!--팝업파일 불러오는 자리-->
-                               <form action="" method="post">
-                                   <input type="file" id="inputImgUpload">
-                                   <label for="inputImgUpload" class="guide_tip_pop">※[팝업 권장 사이즈_최대] 500px*450px</label>
-                               </form>
-                                <div id="popupImg">
-                                    <!--img 미리보기 자리-->
-                                    <img src="" id="imgPreview" />
-                                </div>
-                                <!--팝업파일 불러오는 자리 끝-->
+            <div class="tab_container">
+                <div id="tab1" class="tab_content">       
+                    <!--popup_create_wrap start-->
+                    <div class="popup_edit_wrap">
+                        <div class="popup_edit_lft">
+                            <!--0323추가mh  <p class="guide_tip_pop">※[팝업 권장 사이즈_최대] 500px*450px</p>-->
+                            <!--팝업파일 불러오는 자리-->
+                            <form action="" method="post">
+                                <input type="file" id="inputImgUpload">
+                                <label for="inputImgUpload" class="guide_tip_pop">※[팝업 권장 사이즈_최대] 500px*450px</label>
+                            </form>
+                            <div id="popupImg">
+                                <!--img 미리보기 자리-->
+                                <img src="" id="imgPreview" />
                             </div>
-                            
-                            <div class="popup_edit_rgt">
-                                <table class="popup_edit_table">
-                                    <tbody>
-                                        <tr>
-                                            <th>팝업 제목</th>
-                                            <td><input type="text" id="popupTitle" placeholder="팝업제목을 넣어주세요"></td>
-                                        </tr>
-                                        <tr>
-                                            <th rowspan="2">적용기간</th>
-                                            <td>
-                                               <select name="popupDate" id="popupDate" >
-                                                <option value="1">계속</option>
-                                                <option value="2">날짜입력</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                           
-                                            <td class="popup_date">
-                                                <input type="text" placeholder="2019-09-01" id="popup_from_date">
-                                                <span class="popup_to">~</span>
-                                                <input type="text" placeholder="2019-09-07" id="popup_end_date">
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <th>적용범위</th>
-                                            <td>
-                                            <select id="company" class="sort_select">                                              
+                            <!--팝업파일 불러오는 자리 끝-->
+                        </div>
+                        
+                        <div class="popup_edit_rgt">
+                            <table class="popup_edit_table">
+                                <tbody>
+                                    <tr>
+                                        <th>팝업 제목</th>
+                                        <td><input type="text" id="popupTitle" placeholder="팝업제목을 넣어주세요"></td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2">적용기간</th>
+                                        <td>
+                                            <select name="popupDate" id="popupDate" >
+                                            <option value="1">계속</option>
+                                            <option value="2">날짜입력</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td class="popup_date">
+                                            <input type="text" placeholder="2019-09-01" id="popup_from_date">
+                                            <span class="popup_to">~</span>
+                                            <input type="text" placeholder="2019-09-07" id="popup_end_date">
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <th>적용범위</th>
+                                        <td>
+                                        <select id="company" class="sort_select">                                              
+                                        </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>게시여부</th>
+                                        <td>
+                                            <select id="showFlag" class="sort_select">
+                                                <option value="Y" selected>게시</option>
+                                                <option value="N">숨김</option>
                                             </select>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th>게시여부</th>
-                                            <td>
-                                                <select id="showFlag" class="sort_select">
-                                                    <option value="Y" selected>게시</option>
-                                                    <option value="N">숨김</option>
-                                                </select>
-                                                </td>
-                                            </tr>
-                                        <tr>
-                                            <th>Link</th>
-                                            <td><input type="text" id="linkUrl" placeholder="ex) home/popup.html"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="popup_edit_btn">
-                                    <button id="popupEdit">수정</button>
-                                    <button id="popupDel">삭제</button>
-                                </div>
+                                    <tr>
+                                        <th>Link</th>
+                                        <td><input type="text" id="linkUrl" placeholder="ex)home/main.html"></td>                                          
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="popup_edit_btn">
+                                <button id="popupEdit">수정</button>
+                                <button id="popupDel">삭제</button>
                             </div>
-                         </div>
-                          <!--popup_create_wrap ends-->
+                        </div>
+                        <div class="popup_edit_bottom">
+                            <table class="popup_link_table">
+                                <caption style="display: none">링크목록 테이블</caption>
+                                <colgroup>
+                                    <col style="width: 30%">
+                                    <col style="width: 60%">
+                                    <col style="width: 10%">                                    
+                                </colgroup>
+                                 <tr>
+                                     <th width="30%">대상</th>
+                                     <th width="60%">Link</th>
+                                     <th width="10%"></th>                                     
+                                 </tr>
+                                 <tbody id="popup_link_list">                                   
+                                 </tbody>
+                             </table>                            
+                        </div>                        
                     </div>
+                    <!--popup_create_wrap ends-->
                 </div>
+            </div>
 			<div class="myplanb_footer">
 				㈜농협유통 Co. ltd. All right reserved.
 			</div>
