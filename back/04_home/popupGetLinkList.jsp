@@ -23,7 +23,7 @@
  	try {
 		QueryRunner queryRunner = new QueryRunner();
 		
-        String query =  " SELECT concat(b.menu_name, ' ', date_format(a.from_date,'%Y/%m/%d'),' ~ ',date_format(a.to_date,'%m/%d')) AS select_name, "
+        String query =  " SELECT concat(b.menu_name, ' ', date_format(a.from_date,'%y/%m/%d'),' ~ ',date_format(a.to_date,'%m/%d')) AS select_name, "
                        +" CONCAT('m_leaflet/m_leaflet.html?vm_cp_no=',a.ref_company_no,'&menu_no=',a.menu_no,'&jd_no=',a.jd_no) AS select_value "
                        +" FROM vm_jundan as a "
                        +" inner join vm_menu AS b on a.menu_no = b.menu_no "

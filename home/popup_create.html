@@ -100,35 +100,37 @@
                                                 </td>
                                             </tr>
                                         <tr>
-                                            <th>Link</th>
-                                            <td><input type="text" id="linkUrl"placeholder="ex) home/popup.html"></td>
+                                            <th><div>Link</div><button class="popup_create_link_modal_open"> ? </button></th>
+                                            <td><input type="text" id="linkUrl" placeholder="ex)home/main.html"></td>                                            
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="popup_create_btn" >
                                     <button id="btnPopupCreate">등록하기</button>
                                 </div>
-                            </div>
-                            <div class="popup_edit_bottom">
-                                <table class="popup_link_table">
-                                    <caption style="display: none">링크목록 테이블</caption>
-                                    <colgroup>
-                                        <col style="width: 30%">
-                                        <col style="width: 60%">
-                                        <col style="width: 10%">                                    
-                                    </colgroup>
-                                     <tr>
-                                         <th width="30%">대상</th>
-                                         <th width="60%">Link</th>
-                                         <th width="10%"></th>                                     
-                                     </tr>
-                                     <tbody id="popup_link_list">                                   
-                                     </tbody>
-                                 </table>                            
-                            </div>                             
+                            </div>                           
                          </div>
                           <!--popup_create_wrap ends-->
                     </div>
+                    <!-- pupup sub-modal -->
+                    <div class="popup_create_link_modal_wrap">
+                        <div class="popup_create_link_modal">
+                            <table class="popup_create_link_modal_table">
+                                <caption style="display: none">링크목록 테이블</caption>
+                                <colgroup>
+                                    <col style="width: 40%">
+                                    <col style="width: 60%">
+                                </colgroup>
+                                <tr>
+                                    <th width="40%">대상</th>
+                                    <th width="60%">Link</th>
+                                </tr>
+                                <tbody id="popup_create_link_modal_list">                                   
+                                </tbody>
+                            </table>
+                            <button class="popup_create_link_modal_close">닫기</button>
+                        </div>
+                    </div>                    
                 </div>
 			<div class="myplanb_footer">
 				㈜농협유통 Co. ltd. All right reserved.

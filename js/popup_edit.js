@@ -108,11 +108,14 @@ $(function () {
 	
 	});
 
-	$("#company").on("change",function(){
+	$(".popup_create_link_modal_open").on("click",function(){
 		getLinkList();
+		$(".popup_create_link_modal_wrap").show();
 	});	
 
-
+	$(".popup_create_link_modal_close").on("click",function(){
+		$(".popup_create_link_modal_wrap").hide();
+	});	
 
 });
 
@@ -122,8 +125,7 @@ function getCompanyList(){
 			console.log(resultJSON);
 			companyList = resultJSON['list'];
 			if(companyList.lengh) return;
-			setCompanyOptions(companyList);
-			getLinkList(); //사업장 변경 시 링크 다시 가져옮			
+			setCompanyOptions(companyList);	
 		}
 	);
 }
@@ -189,39 +191,7 @@ function getLinkList(){
 				//text +='        <td><button id="popupLinkButton" onclick="setLinkPaste()">적용</button></td>' ;							
 				text +='    </tr>';
 			});
-			$('#popup_link_list').empty();					
-			$('#popup_link_list').append(text);	
-
-			// $("#popupLinkButton").on("click",function(e){
-			// 	//$('#linkUrl').val();
-			// 	e.preventDefault();
-			// 	var idx = $("table td").index($(e.target));
-			// 	//console.log("aaaa"+idx);
-			// 	var tr = $(this);
-			// 	var td = tr.children();
-			// 	//console.log(td.eq(1).text());
-		
-			// 	$('#linkUrl').val() = td.eq(1).text();
-
-			// 	console.log("aaaaaaaaaaaaaaaaaaaaaaa"+td.eq(1).text());
-		
-			// });		
-			
-			// var popLinkBtn = document.getElementById('popupLinkButton');
-			// popLinkBtn.addEventListener('click', function(e){
-			// 	e.preventDefault();
-			// 	// var tr = $(this);
-			// 	// var td = tr.children();				
-			// 	// console.log("aaaaaaaaaaaaaaaaaaaaaaa"+td.eq(1).text());
-			// 	console.log(e);
-			// });
-			
-			
+			$('#popup_create_link_modal_list').empty();					
+			$('#popup_create_link_modal_list').append(text);				
 		});
 }
-
-// function setLinkPaste(){
-// 	var tr = $(this);
-// 	console.log(tr.parent());
-// 	//var popLinkBtn = document.getElementById('popupLinkButton');
-// }
