@@ -20,7 +20,7 @@
 
 	// 본사관리자(ROLE1)만 접근가능
 	String requiredRoles = "ROLE1";
-%><%@ include file = "auth.jsp" %><%-- 권한체크 --%><%
+%><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 
 	Integer userNo = (Integer)session.getAttribute("userNo");
 

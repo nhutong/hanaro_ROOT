@@ -22,7 +22,7 @@
 
 	// 본사관리자(ROLE1), 판매장관리자(ROLE2), 배송담당자(ROLE3)만 접근가능
 	String requiredRoles = "ROLE1,ROLE2,ROLE3";
-%><%@ include file = "auth.jsp" %><%-- 권한체크 --%><%
+%><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 
 	Integer userNo = (Integer)session.getAttribute("userNo");
 	String userName = (String)session.getAttribute("userName");

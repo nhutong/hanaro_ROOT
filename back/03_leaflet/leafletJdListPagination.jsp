@@ -20,7 +20,7 @@
 
 	// 본사관리자(ROLE1), 판매장관리자(ROLE2), 배송담당자(ROLE3)만 접근가능
 	String requiredRoles = "ROLE1,ROLE2";
-%><%@ include file = "auth.jsp" %><%-- 권한체크 --%><%
+%><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 	
 	//int userCompanyNo = (Integer)session.getAttribute("userCompanyNo");
     //페이징 
@@ -47,7 +47,7 @@
 
 		// 전체 건수 조회 (일반 게시물)
 		String queryTotal =
-			+" SELECT COUNT(*) AS count "
+			 " SELECT COUNT(*) AS count "
             +"   FROM vm_jundan "
             +"  WHERE ref_company_no = "+userCompanyNo
             +"    AND menu_no ="+menuNo+"; ";

@@ -20,7 +20,7 @@
 	String requiredRoles = "ROLE1,ROLE2";
 	Map<String, Object> results = new HashMap<>();
 
-%><%@ include file = "auth.jsp" %><%-- 권한체크 --%><%
+%><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 		
 	String companyNo = request.getParameter("companyNo") == null ? "" : request.getParameter("companyNo");		
   

@@ -19,7 +19,7 @@
 
 	// 본사관리자(ROLE1)와 판매장관리자(ROLE2)만 접근가능
 	String requiredRoles = "ROLE1,ROLE2";
-%><%@ include file = "auth.jsp" %><%-- 권한체크 --%><%
+%><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 
   // 파라미터
 	String no = request.getParameter("no") == null ? "" : request.getParameter("no").trim();

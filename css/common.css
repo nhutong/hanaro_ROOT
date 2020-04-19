@@ -993,8 +993,9 @@ input.login_form{
 }
 
 .pagination{
-	width : 900px;
-	margin-left : 40px;
+	width : 750px;
+	margin:0 auto;
+	/* margin-left : 40px; */
 	margin-top : 20px;
 }
 

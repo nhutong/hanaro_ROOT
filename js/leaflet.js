@@ -1,8 +1,12 @@
 // 판매장 템플릿
-var tpl_tr_tab1_table = _.template('<tr id="member<%- event_no %>" data-no="<%- event_no %>"><td><%- event_no %></td>' +
-	'<td><a href="event_edit.html?event_no=<%- event_no %>" ><img src="<%- img_url %>"/></a>'+ 
-	'</td><td><%- company_name %></td><td><a href="event_edit.html?event_no=<%- event_no %>" ><%- event_title %></a></td><td><%- period %></td>' +
-	'<td><%- reg_name %></td><td><%- reg_date %><td><%- activated_status %></td>'
+var tpl_tr_tab1_table = _.template('<tr id="member<%- jd_no %>" data-no="<%- jd_no %>">' +
+    '<td><%- jd_no %></td>' +
+	'<td><%- period %></td>' + 
+	'<td><%- banner_cnt %></td>' +
+	'<td><%- prod_content_cnt %></td>' +
+	'<td><%- shorten_url %></td>' +
+	'<td><button onclick="manage_srturl_create(<%- jd_no %>)">생성</button></td>' +
+	'<td><button onclick="manage_jd_delete(<%- jd_no %>)">삭제</button></td>'
 	);
 
 $(function () {
@@ -412,8 +416,7 @@ function manage_pagination_jdbtn(){
 	var userCompanyNo = getCookie("onSelectCompanyNo");
 	var menuNo = getCookie("menu_no");	
 	$('#pagination').pagination({
-		//dataSource: '/back/05_event/event.jsp?userRoleCd='+userRoleCd,
-		dataSource: '/back/03_leaflet/leafletJdList_pagination.jsp?userRoleCd='+userRoleCd+'&userCompanyNo='+userCompanyNo+'&menuNo='+menuNo,
+		dataSource: '/back/03_leaflet/leafletJdListPagination.jsp?userRoleCd='+userRoleCd+'&userCompanyNo='+userCompanyNo+'&menuNo='+menuNo,
 		locator: 'list',
 		totalNumberLocator: function(data) {
 			return data.total;
@@ -428,6 +431,7 @@ function manage_pagination_jdbtn(){
 					$tbody.append(tpl_tr_tab1_table(item));
 				}
 			);
+			$(".leaflet_manage_modal_wrap").show();	
 		},
 		formatAjaxError: function(jqXHR) {
 			alert(jqXHR.responseJSON.error);
