@@ -15,7 +15,9 @@
     <link href="../css/index.css" rel="stylesheet">
     
     <!-- bootstrap style css -->
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Pagination.js : https://pagination.js.org/ -->	
+    <link href="../css/pagination.css" rel="stylesheet">    
     <!-- fontawesome style css -->
 	<link rel="stylesheet" href="/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	<!-- 20190916 Datapicker 를 위한 추가 이중호 -->
@@ -64,7 +66,8 @@
 								<button class="leaflet_del" onclick="delete_btn();">상품 삭제</button>
 								
 								<div class="fr">
-									<button class="leaflet_del_prod" onclick="delete_jdbtn();">전단 삭제</button>
+                                    <!-- <button class="leaflet_del_prod" onclick="delete_jdbtn();">전단 삭제</button> -->
+                                    <button class="leaflet_mng_prod" onclick="manage_jdbtn();">전단 관리</button>
 									<div class="new_leaflet_wrap" onclick="leaflet_create();">             
 										<span>새로운 전단 제작하기</span>                                
 									</div> 
@@ -327,7 +330,43 @@
                             </div>
                                                        
                         </div>                       
-                    </div>              
+                    </div>
+                    <!-- sub-modal -->
+                    <div class="leaflet_manage_modal_wrap">
+                        <div class="leaflet_manage_modal">
+                            <table class="leaflet_manage_modal_table">
+                                <caption style="display: none">링크목록 테이블</caption>
+                                <colgroup>
+                                    <col style="width: 10%">
+                                    <col style="width: 20%">
+                                    <col style="width: 10%">
+                                    <col style="width: 10%">
+                                    <col style="width: 30%">
+                                    <col style="width: 10%">
+                                    <col style="width: 10%">
+                                </colgroup>
+                                <tr>
+                                    <th width="10%">전단<br>번호</th>
+                                    <th width="20%">기간</th>
+                                    <th width="10%">배너<br>수</th>
+                                    <th width="10%">상품<br>수</th>
+                                    <th width="30%">단축<br>URL</th>
+                                    <th width="10%">단축<br>URL</th>
+                                    <th width="10%">전단<br>삭제</th>
+                                </tr>
+                                <tbody id="leaflet_manage_modal_list">                                   
+                                </tbody>
+                            </table>    
+                            <!--pagination start-->
+                            <div class="pagination">
+                                <div id="pagination" class="pagination_wrap"></div>
+                            </div>
+                            <!--pagination end-->
+                            <div class="leaflet_manage_modal_close">
+                                <button class="leaflet_manage_modal_close_btn" onclick="manage_close_jdbtn()">닫기</button>
+                            </div>                                                
+                        </div> 
+                    </div>                                   
                 </div>               
                 <div class="myplanb_footer"> ㈜농협유통 Co. ltd. All right reserved. </div>
             </div>
@@ -336,7 +375,9 @@
 
 	<script src="/js/jquery-1.12.4.js"></script>
 	<!-- 해더 및 쿠키 정의 -->
-	<script src="../js/common.js"></script><!-- common2 -->!-- common2 -->
+    <script src="../js/common.js"></script><!-- common2 -->
+    <script src="../js/lodash.min.js"></script>
+    <script src="../js/pagination.min.js"></script>    
     <script src="../js/link.js"></script>
     <script src="../js/leaflet_table.js"></script>
     <script src="../js/leaflet_banner.js"></script>

@@ -93,12 +93,12 @@ $(function () {
 	
 	});
 
-	$(".popup_create_link_modal_open").on("click",function(){
+	$(".popup_create_link_modal_open_btn").on("click",function(){
 		getLinkList();
 		$(".popup_create_link_modal_wrap").show();
 	});	
 
-	$(".popup_create_link_modal_close").on("click",function(){
+	$(".popup_create_link_modal_close_btn").on("click",function(){
 		$(".popup_create_link_modal_wrap").hide();
 	});	
 	

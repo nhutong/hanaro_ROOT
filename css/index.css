@@ -1310,6 +1310,7 @@ span.shopUrl:hover{
     margin-right: 2px;
 }
 
+
 .leaflet_del_prod{
     
     padding: 5px 10px;
@@ -1332,6 +1333,76 @@ span.shopUrl:hover{
     margin-left: 3px;
 }
 
+.leaflet_mng_prod{
+    padding: 5px 10px;
+    background-color: #7c8c24;
+    color: #fff;
+    border: 0;
+    box-shadow: none;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+/* leaflet_sub_modal */
+.leaflet_manage_modal_wrap{
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+}
+
+.leaflet_manage_modal{
+    background-color: rgb(255, 255, 255);
+    width: 800px;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.leaflet_manage_modal_close{
+    float: right;
+    /* cursor: pointer; */
+}
+
+.leaflet_manage_modal_table{
+    width: 770px;
+    font-size: 13px;
+    margin-left: 2px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.leaflet_manage_modal_table th {
+    padding: 14px 16px;
+    font-weight: bold;
+    background-color: #e0e0e0;
+}
+
+.leaflet_manage_modal_table td {
+    background-color: #f0f0f0;
+}
+
+.leaflet_manage_modal_close button{
+    padding: 10px 25px;
+    color: #fff;
+    background-color: #55B190;
+    font-size: 13px;
+    border: 0;
+    box-shadow: none;
+    border-radius: 5px;
+    /* padding: 5px 10px;
+    background-color: #7c8c24;
+    color: #fff;
+    border: 0;
+    box-shadow: none;
+    font-size: 14px;
+    margin-right: 5px; */
+}
 
 /*leaflet_date*/
 

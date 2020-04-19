@@ -44,8 +44,7 @@ function getEventList(){
 		},
 		formatAjaxError: function(jqXHR) {
 			alert(jqXHR.responseJSON.error);
-//			window.history.back();
-			
+			//window.history.back();			
 			deleteAllCookies();
 			login();
 		}

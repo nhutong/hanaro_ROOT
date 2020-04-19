@@ -1,3 +1,10 @@
+// 판매장 템플릿
+var tpl_tr_tab1_table = _.template('<tr id="member<%- event_no %>" data-no="<%- event_no %>"><td><%- event_no %></td>' +
+	'<td><a href="event_edit.html?event_no=<%- event_no %>" ><img src="<%- img_url %>"/></a>'+ 
+	'</td><td><%- company_name %></td><td><a href="event_edit.html?event_no=<%- event_no %>" ><%- event_title %></a></td><td><%- period %></td>' +
+	'<td><%- reg_name %></td><td><%- reg_date %><td><%- activated_status %></td>'
+	);
+
 $(function () {
 
     // 전역변수 파라미터	
@@ -93,6 +100,7 @@ $(function () {
 
 	/* 페이지 로딩시, 최초 상품컨텐츠선택을 초기화한다. */
 	setCookie1("jd_prod_con_no","", 1);	
+
 });
 
 function history_back(){
@@ -111,10 +119,12 @@ function getLeftNav(rcv_vm_cp_no) {
 	if (getCookie("jd_no") == "null")
 	{
 		$(".leaflet_del_prod").hide();
+		$(".leaflet_mng_prod").hide();
 		$(".leaflet_new").hide();
 		$(".leaflet_del").hide();
 	}else{
 		$(".leaflet_del_prod").show();
+		$(".leaflet_mng_prod").show();
 		$(".leaflet_new").show();
 		if ( getCookie("jd_prod_con_no") == "" )
 		{
@@ -170,6 +180,8 @@ function getLeftNav(rcv_vm_cp_no) {
 						{
 							// 전단삭제 버튼을 숨긴다.
 							$(".leaflet_del_prod").hide();
+							// 전단관리 버튼을 숨긴다.
+							$(".leaflet_mng_prod").hide();							
 							// 새상품추가 버튼을 숨긴다.
 							$(".leaflet_new").hide();
 							// 상품삭제 버튼을 숨긴다.
@@ -179,6 +191,8 @@ function getLeftNav(rcv_vm_cp_no) {
 						}else{
 							// 전단삭제 버튼을 보여준다.
 							$(".leaflet_del_prod").show();
+							// 전단관리 버튼을 보여준다.
+							$(".leaflet_mng_prod").show();							
 							// 새상품추가 버튼을 보여준다.
 							$(".leaflet_new").show();
 							// 선택된 전단이 없다면
@@ -230,6 +244,8 @@ function getLeftNav(rcv_vm_cp_no) {
 						{
 							// 전단삭제 버튼을 숨긴다.
 							$(".leaflet_del_prod").hide();
+							// 전단관리 버튼을 숨긴다.
+							$(".leaflet_mng_prod").hide();							
 							// 새상품추가 버튼을 숨긴다.
 							$(".leaflet_new").hide();
 							// 상품삭제 버튼을 숨긴다.
@@ -239,6 +255,8 @@ function getLeftNav(rcv_vm_cp_no) {
 						}else{
 							// 전단삭제 버튼을 보여준다.
 							$(".leaflet_del_prod").show();
+							// 전단관리 버튼을 보여준다.
+							$(".leaflet_mng_prod").show();							
 							// 새상품추가 버튼을 보여준다.
 							$(".leaflet_new").show();
 							// 선택된 전단이 없다면
@@ -283,10 +301,12 @@ function leafletLink(rcv_jd_no, rcv_menu_no, rcv_vm_cp_no, rcv_menu_type_cd){
 	if (getCookie("jd_no") == "null")
 	{
 		$(".leaflet_del_prod").hide();
+		$(".leaflet_mng_prod").hide();
 		$(".leaflet_new").hide();
 		$(".leaflet_del").hide();
 	}else{
 		$(".leaflet_del_prod").show();
+		$(".leaflet_mng_prod").show();		
 		$(".leaflet_new").show();
 		if ( getCookie("jd_prod_con_no") == "" )
 		{
@@ -352,6 +372,123 @@ function delete_jdbtn(){
 	}
 }
 
+function manage_jdbtn(){
+	var userCompanyNo = getCookie("onSelectCompanyNo");
+	var menuNo = getCookie("menu_no");
+	$.ajax({
+		url:'/back/03_leaflet/leafletJdList.jsp?random=' + (Math.random()*99999),
+		data : {userCompanyNo: userCompanyNo, menuNo: menuNo},
+		method : 'GET' 
+	}).done(function(result){
+		//console.log("leafletJdList=========================================");
+		if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+			//console.log(result);
+		}else{
+			//console.log("============= leafletJdList callback ========================");
+			//console.log(result);
+			var data = JSON.parse(result);
+			$('#leaflet_manage_modal_list').empty();
+			var text = '';
+			data['leaflet_manage_modal_list'].forEach(function(item, index){ 
+				text += '    <tr>           ';
+				text += '        <td>' + decodeURIComponent(item['jd_no'])            + '</td> ';					
+				text += '        <td>' + decodeURIComponent(item['period'])           + '</td> ';	
+				text += '        <td>' + decodeURIComponent(item['banner_cnt'])       + '</td> ';	
+				text += '        <td>' + decodeURIComponent(item['prod_content_cnt']) + '</td> ';	
+				text += '        <td>' + decodeURIComponent(item['shorten_url'])      + '</td> ';	
+				text += '        <td><button onclick="manage_srturl_create('+ decodeURIComponent(item['jd_no']) +')">생성</button></td>  ';
+				text += '        <td><button onclick="manage_jd_delete('+ decodeURIComponent(item['jd_no']) +')">삭제</button></td>  ';
+				text += '    </tr>          ';
+			});
+			//console.log(text);
+			$("#leaflet_manage_modal_list").append(text);
+			$(".leaflet_manage_modal_wrap").show();			
+		}
+	});	
+}
+
+function manage_pagination_jdbtn(){
+	var userRoleCd = getCookie('userRoleCd');
+	var userCompanyNo = getCookie("onSelectCompanyNo");
+	var menuNo = getCookie("menu_no");	
+	$('#pagination').pagination({
+		//dataSource: '/back/05_event/event.jsp?userRoleCd='+userRoleCd,
+		dataSource: '/back/03_leaflet/leafletJdList_pagination.jsp?userRoleCd='+userRoleCd+'&userCompanyNo='+userCompanyNo+'&menuNo='+menuNo,
+		locator: 'list',
+		totalNumberLocator: function(data) {
+			return data.total;
+		},
+		pageSize: 8,
+		className: 'paginationjs-theme-green paginationjs-big',
+		callback: function(list, pagination) {
+			console.log(list);
+			var $tbody = $('#leaflet_manage_modal_list').empty();
+			_.forEach(list,
+				function(item) {
+					$tbody.append(tpl_tr_tab1_table(item));
+				}
+			);
+		},
+		formatAjaxError: function(jqXHR) {
+			alert(jqXHR.responseJSON.error);
+			//window.history.back();
+			deleteAllCookies();
+			login();
+		}
+	});
+}
+
+function manage_srturl_create(rcv_jd_no){
+	if (confirm("단축URL을 생성하시겠습니까?") == true){
+		$.ajax({
+			url:'/back/03_leaflet/LeafletUpdateShortURL.jsp?random=' + (Math.random()*99999), 
+			data : {jd_no: rcv_jd_no},
+			method : 'GET' 
+		}).done(function(result){
+			//console.log("LeafletUpdateShortURL=========================================");
+			if(result == ('NoN') || result == 'list error' || result == 'empty'){
+				//console.log(result);
+				alert("단축URL 생성실패(전단번호 없음)");
+			}else if(result == 'Dup'){
+				alert("이미 단축URL이 생성되어 있습니다");
+			}else if(result == 'exception error'){
+				alert("단축URL 생성실패(exception error)");
+			}else{ //success
+				//console.log("============= LeafletUpdateShortURL callback ========================");
+				console.log(result);
+				manage_jdbtn();
+			}
+		});
+	}else{   //취소
+		return;
+	}
+}
+
+function manage_jd_delete(rcv_jd_no){
+	if (confirm("전단을 삭제하시겠습니까??") == true){
+		$.ajax({
+			url:'/back/03_leaflet/leafletJdDelete.jsp?random=' + (Math.random()*99999),
+			data : {jd_no: rcv_jd_no},
+			method : 'GET' 
+		}).done(function(result){
+			//console.log("noticeList=========================================");
+			if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+				//console.log(result);
+			}else{
+				//console.log("============= notice callback ========================");
+				//console.log(result);
+				// alert("삭제 완료되었습니다.");
+				manage_jdbtn()
+			}
+		});
+	}else{   //취소
+		return;
+	}	
+}
+
+function manage_close_jdbtn(){
+	$(".leaflet_manage_modal_wrap").hide();
+}
 
 /*common2에도 있어서 주석처리함 200106 김나영*/
 
