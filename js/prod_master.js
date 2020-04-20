@@ -170,7 +170,7 @@ $(function () {
 		$("#prodTableAdd").hide();
 		$("#prod_upload_wrap").hide();
 		$("#prodSelectDel").hide();
-		$("#droped_zone").hide();
+
 	}
 
 	$("#pd_name_asc").click(function(){
