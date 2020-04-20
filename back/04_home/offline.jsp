@@ -11,8 +11,8 @@
 	String longtitude = (request.getParameter("longtitude")==null)? "0":request.getParameter("longtitude");
     String latitude = (request.getParameter("latitude")==null)? "0":request.getParameter("latitude");
 
-	double lati = Double.parseDouble(longtitude);
-	double longti = Double.parseDouble(latitude);
+	double lati = Double.parseDouble(latitude);
+	double longti = Double.parseDouble(longtitude);
 
 	JSONObject bdListJSON = new JSONObject();
 	
