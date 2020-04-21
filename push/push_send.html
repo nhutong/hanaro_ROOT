@@ -77,12 +77,13 @@
                                                </td>
                                            </tr>
                                            <tr>
-                                               <th>Link</th>
-                                               <td>
-<!-- 													<select name="pushStore" id="event_no"> -->
-<!--                                                    </select> -->
-													<input type="text" id="event_no"placeholder="ex) home/event.html">
-											   </td>
+                                                <th>
+                                                    <div>Link</div>
+                                                    <div id="layer_popup_link_open"><button>?</button></div>
+                                                </th>
+                                                <td>
+													<input type="text" id="event_no" placeholder="ex)home/main.html">
+											    </td>
                                            </tr>
                                            <tr>
                                                <th>전송<br/>시각</th>
@@ -174,6 +175,28 @@
                                </div> 
                                <!--push_send_wrap end--> 
                             </div>
+                            <!-- layer_popup_link-->
+                            <div id="layer_popup_link_wrap">
+                                <div id="layer_popup_link">
+                                    <table id="layer_popup_link_table">
+                                        <caption style="display: none">링크목록 테이블</caption>
+                                        <colgroup>
+                                            <col style="width: 30%">
+                                            <col style="width: 70%">
+                                        </colgroup>
+                                        <tr>
+                                            <th width="30%">대상</th>
+                                            <th width="70%">Link</th>
+                                        </tr>
+                                        <tbody id="layer_popup_link_list">
+                                        </tbody>
+                                    </table>
+                                    <div id="layer_popup_link_close">
+                                        <button>닫기</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //layer_popup_link-->                            
                         </div>
                     <div class="myplanb_footer">
                         ㈜농협유통 Co. ltd. All right reserved.

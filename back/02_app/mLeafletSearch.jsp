@@ -35,7 +35,7 @@
 				+" left outer join vm_shop_jundan_zang as e "
 				+" on b.jd_prod_con_no = e.jd_prod_con_no "
 				+" WHERE a.ref_company_no = "+vm_cp_no
-				+" and replace(b.pd_name, CHAR(13),'') like '%"+URLEncoder.encode(search_box)+"%' "
+				+" and replace(b.pd_name, CHAR(13),'') like '%"+strEncode(search_box)+"%' "
 				+" order by cast(b.order_number AS UNSIGNED ) asc ";
 
 //	out.print(sql);

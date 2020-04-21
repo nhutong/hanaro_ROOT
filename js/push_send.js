@@ -32,7 +32,16 @@ $(function () {
 
 	/* 최초 로그인한 유저번호로 바인딩한다. */
 	getManagerList(CuserCompanyNo, targetCompanyNo);
-//	getEventList(CuserCompanyNo, targetCompanyNo);
+	//getEventList(CuserCompanyNo, targetCompanyNo);
+
+	$('#layer_popup_link_open button').on('click',function(){
+		getLinkList();
+		$('#layer_popup_link_wrap').show();
+	});	
+
+	$('#layer_popup_link_close button').on('click',function(){
+		$('#layer_popup_link_wrap').hide();
+	});	
 
 });
 
@@ -87,6 +96,33 @@ $("#pushSendBtn").on("click",function(e){
 		
 	}
 });
+
+function getLinkList(){
+	var companyNo = $("#sort_select").val();
+	var formData = {
+		companyNo: companyNo
+	};
+	//console.log(companyNo);
+	$.get('/back/00_include/getLinkList.jsp',
+		formData,
+		function(result) {
+			//console.log(result);
+			var Linklist = result['list'];
+			var text = '';	
+			text +='    <tr>';
+			text +='        <td>HOME</td>' ;
+			text +='        <td>home/main.html</td>' ;
+			text +='    </tr>';			
+			$(Linklist).each( function (idx, linkeach) {
+				text +='    <tr>';
+				text +='        <td>' + linkeach.select_name  + '</td>' ;
+				text +='        <td>' + linkeach.select_value + '</td>' ;
+				text +='    </tr>';
+			});
+			$("#layer_popup_link_list").empty();					
+			$("#layer_popup_link_list").append(text);				
+		});
+}
 
 //// 우상단 판매장을 리스팅한다.
 //function getEventList(rcvCompanyNo, rcvTargetCompanyNo) {

@@ -131,7 +131,7 @@ function getLinkList(){
 		companyNo: companyNo
 	};
 	//console.log(companyNo);
-	$.get('/back/04_home/popupGetLinkList.jsp',
+	$.get('/back/00_include/getLinkList.jsp',
 		formData,
 		function(result) {
 			//console.log(result);
