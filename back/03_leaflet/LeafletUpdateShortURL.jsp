@@ -17,7 +17,7 @@
 <%	
     String jd_no = (request.getParameter("jd_no")==null)? "0":request.getParameter("jd_no");
 
-    String newURL = "https://www.nhhanaromart.com";
+    String newURL = "https://www.nhhanaromart.com/app/m_leaflet/m_leaflet.html";
     String newURLParameter = "";
     String rcvText = "";
 
@@ -60,7 +60,7 @@
         }
 
         newURLParameter = "?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+jd_no; 
-        rcvText = strEncode( newURL + newURLParameter );
+        rcvText = URLEncoder.encode( newURL + newURLParameter ); //인코딩 필수!!!!!!!!!!!!!!!!!!!!!
      
 		String apiURL = "https://openapi.naver.com/v1/util/shorturl?url=" + rcvText;
         URL url = new URL(apiURL);
@@ -95,7 +95,7 @@
         //    "result":{
         //        "url":"http://me2.do/5k30NOpo",
         //        "hash":"5k30NOpo",
-        //        "orgUrl":"https://www.nhhanaromart.com?vm_cp_no=2&menu_no=4&jd_no=27"},
+        //        "orgUrl":"https://www.nhhanaromart.com/app/m_leaflet/m_leaflet.html?vm_cp_no=2&menu_no=4&jd_no=27"},
         //        "message":"ok",
         //        "code":"200"
         //}

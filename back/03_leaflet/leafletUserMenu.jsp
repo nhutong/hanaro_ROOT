@@ -19,7 +19,8 @@
 		+" from vm_menu AS a "
 		+" left outer JOIN ( SELECT jd_no, menu_no from vm_jundan " 
 		+" 					 where ref_company_no = '"+userCompanyNo+"' "
-		+"                     and ( from_date <= NOW() AND to_date >= NOW() ) "
+//		+"                     and ( from_date <= NOW() AND to_date >= NOW() ) "
+		+"                     and ( left(from_date,10) <= left(NOW(),10) AND left(to_date,10) >= left(NOW(),10) ) "		
 		+" ) AS b "
 		+" ON a.menu_no = b.menu_no "
 		+" WHERE ref_cp_no = "+userCompanyNo

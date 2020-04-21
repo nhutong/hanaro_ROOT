@@ -98,6 +98,8 @@
 
 		for(int i = 1; i < row; i++) {
 
+			e_msg = "3" + Integer.toString(i);	
+
 			// 순서
 		    col = 0;
 		    cell = sheet.getCell(col,i);
@@ -373,7 +375,29 @@
 				img_no = "";	
 			}else{
 				/* 2020-02-21 이미지중에 전사 표준이미지 조건을 추가함 */
-				sql = " SELECT img_no from vm_product_image WHERE ref_pd_no = "+pd_no+" and std_fg = 'Y' ORDER BY reg_date DESC LIMIT 0,1 ; ";
+				//sql = " SELECT img_no from vm_product_image WHERE ref_pd_no = "+pd_no+" and std_fg = 'Y' ORDER BY reg_date DESC LIMIT 0,1 ; ";
+				sql =    " SELECT h.img_no "
+				        +" FROM ( "
+					    +"     SELECT 1 as sq, a.img_no, a.reg_date "
+					    +"     from vm_product_image a "
+					    +"     WHERE ref_pd_no IN ( "
+						+"         SELECT pd_no "
+						+"         FROM vm_product "
+					    +"         WHERE GROUP_tag IN ( "
+						+" 		       SELECT group_tag "
+						+"             FROM vm_product "
+						+"             WHERE pd_no = "+pd_no
+						+"         ) "
+						+"     ) "
+						+"     and std_fg = 'Y' "
+						+"     union all "
+						+"     SELECT 2 as sq, g.img_no, g.reg_date "
+						+"     from vm_product_image g "
+					    +"     WHERE ref_pd_no = "+pd_no
+						+"     and std_fg = 'Y' "
+						+" ) AS h "
+						+" ORDER BY sq, reg_date DESC LIMIT 0,1; ";
+
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(sql);
 		
@@ -399,7 +423,7 @@
 
 					// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 					sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, ";
-					
+
 					// 카드시작일 여부
 					if (string5 == ""){
 					}else{
