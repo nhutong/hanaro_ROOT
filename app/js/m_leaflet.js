@@ -255,7 +255,7 @@ function bannerInsert(rcvResult){
 
 // 전단 기간을 가져온다
 function getDateInterval() {
-	console.log("[getDateInterval]vm_cp_no"+vm_cp_no+"menu_no"+menu_no+"jd_no"+jd_no);
+	console.log("[getDateInterval]vm_cp_no:"+vm_cp_no+", menu_no:"+menu_no+", jd_no:"+jd_no);
 	if (menu_no == "")
 	{
 		menu_no = localStorage.getItem("initMenuNo");
@@ -290,9 +290,9 @@ function getDateInterval() {
 				setCookie1("jd_no",decodeURIComponent(item['jd_no']), 1);
 				setCookie1("curJd"+index, decodeURIComponent(item['jd_no']));
 
-				console.log("fetch jd_no:"+decodeURIComponent(item['jd_no'])+", today_fg:"+decodeURIComponent(item['today_fg']));
+				console.log("param jd_no:"+jd_no+", fetch jd_no:"+decodeURIComponent(item['jd_no'])+", today_fg:"+decodeURIComponent(item['today_fg']));
 
-				if(jd_no == ""){
+				if(jd_no == "" || jd_no == "-1"){
 					if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 일자슬라이드 선택 및 상세내역 출력
 						setTimeout(function(){ date_slider(Number(index)); }, 100);
 						getBanner(decodeURIComponent(item['jd_no']));
@@ -353,7 +353,8 @@ function getBanner(rcv_jd_no_b) {
             var data = JSON.parse(result);
 
             data['BannerList'].forEach(function(item, index){  
-                var isInIFrame = ( window.location != window.parent.location );
+				var isInIFrame = ( window.location != window.parent.location );
+				$(".bxslider").empty();
                 if (isInIFrame == true)
                 {
 				//2020-02-19 나영 img 크기 수정
@@ -374,41 +375,42 @@ function getBanner(rcv_jd_no_b) {
 
 // 전단 배너리스트를 부모창에 가져온다.
 function getBannerList(rcv_jd_no_p_b) {
+
 	window.parent.cssRetach();
 	$(parent.document).find(".leaflet_del").hide();
-    $.ajax({
-        url:'/back/02_app/mLeafletBannerList.jsp?random=' + (Math.random()*99999), 
-        data : {userCompanyNo: vm_cp_no, menuNo: menu_no, jd_no: rcv_jd_no_p_b},
-        method : 'GET' 
-    }).done(function(result){
+	$.ajax({
+		url:'/back/02_app/mLeafletBannerList.jsp?random=' + (Math.random()*99999), 
+		data : {userCompanyNo: vm_cp_no, menuNo: menu_no, jd_no: rcv_jd_no_p_b},
+		method : 'GET' 
+	}).done(function(result){
 		//console.log(result);
-        //console.log("bannerParentList=========================================");
-        if(result == ('NoN') || result == 'list error' || result == 'empty'){
+		//console.log("bannerParentList=========================================");
+		if(result == ('NoN') || result == 'list error' || result == 'empty'){
 
 			window.parent.$("#sortable").empty();
 
-        }else{
-            //console.log("============= bannerParentList callback1 ========================");
-            //console.log(result);
-            var data = JSON.parse(result);
+		}else{
+			//console.log("============= bannerParentList callback1 ========================");
+			//console.log(result);
+			var data = JSON.parse(result);
 
 			window.parent.$("#sortable").empty();
 
-            data['BannerList'].forEach(function(item, index){ 
+			data['BannerList'].forEach(function(item, index){ 
 				if (decodeURIComponent(item['visible_fg']) == "Y")
 				{
 					window.parent.$("#sortable").append('<li class="ui-state-default leaflet_banner_hover" id="'+decodeURIComponent(item['jb_no'])+'"><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" alt=""><span>숨기기</span>');
 				}else{
 					window.parent.$("#sortable").append('<li class="ui-state-default leaflet_banner_hover" id="'+decodeURIComponent(item['jb_no'])+'"><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" alt=""><span class="active">숨기기</span>');
 				}
-            });
+			});
 
 //			window.parent.$(".leaflet_banner").addClass("active");
 
 			// 부모창 우측 배너 리스트의 정렬 순서를 cookie에 저장한다.
 			window.parent.$("#sortable").sortable({
-				  items: "li:not(.ui-state-disabled)",
-				  update: function () {
+				items: "li:not(.ui-state-disabled)",
+				update: function () {
 							var strItems = "";
 
 							window.parent.$("#sortable").children().each(function (i) {
@@ -418,7 +420,7 @@ function getBannerList(rcv_jd_no_p_b) {
 							//console.log(strItems);
 							setCookie1("bannerOrderStr",strItems);
 							}
-			   });
+			});
 
 			window.parent.$(".leaflet_banner_hover").click(function(){
 				$(this).children("span").toggleClass("active");
@@ -443,8 +445,8 @@ function getBannerList(rcv_jd_no_p_b) {
 					}
 				});
 			});
-        }
-    });
+		}
+	});
 
 }
 

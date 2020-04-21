@@ -391,9 +391,9 @@ function manage_jdbtn(){
 			//console.log("============= leafletJdList callback ========================");
 			//console.log(result);
 			var data = JSON.parse(result);
-			$('#leaflet_manage_modal_list').empty();
+			$('#layer_popup_leaflet_list').empty();
 			var text = '';
-			data['leaflet_manage_modal_list'].forEach(function(item, index){ 
+			data['leaflet_list'].forEach(function(item, index){ 
 				text += '    <tr>           ';
 				text += '        <td>' + decodeURIComponent(item['jd_no'])            + '</td> ';					
 				text += '        <td>' + decodeURIComponent(item['period'])           + '</td> ';	
@@ -405,8 +405,8 @@ function manage_jdbtn(){
 				text += '    </tr>          ';
 			});
 			//console.log(text);
-			$("#leaflet_manage_modal_list").append(text);
-			$(".leaflet_manage_modal_wrap").show();			
+			$("#layer_popup_leaflet_list").append(text);
+			$("#layer_popup_leaflet_wrap").show();			
 		}
 	});	
 }
@@ -425,13 +425,13 @@ function manage_pagination_jdbtn(){
 		className: 'paginationjs-theme-green paginationjs-big',
 		callback: function(list, pagination) {
 			console.log(list);
-			var $tbody = $('#leaflet_manage_modal_list').empty();
+			var $tbody = $('#layer_popup_leaflet_list').empty();
 			_.forEach(list,
 				function(item) {
 					$tbody.append(tpl_tr_tab1_table(item));
 				}
 			);
-			$(".leaflet_manage_modal_wrap").show();	
+			$("#layer_popup_leaflet_wrap").show();	
 		},
 		formatAjaxError: function(jqXHR) {
 			alert(jqXHR.responseJSON.error);
@@ -491,7 +491,7 @@ function manage_jd_delete(rcv_jd_no){
 }
 
 function manage_close_jdbtn(){
-	$(".leaflet_manage_modal_wrap").hide();
+	$("#layer_popup_leaflet_wrap").hide();
 }
 
 /*common2에도 있어서 주석처리함 200106 김나영*/

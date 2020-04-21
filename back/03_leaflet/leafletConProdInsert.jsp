@@ -20,6 +20,7 @@
 	String menu_type_cd = (request.getParameter("menu_type_cd")==null)? "0":request.getParameter("menu_type_cd");
 		   menu_type_cd = menu_type_cd.trim();
 
+	String e_msg = "";
 	try{
 
 		/* 기간형 전단일경우, 전단기간의 중복여부를 검증하고, 임시테이블을 통해 신규로 입력할 전단 1개의 마스터키를 생성한다. */
@@ -46,6 +47,7 @@
 			};
 			rs.beforeFirst();
 		}
+		e_msg = "1";
 
 		// 전달받은 정보를 바탕으로 전단마스터를 temp 테이블에 insert 한다.
 		/* (특가형전단일경우, from, to 일자를 2020-01-01 로 입력한다.) */
@@ -56,6 +58,7 @@
 
 		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();
+		e_msg = "2";
 
 		// 신규입력한 전단상품의 전단번호를 temp 테이블에서 select 한다.
 		/* 특가형전단일경우, 일단 임시로 하나의 전단을 만든다. 후반부 여러개의 전단이 일자만큼 생성된다. */
@@ -77,7 +80,7 @@
 		while(rs.next()){
 			new_jd_no = rs.getInt("new_jd_no");     // 신규 전단번호
 		}
-		
+		e_msg = "3";		
 
 		//===============================================================================================================
 		
@@ -468,12 +471,13 @@
 		 // 엑셀 row 루프끝	
 		 }
 
+		 e_msg = "11";
 		 // 기간 전단일 경우
 		 if ( menu_type_cd.equals("MENU1") || menu_type_cd.equals("MENU2") || menu_type_cd.equals("MENU3") ){
 
 			 // 실제 전단에 insert 한다.
-			 sql = " insert into vm_jundan "
-				  +" select * from vm_jundan_temp where jd_no = "+ new_jd_no;
+			 sql = " insert into vm_jundan (jd_no, ref_company_no, from_date, to_date, menu_no, reg_no, reg_date, lst_no, lst_date) "
+				  +" select jd_no, ref_company_no, from_date, to_date, menu_no, reg_no, reg_date, lst_no, lst_date from vm_jundan_temp where jd_no = "+ new_jd_no;
 
 			 pstmt = conn.prepareStatement(sql);
 			 pstmt.executeUpdate();
@@ -573,6 +577,7 @@
 
 		}
 
+		e_msg = "22";		
 		/* 임시전단번호의 전단을 삭제한다. */
 		sql = " delete from vm_jundan_temp "
 		     +" where jd_no = "+ new_jd_no;
@@ -593,7 +598,7 @@
 		
 	}catch(Exception e){
 		out.clear();
-		out.print("exception error");	
+		out.print("exception error"+":"+e_msg);	
 	}finally{
 		if(pstmt != null) try{ pstmt.close(); }catch(SQLException sqle) {}
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {}

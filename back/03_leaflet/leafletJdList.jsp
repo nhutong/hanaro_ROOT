@@ -62,7 +62,7 @@
             }
         };
     
-        bdListJSON.put("leaflet_manage_modal_list", arr);
+        bdListJSON.put("leaflet_list", arr);
         out.clear();
         out.print(bdListJSON);
 

@@ -332,10 +332,10 @@
                                                        
                         </div>                       
                     </div>
-                    <!-- sub-modal -->
-                    <div class="leaflet_manage_modal_wrap">
-                        <div class="leaflet_manage_modal">
-                            <table class="leaflet_manage_modal_table">
+                    <!-- layer_popup_leaflet -->
+                    <div id="layer_popup_leaflet_wrap">
+                        <div id="layer_popup_leaflet">
+                            <table id="layer_popup_leaflet_table">
                                 <caption style="display: none">링크목록 테이블</caption>
                                 <colgroup>
                                     <col style="width: 10%">
@@ -355,7 +355,7 @@
                                     <th width="10%">단축<br>URL</th>
                                     <th width="10%">전단<br>삭제</th>
                                 </tr>
-                                <tbody id="leaflet_manage_modal_list">                                   
+                                <tbody id="layer_popup_leaflet_list">                                   
                                 </tbody>
                             </table>    
                             <!--pagination start-->
@@ -363,8 +363,8 @@
                                 <div id="pagination" class="pagination_wrap"></div>
                             </div>
                             <!--pagination end-->
-                            <div class="leaflet_manage_modal_close">
-                                <button class="leaflet_manage_modal_close_btn" onclick="manage_close_jdbtn()">닫기</button>
+                            <div id="layer_popup_leaflet_close">
+                                <button onclick="manage_close_jdbtn()">닫기</button>
                             </div>                                                
                         </div> 
                     </div>                                   

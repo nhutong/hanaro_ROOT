@@ -93,13 +93,13 @@ $(function () {
 	
 	});
 
-	$(".popup_create_link_modal_open_btn").on("click",function(){
+	$('#layer_popup_link_open button').on('click',function(){
 		getLinkList();
-		$(".popup_create_link_modal_wrap").show();
+		$('#layer_popup_link_wrap').show();
 	});	
 
-	$(".popup_create_link_modal_close_btn").on("click",function(){
-		$(".popup_create_link_modal_wrap").hide();
+	$('#layer_popup_link_close button').on('click',function(){
+		$('#layer_popup_link_wrap').hide();
 	});	
 	
 });
@@ -126,7 +126,7 @@ function setCompanyOptions(companyList){
 }
 
 function getLinkList(){
-	var companyNo = $('#company').val();
+	var companyNo = $("#company").val();
 	var formData = {
 		companyNo: companyNo
 	};
@@ -140,18 +140,14 @@ function getLinkList(){
 			text +='    <tr>';
 			text +='        <td>HOME</td>' ;
 			text +='        <td>home/main.html</td>' ;
-			text +='        <td></td>' ;
-			//text +='        <td><button id="popupLinkButton">적용</button></td>' ;			
 			text +='    </tr>';			
 			$(Linklist).each( function (idx, linkeach) {
 				text +='    <tr>';
 				text +='        <td>' + linkeach.select_name  + '</td>' ;
 				text +='        <td>' + linkeach.select_value + '</td>' ;
-				text +='        <td></td>' ;
-				//text +='        <td><button id="popupLinkButton" onclick="setLinkPaste()">적용</button></td>' ;							
 				text +='    </tr>';
 			});
-			$('#popup_create_link_modal_list').empty();					
-			$('#popup_create_link_modal_list').append(text);				
+			$("#layer_popup_link_list").empty();					
+			$("#layer_popup_link_list").append(text);				
 		});
 }
