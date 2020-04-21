@@ -309,7 +309,7 @@ function editModal(rcvPdCode, rcvPdName, rcvGroupTag){
 		document.getElementById('prodModalCode').readOnly = true;
 
 	}else{
-		
+		$("#droped_zone").hide();
 	}
 
 //    $(".prod_modal_edit_wrap").addClass("active");
