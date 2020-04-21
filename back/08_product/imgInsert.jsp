@@ -40,7 +40,7 @@
 				out.print("pd_code_no_exist");
 				return;
 			}else{
-//				string1 = URLEncoder.encode(string1);
+//				string1 = strEncode(string1);
 			}
 
 			// 상품명 ( encode )
@@ -53,20 +53,20 @@
 				out.print("pd_name_no_exist");
 				return;
 			}else{
-//				string2 = URLEncoder.encode(string2);
+//				string2 = strEncode(string2);
 			}
 
 			// 그룹코드
 			col = 2;
 		    cell = sheet.getCell(col,i);
 		    String string3 = cell.getContents().trim();
-//			string3 = URLEncoder.encode(string3);
+//			string3 = strEncode(string3);
 
 			// 이미지명
 			col = 3;
 		    cell = sheet.getCell(col,i);
 		    String string4 = cell.getContents().trim();
-//			string4 = URLEncoder.encode(string4);
+//			string4 = strEncode(string4);
 
 			//========================================================================================
 			//입력정보 끝================================================================================

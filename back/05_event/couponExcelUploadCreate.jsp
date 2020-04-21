@@ -142,7 +142,7 @@
 				}
 				*/
 
-				product_code = URLEncoder.encode(product_code);
+				product_code = strEncode(product_code);
 			}
 
 			// 쿠폰코드

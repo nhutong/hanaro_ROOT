@@ -7,6 +7,7 @@
 <%@ page import="java.text.*" %>
 
 <%@ include file = "../00_include/dbConn.jsp" %>
+<%@ include file = "../00_include/common.jsp" %>
 
 <%@ page import="java.io.BufferedReader" %>
 <%@ page import="java.io.InputStreamReader" %>
@@ -59,7 +60,7 @@
         }
 
         newURLParameter = "?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+jd_no; 
-        rcvText = URLEncoder.encode( newURL + newURLParameter );
+        rcvText = strEncode( newURL + newURLParameter );
      
 		String apiURL = "https://openapi.naver.com/v1/util/shorturl?url=" + rcvText;
         URL url = new URL(apiURL);

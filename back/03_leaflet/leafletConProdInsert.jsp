@@ -128,7 +128,7 @@
 				out.print("pd_code_no_exist");
 				return;
 			}else{
-				string1 = URLEncoder.encode(string1);
+				string1 = strEncode(string1);
 			}
 
 			// 상품명 ( encode )
@@ -141,7 +141,7 @@
 				out.print("pd_name_no_exist");
 				return;
 			}else{
-				string2 = URLEncoder.encode(string2);
+				string2 = strEncode(string2);
 			}
 
 			// 판매가
@@ -228,13 +228,13 @@
 			col = 7;
 		    cell = sheet.getCell(col,i);
 		    String string7 = cell.getContents().trim();
-			string7 = URLEncoder.encode(string7);
+			string7 = strEncode(string7);
 
 			// 카드한정
 			col = 8;
 		    cell = sheet.getCell(col,i);
 		    String string8 = cell.getContents().trim();
-			string8 = URLEncoder.encode(string8);
+			string8 = strEncode(string8);
 
 			// 쿠폰할인
 			col = 9;
@@ -255,19 +255,19 @@
 			col = 10;
 		    cell = sheet.getCell(col,i);
 		    String string10 = cell.getContents().trim();
-			string10 = URLEncoder.encode(string10);
+			string10 = strEncode(string10);
 
 			// 다다익선정보
 			col = 11;
 		    cell = sheet.getCell(col,i);
 		    String string11 = cell.getContents().trim();
-			string11 = URLEncoder.encode(string11);
+			string11 = strEncode(string11);
 
 			// 기타정보
 			col = 12;
 		    cell = sheet.getCell(col,i);
 		    String string12 = cell.getContents().trim();
-			string12 = URLEncoder.encode(string12);
+			string12 = strEncode(string12);
 
 			String string13 = "";
 			String string14 = "";
