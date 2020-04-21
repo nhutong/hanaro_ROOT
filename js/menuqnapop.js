@@ -97,8 +97,8 @@ function noticePopupRe(rcvNtNo){
 				text +='				   </td>';
 				text +='			   </tr>';
 
-				$("#qna_answer").hide();
-				$("#menuqna_pop_btn_wrap").hide();
+				// $("#qna_answer").hide();
+				// $("#menuqna_pop_btn_wrap").hide();
 
 			}
 			
