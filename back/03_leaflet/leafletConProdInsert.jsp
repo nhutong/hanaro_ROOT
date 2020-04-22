@@ -387,6 +387,7 @@
 						+" 		       SELECT group_tag "
 						+"             FROM vm_product "
 						+"             WHERE pd_no = "+pd_no
+						+"               AND LENGTH(IFNULL(group_tag,'')) >= 2 "
 						+"         ) "
 						+"     ) "
 						+"     and std_fg = 'Y' "
