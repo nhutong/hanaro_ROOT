@@ -1288,6 +1288,20 @@ span.shopUrl:hover{
 }
 
 /*leaflet_edit_btn*/
+.manage_jd_no_name{
+    display: inline-block;
+    font-size: 13px;    
+    padding: 4px 12px;
+    border:1px solid #e0e0e0;
+    background-color: #eaeaea;
+}
+.manage_jd_no{
+    display: inline-block;
+    font-size: 13px;  
+    padding: 4px 12px;  
+    border:1px solid #e0e0e0;
+    text-align: center;
+}
 
 .leaflet_new{
     padding: 5px 10px;

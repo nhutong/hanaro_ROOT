@@ -117,7 +117,7 @@
 				obj.put("img_path", "/upload/"+img_path);
 			}
 			
-			obj.put("pd_name", URLDecoder.decode(pd_name));
+			obj.put("pd_name", strDecode(pd_name));
 			obj.put("price", price);
 			obj.put("card_discount", card_discount);
 			obj.put("card_discount_from_date", card_discount_from_date);
