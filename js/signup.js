@@ -40,21 +40,23 @@ $("#cancel_btn").on("click", function(){
 	history.back();
 });
 
+// ie에서도 롤에 따른 셀렉트박스 숨기기 동작하도록 수정 200423 
 $("#user_company").on("change", function(){	    
     if(this.value == 0){	  
 	  $("#user_role").val("ROLE1");
-	   $("#user_role option[value=ROLE1]").attr("selected", "selected");
-	   $("#user_role option[value=ROLE1]").removeAttr("hidden", "hidden");
-	   $("#user_role option[value=ROLE2]").attr("hidden", "hidden");	
-	   $("#user_role option[value=ROLE3]").attr("hidden", "hidden");	
+	   $("#user_role option[value=ROLE1]").prop("selected", "selected");
+	   $("#user_role option[value=ROLE1]").removeProp("hidden", "hidden");
+	   $("#user_role option[value=ROLE2]").prop("hidden", "hidden");	
+	   $("#user_role option[value=ROLE3]").prop("hidden", "hidden");	
     } else {
-      $("#user_role option[value=ROLE2]").attr("selected", "selected");	
-	  $("#user_role option[value=ROLE1]").attr("hidden", "hidden");	
-	  $("#user_role option[value=ROLE2]").removeAttr("hidden", "hidden");	
-	  $("#user_role option[value=ROLE3]").removeAttr("hidden", "hidden");	
+      $("#user_role option[value=ROLE2]").prop("selected", "selected");	
+	  $("#user_role option[value=ROLE1]").prop("hidden", "hidden");	
+	  $("#user_role option[value=ROLE2]").removeProp("hidden", "hidden");	
+	  $("#user_role option[value=ROLE3]").removeProp("hidden", "hidden");	
 
     }
 });
+//수정 완료
 
 $("#signup_btn").on("click", function(){
 	var user_numb = $("#user_numb").val();
