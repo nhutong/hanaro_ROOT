@@ -18,12 +18,13 @@
 	String excel_path = (request.getParameter("excel_path")==null)? "0":request.getParameter("excel_path");
 	excel_path = excel_path.trim();
 	String menu_type_cd = (request.getParameter("menu_type_cd")==null)? "0":request.getParameter("menu_type_cd");
-		   menu_type_cd = menu_type_cd.trim();
+	menu_type_cd = menu_type_cd.trim();
 
+    Integer new_jd_no = 0;
 	String e_msg = "";
 	try{
 
-		/* 기간형 전단일경우, 전단기간의 중복여부를 검증하고, 임시테이블을 통해 신규로 입력할 전단 1개의 마스터키를 생성한다. */
+		/* (기간전단)전단기간의 중복여부를 검증, (특가전단)상품append형식이라 Dup처리 없음 */
 		if ( menu_type_cd.equals("MENU1") || menu_type_cd.equals("MENU2") || menu_type_cd.equals("MENU3") ){
 
 			// 입력받은 전단기간이 현재 진행중인 전단행사인지 확인한다.
@@ -42,46 +43,12 @@
 			// 진행중이면, 겹친다는 alert 을 화면에 전달하고 종료한다.
 			if(listCountInt != 0){
 				out.clear();
-				out.print("Dup");
+				out.print("Dup"+":"+sql);
 				return;
 			};
 			rs.beforeFirst();
 		}
 		e_msg = "1";
-
-		// 전달받은 정보를 바탕으로 전단마스터를 temp 테이블에 insert 한다.
-		/* (특가형전단일경우, from, to 일자를 2020-01-01 로 입력한다.) */
-		sql = "insert into vm_jundan_temp (ref_company_no, from_date, to_date, menu_no) "
-		+" values( "
-		+"'"+userCompanyNo+"', '"+jundan_from_date+"', '"+jundan_end_date+"', '"+menu_no
-		+"');";
-
-		pstmt = conn.prepareStatement(sql);
-		pstmt.executeUpdate();
-		e_msg = "2";
-
-		// 신규입력한 전단상품의 전단번호를 temp 테이블에서 select 한다.
-		/* 특가형전단일경우, 일단 임시로 하나의 전단을 만든다. 후반부 여러개의 전단이 일자만큼 생성된다. */
-		sql = " select max(jd_no) as new_jd_no from vm_jundan_temp ";
-
-		stmt = conn.createStatement();
-		rs = stmt.executeQuery(sql);
-				
-		rs.last();
-		int listCount0 = rs.getRow();
-		if(listCount0 == 0){
-			out.clear();
-			out.print("NoN0");
-			return;
-		};
-		rs.beforeFirst();	
-		
-		Integer new_jd_no = 0;
-		while(rs.next()){
-			new_jd_no = rs.getInt("new_jd_no");     // 신규 전단번호
-		}
-		e_msg = "3";		
-
 		//===============================================================================================================
 		
 
@@ -98,7 +65,7 @@
 
 		for(int i = 1; i < row; i++) {
 
-			e_msg = "3" + Integer.toString(i);	
+			e_msg += "  for(" + Integer.toString(i) + ") ";	
 
 			// 순서
 		    col = 0;
@@ -185,6 +152,7 @@
 		    cell = sheet.getCell(col,i);
 		    String string5 = cell.getContents().trim();
 			if ( string5.equals("") ){
+				string5 = "null";
 			}else{
 				// 입력받은 카드시작일이 유효한지 검사한다.
 				sql = " SELECT id "
@@ -208,6 +176,7 @@
 		    cell = sheet.getCell(col,i);
 		    String string6 = cell.getContents().trim();
 			if ( string6.equals("") ){
+				string6 = "null";
 			}else{
 				// 입력받은 카드시작일이 유효한지 검사한다.
 				sql = " SELECT id "
@@ -274,7 +243,10 @@
 			String string13 = "";
 			String string14 = "";
 
-			if ( menu_type_cd.equals("MENU4") || menu_type_cd.equals("MENU5") || menu_type_cd.equals("MENU6") ){
+			if ( menu_type_cd.equals("MENU1") || menu_type_cd.equals("MENU2") || menu_type_cd.equals("MENU3") ){
+				string13 = "null";
+				string14 = "null";
+			}else{
 
 				// 특가행사시작일
 				col = 13;
@@ -329,14 +301,6 @@
 					};
 					rs.beforeFirst();
 
-					/* 2020-02-21 주석처리 */
-//					/* 행사시작일과 행사종료일이 동일한지 확인한다. */
-//					if (string13.equals(string14)){
-//					}else{
-//						out.clear();
-//						out.print("oneDay_date_diff");
-//						return;	
-//					}
 				}
 			}
 
@@ -352,12 +316,15 @@
 			rs = stmt.executeQuery(sql);
 			
 			rs.last();
-//			int listCount = rs.getRow();
-//			if(listCount == 0){
-//				out.clear();
-//				out.print("NoNPdNo");
-//				return;
-//			};
+
+			//pd_no, img_no가 없어도 vm_jundan_prod_content에 insert함!
+			//int listCount = rs.getRow();
+			//if(listCount == 0){
+			//	out.clear();
+			//	out.print("NoNPdNo");
+			//	return;
+			//};
+
 			rs.beforeFirst();
 			String pd_no = "";		
 			while(rs.next()){
@@ -419,213 +386,217 @@
 			if(string0 == ""){
 
 			}else{
-				// 기간 전단형일 경우
+
+				// 기간형 전단
 				if ( menu_type_cd.equals("MENU1") || menu_type_cd.equals("MENU2") || menu_type_cd.equals("MENU3") ){
 
+					e_msg = "2(기간형 전단 insert)" + Integer.toString(i);					
+
+					// 신규전단번호 생성, 두번째 부터는 재활용
+					sql = " SELECT jd_no "
+					+" FROM vm_jundan AS a "
+					+" WHERE a.ref_company_no = "+userCompanyNo
+					+" and a.menu_no = '"+menu_no+"' "
+					+" AND from_date = '"+jundan_from_date+"' "
+					+" AND to_date = '"+jundan_end_date+"' ;";
+			
+					
+
+					stmt = conn.createStatement();
+					rs = stmt.executeQuery(sql);
+							
+					rs.last();
+					int listCountInt1 = rs.getRow();
+					
+					if(listCountInt1 == 0){ //신규 전단번호 생성
+	
+						sql = "insert into vm_jundan (ref_company_no, from_date, to_date, menu_no) "
+						+" values( "
+						+"'"+userCompanyNo+"', '"+jundan_from_date+"', '"+jundan_end_date+"', '"+menu_no
+						+"');";						
+
+						pstmt = conn.prepareStatement(sql);
+						pstmt.executeUpdate();
+				
+						sql = " select max(jd_no) as new_jd_no from vm_jundan ";
+				
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery(sql);
+								
+						rs.last();
+						int listCount10 = rs.getRow();
+						if(listCount10 == 0){
+							out.clear();
+							out.print("NoN0_Type1");
+							return;
+						};
+						rs.beforeFirst();	
+						
+						while(rs.next()){
+							new_jd_no = rs.getInt("new_jd_no");     // 신규 전단번호
+						}
+					
+					}else{  //기존 전단번호 재활용
+						rs.beforeFirst();					
+						while(rs.next()){
+							new_jd_no = rs.getInt("jd_no");     //  기존 전단번호
+						}
+					}
+
+
 					// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
-					sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, ";
+					sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, card_discount_from_date, card_discount_end_date, "
+						  +" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, oneDay_start_date, oneDay_end_date, pd_code ) "
+						  +" values("+new_jd_no+", '"+string0+"', '"+pd_no+"', '"+img_no+"', '"+string2+"', '"+string3+"', '"+string4+"', IF("+string5+" is null,"+string5+",'"+string5+"'), IF("+string6+" is null,"+string6+", '"+string6+"'), "
+						  +" '"+string7+"', '"+string8+"', '"+string9+"', '"+string10+"', '"+string11+"', '"+string12+"', "+string13+", "+string14+", '"+string1+"' );";
 
-					// 카드시작일 여부
-					if (string5 == ""){
-					}else{
-						sql = sql +"card_discount_from_date, ";
-					}
-					// 카드종료일 여부
-					if (string6 == ""){
-					}else{
-						sql = sql +"card_discount_end_date, ";
-					}
-
-					sql = sql +" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc ) "
-						+" values("+new_jd_no+", '"+string0+"', '"+pd_no+"', '"+img_no+"', '"+string2+"', '"+string3+"', '"+string4+"', '";
-					// 카드시작일		
-					if (string5 == ""){
-					}else{
-						sql = sql +string5+"', '";
-					}
-					// 카드종료일
-					if (string6 == ""){
-					}else{
-						sql = sql +string6+"', '";
-					}
-
-					sql = sql +string7+"', '"+string8+"', '"+string9+"', '"+string10+"', '"+string11+"', '"+string12+"');";
+					e_msg += "  2(기간형 전단 insert)" + Integer.toString(i) + sql;	
 
 					pstmt = conn.prepareStatement(sql);
 					pstmt.executeUpdate();
 
-				/* 특가형일 경우, 임시생성된 전단번호, 특가시작일과 특가종료일을 전단상품컨텐츠테이블에 입력한다. */
+				// 일자형 전단일 경우
 				}else{
 
-					// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
-					sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, ";
+					String db_date = "";
+
+					//e_msg += "2(일자형 전단 insert)" + Integer.toString(i);	
+
+					sql = " SELECT a.db_date from time_dimension AS a WHERE a.db_date >= left('"+string13+"',10) AND a.db_date <= left('"+string14+"',10) ";
+
+					ResultSet rs2 = null;					
 					
-					// 카드시작일 여부
-					if (string5 == ""){
-					}else{
-						sql = sql +"card_discount_from_date, ";
-					}
-					// 카드종료일 여부
-					if (string6 == ""){
-					}else{
-						sql = sql +"card_discount_end_date, ";
-					}
+					rs2 = stmt.executeQuery(sql);
+				
+					rs2.last();
+					rs2.beforeFirst();	
+					
+					//e_msg += "= 일자형Start(" + string1+")" + "sql(" + sql + ") ";
+					e_msg += "=일자형Start(" + string1+")";
+				
+					
+					
+					while(rs2.next()){
 
-					sql = sql +" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, oneDay_start_date, oneDay_end_date ) "
-						+" values("+new_jd_no+", '"+string0+"', '"+pd_no+"', '"+img_no+"', '"+string2+"', '"+string3+"', '"+string4+"', '";
-					// 카드시작일		
-					if (string5 == ""){
-					}else{
-						sql = sql +string5+"', '";
+						// 특가행사기준일
+						db_date = rs2.getString("db_date");
+
+						e_msg += ",db_date("+db_date+")";
+
+						jundan_from_date = db_date;
+						jundan_end_date = db_date;
+
+						// 신규전단번호 생성, 두번째 부터는 재활용
+						sql = " SELECT jd_no as jd_no "
+						+" FROM vm_jundan AS a "
+						+" WHERE a.ref_company_no = '"+userCompanyNo+"' "
+						+" and a.menu_no = '"+menu_no+"' "
+						+" AND from_date = '"+jundan_from_date+"' "
+						+" AND to_date = '"+jundan_end_date+"' ;";
+				
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery(sql);
+								
+						rs.last();
+
+						int listCountInt3 = rs.getRow();
+
+						//e_msg += "=("+sql+","+listCountInt3+"), ";
+						
+						if(listCountInt3 == 0){ //신규 전단번호 생성		
+							sql = "insert into vm_jundan (ref_company_no, from_date, to_date, menu_no) "
+							+" values( "
+							+"'"+userCompanyNo+"', '"+jundan_from_date+"', '"+jundan_end_date+"', '"+menu_no
+							+"');";
+
+							e_msg += ",(insert)";
+					
+							pstmt = conn.prepareStatement(sql);
+							pstmt.executeUpdate();
+					
+							sql = " select max(jd_no) as new_jd_no from vm_jundan ";
+					
+							stmt = conn.createStatement();
+							rs = stmt.executeQuery(sql);
+									
+							rs.last();
+							int listCount30 = rs.getRow();
+							if(listCount30 == 0){
+								out.clear();
+								out.print("NoN0_Type2");
+								return;
+							};
+							rs.beforeFirst();	
+							
+							while(rs.next()){
+								new_jd_no = rs.getInt("new_jd_no");     // 신규 전단번호
+							}
+						
+						}else{  //기존 전단번호 재활용
+							e_msg += ",(reuse)";
+							rs.beforeFirst();					
+							while(rs.next()){
+								new_jd_no = rs.getInt("jd_no");     //  기존 전단번호
+							}
+						}
+
+						//vm_jundan_prod_content가 중복인지 확인한다
+						sql = " SELECT jd_prod_con_no "
+						+" FROM vm_jundan_prod_content AS a "
+						+" WHERE a.ref_jd_no = "+new_jd_no
+						+" and a.pd_code = '"+string1+"' ;";
+
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery(sql);
+								
+						rs.last();
+						int listCountInt4 = rs.getRow();
+						
+						if(listCountInt4 == 0){ //신규생성
+							// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
+							sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, card_discount_from_date, card_discount_end_date, "
+								  +" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, oneDay_start_date, oneDay_end_date, pd_code ) "
+								  +" values("+new_jd_no+", '"+string0+"', '"+pd_no+"', '"+img_no+"', '"+string2+"', '"+string3+"', '"+string4+"', IF("+string5+" is null,"+string5+",'"+string5+"'), IF("+string6+" is null,"+string6+", '"+string6+"'), "
+								  +" '"+string7+"', '"+string8+"', '"+string9+"', '"+string10+"', '"+string11+"', '"+string12+"', IF("+db_date+" is null,"+db_date+",'"+db_date+"'), IF("+db_date+" is null,"+db_date+",'"+db_date+"'), '"+string1+"' );";
+						}else{
+							sql = "update vm_jundan_prod_content set "
+								+" order_number = '"+string0+"', ref_pd_no = '"+pd_no+"', ref_img_no = '"+img_no+"', pd_name = '"+string2+"', price = '"+string3+"', "
+								+" card_discount = '"+string4+"', card_discount_from_date = IF("+string5+" is null,"+string5+",'"+string5+"'), card_discount_end_date = IF("+string6+" is null,"+string6+",'"+string6+"'), card_info = '"+string7+"', "
+								+" card_restrict = '"+string8+"', coupon_discount = '"+string9+"', dadaiksun = '"+string10+"', dadaiksun_info = '"+string11+"', etc = '"+string12+"', "
+								+" oneDay_start_date = IF("+db_date+" is null,"+db_date+",'"+db_date+"'), oneDay_end_date = IF("+db_date+" is null,"+db_date+",'"+db_date+"'), pd_code = '"+string1+"' "
+								+" WHERE ref_jd_no = "+new_jd_no
+								+" and pd_code = '"+string1+"' ;";
+						}
+
+						//e_msg += "=("+sql+"), ";
+
+						//e_msg += "2(일자형 전단 insert)" + Integer.toString(i) + sql;	
+		
+						pstmt = conn.prepareStatement(sql);
+						pstmt.executeUpdate();
+												
+					//while루프 종료	
 					}
-					// 카드종료일
-					if (string6 == ""){
-					}else{
-						sql = sql +string6+"', '";
-					}
-
-					sql = sql +string7+"', '"+string8+"', '"+string9+"', '"+string10+"', '"+string11+"', '"+string12+"', '"+string13+"', '"+string14+"');";
-
-					pstmt = conn.prepareStatement(sql);
-					pstmt.executeUpdate();
-
-				// 전단형태 분기끝
-				}
+				// 일자형 전단일 분기 끝
+				}				
 			// 순서여부 분기끝
 			}
 		 // 엑셀 row 루프끝	
 		 }
 
-		 e_msg = "11";
-		 // 기간 전단일 경우
-		 if ( menu_type_cd.equals("MENU1") || menu_type_cd.equals("MENU2") || menu_type_cd.equals("MENU3") ){
-
-			 // 실제 전단에 insert 한다.
-			 sql = " insert into vm_jundan (jd_no, ref_company_no, from_date, to_date, menu_no, reg_no, reg_date, lst_no, lst_date) "
-				  +" select jd_no, ref_company_no, from_date, to_date, menu_no, reg_no, reg_date, lst_no, lst_date from vm_jundan_temp where jd_no = "+ new_jd_no;
-
-			 pstmt = conn.prepareStatement(sql);
-			 pstmt.executeUpdate();
-		
-		 // 특가형 전단일 경우
-		 }else{
-			
-			/* 등록된 특가일자의 갯수만큼 전단을 생성한다. */
-			sql = " SELECT min(left(oneDay_start_date,10)) as oneDay_start_date_min from vm_jundan_prod_content WHERE ref_jd_no = "+new_jd_no;
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-		
-			rs.last();
-			rs.beforeFirst();		
-		
-			String oneDay_start_date_min = "";
-			while(rs.next()){
-				// 특가행사시작일 최소값
-				oneDay_start_date_min = rs.getString("oneDay_start_date_min");
-			}
-
-			sql = " SELECT max(left(oneDay_end_date,10)) as oneDay_end_date_max from vm_jundan_prod_content WHERE ref_jd_no = "+new_jd_no;
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-		
-			rs.last();
-			rs.beforeFirst();		
-		
-			String oneDay_end_date_max = "";
-			while(rs.next()){
-				// 특가행사종료일 최대값
-				oneDay_end_date_max = rs.getString("oneDay_end_date_max");
-			}
-
-			sql = " SELECT a.db_date from time_dimension AS a WHERE a.db_date >= '"+oneDay_start_date_min+"' AND a.db_date <= '"+oneDay_end_date_max+"' ";
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-		
-			rs.last();
-			rs.beforeFirst();		
-		
-			String db_date = "";
-			while(rs.next()){
-				// 특가행사기준일
-				db_date = rs.getString("db_date");
-
-				/* 임시일자(2020-01-01)를 통해 만든 임시전단번호의 전단으로 실제 특가일 갯수만큼 전단을 생성한다. */
-				 sql = " insert into vm_jundan(ref_company_no, from_date, to_date, menu_no) "
-					  +" select ref_company_no, '"+db_date+"', '"+db_date+"', menu_no from vm_jundan_temp where jd_no = "+ new_jd_no;
-				 pstmt = conn.prepareStatement(sql);
-				 pstmt.executeUpdate();
-			}
-
-			/* 전단번호를 매핑하여 전단상품컨텐츠임시테이블을 입력한다. */
-			sql = " insert into vm_jundan_prod_content_temp "
-			    +" (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, card_discount_from_date, card_discount_end_date, "
-				+" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, reg_no, "
-				+" reg_date, lst_no, lst_date, oneDay_start_date, oneDay_end_date) "
-			    +" SELECT b.jd_no, a.order_number, a.ref_pd_no, a.ref_img_no, a.pd_name, a.price, "
-				+" a.card_discount, a.card_discount_from_date, a.card_discount_end_date, a.card_info, a.card_restrict, "
-				+" a.coupon_discount, a.dadaiksun, a.dadaiksun_info, a.etc, a.reg_no, a.reg_date, a.lst_no, a.lst_date, "
-				+" a.oneDay_start_date, a.oneDay_end_date "
-				+" from vm_jundan_prod_content AS a "
-				+" INNER JOIN vm_jundan AS b "
-				+" ON a.oneDay_start_date <= b.from_date and a.oneDay_end_date >= b.from_date and a.ref_jd_no = "+ new_jd_no
-				+" WHERE b.ref_company_no = '"+userCompanyNo+"' "
-				+" AND b.menu_no = '"+menu_no+"'; ";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.executeUpdate();
-
-			/* 임시전단번호의 전단상품컨텐츠테이블을 삭제한다. */
-			sql = " delete from vm_jundan_prod_content where ref_jd_no = "+ new_jd_no;
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.executeUpdate();
-
-			/* 임시전단번호의 전단상품컨텐츠테이블을 삭제한다. */
-			sql = " insert into vm_jundan_prod_content "
-			    +" (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, card_discount_from_date, card_discount_end_date, "
-				+" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, reg_no, "
-				+" reg_date, lst_no, lst_date, oneDay_start_date, oneDay_end_date) "
-			    +" SELECT a.ref_jd_no, a.order_number, a.ref_pd_no, a.ref_img_no, a.pd_name, a.price, "
-				+" a.card_discount, a.card_discount_from_date, a.card_discount_end_date, a.card_info, a.card_restrict, "
-				+" a.coupon_discount, a.dadaiksun, a.dadaiksun_info, a.etc, a.reg_no, a.reg_date, a.lst_no, a.lst_date, "
-				+" a.oneDay_start_date, a.oneDay_end_date "
-				+" from vm_jundan_prod_content_temp as a; ";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.executeUpdate();
-
-			/* 임시전단번호의 전단상품컨텐츠테이블을 삭제한다. */
-			sql = " delete from vm_jundan_prod_content_temp; ";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.executeUpdate();
-
-		}
-
-		e_msg = "22";		
-		/* 임시전단번호의 전단을 삭제한다. */
-		sql = " delete from vm_jundan_temp "
-		     +" where jd_no = "+ new_jd_no;
-		pstmt = conn.prepareStatement(sql);
-		pstmt.executeUpdate();
-
-		/* 채번을 위하여 동기화한다. */
-		sql = " insert into vm_jundan_temp "
-		     +" select * from vm_jundan ORDER BY jd_no DESC LIMIT 0,1; ";
-		pstmt = conn.prepareStatement(sql);
-		pstmt.executeUpdate();
-		 
 		/* 엑셀메모리를 close 한다. */
 		workbook.close();
 		
 		out.clear();
+		//out.print("success msg"+":"+e_msg);
 		out.print("success");
 		
 	}catch(Exception e){
 		out.clear();
-		out.print("exception error"+":"+e_msg);	
+		out.print("exception error"+":("+e.getMessage()+")"+e_msg);	
 	}finally{
 		if(pstmt != null) try{ pstmt.close(); }catch(SQLException sqle) {}
+		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {}		
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {}
 	};
 
