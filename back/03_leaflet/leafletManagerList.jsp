@@ -22,10 +22,11 @@
 		//}
 
 		if (userCompanyNo.equals("0")){
-           sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME from vm_company AS a ";
+		   sql = " SELECT a.VM_CP_NO, CONCAT(a.VM_CP_NAME,'(',VM_CP_NO,')') as VM_CP_NAME from vm_company AS a "
+		   +" order by vm_cp_name; ";
 		}else{
-		   sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME from vm_company AS a "
-		   +" where vm_cp_no = "+userCompanyNo; 
+		   sql = " SELECT a.VM_CP_NO, CONCAT(a.VM_CP_NAME,'(',VM_CP_NO,')') as VM_CP_NAME from vm_company AS a "
+		   +" where vm_cp_no = "+userCompanyNo+" order by vm_cp_name; "; 
 		}
 	
 		stmt = conn.createStatement();

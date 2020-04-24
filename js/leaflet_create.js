@@ -249,17 +249,17 @@ $("#jundan_excel_new").on("click",function(){
         method : 'GET' 
     }).done(function(result){
 
-		console.log("leafletConProdInsert=========================================");
+		//console.log("leafletConProdInsert=========================================");
 		//console.log("===="+result);
 		if( result.substring(0,15) == "exception error" ){
 			console.log(result);			
 			alert("exception error");
 	    }else if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+            //console.log(result);
 			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
-        }else if(result.substring(0,3) == ('Dup')){
-			console.log(result);
-			alert("중복된 전단기간이 존재합니다. 전단기간을 수정해주시기 바랍니다.");
+        }else if(result.substr(0,3) == ('Dup')){
+			//console.log(result);
+			alert("중복된 전단기간이 존재합니다."+result.substr(4));
 		}else if(result == ('NoN0_Type1')){
 			alert("기간형 전단번호가 생성되지 못하였습니다. 다시한번 시도해보시기 바랍니다.");
 		}else if(result == ('NoN0_Type2')){
