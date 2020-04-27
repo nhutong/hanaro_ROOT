@@ -813,7 +813,7 @@ header nav ul li.active a{
 /*2020-04-27 상품명 두줄로 변경 - 미솔*/
 
 .price{
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .price,
@@ -826,11 +826,11 @@ header nav ul li.active a{
     overflow: hidden;
     height: 19px;
     text-overflow: ellipsis;
-    font-weight: 500;
+    font-weight: 600;
 }
 /*2020-04-27 가격 굵게 - 미솔*/
 .price{
-    color: #333;
+    color: #222;
 }
 
 .price2{
