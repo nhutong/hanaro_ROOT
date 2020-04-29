@@ -3,6 +3,7 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.json.simple.*" %>
+<%@ page import="java.text.*" %>
 <%@ include file = "../00_include/dbConn.jsp" %>
 
 <%	
@@ -13,6 +14,11 @@
 	String agree_push = request.getParameter("agree_push")==null? "":request.getParameter("agree_push"); // 전화번호	
 	String agree_location = request.getParameter("agree_location")==null? "":request.getParameter("agree_location"); // 비밀번호	
 	String company_no = request.getParameter("company_no")==null? "":request.getParameter("company_no"); // 비밀번호	
+
+	if( tel == "" || tel.equals("null") ) {
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyyMMddHHmmss");
+		tel = formatter.format(new java.util.Date());
+	}
 
 	/* 핸드폰번호와 USIM으로 있는지 중복 체크한다. */
 	/* 동일한 핸드폰번호가 있어도, USIM 변경이면 다른 사람으로 인지하여 새로 등록받게끔 한다. */
