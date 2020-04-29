@@ -1,7 +1,9 @@
 $(function () {
 
 	vm_cp_no = getParameterByName('vm_cp_no');   // 판매장번호
-	menu_no  = getCookie('menu_no');    // 메뉴 번호
+	menu_no = getParameterByName('menu_no');   // 판매장번호
+	menu_type_cd = getParameterByName('menu_type_cd');   // 판매장번호
+	//menu_no  = getCookie('menu_no');    // 메뉴 번호
 
 	if (vm_cp_no == "")
 	{
@@ -74,8 +76,8 @@ $(function () {
 
     $(".nav_leaflet").addClass("active");
 
-	if (getCookie("menu_type_cd") == "MENU4" || getCookie("menu_type_cd") == "MENU5" || getCookie("menu_type_cd") == "MENU6")
-	{
+	//if (getCookie("menu_type_cd") == "MENU4" || getCookie("menu_type_cd") == "MENU5" || getCookie("menu_type_cd") == "MENU6")
+	if ( menu_type_cd == "MENU4" || menu_type_cd == "MENU5" || menu_type_cd == "MENU6"){
 		$("#leaflet_create_date").hide();
 		$("#attachFile").append('<a href="/download/oneDay_jundan_contents.xls">oneDay_jundan_contents.xls</a>');
 	}else{
@@ -253,7 +255,7 @@ $("#jundan_excel_new").on("click",function(){
 		//console.log("===="+result);
 		if( result.substring(0,15) == "exception error" ){
 			console.log(result);			
-			alert("exception error");
+			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
 	    }else if(result == ('NoN') || result == 'exception error' || result == 'empty'){
             //console.log(result);
 			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");

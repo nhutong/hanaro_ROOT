@@ -27,12 +27,11 @@
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     
     <!--swiper CSS-->
-    <link href="../css/jquery.bxslider.min.css" rel="stylesheet" />
-
+	<link href="../css/jquery.bxslider.min.css" rel="stylesheet" />
     
     <!-- fontawesome style css -->
-<!-- 	<link rel="stylesheet" href="../css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
-<!-- 	<link rel="stylesheet" href="../css/all.css" type="text/css"> -->
+    <!-- 	<link rel="stylesheet" href="../css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+    <!-- 	<link rel="stylesheet" href="../css/all.css" type="text/css"> -->
 	<link rel="stylesheet" href="../css/all.css">
 
     <style>
@@ -53,14 +52,23 @@
     <!--item_list starts-->   
     <div class="item_list_wrap">
 	
-        <div class="item_list_title_wrap">          
+        <!-- <div class="item_list_title_wrap">          
             <div class="btn_lft">◀</div>
             <div class="btn_rgt">▶</div>
             <div class="date_item_wrap" data-height="30">
                 <ul class="title_anibox" id="title_anibox">
                 </ul>                
             </div>      
-        </div>
+        </div>      -->
+
+        <div class="item_list_header_wrap">          
+            <div class="btn_left">◀</div>
+            <div class="date_item_list_wrap" data-height="30">
+                <ul class="selected_jd" id="selected_jd">
+                </ul>                
+            </div>                 
+            <div class="btn_right">▶</div> 
+        </div>           
 		
 		<ul class="item_list_banner_wrap bxslider">
 		</ul>
@@ -70,16 +78,16 @@
 
 	</div>
 
-	   <!--     Swiper JS -->
-    <script src="../js/swiper.js"></script>
+	<!-- Swiper JS -->
+    <!-- <script src="../js/swiper.js"></script> -->
  
     <!-- <script src="../js/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script> -->
 	<script src="../js/jquery-2.2.4.js"></script>
     <script src="../js/link.js"></script>
     <script src="../js/jquery.bxslider.min.js"></script>
-<!-- 	<script src="../js/jquery.bxslider.min.js"></script> -->
 
-	<script src="../js/date_slider.js"></script>	  
+    <!-- <script src="../js/date_slider.js"></script>	   -->
+    
     <script src="../js/common.js"></script>
     <script src="../js/share_btn.js"></script>
 
@@ -87,7 +95,7 @@
 	<script src="../js/jquery-ui.toch-punch.min.js"></script>
 
     <script src="../js/m_leaflet.js"></script>
-    <script src="../js/aside.js"></script>
+    <!-- <script src="../js/aside.js"></script> -->
 <!--     <script src="../js/header_menu.js"></script>	   -->
 
 </body>

@@ -8,8 +8,8 @@
 <%@ include file = "../00_include/dbConn.jsp" %>
 
 <%	
-	String userCompanyNo = (request.getParameter("userCompanyNo")==null)? "0":request.getParameter("userCompanyNo");
-	String menuNo = (request.getParameter("menuNo")==null)? "0":request.getParameter("menuNo");
+	//String userCompanyNo = (request.getParameter("userCompanyNo")==null)? "0":request.getParameter("userCompanyNo");
+	//String menuNo = (request.getParameter("menuNo")==null)? "0":request.getParameter("menuNo");
 	String rcv_jd_no = (request.getParameter("jd_no")==null)? "0":request.getParameter("jd_no");
 
 	JSONObject bdListJSON = new JSONObject();
@@ -20,9 +20,9 @@
 			 +" FROM vm_jundan AS a "
 			 +" INNER JOIN vm_jundan_banner AS b "
 			 +" ON a.jd_no = b.ref_jd_no "
-			 +" WHERE a.ref_company_no = "+userCompanyNo
-			 +" AND a.menu_no = "+menuNo
-			 +" and b.ref_jd_no = "+rcv_jd_no 
+			 +" where b.ref_jd_no = "+rcv_jd_no 
+			 //+" and a.ref_company_no = "+userCompanyNo
+			 //+" AND a.menu_no = "+menuNo			 
 			 +" AND a.to_date >= date_add(now(), INTERVAL -1 week)  order by jb_order_no "; 
 	
 		stmt = conn.createStatement();

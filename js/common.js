@@ -335,41 +335,77 @@ function leadingZeros(n, digits) {
   return zero + n;
 }
 
-// 우상단 판매장을 리스팅한다.
+// 우상단 판매장을 리스팅한다. param1을 기준으로 판매장 리스트를 가지고 옮(0이면 전 판매장, 아니면 해당 판매장), param2는 선택 될 판매장
 function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
+	if ( rcvCompanyNo == "" ){
 
-    $.ajax({
-        url:'/back/03_leaflet/leafletManagerList.jsp?random=' + (Math.random()*99999),
-		data : {userCompanyNo: rcvCompanyNo},
-        method : 'GET' 
-    }).done(function(result){
+	}else{
+	
+		$.ajax({
+			url:'/back/03_leaflet/leafletManagerList.jsp?random=' + (Math.random()*99999),
+			data : {userCompanyNo: rcvCompanyNo}, //0이면 전점가지고옮, 아니면 해당판매장만 가지고옮
+			method : 'GET' 
+		}).done(function(result){
 
-        console.log("getManagerList=========================================");
-        if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            console.log(result);
-        }else{
-            $("#noticeList").html("");
-            console.log("============= getManagerList callback ========================");
-            console.log(result);
-            var data = JSON.parse(result);
+			//console.log("getManagerList=========================================");
+			if(result == ('NoN') || result == 'list error' || result == 'empty'){
+				console.log(result);
+				$("#sort_select").empty();
+			}else{
+				$("#noticeList").html("");
+				//console.log("============= getManagerList callback ========================");
+				//console.log(result);
+				var data = JSON.parse(result);
+				$("#sort_select").empty();
+				data['CompanyList'].forEach(function(item, index){
+					if (rcvTargetCompanyNo == decodeURIComponent(item['VM_CP_NO']))
+					{
+						$("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'" selected>'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
+					}else{
+						$("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'">'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
+					}
+				});
 
-            data['CompanyList'].forEach(function(item, index){
-				if (rcvTargetCompanyNo == decodeURIComponent(item['VM_CP_NO']))
-				{
-					$("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'" selected>'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
-				}else{
-					$("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'">'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
+				setCookie1("onSelectCompanyNo",$("#sort_select").val());			
+
+				//iframe 바인딩!!
+				if( $("#nh_main").length > 0 ){  //Home화면 바인딩!
+					document.getElementById("nh_main").src = "../app/home/main.html?vm_cp_no="+$("#sort_select").val(); 
 				}
-//                $("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'">'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
-            });
-			if (getCookie("userRoleCd") == "ROLE2" )
-			{
-				setCookie1("onSelectCompanyNo",$("#sort_select").val());
-				localStorage.setItem("vm_cp_no",$("#sort_select").val());
-				if( $("#nh_main").length > 0 ){
-					document.getElementById("nh_main").src = "../app/home/main.html?vm_cp_no="+$("#sort_select").val();
-				}
+
+				//if (getCookie("userRoleCd") == "ROLE2" )
+				//{
+				//	setCookie1("onSelectCompanyNo",$("#sort_select").val());
+				//	//localStorage.setItem("vm_cp_no",$("#sort_select").val()); //웹에서는 localStorege사용 없음
+				//	if( $("#nh_main").length > 0 ){ //iframe , nh_main이 존재하면 보내줌!!
+				//		document.getElementById("nh_main").src = "../app/home/main.html?vm_cp_no="+$("#sort_select").val(); 
+				//	}
+				//}
 			}
-        }
-    });
+		});
+	}
 }
+
+
+/*배너 업로드 파일*/
+function bannerUpload(targetInput, complete){
+	var uploadFiles = targetInput.files[0];
+    var reader = new FileReader();
+    try{var fileName = uploadFiles.name;}catch(e){alert('파일을 선택해주시기 바랍니다.');return;};
+	reader.onload = function(evt) {
+		var url = '/back/00_include/fileUploadBanner.jsp';
+        var xhr = new XMLHttpRequest() || new window.XDomainRequest();
+        xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			var result = xhr.responseText;
+            complete(result);
+			};
+		};
+
+		var formData = new FormData();
+		formData.append('uploadFile[]', uploadFiles, fileName);
+		xhr.open("POST", url, false);
+		xhr.send(formData);
+   };
+   reader.readAsArrayBuffer(uploadFiles);
+};

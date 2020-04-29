@@ -170,17 +170,17 @@ function getHeaderMenu(ff_vm_cp_no) {
     }).done(function(result){
 
         console.log("getHeaderMenu=========================================");
-        if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            console.log(result);
+        if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+            console.log("getHeaderMenu"+result);
         }else{
             console.log("============= getHeaderMenu callback ========================");
-            console.log(result);
+            console.log("getHeaderMenu callback"+result);
             var data = JSON.parse(result);
 
 			var text = '<li id="headerHome"><a href="#" onclick="home();" class="home">홈</a></li>';
 
             data['DateCategoryList'].forEach(function(item, index){                        
-                $("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
+                //$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
 
                 text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a></li>'
 				
@@ -414,31 +414,7 @@ function setCookie1(name,value,days) {
 	document.cookie = name+"="+value+"; path=/";
 }
 
-/*배너 업로드 파일*/
-function bannerUpload(targetInput, complete){
-	var uploadFiles = targetInput.files[0];
-    var reader = new FileReader();
-    try{var fileName = uploadFiles.name;}catch(e){alert('파일을 선택해주시기 바랍니다.');return;};
-	reader.onload = function(evt) {
-		var url = '/back/00_include/fileUploadBanner.jsp';
-        var xhr = new XMLHttpRequest() || new window.XDomainRequest();
-        xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			var result = xhr.responseText;
-            complete(result);
-			};
-		};
-
-		var formData = new FormData();
-		formData.append('uploadFile[]', uploadFiles, fileName);
-		xhr.open("POST", url, false);
-		xhr.send(formData);
-   };
-   reader.readAsArrayBuffer(uploadFiles);
-};
-
 //헤더 아래 돌아가는 공지사항
-
 function header_notice(){
 	
     

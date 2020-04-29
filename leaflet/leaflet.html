@@ -56,12 +56,23 @@
 							   [혜택/프로모션] 상품이미지 하단 클릭 
                            </div>
                         </div>  
-                        <iframe id="nh_leaflet" src="../app/m_leaflet/m_leaflet.html" frameborder="0" width="340px" height="540px" class="nh_leaflet_iframe"></iframe>
+                        <iframe id="nh_leaflet" src="" frameborder="0" width="340px" height="540px" class="nh_leaflet_iframe"></iframe>
                         </div>
                         <div class="leaflet_edit_wrap">
+
+                            <div class="leaflet_jdinfo_wrap">
+                                <div class="modify_jd_no_name">전단번호</div>
+                                <div id="modify_jd_no"></div>
+                                <div class="modify_menu_no_name">메뉴번호</div>
+                                <div id="modify_menu_no"></div>
+                                <div class="modify_menu_type_cd_name">메뉴타입</div>
+                                <div id="modify_menu_type_cd"></div>                                
+                                <div class="modify_jd_prod_con_no_name">전단상품번호</div>
+                                <div id="modify_jd_prod_con_no"></div>
+
+                            </div>
                             <!--1-->
                             <div class="leaflet_btn_wrap">
-                               
                                 <button class="leaflet_new">새상품추가</button>
 								<button class="leaflet_del" onclick="delete_btn();">상품 삭제</button>
 								
@@ -69,7 +80,7 @@
                                     <!-- <button class="leaflet_del_prod" onclick="delete_jdbtn();">전단 삭제</button> -->
                                     <!-- <button class="leaflet_mng_prod" onclick="manage_jdbtn();">전단 관리</button> -->
                                     <button class="leaflet_mng_prod" onclick="manage_pagination_jdbtn();">전단 관리</button>                                    
-									<div class="new_leaflet_wrap" onclick="leaflet_create();">             
+									<div class="new_leaflet_wrap" onclick="new_leaflet_create();">
 										<span>새로운 전단 제작하기</span>                                
 									</div> 
 								</div>
@@ -77,11 +88,7 @@
                             <!--2-->
                             <div class="leaflet_date">      
                                 <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
-							    <input type="hidden" id="jd_no">
-<!--                                 <div class="date_radio"> -->
-<!--                                     <input type="radio" name="showhide"><label for="showhide">반영</label> -->
-<!--                                     <input type="radio" name="showhide"><label for="showhide">미반영</label> -->
-<!--                                 </div> -->
+							    <input type="text" id="date_jd_no" readonly>
                                 <input type="text" placeholder="기간을 입력하세요" id="from_date_origin">
                                 <span>~</span>
                                 <input type="text" placeholder="기간을 입력하세요" id="to_date_origin">
@@ -89,6 +96,7 @@
                             </div>
                             <!--3-->
                             <div class="leaflet_banner">
+                                <input type="text" id="banner_jd_no" readonly>
                                 <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span> 
                                 <span>배너 이미지800*400입니다. <br>
 								[배너 숨기기/되살리기]생성된 배너 클릭<br>
@@ -128,7 +136,7 @@
                             <!--4-->
                             <div class="leaflet_image">
                                 <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
-								<input type="hidden" id="jd_prod_con_no_prod_thum">
+								<input type="text" id="jd_prod_con_no_prod_thum" readonly>
 								<input type="hidden" id="pd_no_thum">
 								<input type="hidden" id="pd_code_thum">
                                 <input type="text" placeholder="검색하실 상품명 또는 상품태그를 입력하세요" id="searchText">
@@ -157,14 +165,14 @@
                             <!--5-->
                             <div class="leaflet_goods_name">
                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
-							    <input type="hidden" id="jd_prod_con_no_prod_name">
+							    <input type="text" id="jd_prod_con_no_prod_name" readonly>
                                 <input type="text" placeholder="상품명을 입력하세요" id="pd_name">
                                 <button class="leaflet_submit" id="pd_name_btn">확인</button>
                             </div>
                             <!--6-->
                             <div class="leaflet_goods_price">
                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
-							    <input type="hidden" id="jd_prod_con_no_price">
+							    <input type="text" id="jd_prod_con_no_price" readonly>
                                 <input type="text" placeholder="상품가격을 입력하세요" id="price">
                                 <span class="price_won">원</span>
                                 <button class="leaflet_submit" id="price_btn">확인</button>
@@ -173,6 +181,7 @@
                             <div class="leaflet_discount">
                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>                               
                                 <h5>혜택 및 상품 정보 안내</h5>
+                                <input type="text" id="jd_prod_con_no_discount" readonly>
                                 <div id="table">
                                 
                                     <table class="table">
@@ -380,9 +389,9 @@
     <script src="../js/lodash.min.js"></script>
     <script src="../js/pagination.min.js"></script>    
     <script src="../js/link.js"></script>
-    <script src="../js/leaflet_table.js"></script>
-    <script src="../js/leaflet_banner.js"></script>
-    <script src="../js/leaflet_new_item.js"></script>
+    <!-- <script src="../js/leaflet_table.js"></script> -->
+    <!-- <script src="../js/leaflet_banner.js"></script> -->
+    <!-- <script src="../js/leaflet_new_item.js"></script> -->
     <!--Sortable-->
 	<script language="javascript" src="/js/google.jqueryui.1.8.22.jquery-ui.min.js"></script>
     <script src="../js/jquery-ui.js"></script>

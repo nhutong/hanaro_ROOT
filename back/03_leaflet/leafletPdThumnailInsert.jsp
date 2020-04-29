@@ -15,8 +15,8 @@
 	String userNo = (request.getParameter("userNo")==null)? "0":request.getParameter("userNo");
 	
 	String rcvImgPath = imgPath.trim();
-	String rcvPdNo = strDecode(pdNo.replaceAll(" ",""));
-	String rcvPdCode = strDecode(pdCode.replaceAll(" ",""));
+	String rcvPdNo = URLDecoder.decode(pdNo.replaceAll(" ","")); //인코딩 디코딩 사용
+	String rcvPdCode = URLDecoder.decode(pdCode.replaceAll(" ","")); //인코딩 디코딩 사용
 
 	try{
 
@@ -41,7 +41,7 @@
 				
 		while(rs.next()){
 			
-			String new_img_no   = rs.getString("new_img_no");     // �ű� �̹�����ȣ
+			String new_img_no   = rs.getString("new_img_no");     // �ű� �̹�����ȣ
 
 			out.clear();
 			out.print(new_img_no);

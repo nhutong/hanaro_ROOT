@@ -8,8 +8,8 @@
 <%@ include file = "../00_include/dbConn.jsp" %>
 
 <%	
-	String userCompanyNo = (request.getParameter("userCompanyNo")==null)? "0":request.getParameter("userCompanyNo");
-	String menuNo = (request.getParameter("menuNo")==null)? "0":request.getParameter("menuNo");
+	//String userCompanyNo = (request.getParameter("userCompanyNo")==null)? "0":request.getParameter("userCompanyNo");
+	//String menuNo = (request.getParameter("menuNo")==null)? "0":request.getParameter("menuNo");
 	String rcv_jd_no = (request.getParameter("jd_no")==null)? "0":request.getParameter("jd_no");
 
 	JSONObject bdListJSON = new JSONObject();
@@ -22,13 +22,13 @@
 			return;
 		};
 
-		sql = " SELECT a.jd_no, b.jb_no, b.jb_img_path, b.jb_order_no, b.visible_fg "
+		sql = " SELECT a.jd_no, a.menu_no, a.ref_company_no as vm_cp_no, b.jb_no, b.jb_img_path, b.jb_order_no, b.visible_fg "
 			 +" FROM vm_jundan AS a "
 			 +" INNER JOIN vm_jundan_banner AS b "
 			 +" ON a.jd_no = b.ref_jd_no "
-			 +" WHERE a.ref_company_no = "+userCompanyNo
-			 +" AND a.menu_no = "+menuNo
-			 +" and b.ref_jd_no = "+rcv_jd_no 
+			 +" where b.ref_jd_no = "+rcv_jd_no 
+			 //+" and a.ref_company_no = "+userCompanyNo
+			 //+" AND a.menu_no = "+menuNo
 			 +" AND a.to_date >= date_add(now(), INTERVAL -1 week) "
 			 +" and b.visible_fg = 'Y' order by jb_order_no; "; 
 	
@@ -48,8 +48,9 @@
 		while(rs.next()){
 			
 			String jd_no = rs.getString("jd_no");   // 전단 번호
-			String jb_no = rs.getString("jb_no");   // 전단배너 번호
-			
+			String menu_no = rs.getString("menu_no");   // 메뉴번호			
+			String vm_cp_no = rs.getString("vm_cp_no");   // 회사코드
+			String jb_no = rs.getString("jb_no");   // 전단배너 번호			
 			String jb_img_path = "/upload/"+rs.getString("jb_img_path");     // 전단 이미지경로
 			String jb_order_no   = rs.getString("jb_order_no");   // 전단 정렬순서
 			String visible_fg   = rs.getString("visible_fg");     // 보이기 여부 
@@ -57,6 +58,8 @@
 			JSONObject obj = new JSONObject();
 						
 			obj.put("jd_no", jd_no);
+			obj.put("menu_no", menu_no);
+			obj.put("vm_cp_no", vm_cp_no);			
 			obj.put("jb_no", jb_no);
 			obj.put("jb_img_path", jb_img_path);
 			obj.put("jb_order_no", jb_order_no);

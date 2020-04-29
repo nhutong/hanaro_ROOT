@@ -50,6 +50,7 @@
 		out.print(bdListJSON);
 	
 	}catch(Exception e){
+		out.clear();
 		out.print("exception error");	
 	}finally{
 		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {};
