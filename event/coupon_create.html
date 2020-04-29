@@ -13,8 +13,9 @@
 	<link href="../css/index.css" rel="stylesheet">
 	<!-- bootstrap style css -->
 <!-- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-	<link rel="stylesheet" href="../css/4.3.1.bootstrap.min.js">
-
+<!--	<link rel="stylesheet" href="../css/4.3.1.bootstrap.min.js">-->
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+    
 	<!-- fontawesome style css -->
 <!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
 	<link rel="stylesheet" href="../css/all.css">
@@ -91,7 +92,7 @@
                                 <td>
                                 <select id="company" class="sort_select">
                                     <option value="-1" selected disabled>판매장 선택</option>
-                                </select><button id="companyAddBtn">추가</button>
+                                </select><button id="companyAddBtn">추가</button> <span style="font-size:12px;color: blueviolet;">※ 반드시 추가 버튼을 눌러주세요!</span></td>
                                 <!-- <div class="selected_option">양재점</div> -->
                                 </td>
                             </tr>
@@ -114,11 +115,11 @@
                               </tr>
                               <tr id="product_area">
                                   <th>(*)상품코드</th>
-                                  <td><input type="text" id="product_code">&nbsp;<input type="text" id="product_name" placeholder="상품명"> <span style="font-size:12px;color: blueviolet;">※ 상품명은 반드시 입력해야하며, 수정이 불가하므로 신중히 입력바랍니다</span></td>
+                                  <td><input type="text" id="product_code">&nbsp;<input type="text" id="product_name" placeholder="상품명"> <span style="font-size:12px;color: blueviolet;">※ 상품명은 반드시 입력해야 하며, 수정이 불가하므로 신중하게 입력해주세요!</span></td>
                               </tr>
                               <tr>
                                   <th>(*)쿠폰코드</th>
-                                  <td><input type="text" id="coupon_code"> <span style="font-size:12px;color: blueviolet;">※ 쿠폰코드는 13자리이며, 중복되어서는 안됩니다. (경제통합시스템에서 쿠폰 생성 후 사용)</span></td>
+                                <td><input type="text" id="coupon_code"> <span style="font-size:12px;color: blueviolet;">※ 쿠폰코드는 13자리이며, 중복되어서는 안됩니다. (경제통합시스템에서 쿠폰 생성 후 사용)</span></td>
                               </tr>
                               <tr>
                                 <th>(*)쿠폰할인가</th>

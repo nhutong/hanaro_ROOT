@@ -174,7 +174,7 @@ $(function () {
 				}
 			});
 		}
-
+/* 장보기 메뉴 숨김했으므로 해당 체크로직 주석처리
 		var values2 = document.getElementsByName("jang_fg");
 		if (values2[0].checked){
 			$.ajax({
@@ -209,7 +209,7 @@ $(function () {
 				}
 			});
 		}
-		
+	*/	
 		alert("수정이 완료되었습니다.");
 		window.location.reload();
 	});
