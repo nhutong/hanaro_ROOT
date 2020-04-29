@@ -422,8 +422,8 @@ header nav ul li.active a{
 }
 
 
-
 /*item_list_wrap starts*/
+
 
 .item_list_wrap{
     margin-top: 10px;
@@ -431,12 +431,67 @@ header nav ul li.active a{
 }
 
 
-.item_list_title_wrap{
+.item_list_header_wrap{
+    /* width: 60%; */
+    height: 35px;
+    margin: auto;
+    text-align: center;
+    /* position: relative; */
+}
+.btn_left{
+    /* position: absolute; */
+    /* left: -10px; */
+    top: 4px;
+    /* z-index: 1; */
+    font-size: 15px;
+    padding: 0px 15px;
+    height: 20px;
+    cursor: pointer;
+    color: #55B190;
+    display: inline-block;
+}
+.btn_right{
+    /* position: absolute; */
+    /* right: -10px; */
+    top: 4px;
+     /* z-index: 1; */
+    font-size: 15px;
+    padding: 0px 15px;
+    height: 20px;
+    cursor: pointer;
+    color: #55B190;
+    display: inline-block;
+}
+.date_item_list_wrap{
+    display: inline-block;
+    /* padding: 0px 20px; */
+    /* position: relative; */
+    /* overflow: hidden; */
+    /* box-sizing: border-box; */
+}
+.date_item_list_wrap ul{
+    /* display: block; */
+}
+.date_item_list_wrap ul li{
+    /* float: left; */
+    text-align: center;
+    font-size: 17px;
+    /* vertical-align: top; */
+    /* letter-spacing: 1px; */
+    color: #333;
+}
+.selected_jd{
+    /* position: absolute;  */
+    /* overflow: hidden; */
+}
+
+
+/* .item_list_title_wrap{
     width: 60%;
     height: 35px;
     margin: auto;
     position: relative;
-}
+} */
 
 .item_list_banner_wrap{
 /*    height: 75px;*/
@@ -493,7 +548,7 @@ header nav ul li.active a{
       align-items: center;
     }
 
-.btn_lft{
+/* .btn_lft{
     position: absolute;
     left: -10px;
     top: 4px;
@@ -501,7 +556,6 @@ header nav ul li.active a{
     height: 20px;
     cursor: pointer;
     color: #55B190;
-    
 }
 
 .btn_rgt{
@@ -513,7 +567,7 @@ header nav ul li.active a{
     height: 20px;
     cursor: pointer;
     color: #55B190;
-}
+} */
 .banner_btn_lft img,
 .banner_btn_rgt img,
 .btn_lft img,
@@ -521,7 +575,7 @@ header nav ul li.active a{
    height: 100%;
 }
 
-.date_item_wrap ul{
+/* .date_item_wrap ul{
     display: block;
 }
 
@@ -539,8 +593,10 @@ header nav ul li.active a{
     overflow: hidden;
     box-sizing: border-box;
 }
-.title_anibox{position: absolute; overflow: hidden;}
-
+.title_anibox{
+    position: absolute; 
+    overflow: hidden;
+} */
 
 
 /*item_list 3열*/
