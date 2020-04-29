@@ -413,31 +413,8 @@ function setCookie1(name,value,days) {
 	document.cookie = name+"="+value+"; path=/";
 }
 
-/*배너 업로드 파일*/
-function bannerUpload(targetInput, complete){
-	var uploadFiles = targetInput.files[0];
-    var reader = new FileReader();
-    try{var fileName = uploadFiles.name;}catch(e){alert('파일을 선택해주시기 바랍니다.');return;};
-	reader.onload = function(evt) {
-		var url = '/back/00_include/fileUploadBanner.jsp';
-        var xhr = new XMLHttpRequest() || new window.XDomainRequest();
-        xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			var result = xhr.responseText;
-            complete(result);
-			};
-		};
-
-		var formData = new FormData();
-		formData.append('uploadFile[]', uploadFiles, fileName);
-		xhr.open("POST", url, false);
-		xhr.send(formData);
-   };
-   reader.readAsArrayBuffer(uploadFiles);
-};
 
 //헤더 아래 돌아가는 공지사항
-
 function header_notice(){
 	
     

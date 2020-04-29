@@ -1265,11 +1265,12 @@ span.shopUrl:hover{
     float:left;
 }
 
-.leaflet_edit_wrap>div{
-    margin-top: 20px
+.leaflet_edit_wrap > div{
+    margin-top: 20px;
 }
 
 .leaflet_btn_wrap{
+    margin-top: 0px;    
     overflow: hidden;
     width: 547px;
 }
@@ -1288,19 +1289,24 @@ span.shopUrl:hover{
 }
 
 /*leaflet_edit_btn*/
-.manage_jd_no_name{
+.modify_jd_no_name{
     display: inline-block;
     font-size: 13px;    
     padding: 4px 12px;
     border:1px solid #e0e0e0;
     background-color: #eaeaea;
+    margin: 0px;
+    height: 30px;    
 }
-.manage_jd_no{
+.modify_jd_no{
     display: inline-block;
-    font-size: 13px;  
-    padding: 4px 12px;  
+    font-size: 15px;  
+    font-weight: bold;
+    padding: 2px 12px;  
+    margin: 0px;
     border:1px solid #e0e0e0;
     text-align: center;
+    height: 30px;
 }
 
 .leaflet_new{
