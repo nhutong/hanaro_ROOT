@@ -908,6 +908,17 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
+.figure2 .price2{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 18px;
+    overflow: hidden;
+    height: 23px;
+    text-overflow: ellipsis;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
 .figure2 .price,.price2,.price3,.price4{
     display: block;
     letter-spacing: -1px;
