@@ -894,7 +894,7 @@ header nav ul li.active a{
 
 .price{
     font-weight: 900;
-    font-family: 'Dosis';
+    font-family: 'Roboto';
 }
 
 .figure1 .price,.price2,.price3,.price4{
@@ -905,7 +905,7 @@ header nav ul li.active a{
     height: 28px;
     text-overflow: ellipsis;
     font-weight: 900;
-    font-family: 'Dosis';
+    font-family: 'Roboto';
 }
 
 .figure2 .price,.price2,.price3,.price4{
@@ -916,13 +916,10 @@ header nav ul li.active a{
     height: 23px;
     text-overflow: ellipsis;
     font-weight: 900;
-    font-family: 'Dosis';
+    font-family: 'Roboto';
 }
 
-.price,
-.price2,
-.price3,
-.price4{
+.figure3 .price,.price2,.price3,.price4{
     display: block;
     letter-spacing: -1px;
     font-size: 16px;
@@ -930,9 +927,9 @@ header nav ul li.active a{
     height: 19px;
     text-overflow: ellipsis;
     font-weight: 900;
-    font-family: 'Dosis';
+    font-family: 'Roboto';
 }
-/*2020-05-07 가격 글씨체 굵게, 폰트 Dosis로 수정 - 미솔*/
+/*2020-05-07 가격 글씨체 굵게, 폰트 Roboto로 수정 - 미솔*/
 .price{
     color: #222;
 }
@@ -1222,7 +1219,7 @@ header nav ul li.active a{
 }
 
 .main_cont .item_list_inner_wrap .figure{
-    margin: 10px 5px 0 10px;
+    /* margin: 10px 5px 0 10px; */
     width: calc(33.333% - 17px);
 }
 

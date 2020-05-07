@@ -15,18 +15,31 @@
 
 /*2020-05-07 폰트추가 - 미솔*/
 
-/* dosis-700 - latin */
+/* roboto-700 - latin */
 @font-face {
-  font-family: 'Dosis';
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  src: url('../font/dosis-v17-latin-700.eot'); /* IE9 Compat Modes */
-  src: local(''),
-       url('../font/dosis-v17-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../font/dosis-v17-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../font/dosis-v17-latin-700.woff') format('woff'), /* Modern Browsers */
-       url('../font/dosis-v17-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../font/dosis-v17-latin-700.svg#Dosis') format('svg'); /* Legacy iOS */
+  src: url('../font/roboto-v20-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Bold'), local('Roboto-Bold'),
+       url('../font/roboto-v20-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../font/roboto-v20-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../font/roboto-v20-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('../font/roboto-v20-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../font/roboto-v20-latin-700.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+/* roboto-900 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../font/roboto-v20-latin-900.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Black'), local('Roboto-Black'),
+       url('../font/roboto-v20-latin-900.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../font/roboto-v20-latin-900.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../font/roboto-v20-latin-900.woff') format('woff'), /* Modern Browsers */
+       url('../font/roboto-v20-latin-900.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../font/roboto-v20-latin-900.svg#Roboto') format('svg'); /* Legacy iOS */
 }
 
 
