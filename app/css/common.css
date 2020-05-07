@@ -11,8 +11,23 @@
     url(../font/NonghyupM.woff) format("woff"),
     url(../font/NonghyupM.ttf) format("truetype"),
 	  url(../font/NonghyupM.eot) format("embedded-opentype");
-
 }
+
+/*2020-05-07 폰트추가 - 미솔*/
+
+@font-face{
+  font-family:"Dosis";
+  src: local("Dosis"),
+  url(../font/Dosis-Light.ttf) format("ttf"),
+  url(../font/Dosis-Medium.ttf) format("ttf"),
+  url(../font/Dosis-Regular.ttf) format("ttf"),
+  url(../font/Dosis-SemiBold.ttf) format("ttf"),
+  url(../font/Dosis-SemiBold.ttf) format("ttf"),
+  url(../font/Dosis-Bold.ttf) format("ttf"),
+  url(../font/Dosis-ExtraLight.ttf) format("ttf"),
+  url(../font/Dosis-ExtraBold.ttf) format("ttf");
+}
+
 
 html{overflow-x:hidden;}
 t{margin:0;padding:0}
