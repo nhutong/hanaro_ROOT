@@ -6,8 +6,8 @@ $(function () {
 	// 전역변수 파라미터 ( 판매장이 보낸 문자링크때 주로 사용된다. )	
 	vm_cp_no = getParameterByName('vm_cp_no');   // 판매장번호
 	menu_no  = getParameterByName('menu_no');    // 메뉴번호
-	//jd_no    = getParameterByName('jd_no');      // 전단번호
-	
+	jd_no    = getParameterByName('jd_no');      // 전단번호
+
 	// 앱 또는 모바웹을 통해서 개인정보동의 화면부터 접근할 경우, 메인화면에 도달하면,
 	// 판매장 정보가 셋팅된 상태이다. 이 판매장번호를 통해 해당 판매장의 메뉴리스트를
 	// 해더에 셋팅한다. 셋팅후 메뉴번호가 없을 경우에 대비하여, 최초 로딩할 메뉴번호를 로컬스토리지에 셋팅하고, getDateInterval()을 호출한다.
@@ -24,7 +24,7 @@ $(function () {
 	getLeft();
 
 	//상단 판매장명 바인당 > 오늘자 전단의 일자, 베너, 상품 바인딩
-	getCpName(vm_cp_no, menu_no);
+	getCpName(vm_cp_no, menu_no, jd_no);
 	setTimeout(function(){ clickEventApp(); }, 2000);
 
     /*판매장 변경시, iframe reload 한다.*/
@@ -173,8 +173,8 @@ $(function () {
 // }
 
 // 상단 판매장명을 바인딩
-function getCpName(rcv_vm_cp_no, rcv_menu_no){
-	console.log("rcv_vm_cp_no:"+rcv_vm_cp_no+"/rcv_menu_no:"+rcv_menu_no);
+function getCpName(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no){
+	//console.log("rcv_vm_cp_no:"+rcv_vm_cp_no+"/rcv_menu_no:"+rcv_menu_no+"/rcv_jd_no:"+rcv_jd_no);
 	$.ajax({
         url:'/back/02_app/mLeafletCpName.jsp?random=' + (Math.random()*99999), 
         data : {vm_cp_no: rcv_vm_cp_no},
@@ -186,12 +186,12 @@ function getCpName(rcv_vm_cp_no, rcv_menu_no){
         }else{
             $("#cpName").empty();
             //console.log("============= getCpName callback ========================");
-            console.log(result);
+            //console.log(result);
             var data = JSON.parse(result);
 			data['CompanyName'].forEach(function(item, index){ 
 				$("#cpName").append(decodeURIComponent(item['vm_cp_name']).replace(/\+/g,' '));
 			});
-			getJd(rcv_vm_cp_no, rcv_menu_no, 0, 0);
+			getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, 0);
         }
     });
 }
@@ -279,6 +279,9 @@ function getCpName(rcv_vm_cp_no, rcv_menu_no){
 // rcv_next_fg: (-1)rcv_jd_no 이전전단, (0)rcv_jd_no 전단, (1)rcv_jd_no 다음전단
 function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 	
+	if(rcv_jd_no == ""){ rcv_jd_no = 0; }
+	
+
 	var modify_jd_no = "";
 
 	////////관리자 페이지에서는 숨긴 전단도 보여줌!
@@ -297,6 +300,7 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
         method : 'GET' 
     }).done(function(result){
 		//console.log("============= mLeafletGetJd callback ========================");
+		//console.log(result);
         if(result == ('NoN') || result == 'exception error' || result == 'empty'  || result == 'interval error'){
 			modify_jd_no = "0";
 			if(rcv_jd_no == 0){
@@ -317,7 +321,8 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 				$("#item_list_inner_wrap").empty();
 				$("#item_list_inner_wrap").append('<div class="list_no_item">준비중입니다.</div>');				
 			}else{
-				console.log("ERROR:"+rcv_jd_no+"번 전단을 가져오지 못했음!");
+				$("#item_list_inner_wrap").empty();
+				$("#item_list_inner_wrap").append('<div class="list_no_item">해당 전단이 없습니다.</div>');	
 			}
         }else{            
 			//console.log("else:"+result);
@@ -326,7 +331,7 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
             data['List'].forEach(function(item, index){
 				modify_jd_no = decodeURIComponent(item['jd_no']);
 				if (decodeURIComponent(item['menu_type_cd']) == "MENU1" || decodeURIComponent(item['menu_type_cd']) == "MENU2" || decodeURIComponent(item['menu_type_cd']) == "MENU3"){
-					$("#selected_jd").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+',\''+decodeURIComponent(item['from_date_origin'])+'\',\''+decodeURIComponent(item['to_date_origin'])+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~'+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
+					$("#selected_jd").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+',\''+decodeURIComponent(item['from_date_origin'])+'\',\''+decodeURIComponent(item['to_date_origin'])+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
 				}else{
 					$("#selected_jd").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+',\''+decodeURIComponent(item['from_date_origin'])+'\',\''+decodeURIComponent(item['to_date_origin'])+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')</li>');
 				}
@@ -555,13 +560,13 @@ function getPdContent(rcv_jd_no) {
 				text += '       <a class="product" onclick="setPdName('+item['jd_prod_con_no']+', \''+item['pd_name']+'\');">'+item['pd_name']+'</a>'
 				if (item['img_path'] == "/upload/blank.png"){
 				}else{
-					text += '       <a class="price"   onclick="setPrice('+item['jd_prod_con_no']+', \''+item['price']+'\');">'+comma(item['price'])+'</a>' //2020-05-07 원 삭제 - 미솔
+					text += '       <a class="price"   onclick="setPrice('+item['jd_prod_con_no']+', \''+item['price']+'\');">'+comma(item['price'])+'원</a>'
 				}
 
 				if (item['card_discount'] != "")
 				{
 					var carded = Number(item['price']) - Number(item['card_discount']);
-					text += '   <a class="price2">'+comma(carded)+'</a>' //2020-05-07 원 삭제 - 미솔
+					text += '   <a class="price2">'+comma(carded)+'원</a>'
 				}else if(item['coupon_discount'] != "")
 				{
 					//                    var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
