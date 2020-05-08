@@ -5,8 +5,10 @@ var tpl_tr_tab1_table = _.template('<tr id="member<%- jd_no %>" data-no="<%- jd_
 	'<td><%- banner_cnt %></td>' +
 	'<td><%- prod_content_cnt %></td>' +
 	'<td><%- shorten_url %></td>' +
+	'<td><%- show_fg %></td>' +	
 	'<td><button onclick="manage_srturl_create(<%- jd_no %>)">생성</button></td>' +
-	'<td><button onclick="manage_jd_delete(<%- jd_no %>)">삭제</button></td>'
+	'<td><button onclick="manage_jd_delete(<%- jd_no %>)">삭제</button></td>' +
+	'<td><button onclick="manage_jd_show_hide(<%- jd_no %>)">노출/숨김</button></td>'
 	);
 
 $(function () {
@@ -451,43 +453,45 @@ function delete_btn(){
 // 	}
 // }
 
-function manage_jdbtn(){
+// function manage_jdbtn(){
 
-	var userCompanyNo = $("#sort_select").val();
-	var menuNo = $("#modify_menu_no").text();
-	//var userCompanyNo = getCookie("onSelectCompanyNo");
-	//var menuNo = getCookie("menu_no");
-	$.ajax({
-		url:'/back/03_leaflet/leafletJdList.jsp?random=' + (Math.random()*99999),
-		data : {userCompanyNo: userCompanyNo, menuNo: menuNo},
-		method : 'GET' 
-	}).done(function(result){
-		//console.log("leafletJdList=========================================");
-		if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-			//console.log(result);
-		}else{
-			//console.log("============= leafletJdList callback ========================");
-			//console.log(result);
-			var data = JSON.parse(result);
-			$('#layer_popup_leaflet_list').empty();
-			var text = '';
-			data['leaflet_list'].forEach(function(item, index){ 
-				text += '    <tr>           ';
-				text += '        <td>' + decodeURIComponent(item['jd_no'])            + '</td> ';					
-				text += '        <td>' + decodeURIComponent(item['period'])           + '</td> ';	
-				text += '        <td>' + decodeURIComponent(item['banner_cnt'])       + '</td> ';	
-				text += '        <td>' + decodeURIComponent(item['prod_content_cnt']) + '</td> ';	
-				text += '        <td>' + decodeURIComponent(item['shorten_url'])      + '</td> ';	
-				text += '        <td><button onclick="manage_srturl_create('+ decodeURIComponent(item['jd_no']) +')">생성</button></td>  ';
-				text += '        <td><button onclick="manage_jd_delete('+ decodeURIComponent(item['jd_no']) +')">삭제</button></td>  ';
-				text += '    </tr>          ';
-			});
-			//console.log(text);
-			$("#layer_popup_leaflet_list").append(text);
-			$("#layer_popup_leaflet_wrap").show();			
-		}
-	});	
-}
+// 	var userCompanyNo = $("#sort_select").val();
+// 	var menuNo = $("#modify_menu_no").text();
+// 	//var userCompanyNo = getCookie("onSelectCompanyNo");
+// 	//var menuNo = getCookie("menu_no");
+// 	$.ajax({
+// 		url:'/back/03_leaflet/leafletJdList.jsp?random=' + (Math.random()*99999),
+// 		data : {userCompanyNo: userCompanyNo, menuNo: menuNo},
+// 		method : 'GET' 
+// 	}).done(function(result){
+// 		//console.log("leafletJdList=========================================");
+// 		if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+// 			//console.log(result);
+// 		}else{
+// 			//console.log("============= leafletJdList callback ========================");
+// 			//console.log(result);
+// 			var data = JSON.parse(result);
+// 			$('#layer_popup_leaflet_list').empty();
+// 			var text = '';
+// 			data['leaflet_list'].forEach(function(item, index){ 
+// 				text += '    <tr>           ';
+// 				text += '        <td>' + decodeURIComponent(item['jd_no'])            + '</td> ';					
+// 				text += '        <td>' + decodeURIComponent(item['period'])           + '</td> ';	
+// 				text += '        <td>' + decodeURIComponent(item['banner_cnt'])       + '</td> ';	
+// 				text += '        <td>' + decodeURIComponent(item['prod_content_cnt']) + '</td> ';	
+// 				text += '        <td>' + decodeURIComponent(item['shorten_url'])      + '</td> ';	
+// 				text += '        <td>' + decodeURIComponent(item['show_fg'])          + '</td> ';									
+// 				text += '        <td><button onclick="manage_srturl_create('+ decodeURIComponent(item['jd_no']) +')">생성</button></td>  ';
+// 				text += '        <td><button onclick="manage_jd_delete('+ decodeURIComponent(item['jd_no']) +')">삭제</button></td>  ';
+// 				text += '        <td><button onclick="manage_jd_show_hide('+ decodeURIComponent(item['jd_no']) +')">노출/숨김</button></td>  ';				
+// 				text += '    </tr>          ';
+// 			});
+// 			//console.log(text);
+// 			$("#layer_popup_leaflet_list").append(text);
+// 			$("#layer_popup_leaflet_wrap").show();			
+// 		}
+// 	});	
+// }
 
 function manage_pagination_jdbtn(){
 	var userRoleCd = getCookie('userRoleCd');
@@ -540,7 +544,7 @@ function manage_srturl_create(rcv_jd_no){
 			}else{ //success
 				//console.log("============= LeafletUpdateShortURL callback ========================");
 				console.log(result);
-				manage_jdbtn();
+				manage_pagination_jdbtn();
 			}
 		});
 	}else{   //취소
@@ -562,12 +566,30 @@ function manage_jd_delete(rcv_jd_no){
 				//console.log("============= notice callback ========================");
 				//console.log(result);
 				// alert("삭제 완료되었습니다.");
-				manage_jdbtn();
+				manage_pagination_jdbtn();
 			}
 		});
 	}else{   //취소
 		return;
 	}	
+}
+
+function manage_jd_show_hide(rcv_jd_no){
+	$.ajax({
+		url:'/back/03_leaflet/leafletJdShowHide.jsp?random=' + (Math.random()*99999),
+		data : {jd_no: rcv_jd_no},
+		method : 'GET' 
+	}).done(function(result){
+		//console.log("noticeList=========================================");
+		if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+			//console.log(result);
+		}else{
+			//console.log("============= notice callback ========================");
+			//console.log(result);
+			// alert("삭제 완료되었습니다.");
+			manage_pagination_jdbtn();
+		}
+	});
 }
 
 function manage_close_jdbtn(){
