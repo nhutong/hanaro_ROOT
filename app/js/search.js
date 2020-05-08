@@ -73,7 +73,7 @@ function getPdContent() {
                 text += '       <a class="product" >'+item['pd_name']+'</a>'
 				if (item['img_path'] == "/upload/blank.png"){
 				}else{
-					text += '       <a class="price" >'+comma(item['price'])+'원</a>'
+					text += '       <a class="price" >'+comma(item['price'])+'</a>' //2020-05-07 원 삭제 - 미솔
 				}
 
                 text += '    </div>'

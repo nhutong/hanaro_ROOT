@@ -475,11 +475,13 @@ header nav ul li.active a{
 .date_item_list_wrap ul li{
     /* float: left; */
     text-align: center;
-    font-size: 17px;
+    font-size: 16px;
     /* vertical-align: top; */
     /* letter-spacing: 1px; */
     color: #333;
 }
+/*20200507 폰트사이즈 수정 - 미솔*/
+
 .selected_jd{
     /* position: absolute;  */
     /* overflow: hidden; */
@@ -843,8 +845,36 @@ header nav ul li.active a{
 }
 
 /*2020-02-18 주석처리 한 부분 - 나영*/
+/*2020-05-07 figure1,2 폰트사이즈 변경 - 미솔*/
 
-
+.figure.figure1 .product {
+    margin-top: 3px;
+    padding-top: 2px;
+    font-size: 20px;
+    color: #000;
+    letter-spacing: -1px;
+    min-height: 40px;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.figure.figure2 .product {
+    margin-top: 3px;
+    padding-top: 2px;
+    font-size: 16px;
+    color: #000;
+    letter-spacing: -1px;
+    min-height: 40px;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
 
 .product {
     display: block;
@@ -856,27 +886,51 @@ header nav ul li.active a{
     min-height: 40px;
     text-overflow: ellipsis;
 	display: -webkit-box;
-    display: -moz-box;
-    display: box;
     -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    box-orient: vertical;
     -webkit-line-clamp: 2;
-    -moz-line-clamp: 2;
-    line-clamp: 2;
     overflow: hidden;
 }
-/*2020-04-27 상품명 두줄로 변경 - 미솔*/
+/*2020-05-07 상품명 두줄로 변경 - 미솔*/
 
 .price{
     font-weight: 900;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
 }
 
-.price,
-.price2,
-.price3,
-.price4{
+.figure1 .price,.price2,.price3,.price4{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 24px;
+    overflow: hidden;
+    height: 28px;
+    text-overflow: ellipsis;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.figure2 .price2{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 18px;
+    overflow: hidden;
+    height: 23px;
+    text-overflow: ellipsis;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.figure2 .price,.price2,.price3,.price4{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 18px;
+    overflow: hidden;
+    height: 23px;
+    text-overflow: ellipsis;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.figure3 .price,.price2,.price3,.price4{
     display: block;
     letter-spacing: -1px;
     font-size: 16px;
@@ -884,9 +938,9 @@ header nav ul li.active a{
     height: 19px;
     text-overflow: ellipsis;
     font-weight: 900;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
 }
-/*2020-04-27 가격 글씨체 굵게, 폰트 Roboto로 수정 - 미솔*/
+/*2020-05-07 가격 글씨체 굵게, 폰트 Roboto로 수정 - 미솔*/
 .price{
     color: #222;
 }
@@ -1176,7 +1230,7 @@ header nav ul li.active a{
 }
 
 .main_cont .item_list_inner_wrap .figure{
-    margin: 10px 5px 0 10px;
+    /* margin: 10px 5px 0 10px; */
     width: calc(33.333% - 17px);
 }
 

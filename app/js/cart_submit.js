@@ -158,7 +158,7 @@ function getCpName(vm_cp_no){
 					text += '	</div>';
 					text += '	<div class="product_detail">';
 					text += '			<a href="#" class="product">'+item['pd_name']+'</a>';
-					text += '			<a href="#" class="price">'+comma(item['price'])+'원</a>';
+					text += '			<a href="#" class="price">'+comma(item['price'])+'</a>'; //2020-05-07 원 삭제 - 미솔
 					text += '	</div>';
 					text += '</div>';
                     text += '</div>';
