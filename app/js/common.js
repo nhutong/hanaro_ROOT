@@ -163,13 +163,22 @@ function getHeader(rcVm_p_no){
 // header menu를 셋팅한다.
 function getHeaderMenu(ff_vm_cp_no) {
 
+   	////////관리자 페이지에서는 숨긴 전단도 보여줌!
+	var isInIFrame = ( window.location != window.parent.location );
+	if (isInIFrame == true){
+		var rcv_show_fg = "'Y','N'";
+	}else{
+		var rcv_show_fg = "'Y'";
+	}
+	////////관리자 페이지에서는 숨긴 전단도 보여줌!
+
     $.ajax({
         url:'/back/02_app/mLeafletHeaderMenu.jsp?random=' + (Math.random()*99999), 
-        data : {userCompanyNo: ff_vm_cp_no},
+        data : {userCompanyNo: ff_vm_cp_no, rcv_show_fg: rcv_show_fg},
         method : 'GET' 
     }).done(function(result){
 
-        console.log("getHeaderMenu=========================================");
+        console.log("getHeaderMenu========================================="+result);
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
             console.log("getHeaderMenu"+result);
         }else{
