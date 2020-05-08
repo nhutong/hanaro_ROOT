@@ -21,7 +21,7 @@
 	Map<String, Object> results = new HashMap<>();
 
 	// 본사관리자(ROLE1), 판매장관리자(ROLE2) 만 접근가능
-	String requiredRoles = "ROLE1";
+	String requiredRoles = "ROLE1,ROLE2";
 %><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 
 	Integer userNo = (Integer)session.getAttribute("userNo");			
