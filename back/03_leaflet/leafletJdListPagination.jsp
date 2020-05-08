@@ -49,7 +49,8 @@
 		String queryTotal =
 			 " SELECT COUNT(*) AS count "
             +"   FROM vm_jundan "
-            +"  WHERE ref_company_no = "+userCompanyNo
+			+"  WHERE ref_company_no = "+userCompanyNo
+			+"    AND ifnull(del_fg,'N') != 'Y' "
             +"    AND menu_no ="+menuNo+"; ";
 			//("ROLE1".equals(userRoleCd) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
 			//("".equals(eventNo) ? "" : " AND event_no = " + eventNo ) ;
@@ -66,14 +67,15 @@
 		String queryList = " select a.jd_no, concat(date_format(a.from_date,'%y/%m/%d'),' ~ ',date_format(a.to_date,'%m/%d')) AS period "
             +" , ( SELECT count(d.jb_no) FROM vm_jundan_banner AS d where a.jd_no = d.ref_jd_no AND d.visible_fg = 'Y' ) AS banner_cnt "
             +" , ( SELECT count(e.jd_prod_con_no) FROM vm_jundan_prod_content AS e where a.jd_no = e.ref_jd_no ) AS prod_content_cnt "
-            +" , ifnull(shorten_url,'') as shorten_url "
+            +" , ifnull(shorten_url,'') as shorten_url, ifnull(a.show_fg,'N') as show_fg "
             +" FROM vm_jundan as a "
             +" inner join vm_menu AS b on a.menu_no = b.menu_no "
             +" inner join vm_company AS c ON a.ref_company_no = c.vm_cp_no "
             +" WHERE a.ref_company_no = "+userCompanyNo
             +" AND a.menu_no = "+menuNo
             +" AND a.from_date >= date_add(now(), INTERVAL -2 WEEK) "
-            +" AND a.to_date <= date_add(now(), INTERVAL 2 WEEK) "
+			+" AND a.to_date <= date_add(now(), INTERVAL 2 WEEK) "
+			+" AND ifnull(a.del_fg,'N') != 'Y' "
             +" ORDER BY a.from_date "
 			+" limit ?,? ; ";
 
