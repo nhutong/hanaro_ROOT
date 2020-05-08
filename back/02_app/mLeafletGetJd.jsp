@@ -48,7 +48,8 @@
 		+" left outer join vm_menu as b on ( a.menu_no = b.menu_no ) "
 		+" WHERE a.ref_company_no = "+userCompanyNo
 		+" and a.menu_no = "+menuNo
-		+" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" ;
+		+" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
+		+" and ifnull(del_fg,'N') != 'Y' ";
 
 		if ( rcv_jd_no.equals("0") ){ //오늘자 전단 조회
 			sql += " AND (left(from_date,10) <= left(now(),10) AND left(to_date,10) >= left(now(),10)); ";
@@ -72,7 +73,7 @@
 					+" ) "                   
 					+" order by a.from_date asc limit 0,1; ";
 			}else{
-				sql += " and a.jd_no = "+rcv_jd_no+";" ;
+				sql += " and a.jd_no = "+rcv_jd_no+"; ";
 			}
 		}	
 
