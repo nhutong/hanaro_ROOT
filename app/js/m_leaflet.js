@@ -436,40 +436,39 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 
 // 전단 배너를 가져온다.
 function getBanner(rcv_jd_no_b) {
-	if ( rcv_jd_no_b >= 1 ){
-		$.ajax({
-			url:'/back/02_app/mLeafletBanner.jsp?random=' + (Math.random()*99999), 
-			data : {jd_no: rcv_jd_no_b},
-			method : 'GET' 
-		}).done(function(result){
-			//console.log("BannerList=========================================");
-			if(result == ('NoN') || result == 'list error' || result == 'empty'){
-				$(".bxslider").html("");
-				//console.log(result);
-				$(".bx-wrapper").css({minHeight:'3px', height:'3px'});
-				$(".bx-pager-item").hide();
-			}else{
-				$(".bxslider").html("");
-				//console.log("============= Banner callback ========================");
-				//console.log(result);
-				$(".bxslider").css({minHeight:'75px', height:'75px', position:'relative'});
-				var data = JSON.parse(result);
-				data['BannerList'].forEach(function(item, index){  
-					var isInIFrame = ( window.location != window.parent.location );
-					$(".bxslider").empty();
-					if (isInIFrame == true)
-					{
-						//2020-02-19 나영 img 크기 수정
-						//$(".bxslider").append('<li onclick="getBannerList('+decodeURIComponent(item['jd_no'])+');"><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" ></li>');
-						$(".bxslider").append('<li><img onclick="getBannerList('+decodeURIComponent(item['jd_no'])+','+decodeURIComponent(item['menu_no'])+','+decodeURIComponent(item['vm_cp_no'])+');" src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" style="width : 100%;"></li>');
-					}else{
-						$(".bxslider").append('<li><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" style="width : 100%;"></li>');
-					}					
-				});
-				sliderInstance.reloadSlider();
-			}
-		});
-	}
+	$.ajax({
+		url:'/back/02_app/mLeafletBanner.jsp?random=' + (Math.random()*99999), 
+		data : {jd_no: rcv_jd_no_b},
+		method : 'GET' 
+	}).done(function(result){
+		//console.log("BannerList=========================================");
+		if(result == ('NoN') || result == 'list error' || result == 'empty'){
+			$(".bxslider").html("");
+			//console.log(result);
+			$(".bx-wrapper").css({minHeight:'3px', height:'3px'});
+			$(".bx-pager-item").hide();
+		}else{
+			$(".bxslider").html("");
+			//console.log("============= Banner callback ========================");
+			//console.log(result);
+			$(".bxslider").css({minHeight:'75px', height:'75px', position:'relative'});
+			var data = JSON.parse(result);
+			data['BannerList'].forEach(function(item, index){  
+				var isInIFrame = ( window.location != window.parent.location );
+				$(".bxslider").empty();
+				if (isInIFrame == true)
+				{
+					//2020-02-19 나영 img 크기 수정
+					//$(".bxslider").append('<li onclick="getBannerList('+decodeURIComponent(item['jd_no'])+');"><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" ></li>');
+					$(".bxslider").append('<li><img onclick="getBannerList('+decodeURIComponent(item['jd_no'])+','+decodeURIComponent(item['menu_no'])+','+decodeURIComponent(item['vm_cp_no'])+');" src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" style="width : 100%;"></li>');
+				}else{
+					$(".bxslider").append('<li><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" style="width : 100%;"></li>');
+				}					
+			});
+			sliderInstance.reloadSlider();
+		}
+	});
+
 }
 
 // 전단 컨텐츠 상품리스트를 불러온다.

@@ -83,6 +83,16 @@ $(function () {
 	}else{
 		$("#attachFile").append('<a href="/download/jundan_contents.xls">jundan_contents.xls</a>');
 	}
+
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = leadingZeros(today.getMonth()+1,2);
+	var day = leadingZeros(today.getDate(),2);
+
+	$("#jundan_from_date").val(year+'-'+month+'-'+day);
+	$("#jundan_end_date").val(year+'-'+month+'-'+day);
+
+
 });
 
 /*엑셀파일 업로더*/
@@ -304,7 +314,7 @@ $("#jundan_excel_new").on("click",function(){
             console.log("============= notice callback ========================");
             console.log(result);
             alert("등록이 완료되었습니다.");
-			location.href="/leaflet/leaflet.html?menu_no="+getCookie("menu_no");
+			location.href="/leaflet/leaflet.html?menu_no="+menu_no;
         }
     });
 });
