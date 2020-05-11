@@ -1922,6 +1922,10 @@ span.discount_notice{
     padding:9px;
     text-indent: -10px;
 }
+.leaflet_create_cont_1 ul li img{
+    width: 100%;
+}
+/*2020-05-11 이미지 가로 100% - 미솔*/
 
 .leaflet_create_date input{
     padding: 5px;
