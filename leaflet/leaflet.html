@@ -88,7 +88,8 @@
                             <!--2-->
                             <div class="leaflet_date">      
                                 <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
-							    <input type="text" id="date_jd_no" readonly>
+                                <span class="date_jd_no_title">전단번호 :</span>
+                                <input type="text" id="date_jd_no" readonly>
                                 <input type="text" placeholder="기간을 입력하세요" id="from_date_origin">
                                 <span>~</span>
                                 <input type="text" placeholder="기간을 입력하세요" id="to_date_origin">
@@ -96,6 +97,7 @@
                             </div>
                             <!--3-->
                             <div class="leaflet_banner">
+                                <div class="banner_jd_no_title">전단번호 :</div>
                                 <input type="text" id="banner_jd_no" readonly>
                                 <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span> 
                                 <span>배너 이미지800*400입니다. <br>
@@ -136,6 +138,7 @@
                             <!--4-->
                             <div class="leaflet_image">
                                 <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
+                                <span class="jd_prod_con_no_prod_thum_title">상품번호 :</span>
 								<input type="text" id="jd_prod_con_no_prod_thum" readonly>
 								<input type="hidden" id="pd_no_thum">
 								<input type="hidden" id="pd_code_thum">
@@ -165,6 +168,7 @@
                             <!--5-->
                             <div class="leaflet_goods_name">
                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
+                               <span class="jd_prod_con_no_prod_name_title">상품번호 :</span>
 							    <input type="text" id="jd_prod_con_no_prod_name" readonly>
                                 <input type="text" placeholder="상품명을 입력하세요" id="pd_name">
                                 <button class="leaflet_submit" id="pd_name_btn">확인</button>
@@ -172,6 +176,7 @@
                             <!--6-->
                             <div class="leaflet_goods_price">
                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>
+                               <span class="jd_prod_con_no_price_title">상품번호 :</span>
 							    <input type="text" id="jd_prod_con_no_price" readonly>
                                 <input type="text" placeholder="상품가격을 입력하세요" id="price">
                                 <span class="price_won">원</span>
@@ -179,9 +184,10 @@
                             </div>
                             <!--7-->
                             <div class="leaflet_discount">
-                               <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>                               
-                                <h5>혜택 및 상품 정보 안내</h5>
+                                <span class="cls_btn"><img src="../images/close_btn.png" alt="닫기"></span>                               
+                                <span class="jd_prod_con_no_discount_title">상품번호 :</span>
                                 <input type="text" id="jd_prod_con_no_discount" readonly>
+                                <h5>혜택 및 상품 정보 안내</h5>
                                 <div id="table">
                                 
                                     <table class="table">
@@ -294,16 +300,16 @@
                                             <td class="deact_empty"><input type="text" id="pd_price" onkeyup="javascript:Tcheck(this);"></td>
                                         </tr>
                                         <tr>
-                                            <td>카드할인</td>
-                                            <td class="deact_empty"><input type="text" id="card_discount1" onkeyup="javascript:Tcheck(this);"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>카드시작일</td>
+                                            <td>할인시작일</td>
                                             <td class="deact_empty"><input type="text" id="card_startDate"></td>
                                         </tr>
                                         <tr>
-                                            <td>카드종료일</td>
+                                            <td>할인종료일</td>
                                             <td class="deact_empty"><input type="text" id="card_endDate"></td>
+                                        </tr>                                        
+                                        <tr>
+                                            <td>카드할인</td>
+                                            <td class="deact_empty"><input type="text" id="card_discount1" onkeyup="javascript:Tcheck(this);"></td>
                                         </tr>
                                         <tr>
                                             <td>카드정보</td>

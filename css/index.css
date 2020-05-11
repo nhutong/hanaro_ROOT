@@ -1419,6 +1419,21 @@ span.shopUrl:hover{
 
 /*leaflet_date*/
 
+#date_jd_no{
+    font-size: 13px;
+    color: rgb(133, 133, 133);
+    background-color: transparent;
+    border-color: transparent;
+    width: 35px;
+    margin-right: 20px;
+}
+.date_jd_no_title{
+    font-size: 13px;
+    color: rgb(133, 133, 133);    
+    background-color: transparent;
+    border-color: transparent;
+}
+
 .leaflet_date{
     display: none;
     width: 540px;
@@ -1526,6 +1541,25 @@ span.shopUrl:hover{
     background-color: rgba(0,0,0,.5)
 }
 
+.banner_jd_no_title{
+    font-size: 13px;
+    color: rgb(133, 133, 133);    
+    background-color: transparent;
+    border-color: transparent;
+    width: 60px;
+    display: inline;
+}
+#banner_jd_no{
+    font-size: 13px;
+    color: rgb(133, 133, 133);
+    background-color: transparent;
+    border-color: transparent;
+    width: 35px;
+    margin: 0px;
+    text-align: left;
+    display: inline;
+}
+
 /*leaflet_image start*/
 
 .leaflet_image{
@@ -1602,6 +1636,11 @@ span.shopUrl:hover{
     border-radius: 50%;
 }
 
+#jd_prod_con_no_prod_thum{
+    font-size: 13px;
+    color: rgb(133, 133, 133);      
+}
+
 /*leaflet_goods_name,leaflet_goods_price starts*/
 
 
@@ -1649,6 +1688,35 @@ span.shopUrl:hover{
     margin-left: 10px;
 }
 
+#jd_prod_con_no_prod_name{
+    font-size: 13px;
+    color: rgb(133, 133, 133);
+    background-color: transparent;
+    border-color: transparent;
+    width: 35px;
+    margin-right: 20px;
+}
+.jd_prod_con_no_prod_name_title{
+    font-size: 13px;
+    color: rgb(133, 133, 133);    
+    background-color: transparent;
+    border-color: transparent;
+}
+
+#jd_prod_con_no_price{
+    font-size: 13px;
+    color: rgb(133, 133, 133);
+    background-color: transparent;
+    border-color: transparent;
+    width: 35px;
+    margin-right: 20px;
+}
+.jd_prod_con_no_price_title{
+    font-size: 13px;
+    color: rgb(133, 133, 133);    
+    background-color: transparent;
+    border-color: transparent;
+}
 
 
 /*leaflet_discount start*/
@@ -1726,7 +1794,20 @@ span.discount_notice{
 	resize : none;
 }
 
-
+#jd_prod_con_no_discount{
+    font-size: 13px;
+    color: rgb(133, 133, 133);
+    background-color: transparent;
+    border-color: transparent;
+    width: 35px;
+    margin-right: 20px;
+}
+.jd_prod_con_no_discount_title{
+    font-size: 13px;
+    color: rgb(133, 133, 133);    
+    background-color: transparent;
+    border-color: transparent;
+}
 
 /*new_item_wrap start*/
 
