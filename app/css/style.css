@@ -897,6 +897,13 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
+.figure1 .price2{
+    font-size: 24px;
+    letter-spacing: -1px;
+}
+/*2020-05-11 전단1열 행사가격 크기 수정 - 미솔*/
+
+
 .figure1 .price,.price2,.price3,.price4{
     display: block;
     letter-spacing: -1px;
@@ -942,11 +949,6 @@ header nav ul li.active a{
 }
 /*2020-05-07 가격 글씨체 굵게, 폰트 Roboto로 수정 - 미솔*/
 
-.figure1 .product_detail .price2{
-    font-size: 24px;
-    letter-spacing: -1px;
-}
-/*2020-05-11 전단1열 행사가격 크기 수정 - 미솔*/
 
 .price{
     color: #222;
