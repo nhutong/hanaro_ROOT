@@ -1880,7 +1880,7 @@ span.discount_notice{
 
 .leaflet_create_cont,
 .leaflet_create_date{
-    width: 540px;
+    width: 700px;
     background-color: #eeeeee;
     border: 1px solid #d0d0d0;
     margin: auto;
@@ -1888,13 +1888,14 @@ span.discount_notice{
     padding: 10px;
 }
 .leaflet_create_cont_1{
-    width: 540px;
+    width: 700px;
     background-color: #fff;
     border: 1px solid #d0d0d0;
     margin: auto;
     margin-top: 20px;
     padding: 10px;
 }
+/*2020-05-11 width값 크게 설정 - 미솔*/
 
 .leaflet_create_cont span,
 .leaflet_create_cont a{   
@@ -4695,8 +4696,9 @@ td.no_del_check input[type=text]{
 }
 
 .leaflet_file_add{
-padding-left:75px;
+padding-left:150px;
 }
+/*2020-05-11 padding-left 수정 - 미솔*/
 
 .leaflet_file_add form{
 	width:68%;
