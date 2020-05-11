@@ -1357,13 +1357,18 @@ span.shopUrl:hover{
     font-size: 15px;  
     font-weight: bold;
     padding: 2px 12px;  
-    margin: -10px 0px;
+    margin: 0px;
     border:1px solid #e0e0e0;
     text-align: center;
     height: 30px;
 }
 
-/*2020.05.11 마진값 변경 - 미솔*/
+.leaflet_search{
+    font-size: 14px;
+    padding: 0 2px;
+}
+
+/*2020.05.11 마진값 변경, 이미지 검색하기 버튼 글자크기 수정 - 미솔*/
 
 .leaflet_new{
     padding: 5px 10px;
