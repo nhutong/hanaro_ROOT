@@ -1919,7 +1919,7 @@ span.discount_notice{
     line-height: 1.5em;
 }
 
-.leaflet_create_cont .leaflet_create_cont_1 ul li img{
+#tab1 .leaflet_create_cont_1 ul li img{
     width: 100%;
     text-indent: 0px;
 }
