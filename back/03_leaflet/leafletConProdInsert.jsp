@@ -71,7 +71,7 @@
 			// 순서
 		    col = 0;
 		    cell = sheet.getCell(col,i);
-		    String string0 = cell.getContents().trim();
+		    String string0 = cell.getContents().trim().replaceAll(",", "");
 
 			if ( string0.equals("") ){
 				//순서가 존재하지 않으므로 중단한다.
@@ -91,7 +91,7 @@
 			// 상품코드 ( encode )
 		    col = 1;
 		    cell = sheet.getCell(col,i);
-		    String string1 = cell.getContents().trim();
+		    String string1 = cell.getContents().trim().replaceAll(",", "");
 			if ( string1.equals("") ){
 				//상품코드를 입력하지 않았기 때문에 중단한다.
 				out.clear();
@@ -99,6 +99,13 @@
 				return;
 			}else{
 				string1 = strEncode(string1);
+				if ( isNumeric(string1) == true ){
+				}else{
+					//상품코드가 숫자가 아니므로 중단한다.
+					out.clear();
+					out.print("pd_code_not_number");
+					return;
+				}				
 			}
 
 			// 상품명 ( encode )
@@ -117,7 +124,7 @@
 			// 판매가
 			col = 3;
 		    cell = sheet.getCell(col,i);
-		    String string3 = cell.getContents().trim();
+		    String string3 = cell.getContents().trim().replaceAll(",", "");
 			if ( string3.equals("") ){
 				//판매가 존재하지 않으므로 중단한다.
 				out.clear();
@@ -136,7 +143,7 @@
 			// 카드할인
 			col = 4;
 		    cell = sheet.getCell(col,i);
-		    String string4 = cell.getContents().trim();
+		    String string4 = cell.getContents().trim().replaceAll(",", "");
 			if ( string4.equals("") ){
 			}else{
 				if ( isNumeric(string4) == true ){
@@ -211,7 +218,7 @@
 			// 쿠폰할인
 			col = 9;
 		    cell = sheet.getCell(col,i);
-		    String string9 = cell.getContents().trim();
+		    String string9 = cell.getContents().trim().replaceAll(",", "");
 			if ( string9.equals("") ){
 			}else{
 				if ( isNumeric(string9) == true ){

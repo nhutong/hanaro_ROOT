@@ -283,6 +283,8 @@ $("#jundan_excel_new").on("click",function(){
 			alert("엑셀파일에서 순서가 숫자가 아닌 행이 존재합니다.");
 		}else if(result == ('pd_code_no_exist')){
 			alert("엑셀파일에서 상품코드가 입력되지 않은 행이 존재합니다.");
+		}else if(result == ('pd_code_not_number')){
+			alert("엑셀파일에서 상품코드가 숫자가 아닌 행이 존재합니다.");			
 		}else if(result == ('pd_name_no_exist')){
 			alert("엑셀파일에서 상품명이 입력되지 않은 행이 존재합니다.");
 		}else if(result == ('price_no_exist')){

@@ -536,7 +536,6 @@ function getPdContent(rcv_jd_no) {
 				if (item['card_discount'] != "")
 				{
 					text += '		<img src="../images/leaflet_icon1.png" alt="카드할인">'
-					text += '		<span>'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</span>'
 				// 다다익선
 				}else if (item['dadaiksun'] != "")
 				{
@@ -553,6 +552,16 @@ function getPdContent(rcv_jd_no) {
 					text += '       '
 				}
 
+				//카드 할인기간을 카드에 한정하지 않고 값이 있을경우 표시되도록 용도변경
+				if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""){
+					text += '		<span>'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</span>'
+				}else if(item['card_discount_from_date'] != ""){
+					text += '		<span>'+item['card_discount_from_date']+'</span>'
+				}else if(item['card_discount_end_date'] != ""){
+					text += '		<span>'+item['card_discount_end_date']+'</span>'
+				}else{
+				}
+								
                 text += '		</div>'
                 text += '   </div>'
                 text += '   <div class="product_detail" onclick="setPdDetail('+item['jd_prod_con_no']+', \''+item['pd_name']+'\', \''+item['price']+'\')">'

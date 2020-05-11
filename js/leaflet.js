@@ -5,9 +5,9 @@ var tpl_tr_tab1_table = _.template('<tr id="member<%- jd_no %>" data-no="<%- jd_
 	'<td><%- banner_cnt %></td>' +
 	'<td><%- prod_content_cnt %></td>' +
 	'<td><%- shorten_url %></td>' +
-	'<td><%- show_fg %></td>' +	
 	'<td><button onclick="manage_srturl_create(<%- jd_no %>)">생성</button></td>' +
 	'<td><button onclick="manage_jd_delete(<%- jd_no %>)">삭제</button></td>' +
+	'<td><%- show_fg %></td>' +		
 	'<td><button onclick="manage_jd_show_hide(<%- jd_no %>)">노출/숨김</button></td>'
 	);
 
@@ -512,7 +512,7 @@ function manage_pagination_jdbtn(){
 		dataSource: '/back/03_leaflet/leafletJdListPagination.jsp?userRoleCd='+userRoleCd+'&userCompanyNo='+userCompanyNo+'&menuNo='+menuNo,
 		locator: 'list',
 		totalNumberLocator: function(data) {
-			return data.total;
+			return data.total - 1;
 		},
 		pageSize: 8,
 		className: 'paginationjs-theme-green paginationjs-big',
