@@ -162,18 +162,18 @@ function getLeftNav(rcv_vm_cp_no) {
 						document.getElementById("nh_leaflet").src = "../app/m_leaflet/m_leaflet.html?vm_cp_no="+rcv_vm_cp_no+"&menu_no="+decodeURIComponent(item['menu_no']); //iframe바인딩					
 						$("#modify_menu_no").text( decodeURIComponent(item['menu_no']) ); //화면에 전단번호 노출!!
 						$("#modify_menu_type_cd").text( decodeURIComponent(item['menu_type_cd']) ); //화면에 전단번호 노출!!
-						$("#myplanb_menu li:nth-child("+(index+1)+")").addClass("active");						// 메뉴를 활성화 한다.						
+						$("#myplanb_menu li:nth-child("+(index+1)+")").addClass("active");	// 메뉴를 활성화 한다.
 					}	
 				}else{
 					if ( menu_no == decodeURIComponent(item['menu_no']) ){
 						document.getElementById("nh_leaflet").src = "../app/m_leaflet/m_leaflet.html?vm_cp_no="+rcv_vm_cp_no+"&menu_no="+decodeURIComponent(item['menu_no']); //iframe바인딩					
 						$("#modify_menu_no").text( decodeURIComponent(item['menu_no']) ); //화면에 전단번호 노출!!
 						$("#modify_menu_type_cd").text( decodeURIComponent(item['menu_type_cd']) ); //화면에 전단번호 노출!!						
-						$("#myplanb_menu li:nth-child("+(index+1)+")").addClass("active");						// 메뉴를 활성화 한다.						
+						$("#myplanb_menu li:nth-child("+(index+1)+")").addClass("active");	// 메뉴를 활성화 한다.
 					}	
 				}
 			});
-			//$("#myplanb_menu li:first-child").addClass("active");						// 메뉴를 활성화 한다.			
+			//$("#myplanb_menu li:first-child").addClass("active");	// 메뉴를 활성화 한다.
 		}
 	});	
 }
