@@ -953,10 +953,6 @@ header nav ul li.active a{
 }
 /*2020-05-07 가격 글씨체 굵게, 폰트 Roboto로 수정 - 미솔*/
 
-.bx-viewport ul li {
-    padding-bottom: 10px;
-}
-/*2020-05-11전단 배너 추가 버튼 하단 마진값 추가 - 미솔*/
 
 .price{
     color: #222;
