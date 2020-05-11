@@ -446,7 +446,7 @@ function getBanner(rcv_jd_no_b) {
 			$(".bxslider").html("");
 			var isInIFrame = ( window.location != window.parent.location );
 			if (isInIFrame == true){
-				$(".bxslider").append('<li onclick="getBannerList('+rcv_jd_no_b+')" style="width:45%;text-align:center;color:#0c3691;">전단 배너가 없어요(눌러서 추가하기)</a></li>');
+				$(".bxslider").append('<li onclick="getBannerList('+rcv_jd_no_b+')" style="width:45%;text-align:center;color:#20469a;">전단 배너가 없어요(눌러서 추가하기)</a></li>');
 			}								
 			//console.log(result);
 			$(".bx-wrapper").css({minHeight:'3px', height:'3px'});
