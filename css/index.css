@@ -1362,11 +1362,14 @@ span.shopUrl:hover{
     font-size: 15px;  
     font-weight: bold;
     padding: 2px 12px;  
-    margin: 0px;
+    margin: -10px 0px;
     border:1px solid #e0e0e0;
     text-align: center;
     height: 30px;
 }
+
+/*2020.05.11 마진값 변경 - 미솔*/
+
 .leaflet_new{
     padding: 5px 10px;
     background-color: #248c45;
@@ -1528,13 +1531,20 @@ span.shopUrl:hover{
     width: 540px;
     border:1px solid #d0d0d0;
     padding: 20px 10px;
-    text-align: center;
     position: relative;
 }
+
+/*2020.05.11 왼쪽정렬로 수정 - 미솔*/
 
 .leaflet_image.active{
     display: block;
 }
+
+.leaflet_image #jd_prod_con_no_prod_thum{
+    border: none;
+}
+
+/*2020.05.11 선 삭제 - 미솔*/
 
 .leaflet_image input{
     width: 300px;
@@ -1597,13 +1607,14 @@ span.shopUrl:hover{
 .leaflet_goods_name,
 .leaflet_goods_price{
     display: none;
-    text-align: center;
-     width: 540px;
+    width: 540px;
     padding: 10px;
     border:1px solid #d0d0d0;
     background-color: #eaeaea;
     position: relative;
 }
+
+/*2020.05.11 왼쪽정렬로 수정 - 미솔*/
 
 .leaflet_goods_name.active,
 .leaflet_goods_price.active{
