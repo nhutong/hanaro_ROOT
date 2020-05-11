@@ -1918,15 +1918,17 @@ span.discount_notice{
     padding:15px;
     line-height: 1.5em;
 }
-.leaflet_create_cont_1 ul li{
-    padding:9px;
-    text-indent: -10px;
-}
-.leaflet_create_cont_1 ul li img{
+
+.leaflet_create_cont .leaflet_create_cont_1 ul li img{
     width: 100%;
     text-indent: 0px;
 }
 /*2020-05-11 이미지 가로 100% - 미솔*/
+
+.leaflet_create_cont_1 ul li{
+    padding:9px;
+    text-indent: -10px;
+}
 
 .leaflet_create_date input{
     padding: 5px;
