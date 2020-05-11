@@ -1214,11 +1214,6 @@ span.shopUrl:hover{
     margin:0 0 5px 5px;
     float:left;
 }
-.leaflet_banner input{
-    border:1px solid #aaaaaa;
-    font-size: 13px;
-    margin-left:70px;
-}
 
 .leaflet_submit{
     padding: 5px 20px;
@@ -1483,6 +1478,13 @@ span.shopUrl:hover{
 
 .leaflet_banner ul li img{
     width: 240px;
+}
+
+.leaflet_banner input{
+    border:1px solid #aaaaaa;
+    font-size: 13px;
+    margin-left:70px;
+    color: #000;
 }
 
 .leaflet_banner_add{

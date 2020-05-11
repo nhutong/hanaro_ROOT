@@ -444,6 +444,10 @@ function getBanner(rcv_jd_no_b) {
 		//console.log("BannerList=========================================");
 		if(result == ('NoN') || result == 'list error' || result == 'empty'){
 			$(".bxslider").html("");
+			var isInIFrame = ( window.location != window.parent.location );
+			if (isInIFrame == true){
+				$(".bxslider").append('<li onclick="getBannerList('+rcv_jd_no_b+')" style="width:45%;text-align:center;color:#696969;">슬라이딩 배너 없음(여기를 눌러서 추가)</a></li>');
+			}								
 			//console.log(result);
 			$(".bx-wrapper").css({minHeight:'3px', height:'3px'});
 			$(".bx-pager-item").hide();
@@ -454,13 +458,10 @@ function getBanner(rcv_jd_no_b) {
 			$(".bxslider").css({minHeight:'75px', height:'75px', position:'relative'});
 			var data = JSON.parse(result);
 			data['BannerList'].forEach(function(item, index){  
-				var isInIFrame = ( window.location != window.parent.location );
 				$(".bxslider").empty();
-				if (isInIFrame == true)
-				{
-					//2020-02-19 나영 img 크기 수정
-					//$(".bxslider").append('<li onclick="getBannerList('+decodeURIComponent(item['jd_no'])+');"><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" ></li>');
-					$(".bxslider").append('<li><img onclick="getBannerList('+decodeURIComponent(item['jd_no'])+','+decodeURIComponent(item['menu_no'])+','+decodeURIComponent(item['vm_cp_no'])+');" src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" style="width : 100%;"></li>');
+				var isInIFrame = ( window.location != window.parent.location );
+				if (isInIFrame == true){
+					$(".bxslider").append('<li><img onclick="getBannerList('+decodeURIComponent(item['jd_no'])+')" src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" style="width : 100%;"></li>');
 				}else{
 					$(".bxslider").append('<li><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" style="width : 100%;"></li>');
 				}					
@@ -742,7 +743,7 @@ function addRmZzim(rcv_jd_prod_con_no){
 // 4. 상품하단 클릭!! : setSaleDetail(394)
 // 5. 상품명   클릭!! : setPdName(394, 상품명)
 // 6. 상품가격 클릭!! : setPrice(394, 가격)
-// 7. 상품     드레그!!
+// 7. 상품     드레그!! : 
 
 //1. 전단일자 클릭!!
 // 전단기간일 정보를 부모창에 바인딩한다. => class="modify_jd_no"
@@ -750,7 +751,7 @@ function getDateThree(jdNo, startDate, endDate){
 	var isInIFrame = ( window.location != window.parent.location );
 	if (isInIFrame == true)
 	{
-		$(parent.document).find("#modify_jd_no").text(jdNo);
+		$(parent.document).find("#modify_jd_no").val(jdNo);
  		$(parent.document).find(".leaflet_del").hide();
  		window.parent.document.getElementById("date_jd_no").value = jdNo;
  		window.parent.document.getElementById("from_date_origin").value = startDate;
@@ -761,81 +762,87 @@ function getDateThree(jdNo, startDate, endDate){
 }
 
 // 전단 배너리스트를 부모창에 가져온다.
-function getBannerList(rcv_jd_no_p_b) {
+function getBannerList(rcv_jd_no) {
+	var isInIFrame = ( window.location != window.parent.location );
+	if (isInIFrame == true)
+	{
+		$(parent.document).find("#banner_jd_no").val(rcv_jd_no);
 
-	window.parent.cssRetach();
-	$(parent.document).find(".leaflet_del").hide();
-	$.ajax({
-		url:'/back/02_app/mLeafletBannerList.jsp?random=' + (Math.random()*99999), 
-		data : {jd_no: rcv_jd_no_p_b},
-		method : 'GET' 
-	}).done(function(result){
-		//console.log(result);
-		console.log("bannerParentList=========================================");
-		if(result == ('NoN') || result == 'list error' || result == 'empty'){
-
-			window.parent.$("#sortable").empty();
-
-		}else{
-			//console.log("============= bannerParentList callback1 ========================");
+		window.parent.cssRetach();
+		$(parent.document).find(".leaflet_del").hide();
+		$.ajax({
+			url:'/back/02_app/mLeafletBannerList.jsp?random=' + (Math.random()*99999), 
+			data : {jd_no: rcv_jd_no},
+			method : 'GET' 
+		}).done(function(result){
 			//console.log(result);
-			var data = JSON.parse(result);
+			console.log("bannerParentList=========================================");
+			if(result == ('NoN') || result == 'list error' || result == 'empty'){
 
-			window.parent.$("#sortable").empty();
+				window.parent.$("#sortable").empty();
 
-			data['BannerList'].forEach(function(item, index){ 
-				if (decodeURIComponent(item['visible_fg']) == "Y")
-				{
-					window.parent.$("#sortable").append('<li class="ui-state-default leaflet_banner_hover" id="'+decodeURIComponent(item['jb_no'])+'"><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" alt=""><span>숨기기</span>');
-				}else{
-					window.parent.$("#sortable").append('<li class="ui-state-default leaflet_banner_hover" id="'+decodeURIComponent(item['jb_no'])+'"><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" alt=""><span class="active">숨기기</span>');
-				}
-			});
+			}else{
+				//console.log("============= bannerParentList callback1 ========================");
+				//console.log(result);
+				var data = JSON.parse(result);
 
-//			window.parent.$(".leaflet_banner").addClass("active");
+				window.parent.$("#sortable").empty();
 
-			// 부모창 우측 배너 리스트의 정렬 순서를 cookie에 저장한다.
-			window.parent.$("#sortable").sortable({
-				items: "li:not(.ui-state-disabled)",
-				update: function () {
-							var strItems = "";
-
-							window.parent.$("#sortable").children().each(function (i) {
-								var li = $(this);
-								strItems += li.attr("id") + ':' + i + ',';
-							});
-							//console.log(strItems);
-							setCookie1("bannerOrderStr",strItems);
-							}
-			});
-
-			//숨기기
-			window.parent.$(".leaflet_banner_hover").click(function(){
-				$(this).children("span").toggleClass("active");
-				
-				bannerHoverId = $(this).attr("id");
-
-				$.ajax({
-					url:'/back/03_leaflet/leafletBannerHide.jsp?random=' + (Math.random()*99999),
-					data : {jb_no: bannerHoverId }
-				}).done(function(result){
-
-					//console.log("noticeList=========================================");
-					if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-						//console.log(result);
+				data['BannerList'].forEach(function(item, index){ 
+					if (decodeURIComponent(item['visible_fg']) == "Y")
+					{
+						window.parent.$("#sortable").append('<li class="ui-state-default leaflet_banner_hover" id="'+decodeURIComponent(item['jb_no'])+'"><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" alt=""><span>숨기기</span>');
 					}else{
-						//console.log("============= bannerParentList callback2 ========================");
-						//console.log(result);
-						alert("숨기기 수정이 완료되었습니다.");
-
-						$(parent.document).find(".leaflet_banner").removeClass("active");
-						window.location.reload();						
+						window.parent.$("#sortable").append('<li class="ui-state-default leaflet_banner_hover" id="'+decodeURIComponent(item['jb_no'])+'"><img src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" alt=""><span class="active">숨기기</span>');
 					}
 				});
-			});
-		}
-	});
 
+	//			window.parent.$(".leaflet_banner").addClass("active");
+
+				// 부모창 우측 배너 리스트의 정렬 순서를 cookie에 저장한다.
+				window.parent.$("#sortable").sortable({
+					items: "li:not(.ui-state-disabled)",
+					update: function () {
+								var strItems = "";
+
+								window.parent.$("#sortable").children().each(function (i) {
+									var li = $(this);
+									strItems += li.attr("id") + ':' + i + ',';
+								});
+								//console.log(strItems);
+								setCookie1("bannerOrderStr",strItems);
+								}
+				});
+
+				//숨기기
+				window.parent.$(".leaflet_banner_hover").click(function(){
+					$(this).children("span").toggleClass("active");
+					
+					bannerHoverId = $(this).attr("id");
+
+					$.ajax({
+						url:'/back/03_leaflet/leafletBannerHide.jsp?random=' + (Math.random()*99999),
+						data : {jb_no: bannerHoverId }
+					}).done(function(result){
+
+						//console.log("noticeList=========================================");
+						if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+							//console.log(result);
+						}else{
+							//console.log("============= bannerParentList callback2 ========================");
+							//console.log(result);
+							alert("숨기기 수정이 완료되었습니다.");
+
+							$(parent.document).find(".leaflet_banner").removeClass("active");
+							window.location.reload();						
+						}
+					});
+				});
+			}
+		});
+	}else{
+	
+	}
 }
 
 // 썸네일이미지를 업데이트시 사용할 정보를 부모창에 바인딩한다.
@@ -848,7 +855,7 @@ function setThumImg(rcvJdProdConNo, rcvPdNo, rcvPdCode){
 		$(parent.document).find(".leaflet_del").show();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
 
 		$("#nh_leaflet").contents().find(".thumb_info, .thumb_wrap>a").click(function(){
            $(".new_item_wrap").hide();
@@ -883,7 +890,7 @@ function setSaleDetail(rcvJdProdConNo){
 		$(parent.document).find(".leaflet_del").show();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
 
 		$.ajax({
 			url:'/back/03_leaflet/leafletProdSaleDetail.jsp?random=' + (Math.random()*99999), 
@@ -937,7 +944,7 @@ function setPdName(rcvJdProdConNo, rcvPdName){
 		$(parent.document).find(".leaflet_del").hide();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
 
 		$(".product").click(function(){
             $(".new_item_wrap").hide();
@@ -965,7 +972,7 @@ function setPrice(rcvJdProdConNo, rcvPrice){
 		$(parent.document).find(".leaflet_del").hide();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
 		
 		$(".price").click(function(){
             $(".new_item_wrap").hide();

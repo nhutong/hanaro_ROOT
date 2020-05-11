@@ -52,6 +52,7 @@ $(function () {
 		}else{
 			// 1. 현재 선택한 판매장 정보를 쿠키에 저장한다.
 			setCookie1("onSelectCompanyNo",$("#sort_select").val());
+			vm_cp_no = $("#sort_select").val();
 			getLeftNav(getCookie("onSelectCompanyNo"));
 			localStorage.setItem("vm_cp_no",$("#sort_select").val());			
 			setCookie1("menu_no","");
@@ -314,7 +315,7 @@ $("#jundan_excel_new").on("click",function(){
             console.log("============= notice callback ========================");
             console.log(result);
             alert("등록이 완료되었습니다.");
-			location.href="/leaflet/leaflet.html?menu_no="+menu_no;
+			location.href="/leaflet/leaflet.html?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no;
         }
     });
 });
