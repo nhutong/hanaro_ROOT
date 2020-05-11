@@ -900,6 +900,10 @@ header nav ul li.active a{
 .figure1 .price2{
     font-size: 24px;
     letter-spacing: -1px;
+    height: 28px;
+    overflow: hidden;
+    font-weight: 900;
+    font-family: 'Roboto';
 }
 /*2020-05-11 전단1열 행사가격 크기 수정 - 미솔*/
 
@@ -949,8 +953,8 @@ header nav ul li.active a{
 }
 /*2020-05-07 가격 글씨체 굵게, 폰트 Roboto로 수정 - 미솔*/
 
-.item_list_banner_wrap ul li {
-    margin-bottom: 4px;
+.bx-viewport ul li {
+    padding-bottom: 10px;
 }
 /*2020-05-11전단 배너 추가 버튼 하단 마진값 추가 - 미솔*/
 
