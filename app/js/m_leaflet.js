@@ -598,17 +598,24 @@ function getPdContent(rcv_jd_no) {
 				text += '    	  <div class="leaflet_txt">'
 				text += '    		  <div class="leaflet_discount">'                 
 				text += '    			 <h5>혜택 및 상품 정보 안내</h5>'
-				text += '    			 <div id="table">'				
+				text += '    			 <div id="table">'			
+				
+				text += '    				<table class="table" >'
+
+				// 할인기간
+				if (decodeURIComponent(item['card_discount']) != ""){
+					text += '    				   <tr class="hide table-line">'
+					text += '    					  <td width="15%">'
+					text += '    						<div class="discount_img" style="font-size:10px;text-align:center;">'
+					text += '    							할인기간'
+					text += '    						</div>'
+					text += '    					  </td>'
+					text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</td>'
+					text += '    					</tr>'
+				}
+				
 				// 카드할인
-				if (decodeURIComponent(item['card_discount']) != "")
-				{
-					text += '    				<table class="table" >'
-					//text += '    				   <tr>'
-					//text += '    					  <th>할인종류</th>'
-					//text += '    					  <th>할인액/혜택</th>'
-					//text += '    					  <th>기간</th>'
-					//text += '    					  <th>혜택상세</th>'
-					//text += '    				   </tr>'
+				if (decodeURIComponent(item['card_discount']) != ""){
 					text += '    				   <tr class="hide table-line">'
 					text += '    					  <td width="15%">'
 					text += '    						<div class="discount_img">'
@@ -616,31 +623,13 @@ function getPdContent(rcv_jd_no) {
 					text += '    						</div>'
 					text += '    					  </td>'
 					text += '    					  <td width="20%" style="text-align : center">'+comma(item['card_discount'])+'원</td>'
-					text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</td>'
-					text += '    					  <td>'+item['card_info']+'<br>'+item['card_restrict']+'</td>'
+					text += '    					  <td>'+item['card_info']+'</td>'
+					text += '    					  <td>'+item['card_restrict']+'</td>'					
 					text += '    					</tr>'
+				}
 
-					if (decodeURIComponent(item['coupon_discount']) != ""){
-						text += '    					<tr class="hide table-line">'
-						text += '    					   <td>'
-						text += '    						  <div class="discount_img">'
-						text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
-						text += '    						  </div>'
-						text += '    					   </td>'
-						text += '    					   <td colspan=3>'+comma(item['coupon_discount'])+'원 추가할인</td>'
-						text += '    					 </tr>'
-					}
-
-				// 다다익선
-				}else if (item['dadaiksun'] != "")
-				{
-					text += '    				<table class="table" >'
-					//text += '    				   <tr>'
-					//text += '    					  <th>할인종류</th>'
-					//text += '    					  <th>할인액/혜택</th>'
-					//text += '    					  <th>기간</th>'
-					//text += '    					  <th>혜택상세</th>'
-					//text += '    				   </tr>'
+				//다다익선
+				if (decodeURIComponent(item['dadaiksun']) != ""){				
 					text += '    					<tr class="hide table-line">'
 					text += '    					   <td>'
 					text += '    						  <div class="discount_img">'
@@ -650,16 +639,10 @@ function getPdContent(rcv_jd_no) {
 					text += '    					   <td colspan=3>'+item['dadaiksun']+'</td>'
 					text += '    					   <td colspan=3>'+item['dadaiksun_info']+'</td>';  
 					text += '    					 </tr>'
-				// 쿠폰할인
-				}else if (decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ') != "")
-				{
-					text += '    				<table class="table" >'
-					text += '    				   <tr>'
-					text += '    					  <th>할인종류</th>'
-					text += '    					  <th>할인금액</th>'
-					text += '    					  <th>기간</th>'
-					text += '    					  <th>혜택상세</th>'
-					text += '    				   </tr>'
+				}
+
+				//쿠폰할인
+				if (decodeURIComponent(item['coupon_discount']) != ""){
 					text += '    					<tr class="hide table-line">'
 					text += '    					   <td>'
 					text += '    						  <div class="discount_img">'
@@ -668,8 +651,6 @@ function getPdContent(rcv_jd_no) {
 					text += '    					   </td>'
 					text += '    					   <td colspan=3>'+decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원 추가할인</td>'
 					text += '    					 </tr>'
-				// 적용사항 없음
-				}else{
 				}
 
 				text += '    				 </table>'
