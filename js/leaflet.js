@@ -93,7 +93,7 @@ $(function () {
 
 		//var jd_no = getCookie("jd_no");
 		var jd_no = $("#modify_jd_no").text();
-		if ( jd_no == null || chrLen(jd_no) == 0)
+		if ( jd_no == null || chrLen(jd_no) == 0 || jd_no == 0 )
 		{
 			alert("유효한 전단이 없습니다. 새로운 전단제작하기 버튼을 눌러 전단을 제작해주세요.");
 			return false;

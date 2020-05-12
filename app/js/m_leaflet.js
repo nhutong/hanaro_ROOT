@@ -866,7 +866,7 @@ function setThumImg(rcvJdProdConNo, rcvPdNo, rcvPdCode){
 		$(parent.document).find(".leaflet_del").show();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
 
 		$("#nh_leaflet").contents().find(".thumb_info, .thumb_wrap>a").click(function(){
            $(".new_item_wrap").hide();
@@ -901,7 +901,7 @@ function setSaleDetail(rcvJdProdConNo){
 		$(parent.document).find(".leaflet_del").show();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
 
 		$.ajax({
 			url:'/back/03_leaflet/leafletProdSaleDetail.jsp?random=' + (Math.random()*99999), 
@@ -955,7 +955,7 @@ function setPdName(rcvJdProdConNo, rcvPdName){
 		$(parent.document).find(".leaflet_del").hide();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
 
 		$(".product").click(function(){
             $(".new_item_wrap").hide();
@@ -983,7 +983,7 @@ function setPrice(rcvJdProdConNo, rcvPrice){
 		$(parent.document).find(".leaflet_del").hide();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
 		
 		$(".price").click(function(){
             $(".new_item_wrap").hide();
