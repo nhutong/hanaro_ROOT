@@ -66,7 +66,7 @@ function getHeader(){
 			$ul.append('<li rel="tab1" class="nav_home" onclick="home();">홈</li>');
 			$ul.append('<li rel="tab6" class="nav_delivery" onclick="manage_order();">배송</li>');
 		}
-		$ul.append('<li><a href="../download/admin_manual.pdf" target="_blank" style="color:#fff;text-decoration:none;">매뉴얼</a><span style="font-size:12px;background-color:#55b190;padding:0.1px 6px;border-radius:50%;cursor:pointer;margin-left:4px;">?</span></li');
+		$ul.append('<li><a href="/manual/web/viewer.html" target="_blank" style="color:#fff;text-decoration:none;">매뉴얼</a><span style="font-size:12px;background-color:#55b190;padding:0.1px 6px;border-radius:50%;cursor:pointer;margin-left:4px;">?</span></li');
 	}    
 }
 
