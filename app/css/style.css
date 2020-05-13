@@ -497,7 +497,7 @@ header nav ul li.active a{
 
 .item_list_banner_wrap{
 /*    height: 75px;*/
-/*    min-height: 75px; /*임의로 잡아놓은 높이*/*/
+/*    min-height: 75px; /*임의로 잡아놓은 높이*/
 	height: 3px;
     min-height: 3px; 
     position: relative;
@@ -684,7 +684,7 @@ header nav ul li.active a{
     
     width: calc(50% - 23px) !important;
     float: left;
-    margin: 15px 15px 0;
+    margin: 15px 15px 0;  
 }
 
 .item_list_inner_wrap .figure.figure2:nth-child(2n){
