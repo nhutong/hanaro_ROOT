@@ -18,7 +18,14 @@
 	
 	try{
 
-		sql = " SELECT count(s.vmjz_no) as zzim_cnt from vm_jundan_zzim as s where vm_cp_no = "+vm_cp_no+" and no = '"+memberNo+"'; ";
+		//sql = " SELECT count(s.vmjz_no) as zzim_cnt from vm_jundan_zzim as s where vm_cp_no = "+vm_cp_no+" and no = '"+memberNo+"'; ";
+		sql = " SELECT count(s.vmjz_no) as zzim_cnt "
+		+" from vm_jundan_zzim as s "
+		+" left outer join vm_jundan_prod_content as t on s.jd_prod_con_no = t.jd_prod_con_no "
+		+" left outer join vm_jundan as u on u.jd_no = t.ref_jd_no "
+		+" where s.vm_cp_no = "+vm_cp_no
+		+" and s.no = "+memberNo
+		+" and left(u.to_date,10) >= left(now(),10) ;";
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
