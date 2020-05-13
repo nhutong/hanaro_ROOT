@@ -8,7 +8,7 @@ var tpl_tr_tab1_table = _.template('<tr id="member<%- jd_no %>" data-no="<%- jd_
 	'<td><button onclick="manage_srturl_create(<%- jd_no %>)">생성</button></td>' +
 	'<td><button onclick="manage_jd_delete(<%- jd_no %>)">삭제</button></td>' +
 	'<td><%- show_fg %></td>' +		
-	'<td><button onclick="manage_jd_show_hide(<%- jd_no %>)">노출/숨김</button></td>'
+	'<td><button onclick="manage_jd_show_hide(<%- jd_no %>)">공개/숨김</button></td>'
 	);
 
 $(function () {
@@ -492,7 +492,7 @@ function delete_btn(){
 // 				text += '        <td>' + decodeURIComponent(item['show_fg'])          + '</td> ';									
 // 				text += '        <td><button onclick="manage_srturl_create('+ decodeURIComponent(item['jd_no']) +')">생성</button></td>  ';
 // 				text += '        <td><button onclick="manage_jd_delete('+ decodeURIComponent(item['jd_no']) +')">삭제</button></td>  ';
-// 				text += '        <td><button onclick="manage_jd_show_hide('+ decodeURIComponent(item['jd_no']) +')">노출/숨김</button></td>  ';				
+// 				text += '        <td><button onclick="manage_jd_show_hide('+ decodeURIComponent(item['jd_no']) +')">공개/숨김</button></td>  ';				
 // 				text += '    </tr>          ';
 // 			});
 // 			//console.log(text);
