@@ -23,7 +23,7 @@
 			+" LEFT OUTER JOIN ( select * from vm_product_image where std_fg = 'Y') AS c "
 			+" ON b.pd_code = c.pd_code "
 			+" LEFT OUTER JOIN ( select * from vm_product_image where std_fg = 'Y') AS cc " 
-			+" ON b.group_tag = cc.group_tag "
+			+" ON b.group_tag = cc.group_tag and length(ifnull(b.group_tag,'')) > 1 "
 			+" LEFT OUTER JOIN ( SELECT coupon_no, ifnull(count(mc_no),0) AS coupon_save_cnt FROM vm_member_coupon GROUP BY coupon_no ) AS d "
 			+" ON a.coupon_no = d.coupon_no "
 			+" LEFT outer JOIN vm_member_coupon AS e "
