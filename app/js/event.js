@@ -173,8 +173,8 @@ function eventList(rcv_vm_cp_no){
 				}
 			}
 			
-		$("#list_1").empty();
-		$("#list_1").append(text);
+		$("#list_3").empty();
+		$("#list_3").append(text);
 
 		//이벤트 디테일 펼치기
 		eventDetail();
@@ -264,8 +264,8 @@ function eventListIng(rcv_vm_cp_no){
 
 			}
 			
-		$("#list_2").empty();
-		$("#list_2").append(text);
+		$("#list_1").empty();
+		$("#list_1").append(text);
 
 		//이벤트 디테일 펼치기
 		eventDetail();
@@ -354,8 +354,8 @@ function eventListEnd(rcv_vm_cp_no){
 				}
 			}
 			
-		$("#list_3").empty();
-		$("#list_3").append(text);
+		$("#list_2").empty();
+		$("#list_2").append(text);
 
 		//이벤트 디테일 펼치기
 		eventDetail();
