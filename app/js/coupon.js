@@ -32,7 +32,38 @@ $(function(){
             
 })
 
-
+//직원확인처리(my_coupon에서 가지고옮)
+function certCoupon(rcvMcNo){
+    
+	if(confirm("직원확인 처리하시겠습니까? 직원확인 이후에는 쿠폰이 사용처리되어 사용하실 수 없습니다.") == true){
+			 $.ajax({
+				 url:'https://www.nhhanaromart.com/back/02_app/mCouponMineCert.jsp?random=' + (Math.random()*99999), 
+				 data : {mcNo: rcvMcNo},
+				 method : 'GET' 
+			 }).done(function(result){
+ 
+				 console.log("noticeList=========================================");
+				 if(result == 'dup'){
+					 alert("이미 직원확인을 받으셨습니다.");
+					 location.reload();  
+				 }else if(result == 'exception error'){
+					 console.log(result);
+				 }else{
+					 console.log("============= notice callback ========================");
+					 console.log(result);
+					 //쿠폰 사용
+					 alert("쿠폰이 사용되었습니다.");
+					 $(this).children("span.coupon_btn").css("background-color","#949494");
+					 location.reload(); 
+				 }
+			 });       
+		}else{
+			 alert("사용이 취소되었습니다.");
+			 location.reload(); 
+		}
+	 
+ }
+ 
 ////버튼 클릭시 쿠폰 저장
 function saveCoupon(rcvCouponNo, asisCnt){
 
