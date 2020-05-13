@@ -102,26 +102,26 @@ function saveCoupon(rcvCouponNo, asisCnt){
 /* 쿠폰 - 전체 */
 function couponList(rcv_vm_cp_no){
 
-		var text = '';
+	var text = '';
 
-		$.ajax({
-			url:'../back/02_app/mCoupon.jsp?random=' + (Math.random()*99999), 
-			data : {userCompanyNo: rcv_vm_cp_no},
-			method : 'GET' 
-		}).done(function(result){
+	$.ajax({
+		url:'../back/02_app/mCoupon.jsp?random=' + (Math.random()*99999), 
+		data : {userCompanyNo: rcv_vm_cp_no},
+		method : 'GET' 
+	}).done(function(result){
 	
-			if (result == "NoN")
-			{
-                text +='<div class="noCont">';
-                text +='준비중입니다.';
-                text +='</div>';
-			}else{
-
-
+		if (result == "NoN")
+		{
+			text +='<div class="noCont">';
+			text +='준비중입니다.';
+			text +='</div>';
+		}else{
 			var jsonResult = JSON.parse(result);
-     		console.log(jsonResult);
+			//console.log(jsonResult);
 
 			var jsonResult_notice = jsonResult.BannerList;
+
+			var re=/(\n|\r\n)/g
 			
 			for(var i in jsonResult_notice){
 
@@ -138,15 +138,15 @@ function couponList(rcv_vm_cp_no){
 				{
 					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt="이미지없음"></a>';
 				}else{
-                    
-                    if(jsonResult_notice[i].img_path == null){
-                          text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
-                       }else{
-                          text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
-                       }
+					
+					if(jsonResult_notice[i].img_path == null){
+							text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
+						}else{
+							text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+						}
 				}
-                text +='     </div>';
-                text +='     <div class="product_detail">';
+				text +='     </div>';
+				text +='     <div class="product_detail">';
 
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
@@ -154,10 +154,10 @@ function couponList(rcv_vm_cp_no){
 				}else{
 					text +='         <a href="#" class="product">'+jsonResult_notice[i].pd_name+'</a>';
 				}
-                
+				
 				text +='         <a href="#" class="dicount_date">';
 				text +=' 		    <span>'+jsonResult_notice[i].start_date+'</span>~';
-                text +='             <span>'+jsonResult_notice[i].end_date+'</span>';
+				text +='             <span>'+jsonResult_notice[i].end_date+'</span>';
 				text +='         </a>';
 				
 				if(jsonResult_notice[i].mc_get_fg == "Y"){
@@ -170,19 +170,60 @@ function couponList(rcv_vm_cp_no){
 					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
 				}
 
-                if(jsonResult_notice[i].asisCnt < 0){
-                   text +='         <span class="discount_left">&nbsp;</span>';                   
-                }else{
-//				   text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
-				   text +='         <span class="discount_left">'+jsonResult_notice[i].asisCnt+'개 남음</span>';
+				if(jsonResult_notice[i].asisCnt < 0){
+					text +='         <span class="discount_left">&nbsp;</span>';                   
+				}else{
+					text +='         <span class="discount_left">'+jsonResult_notice[i].asisCnt+'개 남음</span>';
 
+				}
+				text +='     </div>';
+				
+				//레이어 팝업
+				text +='<div class="product_modal">';            
+				text +='	<div class="product_modal_wrap">';
+				text +='		<div class="modal_cls"><img src="../images/coupon_cls.png" alt="쿠폰닫기"></div>';
+                text +='        <div class="coupon_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+                text +='        <div class="coupon_thumb_wrap">';
+				if (jsonResult_notice[i].coupon_type == "BILLING")
+				{
+					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+				}else{
+                    if(jsonResult_notice[i].img_path == null){
+                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                       }else{
+                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+                       }
+				}
+                text +='        </div>';
+                text +='        <div class="coupon_barcode_wrap">';
+				text +='			<span class="coupon_barcode" id="1_'+jsonResult_notice[i].coupon_code+'" style="display : block; margin : auto;">';
+                text +='            </span>';
+                text +='        </div>';
+                text +='        <div class="coupon_bg">';
+				text +='			<div class="coupon_title">';
+                if(jsonResult_notice[i].pd_name == ""){
+                         text +='   ' +comma(jsonResult_notice[i].min_price)+' 원구매시</div>'; 
+                }else{
+                         text +='   ' +jsonResult_notice[i].pd_name+'</div>';   
                 }
-                text +='     </div>';
+                text +='            <div class="coupon_btn_wrap" onclick="certCoupon('+jsonResult_notice[i].mc_no+');">';
+                text +='                <span class="coupon_btn">직원확인</span>';
+				text +='			</div>';
+                text +='        </div>';
+                text +='        <div class="coupon_txt">';
+                text +='            <p>';
+				text +=''+jsonResult_notice[i].coupon_detail.replace(re,"<br>")+'';
+                text +='            </p>';
+                text +='        </div>';       
+                text +='    </div>';
+				text +='</div>';				
+				//레이어 팝업		
+
 				text +=' </div>';
 
 			}
 
-			}
+		}
 			
 		$("#list_1").empty();
 		$("#list_1").append(text);
@@ -190,7 +231,18 @@ function couponList(rcv_vm_cp_no){
 		//썸네일 높이 넓이 맞추기
 		var thumbW = $(".figure .thumb_wrap").width();
 		$(".figure .thumb_wrap").height(thumbW);
-	
+
+		$(".cp_get_button_rcv").click(function(){
+			$(this).parent().siblings(".product_modal").addClass("active");
+		})
+
+		$(".modal_cls").click(function(){
+			$(this).closest(".product_modal").removeClass("active");
+		})
+
+		for(var i in jsonResult_notice){				
+			$("#1_"+jsonResult_notice[i].coupon_code).barcode(jsonResult_notice[i].coupon_code, "code128",{barWidth:1, barHeight:50});
+		}	
 	})
 
 }
@@ -198,82 +250,124 @@ function couponList(rcv_vm_cp_no){
 /* 쿠폰 - 상품할인 */
 function couponListIng(rcv_vm_cp_no){
 
-		var text = '';
+	var text = '';
 
-		$.ajax({
-			url:'../back/02_app/mCouponIng.jsp?random=' + (Math.random()*99999), 
-			data : {userCompanyNo: rcv_vm_cp_no},
-			method : 'GET' 
-		}).done(function(result){
+	$.ajax({
+		url:'../back/02_app/mCouponIng.jsp?random=' + (Math.random()*99999), 
+		data : {userCompanyNo: rcv_vm_cp_no},
+		method : 'GET' 
+	}).done(function(result){
 	
-			if (result == "NoN")
-			{
-                text +='<div class="noCont">';
-                text +='준비중입니다.';
-                text +='</div>';
-			}else{
+		if (result == "NoN")
+		{
+			text +='<div class="noCont">';
+			text +='준비중입니다.';
+			text +='</div>';
+		}else{
+			var jsonResult = JSON.parse(result);
+			//console.log(jsonResult);
 
-				var jsonResult = JSON.parse(result);
-				console.log(jsonResult);
+			var jsonResult_notice = jsonResult.BannerList;
 
-				var jsonResult_notice = jsonResult.BannerList;
-				
-				for(var i in jsonResult_notice){
+			var re=/(\n|\r\n)/g
+			
+			for(var i in jsonResult_notice){
 
-					text +=' <div class="coupon_cont figure">';
-					if( jsonResult_notice[i].discount_price == 0 ){
-						text +=' 	<div class="discount_info">무료증정</div>';
-					}else{
-						text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
-					}
-					text +='     <div class="thumb_wrap">';
-					if (jsonResult_notice[i].coupon_type == "BILLING")
-					{
-						text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
-					}else{
-                        if(jsonResult_notice[i].img_path == null){
-                              text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
-                           }else{
-                              text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
-                           }
-					}
-					text +='     </div>';
-					text +='     <div class="product_detail">';
-
-					if (jsonResult_notice[i].coupon_type == "BILLING")
-					{
-                        text +='         <a href="#" class="product">&nbsp;</a>';
-					}else{
-						text +='         <a href="#" class="product">'+jsonResult_notice[i].pd_name+'</a>';
-					}
-
-					text +='         <a href="#" class="dicount_date">';
-					text +=' 		    <span>'+jsonResult_notice[i].start_date+'</span>~';
-					text +='             <span>'+jsonResult_notice[i].end_date+'</span>';
-					text +='         </a>';
-
-					if(jsonResult_notice[i].mc_get_fg == "Y"){
-						if(jsonResult_notice[i].staff_cert_fg == "Y"){
-							text +='         <div class="get_button" style="font-size:13px; background-color:#EAEAEA; color:#8C8C8C; padding:5px 0px">사용완료</div>';
+				text +=' <div class="coupon_cont figure">';
+				if( jsonResult_notice[i].discount_price == 0 ){
+					text +=' 	<div class="discount_info">무료증정</div>';
+				}else{
+					text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+				}
+				text +='     <div class="thumb_wrap">';
+				if (jsonResult_notice[i].coupon_type == "BILLING")
+				{
+					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
+				}else{
+					if(jsonResult_notice[i].img_path == null){
+							text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
 						}else{
-							text +='         <div class="get_button" style="font-size:13px; background-color:#5E5E5F; color:#FFF; padding:5px 0px">받은쿠폰</div>';	
+							text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
 						}
-					}else{
-						text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
-					}
+				}
+				text +='     </div>';
+				text +='     <div class="product_detail">';
 
-                    if(jsonResult_notice[i].asisCnt < 0){
-                       text +='         <span class="discount_left">&nbsp;</span>';                   
-                    }else{
-	//					text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
-                       text +='         <span class="discount_left">'+jsonResult_notice[i].asisCnt+'개 남음</span>';
-                    }
-					text +='     </div>';
-					text +=' </div>';
-
+				if (jsonResult_notice[i].coupon_type == "BILLING")
+				{
+					text +='         <a href="#" class="product">&nbsp;</a>';
+				}else{
+					text +='         <a href="#" class="product">'+jsonResult_notice[i].pd_name+'</a>';
 				}
 
+				text +='         <a href="#" class="dicount_date">';
+				text +=' 		    <span>'+jsonResult_notice[i].start_date+'</span>~';
+				text +='             <span>'+jsonResult_notice[i].end_date+'</span>';
+				text +='         </a>';
+
+				if(jsonResult_notice[i].mc_get_fg == "Y"){
+					if(jsonResult_notice[i].staff_cert_fg == "Y"){
+						text +='         <div class="get_button" style="font-size:13px; background-color:#EAEAEA; color:#8C8C8C; padding:5px 0px">사용완료</div>';
+					}else{
+						text +='         <div class="get_button" style="font-size:13px; background-color:#5E5E5F; color:#FFF; padding:5px 0px">받은쿠폰</div>';	
+					}
+				}else{
+					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+				}
+
+				if(jsonResult_notice[i].asisCnt < 0){
+					text +='         <span class="discount_left">&nbsp;</span>';                   
+				}else{
+					text +='         <span class="discount_left">'+jsonResult_notice[i].asisCnt+'개 남음</span>';
+				}
+				text +='     </div>';
+
+				//레이어 팝업
+				text +='<div class="product_modal">';            
+				text +='	<div class="product_modal_wrap">';
+				text +='		<div class="modal_cls"><img src="../images/coupon_cls.png" alt="쿠폰닫기"></div>';
+                text +='        <div class="coupon_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+                text +='        <div class="coupon_thumb_wrap">';
+				if (jsonResult_notice[i].coupon_type == "BILLING")
+				{
+					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+				}else{
+                    if(jsonResult_notice[i].img_path == null){
+                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                       }else{
+                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+                       }
+				}
+                text +='        </div>';
+                text +='        <div class="coupon_barcode_wrap">';
+				text +='			<span class="coupon_barcode" id="1_'+jsonResult_notice[i].coupon_code+'" style="display : block; margin : auto;">';
+                text +='            </span>';
+                text +='        </div>';
+                text +='        <div class="coupon_bg">';
+				text +='			<div class="coupon_title">';
+                if(jsonResult_notice[i].pd_name == ""){
+                         text +='   ' +comma(jsonResult_notice[i].min_price)+' 원구매시</div>'; 
+                }else{
+                         text +='   ' +jsonResult_notice[i].pd_name+'</div>';   
+                }
+                text +='            <div class="coupon_btn_wrap" onclick="certCoupon('+jsonResult_notice[i].mc_no+');">';
+                text +='                <span class="coupon_btn">직원확인</span>';
+				text +='			</div>';
+                text +='        </div>';
+                text +='        <div class="coupon_txt">';
+                text +='            <p>';
+				text +=''+jsonResult_notice[i].coupon_detail.replace(re,"<br>")+'';
+                text +='            </p>';
+                text +='        </div>';       
+                text +='    </div>';
+				text +='</div>';				
+				//레이어 팝업		
+
+				text +=' </div>';
+
 			}
+
+		}
 	
 		$("#list_2").empty();
 		$("#list_2").append(text);
@@ -281,7 +375,18 @@ function couponListIng(rcv_vm_cp_no){
 		//썸네일 높이 넓이 맞추기
 		var thumbW = $(".figure .thumb_wrap").width();
 		$(".figure .thumb_wrap").height(thumbW);
-	
+
+		$(".cp_get_button_rcv").click(function(){
+			$(this).parent().siblings(".product_modal").addClass("active");
+		})
+
+		$(".modal_cls").click(function(){
+			$(this).closest(".product_modal").removeClass("active");
+		})
+
+		for(var i in jsonResult_notice){				
+			$("#1_"+jsonResult_notice[i].coupon_code).barcode(jsonResult_notice[i].coupon_code, "code128",{barWidth:1, barHeight:50});
+		}	
 	})
 
 }
@@ -303,11 +408,12 @@ function couponListEnd(rcv_vm_cp_no){
                 text +='준비중입니다.';
                 text +='</div>';
 			}else{
-	
-			var jsonResult = JSON.parse(result);
-     		console.log(jsonResult);
-
-			var jsonResult_notice = jsonResult.BannerList;
+				var jsonResult = JSON.parse(result);
+				//console.log(jsonResult);
+   
+			    var jsonResult_notice = jsonResult.BannerList;
+   
+			    var re=/(\n|\r\n)/g
 			
 			for(var i in jsonResult_notice){
 
@@ -357,13 +463,54 @@ function couponListEnd(rcv_vm_cp_no){
                    text +='         <span class="discount_left">&nbsp;</span>';                   
                 }else{
 					text +='         <span class="discount_left">'+jsonResult_notice[i].asisCnt+'개 남음</span>';
- //                  text +='         <span class="discount_left">남은수량 : '+jsonResult_notice[i].asisCnt+'개</span>';
                 }
-                text +='     </div>';
+				text +='     </div>';
+				
+				//레이어 팝업
+				text +='<div class="product_modal">';            
+				text +='	<div class="product_modal_wrap">';
+				text +='		<div class="modal_cls"><img src="../images/coupon_cls.png" alt="쿠폰닫기"></div>';
+                text +='        <div class="coupon_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+                text +='        <div class="coupon_thumb_wrap">';
+				if (jsonResult_notice[i].coupon_type == "BILLING")
+				{
+					text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/app/images/coupon_image.png" alt=""></a>';
+				}else{
+                    if(jsonResult_notice[i].img_path == null){
+                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                       }else{
+                          text +=' 		<a href="#"><img src="https://www.nhhanaromart.com/upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+                       }
+				}
+                text +='        </div>';
+                text +='        <div class="coupon_barcode_wrap">';
+				text +='			<span class="coupon_barcode" id="1_'+jsonResult_notice[i].coupon_code+'" style="display : block; margin : auto;">';
+                text +='            </span>';
+                text +='        </div>';
+                text +='        <div class="coupon_bg">';
+				text +='			<div class="coupon_title">';
+                if(jsonResult_notice[i].pd_name == ""){
+                         text +='   ' +comma(jsonResult_notice[i].min_price)+' 원구매시</div>'; 
+                }else{
+                         text +='   ' +jsonResult_notice[i].pd_name+'</div>';   
+                }
+                text +='            <div class="coupon_btn_wrap" onclick="certCoupon('+jsonResult_notice[i].mc_no+');">';
+                text +='                <span class="coupon_btn">직원확인</span>';
+				text +='			</div>';
+                text +='        </div>';
+                text +='        <div class="coupon_txt">';
+                text +='            <p>';
+				text +=''+jsonResult_notice[i].coupon_detail.replace(re,"<br>")+'';
+                text +='            </p>';
+                text +='        </div>';       
+                text +='    </div>';
+				text +='</div>';				
+				//레이어 팝업		
+
 				text +=' </div>';
 
 			}
-			}
+		}
 			
 		$("#list_3").empty();
 		$("#list_3").append(text);
@@ -371,7 +518,18 @@ function couponListEnd(rcv_vm_cp_no){
 		//썸네일 높이 넓이 맞추기
 		var thumbW = $(".figure .thumb_wrap").width();
 		$(".figure .thumb_wrap").height(thumbW);
-	
+
+		$(".cp_get_button_rcv").click(function(){
+			$(this).parent().siblings(".product_modal").addClass("active");
+		})
+
+		$(".modal_cls").click(function(){
+			$(this).closest(".product_modal").removeClass("active");
+		})
+
+		for(var i in jsonResult_notice){				
+			$("#1_"+jsonResult_notice[i].coupon_code).barcode(jsonResult_notice[i].coupon_code, "code128",{barWidth:1, barHeight:50});
+		}	
 	})
 
 }
