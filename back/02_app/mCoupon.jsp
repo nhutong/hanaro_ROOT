@@ -16,7 +16,7 @@
 	try{
 		sql = " SELECT a.coupon_no, a.coupon_name, a.discount_price, case when min(c.img_path) IS NULL then min(cc.img_path) ELSE min(c.img_path) end as img_path, " 
 			+" a.coupon_type, date_format(a.start_date,'%m-%d') as start_date, date_format(a.end_date,'%m-%d') AS end_date, ifnull(a.product_name,'') as pd_name, a.min_price, "
-			+" a.limit_qty, (a.limit_qty - ifnull(d.coupon_save_cnt,0)) AS asisCnt, (case when e.mc_no is NULL then 'N' ELSE 'Y' END) AS mc_get_fg, IFNULL(e.staff_cert_fg,'N') AS staff_cert_fg "
+			+" a.limit_qty, (a.limit_qty - ifnull(d.coupon_save_cnt,0)) AS asisCnt, (case when e.mc_no is NULL then 'N' ELSE 'Y' END) AS mc_get_fg, IFNULL(e.staff_cert_fg,'N') AS staff_cert_fg, e.mc_no, a.coupon_detail, a.coupon_code "
 			+" from vm_coupon AS a "
 			+" LEFT outer JOIN vm_product AS b "
 			+" ON a.product_code = b.pd_code "
@@ -32,7 +32,7 @@
 			+" AND a.status_cd = 'APPLY' "
 			+" AND ifnull(a.stamp_fg,'N') = 'N' "
 			+" and left(a.end_date,10) >= left(now(),10) "
-			+" GROUP BY a.coupon_no, a.coupon_name, a.discount_price, a.coupon_type, date_format(a.start_date,'%m-%d'), date_format(a.end_date,'%m-%d'), a.product_name, a.limit_qty, (a.limit_qty - ifnull(d.coupon_save_cnt,0)), a.min_price, (case when e.mc_no is NULL then 'N' ELSE 'Y' END), IFNULL(e.staff_cert_fg,'N') "
+			+" GROUP BY a.coupon_no, a.coupon_name, a.discount_price, a.coupon_type, date_format(a.start_date,'%m-%d'), date_format(a.end_date,'%m-%d'), a.product_name, a.limit_qty, (a.limit_qty - ifnull(d.coupon_save_cnt,0)), a.min_price, (case when e.mc_no is NULL then 'N' ELSE 'Y' END), IFNULL(e.staff_cert_fg,'N'), e.mc_no, a.coupon_detail, a.coupon_code "
 			+" order by a.end_date desc, a.coupon_no ";
 
 		stmt = conn.createStatement();
@@ -69,8 +69,9 @@
 			String min_price = rs.getString("min_price");
 			String mc_get_fg = rs.getString("mc_get_fg"); //받았는지
 			String staff_cert_fg = rs.getString("staff_cert_fg"); //사용했는지
-
-
+			String mc_no = rs.getString("mc_no"); //사용했는지
+			String coupon_detail = rs.getString("coupon_detail"); //사용했는지
+			String coupon_code = rs.getString("coupon_code"); //사용했는지
 
 			JSONObject obj = new JSONObject();
 						
@@ -87,6 +88,9 @@
 			obj.put("min_price", min_price);
 			obj.put("mc_get_fg", mc_get_fg);
 			obj.put("staff_cert_fg", staff_cert_fg);
+			obj.put("mc_no", mc_no);
+			obj.put("coupon_detail", coupon_detail);
+			obj.put("coupon_code", coupon_code);
 			
 			if(obj != null){
 				arr.add(obj);
