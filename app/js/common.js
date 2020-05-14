@@ -83,27 +83,37 @@ function getHeader(rcVm_p_no){
 		
 	
 	result += '				</div>';
-	result += '			<div class="aside_mypage nullHide"><div><a href="#">마이페이지<img src="../images/down.png" alt="메뉴 내리기"></a></div>';
-	result += '			<ul class="nullHide">';
-	result += '				<li><a href="#" onclick="my_info();">나의 정보</a></li>';
-	result += '				<li><a href="#" onclick="my_coupon();">쿠폰</a></li>';
-//	result += '				<li><a href="#" onclick="my_stamp();">스탬프</a></li>'; // 스탬프 숨김 200401
-//	result += '				<li><a href="#" onclick="my_del();">주문/배송</a></li>';
-	result += '			</ul></div>';
+
+    //메뉴 내리기
+    // result += '			<div class="aside_mypage nullHide"><div><a href="#">마이페이지<img src="../images/down.png" alt="메뉴 내리기"></a></div>';
+	// result += '			<ul class="nullHide">';
+	// result += '				<li><a href="#" onclick="my_info();">나의 정보</a></li>';
+	// result += '				<li><a href="#" onclick="my_coupon();">쿠폰</a></li>';
+	// result += '				<li><a href="#" onclick="my_stamp();">스탬프</a></li>'; // 스탬프 숨김 200401
+	// result += '				<li><a href="#" onclick="my_del();">주문/배송</a></li>';
+    // result += '			</ul></div>';
+    //메뉴 내리기
 	result += '			<div class="aside_category">';
 	result += '				<ul>';
-//	result += '					<li><a href="#" onclick="cart();" class="nullHide">장바구니</a></li>';
-//	result += '					<li><a href="#" onclick="notice();">공지사항</a></li>';
+    //result += '				<li><a href="#" onclick="cart();">장바구니</a></li>';
+    result += '		     		<li><a href="#" onclick="my_coupon();">My쿠폰</a></li>';
 	result += '					<li><a href="#" onclick="offline();">매장변경</a></li>';    
-	result += '					<li><a href="#" onclick="qna();" class="nullHide">1:1 문의하기</a></li>';
-//	result += '					<li><a href="#" onclick="setting();">설정</a></li>';
+    result += '					<li><a href="#" onclick="qna();" style="color: #D5D5D5;">1:1 문의하기</a></li>';
+    result += '					<li><a href="#" onclick="notice();" style="color: #D5D5D5;">공지사항</a></li>';    
+	result += '					<li><a href="#" onclick="zzim();" style="color: #D5D5D5;">찜하기</a></li>';        
+    //result += '				<li><a href="#" onclick="setting();">설정</a></li>';
 	result += '				</ul>';
 	result += '			</div>   '; 
-	result += '			 <div id="aside_tos"><a href="#" onclick="tos();">이용약관 및 개인정보처리방침</a></div>';		
-    result += '<div id="aside_icons"><ul><li class="aside_cart" onclick="zzim();"><img src="../images/icon.png" alt="장바구니"><span>찜하기</span></li>';
-    result += '<li class="aside_notice" onclick="notice();"><img src="../images/notice.png" alt="공지사항"><span>공지사항</span></li>';
-    result += '<li class="aside_setting" onclick="setting();"><img src="../images/edit.png" alt="환경설정"><span>환경설정</span></li>';
-    result += '</ul></div><span id="aside_copyright">Copyrightⓒ 2020. 농협유통</span>';
+	result += '			<div id="aside_tos"><a href="#" onclick="tos();">이용약관 및 개인정보처리방침</a></div>';		
+    result += '         <div id="aside_icons">';
+    result += '             <ul>';
+    //result += '               <li class="aside_cart" onclick="zzim();"><img src="../images/icon.png" alt="찜하기"><span>찜하기</span></li>';
+    //result += '               <li class="aside_notice" onclick="notice();"><img src="../images/notice.png" alt="공지사항"><span>공지사항</span></li>';
+    result += '                 <li class="aside_setting" onclick="setting();"><img src="../images/edit.png" alt="환경설정"><span>환경설정</span></li>';
+    result += '             </ul>';
+    result += '         </div>';
+    result += '         <span id="aside_copyright">Copyrightⓒ 2020. 농협유통</span>';
+
 	result += '		</div>';
 	result += '	</div>';
 	result += '	<header>';

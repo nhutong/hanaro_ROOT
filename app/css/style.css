@@ -153,10 +153,16 @@
     border-bottom: 2px solid #55B190;
 }
 
+#aside_icons{
+    margin-top: 30%;
+    text-align: left;
+    vertical-align: bottom;
+}
+
 #aside_icons ul li{
     display: inline-block;
     width: 33.3%;
-    text-align: center;
+    text-align: left;
 }
 
 #aside_icons ul li img{
