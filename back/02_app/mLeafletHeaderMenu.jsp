@@ -81,6 +81,8 @@
 		bdListJSON.put("DateCategoryList", arr);
 		out.clear();
 		out.print(bdListJSON);
+		//out.print(sql);
+
 	
 	}catch(Exception e){
 		out.clear();

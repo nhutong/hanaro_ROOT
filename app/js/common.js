@@ -200,15 +200,13 @@ function getHeaderMenu(ff_vm_cp_no) {
 			var text = '<li id="headerHome"><a href="#" onclick="home();" class="home">홈</a></li>';
 
             data['DateCategoryList'].forEach(function(item, index){                        
-                //$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
                 if (decodeURIComponent(item['prod_cont_count']) >= 1){
                     text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a><span class="nav_menu_alert" id="prod_cont_count">'+decodeURIComponent(item['prod_cont_count'])+'</span></li>'
                 }else{
                     text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a></li>'
                 }                
 				
-				if (index == 0)
-				{
+				if (index == 0){
 					initMenuNo = decodeURIComponent(item['menu_no']);
 					localStorage.setItem("initMenuNo",initMenuNo);
 				}

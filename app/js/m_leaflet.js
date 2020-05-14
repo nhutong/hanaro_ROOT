@@ -105,8 +105,9 @@ function getCpName(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no){
 // rcv_next_fg: (-1)rcv_jd_no 이전전단, (0)rcv_jd_no 전단, (1)rcv_jd_no 다음전단
 function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 	
-	if(rcv_jd_no == ""){ rcv_jd_no = 0; }
-	
+	if(rcv_jd_no == "" || typeof(rcv_jd_no) == undefined ){ 
+		rcv_jd_no = 0; 
+	}
 
 	var modify_jd_no = "";
 
@@ -315,8 +316,10 @@ function getPdContent(rcv_jd_no) {
 				}
 
 				//카드 할인기간을 카드에 한정하지 않고 값이 있을경우 표시되도록 용도변경
-				if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""){
+				if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
 					text += '		<span>'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</span>'
+				}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
+					text += '		<span>'+item['card_discount_from_date']+'</span>'					
 				}else if(item['card_discount_from_date'] != ""){
 					text += '		<span>'+item['card_discount_from_date']+'</span>'
 				}else if(item['card_discount_end_date'] != ""){
@@ -364,14 +367,23 @@ function getPdContent(rcv_jd_no) {
 				text += '    				<table class="table" >'
 
 				// 할인기간
-				if (decodeURIComponent(item['card_discount']) != ""){
+				if (decodeURIComponent(item['card_discount_from_date']) != "" || decodeURIComponent(item['card_discount_end_date']) != ""){
 					text += '    				   <tr class="hide table-line">'
 					text += '    					  <td width="15%">'
 					text += '    						<div class="discount_img" style="font-size:10px;text-align:center;">'
 					text += '    							할인기간'
 					text += '    						</div>'
 					text += '    					  </td>'
-					text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</td>'
+					if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
+						text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</td>'
+					}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
+						text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'</td>'
+					}else if(item['card_discount_from_date'] != ""){
+						text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'</td>'
+					}else if(item['card_discount_end_date'] != ""){
+						text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_end_date']+'</td>'
+					}else{
+					}					
 					text += '    					</tr>'
 				}
 				
