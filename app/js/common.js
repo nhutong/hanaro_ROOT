@@ -97,10 +97,11 @@ function getHeader(rcVm_p_no){
 	result += '				<ul>';
     //result += '				<li><a href="#" onclick="cart();">장바구니</a></li>';
     result += '		     		<li><a href="#" onclick="my_coupon();">My쿠폰</a></li>';
-	result += '					<li><a href="#" onclick="offline();">매장변경</a></li>';    
-    result += '					<li><a href="#" onclick="qna();" style="color: #D5D5D5;">1:1 문의하기</a></li>';
-    result += '					<li><a href="#" onclick="notice();" style="color: #D5D5D5;">공지사항</a></li>';    
-	result += '					<li><a href="#" onclick="zzim();" style="color: #D5D5D5;">찜하기</a></li>';        
+    result += '					<li><a href="#" onclick="offline();">매장변경</a></li>';    
+	result += '					<li><a href="#" onclick="zzim();" style="color: #D5D5D5;font-size: 13px;">찜하기</a></li>';            
+    result += '					<li><a href="#" onclick="qna();" style="color: #D5D5D5;font-size: 13px;">1:1 문의하기</a></li>';
+    result += '					<li><a href="#" onclick="notice();" style="color: #D5D5D5;font-size: 13px;">공지사항</a></li>';    
+	result += '					<li><a href="#" onclick="my_info();" style="color: #D5D5D5;font-size: 13px;">나의정보</a></li>';        
     //result += '				<li><a href="#" onclick="setting();">설정</a></li>';
 	result += '				</ul>';
 	result += '			</div>   '; 
