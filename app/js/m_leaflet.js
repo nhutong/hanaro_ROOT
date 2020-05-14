@@ -20,7 +20,7 @@ $(function () {
 	logInsert(localStorage.getItem("memberNo"), vm_cp_no, menu_no);
 
 	getHeader(vm_cp_no);
-    getShare();	
+    //getShare();	
 	getLeft();
 
 	//상단 판매장명 바인당 > 오늘자 전단의 일자, 베너, 상품 바인딩

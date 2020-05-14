@@ -85,13 +85,13 @@ function getHeader(rcVm_p_no){
 	result += '				</div>';
 
     //메뉴 내리기
-    // result += '			<div class="aside_mypage nullHide"><div><a href="#">마이페이지<img src="../images/down.png" alt="메뉴 내리기"></a></div>';
-	// result += '			<ul class="nullHide">';
-	// result += '				<li><a href="#" onclick="my_info();">나의 정보</a></li>';
-	// result += '				<li><a href="#" onclick="my_coupon();">쿠폰</a></li>';
-	// result += '				<li><a href="#" onclick="my_stamp();">스탬프</a></li>'; // 스탬프 숨김 200401
-	// result += '				<li><a href="#" onclick="my_del();">주문/배송</a></li>';
-    // result += '			</ul></div>';
+    //result += '			<div class="aside_mypage nullHide"><div><a href="#">마이페이지<img src="../images/down.png" alt="메뉴 내리기"></a></div>';
+	//result += '			<ul class="nullHide">';
+	//result += '				<li><a href="#" onclick="my_info();">나의 정보</a></li>';
+	//result += '				<li><a href="#" onclick="my_coupon();">쿠폰</a></li>';
+	//result += '				<li><a href="#" onclick="my_stamp();">스탬프</a></li>'; // 스탬프 숨김 200401
+	//result += '				<li><a href="#" onclick="my_del();">주문/배송</a></li>';
+    //result += '			</ul></div>';
     //메뉴 내리기
 	result += '			<div class="aside_category">';
 	result += '				<ul>';
@@ -201,8 +201,11 @@ function getHeaderMenu(ff_vm_cp_no) {
 
             data['DateCategoryList'].forEach(function(item, index){                        
                 //$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
-
-                text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a></li>'
+                if (decodeURIComponent(item['prod_cont_count']) >= 1){
+                    text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a><span class="nav_menu_alert" id="prod_cont_count">'+decodeURIComponent(item['prod_cont_count'])+'</span></li>'
+                }else{
+                    text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a></li>'
+                }                
 				
 				if (index == 0)
 				{
@@ -210,7 +213,6 @@ function getHeaderMenu(ff_vm_cp_no) {
 					localStorage.setItem("initMenuNo",initMenuNo);
 				}
 			});
-
 
 			//text += '<li id="headerCoupon"><a href="#" onclick="coupon();">쿠폰</a></li>';
 			//text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';

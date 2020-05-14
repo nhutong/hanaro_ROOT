@@ -346,6 +346,18 @@ header nav{
 /*     -ms-overflow-style: none; */
 }
 
+#prod_cont_count{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 12px;
+    color:#fff;
+    text-align: center;
+    background-color: rgb(238, 146, 9);
+    line-height: 18px;
+}
+
 /*normal*/
 ::-webkit-scrollbar-thumb {
     /*...*/
