@@ -11,7 +11,7 @@ function pushCont(){
 		var text = '';
 
 		$.ajax({
-			url:'http://www.it7.kr:8080/back/04_home/push.jsp?random=' + (Math.random()*99999),
+			url:'../../back/04_home/push.jsp?random=' + (Math.random()*99999),
 			data : {userCompanyNo: localStorage.getItem("vm_cp_no"), memberNo: localStorage.getItem("memberNo")}, 
 			method : 'GET' 
 		}).done(function(result){
