@@ -347,8 +347,9 @@ header nav{
 }
 
 #prod_cont_count{
-    position: absolute;
-    width: 18px;
+    /* position: absolute; */
+    display: inline-block;
+    width: 15px;
     height: 18px;
     border-radius: 50%;
     font-size: 12px;
@@ -383,7 +384,7 @@ header nav ul li{
     float: left;
     width: 70px;
     text-align: center;
-    padding: 10px;
+    padding: 7px;
     font-size: 15px;
     
 }

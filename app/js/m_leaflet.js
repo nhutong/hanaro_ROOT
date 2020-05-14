@@ -395,9 +395,9 @@ function getPdContent(rcv_jd_no) {
 					text += '    							<img src="../images/leaflet_icon1.png" alt="카드할인">'
 					text += '    						</div>'
 					text += '    					  </td>'
-					text += '    					  <td width="20%" style="text-align : center">'+comma(item['card_discount'])+'원</td>'
-					text += '    					  <td>'+item['card_info']+'</td>'
-					text += '    					  <td>'+item['card_restrict']+'</td>'					
+					text += '    					  <td colspan=1 width="20%" style="text-align : center">'+comma(item['card_discount'])+'원</td>'
+					text += '    					  <td colspan=2>'+item['card_info']+'</td>'
+					text += '    					  <td colspan=1>'+item['card_restrict']+'</td>'					
 					text += '    					</tr>'
 				}
 
@@ -410,7 +410,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    						  </div>'
 					text += '    					   </td>'
 					text += '    					   <td colspan=3>'+item['dadaiksun']+'</td>'
-					text += '    					   <td colspan=3>'+item['dadaiksun_info']+'</td>';  
+					text += '    					   <td colspan=2>'+item['dadaiksun_info']+'</td>';  
 					text += '    					 </tr>'
 				}
 
@@ -422,7 +422,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
 					text += '    						  </div>'
 					text += '    					   </td>'
-					text += '    					   <td colspan=3>'+decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원 추가할인</td>'
+					text += '    					   <td colspan=5>'+decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원 추가할인</td>'
 					text += '    					 </tr>'
 				}
 
