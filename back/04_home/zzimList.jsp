@@ -46,7 +46,7 @@
 			+" on a.menu_no = ab.menu_no "
 			+" INNER JOIN vm_jundan_prod_content AS b "
 			+" ON a.jd_no = b.ref_jd_no "
-			+" inner join vm_product AS c "
+			+" left outer join vm_product AS c "
 			+" ON b.ref_pd_no = c.pd_no "
 			+" left outer join vm_product_image AS d "
 			+" ON b.ref_img_no = d.img_no "

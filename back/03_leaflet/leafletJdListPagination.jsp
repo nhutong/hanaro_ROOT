@@ -73,8 +73,6 @@
             +" inner join vm_company AS c ON a.ref_company_no = c.vm_cp_no "
             +" WHERE a.ref_company_no = "+userCompanyNo
             +" AND a.menu_no = "+menuNo
-            +" AND a.from_date >= date_add(now(), INTERVAL -2 WEEK) "
-			+" AND a.to_date <= date_add(now(), INTERVAL 2 WEEK) "
 			+" AND ifnull(a.del_fg,'N') != 'Y' "
             +" ORDER BY a.from_date "
 			+" limit ?,? ; ";

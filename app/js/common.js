@@ -83,27 +83,38 @@ function getHeader(rcVm_p_no){
 		
 	
 	result += '				</div>';
-	result += '			<div class="aside_mypage nullHide"><div><a href="#">마이페이지<img src="../images/down.png" alt="메뉴 내리기"></a></div>';
-	result += '			<ul class="nullHide">';
-	result += '				<li><a href="#" onclick="my_info();">나의 정보</a></li>';
-	result += '				<li><a href="#" onclick="my_coupon();">쿠폰</a></li>';
-//	result += '				<li><a href="#" onclick="my_stamp();">스탬프</a></li>'; // 스탬프 숨김 200401
-//	result += '				<li><a href="#" onclick="my_del();">주문/배송</a></li>';
-	result += '			</ul></div>';
+
+    //메뉴 내리기
+    //result += '			<div class="aside_mypage nullHide"><div><a href="#">마이페이지<img src="../images/down.png" alt="메뉴 내리기"></a></div>';
+	//result += '			<ul class="nullHide">';
+	//result += '				<li><a href="#" onclick="my_info();">나의 정보</a></li>';
+	//result += '				<li><a href="#" onclick="my_coupon();">쿠폰</a></li>';
+	//result += '				<li><a href="#" onclick="my_stamp();">스탬프</a></li>'; // 스탬프 숨김 200401
+	//result += '				<li><a href="#" onclick="my_del();">주문/배송</a></li>';
+    //result += '			</ul></div>';
+    //메뉴 내리기
 	result += '			<div class="aside_category">';
 	result += '				<ul>';
-//	result += '					<li><a href="#" onclick="cart();" class="nullHide">장바구니</a></li>';
-//	result += '					<li><a href="#" onclick="notice();">공지사항</a></li>';
-	result += '					<li><a href="#" onclick="offline();">매장변경</a></li>';    
-	result += '					<li><a href="#" onclick="qna();" class="nullHide">1:1 문의하기</a></li>';
-//	result += '					<li><a href="#" onclick="setting();">설정</a></li>';
+    //result += '				<li><a href="#" onclick="cart();">장바구니</a></li>';
+    result += '		     		<li><a href="#" onclick="my_coupon();">My쿠폰</a></li>';
+    result += '					<li><a href="#" onclick="offline();">매장변경</a></li>';    
+	result += '					<li><a href="#" onclick="zzim();" style="color: #D5D5D5;font-size: 13px;">찜하기</a></li>';            
+    result += '					<li><a href="#" onclick="qna();" style="color: #D5D5D5;font-size: 13px;">1:1 문의하기</a></li>';
+    result += '					<li><a href="#" onclick="notice();" style="color: #D5D5D5;font-size: 13px;">공지사항</a></li>';    
+	result += '					<li><a href="#" onclick="my_info();" style="color: #D5D5D5;font-size: 13px;">나의정보</a></li>';        
+    //result += '				<li><a href="#" onclick="setting();">설정</a></li>';
 	result += '				</ul>';
 	result += '			</div>   '; 
-	result += '			 <div id="aside_tos"><a href="#" onclick="tos();">이용약관 및 개인정보처리방침</a></div>';		
-    result += '<div id="aside_icons"><ul><li class="aside_cart" onclick="zzim();"><img src="../images/icon.png" alt="장바구니"><span>찜하기</span></li>';
-    result += '<li class="aside_notice" onclick="notice();"><img src="../images/notice.png" alt="공지사항"><span>공지사항</span></li>';
-    result += '<li class="aside_setting" onclick="setting();"><img src="../images/edit.png" alt="환경설정"><span>환경설정</span></li>';
-    result += '</ul></div><span id="aside_copyright">Copyrightⓒ 2020. 농협유통</span>';
+	result += '			<div id="aside_tos"><a href="#" onclick="tos();">이용약관 및 개인정보처리방침</a></div>';		
+    result += '         <div id="aside_icons">';
+    result += '             <ul>';
+    //result += '               <li class="aside_cart" onclick="zzim();"><img src="../images/icon.png" alt="찜하기"><span>찜하기</span></li>';
+    //result += '               <li class="aside_notice" onclick="notice();"><img src="../images/notice.png" alt="공지사항"><span>공지사항</span></li>';
+    result += '                 <li class="aside_setting" onclick="setting();"><img src="../images/edit.png" alt="환경설정"><span>환경설정</span></li>';
+    result += '             </ul>';
+    result += '         </div>';
+    result += '         <span id="aside_copyright">Copyrightⓒ 2020. 농협유통</span>';
+
 	result += '		</div>';
 	result += '	</div>';
 	result += '	<header>';
@@ -160,92 +171,92 @@ function getHeader(rcVm_p_no){
 	})	
 }
 
-// header menu를 셋팅한다.
+// header menu를 셋팅한다. https://www.nhhanaromart.com
 function getHeaderMenu(ff_vm_cp_no) {
 
-   	////////관리자 페이지에서는 숨긴 전단도 보여줌!
-	var isInIFrame = ( window.location != window.parent.location );
-	if (isInIFrame == true){
-		var rcv_show_fg = "'Y','N'";
-	}else{
-		var rcv_show_fg = "'Y'";
-	}
-	////////관리자 페이지에서는 숨긴 전단도 보여줌!
+    ////////관리자 페이지에서는 숨긴 전단도 보여줌!
+ var isInIFrame = ( window.location != window.parent.location );
+ if (isInIFrame == true){
+     var rcv_show_fg = "'Y','N'";
+ }else{
+     var rcv_show_fg = "'Y'";
+ }
+ ////////관리자 페이지에서는 숨긴 전단도 보여줌!
 
-    $.ajax({
-        url:'/back/02_app/mLeafletHeaderMenu.jsp?random=' + (Math.random()*99999), 
-        data : {userCompanyNo: ff_vm_cp_no, rcv_show_fg: rcv_show_fg},
-        method : 'GET' 
-    }).done(function(result){
+ $.ajax({
+     url:'/back/02_app/mLeafletHeaderMenuCount.jsp?random=' + (Math.random()*99999), 
+     data : {userCompanyNo: ff_vm_cp_no, rcv_show_fg: rcv_show_fg},
+     method : 'GET' 
+ }).done(function(result){
 
-        console.log("getHeaderMenu========================================="+result);
-        if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log("getHeaderMenu"+result);
-        }else{
-            console.log("============= getHeaderMenu callback ========================");
-            console.log("getHeaderMenu callback"+result);
-            var data = JSON.parse(result);
+     console.log("getHeaderMenu========================================="+result);
+     if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+         console.log("getHeaderMenu"+result);
+     }else{
+         console.log("============= getHeaderMenu callback ========================");
+         console.log("getHeaderMenu callback"+result);
+         var data = JSON.parse(result);
 
-			var text = '<li id="headerHome"><a href="#" onclick="home();" class="home">홈</a></li>';
+         var text = '<li id="headerHome"><a href="#" onclick="home();" class="home">홈</a></li>';
 
-            data['DateCategoryList'].forEach(function(item, index){                        
-                //$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
+         data['DateCategoryList'].forEach(function(item, index){                        
+             if (decodeURIComponent(item['prod_cont_count']) >= 1){
+                 text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a><span class="nav_menu_alert" id="prod_cont_count">'+decodeURIComponent(item['prod_cont_count'])+'</span></li>'
+             }else{
+                 text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a></li>'
+             }                
+             
+             if (index == 0){
+                 initMenuNo = decodeURIComponent(item['menu_no']);
+                 localStorage.setItem("initMenuNo",initMenuNo);
+             }
+         });
 
-                text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a></li>'
-				
-				if (index == 0)
-				{
-					initMenuNo = decodeURIComponent(item['menu_no']);
-					localStorage.setItem("initMenuNo",initMenuNo);
-				}
-			});
+         //text += '<li id="headerCoupon"><a href="#" onclick="coupon();">쿠폰</a></li>';
+         //text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';
+         //text += '<li id="headerShop"><a href="#" onclick="shop();">장보기</a></li>';
+     }
+     
+     $("#headerMenuArea").empty();
+     $("#headerMenuArea").append(text);
 
+     getMenuListDefault(ff_vm_cp_no);
 
-			//text += '<li id="headerCoupon"><a href="#" onclick="coupon();">쿠폰</a></li>';
-			//text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';
-			//text += '<li id="headerShop"><a href="#" onclick="shop();">장보기</a></li>';
-        }
-		
-		$("#headerMenuArea").empty();
-		$("#headerMenuArea").append(text);
+     //var ofLength = $("#headerMenuArea li").length;
+     
+     //$("#headerMenuArea").width(90*ofLength);
+     
+     var isInIFrame = ( window.location != window.parent.location );
+     if (isInIFrame == true){
+         $('html').removeClass('hide-scrollbar');
+     }else{
+         $('html').addClass('hide-scrollbar');
+     }
 
-		getMenuListDefault(ff_vm_cp_no);
+     //        var locHeader = location.pathname,
+     //            headerHome = locHeader.includes('main'),
+     //            headerCoupon = locHeader.includes('coupon'),
+     //            headerShop = locHeader.includes('shop'),
+     //			headerLeaflet = locHeader.includes('leaflet'),
+     //            headerEvent = locHeader.includes('event');
+     //
+     //        
+     //
+     //        if(headerHome == true){
+     //            $("#headerHome").addClass("headerActive");
+     //        }else if(headerCoupon == true){
+     //            $("#headerCoupon").addClass("headerActive");
+     //        }else if(headerShop == true){
+     //            $("#headerShop").addClass("headerActive");    
+     //        }else if(headerEvent == true){
+     //            $("#headerEvent").addClass("headerActive");
+     //        }else if(headerLeaflet == true){
+     //			$("#header"+menu_no).addClass("headerActive");
+     //        }else{
+     //		
+     //		}
 
-		//var ofLength = $("#headerMenuArea li").length;
-		
-		//$("#headerMenuArea").width(90*ofLength);
-		
-		var isInIFrame = ( window.location != window.parent.location );
-		if (isInIFrame == true){
-			$('html').removeClass('hide-scrollbar');
-		}else{
-			$('html').addClass('hide-scrollbar');
-		}
-
-//        var locHeader = location.pathname,
-//            headerHome = locHeader.includes('main'),
-//            headerCoupon = locHeader.includes('coupon'),
-//            headerShop = locHeader.includes('shop'),
-//			headerLeaflet = locHeader.includes('leaflet'),
-//            headerEvent = locHeader.includes('event');
-//
-//        
-//
-//        if(headerHome == true){
-//            $("#headerHome").addClass("headerActive");
-//        }else if(headerCoupon == true){
-//            $("#headerCoupon").addClass("headerActive");
-//        }else if(headerShop == true){
-//            $("#headerShop").addClass("headerActive");    
-//        }else if(headerEvent == true){
-//            $("#headerEvent").addClass("headerActive");
-//        }else if(headerLeaflet == true){
-//			$("#header"+menu_no).addClass("headerActive");
-//        }else{
-//		
-//		}
-
-    });
+ });
 }
 
 

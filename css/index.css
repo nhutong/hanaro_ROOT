@@ -1363,10 +1363,6 @@ span.shopUrl:hover{
     height: 30px;
 }
 
-.leaflet_search{
-    font-size: 14px;
-    padding: 0 2px;
-}
 
 /*2020.05.11 마진값 변경, 이미지 검색하기 버튼 글자크기 수정 - 미솔*/
 
@@ -1594,10 +1590,22 @@ span.shopUrl:hover{
 }
 
 .leaflet_search{
+    padding: 5px 20px;
     background-color: #aaaaaa;
-    box-shadow: 0;
     border: 0;
-    padding: 4px 10px;
+    box-shadow: none;
+    font-size: 14px;
+    margin : 0 0 5px 5px;
+}
+
+.leaflet_submit{
+    padding: 5px 20px;
+    background-color: #55B190;
+    border: 0;
+    color: #fff;
+    box-shadow: none;
+    font-size: 14px;
+    margin:0 0 5px 5px;
 }
 
 .leaflet_image span{

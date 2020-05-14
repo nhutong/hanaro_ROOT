@@ -153,10 +153,16 @@
     border-bottom: 2px solid #55B190;
 }
 
+#aside_icons{
+    margin-top: 30%;
+    text-align: left;
+    vertical-align: bottom;
+}
+
 #aside_icons ul li{
     display: inline-block;
     width: 33.3%;
-    text-align: center;
+    text-align: left;
 }
 
 #aside_icons ul li img{
@@ -340,6 +346,18 @@ header nav{
 /*     -ms-overflow-style: none; */
 }
 
+#prod_cont_count{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 12px;
+    color:#fff;
+    text-align: center;
+    background-color: rgb(238, 146, 9);
+    line-height: 18px;
+}
+
 /*normal*/
 ::-webkit-scrollbar-thumb {
     /*...*/
@@ -497,7 +515,7 @@ header nav ul li.active a{
 
 .item_list_banner_wrap{
 /*    height: 75px;*/
-/*    min-height: 75px; /*임의로 잡아놓은 높이*/*/
+/*    min-height: 75px; /*임의로 잡아놓은 높이*/
 	height: 3px;
     min-height: 3px; 
     position: relative;
@@ -684,7 +702,7 @@ header nav ul li.active a{
     
     width: calc(50% - 23px) !important;
     float: left;
-    margin: 15px 15px 0;
+    margin: 15px 15px 0;  
 }
 
 .item_list_inner_wrap .figure.figure2:nth-child(2n){

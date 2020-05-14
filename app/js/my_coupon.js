@@ -16,52 +16,43 @@ $(function(){
 			vm_cp_no = localStorage.getItem("vm_cp_no");
 		}
 	}
-
-	//$(".product_detail, .thumb_wrap").click(function(){
-		//$(this).siblings(".product_modal").addClass("active");
-    //})
-    //$(".modal_cls").click(function(){
-        //$(this).closest(".product_modal").removeClass("active");
-    //})
-
-   ////쿠폰 사용 확인
-   //$(".coupon_btn_wrap").click(function(){       
-	   //if(confirm("쿠폰을 사용하시겠습니까?") == true){
-			//alert("쿠폰이 사용되었습니다");
-			//$(this).children(".coupon_btn").css("background-color","#949494");	
-	   //}else{
-			//alert("사용이 취소되었습니다.");
-			//return false;
-	   //}           
-   //})
-	   
 	couponList(vm_cp_no);
 	couponListIng(vm_cp_no);
 	couponListEnd(vm_cp_no);
-
 })
+
+
 
 /* 버튼 클릭시 쿠폰 저장 */
 function certCoupon(rcvMcNo){
+    
+   if(confirm("직원확인 처리하시겠습니까? 직원확인 이후에는 쿠폰이 사용처리되어 사용하실 수 없습니다.") == true){
+            $.ajax({
+                url:'https://www.nhhanaromart.com/back/02_app/mCouponMineCert.jsp?random=' + (Math.random()*99999), 
+                data : {mcNo: rcvMcNo},
+                method : 'GET' 
+            }).done(function(result){
 
-	$.ajax({
-		url:'/back/02_app/mCouponMineCert.jsp?random=' + (Math.random()*99999), 
-		data : {mcNo: rcvMcNo},
-		method : 'GET' 
-	}).done(function(result){
-			
-		console.log("noticeList=========================================");
-		if(result == 'dup'){
-			alert("이미 직원확인을 받으셨습니다.")
-		}else if(result == 'exception error'){
-			console.log(result);
-		}else{
-			console.log("============= notice callback ========================");
-			console.log(result);
-			alert("직원확인을 받으셨습니다.")
-		}
-	});
-
+                console.log("noticeList=========================================");
+                if(result == 'dup'){
+                    alert("이미 직원확인을 받으셨습니다.");
+                    location.reload();  
+                }else if(result == 'exception error'){
+                    console.log(result);
+                }else{
+                    console.log("============= notice callback ========================");
+                    console.log(result);
+                    //쿠폰 사용
+                    alert("쿠폰이 사용되었습니다.");
+                    $(this).children("span.coupon_btn").css("background-color","#949494");
+                    location.reload(); 
+                }
+            });       
+       }else{
+            alert("사용이 취소되었습니다.");
+            location.reload(); 
+       }
+    
 }
 
 /* 쿠폰 - 전체 */
@@ -87,25 +78,37 @@ function couponList(rcv_vm_cp_no){
      		console.log(jsonResult);
 
 			var jsonResult_notice = jsonResult.BannerList;
-			
+
+			/* 20200229 추가 시작 */
+			var re=/(\n|\r\n)/g
+			/* 20200229 추가 끝 */
+
 			for(var i in jsonResult_notice){
 
 				text +=' <div class="coupon_cont figure">';
-				text +=' 	<div class="discount_info">'+jsonResult_notice[i].coupon_name+'</div>';
+				if( jsonResult_notice[i].discount_price == 0 ){
+					text +=' 	<div class="discount_info">무료증정</div>';
+				}else{
+					text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+				}
                 text +='     <div class="thumb_wrap">';
 				
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
 					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
-					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+                    if(jsonResult_notice[i].img_path == null){
+                        text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                    }else{
+                        text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+					}
 				}
                 text +='     </div>';
                 text +='     <div class="product_detail">';
 
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
-					text +='         <a href="#" class="product">&nbsp;</a>';
+					text +='         <a href="#" class="product">'+comma(jsonResult_notice[i].min_price)+' 원구매시</a>';
 				}else{
 					text +='         <a href="#" class="product">'+jsonResult_notice[i].pd_name+'</a>';
 				}
@@ -116,52 +119,51 @@ function couponList(rcv_vm_cp_no){
                 text +='         </a>';
                 text +='     </div>';
 
+				//레이어 팝업
 				text +='<div class="product_modal">';            
 				text +='	<div class="product_modal_wrap">';
 				text +='		<div class="modal_cls"><img src="../images/coupon_cls.png" alt="쿠폰닫기"></div>';
-                text +='        <div class="coupon_info">'+jsonResult_notice[i].coupon_name+'</div>';
+				text +='        <div class="coupon_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
                 text +='        <div class="coupon_thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
 					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
-					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+					if(jsonResult_notice[i].img_path == null){
+                        text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                    }else{
+                        text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+					}
 				}
                 text +='        </div>';
                 text +='        <div class="coupon_barcode_wrap">';
 				text +='			<span class="coupon_barcode" id="1_'+jsonResult_notice[i].coupon_code+'" style="display : block; margin : auto;">';
-				//text +='				<img src="../images/barcode.png" alt="바코드">';
                 text +='            </span>';
                 text +='        </div>';
                 text +='        <div class="coupon_bg">';
-				text +='			<div class="coupon_title">'+jsonResult_notice[i].pd_name+'</div>';
-                text +='            <div class="coupon_btn_wrap">';
-                text +='                <span class="coupon_btn" onclick="certCoupon('+jsonResult_notice[i].mc_no+');">직원확인</span>';
+				text +='			<div class="coupon_title">';
+                if(jsonResult_notice[i].pd_name == ""){
+                         text +='   ' +comma(jsonResult_notice[i].min_price)+' 원구매시</div>'; 
+                }else{
+                         text +='   ' +jsonResult_notice[i].pd_name+'</div>';   
+                }
+                text +='            <div class="coupon_btn_wrap" onclick="certCoupon('+jsonResult_notice[i].mc_no+');">';
+                text +='                <span class="coupon_btn">직원확인</span>';
 				text +='			</div>';
                 text +='        </div>';
                 text +='        <div class="coupon_txt">';
                 text +='            <p>';
-                text +='                    [쿠폰 사용시 유의사항]<br>';
-                text +='                    -쿠폰을 다운받으신 매장에서만 사용가능합니다. <br>';
-                text +='                    -매장 계산대에서 본 쿠폰을 제시해주세요.<br>';
-                text +='                    -할인조건은 최종결제금액을 기준으로 적용됩니다.<br>';
-                text +='                    -일부 쿠폰과 중복사용이 불가합니다.<br>';
-                text +='                    -쿠폰의 상품 및 사용조건은 변동될 수 있습니다.<br>';
-                text +='                    -현금과 교환되지 않으며 양도가 불가합니다.<br>';
-                text +='                    -일부품목은 적용이 제외됩니다.<br>';
-                text +='                    -쿠폰 적용 시, 타 영수증과 합산 불가하며 한 개의 영수증을 분할하여 사용할 수 없습니다.<br>';
-                text +='                    -식자재매장, 임대매장, 일부 코너상품은 사용이 불가합니다.<br>';
+				text +=''+jsonResult_notice[i].coupon_detail.replace(re,"<br>")+'';
                 text +='            </p>';
                 text +='        </div>';       
                 text +='    </div>';
                 text +='</div>';
+                //레이어 팝업                
 
 				text +=' </div>';
 
 			}
-
-
-			}
+		}
 			
 		$("#list_1").empty();
 		$("#list_1").append(text);
@@ -180,21 +182,8 @@ function couponList(rcv_vm_cp_no){
 		for(var i in jsonResult_notice){
 				
 			$("#1_"+jsonResult_notice[i].coupon_code).barcode(jsonResult_notice[i].coupon_code, "code128",{barWidth:1, barHeight:50});
-
 		}
-
-	   //쿠폰 사용 확인
-	   $(".coupon_btn_wrap").click(function(){       
-		   if(confirm("쿠폰을 사용하시겠습니까?") == true){
-				$(this).children(".coupon_btn").css("background-color","#949494");	
-		   }else{
-				alert("사용이 취소되었습니다.");
-				return false;
-		   }           
-	   })
-		
 	})
-
 }
 
 /* 쿠폰 - 진행중 */
@@ -218,19 +207,29 @@ function couponListIng(rcv_vm_cp_no){
 				var jsonResult = JSON.parse(result);
 				console.log(jsonResult);
 
+				var re=/(\n|\r\n)/g
+				
 				var jsonResult_notice = jsonResult.BannerList;
 				
 				for(var i in jsonResult_notice){
 
 					text +=' <div class="coupon_cont figure">';
-					text +=' 	<div class="discount_info">'+jsonResult_notice[i].coupon_name+'</div>';
+					if( jsonResult_notice[i].discount_price == 0 ){
+						text +=' 	<div class="discount_info">무료증정</div>';
+					}else{
+						text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+					}
 					text +='     <div class="thumb_wrap">';
 					if (jsonResult_notice[i].coupon_type == "BILLING")
-				{
-					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
-				}else{
-					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
-				}
+					{
+						text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
+					}else{
+						if(jsonResult_notice[i].img_path == null){
+							text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
+						}else{
+							text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+						}
+					}
 					text +='     </div>';
 					text +='     <div class="product_detail">';
 
@@ -250,38 +249,37 @@ function couponListIng(rcv_vm_cp_no){
 					text +='<div class="product_modal">';            
 					text +='	<div class="product_modal_wrap">';
 					text +='		<div class="modal_cls"><img src="../images/coupon_cls.png" alt="쿠폰닫기"></div>';
-					text +='        <div class="coupon_info">'+jsonResult_notice[i].coupon_name+'</div>';
+					text +='        <div class="coupon_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
 					text +='        <div class="coupon_thumb_wrap">';
 					if (jsonResult_notice[i].coupon_type == "BILLING")
 					{
 						text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 					}else{
-						text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+						if(jsonResult_notice[i].img_path == null){
+							text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
+						}else{
+							text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+						}
 					}
 					text +='        </div>';
 					text +='        <div class="coupon_barcode_wrap">';
 					text +='			<span class="coupon_barcode" id="2_'+jsonResult_notice[i].coupon_code+'" style="display : block; margin : auto;">';
-					//text +='				<img src="../images/barcode.png" alt="바코드">';
 					text +='            </span>';
 					text +='        </div>';
 					text +='        <div class="coupon_bg">';
-					text +='			<div class="coupon_title">'+jsonResult_notice[i].pd_name+'</div>';
-					text +='            <div class="coupon_btn_wrap">';
-					text +='                <span class="coupon_btn" onclick="certCoupon('+jsonResult_notice[i].mc_no+');">직원확인</span>';
+					text +='			<div class="coupon_title">';
+                    if(jsonResult_notice[i].pd_name == null){
+                         text +='&nsbp;</div>'; 
+                    }else{
+                         text +='   ' +jsonResult_notice[i].pd_name+'</div>';   
+                    }
+					text +='            <div class="coupon_btn_wrap" onclick="certCoupon('+jsonResult_notice[i].mc_no+');">';
+					text +='                <span class="coupon_btn">직원확인</span>';
 					text +='			</div>';
 					text +='        </div>';
 					text +='        <div class="coupon_txt">';
 					text +='            <p>';
-					text +='                    [쿠폰 사용시 유의사항]<br>';
-					text +='                    -쿠폰을 다운받으신 매장에서만 사용가능합니다. <br>';
-					text +='                    -매장 계산대에서 본 쿠폰을 제시해주세요.<br>';
-					text +='                    -할인조건은 최종결제금액을 기준으로 적용됩니다.<br>';
-					text +='                    -일부 쿠폰과 중복사용이 불가합니다.<br>';
-					text +='                    -쿠폰의 상품 및 사용조건은 변동될 수 있습니다.<br>';
-					text +='                    -현금과 교환되지 않으며 양도가 불가합니다.<br>';
-					text +='                    -일부품목은 적용이 제외됩니다.<br>';
-					text +='                    -쿠폰 적용 시, 타 영수증과 합산 불가하며 한 개의 영수증을 분할하여 사용할 수 없습니다.<br>';
-					text +='                    -식자재매장, 임대매장, 일부 코너상품은 사용이 불가합니다.<br>';
+					text +=''+jsonResult_notice[i].coupon_detail.replace(re,"<br>")+'';
 					text +='            </p>';
 					text +='        </div>';       
 					text +='    </div>';
@@ -313,21 +311,12 @@ function couponListIng(rcv_vm_cp_no){
 
 		}
 
-	   //쿠폰 사용 확인
-	   $(".coupon_btn_wrap").click(function(){       
-		   if(confirm("쿠폰을 사용하시겠습니까?") == true){
-				$(this).children(".coupon_btn").css("background-color","#949494");	
-		   }else{
-				alert("사용이 취소되었습니다.");
-				return false;
-		   }           
-	   })
 	
 	})
 
 }
 
-/* 쿠폰 - 종료 */
+/* 쿠폰 - 결제할인 */
 function couponListEnd(rcv_vm_cp_no){
 
 		var text = '';
@@ -347,19 +336,29 @@ function couponListEnd(rcv_vm_cp_no){
 	
 			var jsonResult = JSON.parse(result);
      		console.log(jsonResult);
+     		
+			var re=/(\n|\r\n)/g     		
 
 			var jsonResult_notice = jsonResult.BannerList;
 			
 			for(var i in jsonResult_notice){
 
 				text +=' <div class="coupon_cont figure">';
-				text +=' 	<div class="discount_info">'+jsonResult_notice[i].coupon_name+'</div>';
+				if( jsonResult_notice[i].discount_price == 0 ){
+					text +=' 	<div class="discount_info">무료증정</div>';
+				}else{
+					text +=' 	<div class="discount_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
+				}
                 text +='     <div class="thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
 					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
-					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+					if(jsonResult_notice[i].img_path == null){
+                        text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                    }else{
+                        text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+					}
 				}
                 text +='     </div>';
                 text +='     <div class="product_detail">';
@@ -380,38 +379,37 @@ function couponListEnd(rcv_vm_cp_no){
 				text +='<div class="product_modal">';            
 				text +='	<div class="product_modal_wrap">';
 				text +='		<div class="modal_cls"><img src="../images/coupon_cls.png" alt="쿠폰닫기"></div>';
-				text +='        <div class="coupon_info">'+jsonResult_notice[i].coupon_name+'</div>';
+				text +='        <div class="coupon_info">'+comma(jsonResult_notice[i].discount_price)+'원 할인</div>';
 				text +='        <div class="coupon_thumb_wrap">';
 				if (jsonResult_notice[i].coupon_type == "BILLING")
 				{
 					text +=' 		<a href="#"><img src="../images/coupon_image.png" alt=""></a>';
 				}else{
-					text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt=""></a>';
+					if(jsonResult_notice[i].img_path == null){
+                        text +=' 		<a href="#"><img src="../images/coupon_noimg.png" alt="이미지없음"></a>';                       
+                    }else{
+                        text +=' 		<a href="#"><img src="../upload/'+jsonResult_notice[i].img_path+'" alt="'+jsonResult_notice[i].pd_name+'"></a>';
+					}
 				}
 				text +='        </div>';
 				text +='        <div class="coupon_barcode_wrap">';
 				text +='			<span class="coupon_barcode" id="3_'+jsonResult_notice[i].coupon_code+'" style="display : block; margin : auto;">';
-				//text +='				<img src="../images/barcode.png" alt="바코드">';
                 text +='            </span>';
 				text +='        </div>';
 				text +='        <div class="coupon_bg">';
-				text +='			<div class="coupon_title">'+jsonResult_notice[i].pd_name+'</div>';
-				text +='            <div class="coupon_btn_wrap">';
-				text +='                <span class="coupon_btn" onclick="certCoupon('+jsonResult_notice[i].mc_no+');">직원확인</span>';
+				text +='			<div class="coupon_title">'
+                if(jsonResult_notice[i].pd_name == ""){
+                         text +='   ' +comma(jsonResult_notice[i].min_price)+' 원이상</div>'; 
+                }else{
+                         text +='   ' +jsonResult_notice[i].pd_name+'</div>';   
+                } 
+				text +='            <div class="coupon_btn_wrap" onclick="certCoupon('+jsonResult_notice[i].mc_no+');">';
+				text +='                <span class="coupon_btn">직원확인</span>';
 				text +='			</div>';
 				text +='        </div>';
 				text +='        <div class="coupon_txt">';
 				text +='            <p>';
-				text +='                    [쿠폰 사용시 유의사항]<br>';
-				text +='                    -쿠폰을 다운받으신 매장에서만 사용가능합니다. <br>';
-				text +='                    -매장 계산대에서 본 쿠폰을 제시해주세요.<br>';
-				text +='                    -할인조건은 최종결제금액을 기준으로 적용됩니다.<br>';
-				text +='                    -일부 쿠폰과 중복사용이 불가합니다.<br>';
-				text +='                    -쿠폰의 상품 및 사용조건은 변동될 수 있습니다.<br>';
-				text +='                    -현금과 교환되지 않으며 양도가 불가합니다.<br>';
-				text +='                    -일부품목은 적용이 제외됩니다.<br>';
-				text +='                    -쿠폰 적용 시, 타 영수증과 합산 불가하며 한 개의 영수증을 분할하여 사용할 수 없습니다.<br>';
-				text +='                    -식자재매장, 임대매장, 일부 코너상품은 사용이 불가합니다.<br>';
+				text +=''+jsonResult_notice[i].coupon_detail.replace(re,"<br>")+'';
 				text +='            </p>';
 				text +='        </div>';       
 				text +='    </div>';
@@ -442,15 +440,6 @@ function couponListEnd(rcv_vm_cp_no){
 
 		}
 
-	   //쿠폰 사용 확인
-	   $(".coupon_btn_wrap").click(function(){       
-		   if(confirm("쿠폰을 사용하시겠습니까?") == true){
-				$(this).children(".coupon_btn").css("background-color","#949494");	
-		   }else{
-				alert("사용이 취소되었습니다.");
-				return false;
-		   }           
-	   })
 	
 	})
 
