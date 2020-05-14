@@ -53,10 +53,10 @@
                               </tr>                            
                               <tr>
                                   <th>수량제한</th>
-                                  <td><input type="text" class="price_input" id="limit_qty">매</td>
+                                  <td><input type="text" class="price_input" id="limit_qty">매 <span style="font-size:12px;color: blueviolet;">※ -1을 입력하면, 무제한쿠폰 생성</span></td>
                               </tr>
                               <tr>
-                                  <th>쿠폰 사용시<br>유의사항</th>
+                                  <th>쿠폰 사용시<br>유의사항<br><span style="font-size:12px;color: blueviolet;">(수정 가능)</span></th>
                                   <td>
 									<textarea name="coupon_detail" id="coupon_detail">
 
@@ -70,7 +70,7 @@
                                   </td>
                               </tr>
                               <tr>
-                                  <th>적용기간</th>
+                                  <th>쿠폰사용기간</th>
                                   <td>
                                       <input type="text" id="start_date">
                                       <span class="date_to">~</span>
@@ -95,8 +95,8 @@
                                   <td><input type="text" id="coupon_code"> <span style="font-size:12px;color: blueviolet;">※ 쿠폰코드는 13자리이며, 중복되어서는 안됩니다. (경제통합시스템에서 쿠폰 생성 후 사용)</span></td>
                               </tr>
                               <tr>
-                                <th>(*)쿠폰할인가</th>
-                                <td><input type="text" class="price_input" id="discount_price">원</td>
+                                <th>(*)쿠폰할인금액</th>
+                                <td><input type="text" class="price_input" id="discount_price">원 <span style="font-size:12px;color: blueviolet;">※ 0원으로 설정 시, 무료증정 쿠폰 생성(상품할인쿠폰에만 사용하세요) </span></td>
                               </tr>
                               <tr id="price_area">
                                   <th>특정금액 이상</th>

@@ -65,13 +65,13 @@
                               </tr>                            
                               <tr>
                                   <th>수량제한</th>
-                                  <td><input type="text" class="price_input" id="limit_qty">매 <span style="font-size:12px;color: blueviolet;">※ 1~99999까지 입력</span></td>
+                                  <td><input type="text" class="price_input" id="limit_qty">매 <span style="font-size:12px;color: blueviolet;">※ -1을 입력하면, 무제한쿠폰 생성</span></span></td>
                               </tr>
                               <tr>
-                                  <th>쿠폰 사용시<br>유의사항</th>
+                                  <th>쿠폰 사용시<br>유의사항<br><span style="font-size:12px;color: blueviolet;">(수정 가능)</span></th>
                                   <td>
 									<textarea name="coupon_detail" id="coupon_detail" style="font-size:14px; color:#2e2e2e;text-indent:-10px; padding-left:10px;line-height:1.55em;background-color: #f8f8f8;">
- ※ 쿠폰 사용시 유의사항 ※ 
+ ※ 쿠폰 사용시 유의사항
  - 앱쿠폰은 하나로마트 회원만 사용 가능합니다.
  - 쿠폰을 다운받으신 매장에서만 사용 가능합니다.
  - 매장 계산대에서 본 쿠폰을 제시해주세요.
@@ -97,7 +97,7 @@
                                 </td>
                             </tr>
                               <tr>
-                                  <th>적용기간</th>
+                                  <th>쿠폰사용기간</th>
                                   <td>
                                       <input type="text" id="start_date">
                                       <span class="date_to">~</span>
@@ -122,7 +122,7 @@
                                 <td><input type="text" id="coupon_code"> <span style="font-size:12px;color: blueviolet;">※ 쿠폰코드는 13자리이며, 중복되어서는 안됩니다. (경제통합시스템에서 쿠폰 생성 후 사용)</span></td>
                               </tr>
                               <tr>
-                                <th>(*)쿠폰할인가</th>
+                                <th>(*)쿠폰할인금액</th> <span style="font-size:12px;color: blueviolet;">※ 0원으로 설정 시, 무료증정 쿠폰 생성(상품할인쿠폰에만 사용하세요) </span
                                 <td><input type="text" class="price_input" id="discount_price">원</td>
                               </tr>
                               <tr id="price_area">
