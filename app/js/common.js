@@ -171,94 +171,92 @@ function getHeader(rcVm_p_no){
 	})	
 }
 
-// header menu를 셋팅한다.
+// header menu를 셋팅한다. https://www.nhhanaromart.com
 function getHeaderMenu(ff_vm_cp_no) {
 
-   	////////관리자 페이지에서는 숨긴 전단도 보여줌!
-	var isInIFrame = ( window.location != window.parent.location );
-	if (isInIFrame == true){
-		var rcv_show_fg = "'Y','N'";
-	}else{
-		var rcv_show_fg = "'Y'";
-	}
-	////////관리자 페이지에서는 숨긴 전단도 보여줌!
+    ////////관리자 페이지에서는 숨긴 전단도 보여줌!
+ var isInIFrame = ( window.location != window.parent.location );
+ if (isInIFrame == true){
+     var rcv_show_fg = "'Y','N'";
+ }else{
+     var rcv_show_fg = "'Y'";
+ }
+ ////////관리자 페이지에서는 숨긴 전단도 보여줌!
 
-    $.ajax({
-        url:'/back/02_app/mLeafletHeaderMenu.jsp?random=' + (Math.random()*99999), 
-        data : {userCompanyNo: ff_vm_cp_no, rcv_show_fg: rcv_show_fg},
-        method : 'GET' 
-    }).done(function(result){
+ $.ajax({
+     url:'/back/02_app/mLeafletHeaderMenuCount.jsp?random=' + (Math.random()*99999), 
+     data : {userCompanyNo: ff_vm_cp_no, rcv_show_fg: rcv_show_fg},
+     method : 'GET' 
+ }).done(function(result){
 
-        console.log("getHeaderMenu========================================="+result);
-        if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log("getHeaderMenu"+result);
-        }else{
-            console.log("============= getHeaderMenu callback ========================");
-            console.log("getHeaderMenu callback"+result);
-            var data = JSON.parse(result);
+     console.log("getHeaderMenu========================================="+result);
+     if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+         console.log("getHeaderMenu"+result);
+     }else{
+         console.log("============= getHeaderMenu callback ========================");
+         console.log("getHeaderMenu callback"+result);
+         var data = JSON.parse(result);
 
-			var text = '<li id="headerHome"><a href="#" onclick="home();" class="home">홈</a></li>';
+         var text = '<li id="headerHome"><a href="#" onclick="home();" class="home">홈</a></li>';
 
-            data['DateCategoryList'].forEach(function(item, index){                        
-                //$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
-                if (decodeURIComponent(item['prod_cont_count']) >= 1){
-                    text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a><span class="nav_menu_alert" id="prod_cont_count">'+decodeURIComponent(item['prod_cont_count'])+'</span></li>'
-                }else{
-                    text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a></li>'
-                }                
-				
-				if (index == 0)
-				{
-					initMenuNo = decodeURIComponent(item['menu_no']);
-					localStorage.setItem("initMenuNo",initMenuNo);
-				}
-			});
+         data['DateCategoryList'].forEach(function(item, index){                        
+             if (decodeURIComponent(item['prod_cont_count']) >= 1){
+                 text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a><span class="nav_menu_alert" id="prod_cont_count">'+decodeURIComponent(item['prod_cont_count'])+'</span></li>'
+             }else{
+                 text += '<li id="header'+decodeURIComponent(item['menu_no'])+'" data-menu_type_cd="'+decodeURIComponent(item['menu_type_cd'])+'"><a href="../m_leaflet/m_leaflet.html?vm_cp_no='+ff_vm_cp_no+'&menu_no='+decodeURIComponent(item['menu_no'])+'&jd_no='+decodeURIComponent(item['jd_no'])+'">'+decodeURIComponent(item['menu_name'])+'</a></li>'
+             }                
+             
+             if (index == 0){
+                 initMenuNo = decodeURIComponent(item['menu_no']);
+                 localStorage.setItem("initMenuNo",initMenuNo);
+             }
+         });
 
-			//text += '<li id="headerCoupon"><a href="#" onclick="coupon();">쿠폰</a></li>';
-			//text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';
-			//text += '<li id="headerShop"><a href="#" onclick="shop();">장보기</a></li>';
-        }
-		
-		$("#headerMenuArea").empty();
-		$("#headerMenuArea").append(text);
+         //text += '<li id="headerCoupon"><a href="#" onclick="coupon();">쿠폰</a></li>';
+         //text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';
+         //text += '<li id="headerShop"><a href="#" onclick="shop();">장보기</a></li>';
+     }
+     
+     $("#headerMenuArea").empty();
+     $("#headerMenuArea").append(text);
 
-		getMenuListDefault(ff_vm_cp_no);
+     getMenuListDefault(ff_vm_cp_no);
 
-		//var ofLength = $("#headerMenuArea li").length;
-		
-		//$("#headerMenuArea").width(90*ofLength);
-		
-		var isInIFrame = ( window.location != window.parent.location );
-		if (isInIFrame == true){
-			$('html').removeClass('hide-scrollbar');
-		}else{
-			$('html').addClass('hide-scrollbar');
-		}
+     //var ofLength = $("#headerMenuArea li").length;
+     
+     //$("#headerMenuArea").width(90*ofLength);
+     
+     var isInIFrame = ( window.location != window.parent.location );
+     if (isInIFrame == true){
+         $('html').removeClass('hide-scrollbar');
+     }else{
+         $('html').addClass('hide-scrollbar');
+     }
 
-//        var locHeader = location.pathname,
-//            headerHome = locHeader.includes('main'),
-//            headerCoupon = locHeader.includes('coupon'),
-//            headerShop = locHeader.includes('shop'),
-//			headerLeaflet = locHeader.includes('leaflet'),
-//            headerEvent = locHeader.includes('event');
-//
-//        
-//
-//        if(headerHome == true){
-//            $("#headerHome").addClass("headerActive");
-//        }else if(headerCoupon == true){
-//            $("#headerCoupon").addClass("headerActive");
-//        }else if(headerShop == true){
-//            $("#headerShop").addClass("headerActive");    
-//        }else if(headerEvent == true){
-//            $("#headerEvent").addClass("headerActive");
-//        }else if(headerLeaflet == true){
-//			$("#header"+menu_no).addClass("headerActive");
-//        }else{
-//		
-//		}
+     //        var locHeader = location.pathname,
+     //            headerHome = locHeader.includes('main'),
+     //            headerCoupon = locHeader.includes('coupon'),
+     //            headerShop = locHeader.includes('shop'),
+     //			headerLeaflet = locHeader.includes('leaflet'),
+     //            headerEvent = locHeader.includes('event');
+     //
+     //        
+     //
+     //        if(headerHome == true){
+     //            $("#headerHome").addClass("headerActive");
+     //        }else if(headerCoupon == true){
+     //            $("#headerCoupon").addClass("headerActive");
+     //        }else if(headerShop == true){
+     //            $("#headerShop").addClass("headerActive");    
+     //        }else if(headerEvent == true){
+     //            $("#headerEvent").addClass("headerActive");
+     //        }else if(headerLeaflet == true){
+     //			$("#header"+menu_no).addClass("headerActive");
+     //        }else{
+     //		
+     //		}
 
-    });
+ });
 }
 
 
