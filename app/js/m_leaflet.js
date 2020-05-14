@@ -20,22 +20,12 @@ $(function () {
 	logInsert(localStorage.getItem("memberNo"), vm_cp_no, menu_no);
 
 	getHeader(vm_cp_no);
-    //stopHeader();
+    //getShare();	
 	getLeft();
 
 	//상단 판매장명 바인당 > 오늘자 전단의 일자, 베너, 상품 바인딩
 	getCpName(vm_cp_no, menu_no, jd_no);
 	setTimeout(function(){ clickEventApp(); }, 2000);
-
-    /*판매장 변경시, iframe reload 한다.*/
-    // $("#title_anibox_banner").on("click",function(){
-    //     if ( getCookie("jd_no") == "" )
-    //     {            
-    //         alert("먼저 전단을 제작하여 등록하시기 바랍니다.");
-    //         $(parent.document).find(".leaflet_banner").hide();      
-    //     }else{   
-    //     }
-    // });
 
 	var windowWidth = $( window ).width();
 
@@ -50,34 +40,6 @@ $(function () {
 		slideWidth: windowWidth,
 		moveSlides: 1
 	});
-
-	// document.addEventListener('contextmenu', function() {
-	//   event.preventDefault();
-	// });
-
-	// 20200424-김대윤-단축URL기능 관리자 페이지로 이관
-	// document.addEventListener('mousedown', function() {
-	//   if ((event.button == 2) || (event.which == 3)) {
-
-	// 	/* 20191227 도메인뒤 역슬래쉬 삭제 */
-	// 	//var newURL = "../images/Icon-512.png" + window.location.pathname;
-	// 	var newURL = "https://www.nhhanaromart.com";
-	// 	var newURLParameter = newURL+"?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no+"&jd_no="+getCookie("jd_no"); 
-	// 	console.log("before:"+newURLParameter);
-	// 	getShortURL(newURLParameter, function(newShortURL){
-	// 		console.log("after:"+newShortURL);
-	// 		copy_to_clipboard(newShortURL);
-	// 		alert("붙여넣어 사용하시기 바랍니다."+newShortURL);
-	// 	});
-	// 	//setTimeout(function(){ 
-	// 	//	console.log("after:"+newShortURL);
-	// 	// 	copy_to_clipboard(newShortURL);
-	// 	// 	alert("붙여넣어 사용하시기 바랍니다."+newShortURL);
-	// 	//}, 2000);
-	//   }
-	// });
-
-	//iframeScroll();
 
 	var isInIFrame = ( window.location != window.parent.location );
 	if (isInIFrame == true){
@@ -115,63 +77,6 @@ $(function () {
 
 });
 
-//header 멈추기
-
-
-// 20200424-김대윤-단축URL기능 관리자 페이지로 이관
-// function is_ie() {
-//   if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1) return false;
-//   if(navigator.userAgent.toLowerCase().indexOf("msie") != -1) return true;
-//   if(navigator.userAgent.toLowerCase().indexOf("windows nt") != -1) return true;
-//   return false;
-// }
- 
-// function copy_to_clipboard(str) {
-//   if( is_ie() ) {
-//     window.clipboardData.setData("Text", str);
-//     alert("복사되었습니다.");
-//     return;
-//   }
-//   prompt("Ctrl+C를 눌러 복사하세요.", str);
-// }
-
-
-//아이프레임 내부 스크롤바 보이게 하기
-//function iframeScroll(){
-//	if( is_ie ){
-//	
-//		$("#headerMenuArea").css("overflow-x","scroll");
-//		$("body").addClass("show-scrollbar");
-//		
-//	}
-//
-//}
-
-// 20200424-김대윤-단축URL기능 관리자 페이지로 이관
-// // 단축 URL 을 구성한다.
-// function getShortURL(rcvURL, cb){
-// 	$.ajax({
-//         url:'/back/02_app/mLeafletNaverShortURL.jsp?random=' + (Math.random()*99999), 
-//         data : {rcvText: encodeURIComponent(rcvURL)},
-//         method : 'GET' 
-//     }).done(function(result){
-//         //console.log("getShortURL=========================================");
-//         if(result == ('NoN') || result == 'list error' || result == 'empty'){
-// 			//console.log(result);
-// 			cb(result);
-//         }else{
-//             //console.log("============= getShortURL callback ========================");
-//             //console.log(result);
-//             var data = result.trim();
-// 			data = JSON.parse(data);
-// 			//console.log(data["result"].url);
-// 			data = data["result"].url;
-// 			//console.log("data:"+data);
-// 			cb(data);
-//         }
-//     });
-// }
-
 // 상단 판매장명을 바인딩
 function getCpName(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no){
 	//console.log("rcv_vm_cp_no:"+rcv_vm_cp_no+"/rcv_menu_no:"+rcv_menu_no+"/rcv_jd_no:"+rcv_jd_no);
@@ -196,91 +101,13 @@ function getCpName(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no){
     });
 }
 
-// //leaflet.js로 이관
-// var isInIFrame = ( window.location != window.parent.location );
-// if (isInIFrame == true)
-// {
-// 	/*배너 이미지파일 업로더*/
-// 	var enterUpload = window.parent.document.getElementById('banner_add_btn');
-// 	enterUpload.addEventListener('click', function(evt){
-// 		var inputFile = window.parent.document.getElementById('uploadFile');
-// 		new bannerUpload(inputFile, function(result){
-// 			window.parent.$("#new_banner_path").val(result);			
-// 			var jd_no = getCookie("jd_no");
-// 			if ( result == null || chrLen(result) == 0)
-// 			{
-// 				alert("배너 이미지를 업로드하시기 바랍니다.");
-// 				return false;
-// 			}else{
-// 				bannerInsert(result);	
-// 			}					
-// 		});
-// 	});
-// }else{
-// }
-
-// //leaflet.js로 이관
-// function bannerInsert(rcvResult){
-// 	var jd_no = getCookie("jd_no");
-// 	$.ajax({
-// 		url:'/back/03_leaflet/leafletBannerInsert.jsp?random=' + (Math.random()*99999),
-// 		data : {jd_no: jd_no, img_path: rcvResult},
-// 		method : 'GET' 
-// 	}).done(function(result){
-// 		//console.log("noticeList=========================================");
-// 		if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-// 			//console.log(result);
-// 		}else{
-// 			$("#noticeList").html("");
-// 			//console.log("============= notice callback ========================");
-// 			//console.log(result);
-// 		}
-// 	});
-// 	alert("배너 업로드 완료하였습니다.");
-// 	$(parent.document).find(".leaflet_banner").removeClass("active");
-// 	window.location.reload();
-// }
-
-// function getTodayJd(rcv_vm_cp_no, rcv_menu_no){
-// 	rcv_show_fg = "Y,N";
-// 	console.log("mLeafletTodayJdInfo=========================================",rcv_vm_cp_no,"/",rcv_menu_no);
-//     $.ajax({
-//         url:'/back/02_app/mLeafletTodayJdInfo.jsp?random=' + (Math.random()*99999), 
-//         data : {userCompanyNo: rcv_vm_cp_no, menuNo: rcv_menu_no, show_fg: rcv_show_fg},
-//         method : 'GET' 
-//     }).done(function(result){
-// 		console.log("============= mLeafletTodayJdInfo callback ========================");
-// 		$("#title_anibox").empty();
-//         if(result == ('NoN') || result == 'exception error' || result == 'empty' ){
-// 			//console.log("if:"+result);
-// 			var today = new Date();
-// 			var dayNamesArray = ["일","월","화","수","목","금","토"];
-// 			var monthNamesArray = ["01","02","03","04","05","06","07","08","09","10","11","12"];
-// 			//today.getFullYear() 			//monthNamesArray[today.getMonth()] 			//today.getDate() 			//dayNamesArray[today.getDay()]
-// 			$("#selected_jd").append('<li class="date_item" id="CT_0" data-jd_no="0" onclick="getDateThree(0)">'+monthNamesArray[today.getMonth()]+'-'+today.getDate()+'('+dayNamesArray[today.getDay()]+')'+'</li>');
-//         }else{            
-//             //console.log("else:"+result);
-//             var data = JSON.parse(result);			
-//             data['List'].forEach(function(item, index){                        
-// 				if (decodeURIComponent(item['menu_type_cd']) == "MENU1" || decodeURIComponent(item['menu_type_cd']) == "MENU2" || decodeURIComponent(item['menu_type_cd']) == "MENU3")
-// 				{
-// 					$("#selected_jd").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
-// 				}else{
-// 					$("#selected_jd").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')</li>');
-// 				}
-// 				getBanner(decodeURIComponent(item['jd_no']));
-// 				getPdContent(decodeURIComponent(item['jd_no']));
-// 			});			
-//         }
-//     });
-// }
-
 // rcv_jd_no : 기준이 되는 전단번호, 0이면 오늘날자 전단을 가지고옮
 // rcv_next_fg: (-1)rcv_jd_no 이전전단, (0)rcv_jd_no 전단, (1)rcv_jd_no 다음전단
 function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 	
-	if(rcv_jd_no == ""){ rcv_jd_no = 0; }
-	
+	if(rcv_jd_no == "" || typeof(rcv_jd_no) == undefined ){ 
+		rcv_jd_no = 0; 
+	}
 
 	var modify_jd_no = "";
 
@@ -368,71 +195,6 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 
 	});
 }
-
-
-
-// 전단 기간을 가져온다 - 20200428-김대윤-미사용
-// function getDateInterval() {
-// 	//console.log("[getDateInterval]vm_cp_no:"+vm_cp_no+", menu_no:"+menu_no+", jd_no:"+jd_no);
-// 	if (menu_no == ""){
-// 		menu_no = localStorage.getItem("initMenuNo");
-// 	}
-
-//     $.ajax({
-//         url:'/back/02_app/mLeafletDateCategory.jsp?random=' + (Math.random()*99999), 
-//         data : {userCompanyNo: vm_cp_no, menuNo: menu_no},
-//         method : 'GET' 
-//     }).done(function(result){
-
-//         //console.log("dataCategoryList=========================================");
-//         if(result == ('NoN') || result == 'list error' || result == 'empty'){
-//             //console.log(result);
-//         }else{
-//             //console.log("============= dataCategoryList callback ========================");
-//             //console.log(result);
-//             var data = JSON.parse(result);
-
-// 			$("#title_anibox").empty();
-
-//             data['DateCategoryList'].forEach(function(item, index){                        
-                
-// 				if (decodeURIComponent(item['menu_type_cd']) == "MENU1" || decodeURIComponent(item['menu_type_cd']) == "MENU2" || decodeURIComponent(item['menu_type_cd']) == "MENU3")
-// 				{
-// 					$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')~ '+decodeURIComponent(item['to_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['to_date_weekday']).replace(/\+/g,' ')+')</li>');
-// 				}else{
-// 					$("#title_anibox").append('<li class="date_item" id="CT_'+decodeURIComponent(item['jd_no'])+'" data-jd_no="'+decodeURIComponent(item['jd_no'])+'" onclick="getDateThree('+decodeURIComponent(item['jd_no'])+', \''+decodeURIComponent(item['from_date_origin']).replace(/\+/g,' ')+'\', \''+decodeURIComponent(item['to_date_origin']).replace(/\+/g,' ')+'\')">'+decodeURIComponent(item['from_date']).replace(/\+/g,' ')+'('+decodeURIComponent(item['from_date_weekday']).replace(/\+/g,' ')+')</li>');
-// 				}
-
-// 				init_jd_no = decodeURIComponent(item['jd_no']);
-// 				setCookie1("curJd"+index, decodeURIComponent(item['jd_no']));
-
-// 				console.log("param jd_no:"+jd_no+", fetch jd_no:"+decodeURIComponent(item['jd_no'])+", today_fg:"+decodeURIComponent(item['today_fg']));
-
-// 				if(jd_no == "" || jd_no == "-1"){
-// 					console.log("aaaa");
-// 					if (decodeURIComponent(item['today_fg']) == "Y"){ //오늘자 전단 일자슬라이드 선택 및 상세내역 출력
-// 						setCookie1("jd_no",decodeURIComponent(item['jd_no']), 1);												
-// 						setTimeout(function(){ date_slider(Number(index)); }, 100);
-// 						getBanner(decodeURIComponent(item['jd_no']));
-// 						getPdContent(decodeURIComponent(item['jd_no']));
-// 					}
-// 				}else{
-// 					console.log("bbbb");					
-// 					if (decodeURIComponent(item['jd_no']) == jd_no){
-// 						console.log("cccc");					
-// 						setCookie1("jd_no",decodeURIComponent(item['jd_no']), 1);						
-// 						setTimeout(function(){ date_slider(Number(index)); }, 100);
-// 						getBanner(decodeURIComponent(item['jd_no']));
-// 						getPdContent(decodeURIComponent(item['jd_no']));
-// 					}
-// 				}
-
-// 			});			
-//         }
-//     });
-// }
-
-
 
 // 전단 배너를 가져온다.
 function getBanner(rcv_jd_no_b) {
@@ -554,8 +316,10 @@ function getPdContent(rcv_jd_no) {
 				}
 
 				//카드 할인기간을 카드에 한정하지 않고 값이 있을경우 표시되도록 용도변경
-				if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""){
+				if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
 					text += '		<span>'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</span>'
+				}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
+					text += '		<span>'+item['card_discount_from_date']+'</span>'					
 				}else if(item['card_discount_from_date'] != ""){
 					text += '		<span>'+item['card_discount_from_date']+'</span>'
 				}else if(item['card_discount_end_date'] != ""){
@@ -598,49 +362,47 @@ function getPdContent(rcv_jd_no) {
 				text += '    	  <div class="leaflet_txt">'
 				text += '    		  <div class="leaflet_discount">'                 
 				text += '    			 <h5>혜택 및 상품 정보 안내</h5>'
-				text += '    			 <div id="table">'				
+				text += '    			 <div id="table">'			
+				
+				text += '    				<table class="table" >'
+
+				// 할인기간
+				if (decodeURIComponent(item['card_discount_from_date']) != "" || decodeURIComponent(item['card_discount_end_date']) != ""){
+					text += '    				   <tr class="hide table-line">'
+					text += '    					  <td width="15%">'
+					text += '    						<div class="discount_img" style="font-size:10px;text-align:center;">'
+					text += '    							할인기간'
+					text += '    						</div>'
+					text += '    					  </td>'
+					if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
+						text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</td>'
+					}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
+						text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'</td>'
+					}else if(item['card_discount_from_date'] != ""){
+						text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'</td>'
+					}else if(item['card_discount_end_date'] != ""){
+						text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_end_date']+'</td>'
+					}else{
+					}					
+					text += '    					</tr>'
+				}
+				
 				// 카드할인
-				if (decodeURIComponent(item['card_discount']) != "")
-				{
-					text += '    				<table class="table" >'
-					//text += '    				   <tr>'
-					//text += '    					  <th>할인종류</th>'
-					//text += '    					  <th>할인액/혜택</th>'
-					//text += '    					  <th>기간</th>'
-					//text += '    					  <th>혜택상세</th>'
-					//text += '    				   </tr>'
+				if (decodeURIComponent(item['card_discount']) != ""){
 					text += '    				   <tr class="hide table-line">'
 					text += '    					  <td width="15%">'
 					text += '    						<div class="discount_img">'
 					text += '    							<img src="../images/leaflet_icon1.png" alt="카드할인">'
 					text += '    						</div>'
 					text += '    					  </td>'
-					text += '    					  <td width="20%" style="text-align : center">'+comma(item['card_discount'])+'원</td>'
-					text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</td>'
-					text += '    					  <td>'+item['card_info']+'<br>'+item['card_restrict']+'</td>'
+					text += '    					  <td colspan=1 width="20%" style="text-align : center">'+comma(item['card_discount'])+'원</td>'
+					text += '    					  <td colspan=2>'+item['card_info']+'</td>'
+					text += '    					  <td colspan=1>'+item['card_restrict']+'</td>'					
 					text += '    					</tr>'
+				}
 
-					if (decodeURIComponent(item['coupon_discount']) != ""){
-						text += '    					<tr class="hide table-line">'
-						text += '    					   <td>'
-						text += '    						  <div class="discount_img">'
-						text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
-						text += '    						  </div>'
-						text += '    					   </td>'
-						text += '    					   <td colspan=3>'+comma(item['coupon_discount'])+'원 추가할인</td>'
-						text += '    					 </tr>'
-					}
-
-				// 다다익선
-				}else if (item['dadaiksun'] != "")
-				{
-					text += '    				<table class="table" >'
-					//text += '    				   <tr>'
-					//text += '    					  <th>할인종류</th>'
-					//text += '    					  <th>할인액/혜택</th>'
-					//text += '    					  <th>기간</th>'
-					//text += '    					  <th>혜택상세</th>'
-					//text += '    				   </tr>'
+				//다다익선
+				if (decodeURIComponent(item['dadaiksun']) != ""){				
 					text += '    					<tr class="hide table-line">'
 					text += '    					   <td>'
 					text += '    						  <div class="discount_img">'
@@ -648,28 +410,20 @@ function getPdContent(rcv_jd_no) {
 					text += '    						  </div>'
 					text += '    					   </td>'
 					text += '    					   <td colspan=3>'+item['dadaiksun']+'</td>'
-					text += '    					   <td colspan=3>'+item['dadaiksun_info']+'</td>';  
+					text += '    					   <td colspan=2>'+item['dadaiksun_info']+'</td>';  
 					text += '    					 </tr>'
-				// 쿠폰할인
-				}else if (decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ') != "")
-				{
-					text += '    				<table class="table" >'
-					text += '    				   <tr>'
-					text += '    					  <th>할인종류</th>'
-					text += '    					  <th>할인금액</th>'
-					text += '    					  <th>기간</th>'
-					text += '    					  <th>혜택상세</th>'
-					text += '    				   </tr>'
+				}
+
+				//쿠폰할인
+				if (decodeURIComponent(item['coupon_discount']) != ""){
 					text += '    					<tr class="hide table-line">'
 					text += '    					   <td>'
 					text += '    						  <div class="discount_img">'
 					text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
 					text += '    						  </div>'
 					text += '    					   </td>'
-					text += '    					   <td colspan=3>'+decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원 추가할인</td>'
+					text += '    					   <td colspan=5>'+decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원 추가할인</td>'
 					text += '    					 </tr>'
-				// 적용사항 없음
-				}else{
 				}
 
 				text += '    				 </table>'
@@ -686,8 +440,6 @@ function getPdContent(rcv_jd_no) {
 		}
 	});
 }
-
-
 
 function clickEventApp(){
 
@@ -736,12 +488,13 @@ function addRmZzim(rcv_jd_prod_con_no){
         method : 'GET' 
     }).done(function(result){
 
-        //console.log("RmZzim=========================================");
+        console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            //console.log(result);
+            console.log(result);
         }else{
-            //console.log("============= RmZzim callback ========================");
-            //console.log(result);
+            console.log("============= notice callback ========================");
+            console.log(result);
+			zzimCount(localStorage.getItem("memberNo"),vm_cp_no)
         }
     });
 }
@@ -768,7 +521,6 @@ function getDateThree(jdNo, startDate, endDate){
  		window.parent.document.getElementById("from_date_origin").value = startDate;
  		window.parent.document.getElementById("to_date_origin").value = endDate;		
 	}else{
-	
 	}
 }
 
@@ -866,7 +618,7 @@ function setThumImg(rcvJdProdConNo, rcvPdNo, rcvPdCode){
 		$(parent.document).find(".leaflet_del").show();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
 
 		$("#nh_leaflet").contents().find(".thumb_info, .thumb_wrap>a").click(function(){
            $(".new_item_wrap").hide();
@@ -901,7 +653,7 @@ function setSaleDetail(rcvJdProdConNo){
 		$(parent.document).find(".leaflet_del").show();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
 
 		$.ajax({
 			url:'/back/03_leaflet/leafletProdSaleDetail.jsp?random=' + (Math.random()*99999), 
@@ -955,7 +707,7 @@ function setPdName(rcvJdProdConNo, rcvPdName){
 		$(parent.document).find(".leaflet_del").hide();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
 
 		$(".product").click(function(){
             $(".new_item_wrap").hide();
@@ -983,7 +735,7 @@ function setPrice(rcvJdProdConNo, rcvPrice){
 		$(parent.document).find(".leaflet_del").hide();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").val(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
 		
 		$(".price").click(function(){
             $(".new_item_wrap").hide();
