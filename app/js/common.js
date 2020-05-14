@@ -106,14 +106,18 @@ function getHeader(rcVm_p_no){
 	result += '				</ul>';
 	result += '			</div>   '; 
 	result += '			<div id="aside_tos"><a href="#" onclick="tos();">이용약관 및 개인정보처리방침</a></div>';		
-    result += '         <div id="aside_icons">';
-    result += '             <ul>';
-    result += '               <li class="aside_cart" onclick="zzim();"><img src="../images/icon.png" alt="찜하기"><span>찜하기</span></li>';
-    result += '               <li class="aside_notice" onclick="notice();"><img src="../images/notice.png" alt="공지사항"><span>공지사항</span></li>';
-    result += '                 <li class="aside_setting" onclick="setting();"><img src="../images/edit.png" alt="환경설정"><span>환경설정</span></li>';
-    result += '             </ul>';
-    result += '         </div>';
-    result += '         <span id="aside_copyright">Copyrightⓒ 2020. 농협유통</span>';
+    // result += '         <div id="aside_icons">';
+    // result += '             <ul>';
+    // result += '               <li class="aside_cart" onclick="zzim();"><img src="../images/icon.png" alt="찜하기"><span>찜하기</span></li>';
+    // result += '               <li class="aside_notice" onclick="notice();"><img src="../images/notice.png" alt="공지사항"><span>공지사항</span></li>';
+    // result += '                 <li class="aside_setting" onclick="setting();"><img src="../images/edit.png" alt="환경설정"><span>환경설정</span></li>';
+    // result += '             </ul>';
+    // result += '         </div>';
+    // result += '         <span id="aside_copyright">Copyrightⓒ 2020. 농협유통</span>';
+    result += '<div id="aside_icons"><ul><li class="aside_cart" onclick="zzim();"><img src="../images/icon.png" alt="장바구니"><span>찜하기</span></li>';
+    result += '<li class="aside_notice" onclick="notice();"><img src="../images/notice.png" alt="공지사항"><span>공지사항</span></li>';
+    result += '<li class="aside_setting" onclick="setting();"><img src="../images/edit.png" alt="환경설정"><span>환경설정</span></li>';
+    result += '</ul></div><span id="aside_copyright">Copyrightⓒ 2020. 농협유통</span>';
 
 	result += '		</div>';
 	result += '	</div>';
