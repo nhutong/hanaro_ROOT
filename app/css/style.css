@@ -856,9 +856,12 @@ header nav ul li.active a{
     display: block;
     float: left;
     width: 22%;
-    max-height:19px;
+    /* max-height:19px;
 	min-height: 19px;
-	height : 19px;
+    height : 19px; */
+    height: 33px;
+	min-height : 33px;
+	max-height : 33px;
     overflow: hidden;
     text-align: center;
 /*    padding: 1px 0px;*/
