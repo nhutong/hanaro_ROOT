@@ -845,9 +845,12 @@ header nav ul li.active a{
 
 .item_list_inner_wrap .figure.figure1 .thumb_wrap .discount_info img{
     width: 16%;
-	height: 19px;
+	/* height: 19px;
 	min-height : 19px;
-	max-height : 19px;
+    max-height : 19px; */
+    height: 33px;
+	min-height : 33px;
+	max-height : 33px;
     float: left;
     vertical-align: bottom;
 }
@@ -867,7 +870,8 @@ header nav ul li.active a{
 /*    padding: 1px 0px;*/
     background-color: #222;
     color: #fff;
-    font-size: 11px;
+    /* font-size: 11px; */
+    font-size: 20px;
 }
 
 /*2020-02-18 주석처리 한 부분 - 나영*/
