@@ -743,17 +743,20 @@ header nav ul li.active a{
     overflow: hidden;
 }
 
+/*2020-05-15 이미지준비중 width값 100%로 - 미솔*/
+
 .item_list_inner_wrap .figure.figure1 .thumb_wrap > a > img{
-   position: absolute;
-   margin: auto 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: 100%;
-    width : 100%;
-    height: auto;
-}
+    position: absolute;
+    margin: auto 0;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     max-width: 100%;
+     height: auto;
+     width: 100%;
+ }
+ /*2020-05-15 이미지준비중 width값 100%로(여기까지) - 미솔*/
 
 /*2020-03-06 수정 여기까지*/
 
