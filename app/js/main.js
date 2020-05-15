@@ -291,7 +291,7 @@ function bodyContent(rcv_vm_cp_no){
 						text +='	<div class="item_list_inner_wrap" id="bodyContentDetail'+jsonResult_notice[i].menu_no+'">';
 
 						text +='	</div>';
-						text +='	<div class="main_view_more" onclick="leafletLink('+jsonResult_notice[i].jd_no+', '+jsonResult_notice[i].menu_no+', '+rcv_vm_cp_no+')"><span>전단상품</span> 더보기 +</div>	';				
+						text +='	<div class="main_view_more" onclick="leafletLink('+jsonResult_notice[i].jd_no+', '+jsonResult_notice[i].menu_no+', '+rcv_vm_cp_no+')"><span>상품</span> 더보기 +</div>	';				
 						text +='</div>';
 						
 						if (jsonResult_notice[i].jd_no == null)
