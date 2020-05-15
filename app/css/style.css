@@ -154,15 +154,15 @@
 }
 
 #aside_icons{
-    margin-top: 30%;
-    text-align: left;
+    margin-top: 5%;
+    text-align: center;
     vertical-align: bottom;
 }
 
 #aside_icons ul li{
     display: inline-block;
     width: 33.3%;
-    text-align: left;
+    text-align: center;
 }
 
 #aside_icons ul li img{
@@ -355,7 +355,7 @@ header nav{
     font-size: 12px;
     color:#fff;
     text-align: center;
-    background-color: rgb(238, 146, 9);
+    background-color: #ff8266;
     line-height: 18px;
 }
 
