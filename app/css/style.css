@@ -1266,10 +1266,12 @@ header nav ul li.active a{
     overflow: hidden;
 }
 
+
 .main_cont .item_list_inner_wrap .figure{
-    /* margin: 10px 5px 0 10px; */
+    margin: 10px 5px 0 10px;
     width: calc(33.333% - 17px);
 }
+
 
 .main_cont .item_list_inner_wrap .figure .thumb_wrap a img{
     border-radius: 10px;
