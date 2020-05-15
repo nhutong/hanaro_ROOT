@@ -363,7 +363,7 @@ header nav ul{
 
 header nav ul li{
     float: left;
-    width: 70px;
+    min-width: 70px;
     text-align: center;
     padding: 10px;
     font-size: 15px;
@@ -440,7 +440,7 @@ header nav ul li.active a{
 
 .item_list_banner_wrap{
 /*    height: 75px;*/
-/*    min-height: 75px; /*임의로 잡아놓은 높이*/*/
+/*    min-height: 75px; /*임의로 잡아놓은 높이*/
 	height: 3px;
     min-height: 3px; 
     position: relative;
