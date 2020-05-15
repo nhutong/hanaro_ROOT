@@ -29,7 +29,7 @@
 			 +" where b.ref_jd_no = "+rcv_jd_no 
 			 //+" and a.ref_company_no = "+userCompanyNo
 			 //+" AND a.menu_no = "+menuNo
-			 +" AND a.to_date >= date_add(now(), INTERVAL -1 week) "
+			 //+" AND a.to_date >= date_add(now(), INTERVAL -1 week) "
 			 +" and b.visible_fg = 'Y' order by jb_order_no; "; 
 	
 		stmt = conn.createStatement();
