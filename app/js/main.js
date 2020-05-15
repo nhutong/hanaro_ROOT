@@ -23,6 +23,7 @@ $(function(){
 	/* 판매장명을 가지고와서, 제목에 바인딩한다. */
 	setTimeout(function(){ getCpName(vm_cp_no); }, 100);
 	setTimeout(function(){ clickEventApp(); }, 2000);
+	setTimeout(function(){ zzimCount(localStorage.getItem("memberNo"),vm_cp_no); }, 2000);
 
 	/* 팝업을 바인딩한다. */
 	console.log("== addModal =========================================");
@@ -508,6 +509,7 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				
 				$("#bodyContentDetail"+rcv_menu_no).empty();
 				$("#bodyContentDetail"+rcv_menu_no).append(text);
+		
 			}
 
 	})
@@ -531,15 +533,14 @@ function clickEventApp(){
 			   $(this).closest(".leaflet_cont").removeClass("active");
 		})
 			
-
-//		$(".add_btn").click(function(){             
-//			 var classActive = $(this).is(".active");
-//            if( classActive == true){
-//                $(this).removeClass("active");
-//            }else{
-//                 $(this).addClass("active");
-//            }
-//		})
+		$(".add_btn").click(function(){             
+			 var classActive = $(this).is(".active");
+           if( classActive == true){
+               $(this).removeClass("active");
+           }else{
+                $(this).addClass("active");
+           }
+		})
 	}
 
 }
@@ -549,20 +550,20 @@ function addRmZzim(rcv_jd_prod_con_no){
 	$.ajax({
         url:'/back/02_app/mLeafletZzim.jsp?random=' + (Math.random()*99999),
 		data : {
-			tel: localStorage.getItem("tel"), 
+			memberNo: localStorage.getItem("memberNo"),
 			jd_prod_con_no: rcv_jd_prod_con_no, 
 			vm_cp_no: vm_cp_no
 			},
         method : 'GET' 
     }).done(function(result){
-		
-		alert("모바일 앱을 통해서만 사용할 수 있습니다.");
-//        console.log("addRmZzim=========================================");
-//        if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-//            console.log(result);
-//        }else{
-//            console.log("============= addRmZzim callback ========================");
-//            console.log(result);
-//        }
+
+        console.log("noticeList=========================================");
+        if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+            console.log(result);
+        }else{
+            console.log("============= notice callback ========================");
+            console.log(result);
+			zzimCount(localStorage.getItem("memberNo"),vm_cp_no);
+        }
     });
 }
