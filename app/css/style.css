@@ -154,15 +154,15 @@
 }
 
 #aside_icons{
-    margin-top: 30%;
-    text-align: left;
+    margin-top: 5%;
+    text-align: center;
     vertical-align: bottom;
 }
 
 #aside_icons ul li{
     display: inline-block;
     width: 33.3%;
-    text-align: left;
+    text-align: center;
 }
 
 #aside_icons ul li img{
@@ -347,14 +347,15 @@ header nav{
 }
 
 #prod_cont_count{
-    position: absolute;
-    width: 18px;
+    /* position: absolute; */
+    display: inline-block;
+    width: 15px;
     height: 18px;
     border-radius: 50%;
     font-size: 12px;
     color:#fff;
     text-align: center;
-    background-color: rgb(238, 146, 9);
+    background-color: #ff8266;
     line-height: 18px;
 }
 
@@ -383,7 +384,7 @@ header nav ul li{
     float: left;
     width: 70px;
     text-align: center;
-    padding: 10px;
+    padding: 7px;
     font-size: 15px;
     
 }
