@@ -198,12 +198,13 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 
 // 전단 배너를 가져온다.
 function getBanner(rcv_jd_no_b) {
+	//console.log("aaaa"+rcv_jd_no_b);
 	$.ajax({
 		url:'/back/02_app/mLeafletBanner.jsp?random=' + (Math.random()*99999), 
 		data : {jd_no: rcv_jd_no_b},
 		method : 'GET' 
 	}).done(function(result){
-		//console.log("BannerList=========================================");
+		//console.log("aaaa  BannerList========================================="+result);
 		if(result == ('NoN') || result == 'list error' || result == 'empty'){
 			$(".bxslider").html("");
 			var isInIFrame = ( window.location != window.parent.location );

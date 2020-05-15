@@ -19,8 +19,8 @@
 	pd_name = strEncode(pd_name);
 	String pd_price = (request.getParameter("pd_price")==null)? "0":request.getParameter("pd_price");
 	String card_discount = (request.getParameter("card_discount")==null)? "0":request.getParameter("card_discount");
-	String card_startDate = (request.getParameter("card_startDate")=="")? "1900-01-01":request.getParameter("card_startDate");
-	String card_endDate = (request.getParameter("card_endDate")=="")? "1900-01-01":request.getParameter("card_endDate");
+	String card_startDate = (request.getParameter("card_startDate")=="")? "":request.getParameter("card_startDate");
+	String card_endDate = (request.getParameter("card_endDate")=="")? "":request.getParameter("card_endDate");
 	String card_info = (request.getParameter("card_info")==null)? "0":request.getParameter("card_info");
 	card_info = strEncode(card_info);
 	String card_restrict = (request.getParameter("card_restrict")==null)? "0":request.getParameter("card_restrict");
