@@ -37,6 +37,7 @@
 			+" left outer join ( select * from vm_jundan_zzim where no ='"+memberNo+"' ) as e "
 			+" on b.jd_prod_con_no = e.jd_prod_con_no "
 			+" WHERE a.jd_no = "+jd_no
+			+"   and IFNULL(a.show_fg,'N') = 'Y' "
 			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,3";
 
 		}else{
@@ -56,6 +57,7 @@
 			+" left outer join vm_product_image AS d "
 			+" ON b.ref_img_no = d.img_no "
 			+" WHERE a.jd_no = "+jd_no
+			+"   and IFNULL(a.show_fg,'N') = 'Y' "
 			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,3";	
 
 		}

@@ -140,7 +140,7 @@ function getLeftNav(rcv_vm_cp_no) {
         method : 'GET' 
     }).done(function(result){
 		//console.log("leafletUserMenu=========================================");
-		console.log("result:"+result);
+		//console.log("result:"+result);
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             //console.log(result);
 			$('#myplanb_menu').empty();

@@ -17,9 +17,9 @@
 		sql = " SELECT a.menu_no, a.menu_name, a.menu_type_cd, min(b.jd_no) as jd_no "
 		+" from vm_menu AS a "
 		+" left outer JOIN ( SELECT jd_no, menu_no from vm_jundan " 
-		//+" 						where left(from_date,10) >= left(NOW(),10) "
-		+"						where (left(from_date,10) <= left(now(),10) AND left(to_date,10) >= left(now(),10))"
+		+"						where (left(from_date,10) <= left(now(),10) AND left(to_date,10) >= left(now(),10))" //오늘날짜 전단 조회
 		+"						AND ref_company_no = '"+userCompanyNo+"' "
+		+"                      and IFNULL(show_fg,'N') = 'Y'  "
 		+" ) AS b "
 		+" ON a.menu_no = b.menu_no "
 		+" WHERE ref_cp_no = "+userCompanyNo

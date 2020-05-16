@@ -375,7 +375,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    							 <img src="../images/leaflet_icon8.png" alt="할인기간">'
 					text += '    						  </div>'
 					text += '    					   </td>'					
-					text += '    					  <td colspan=2> '
+					text += '    					  <td> '
 					if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
 						text += '                        '+ item['card_discount_from_date'] + ' ~ ' + item['card_discount_end_date']
 					}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
@@ -443,7 +443,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    							 <img src="../images/leaflet_icon9.png" alt="기타사항">'
 					text += '    						  </div>'
 					text += '    					   </td>'					
-					text += '    					  <td colspan=2>'					
+					text += '    					  <td>'					
 					text += '                            '+ decodeURIComponent(item['etc'])
 					text += '    					  </td>'
 					text += '    					 </tr>'							

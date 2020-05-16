@@ -367,7 +367,6 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				if (item['card_discount'] != "")
 				{
 					text += '		<img src="../images/leaflet_icon1.png" alt="카드할인">'
-					text += '		<span>'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</span>'
 				// 다다익선
 				}else if (item['dadaiksun'] != "")
 				{
@@ -382,6 +381,18 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				}else{
 					text += '		<img src="../images/leaflet_icon4.png" alt="">'
 					text += '       '
+				}
+
+				//카드 할인기간을 카드에 한정하지 않고 값이 있을경우 표시되도록 용도변경
+				if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
+					text += '		<span>'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</span>'
+				}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
+					text += '		<span>'+item['card_discount_from_date']+'</span>'					
+				}else if(item['card_discount_from_date'] != ""){
+					text += '		<span>'+item['card_discount_from_date']+'</span>'
+				}else if(item['card_discount_end_date'] != ""){
+					text += '		<span>'+item['card_discount_end_date']+'</span>'
+				}else{
 				}
 
                 text += '		</div>'
@@ -399,14 +410,15 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 					text += '   <a class="price2">'+comma(carded)+'</a>' //2020-05-07 원 삭제 - 미솔
 				}else if(item['coupon_discount'] != "")
 				{
-//                    var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
-//					text += '   <a class="price3">'+comma(couponed)+'원</a>'
+					//var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
+					//text += '   <a class="price3">'+comma(couponed)+'원</a>'
 				}else{
                     
                 }
 
                 text += '    </div>'
 
+				//상품상세
 				text += '    <div class="leaflet_cont">'
 				text += '       <div class="leaflet_modal_wrap">'
 				text += '    	  <div class="modal_cls"><img src="../images/leaflet_cls.png" alt="리플렛닫기"></div>'
@@ -414,87 +426,95 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				text += '    		 <img src="'+item['img_path']+'" alt="'+item['pd_name']+'">'
 				text += '    	  </div>'
 				text += '    	  <div class="leaflet_modal_title">'+item['pd_name']+'</div>'
-				text += '    	  <div class="leaflet_modal_price">'+comma(item['price'])+'원</div>'
-									
+				text += '    	  <div class="leaflet_modal_price">'+comma(item['price'])+'원</div>'									
 				text += '    	  <div class="leaflet_txt">'
 				text += '    		  <div class="leaflet_discount">'                 
 				text += '    			 <h5>혜택 및 상품 정보 안내</h5>'
-				text += '    			 <div id="table">'
+				text += '    			 <div id="table">'			
 				
+				text += '    				<table class="table" >'
 
-				// 카드할인
-				if (decodeURIComponent(item['card_discount']) != "")
-				{
-					text += '    				<table class="table" >'
-					//text += '    				   <tr>'
-					//text += '    					  <th>할인종류</th>'
-					//text += '    					  <th>할인액/혜택</th>'
-					//text += '    					  <th>기간</th>'
-					//text += '    					  <th>혜택상세</th>'
-					//text += '    				   </tr>'
+				// 할인기간
+				if (decodeURIComponent(item['card_discount_from_date']) != "" || decodeURIComponent(item['card_discount_end_date']) != ""){
 					text += '    				   <tr class="hide table-line">'
-					text += '    					  <td width="15%">'
+					text += '    					   <td>'
+					text += '    						  <div class="discount_img">'
+					text += '    							 <img src="../images/leaflet_icon8.png" alt="할인기간">'
+					text += '    						  </div>'
+					text += '    					   </td>'					
+					text += '    					  <td> '
+					if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
+						text += '                        '+ item['card_discount_from_date'] + ' ~ ' + item['card_discount_end_date']
+					}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
+						text += '                        '+ item['card_discount_from_date']
+					}else if(item['card_discount_from_date'] != ""){
+						text += '                        '+ item['card_discount_from_date']
+					}else if(item['card_discount_end_date'] != ""){
+						text += '                        '+ item['card_discount_end_date']
+					}else{
+					}					
+					text += '    					  </td>'
+					text += '    					</tr>'
+				}
+				
+				// 카드할인
+				if (decodeURIComponent(item['card_discount']) != ""){
+					text += '    				   <tr class="hide table-line">'
+					text += '    					  <td>'
 					text += '    						<div class="discount_img">'
 					text += '    							<img src="../images/leaflet_icon1.png" alt="카드할인">'
 					text += '    						</div>'
 					text += '    					  </td>'
-					text += '    					  <td width="20%" style="text-align : center">'+comma(item['card_discount'])+'원</td>'
-					text += '    					  <td width="25%" style="text-align : center">'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</td>'
-					text += '    					  <td>'+item['card_info']+'<br>'+item['card_restrict']+'</td>'
+					text += '    					  <td>'
+					text += '                         '+comma(item['card_discount'])+'원'
+					text += '    					   / '+item['card_info']
+					text += '    					   / '+item['card_restrict']
+					text += '    					  </td>'
 					text += '    					</tr>'
+				}
 
-					if (decodeURIComponent(item['coupon_discount']) != ""){
-						text += '    					<tr class="hide table-line">'
-						text += '    					   <td>'
-						text += '    						  <div class="discount_img">'
-						text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
-						text += '    						  </div>'
-						text += '    					   </td>'
-						text += '    					   <td colspan=3>'+comma(item['coupon_discount'])+'원 추가할인</td>'
-						text += '    					 </tr>'
-					}
-
-				// 다다익선
-				}else if (item['dadaiksun'] != "")
-				{
-					text += '    				<table class="table" >'
-					//text += '    				   <tr>'
-					//text += '    					  <th>할인종류</th>'
-					//text += '    					  <th>할인액/혜택</th>'
-					//text += '    					  <th>기간</th>'
-					//text += '    					  <th>혜택상세</th>'
-					//text += '    				   </tr>'
+				//다다익선
+				if (decodeURIComponent(item['dadaiksun']) != ""){				
 					text += '    					<tr class="hide table-line">'
 					text += '    					   <td>'
 					text += '    						  <div class="discount_img">'
 					text += '    							 <img src="../images/leaflet_icon3.png" alt="다다익선">'
 					text += '    						  </div>'
 					text += '    					   </td>'
-					text += '    					   <td colspan=3>'+item['dadaiksun']+'</td>'
+					text += '    					  <td>'					
+					text += '    					   '+item['dadaiksun']
+					text += '    					   / '+item['dadaiksun_info']
+					text += '    					  </td>'					
 					text += '    					 </tr>'
-				// 쿠폰할인
-				}else if (decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ') != "")
-				{
-					text += '    				<table class="table" >'
-					text += '    				   <tr>'
-					text += '    					  <th>할인종류</th>'
-					text += '    					  <th>할인금액</th>'
-					text += '    					  <th>기간</th>'
-					text += '    					  <th>혜택상세</th>'
-					text += '    				   </tr>'
+				}
+
+				//쿠폰할인
+				if (decodeURIComponent(item['coupon_discount']) != ""){
 					text += '    					<tr class="hide table-line">'
 					text += '    					   <td>'
 					text += '    						  <div class="discount_img">'
 					text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
 					text += '    						  </div>'
 					text += '    					   </td>'
-					text += '    					   <td colspan=3>'+decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원 추가할인</td>'
+					text += '    					  <td>'					
+					text += '    					   '+ decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원 추가할인'
+					text += '    					  </td>'
 					text += '    					 </tr>'
-				// 적용사항 없음
-				}else{
-
 				}
 
+				//기타내용
+				if (decodeURIComponent(item['etc']) != ""){		
+					text += '    					<tr class="hide table-line">'
+					text += '    					   <td>'
+					text += '    						  <div class="discount_img">'
+					text += '    							 <img src="../images/leaflet_icon9.png" alt="기타사항">'
+					text += '    						  </div>'
+					text += '    					   </td>'					
+					text += '    					  <td>'					
+					text += '                            '+ decodeURIComponent(item['etc'])
+					text += '    					  </td>'
+					text += '    					 </tr>'							
+				}
 
 				text += '    				 </table>'
 				text += '    			 </div>'
@@ -504,16 +524,11 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				text += '    	</div>'
 				text += '    </div>'
 				text += '</div>'
-
-				});
-				
-				$("#bodyContentDetail"+rcv_menu_no).empty();
-				$("#bodyContentDetail"+rcv_menu_no).append(text);
-		
-			}
-
+			});
+			$("#bodyContentDetail"+rcv_menu_no).empty();
+			$("#bodyContentDetail"+rcv_menu_no).append(text);
+		}
 	})
-
 }
 
 function clickEventApp(){
