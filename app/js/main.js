@@ -22,8 +22,7 @@ $(function(){
 	
 	/* 판매장명을 가지고와서, 제목에 바인딩한다. */
 	setTimeout(function(){ getCpName(vm_cp_no); }, 100);
-	setTimeout(function(){ clickEventApp(); }, 2000);
-	setTimeout(function(){ zzimCount(localStorage.getItem("memberNo"),vm_cp_no); }, 2000);
+	//setTimeout(function(){ zzimCount(localStorage.getItem("memberNo"),vm_cp_no); }, 2000);
 
 	/* 팝업을 바인딩한다. */
 	console.log("== addModal =========================================");
@@ -527,7 +526,7 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 			});
 			$("#bodyContentDetail"+rcv_menu_no).empty();
 			$("#bodyContentDetail"+rcv_menu_no).append(text);
-			
+
 			var isInIFrame = ( window.location != window.parent.location );
 			if (isInIFrame == true)
 			{ 
@@ -553,12 +552,6 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 			}			
 		}
 	})
-}
-
-function clickEventApp(){
-
-
-
 }
 
 /* 찜하기 버튼 클릭한다. */

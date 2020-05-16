@@ -25,7 +25,6 @@ $(function () {
 
 	//상단 판매장명 바인당 > 오늘자 전단의 일자, 베너, 상품 바인딩
 	getCpName(vm_cp_no, menu_no, jd_no);
-	setTimeout(function(){ clickEventApp(); }, 2000);
 
 	var windowWidth = $( window ).width();
 
@@ -487,12 +486,6 @@ function getPdContent(rcv_jd_no) {
 
 		}
 	});
-}
-
-function clickEventApp(){
-
-
-
 }
 
 //header 멈추기

@@ -6,7 +6,9 @@ $(function(){
 	menu_no = getParameterByName('menu_no');   // 메뉴 번호
 	vm_cp_no = getParameterByName('vm_cp_no');
 
-
+	var memberNo = localStorage.getItem("memberNo");
+    zzimCount(memberNo, localStorage.getItem("vm_cp_no"));
+    
 	/* 웹에서는 iframe 안의 앱의 로그인한 사람 tel 과 vm_cp_no 를 알수 없으므로 tel은 임의로 지정하고, vm_cp_no 는 하기와 같이 지정한다. */
 	var tel = localStorage.getItem("tel");
 //	tel = "01023998512";
