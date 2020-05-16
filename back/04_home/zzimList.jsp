@@ -20,26 +20,29 @@
 
 		sql = " SELECT ab.menu_type_cd, b.jd_prod_con_no, ifnull(d.img_path,'') as img_path, "
 		    +" ifnull(b.pd_name,'') as pd_name, ifnull(b.price,'') as price, ifnull(b.card_discount,'') as card_discount, "
-			+" b.card_discount_from_date, b.card_discount_end_date, "
+			+" ifnull(date_format(b.card_discount_from_date,'%m/%d'),'') as card_discount_from_date, "
+			+" ifnull(date_format(b.card_discount_end_date,'%m/%d'),'') as card_discount_end_date, "
 			+" ifnull(b.card_info,'') as card_info, ifnull(b.card_restrict,'') as card_restrict, "
 			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, ifnull(b.etc,'') as etc, c.pd_no, c.pd_code, ifnull(e.vmjz_no,'') as vmjz_no, "
 
-			+" concat(substring(a.from_date,6,5),'(',case when weekday(a.from_date) = '0' then '월' "
-			+"       when weekday(a.from_date) = '1' then '화' "
-			+" 		when weekday(a.from_date) = '2' then '수' "
-			+" 		when weekday(a.from_date) = '3' then '목' "
-			+" 		when weekday(a.from_date) = '4' then '금' "
-			+" 		when weekday(a.from_date) = '5' then '토' "
-			+" 		when weekday(a.from_date) = '6' then '일' "
-			+"  END,')') as from_date, " 
-			+"  concat(substring(a.to_date,6,5),'(',case when weekday(a.to_date) = '0' then '월' "
-			+"       when weekday(a.to_date) = '1' then '화' "
-			+" 		when weekday(a.to_date) = '2' then '수' "
-			+" 		when weekday(a.to_date) = '3' then '목' "
-			+" 		when weekday(a.to_date) = '4' then '금' "
-			+" 		when weekday(a.to_date) = '5' then '토' "
-			+" 		when weekday(a.to_date) = '6' then '일' "
-			+"  END,')') as to_date "
+			// +" concat(substring(a.from_date,6,5),'(',case when weekday(a.from_date) = '0' then '월' "
+			// +"       when weekday(a.from_date) = '1' then '화' "
+			// +" 		when weekday(a.from_date) = '2' then '수' "
+			// +" 		when weekday(a.from_date) = '3' then '목' "
+			// +" 		when weekday(a.from_date) = '4' then '금' "
+			// +" 		when weekday(a.from_date) = '5' then '토' "
+			// +" 		when weekday(a.from_date) = '6' then '일' "
+			// +"  END,')') as from_date, " 
+			// +"  concat(substring(a.to_date,6,5),'(',case when weekday(a.to_date) = '0' then '월' "
+			// +"       when weekday(a.to_date) = '1' then '화' "
+			// +" 		when weekday(a.to_date) = '2' then '수' "
+			// +" 		when weekday(a.to_date) = '3' then '목' "
+			// +" 		when weekday(a.to_date) = '4' then '금' "
+			// +" 		when weekday(a.to_date) = '5' then '토' "
+			// +" 		when weekday(a.to_date) = '6' then '일' "
+			// +"  END,')') as to_date "
+
+			+"  date_format(a.from_date,'%m/%d') as from_date, date_format(a.to_date,'%m/%d') as to_date "
 
 			+" FROM vm_jundan AS a "
 			+" inner join vm_menu as ab "
@@ -79,20 +82,9 @@
 			String pd_name				   = rs.getString("pd_name");								  // 전단 상품명
 			String price				   = rs.getString("price");									  // 전단 판매가
 			String card_discount		   = rs.getString("card_discount");							  // 전단 카드할인가격
+			String card_discount_from_date		   = rs.getString("card_discount_from_date");							  // 전단 카드할인시작일			
+			String card_discount_end_date		   = rs.getString("card_discount_end_date");							  // 전단 카드할인종료일						
 			
-			String card_discount_from_date = "";
-			if ( rs.getString("card_discount_from_date") == null ){
-
-			}else{
-				card_discount_from_date = rs.getString("card_discount_from_date").substring(5,10); // 전단 카드할인시작일
-			}
-			
-			String card_discount_end_date = "";
-			if ( rs.getString("card_discount_end_date") == null ){
-				
-			}else{
-				card_discount_end_date = rs.getString("card_discount_end_date").substring(5,10); // 전단 카드할인시작일
-			}
 
 			String card_info			   = rs.getString("card_info");								  // 전단 카드정보
 			String card_restrict		   = rs.getString("card_restrict");							  // 전단 카드한정

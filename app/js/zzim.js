@@ -40,7 +40,6 @@
 				if (item['card_discount'] != "")
 				{
 					text += '		<img src="../images/leaflet_icon1.png" alt="카드할인">';
-					text += '		<span>'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</span>';
 				// 다다익선
 				}else if (item['dadaiksun'] != "")
 				{
@@ -57,6 +56,18 @@
 					text += '       ';
 				}
 
+				//카드 할인기간을 카드에 한정하지 않고 값이 있을경우 표시되도록 용도변경
+				if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
+					text += '		<span>'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</span>'
+				}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
+					text += '		<span>'+item['card_discount_from_date']+'</span>'					
+				}else if(item['card_discount_from_date'] != ""){
+					text += '		<span>'+item['card_discount_from_date']+'</span>'
+				}else if(item['card_discount_end_date'] != ""){
+					text += '		<span>'+item['card_discount_end_date']+'</span>'
+				}else{
+				}				
+
                 text += '		</div>';
                 text += '   </div>';
                 text += '   <div class="product_detail">';
@@ -72,11 +83,17 @@
 					text += '   <a class="price2">'+comma(carded)+'</a>'; //2020-05-07 원 삭제 - 미솔
 				}else if(item['coupon_discount'] != "")
 				{
-//                    var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
-//					text += '   <a class="price3">'+comma(couponed)+'원</a>'
+					//                    var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
+					//					text += '   <a class="price3">'+comma(couponed)+'원</a>'
 				}else{
 				
 				}
+
+				if (item['from_date'] == item['to_date']){
+					text += '    <span>(전단일자:'+item['to_date']+')</span>';
+				}else{
+					text += '    <span>(전단일자:'+item['from_date']+'~'+item['to_date']+')</span>';
+				}			
 
 				text += '    </div>'
 
