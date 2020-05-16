@@ -2,7 +2,7 @@
 
 <%	
 
-	String dburl = "jdbc:mysql://localhost:3306/hanaro";
+	String dburl = "jdbc:maridb://localhost:3306/hanaro";
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
@@ -11,9 +11,9 @@
 	
 	try 
 	{
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("org.maridb.jdbc.Driver");
 // 		out.println("드라이버 로딩 성공");
-		conn = DriverManager.getConnection(dburl, "root", "kacm3498!");		
+		conn = DriverManager.getConnection(dburl, "root", "asdf1234");		
 		
 	}catch(Exception e) 
 	{
