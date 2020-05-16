@@ -28,6 +28,15 @@ function qnaCont(rcvNtNo){
 				text +='<div class="question_wrap">';
 				text +='   <div class="question_title_wrap">';
 				text +='		<div class="qna_status_wrap">';
+
+				if( item['ref_nt_no'] == ""){
+					text +='			<img src="../images/question.png" alt="답변대기">';
+					text +='			<span class="qna_done">답변대기</span>';
+				}else{
+					text +='			<img src="../images/done.png" alt="답변완료">';
+					text +='			<span class="qna_done">답변완료</span>';
+				}
+
 				text +='			<img src="../images/done.png" alt="답변완료">';
 				text +='			<span class="qna_done">답변완료</span>';
 				text +='		</div>';
