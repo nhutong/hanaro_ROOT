@@ -527,36 +527,37 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 			});
 			$("#bodyContentDetail"+rcv_menu_no).empty();
 			$("#bodyContentDetail"+rcv_menu_no).append(text);
+			
+			var isInIFrame = ( window.location != window.parent.location );
+			if (isInIFrame == true)
+			{ 
+				$(".leaflet_cont").removeClass("active");
+			}else{ 
+				$(".product_detail").click(function(){
+					   $(this).parent(".figure").children(".leaflet_cont").addClass("active");
+				})
+				$(".thumb_wrap>a>img").click(function(){
+					   $(this).closest(".thumb_wrap").siblings(".leaflet_cont").addClass("active");
+				})
+				$(".modal_cls").click(function(){
+					   $(this).closest(".leaflet_cont").removeClass("active");
+				})
+				$(".add_btn").click(function(){  
+					var classActive = $(this).is(".active");
+					if( classActive == true){
+						$(this).removeClass("active");
+					}else{
+						$(this).addClass("active");
+					}
+				})
+			}			
 		}
 	})
 }
 
 function clickEventApp(){
 
-	var isInIFrame = ( window.location != window.parent.location );
-	if (isInIFrame == true)
-	{ 
-		$(".leaflet_cont").removeClass("active");
-	}else{ 
-		$(".product_detail").click(function(){
-			   $(this).parent(".figure").children(".leaflet_cont").addClass("active");
-		})
-        $(".thumb_wrap>a>img").click(function(){
-			   $(this).closest(".thumb_wrap").siblings(".leaflet_cont").addClass("active");
-		})
-		$(".modal_cls").click(function(){
-			   $(this).closest(".leaflet_cont").removeClass("active");
-		})
-			
-		$(".add_btn").click(function(){             
-			 var classActive = $(this).is(".active");
-           if( classActive == true){
-               $(this).removeClass("active");
-           }else{
-                $(this).addClass("active");
-           }
-		})
-	}
+
 
 }
 
