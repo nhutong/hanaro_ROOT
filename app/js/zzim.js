@@ -187,7 +187,7 @@
 				text += '    </div>'
 				text += '</div>'
 
-				/*
+				/* 2020.05.16 심규문 홈,전단,찜 상품상세페이지 수정에 의한 주석처리 
 				text += '    </div>';
 
 				text += '    <div class="leaflet_cont">'
