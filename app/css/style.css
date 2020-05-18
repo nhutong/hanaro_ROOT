@@ -350,10 +350,13 @@ header nav{
 #prod_cont_count{
     /* position: absolute; */
     display: inline-block;
-    width: 15px;
+    /* 0518 김수경 타원을 원으로 변경, 3자리 숫자도 출력 가능하게 폰트 사이즈 축소 */
+    /* width: 15px; */
+    width: 18px;
     height: 18px;
     border-radius: 50%;
-    font-size: 12px;
+    /* font-size: 12px; */
+    font-size: 5px;
     color:#fff;
     text-align: center;
     background-color: #ff8266;

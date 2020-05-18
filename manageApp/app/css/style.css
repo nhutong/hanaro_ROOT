@@ -341,6 +341,21 @@ header nav{
 /*     -ms-overflow-style: none; */
 }
 
+/* 0518 김수경 전단상품 수 카운트 css 속성 추가 */
+#prod_cont_count{
+    /* position: absolute; */
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 5px;
+    color:#fff;
+    text-align: center;
+    background-color: #ff8266;
+    line-height: 18px;
+}
+
+
 /*normal*/
 ::-webkit-scrollbar-thumb {
     /*...*/
