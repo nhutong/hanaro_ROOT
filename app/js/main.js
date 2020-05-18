@@ -22,8 +22,7 @@ $(function(){
 	
 	/* 판매장명을 가지고와서, 제목에 바인딩한다. */
 	setTimeout(function(){ getCpName(vm_cp_no); }, 100);
-	setTimeout(function(){ clickEventApp(); }, 2000);
-	setTimeout(function(){ zzimCount(localStorage.getItem("memberNo"),vm_cp_no); }, 2000);
+	//setTimeout(function(){ zzimCount(localStorage.getItem("memberNo"),vm_cp_no); }, 2000);
 
 	/* 팝업을 바인딩한다. */
 	console.log("== addModal =========================================");
@@ -527,37 +526,32 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 			});
 			$("#bodyContentDetail"+rcv_menu_no).empty();
 			$("#bodyContentDetail"+rcv_menu_no).append(text);
+
+			var isInIFrame = ( window.location != window.parent.location );
+			if (isInIFrame == true)
+			{ 
+				$(".leaflet_cont").removeClass("active");
+			}else{ 
+				$(".product_detail").click(function(){
+					   $(this).parent(".figure").children(".leaflet_cont").addClass("active");
+				})
+				$(".thumb_wrap>a>img").click(function(){
+					   $(this).closest(".thumb_wrap").siblings(".leaflet_cont").addClass("active");
+				})
+				$(".modal_cls").click(function(){
+					   $(this).closest(".leaflet_cont").removeClass("active");
+				})
+				$(".add_btn").click(function(){  
+					var classActive = $(this).is(".active");
+					if( classActive == true){
+						$(this).removeClass("active");
+					}else{
+						$(this).addClass("active");
+					}
+				})
+			}			
 		}
 	})
-}
-
-function clickEventApp(){
-
-	var isInIFrame = ( window.location != window.parent.location );
-	if (isInIFrame == true)
-	{ 
-		$(".leaflet_cont").removeClass("active");
-	}else{ 
-		$(".product_detail").click(function(){
-			   $(this).parent(".figure").children(".leaflet_cont").addClass("active");
-		})
-        $(".thumb_wrap>a>img").click(function(){
-			   $(this).closest(".thumb_wrap").siblings(".leaflet_cont").addClass("active");
-		})
-		$(".modal_cls").click(function(){
-			   $(this).closest(".leaflet_cont").removeClass("active");
-		})
-			
-		$(".add_btn").click(function(){             
-			 var classActive = $(this).is(".active");
-           if( classActive == true){
-               $(this).removeClass("active");
-           }else{
-                $(this).addClass("active");
-           }
-		})
-	}
-
 }
 
 /* 찜하기 버튼 클릭한다. */
