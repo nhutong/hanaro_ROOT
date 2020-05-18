@@ -908,6 +908,7 @@ header nav ul li.active a{
     overflow: hidden;
 }
 
+/*2020-05-18 min-height값 변경 - 미솔*/
 .product {
     display: block;
     margin-top: 3px;
@@ -915,13 +916,15 @@ header nav ul li.active a{
     font-size: 14px;
     color: #000;
     letter-spacing: -1px;
-    min-height: 40px;
+    min-height: 50px;
     text-overflow: ellipsis;
 	display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
 }
+/*2020-05-18 min-height값 변경 - 미솔*/
+
 /*2020-05-07 상품명 두줄로 변경 - 미솔*/
 
 .price{
