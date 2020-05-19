@@ -851,41 +851,43 @@ function getPdOrder() {
 	//rcvJdNo = getCookie("jd_no");
 	var rcvJdNo = $("#modify_jd_no").text();
 	//console.log("bbbb"+rcvJdNo);
-    $.ajax({
-        url:'/back/03_leaflet/leafletPdOrder.jsp?random=' + (Math.random()*99999), 
-        data : {jd_no: rcvJdNo},
-        method : 'GET'
-    }).done(function(result){
+	if( rcvJdNo != "" ){
+		$.ajax({
+			url:'/back/03_leaflet/leafletPdOrder.jsp?random=' + (Math.random()*99999), 
+			data : {jd_no: rcvJdNo},
+			method : 'GET'
+		}).done(function(result){
 
-        //console.log("PdOrderList=========================================");
-        if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            //console.log(result);
-        }else{
-            $("#noticeList").html("");
-            //console.log("============= PdOrderList callback ========================");
-            //console.log(result);
-            var data = JSON.parse(result);
+			//console.log("PdOrderList=========================================");
+			if(result == ('NoN') || result == 'list error' || result == 'empty'){
+				//console.log(result);
+			}else{
+				$("#noticeList").html("");
+				//console.log("============= PdOrderList callback ========================");
+				//console.log(result);
+				var data = JSON.parse(result);
 
-			$('#pd_order').empty();
+				$('#pd_order').empty();
 
-            data['PdOrderList'].forEach(function(item, index){                        
-				
-				var pd_tot = Number(decodeURIComponent(item['pdorder_tot']));
-
-				for (h=1;h<=pd_tot;h++ )
-				{
-					if ( h == 1 )
-					{
-						$('#pd_order').append('<option value='+h+' selected>'+h+'</option>');	
+				data['PdOrderList'].forEach(function(item, index){                        
 					
-					}else{
-						$('#pd_order').append('<option value='+h+'>'+h+'</option>');
+					var pd_tot = Number(decodeURIComponent(item['pdorder_tot']));
+
+					for (h=1;h<=pd_tot;h++ )
+					{
+						if ( h == 1 )
+						{
+							$('#pd_order').append('<option value='+h+' selected>'+h+'</option>');	
+						
+						}else{
+							$('#pd_order').append('<option value='+h+'>'+h+'</option>');
+						}
 					}
-				}
-				
-			});
-        }
-    });
+					
+				});
+			}
+		});
+	}
 }
 
 function ThumCSS(){
