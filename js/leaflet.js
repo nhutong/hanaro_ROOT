@@ -849,7 +849,8 @@ function thumnailUpdate(imgNo){
 // 상품오더 순서를 가져온다.
 function getPdOrder() {
 	//rcvJdNo = getCookie("jd_no");
-	var rcvJdNo = $("#modify_jd_no").val();
+	var rcvJdNo = $("#modify_jd_no").text();
+	//console.log("bbbb"+rcvJdNo);
     $.ajax({
         url:'/back/03_leaflet/leafletPdOrder.jsp?random=' + (Math.random()*99999), 
         data : {jd_no: rcvJdNo},
