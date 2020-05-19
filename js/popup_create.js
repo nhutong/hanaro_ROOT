@@ -138,9 +138,17 @@ function getLinkList(){
 			var Linklist = result['list'];
 			var text = '';	
 			text +='    <tr>';
-			text +='        <td>HOME</td>' ;
+			text +='        <td>홈화면</td>' ;
 			text +='        <td>home/main.html</td>' ;
 			text +='    </tr>';			
+			text +='    <tr>';
+			text +='        <td>이벤트</td>' ;
+			text +='        <td>home/event.html</td>' ;
+			text +='    </tr>';
+			text +='    <tr>';
+			text +='        <td>공지사항</td>' ;
+			text +='        <td>home/notice.html</td>' ;
+			text +='    </tr>';					
 			$(Linklist).each( function (idx, linkeach) {
 				text +='    <tr>';
 				text +='        <td>' + linkeach.select_name  + '</td>' ;
