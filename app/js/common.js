@@ -497,12 +497,12 @@ function zzimCount(rcvNo, rcv_vm_cp_no){
     }).done(function(result){
 
 		var text = "";
-        console.log("noticeList=========================================");
+        //console.log("zzimCount=========================================");
         if(result.trim() == 'NoN' || result == 'list error' || result == 'empty'){
-            console.log(result);
+            console.log("aaaaaaaa"+result);
         }else{
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= zzimCount callback ========================");
+            //console.log("aaaaaaa"+result);
             var data = JSON.parse(result);
 		
 			data['PdContentList'].forEach(function(item, index){ 
