@@ -121,8 +121,17 @@
 				string2 = strEncode(string2);
 			}
 
-			// 판매가
+			// 규격(내용량)
 			col = 3;
+		    cell = sheet.getCell(col,i);
+		    String string15 = cell.getContents().trim();
+			string15 = strEncode(string15);		
+			
+			//앱 전단 상품명에 규격을 추가 한 뒤 아래 내용 삭제 필요 - 20200519-김대윤
+			string2 = string2 + string15;
+
+			// 판매가
+			col = 4;
 		    cell = sheet.getCell(col,i);
 		    String string3 = cell.getContents().trim().replaceAll(",", "");
 			if ( string3.equals("") ){
@@ -141,7 +150,7 @@
 			}
 
 			// 카드할인
-			col = 4;
+			col = 7;
 		    cell = sheet.getCell(col,i);
 		    String string4 = cell.getContents().trim().replaceAll(",", "");
 			if ( string4.equals("") ){
@@ -204,19 +213,19 @@
 			}
 
 			// 카드정보
-			col = 7;
+			col = 8;
 		    cell = sheet.getCell(col,i);
 		    String string7 = cell.getContents().trim();
 			string7 = strEncode(string7);
 
 			// 카드한정
-			col = 8;
+			col = 9;
 		    cell = sheet.getCell(col,i);
 		    String string8 = cell.getContents().trim();
 			string8 = strEncode(string8);
 
 			// 쿠폰할인
-			col = 9;
+			col = 10;
 		    cell = sheet.getCell(col,i);
 		    String string9 = cell.getContents().trim().replaceAll(",", "");
 			if ( string9.equals("") ){
@@ -231,19 +240,19 @@
 			}
 
 			// 다다익선
-			col = 10;
+			col = 11;
 		    cell = sheet.getCell(col,i);
 		    String string10 = cell.getContents().trim();
 			string10 = strEncode(string10);
 
 			// 다다익선정보
-			col = 11;
+			col = 12;
 		    cell = sheet.getCell(col,i);
 		    String string11 = cell.getContents().trim();
 			string11 = strEncode(string11);
 
 			// 기타정보
-			col = 12;
+			col = 13;
 		    cell = sheet.getCell(col,i);
 		    String string12 = cell.getContents().trim();
 			string12 = strEncode(string12);
@@ -466,15 +475,15 @@
 					if(listCountInt4 == 0){ //신규생성
 						// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 						sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, ref_pd_no, ref_img_no, pd_name, price, card_discount, card_discount_from_date, card_discount_end_date, "
-							+" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, oneDay_start_date, oneDay_end_date, pd_code ) "
+							+" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, oneDay_start_date, oneDay_end_date, pd_code, weight ) "
 							+" values("+new_jd_no+", '"+string0+"', '"+pd_no+"', '"+img_no+"', '"+string2+"', '"+string3+"', '"+string4+"', IF("+string5+" is null,"+string5+",'"+string5+"'), IF("+string6+" is null,"+string6+", '"+string6+"'), "
-							+" '"+string7+"', '"+string8+"', '"+string9+"', '"+string10+"', '"+string11+"', '"+string12+"', IF("+string13+" is null,"+string13+",'"+string13+"'), IF("+string14+" is null,"+string14+",'"+string14+"'), '"+string1+"' );";
+							+" '"+string7+"', '"+string8+"', '"+string9+"', '"+string10+"', '"+string11+"', '"+string12+"', IF("+string13+" is null,"+string13+",'"+string13+"'), IF("+string14+" is null,"+string14+",'"+string14+"'), '"+string1+"', '"+string15+"' ); ";
 					}else{
 						sql = "update vm_jundan_prod_content set "
 							+" order_number = '"+string0+"', ref_pd_no = '"+pd_no+"', ref_img_no = '"+img_no+"', pd_name = '"+string2+"', price = '"+string3+"', "
 							+" card_discount = '"+string4+"', card_discount_from_date = IF("+string5+" is null,"+string5+",'"+string5+"'), card_discount_end_date = IF("+string6+" is null,"+string6+",'"+string6+"'), card_info = '"+string7+"', "
 							+" card_restrict = '"+string8+"', coupon_discount = '"+string9+"', dadaiksun = '"+string10+"', dadaiksun_info = '"+string11+"', etc = '"+string12+"', "
-							+" oneDay_start_date = IF("+string13+" is null,"+string13+",'"+string13+"'), oneDay_end_date = IF("+string14+" is null,"+string14+",'"+string14+"'), pd_code = '"+string1+"' "
+							+" oneDay_start_date = IF("+string13+" is null,"+string13+",'"+string13+"'), oneDay_end_date = IF("+string14+" is null,"+string14+",'"+string14+"'), pd_code = '"+string1+"', weight = '"+string15+"' "
 							+" WHERE ref_jd_no = "+new_jd_no
 							+" and pd_code = '"+string1+"' ;";
 					}
