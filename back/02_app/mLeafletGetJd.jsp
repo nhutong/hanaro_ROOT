@@ -163,7 +163,11 @@
 			String prev_jd_no        = "";
 			String next_jd_no        = "";
 			
-			sql = " SELECT jd_no as prev_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date < '"+from_date_origin+"' ORDER BY a.from_date desc LIMIT 1; ";			
+			sql = " SELECT jd_no as prev_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date < '"+from_date_origin+"' "
+			     +" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
+			     +" and ifnull(del_fg,'N') != 'Y' "
+				 +" ORDER BY a.from_date desc LIMIT 1; ";			
+				 
 			ResultSet rs2 = null;					
 			rs2 = stmt.executeQuery(sql);
 			rs2.last();
@@ -172,7 +176,10 @@
 				prev_jd_no        = rs2.getString("prev_jd_no");				             // prev_jd_no
 			}
 			
-			sql = " SELECT jd_no as next_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date > '"+from_date_origin+"' ORDER BY a.from_date LIMIT 1; ";
+			sql = " SELECT jd_no as next_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date > '"+from_date_origin+"' "
+			     +" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
+			     +" and ifnull(del_fg,'N') != 'Y' "			
+			     +" ORDER BY a.from_date LIMIT 1; ";
 			ResultSet rs3 = null;					
 			rs3 = stmt.executeQuery(sql);
 			rs3.last();

@@ -266,7 +266,7 @@
 			}else{
 
 				// 특가행사시작일
-				col = 13;
+				col = 14;
 				cell = sheet.getCell(col,i);
 				string13 = cell.getContents().trim();
 				if ( string13.equals("") ){
@@ -293,7 +293,7 @@
 				}
 
 				// 특가행사종료일
-				col = 14;
+				col = 15;
 				cell = sheet.getCell(col,i);
 			    string14 = cell.getContents().trim();
 				if ( string14.equals("") ){
