@@ -850,6 +850,7 @@ function thumnailUpdate(imgNo){
 function getPdOrder() {
 	//rcvJdNo = getCookie("jd_no");
 	var rcvJdNo = $("#modify_jd_no").text();
+	//console.log("bbbb"+rcvJdNo);
     $.ajax({
         url:'/back/03_leaflet/leafletPdOrder.jsp?random=' + (Math.random()*99999), 
         data : {jd_no: rcvJdNo},
