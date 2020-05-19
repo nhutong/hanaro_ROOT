@@ -126,8 +126,8 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
         method : 'GET' 
     }).done(function(result){
 		//console.log("============= mLeafletGetJd callback ========================");
-		console.log(result);
-        if(result == ('NoN') || result == 'exception error' || result == 'empty'  || result == 'interval error'){
+		//console.log(result);
+        if(result == ('NoN') || result.substring(0,15) == 'exception error' || result == 'empty'  || result == 'interval error'){
 			modify_jd_no = "0";
 			if(rcv_jd_no == 0){
 				console.log("if:"+result);

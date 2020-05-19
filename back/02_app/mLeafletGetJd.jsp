@@ -19,8 +19,11 @@
 	JSONObject bdListJSON = new JSONObject();
 
 	int listCountInt = 0;
+
+	String msg = "";
 	
 	try{
+
 
 		if( rcv_jd_no.equals("0") ){
 			// 오늘짜 전단 조회
@@ -159,34 +162,32 @@
 			String show_fg           = rs.getString("show_fg");				             // 전단노출여부
             String menu_type_cd      = rs.getString("menu_type_cd");				             // 메뉴타입
 			String today_fg          = rs.getString("today_fg");				             // today여부
-			
 			String prev_jd_no        = "";
 			String next_jd_no        = "";
-			
-			sql = " SELECT jd_no as prev_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date < '"+from_date_origin+"' "
+
+			String sql2 = " SELECT jd_no as prev_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date < '"+from_date_origin+"' "
 			     +" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
 			     +" and ifnull(del_fg,'N') != 'Y' "
 				 +" ORDER BY a.from_date desc LIMIT 1; ";			
 				 
-			ResultSet rs2 = null;					
-			rs2 = stmt.executeQuery(sql);
-			rs2.last();
-			rs2.beforeFirst();	
-			while(rs2.next()){
-				prev_jd_no        = rs2.getString("prev_jd_no");				             // prev_jd_no
+			rs = stmt.executeQuery(sql2);
+			rs.last();
+			rs.beforeFirst();	
+			while(rs.next()){
+				prev_jd_no        = rs.getString("prev_jd_no");				             // prev_jd_no
 			}
 			
-			sql = " SELECT jd_no as next_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date > '"+from_date_origin+"' "
+			String sql3 = " SELECT jd_no as next_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date > '"+from_date_origin+"' "
 			     +" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
 			     +" and ifnull(del_fg,'N') != 'Y' "			
-			     +" ORDER BY a.from_date LIMIT 1; ";
-			ResultSet rs3 = null;					
-			rs3 = stmt.executeQuery(sql);
-			rs3.last();
-			rs3.beforeFirst();	
-			while(rs3.next()){
-				next_jd_no        = rs3.getString("next_jd_no");				             // next_jd_no
-			}		
+				 +" ORDER BY a.from_date LIMIT 1; ";
+				 
+			rs = stmt.executeQuery(sql3);
+			rs.last();
+			rs.beforeFirst();	
+			while(rs.next()){
+				next_jd_no        = rs.getString("next_jd_no");				             // next_jd_no
+			}			
 
 			JSONObject obj = new JSONObject();
 			
@@ -208,7 +209,7 @@
 			if(obj != null){
 				arr.add(obj);
 			}
-		};
+		}
 
 		bdListJSON.put("List", arr);
 		out.clear();
@@ -216,7 +217,7 @@
 	
 	}catch(Exception e){
 		out.clear();
-		out.print("exception error"+sql);	
+		out.print("exception error");
 	}finally{
 		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {};
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {};
