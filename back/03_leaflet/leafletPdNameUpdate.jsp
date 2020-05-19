@@ -10,10 +10,11 @@
 <%	
 	String jd_prod_con_no = (request.getParameter("jd_prod_con_no")==null)? "0":request.getParameter("jd_prod_con_no");
 	String pd_name = (request.getParameter("pd_name")==null)? "0":request.getParameter("pd_name");
+	String weight = (request.getParameter("weight")==null)? "0":request.getParameter("weight");	
 	
 	try{
 
-		sql = "update vm_jundan_prod_content set pd_name = '"+pd_name+"'  "
+		sql = "update vm_jundan_prod_content set pd_name = '"+pd_name+"', weight = '"+weight+"'  "
 			+" where jd_prod_con_no = "+jd_prod_con_no+"";
 	
 		pstmt = conn.prepareStatement(sql);

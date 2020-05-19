@@ -18,6 +18,7 @@
 	String coupon_discount = (request.getParameter("coupon_discount")==null)? "":request.getParameter("coupon_discount");
 	String dadaiksun = (request.getParameter("dadaiksun")==null)? "":request.getParameter("dadaiksun");
 	String dadaiksun_info = (request.getParameter("dadaiksun_info")==null)? "":request.getParameter("dadaiksun_info");
+	String etc = (request.getParameter("etc")==null)? "":request.getParameter("etc");	
 	
 	try{
 
@@ -39,7 +40,8 @@
 		sql = sql +" card_restrict = '"+strEncode(card_restrict)+"', ";
 		sql = sql +" coupon_discount = '"+coupon_discount+"', ";
 		sql = sql +" dadaiksun = '"+strEncode(dadaiksun)+"', ";
-		sql = sql +" dadaiksun_info = '"+strEncode(dadaiksun_info)+"' ";
+		sql = sql +" dadaiksun_info = '"+strEncode(dadaiksun_info)+"', ";
+		sql = sql +" etc = '"+strEncode(etc)+"' ";		
 		sql = sql +" where jd_prod_con_no = "+jd_prod_con_no+"; ";
 //out.print(sql);	
 		pstmt = conn.prepareStatement(sql);
