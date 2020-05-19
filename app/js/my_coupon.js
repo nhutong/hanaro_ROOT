@@ -80,7 +80,7 @@ function couponList(rcv_vm_cp_no){
 			var jsonResult_notice = jsonResult.BannerList;
 
 			/* 20200229 추가 시작 */
-			var re=/(\n|\r\n)/g
+			var re=/(\n|\r\n)/g;
 			/* 20200229 추가 끝 */
 
 			for(var i in jsonResult_notice){
@@ -207,7 +207,7 @@ function couponListIng(rcv_vm_cp_no){
 				var jsonResult = JSON.parse(result);
 				console.log(jsonResult);
 
-				var re=/(\n|\r\n)/g
+				var re=/(\n|\r\n)/g;
 				
 				var jsonResult_notice = jsonResult.BannerList;
 				
@@ -337,7 +337,7 @@ function couponListEnd(rcv_vm_cp_no){
 			var jsonResult = JSON.parse(result);
      		console.log(jsonResult);
      		
-			var re=/(\n|\r\n)/g     		
+			var re=/(\n|\r\n)/g;     		
 
 			var jsonResult_notice = jsonResult.BannerList;
 			

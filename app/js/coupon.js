@@ -118,6 +118,7 @@ function couponList(rcv_vm_cp_no){
 		}else{
 			var jsonResult = JSON.parse(result);
 			//console.log(jsonResult);
+			var re=/(\n|\r\n)/g;
 
 			var jsonResult_notice = jsonResult.BannerList;
 			
@@ -208,7 +209,8 @@ function couponList(rcv_vm_cp_no){
                 text +='        </div>';
                 text +='        <div class="coupon_txt">';
                 text +='            <p>';
-				text +='               '+decodeURIComponent(jsonResult_notice[i].coupon_detail).replace(/\+/g,'<br>')+' ';
+				//text +='               '+decodeURIComponent(jsonResult_notice[i].coupon_detail).replace(/\+/g,'<br>')+' ';
+				text +=''+jsonResult_notice[i].coupon_detail.replace(re,"<br>")+'';
                 text +='            </p>';
                 text +='        </div>';       
                 text +='    </div>';
@@ -262,6 +264,7 @@ function couponListIng(rcv_vm_cp_no){
 		}else{
 			var jsonResult = JSON.parse(result);
 			//console.log(jsonResult);
+			var re=/(\n|\r\n)/g;
 
 			var jsonResult_notice = jsonResult.BannerList;
 			
@@ -352,7 +355,8 @@ function couponListIng(rcv_vm_cp_no){
                 text +='        </div>';
                 text +='        <div class="coupon_txt">';
                 text +='            <p>';
-				text +='               '+decodeURIComponent(jsonResult_notice[i].coupon_detail).replace(/\+/g,'<br>')+' ';
+				//text +='               '+decodeURIComponent(jsonResult_notice[i].coupon_detail).replace(/\+/g,'<br>')+' ';
+				text +=''+jsonResult_notice[i].coupon_detail.replace(re,"<br>")+'';
                 text +='            </p>';
                 text +='        </div>';       
                 text +='    </div>';
@@ -406,6 +410,7 @@ function couponListEnd(rcv_vm_cp_no){
 			}else{
 				var jsonResult = JSON.parse(result);
 				//console.log(jsonResult);
+				var re=/(\n|\r\n)/g;
    
 			    var jsonResult_notice = jsonResult.BannerList;
 			
@@ -496,7 +501,8 @@ function couponListEnd(rcv_vm_cp_no){
                 text +='        </div>';
                 text +='        <div class="coupon_txt">';
                 text +='            <p>';
-				text +='               '+decodeURIComponent(jsonResult_notice[i].coupon_detail).replace(/\+/g,'<br>')+' ';
+				//text +='               '+decodeURIComponent(jsonResult_notice[i].coupon_detail).replace(/\+/g,'<br>')+' ';
+				text +=''+jsonResult_notice[i].coupon_detail.replace(re,"<br>")+'';
                 text +='            </p>';
                 text +='        </div>';       
                 text +='    </div>';
