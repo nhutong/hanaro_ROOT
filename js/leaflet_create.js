@@ -263,7 +263,7 @@ $("#jundan_excel_new").on("click",function(){
     }).done(function(result){
 
 		//console.log("leafletConProdInsert=========================================");
-		//console.log("===="+result);
+		//console.log("aaaa"+result);
 		if( result.substring(0,15) == "exception error" ){
 			console.log(result);			
 			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");

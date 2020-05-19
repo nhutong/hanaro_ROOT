@@ -330,7 +330,7 @@ function getPdContent(rcv_jd_no) {
 				text += '		</div>'
 				text += '   </div>'
 				text += '   <div class="product_detail">'
-				text += '       <a class="product" onclick="setPdName('+item['jd_prod_con_no']+', \''+item['pd_name']+'\');">'+item['pd_name']+'</a>'
+				text += '       <a class="product" onclick="setPdName('+item['jd_prod_con_no']+', \''+item['pd_name']+'\', \''+item['weight']+'\');">'+item['pd_name']+'</a>'
 				if (item['img_path'] == "/upload/blank.png"){
 				}else{
 					text += '       <a class="price"   onclick="setPrice('+item['jd_prod_con_no']+', \''+item['price']+'\');">'+comma(item['price'])+'</a>' //2020-05-07 원 삭제 - 미솔
@@ -686,7 +686,7 @@ function setSaleDetail(rcvJdProdConNo){
 			}else{
 				$("#noticeList").html("");
 				//console.log("============= SaleDetail callback ========================");
-				//console.log(result);
+				//console.log("aaaaa"+result);
 				var data = JSON.parse(result);
 
 				data['saleList'].forEach(function(item, index){                        
@@ -698,6 +698,7 @@ function setSaleDetail(rcvJdProdConNo){
 					window.parent.document.getElementById("coupon_discount").value = item['coupon_discount'];
 					window.parent.document.getElementById("dadaiksun").value = item['dadaiksun'];
 					window.parent.document.getElementById("dadaiksun_info").value = item['dadaiksun_info'];
+					window.parent.document.getElementById("etc").value = item['etc'];					
 				});
 
 			}
@@ -719,7 +720,7 @@ function setSaleDetail(rcvJdProdConNo){
 }
 
 // 상품명 정보를 부모창에 바인딩한다.
-function setPdName(rcvJdProdConNo, rcvPdName){
+function setPdName(rcvJdProdConNo, rcvPdName, rcvPdWeight){
 	var isInIFrame = ( window.location != window.parent.location );
 	if (isInIFrame == true)
 	{
@@ -740,6 +741,7 @@ function setPdName(rcvJdProdConNo, rcvPdName){
         });
 
 		window.parent.document.getElementById("pd_name").value = rcvPdName;
+		window.parent.document.getElementById("pd_weight").value = rcvPdWeight;
 		window.parent.document.getElementById("jd_prod_con_no_prod_name").value = rcvJdProdConNo;
 	}else{
 	

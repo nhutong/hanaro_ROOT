@@ -850,41 +850,44 @@ function thumnailUpdate(imgNo){
 function getPdOrder() {
 	//rcvJdNo = getCookie("jd_no");
 	var rcvJdNo = $("#modify_jd_no").text();
-    $.ajax({
-        url:'/back/03_leaflet/leafletPdOrder.jsp?random=' + (Math.random()*99999), 
-        data : {jd_no: rcvJdNo},
-        method : 'GET'
-    }).done(function(result){
+	//console.log("bbbb"+rcvJdNo);
+	if( rcvJdNo != "" ){
+		$.ajax({
+			url:'/back/03_leaflet/leafletPdOrder.jsp?random=' + (Math.random()*99999), 
+			data : {jd_no: rcvJdNo},
+			method : 'GET'
+		}).done(function(result){
 
-        //console.log("PdOrderList=========================================");
-        if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            //console.log(result);
-        }else{
-            $("#noticeList").html("");
-            //console.log("============= PdOrderList callback ========================");
-            //console.log(result);
-            var data = JSON.parse(result);
+			//console.log("PdOrderList=========================================");
+			if(result == ('NoN') || result == 'list error' || result == 'empty'){
+				//console.log(result);
+			}else{
+				$("#noticeList").html("");
+				//console.log("============= PdOrderList callback ========================");
+				//console.log(result);
+				var data = JSON.parse(result);
 
-			$('#pd_order').empty();
+				$('#pd_order').empty();
 
-            data['PdOrderList'].forEach(function(item, index){                        
-				
-				var pd_tot = Number(decodeURIComponent(item['pdorder_tot']));
-
-				for (h=1;h<=pd_tot;h++ )
-				{
-					if ( h == 1 )
-					{
-						$('#pd_order').append('<option value='+h+' selected>'+h+'</option>');	
+				data['PdOrderList'].forEach(function(item, index){                        
 					
-					}else{
-						$('#pd_order').append('<option value='+h+'>'+h+'</option>');
+					var pd_tot = Number(decodeURIComponent(item['pdorder_tot']));
+
+					for (h=1;h<=pd_tot;h++ )
+					{
+						if ( h == 1 )
+						{
+							$('#pd_order').append('<option value='+h+' selected>'+h+'</option>');	
+						
+						}else{
+							$('#pd_order').append('<option value='+h+'>'+h+'</option>');
+						}
 					}
-				}
-				
-			});
-        }
-    });
+					
+				});
+			}
+		});
+	}
 }
 
 function ThumCSS(){
@@ -983,6 +986,7 @@ $("#sale_btn").on("click",function(){
 	var coupon_discount = $("#coupon_discount").val();
 	var dadaiksun = $("#dadaiksun").val();
 	var dadaiksun_info = $("#dadaiksun_info").val();
+	var etc = $("#etc").val();	
 
 	if ( card_discount == null || chrLen(card_discount) == 0)
 	{
@@ -1046,7 +1050,7 @@ $("#sale_btn").on("click",function(){
 
 	$.ajax({
         url:'/back/03_leaflet/leafletProductSaleUpdate.jsp?random=' + (Math.random()*99999),
-		data : {jd_prod_con_no: jd_prod_con_no_discount, card_discount: card_discount, card_discount_from_date: card_discount_from_date, card_discount_end_date: card_discount_end_date, card_info: card_info, card_restrict: card_restrict, coupon_discount: coupon_discount, dadaiksun: dadaiksun, dadaiksun_info: dadaiksun_info},
+		data : {jd_prod_con_no: jd_prod_con_no_discount, card_discount: card_discount, card_discount_from_date: card_discount_from_date, card_discount_end_date: card_discount_end_date, card_info: card_info, card_restrict: card_restrict, coupon_discount: coupon_discount, dadaiksun: dadaiksun, dadaiksun_info: dadaiksun_info, etc: etc},
         method : 'GET' 
     }).done(function(result){
 
@@ -1070,6 +1074,7 @@ $("#sale_btn").on("click",function(){
 $("#pd_name_btn").on("click",function(){
 	var jd_prod_con_no_prod_name = encodeURIComponent($("#jd_prod_con_no_prod_name").val());
 	var pd_name = $("#pd_name").val();
+	var weight = $("#weight").val();
 
 	if ( pd_name == null || chrLen(pd_name) == 0)
 	{
@@ -1079,7 +1084,7 @@ $("#pd_name_btn").on("click",function(){
 
 	$.ajax({
         url:'/back/03_leaflet/leafletPdNameUpdate.jsp?random=' + (Math.random()*99999),
-		data : {pd_name: pd_name, jd_prod_con_no: jd_prod_con_no_prod_name},
+		data : {pd_name: pd_name, weight: weight, jd_prod_con_no: jd_prod_con_no_prod_name},
         method : 'GET' 
     }).done(function(result){
 
