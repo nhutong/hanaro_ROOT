@@ -1760,7 +1760,7 @@ span.shopUrl:hover{
 }
 
 .leaflet_discount .table input{
-    width: 100px;
+    width: 200px;
     padding: 5px;
 }
 
@@ -1803,7 +1803,7 @@ span.discount_notice{
 }
 
 .leaflet_discount textarea{
-    width: 150px;
+    width: 200px;
 	resize : none;
 }
 

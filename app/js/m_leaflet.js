@@ -686,7 +686,7 @@ function setSaleDetail(rcvJdProdConNo){
 			}else{
 				$("#noticeList").html("");
 				//console.log("============= SaleDetail callback ========================");
-				//console.log(result);
+				//console.log("aaaaa"+result);
 				var data = JSON.parse(result);
 
 				data['saleList'].forEach(function(item, index){                        
@@ -698,6 +698,7 @@ function setSaleDetail(rcvJdProdConNo){
 					window.parent.document.getElementById("coupon_discount").value = item['coupon_discount'];
 					window.parent.document.getElementById("dadaiksun").value = item['dadaiksun'];
 					window.parent.document.getElementById("dadaiksun_info").value = item['dadaiksun_info'];
+					window.parent.document.getElementById("etc").value = item['etc'];					
 				});
 
 			}

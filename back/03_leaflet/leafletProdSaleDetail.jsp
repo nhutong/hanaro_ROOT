@@ -22,7 +22,8 @@
 			+" ifnull(card_info,'') as card_info, ifnull(card_restrict,'') as card_restrict, " 
 			+" ifnull(coupon_discount,'') as coupon_discount, " 
 			+" ifnull(dadaiksun,'') as dadaiksun, " 
-			+" ifnull(dadaiksun_info,'') as dadaiksun_info "
+			+" ifnull(dadaiksun_info,'') as dadaiksun_info, "
+			+" ifnull(etc,'') as etc "			
 			+" FROM vm_jundan_prod_content "
 			+" WHERE jd_prod_con_no = '"+jd_prod_con_no+"' ;";
 	
@@ -49,6 +50,7 @@
 			String coupon_discount = rs.getString("coupon_discount");   // 카드할인 시작일
 			String dadaiksun = rs.getString("dadaiksun");   // 카드할인 시작일
 			String dadaiksun_info = rs.getString("dadaiksun_info");   // 카드할인 시작일
+			String etc = rs.getString("etc");   // 카드할인 시작일			
 			
 			JSONObject obj = new JSONObject();
 						
@@ -60,6 +62,7 @@
 			obj.put("coupon_discount", coupon_discount);
 			obj.put("dadaiksun", strDecode(dadaiksun));
 			obj.put("dadaiksun_info", strDecode(dadaiksun_info));
+			obj.put("etc", strDecode(etc));
 
 			if(obj != null){
 				arr.add(obj);
