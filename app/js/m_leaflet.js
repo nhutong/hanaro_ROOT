@@ -127,10 +127,10 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
     }).done(function(result){
 		//console.log("============= mLeafletGetJd callback ========================");
 		//console.log(result);
-        if(result == ('NoN') || result == 'exception error' || result == 'empty'  || result == 'interval error'){
+        if(result == ('NoN') || result.substring(0,15) == 'exception error' || result == 'empty'  || result == 'interval error'){
 			modify_jd_no = "0";
 			if(rcv_jd_no == 0){
-				//console.log("if:"+result);
+				console.log("if:"+result);
 				var today = new Date();
 				var dayNamesArray = ["일","월","화","수","목","금","토"];
 				var monthNamesArray = ["01","02","03","04","05","06","07","08","09","10","11","12"];
@@ -150,8 +150,16 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 				$("#item_list_inner_wrap").empty();
 				$("#item_list_inner_wrap").append('<div class="list_no_item">해당 전단이 없습니다.</div>');	
 			}
+
+			$(".btn_left").css("color","#cfcfcf");
+			$(".btn_left").removeAttr("onclick");
+
+			$(".btn_right").css("color","#cfcfcf");
+			$(".btn_right").removeAttr("onclick");
+		
         }else{            
 			//console.log("else:"+result);
+			//console.log("else:"+decodeURIComponent(item['sql']));
 			$("#selected_jd").empty();
             var data = JSON.parse(result);			
             data['List'].forEach(function(item, index){
@@ -164,22 +172,24 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 				getBanner(decodeURIComponent(item['jd_no']));
 				getPdContent(decodeURIComponent(item['jd_no']));
 
-				if ( decodeURIComponent(item['prev_jd_no']) == "null" ){
+				if ( decodeURIComponent(item['prev_jd_no']) == "null" || decodeURIComponent(item['prev_jd_no']) == "" ){
 					$(".btn_left").css("color","#cfcfcf");
 					$(".btn_left").removeAttr("onclick");
 				}else{
 					$(".btn_left").css("color","#55B190");
 					$(".btn_left").removeAttr("onclick");
-					$(".btn_left").attr("onclick","getJd("+rcv_vm_cp_no+","+rcv_menu_no+","+decodeURIComponent(item['jd_no'])+",-1);");
+					$(".btn_left").attr("onclick","getJd("+rcv_vm_cp_no+","+rcv_menu_no+","+decodeURIComponent(item['prev_jd_no'])+",0);");
 				}
 
-				if ( decodeURIComponent(item['next_jd_no']) == "null" ){
+				console.log("else:"+decodeURIComponent(item['next_jd_no']));
+
+				if ( decodeURIComponent(item['next_jd_no']) == "null" || decodeURIComponent(item['next_jd_no']) == "" ){
 					$(".btn_right").css("color","#cfcfcf");
 					$(".btn_right").removeAttr("onclick");					
 				}else{
 					$(".btn_right").css("color","#55B190");
 					$(".btn_right").removeAttr("onclick");
-					$(".btn_right").attr("onclick","getJd("+rcv_vm_cp_no+","+rcv_menu_no+","+decodeURIComponent(item['jd_no'])+",1);");
+					$(".btn_right").attr("onclick","getJd("+rcv_vm_cp_no+","+rcv_menu_no+","+decodeURIComponent(item['next_jd_no'])+",0);");
 				}
 			});			
 		}

@@ -15,7 +15,7 @@
 	
 	try{
 
-		// 현재 진행중인 전단번호를 추출한다.
+		// 오늘 날짜(현재) 전단번호를 추출한다.
 		sql = " SELECT jd_no "
 		+" FROM vm_jundan AS a "
 		+" WHERE a.ref_company_no = "+userCompanyNo

@@ -17,43 +17,101 @@
     int itv = Integer.parseInt(interval);
 
 	JSONObject bdListJSON = new JSONObject();
+
+	int listCountInt = 0;
+
+	String msg = "";
 	
 	try{
 
-		// 현재 진행중인 전단번호를 추출한다.
-		sql = " SELECT a.jd_no, a.from_date, a.to_date, a.Show_fg, "
-		+" 			case weekday(a.from_date) "
-		+" 			    when '0' then '월요일' "
-		+" 				when '1' then '화요일' "
-		+" 				when '2' then '수요일' "
-		+" 				when '3' then '목요일' "
-		+" 				when '4' then '금요일' "
-		+" 				when '5' then '토요일' "
-		+" 				when '6' then '일요일' "
-		+" 			END AS from_date_weekday, " 
-		+" 			case weekday(a.to_date) "
-		+" 			    when '0' then '월요일' "
-		+" 				when '1' then '화요일' "
-		+" 				when '2' then '수요일' "
-		+" 				when '3' then '목요일' "
-		+" 				when '4' then '금요일' "
-		+" 				when '5' then '토요일' "
-		+" 				when '6' then '일요일' "
-		+" 			END AS to_date_weekday, " 				
-        +"          b.menu_type_cd, "
-		+"          case when left(CURDATE(),10) >= left(a.from_date,10) AND left(CURDATE(),10) <= left(a.to_date,10) then 'Y' ELSE 'N' END AS today_fg, "
-		+" (SELECT max(jd_no) FROM vm_jundan AS d WHERE a.ref_company_no = d.ref_company_no AND a.menu_no = d.menu_no AND a.from_date > d.from_date and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+") ) AS prev_jd_no, "
-        +" (SELECT min(jd_no) FROM vm_jundan AS e WHERE a.ref_company_no = e.ref_company_no AND a.menu_no = e.menu_no AND a.from_date < e.from_date and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+") ) AS next_jd_no "
-		+" FROM vm_jundan AS a "
-		+" left outer join vm_menu as b on ( a.menu_no = b.menu_no ) "
-		+" WHERE a.ref_company_no = "+userCompanyNo
-		+" and a.menu_no = "+menuNo
-		+" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
-		+" and ifnull(del_fg,'N') != 'Y' ";
 
-		if ( rcv_jd_no.equals("0") ){ //오늘자 전단 조회
-			sql += " AND (left(from_date,10) <= left(now(),10) AND left(to_date,10) >= left(now(),10)); ";
+		if( rcv_jd_no.equals("0") ){
+			// 오늘짜 전단 조회
+			sql = "	SELECT jd_no "
+			+"        FROM vm_jundan AS a "
+			+"       WHERE a.ref_company_no = "+userCompanyNo
+			+"         and a.menu_no = "+menuNo
+			+"         and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
+			+"         and ifnull(del_fg,'N') != 'Y' "
+			+"         AND (left(from_date,10) <= left(now(),10) AND left(to_date,10) >= left(now(),10)); ";
+	
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+				
+			rs.last();
+			listCountInt = rs.getRow();	
+
+			if(listCountInt == 0){	
+
+				sql = " SELECT '0' AS jd_no, NOW() AS from_date, NOW() AS to_date, 'Y' AS Show_fg, "
+				+" 	case weekday(NOW()) when '0' then '월요일' when '1' then '화요일' when '2' then '수요일' when '3' then '목요일' when '4' then '금요일' when '5' then '토요일' when '6' then '일요일' END AS from_date_weekday, "
+				+" 	case weekday(NOW()) when '0' then '월요일' when '1' then '화요일' when '2' then '수요일' when '3' then '목요일' when '4' then '금요일' when '5' then '토요일' when '6' then '일요일' END AS to_date_weekday, "
+				+"  (select b.menu_type_cd from vm_menu as b where b.menu_no = '"+menuNo+"' ) AS menu_type_cd, 'Y' as today_fg; ";
+	
+			}else{
+
+				// 현재 진행중인 전단번호를 추출한다.
+				sql = " SELECT a.jd_no, a.from_date, a.to_date, a.Show_fg, "
+				+" 			case weekday(a.from_date) "
+				+" 			    when '0' then '월요일' "
+				+" 				when '1' then '화요일' "
+				+" 				when '2' then '수요일' "
+				+" 				when '3' then '목요일' "
+				+" 				when '4' then '금요일' "
+				+" 				when '5' then '토요일' "
+				+" 				when '6' then '일요일' "
+				+" 			END AS from_date_weekday, " 
+				+" 			case weekday(a.to_date) "
+				+" 			    when '0' then '월요일' "
+				+" 				when '1' then '화요일' "
+				+" 				when '2' then '수요일' "
+				+" 				when '3' then '목요일' "
+				+" 				when '4' then '금요일' "
+				+" 				when '5' then '토요일' "
+				+" 				when '6' then '일요일' "
+				+" 			END AS to_date_weekday, " 				
+				+"          b.menu_type_cd, "
+				+"          case when left(CURDATE(),10) >= left(a.from_date,10) AND left(CURDATE(),10) <= left(a.to_date,10) then 'Y' ELSE 'N' END AS today_fg "
+				+" FROM vm_jundan AS a "
+				+" left outer join vm_menu as b on ( a.menu_no = b.menu_no ) "
+				+" WHERE a.ref_company_no = "+userCompanyNo
+				+" and a.menu_no = "+menuNo
+				+" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
+				+" and ifnull(del_fg,'N') != 'Y' "
+				+" and (left(from_date,10) <= left(now(),10) AND left(to_date,10) >= left(now(),10)); ";
+
+			}			
+
 		}else{
+
+			sql = " SELECT a.jd_no, a.from_date, a.to_date, a.Show_fg, "
+			+" 			case weekday(a.from_date) "
+			+" 			    when '0' then '월요일' "
+			+" 				when '1' then '화요일' "
+			+" 				when '2' then '수요일' "
+			+" 				when '3' then '목요일' "
+			+" 				when '4' then '금요일' "
+			+" 				when '5' then '토요일' "
+			+" 				when '6' then '일요일' "
+			+" 			END AS from_date_weekday, " 
+			+" 			case weekday(a.to_date) "
+			+" 			    when '0' then '월요일' "
+			+" 				when '1' then '화요일' "
+			+" 				when '2' then '수요일' "
+			+" 				when '3' then '목요일' "
+			+" 				when '4' then '금요일' "
+			+" 				when '5' then '토요일' "
+			+" 				when '6' then '일요일' "
+			+" 			END AS to_date_weekday, " 				
+			+"          b.menu_type_cd, "
+			+"          case when left(CURDATE(),10) >= left(a.from_date,10) AND left(CURDATE(),10) <= left(a.to_date,10) then 'Y' ELSE 'N' END AS today_fg "
+			+" FROM vm_jundan AS a "
+			+" left outer join vm_menu as b on ( a.menu_no = b.menu_no ) "
+			+" WHERE a.ref_company_no = "+userCompanyNo
+			+" and a.menu_no = "+menuNo
+			+" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
+			+" and ifnull(del_fg,'N') != 'Y' ";
+	
 			if (itv == -1){
 				sql +=  " and a.from_date < ( "
 					+" SELECT c.from_date "
@@ -75,7 +133,7 @@
 			}else{
 				sql += " and a.jd_no = "+rcv_jd_no+"; ";
 			}
-		}	
+		}
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -104,9 +162,33 @@
 			String show_fg           = rs.getString("show_fg");				             // 전단노출여부
             String menu_type_cd      = rs.getString("menu_type_cd");				             // 메뉴타입
 			String today_fg          = rs.getString("today_fg");				             // today여부
-			String prev_jd_no        = rs.getString("prev_jd_no");				             // prev_jd_no
-			String next_jd_no        = rs.getString("next_jd_no");				             // next_jd_no
+			String prev_jd_no        = "";
+			String next_jd_no        = "";
+
+			String sql2 = " SELECT jd_no as prev_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date < '"+from_date_origin+"' "
+			     +" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
+			     +" and ifnull(del_fg,'N') != 'Y' "
+				 +" ORDER BY a.from_date desc LIMIT 1; ";			
+				 
+			rs = stmt.executeQuery(sql2);
+			rs.last();
+			rs.beforeFirst();	
+			while(rs.next()){
+				prev_jd_no        = rs.getString("prev_jd_no");				             // prev_jd_no
+			}
 			
+			String sql3 = " SELECT jd_no as next_jd_no FROM vm_jundan as a WHERE a.ref_company_no = '"+userCompanyNo+"' AND a.menu_no = '"+menuNo+"' AND a.from_date > '"+from_date_origin+"' "
+			     +" and IFNULL(a.show_fg,'N') in ("+rcv_show_fg+")" 
+			     +" and ifnull(del_fg,'N') != 'Y' "			
+				 +" ORDER BY a.from_date LIMIT 1; ";
+				 
+			rs = stmt.executeQuery(sql3);
+			rs.last();
+			rs.beforeFirst();	
+			while(rs.next()){
+				next_jd_no        = rs.getString("next_jd_no");				             // next_jd_no
+			}			
+
 			JSONObject obj = new JSONObject();
 			
 			obj.put("jd_no", jd_no);
@@ -121,11 +203,13 @@
 			obj.put("today_fg", today_fg);				
 			obj.put("prev_jd_no", prev_jd_no);				
 			obj.put("next_jd_no", next_jd_no);				
+
+			obj.put("sql", sql);				
 			
 			if(obj != null){
 				arr.add(obj);
 			}
-		};
+		}
 
 		bdListJSON.put("List", arr);
 		out.clear();
@@ -133,7 +217,7 @@
 	
 	}catch(Exception e){
 		out.clear();
-		out.print("exception error"+sql);	
+		out.print("exception error");
 	}finally{
 		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {};
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {};
