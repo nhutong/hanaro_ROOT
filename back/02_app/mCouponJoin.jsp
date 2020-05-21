@@ -17,7 +17,7 @@
 	//중복 체크
 		sql = "select a.mc_no from vm_member_coupon as a "
 			+ " inner join vm_member as b on a.member_no = b.no "
-			+ "where b.no = '"+memberNo+"' and a.coupon_no = "+couponNo;
+			+ "where b.no = '"+memberNo+"' and a.coupon_no = "+couponNo+" ";
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -31,8 +31,8 @@
 
 	//과거 다운이력 체크
 		sql = "select a.mc_no from vm_member_coupon as a "
-			+ " where a.tel_no = "+telNo
-			+ "   and a.coupon_no = "+couponNo
+			+ " where a.tel_no = '"+telNo+"' "
+			+ "   and a.coupon_no = "+couponNo+" "
 			+ "   and a.staff_cert_fg = 'Y' ";
 
 		stmt = conn.createStatement();
@@ -50,7 +50,7 @@
 	    + " FROM vm_coupon AS a "
 	    + " LEFT OUTER JOIN vm_member_coupon AS b "
 	    + " ON a.coupon_no = b.coupon_no "
-	    + " WHERE a.coupon_no = "+couponNo
+	    + " WHERE a.coupon_no = "+couponNo+" "
 	    + " GROUP BY a.coupon_no, a.limit_qty ";
 
 		stmt = conn.createStatement();
