@@ -10,10 +10,14 @@
 <%	
 	String couponNo = (request.getParameter("couponNo")==null)? "0":request.getParameter("couponNo");
 	String memberNo = (request.getParameter("memberNo")==null)? "0":request.getParameter("memberNo");
-	String telNo    = (request.getParameter("telNo")==null)? "0":request.getParameter("telNo");
+	String telNo    = (request.getParameter("telNo")==null)? "":request.getParameter("telNo");
 	
 	String member_no_select = "";
-	
+
+	if( telNo == "" || telNo.equals("null") ) {
+		telNo = memberNo;
+	}
+
 	//중복 체크
 		sql = "select a.mc_no from vm_member_coupon as a "
 			+ " inner join vm_member as b on a.member_no = b.no "
