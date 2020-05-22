@@ -19,9 +19,11 @@
 	try{
 
 		if ( longtitude.equals("0") ){
-			sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME, a.VM_TEL, a.lat, a.lng, a.VM_delivery_FG, a.VM_START_TIME, a.VM_END_TIME, a.VM_OFF_NOTE FROM vm_company AS a WHERE a.VM_CP_NO <> 0 and a.VM_sales_FG = 'Y' order by a.vm_cp_name asc "; 
+			sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME, a.VM_TEL, a.lat, a.lng, a.VM_delivery_FG, a.VM_START_TIME, a.VM_END_TIME, a.VM_OFF_NOTE, concat(a.vm_address1, a.vm_address2) as vm_address "
+			     +" FROM vm_company AS a WHERE a.VM_CP_NO <> 0 and a.VM_sales_FG = 'Y' order by a.vm_cp_name asc ; "; 
 		}else{
-			sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME, a.VM_TEL, a.lat, a.lng, a.VM_delivery_FG, a.VM_START_TIME, a.VM_END_TIME, a.VM_OFF_NOTE FROM vm_company AS a WHERE a.VM_CP_NO <> 0 and a.VM_sales_FG = 'Y' "
+			sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME, a.VM_TEL, a.lat, a.lng, a.VM_delivery_FG, a.VM_START_TIME, a.VM_END_TIME, a.VM_OFF_NOTE, concat(a.vm_address1, a.vm_address2) as vm_address "
+			     +"FROM vm_company AS a WHERE a.VM_CP_NO <> 0 and a.VM_sales_FG = 'Y' "
 			     +" order by ((a.lng - "+longti+")*(a.lng - "+longti+") + (a.lat - "+lati+")*(a.lat - "+lati+")) asc, a.vm_cp_name asc ; ";
 		}
 	
@@ -50,6 +52,7 @@
 			String VM_START_TIME = rs.getString("VM_START_TIME");
 			String VM_END_TIME = rs.getString("VM_END_TIME");
 			String VM_OFF_NOTE = rs.getString("VM_OFF_NOTE");
+			String VM_ADDRESS = rs.getString("vm_address");
 			
 			JSONObject obj = new JSONObject();
 						
@@ -63,6 +66,7 @@
 			obj.put("VM_START_TIME", VM_START_TIME);
 			obj.put("VM_END_TIME", VM_END_TIME);
 			obj.put("VM_OFF_NOTE", VM_OFF_NOTE);
+			obj.put("VM_ADDRESS", VM_ADDRESS);
 
 			if(obj != null){
 				arr.add(obj);

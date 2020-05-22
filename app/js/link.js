@@ -51,7 +51,9 @@ function zzim(){alert('모바일앱에서만 이용 가능합니다.');}//찜하
 function qna_detail(){alert('모바일앱에서만 이용 가능합니다.');}//1:1문의_세부
 
 function push(){alert('모바일앱에서만 이용 가능합니다.');}//푸시알림
-function offline(){alert('모바일앱에서만 이용 가능합니다.');}//매장찾기
+// 2020.05.22 심규문 매장변경 활성화
+//function offline(){alert('모바일앱에서만 이용 가능합니다.');}//매장찾기
+function offline(){window.location.href="../home/offline.html"}//매장찾기
 
 //function coupon(){window.location.href="../home/coupon.html"}//쿠폰
 function coupon(){alert('모바일앱에서만 이용 가능합니다.');}//쿠폰
