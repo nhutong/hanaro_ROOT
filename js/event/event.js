@@ -15,7 +15,7 @@ $(function () {
 
 	// 권한코드 가져오기
 	var userRoleCd = getCookie('userRoleCd');
-	if(userRoleCd === 'ROLE1'){
+	if(userRoleCd === 'ROLE1' || userRoleCd === 'ROLE2'){
 		$("#eventSubmit").show();
 	}else{
 		$("#eventSubmit").hide();
