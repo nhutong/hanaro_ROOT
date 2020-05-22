@@ -62,6 +62,7 @@ function imgList() {
 				if (getCookie("userRoleCd") == "ROLE1")
 				{
 					text +='      <button class="prod_img_del" onclick="delReason(\''+item['img_no']+'\');">삭제</button>';
+					text +='      <button class="prod_img_del" onclick="imgSave(\''+item['img_no']+'\');">저장</button>';					
 					text +='      <button class="prod_img_appr" onclick="imgAppr(\''+item['img_no']+'\');">승인</button>';
 				}else{
 
