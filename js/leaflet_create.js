@@ -237,11 +237,11 @@ $("#jundan_excel_new").on("click",function(){
 		var d = new Date();
 		var nowDate = d.getFullYear()+leadingZeros((Number(d.getMonth())+1),2)+d.getDate();
 
-		if (nowDate - jandanFromNum > 0)
-		{
-			alert("과거 날짜를 시작일로 등록하실수 없습니다.");
-			return false;
-		}
+		// if (nowDate - jandanFromNum > 0)
+		// {
+		// 	alert("과거 날짜를 시작일로 등록하실수 없습니다.");
+		// 	return false;
+		// }
 
 		if (jandanFromNum - jandanEndNum > 0)
 		{
