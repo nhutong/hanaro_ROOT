@@ -983,41 +983,41 @@ $("#sale_btn").on("click",function(){
 
 	if ( card_discount == null || chrLen(card_discount) == 0)
 	{
-//		if ( chrLen(card_discount_from_date) > 0)
-//		{
-//			alert("카드 할인 시작일을 삭제하시기 바랍니다.");
-//			return false;
-//		}
-//
-//		if ( chrLen(card_discount_end_date) > 0)
-//		{
-//			alert("카드 할인 종료일을 삭제하시기 바랍니다.");
-//			return false;
-//		}
-//
-//		if ( chrLen(card_info) > 0)
-//		{
-//			alert("카드 정보를 삭제하시기 바랍니다.");
-//			return false;
-//		}
-//
-//		if ( chrLen(card_restrict) > 0)
-//		{
-//			alert("카드한정 정보를 삭제하시기 바랍니다.");
-//			return false;
-//		}
+		//		if ( chrLen(card_discount_from_date) > 0)
+		//		{
+		//			alert("카드 할인 시작일을 삭제하시기 바랍니다.");
+		//			return false;
+		//		}
+		//
+		//		if ( chrLen(card_discount_end_date) > 0)
+		//		{
+		//			alert("카드 할인 종료일을 삭제하시기 바랍니다.");
+		//			return false;
+		//		}
+		//
+		//		if ( chrLen(card_info) > 0)
+		//		{
+		//			alert("카드 정보를 삭제하시기 바랍니다.");
+		//			return false;
+		//		}
+		//
+		//		if ( chrLen(card_restrict) > 0)
+		//		{
+		//			alert("카드한정 정보를 삭제하시기 바랍니다.");
+		//			return false;
+		//		}
 	}else{
-		if ( card_discount_from_date == null || chrLen(card_discount_from_date) == 0)
-		{
-			alert("카드 할인 시작일을 입력하시기 바랍니다.");
-			return false;
-		}
+		// if ( card_discount_from_date == null || chrLen(card_discount_from_date) == 0)
+		// {
+		// 	alert("행사 시작일을 입력하시기 바랍니다.");
+		// 	return false;
+		// }
 
-		if ( card_discount_end_date == null || chrLen(card_discount_end_date) == 0)
-		{
-			alert("카드 할인 종료일을 입력하시기 바랍니다.");
-			return false;
-		}
+		// if ( card_discount_end_date == null || chrLen(card_discount_end_date) == 0)
+		// {
+		// 	alert("행사 종료일을 입력하시기 바랍니다.");
+		// 	return false;
+		// }
 
 		var cardDisFromNum = Number(replaceAll(card_discount_from_date,"-",""));
 		var cardDisEndNum =  Number(replaceAll(card_discount_end_date,"-",""));
@@ -1028,17 +1028,17 @@ $("#sale_btn").on("click",function(){
 			return false;
 		}
 
-		if ( card_info == null || chrLen(card_info) == 0)
-		{
-			alert("카드 정보를 입력하시기 바랍니다.");
-			return false;
-		}
+		// if ( card_info == null || chrLen(card_info) == 0)
+		// {
+		// 	alert("카드 정보를 입력하시기 바랍니다.");
+		// 	return false;
+		// }
 
-//		if ( card_restrict == null || chrLen(card_restrict) == 0)
-//		{
-//			alert("카드한정 정보를 입력하시기 바랍니다.");
-//			return false;
-//		}
+		//		if ( card_restrict == null || chrLen(card_restrict) == 0)
+		//		{
+		//			alert("카드한정 정보를 입력하시기 바랍니다.");
+		//			return false;
+		//		}
 	}
 
 	$.ajax({
