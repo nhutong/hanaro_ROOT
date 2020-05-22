@@ -5071,6 +5071,12 @@ background-color: #ab1f1f;
     background-color: #ab1f1f;
 }
 
+.prod_img_save{
+    margin: 0 auto 5px;
+    color: #fff;
+    background-color: #888;
+}
+
 .prod_img_appr{
     margin: auto;
     color: #fff;

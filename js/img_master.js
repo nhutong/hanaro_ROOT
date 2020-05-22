@@ -69,20 +69,9 @@ function imgList() {
 				text +='	<td><img src="/upload/'+item['img_path']+'" alt="nh_item1.jpg"></td>';
 				text +='	<td>'+item['img_path']+'</td>';
 				text +='	<td><input type="text" value="'+item['pd_code']+'" id="pdCode_'+item['img_no']+'"></td>';
-
-				text +='	<td><input type="text" value="'+item['group_tag']+'" id="groupTag_'+item['img_no']+'" class="groupTagClass" onkeyup="searchFunc(this);" onblur="focusOut();">';
-				
-				/* 한번만 붙인다. 나영 위치를 봐주셈! */
-//				if (index == 0)
-//				{
-//					text +='	<div class="search_keyword_wrap">';
-//					text +='		<ul id="keywordList">';
-//					text +='		</ul>';
-//					text +='	</div>';
-//				}
-
+				text +='	<td><input type="text" value="'+item['group_tag']+'" id="groupTag_'+item['img_no']+'" class="groupTagClass" onkeyup="searchFunc(this);" onblur="focusOut();">';			
 				text +='    </td>';
-
+				
 				text +='	<td><span class="prod_name">'+item['pd_names']+'</span></td>';
 				text +='	<td>';
 				text +='		<div class="img_master_btn">';

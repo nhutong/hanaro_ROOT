@@ -18,20 +18,16 @@
 
 	try{
 
-		//sql = "update vm_product_image set std_fg = 'N' where img_no = "+img_no;
-
-		sql = "update vm_product_image "
-			+" set pd_code = '"+pd_code+"', group_tag = '"+group_tag+"' "
-			+" where img_no = '"+img_no+"' ";
+		sql = "update vm_product_image set std_fg = 'N' where img_no = "+img_no;
 
 		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();
 
-		//sql = "insert into vm_product_image_deldesc ( img_no, delDesc, reg_date) "
-		//	+" values ( '"+img_no+"', '"+del_desc+"', now() ); ";
+		sql = "insert into vm_product_image_deldesc ( img_no, delDesc, reg_date) "
+			+" values ( '"+img_no+"', '"+del_desc+"', now() ); ";
 
-		//pstmt = conn.prepareStatement(sql);
-		//pstmt.executeUpdate();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.executeUpdate();
 
 	}catch(Exception e){
 		out.clear();

@@ -17,7 +17,7 @@
 
 	sql = " SELECT a.img_no, a.img_path, a.pd_code, a.group_tag, b.pd_name, c.vm_name, left(a.reg_date,10) as reg_date, d.vm_cp_name, "
 	+ " case when a.std_fg is null then '승인대기' "
-	+"       when a.std_fg = 'N' then concat('삭제-',e.delDesc) end as img_status "
+	+"       when a.std_fg = 'N' then concat('삭제-',ifnull(e.delDesc,'')) end as img_status, a.std_fg "
 	+ " from vm_product_image AS a "
 	+ " left outer JOIN ( SELECT ba.pd_no, ba.pd_name, ba.pd_code from vm_product AS ba ) AS b "
 	+ " ON a.ref_pd_no = b.pd_no "
@@ -37,7 +37,7 @@
 	
 	sql = sql + " AND ( a.std_fg IS NULL OR a.std_fg = 'N' ) order by a.reg_date desc ";
 
-		//	out.print(sql);
+		//out.print(sql);
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -63,6 +63,9 @@
 			String reg_date   = rs.getString("reg_date");
 			String vm_cp_name   = rs.getString("vm_cp_name");
 			String img_status   = rs.getString("img_status");
+			String std_fg   = rs.getString("std_fg");			
+
+			
 			
 			JSONObject obj = new JSONObject();
 						
@@ -75,6 +78,7 @@
 			obj.put("reg_date", reg_date);
 			obj.put("vm_cp_name", vm_cp_name);
 			obj.put("img_status", img_status);
+			obj.put("std_fg", std_fg);
 
 
 			if(obj != null){
@@ -83,7 +87,7 @@
 		};
 
 		bdListJSON.put("CompanyList", arr);
-//		out.clear();
+		out.clear();
 		out.print(bdListJSON);
 	
 	}catch(Exception e){
