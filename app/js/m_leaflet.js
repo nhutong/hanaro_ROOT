@@ -130,14 +130,14 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
         if(result == ('NoN') || result.substring(0,15) == 'exception error' || result == 'empty'  || result == 'interval error'){
 			modify_jd_no = "0";
 			if(rcv_jd_no == 0){
-				console.log("if:"+result);
+				//console.log("if:"+result);
 				var today = new Date();
 				var dayNamesArray = ["일","월","화","수","목","금","토"];
 				var monthNamesArray = ["01","02","03","04","05","06","07","08","09","10","11","12"];
 				//today.getFullYear() 			//monthNamesArray[today.getMonth()] 			//today.getDate() 			//dayNamesArray[today.getDay()]
 				var rcv_menu_type_cd = $(parent.document).find("#modify_menu_type_cd").text();
 				$("#selected_jd").empty();
-				console.log("aaaaa"+rcv_menu_type_cd);
+				//console.log("aaaaa"+rcv_menu_type_cd);
 				if (rcv_menu_type_cd == "MENU1" || rcv_menu_type_cd == "MENU2" || rcv_menu_type_cd == "MENU3"){
 					$("#selected_jd").append('<li class="date_item" id="CT_0" data-jd_no="0" onclick="getDateThree(0)">'+monthNamesArray[today.getMonth()]+'-'+today.getDate()+'('+dayNamesArray[today.getDay()]+')'+'~'+monthNamesArray[today.getMonth()]+'-'+today.getDate()+'('+dayNamesArray[today.getDay()]+')'+'</li>');
 				}else{
@@ -181,7 +181,7 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 					$(".btn_left").attr("onclick","getJd("+rcv_vm_cp_no+","+rcv_menu_no+","+decodeURIComponent(item['prev_jd_no'])+",0);");
 				}
 
-				console.log("else:"+decodeURIComponent(item['next_jd_no']));
+				//console.log("else:"+decodeURIComponent(item['next_jd_no']));
 
 				if ( decodeURIComponent(item['next_jd_no']) == "null" || decodeURIComponent(item['next_jd_no']) == "" ){
 					$(".btn_right").css("color","#cfcfcf");
