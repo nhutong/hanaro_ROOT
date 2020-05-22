@@ -22,7 +22,7 @@
 	try{
 
 		sql = "insert into vm_product_image(img_path, ref_pd_no, pd_code, reg_no, reg_date) "
-			+" values('"+rcvImgPath+"', "+rcvPdNo+", '"+rcvPdCode+"', '"+userNo+"', now()); ";
+			+" values('"+rcvImgPath+"', '"+rcvPdNo+"', '"+rcvPdCode+"', '"+userNo+"', now()); ";
 	
 		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();

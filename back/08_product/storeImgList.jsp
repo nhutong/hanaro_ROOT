@@ -19,7 +19,7 @@
 	+ " case when a.std_fg is null then '승인대기' "
 	+"       when a.std_fg = 'N' then concat('삭제-',e.delDesc) end as img_status "
 	+ " from vm_product_image AS a "
-	+ " INNER JOIN ( SELECT ba.pd_no, ba.pd_name, ba.pd_code from vm_product AS ba ) AS b "
+	+ " left outer JOIN ( SELECT ba.pd_no, ba.pd_name, ba.pd_code from vm_product AS ba ) AS b "
 	+ " ON a.ref_pd_no = b.pd_no "
 	+ " inner join (select * from vm_user where vm_ref_company_no <> 0 and vm_role_cd = 'ROLE2') as c "
 	+ " on a.reg_no = c.vm_no "
@@ -37,7 +37,7 @@
 	
 	sql = sql + " AND ( a.std_fg IS NULL OR a.std_fg = 'N' ) order by a.reg_date desc ";
 
-//		out.print(sql);
+		//	out.print(sql);
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);

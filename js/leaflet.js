@@ -795,18 +795,14 @@ function thumnailInsert(imgPath){
 		data : {imgPath: imgPath, pdNo: pd_no_thum, pdCode: pd_code_thum, userNo: getCookie("userNo")},
         method : 'GET' 
     }).done(function(result){
-
         //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
             //console.log(result);
         }else{
             //console.log("============= notice callback ========================");
             //console.log(result);
-			
 			thumnailUpdate(result);
-
-//			$('#nh_leaflet').get(0).contentDocument.location.reload();
-
+			//$('#nh_leaflet').get(0).contentDocument.location.reload();
         }
     });
 }
@@ -815,8 +811,7 @@ function thumnailInsert(imgPath){
 function thumnailUpdate(imgNo){
 	var jd_prod_con_no_prod_thum = encodeURIComponent($("#jd_prod_con_no_prod_thum").val());
 
-	if ( imgNo == null || chrLen(imgNo) == 0)
-	{
+	if ( imgNo == null || chrLen(imgNo) == 0){
 		alert("썸네일을 입력하시기 바랍니다.");
 		return false;
 	}
@@ -838,10 +833,8 @@ function thumnailUpdate(imgNo){
             $("#searchResultGroup").empty();
 			$(".leaflet_image").removeClass("active");
 			$('#nh_leaflet').get(0).contentDocument.location.reload();
-					
-//			setTimeout(function(){ ThumCSS(); }, 1500);
+			//setTimeout(function(){ ThumCSS(); }, 1500);
 			setTimeout(function(){ cssRetach(); }, 1500);
-
         }
     });
 }

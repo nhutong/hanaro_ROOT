@@ -25,7 +25,7 @@
 			+" b.card_discount_from_date, b.card_discount_end_date, "
 			+" ifnull(b.card_info,'') as card_info, ifnull(b.card_restrict,'') as card_restrict, "
 			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, "
-			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,'') as pd_code, ifnull(e.vmjz_no,'') as vmjz_no, b.weight "
+			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, ifnull(e.vmjz_no,'') as vmjz_no, b.weight "
 			+" FROM vm_jundan AS a "
 			+" inner join vm_menu as ab "
 			+" on a.menu_no = ab.menu_no "
@@ -47,21 +47,21 @@
 			+" b.card_discount_from_date, b.card_discount_end_date, "
 			+" ifnull(b.card_info,'') as card_info, ifnull(b.card_restrict,'') as card_restrict, "
 			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, "
-			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,'') as pd_code, '' as vmjz_no, b.weight "
+			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, '' as vmjz_no, b.weight "
 			+" FROM vm_jundan AS a "
 			+" inner join vm_menu as ab "
 			+" on a.menu_no = ab.menu_no "
 			+" INNER JOIN vm_jundan_prod_content AS b "
 			+" ON a.jd_no = b.ref_jd_no "
 			+" left outer join vm_product AS c "
-			+" ON b.ref_pd_no = c.pd_no "
+			+" ON b.ref_pd_no = c.pd_no "		
 			+" left outer join vm_product_image AS d "
 			+" ON b.ref_img_no = d.img_no "
 			+" WHERE a.jd_no = "+jd_no
 			+" order by cast(b.order_number AS UNSIGNED ) asc ";	
 
 		}
-//	out.print(sql);
+		//	out.print(sql);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		

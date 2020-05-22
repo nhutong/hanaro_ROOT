@@ -60,19 +60,19 @@
 		if ( card_startDate == "" || card_endDate == "" ){
 			// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 			sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, pd_name, price, card_discount, "
-		    +" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, reg_no, reg_date ) "
+		    +" card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, reg_no, reg_date, pd_code ) "
 		    +" values( '"
 			+jd_no+"', "+pd_order+", '"+pd_name+"', '"+pd_price+"', '"+card_discount+"', '"
 			+card_info+"', '"+card_restrict+"', '"+coupon_discount+"', '"+dadaiksun+"', '"+dadaiksun_info+"', '"
-			+etc_info+"', '"+user_no+"', now());";
+			+etc_info+"', '"+user_no+"', now(), '"+pd_code+"' );";
 		}else{
 			// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 			sql = "insert into vm_jundan_prod_content (ref_jd_no, order_number, pd_name, price, card_discount, card_discount_from_date, "
-		    +" card_discount_end_date, card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, reg_no, reg_date ) "
+		    +" card_discount_end_date, card_info, card_restrict, coupon_discount, dadaiksun, dadaiksun_info, etc, reg_no, reg_date, pd_code ) "
 		    +" values( '"
 			+jd_no+"', "+pd_order+", '"+pd_name+"', '"+pd_price+"', '"+card_discount+"', '"+card_startDate+"', '"
 			+card_endDate+"', '"+card_info+"', '"+card_restrict+"', '"+coupon_discount+"', '"+dadaiksun+"', '"+dadaiksun_info+"', '"
-			+etc_info+"', '"+user_no+"', now());";
+			+etc_info+"', '"+user_no+"', now(), '"+pd_code+"');";
 		}
 
 		pstmt = conn.prepareStatement(sql);
