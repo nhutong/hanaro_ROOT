@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+<script>
+	var initTel = localStorage.getItem("tel");
+	var initvm_cp_no = localStorage.getItem("vm_cp_no");
+	if (initTel == null){
+		location.href= "login/login.html";
+	}else{
+		if(initvm_cp_no == null){
+			location.href="login/check_location.html";
+		}else{
+			location.href= "home/main.html";
+		}
+	}
+</script>
+</body>
+</html>

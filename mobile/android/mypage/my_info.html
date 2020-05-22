@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <title>(주)농협유통</title>
+    
+    <link rel="stylesheet" href="../css/reset.css" type="text/css">
+    <link rel="stylesheet" href="../css/common.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css"> 
+    <style>
+        body{
+            background-color: #eeeeee
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="inner_box">
+        <div class="back_column" onclick="home();"><span id="btn_back"><img src="../images/back.png" alt=""></span></div>
+        <div class="title_column"> 나의정보 </div>
+    </div>
+    <div class="inner_cont">
+        <div class="main_cont my_info_cont">
+           
+           <table class="my_info_table" style="table-layout: fixed; word-break: break-all">
+               <tbody id="my_info_detail">
+                  <tr>
+                       <th class="title_info" width="30%">회원번호</th>
+                       <td class="info_input">
+							<span id="myInfoTel"></span>
+						</td>
+                   </tr>
+                   <!-- <tr> -->
+                       <!-- <th class="title_info" width="30%">이름</th> -->
+                       <!-- <td class="info_input"><input type="text" id="myInfoName" maxlength="10"></td> -->
+                   <!-- </tr> -->
+                   <!-- <tr> -->
+                       <!-- <th class="title_info" width="30%">주소</th> -->
+                       <!-- <td class="info_input"> -->
+                       <!-- <input type="number" label="주소" maxlength="5" id="zipcode_input"> -->
+                       <!-- <button class="info_zipcode">우편번호 검색</button></td> -->               
+                       <!-- <td class="info_input"><input type="text" id="myInfoAddress1"></td> -->                  
+                       <!-- <td class="info_input"><input type="text" id="myInfoAddress2"  placeholder="상세주소를 입력해 주세요"></td> -->
+                   <!-- </tr> -->
+               </tbody>
+           </table>
+            
+        </div>
+        <!-- <div class="info_save_chk"> -->
+			<!-- <label for="infoProChk" class="container"> -->
+                   <!-- <input type="checkbox" id="infoProChk" /> -->
+                   <!-- <span class="checkmark"></span> -->
+                   <!-- <p>&nbsp;개인정보&nbsp;제공동의&nbsp;<a href="../home/tos.html">&nbsp;[약관보기]&nbsp;</a></p> -->
+           <!-- </label> -->
+		<!-- </div> -->
+        <!-- <div class="info_submit_btn" id="infoSubmitBtn">저장하기</div> -->        
+    </div>
+
+	<!-- js -->
+
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.js"
+      integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+      crossorigin="anonymous"></script>
+      <script src="../js/link.js"></script>      
+	  <script src="../js/common.js"></script>
+      <script src="../js/my_info.js"></script>
+
+
+</body>
+
+</html>

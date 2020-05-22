@@ -1,0 +1,36 @@
+
+body{
+    background-color: #eeeeee
+}
+
+#push_box{
+    border-bottom: 1px solid #bfbfbf;
+    background-color: #fff;
+}
+
+header{
+    background-color: #fff;
+}
+
+#push_list{
+    background-color: #fff;
+    margin: 10px;
+    border: 1px solid #d0d0d0;
+}
+
+.push_inner_box li{
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+
+.push_inner_box li h4{
+    color: #000;
+    font-size: 15px;
+}
+
+.push_inner_box li p{
+    color: #666;
+    font-size: 14px;
+    
+}

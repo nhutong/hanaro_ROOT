@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>(주)농협유통</title>
+    
+    <link rel="stylesheet" href="../css/reset.css" type="text/css">
+    <link rel="stylesheet" href="../css/common.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/cart.css" type="text/css">
+    
+</head>
+<body>
+	<div class="inner_box">
+        <div class="back_column" onclick="history.back();"><span id="btn_back"><img src="../images/back.png" alt=""></span></div>
+        <div class="title_column"> 장바구니 </div>
+    </div>
+    <!--header ends-->
+     <div id="cart_list">
+        
+        <div class="cart_inner_box item_list_inner_wrap" id="cartListWrap">
+<!--             <div class="figure figure3"> -->
+<!--                    <div class="thumb_wrap"> -->
+<!-- 					  <a href="#"><img src="../images/nh_item1.jpg" alt="고기"></a> -->
+<!--                       <div class="thumb_info"> -->
+<!--                       <div class="add_btn"><span class="cart_count">1</span></div> -->
+<!--                       </div> -->
+<!--                    </div> -->
+<!--                      <div class="product_detail"> -->
+<!--                         <a href="#" class="product">[도드람한돈]강원산돈캠핑세트 3kg</a> -->
+<!--                         <a href="#" class="price">54,000원</a> -->
+<!--                     </div> -->
+<!--             </div> -->
+        </div>
+
+        <div class="cart_submit">
+            <div class="total_price_wrap">
+                <div class="total_price_title">총 결제금액</div>
+                <div class="total_price_inner_wrap"><span class="total_price" id="total_price"></span>&nbsp;원</div>
+            </div>
+            <div class="del_select_wrap">
+                <input type="text" id="address1" placeholder="ex) 서울특별시 서초구 양재동">
+				<input type="text" id="address2" placeholder="ex) 청계산로 10">
+				<span id="deliveyArea">※배송가능지역은 여의도동,영등포동입니다.</span>
+				<select name="del_time_select" id="del_time_select">
+<!--                <option value="0">선택</option> -->
+<!--                 <option value="1">1회차(10:00 ~ 12:00)</option> -->
+<!--                 <option value="2">2회차(14:00 ~ 16:00)</option> -->
+<!--                 <option value="3">3회차(17:00 ~ 19:00)</option> -->
+				</select>             
+            </div>           
+            <div class="delivery_submit_btn" id="delivery_submit_btn">배송요청</div>          
+        </div>       
+    </div>
+     <!--js-->
+      <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+      <script src="../js/link.js"></script>
+      <script src="../js/date_slider.js"></script>
+      <script src="../js/aside.js"></script>
+      <script src="../js/common.js"></script>
+      <script src="../js/share_btn.js"></script>
+	  <script src="../js/cart_submit.js"></script>
+  
+</body>
+</html>
