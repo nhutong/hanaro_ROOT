@@ -117,7 +117,8 @@
 
 	}catch(Exception e){
 		out.clear();
-		out.print("exception error," + e.getMessage() + "," + e );	
+		//out.print("exception error," + e.getMessage() + "," + e );	
+		out.print("exception error," + Integer.toString(i) + "행,"	+ e );
 	}finally{
 		if(pstmt != null) try{ pstmt.close(); }catch(SQLException sqle) {};
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {};

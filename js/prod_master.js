@@ -511,10 +511,10 @@ $("#jundan_excel_new").on("click",function(){
 		data : {userCompanyNo: userCompanyNo, excel_path: excel_path, reg_no: getCookie("userNo"), update_fg: "N"},
         method : 'GET' 
     }).done(function(result){
-		//console.log( result.trim().split(',') );
 		var resultSplit = result.trim().split(',');
+		console.log(resultSplit);		
         if(resultSplit[0] == ('NoN') || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
-			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
+			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!"+resultSplit);
         }else if( resultSplit[0] == 'pd_code_no_exist' ){
 			alert("엑셀파일에서 상품코드가 입력되지 않은 행" + resultSplit[1] + "이 존재합니다.");
 		}else if( resultSplit[0] == 'exist' ){
@@ -534,6 +534,8 @@ $("#jundan_excel_new").on("click",function(){
 /*신규등록하기 버튼 클릭시, 신규전단을 등록한다.*/
 function excelInsertAndUpdate(rcv_update_fg){  //rcv_update_fg : Y(update), N(insert)
 
+	console.log("excelInsertAndUpdate_"+rcv_update_fg);
+
 	if (getCookie("userRoleCd") == "ROLE2")
 	{
 		var userCompanyNo = getCookie("userCompanyNo");
@@ -551,16 +553,19 @@ function excelInsertAndUpdate(rcv_update_fg){  //rcv_update_fg : Y(update), N(in
 		return false;
 	}
 
+	console.log("aa");
+
 	$.ajax({
         url:'/back/08_product/prodInsert.jsp?random=' + (Math.random()*99999),
 		data : {userCompanyNo: userCompanyNo, excel_path: excel_path, reg_no: getCookie("userNo"), update_fg: rcv_update_fg},
         method : 'GET' 
     }).done(function(result){
+		console.log("bb");
 		var resultSplit = result.trim().split(',');
-		//console.log(resultSplit);
+		console.log(resultSplit);
         if( resultSplit[0] == ('NoN') || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
             //console.log(result);
-			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
+			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!"+resultSplit);
         }else if( resultSplit[0] == 'pd_code_no_exist' ){
 			alert("상품코드가 입력되지 않은 행" + resultSplit[1] + "이 존재합니다.");
         }else if( resultSplit[0] == 'pd_name_no_exist' ){
