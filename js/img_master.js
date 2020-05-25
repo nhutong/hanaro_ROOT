@@ -180,20 +180,19 @@ $("#jundan_excel_new").on("click",function(){
 		data : {userCompanyNo: userCompanyNo, excel_path: excel_path, reg_no: getCookie("userNo")},
         method : 'GET' 
     }).done(function(result){
-
-        console.log("noticeList=========================================");
-        if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            console.log(result);
+		var resultSplit = result.trim().split(',');
+        console.log(resultSplit);
+        if(resultSplit[0] == ('NoN') || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
 			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
-        }else if(result == ('pd_code_no_exist')){
+        }else if(resultSplit[0] == ('pd_code_no_exist')){
 			alert("엑셀파일에서 상품코드가 입력되지 않은 행이 존재합니다.");
-		}else if(result == ('pd_name_no_exist')){
+		}else if(resultSplit[0] == ('pd_name_no_exist')){
 			alert("엑셀파일에서 상품명이 입력되지 않은 행이 존재합니다.");
-		}else if(result.substr(0,4) == ('NoN0')){
-			alert("입력하신 상품의 상품코드("+result.substr(5,result.length)+")가 존재하지 않습니다.");
+		}else if(resultSplit[0] == ('NoN_pdCode')){
+			alert("입력하신 상품의 상품코드(" + resultSplit[1] + ")가 존재하지 않습니다.");
 		}else{
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             alert("등록이 완료되었습니다.");
 			location.href="/product/img_master.html";
         }

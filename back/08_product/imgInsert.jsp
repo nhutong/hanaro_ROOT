@@ -21,7 +21,8 @@
 		//===============================================================================================================
 		
 		// 엑셀 업로드
-		Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
+		// Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
+		Workbook workbook = Workbook.getWorkbook(new File(request.getRealPath("/upload/")+excel_path)); 		
 
 		Sheet sheet = workbook.getSheet(0);
 		int row = sheet.getRows();
@@ -82,7 +83,7 @@
 				int listCount0 = rs.getRow();
 				if(listCount0 == 0){
 					out.clear();
-					out.print("NoN0_"+string1);
+					out.print("NoN_pdCode,"+string1);
 					return;
 				};
 				rs.beforeFirst();	

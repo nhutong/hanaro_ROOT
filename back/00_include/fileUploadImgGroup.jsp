@@ -18,13 +18,13 @@
 	
 	StringBuffer ran =new StringBuffer();
 		
-	for(int i=0;i<10;i++){
+	for( int i = 0 ; i < 10 ; i++ ){
 	    if(rnd.nextBoolean()){
 	        ran.append((char)((int)(rnd.nextInt(26))+97));
 	    }else{
 	        ran.append((rnd.nextInt(10))); 
 	    }
-	}
+	};
 
     // 1000Mbyte(1GB) 제한
     int maxSize  = 1024*1024*1000;       
@@ -56,10 +56,10 @@
 
         // 파일업로드
         uploadFile = multi.getFilesystemName("uploadFile[]");
-//        newFileName = simDf.format(new java.util.Date(currentTime))+"_"+ uploadFile;
+		// newFileName = simDf.format(new java.util.Date(currentTime))+"_"+ uploadFile;
 		newFileName = uploadFile;
 
-//		String pdCode = multi.getParameter("pdCode");
+		// String pdCode = multi.getParameter("pdCode");
 
 		File oldFile = null;
 		File newFile = null;
@@ -74,7 +74,7 @@
 		if (mimeType == "application/zip"){
 
 			// 실제 저장될 파일 객체 생성
-//			newFile = new File(tempPath + newFileName);
+			// newFile = new File(tempPath + newFileName);
 
 			String filePath11 = tempPath + newFileName;
 			int pos1 = filePath11.lastIndexOf( "." );
