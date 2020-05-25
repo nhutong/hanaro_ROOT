@@ -1685,10 +1685,12 @@ span.shopUrl:hover{
 .leaflet_goods_price input{
     text-align: right;
 }
-
+/* 전단 수정 화면 상품명, 규격 인풋 부분 수정(200525 수경) */
 .leaflet_goods_name input{
-    width: 300px;
+    width: 35%;
+    /* width: 300px; */
 }
+/* 전단 수정 화면 상품명, 규격 인풋 부분 수정(200525 수경) */
 
 .price_won{
     display: inline-block;
@@ -1700,15 +1702,16 @@ span.shopUrl:hover{
 .leaflet_goods_price button{
     margin-left: 10px;
 }
-
+/* 전단 수정 화면 상품번호 부분 수정(200525 수경) */
 #jd_prod_con_no_prod_name{
     font-size: 13px;
     color: rgb(133, 133, 133);
     background-color: transparent;
     border-color: transparent;
-    width: 35px;
-    margin-right: 20px;
+    width: 40px;
+    /* margin-right: 20px; */
 }
+/* 전단 수정 화면 상품번호 부분 수정(200525 수경) */
 .jd_prod_con_no_prod_name_title{
     font-size: 13px;
     color: rgb(133, 133, 133);    
