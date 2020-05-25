@@ -1717,15 +1717,16 @@ span.shopUrl:hover{
     background-color: transparent;
     border-color: transparent;
 }
-
+/* 전단 수정 화면 상품번호 부분 수정(200525 수경) */
 #jd_prod_con_no_price{
     font-size: 13px;
     color: rgb(133, 133, 133);
     background-color: transparent;
     border-color: transparent;
-    width: 35px;
-    margin-right: 20px;
+    width: 40px;
+    /* margin-right: 20px; */
 }
+/* 전단 수정 화면 상품번호 부분 수정(200525 수경) */
 .jd_prod_con_no_price_title{
     font-size: 13px;
     color: rgb(133, 133, 133);    
