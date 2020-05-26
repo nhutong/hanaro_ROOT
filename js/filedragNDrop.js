@@ -168,9 +168,9 @@
                 cache:false,
                 success:function(result){
                     var resultSplit = result.trim().split(',');
-                    console.log(resultSplit);
+                    //console.log(resultSplit);
 					if(resultSplit[0] != "upload error"){
-                        //location.reload();
+                        location.reload();
                     }else{
                         alert("업로드 실패:"+resultSplit);
                     }

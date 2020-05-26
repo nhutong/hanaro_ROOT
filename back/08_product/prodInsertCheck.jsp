@@ -30,9 +30,11 @@
 		int col = 0;
 		Cell cell;
 
-		String dataTypeCd = "";
+		int dup = 0;
+		int new1 = 0;
+		int i;			
 
-		for(int i = 1; i < row; i++) {
+		for(i = 1; i < row; i++) {
 
 			// 상품코드 ( encode )
 		    col = 0;
@@ -56,9 +58,10 @@
             int listCount_exist = rs.getRow();
 
             if(listCount_exist != 0){
-				out.print("exist," + string1 );
-				return;	
-            }
+				dup++;
+            }else{
+				new1++;
+			}
 
             rs.beforeFirst();            
 
@@ -67,11 +70,12 @@
 		workbook.close();
 		
 		out.clear();
-		out.print("success");
+		out.print("success" + "," + Integer.toString(i-1) + "," + Integer.toString(new1) + "," + Integer.toString(dup) );
 
 	}catch(Exception e){
         out.clear();
-		out.print("exception error," + Integer.toString(i) + "행,"	+ e );
+		//out.print("exception error" + "," + Integer.toString(i-1) + "행," + e );		
+		out.print("exception error" + "," + e );
 	}finally{
 		if(pstmt != null) try{ pstmt.close(); }catch(SQLException sqle) {};
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {};

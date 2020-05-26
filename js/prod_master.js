@@ -519,18 +519,16 @@ $("#jundan_excel_new").on("click",function(){
         method : 'GET' 
     }).done(function(result){
 		var resultSplit = result.trim().split(',');
-		console.log(resultSplit);		
+		//console.log(resultSplit);		
         if(resultSplit[0] == ('NoN') || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
-			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!"+resultSplit);
+			alert("파일 업로드 오류!(중복체크)"+resultSplit);
         }else if( resultSplit[0] == 'pd_code_no_exist' ){
 			alert("엑셀파일에서 상품코드가 입력되지 않은 행" + resultSplit[1] + "이 존재합니다.");
-		}else if( resultSplit[0] == 'exist' ){
-			var con_test = confirm("중복된 상품코드" + resultSplit[1] + "가 있습니다. 덮어쓰기(이후 동일처리) 하시겠습니까?");
-			if(con_test == true){
-			  excelInsertAndUpdate("Y");
-			}
 		}else if(resultSplit[0] == ('success')){			
-			excelInsertAndUpdate("N");			
+			var con_test = confirm(resultSplit[1] + "건의 상품코드를 입력 하시겠습니까?(신규 "+resultSplit[2]+"건,중복 "+resultSplit[3]+"건)");
+			if(con_test == true){			
+				excelInsertAndUpdate();			
+			}
 		}else{
             alert("등록오류");
 			location.href="/product/prod_master.html";
@@ -539,9 +537,7 @@ $("#jundan_excel_new").on("click",function(){
 });
 
 /*신규등록하기 버튼 클릭시, 신규전단을 등록한다.*/
-function excelInsertAndUpdate(rcv_update_fg){  //rcv_update_fg : Y(update), N(insert)
-
-	console.log("excelInsertAndUpdate_"+rcv_update_fg);
+function excelInsertAndUpdate(){  
 
 	if (getCookie("userRoleCd") == "ROLE2")
 	{
@@ -559,30 +555,25 @@ function excelInsertAndUpdate(rcv_update_fg){  //rcv_update_fg : Y(update), N(in
 		alert("파일을 업로드하시기 바랍니다.");
 		return false;
 	}
-
-	console.log("aa");
-
 	$.ajax({
         url:'/back/08_product/prodInsert.jsp?random=' + (Math.random()*99999),
-		data : {userCompanyNo: userCompanyNo, excel_path: excel_path, reg_no: getCookie("userNo"), update_fg: rcv_update_fg},
+		data : {userCompanyNo: userCompanyNo, excel_path: excel_path, reg_no: getCookie("userNo") },
         method : 'GET' 
     }).done(function(result){
-		console.log("bb");
+		//console.log("bb");
 		var resultSplit = result.trim().split(',');
-		console.log(resultSplit);
+		//console.log(resultSplit);
         if( resultSplit[0] == ('NoN') || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
             //console.log(result);
-			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!"+resultSplit);
+			alert("파일 업로드 오류!"+resultSplit);
         }else if( resultSplit[0] == 'pd_code_no_exist' ){
 			alert("상품코드가 입력되지 않은 행" + resultSplit[1] + "이 존재합니다.");
         }else if( resultSplit[0] == 'pd_name_no_exist' ){
-			alert("상품명이 입력되지 않은 행" + resultSplit[1] + "이 존재합니다.");			
-		}else if( resultSplit[0] == 'exist' ){
-			alert("등록하려는 상품코드" + resultSplit[1] + "가 이미 존재합니다.");			
+			alert("상품명이 입력되지 않은 행" + resultSplit[1] + "이 존재합니다.");
 		}else{
             //console.log("============= notice callback ========================");
-            //console.log(result);
-            alert("등록이 완료되었습니다.");
+            //console.log(resultSplit);
+            alert("등록이 완료되었습니다(총 "+resultSplit[1]+"건, 성공 "+resultSplit[2]+"건, 실패 "+resultSplit[3]+"건)");
 			location.href="/product/prod_master.html";
         }
     });

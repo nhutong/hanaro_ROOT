@@ -15,7 +15,6 @@
 	String excel_path = (request.getParameter("excel_path")==null)? "0":request.getParameter("excel_path");
 	excel_path = excel_path.trim();
 	String reg_no = (request.getParameter("reg_no")==null)? "0":request.getParameter("reg_no");
-	String update_fg = (request.getParameter("update_fg")==null)? "N":request.getParameter("update_fg");
 
 	try{
 
@@ -29,15 +28,14 @@
 		int row = sheet.getRows();
 		int col = 0;
 		Cell cell;
+		int i;			
 
-		String dataTypeCd = "";
-
-		for(int i = 1; i < row; i++) {
+		for( i = 1; i < row; i++) {
 
 			// 상품코드 ( encode )
 		    col = 0;
 		    cell = sheet.getCell(col,i);
-		    String string1 = cell.getContents().trim();
+		    String string1 = cell.getContents().trim().replaceAll(",","");
 			if ( string1.equals("") ){
 				//상품코드를 입력하지 않았기 때문에 중단한다.
 				out.clear();
@@ -45,34 +43,10 @@
 				return;
 			}
 			
-			sql = " SELECT a.pd_no from vm_product AS a where a.pd_code = '"+string1+"'; ";
-	
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-					
-			rs.last();
-			int listCount_exist = rs.getRow();
-
-			if(listCount_exist == 0){
-				dataTypeCd = "INSERT";
-			}else{
-				if ( update_fg.equals("N") ){
-					//중복된 상품코드 존재 시 중단시킴!
-					out.clear();
-					out.print("exist," + Integer.toString(i) );
-					return;	
-				}else {
-					dataTypeCd = "UPDATE";
-				}
-			}
-
-			rs.beforeFirst();
-
-
 			// 상품명 ( encode )
 			col = 1;
 		    cell = sheet.getCell(col,i);
-		    String string2 = cell.getContents().trim();
+		    String string2 = cell.getContents().trim().replaceAll("'","");
 			if ( string2.equals("") ){
 				//상품명을 입력하지 않았기 때문에 중단한다.
 				out.clear();
@@ -83,42 +57,42 @@
 			// 그룹코드
 			col = 2;
 		    cell = sheet.getCell(col,i);
-		    String string3 = cell.getContents().trim();
-	
-			if ( dataTypeCd.equals("INSERT") ){
+		    String string3 = cell.getContents().trim().replaceAll("'","");
 
-				// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
+			
+			sql = " SELECT a.pd_no from vm_product AS a where a.pd_code = '"+string1+"'; ";
+	
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+					
+			rs.last();
+			int listCount_exist = rs.getRow();
+			rs.beforeFirst();
+
+			if(listCount_exist == 0){
 				sql = "insert into vm_product (pd_code, pd_name, group_tag, reg_no, reg_date) "
 					+" values('"+string1+"', '"+string2+"', '"+string3+"', '"+reg_no+"', now()); ";
-
-				pstmt = conn.prepareStatement(sql);
-				pstmt.executeUpdate();
-
 			}else{
-
-				// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 				sql = "update vm_product "
 				    +" set pd_name = '"+string2+"', "
 					+" group_tag = '"+string3+"', "
 					+" lst_no = '"+reg_no+"', "
 					+" lst_date = now() "
 					+" where pd_code = '"+string1+"' ";
-
-				pstmt = conn.prepareStatement(sql);
-				pstmt.executeUpdate();
 			}
 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
 		}
-		 
-		workbook.close();
-		
-		out.clear();
-		out.print("success");
 
+		workbook.close();		
+
+		out.clear();
+		out.print("success" + "," + Integer.toString(row-1) + "," + Integer.toString(i-1) + "," + Integer.toString(row-i) );
 	}catch(Exception e){
 		out.clear();
-		//out.print("exception error," + e.getMessage() + "," + e );	
-		out.print("exception error," + Integer.toString(i) + "행,"	+ e );
+		//out.print("exception error" + "," + Integer.toString(i-1) + "행," + e );
+		out.print("exception error" + "," + e );		
 	}finally{
 		if(pstmt != null) try{ pstmt.close(); }catch(SQLException sqle) {};
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {};
