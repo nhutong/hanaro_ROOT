@@ -128,7 +128,7 @@
     }
  
     // 파일 등록
-    function uploadFile(){
+    function uploadFile(rcvPdCode){
         // 등록할 파일 리스트
         var uploadFileList = Object.keys(fileList);
  
@@ -152,11 +152,10 @@
 			var form = document.getElementById('uploadForm');
             var formData = new FormData(form);
             for(var i = 0; i < uploadFileList.length; i++){
-                //formData.append('files', fileList[uploadFileList[i]]);
 				formData.append('file_'+i, fileList[uploadFileList[i]]);
             }
 			formData.append('fileCnt',i);
-			formData.append('pdCode',localStorage.getItem("selectedPdCode"));
+            formData.append('pdCode',rcvPdCode);
             
             $.ajax({
                 url:"/back/00_include/fileUploadDragNDrop.jsp",
@@ -168,16 +167,12 @@
                 dataType:'text',
                 cache:false,
                 success:function(result){
-                    //if(result.data.length > 0){
-					if(result.trim() != "upload error"){
-//						alert(result.trim());
-                        //alert(localStorage.getItem("selectedPdCode"));
-
-                        location.reload();
-
-                    }else{
-                        alert("실패");
+                    var resultSplit = result.trim().split(',');
+                    console.log(resultSplit);
+					if(resultSplit[0] != "upload error"){
                         //location.reload();
+                    }else{
+                        alert("업로드 실패:"+resultSplit);
                     }
                 }
             });

@@ -213,6 +213,13 @@ enterUpload.addEventListener('click', function(evt){
 	});
 });
 
+/*이미지그룹 업로더 드래그앤드랍*/
+var enterUpload2 = document.getElementById('imgMulti_btn');
+enterUpload2.addEventListener('click', function(evt){
+	var selectedPdCode = localStorage.getItem("selectedPdCode");
+	//console.log("selectedPdCode:"+selectedPdCode);
+	uploadFile(selectedPdCode);
+});
 
 
 function deleteProd(rcvPdCode){

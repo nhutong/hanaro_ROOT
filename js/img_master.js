@@ -23,6 +23,12 @@ enterUpload1.addEventListener('click', function(evt){
 	});
 });
 
+/*이미지그룹 업로더 드래그앤드랍*/
+var enterUpload2 = document.getElementById('imgMulti_btn');
+enterUpload2.addEventListener('click', function(evt){
+	uploadFile(""); //pdcode없이 이미지만 등록
+});
+
 /*엑셀파일 업로더*/
 var enterUpload = document.getElementById('jundan_excel_btn');
 enterUpload.addEventListener('click', function(evt){

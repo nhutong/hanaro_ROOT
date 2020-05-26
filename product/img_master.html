@@ -56,6 +56,8 @@
 <!--                             </div> -->
 
                             <div class="img_master_upload_wrap">
+
+
                                 <div class="master_img_upload" style="height:80px;">
                                    <!-- <span class="upload_title">이미지업로드(jpg,png,gif,zip)</span>-->
 <!--                                     &nbsp; -->
@@ -66,7 +68,25 @@
 								   </form>
 									 <input type="hidden" id="imgGroup_path" value="">
 								   <button class="leaflet_submit" id="imgGroup_btn">업로드</button>
-								</div><br/>
+								</div><br/><br/>
+
+								<div class="master_img_droped_zone">
+									<p class="upload_file_ex1">[이미지(jpg,png,gif)파일] <br/> <span class="upload_file_ex">※ 이미 등록된 파일이름과 중복될경우 덮어쓰기 됩니다.</span></p>
+									<form name="uploadForm" id="uploadForm" enctype="multipart/form-data" method="post">
+										<table class="table">
+											<tbody id="fileTableTbody">
+												<tr>
+													<td id="dropZone">
+													<img src="../images/upload_03.png" alt="업로드하세요"><br>
+														여기에 파일을 드래그 하세요
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+									<button class="leaflet_submit" id="imgMulti_btn">업로드</button>
+							    </div><br/>
+
                                 <div class="master_mapping_upload">
 									<p class="upload_file_ex1">[상품이미지 매핑(xls)파일]<br/> <span class="upload_file_ex">
 										상품이미지 매핑 양식 : <a href="/download/product_image_mapping.xls" class="upload_file_a">product_image_mapping.xls</a></span></p>									
@@ -101,11 +121,12 @@
   
 	<script src="../js/google.3.4.1.jquery.min.js"></script>
 	<script src="../js/link.js"></script>
-	<script src="../js/common.js"></script><!-- common2 -->
+	<script src="../js/common.js"></script>
     <script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
     <script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/img_master.js"></script>
-    
+	<script src="../js/filedragNDrop.js"></script>
+
 </body>
 </html>
