@@ -18,7 +18,7 @@
              +" left(a.end_date,10) AS end_date, a.detail_img_url, a.link_url, ifnull(a.eventLink,'N') as eventLink FROM vm_event AS a WHERE a.activated = 'Y' "
 			 +" and left(a.start_date,10) <= left(now(),10) "
 			 +" and left(a.end_date,10) >= left(now(),10) "
-			 +" and a.company = "+userCompanyNo+" order by a.end_date desc ";
+			 +" and a.company = "+userCompanyNo+" order by a.lst_date desc ";
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
