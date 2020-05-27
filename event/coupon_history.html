@@ -37,26 +37,40 @@
 		<div class="mynh_con">
 			<h4>이벤트&sol;쿠폰 &gt; 쿠폰 히스토리</h4>
 			<div class="stat_period_wrap coupon_search_wrap">
-			    <select name="statStore" id="sort_select">
+			    <select name="statStore"  id="sort_select">
 			    </select>
 			    <div class="coupon_search_wrap">
-					    <input id="keyword" type="text" placeholder="회원의 전화번호를 입력하세요"><button id="btnUserSearch">검색</button>
-					</div>
-			    
-<!-- 			    <span id="stat_down"><img src="../images/excel.png" alt="엑셀다운로드"></span> -->
-			    
+					<div class="coupon_search_date" id="coupon_search_date">                       
+						<input type="text" placeholder="2020-02-01" id="coupon_start_date">~<input type="text" placeholder="2020-02-07" id="coupon_end_date">                        
+					</div>					
+					<input id="keyword1" type="text" placeholder="전화번호를 입력하세요">
+					<input id="keyword2" type="text" placeholder="쿠폰코드를 입력하세요">
+					<button id="btnUserSearch">검색</button>					
+				</div>			    
 			</div>
+
+			<div class="excel_export_wrap">
+				<div class="excel_export_title" >
+					엑셀 Export 
+				</div>
+				<div >                       
+					쿠폰기간 <input type="text" placeholder="2020-02-01" id="excel_start_date">~<input type="text" placeholder="2020-02-07" id="excel_end_date">                        
+				</div>			    
+				<span id="excel_down_stat"><img src="../images/excel.png" alt="엑셀다운로드"></span>
+			</div>
+
 			<div class="tab_container">
 				<div id="tab1" class="tab_content">
 					
 					<table cellpadding="0" cellspacing="0" class="stat_table" style="table-layout : fixed; word-break : break-all;">
 						<thead>
 						<tr>	    
-						    <th width="20%">기준일자</th>
+						    <th width="15%">쿠폰기간</th>
+							<th width="20%">받은(사용)일자</th>
 						    <th width="10%">매장명</th>
-						    <th width="20%">전화번호</th>
+						    <th width="15%">전화번호</th>
 						    <th width="12%">앱회원번호</th>
-						    <th width="20%">쿠폰코드</th>
+						    <th width="15%">쿠폰코드</th>
 						    <th width="10%">사용여부</th>				   
 						</tr>
 						</thead>
@@ -84,6 +98,7 @@
 <script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/sha256.js"></script>
+<script src="../js/lib/xlsx.full.min.js"></script>
 <script src="../js/coupon/coupon_history.js"></script>
 </body>
 </html>

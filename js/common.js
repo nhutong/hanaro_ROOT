@@ -273,6 +273,48 @@ function UploadImgGroup(targetInput, complete){
    reader.readAsArrayBuffer(uploadFiles);
 };
 
+// 엑셀 다운로드용 함수
+function ExcelExportStart(rcvFileName, headList, rowList){
+ 
+ 
+	var createXLSLFormatObj = [];
+
+	/* XLS Head Columns */
+	var xlsHeader = headList ; //["EmployeeID", "Full Name"];
+
+	/* XLS Rows Data */
+	var xlsRows = rowList;
+
+	createXLSLFormatObj.push(xlsHeader);
+	$.each(xlsRows, function(index, value) {
+		var innerRowData = [];
+		$.each(value, function(ind, val) {
+
+			innerRowData.push(val);
+		});
+		createXLSLFormatObj.push(innerRowData);
+	});
+
+
+	/* File Name */
+	var filename = rcvFileName + ".xlsx";
+
+	/* Sheet Name */
+	var ws_name = rcvFileName;
+
+	if (typeof console !== 'undefined') console.log(new Date());
+	var wb = XLSX.utils.book_new(),
+		ws = XLSX.utils.aoa_to_sheet(createXLSLFormatObj);
+
+	/* Add worksheet to workbook */
+	XLSX.utils.book_append_sheet(wb, ws, ws_name);
+
+	/* Write workbook and Download */
+	if (typeof console !== 'undefined') console.log(new Date());
+	XLSX.writeFile(wb, filename);
+	if (typeof console !== 'undefined') console.log(new Date());
+}
+
 // 값의 길이 체크
 function chrLen(str){
 	var strLength = str.length;

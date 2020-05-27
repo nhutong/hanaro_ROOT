@@ -55,34 +55,73 @@ $(function () {
 		noticeCont(onSelectCompanyNo);
 	});
 
+	$('#excel_down_stat').on('click', function(){ 
+		getCouponHistoryForExcel();
+	});	
+
+	/*input box 일자 기본값 셋팅*/
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = leadingZeros(today.getMonth()+1,2);
+	var sday = leadingZeros(today.getDate()-2,2);
+	var eday = leadingZeros(today.getDate(),2);
+
+	$("#excel_start_date").val(year+'-'+month+'-'+sday);
+	$("#excel_end_date").val(year+'-'+month+'-'+eday);		
+
+	$("#coupon_start_date").val(year+'-'+month+'-'+sday);
+	$("#coupon_end_date").val(year+'-'+month+'-'+eday);	
+
 	noticeCont(targetCompanyNo);
 
 });
 
+function getCouponHistoryForExcel(){
+	var keyword1 = onSelectCompanyNo;
+	var keyword2 = $('#excel_start_date').val();	
+	var keyword3 = $('#excel_end_date').val();
+
+	//데이터 조회 후 엑셀 함수 호출
+	$.get('/back/05_event/couponHistoryExcelExport.jsp?keyword1='+keyword1 +'&keyword2='+keyword2+'&keyword3='+keyword3 + '&pageNumber=1&pageSize=99999999',
+	function(result){
+		if (result == "exception error"){
+			alert("exception error"+result);
+		}else if ( result.list.length > 0 ){
+			var headList = ['쿠폰기간', '받은(사용)일자', '매장명', '전화번호',	'앱회원번호', '쿠폰코드', '사용여부'];
+			ExcelExportStart("엑셀다운로드_쿠폰히스토리", headList, result.list);
+		}else{
+			alert("조회된 내역이 없어 엑셀Exort를 취소합니다.");
+		}
+	});
+}
+
+
 // 공지사항 리스트를 불러온다.
 function noticeCont(rcvonSelectCompanyNo){
-
-		var keyword = encodeURIComponent($("#keyword").val());
+		var keyword1 = encodeURIComponent($("#keyword1").val());
+		var keyword2 = encodeURIComponent($("#keyword2").val());		
 		var text = '';
+
+		var cp_start_date = $("#coupon_start_date").val();
+		var cp_end_date = $("#coupon_end_date").val();
 
 		$.ajax({
 			url:'/back/05_event/coupon_history.jsp?random=' + (Math.random()*99999),
-			data : {vm_cp_no: rcvonSelectCompanyNo, rcvKeyword: keyword },
+			data : {vm_cp_no: rcvonSelectCompanyNo, rcvKeyword: keyword1, rcvKeyword2: keyword2, cp_start_date: cp_start_date, cp_end_date: cp_end_date},
 			method : 'GET' 
 		}).done(function(result){
+			
 			if(result == "NoN"){
 					text +='      <tr>';
 					text +='			 <td colspan="6">등록된 사항이 없습니다.</td>';
 					text +='       </tr>';
 			}else{
 				var jsonResult = JSON.parse(result);
-				console.log(jsonResult);
-
 				var jsonResult_notice = jsonResult.CompanyList
-				
 				for(var i in jsonResult_notice){
 					
 					text +='      <tr>';
+					text +='			 <td>'+jsonResult_notice[i].cp_date+'</td>';
 					text +='			 <td>'+jsonResult_notice[i].std_date+'</td>';
 					text +='			 <td>'+jsonResult_notice[i].VM_CP_NAME+'</td>';
 					text +='			 <td>'+jsonResult_notice[i].tel+'</td>';

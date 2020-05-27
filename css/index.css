@@ -2907,12 +2907,22 @@ button#bannerUpdate{
 	padding: 5px;
 }
 
+.coupon_search_wrap div{
+    display: inline-block;
+    /* padding: 6px;
+    width: 200px;
+    border: 1px solid #e0e0e0; 
+	border-right : 0;
+    font-size: 13px; */
+}
+
 .coupon_search_wrap input{
     padding: 6px;
     width: 200px;
     border: 1px solid #e0e0e0; 
-	border-right : 0;
+	/* border-right : 0; */
     font-size: 13px;
+    width: 150px;
 }
 
 .coupon_search_wrap button{
@@ -2921,6 +2931,49 @@ button#bannerUpdate{
     font-size: 12px;
     margin-right: 15px;
 	vertical-align : top;
+}
+
+/*excel export start*/
+.excel_export_wrap{
+    width: 460px;
+    background-color: #eeeeee;
+    border: 1px solid #d0d0d0;
+    /* margin: 10px; */
+    margin-left: 40px;
+    margin-bottom: 10px;    
+    padding: 5px 10px;
+    /* text-align: center; */
+    vertical-align : center;
+}
+
+.excel_export_wrap .excel_export_title{
+    background-color: #626e94;
+    color: #ffffff;
+    text-align: center;
+    padding: 4px 10px;
+    font-size: 13px;
+    border-radius: 5px;
+}
+    
+.excel_export_wrap div{
+    display: inline-block;
+    margin: 0px 10px;
+    font-size: 13px;
+}
+ 
+.excel_export_wrap input {
+    padding: 6px;
+    width: 200px;
+    border: 1px solid #e0e0e0; 
+	margin: 0 5px;
+    font-size: 13px;
+    width: 100px;
+    text-align: center;
+}
+    
+.excel_export_wrap img{
+    width: 30px;
+    height: 30px;
 }
 
 /*coupon_edit start*/
