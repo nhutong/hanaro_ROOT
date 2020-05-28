@@ -19,7 +19,7 @@
 			 +" case when CAST(replace(left(now(),10),'-','') AS DECIMAL(10,0))-CAST(replace(LEFT(a.end_date,10),'-','') AS DECIMAL(10,0)) >= 0 then 'N' "
 			 +" else 'Y' end as event_alive_fg "
 			 +" FROM vm_event AS a WHERE a.activated = 'Y' "
-			 +" and a.company = "+userCompanyNo+" order by a.end_date desc ";
+			 +" and a.company = "+userCompanyNo+" order by a.lst_date desc ";
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);

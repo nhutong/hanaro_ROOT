@@ -37,7 +37,7 @@
 			+" GROUP BY a.coupon_no, a.coupon_name, a.discount_price, a.coupon_type, date_format(a.start_date,'%m-%d'), date_format(a.end_date,'%m-%d'), a.product_name, "
 			+" a.limit_qty, (a.limit_qty - ifnull(d.coupon_save_cnt,0)), a.min_price, (case when e.mc_no is NULL then 'N' ELSE 'Y' END), IFNULL(e.staff_cert_fg,'N'), "
 			+" e.mc_no, a.coupon_detail, a.coupon_code "
-			+" order by a.end_date desc ";
+			+" order by a.lst_date desc ";
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
