@@ -39,14 +39,26 @@
                     <div id="tab1" class="tab_content">
                        <!--prod_master_wrap start-->
                        <div class="prod_master_wrap">
-                           <div class="prod_master_lft">
+                           <div class="prod_master_lft">							
+
                                <div class="prod_lft_btn_wrap">
+
+								<span class="excel_export_wrap">
+									<div class="excel_export_title" >
+										엑셀 Export 
+									</div>
+									<!-- <div >                       
+										쿠폰기간 <input type="text" placeholder="2020-02-01" id="excel_start_date">~<input type="text" placeholder="2020-02-07" id="excel_end_date">                        
+									</div>			     -->
+									<span id="excel_down_stat"><img src="../images/excel.png" alt="엑셀다운로드"></span>
+								</span>
+																
                                    <!-- <a href="#"><img src="../images/excel.png" alt="엑셀다운로드"></a> -->
                                    <!-- <button id="selectedImgDown">선택 이미지 일괄 다운로드</button> -->
                                    <div class="prod_search">
                                       <input type="text" name="prodSearch" placeholder="검색:코드,상품명,키워드" id="searchTextbox">
 <!-- 									  <button class="prod_search_btn">검색</button> -->
-                                   </div>
+								   </div>								
                                </div>
                                <table class="prod_master_table">
 								   <thead>
@@ -115,8 +127,9 @@
 							   </div>
 							   <button class="prod1_submit" id="jundan_excel_new">등록하기</button>
                          </div>
-                         <!--prod_upload_wrap end-->
-                           </div>
+						 <!--prod_upload_wrap end-->
+						</div>
+
                            <div class="prod_master_rgt">
                                
                                <h5>▶  상품이미지</h5>
@@ -163,7 +176,8 @@
 	<script src="../js/common.js"></script><!-- common2 -->
     <script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
     <script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="../js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/lib/xlsx.full.min.js"></script>	
     <script src="../js/prod_master.js"></script>
 	<script src="../js/filedragNDrop.js"></script>
 

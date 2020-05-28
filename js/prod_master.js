@@ -200,7 +200,31 @@ $(function () {
 		prodList_paging(pageNo, searchTextbox, "", "", "desc");
 	});
 
+	$('#excel_down_stat').on('click', function(){ 
+		productListForExcel();
+	});		
+
 });
+
+function productListForExcel(){
+	// var keyword1 = onSelectCompanyNo;
+	// var keyword2 = $('#excel_start_date').val();	
+	// var keyword3 = $('#excel_end_date').val();
+
+	//데이터 조회 후 엑셀 함수 호출
+	$.get('/back/08_product/productListExcelExport.jsp?pageNumber=1&pageSize=99999999',
+	function(result){
+		console.log(result);
+		if (result == "exception error"){
+			alert("exception error"+result);
+		}else if ( result.list.length > 0 ){
+			var headList = ['상품번호', '상품명', '상품코드', '그룹코드',	'이미지수', '그룹이미지수'];
+			ExcelExportStart("엑셀다운로드_상품마스터", headList, result.list);
+		}else{
+			alert("조회된 내역이 없어 엑셀Exoprt를 취소합니다.");
+		}
+	});
+}
 
 /*엑셀파일 업로더*/
 var enterUpload = document.getElementById('jundan_excel_btn');
