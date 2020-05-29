@@ -1,13 +1,4 @@
 //   판매장 리스트 소트 테스트 (200529 김수경)
-$(function () {
-		getHeader();
-		$(".nav_event").addClass("active");
-	
-		getLeft();
-		getLeftMenu('event');
-		$("#nh_event_list").addClass("active");
-		getEventList(getCookie("onSelectCompanyNo"));
-	
 		  /* 현재로그인한 유저의 판매장번호 정보를 정보를 담는다. */
 		CuserCompanyNo = getCookie("userCompanyNo");
 	
@@ -54,13 +45,13 @@ var tpl_tr_tab1_table = _.template('<tr id="member<%- event_no %>" data-no="<%- 
 	'<td><%- reg_name %></td><td><%- reg_date %><td><%- activated_status %></td>'
 	);
 
-// $(function () {
-// 	getHeader();
-// 	$(".nav_event").addClass("active");
+$(function () {
+	getHeader();
+	$(".nav_event").addClass("active");
 
-// 	getLeft();
-// 	getLeftMenu('event');
-// 	$("#nh_event_list").addClass("active");
+	getLeft();
+	getLeftMenu('event');
+	$("#nh_event_list").addClass("active");
 
 	// 권한코드 가져오기
 	var userRoleCd = getCookie('userRoleCd');
