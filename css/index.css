@@ -839,9 +839,9 @@ span.shopUrl:hover{
 .home_iframe nav{
     overflow-style: none;
     -ms-overflow-style: none;
-    &: :-webkit-scrollbar {;
+    /* &: :-webkit-scrollbar {; */
     display: none !important;
-    }: ;  
+    /* }: ;   */
 }
 
 .home_edit_wrap{
@@ -4642,9 +4642,12 @@ td.no_del_check input[type=text]{
 	background-color: #e7e7e7;
 }
 
+.prod_master_table thead tr{
+    height: 40px;
+}
+
 .prod_master_table th{
-    
-    padding: 14px 16px;
+    padding: 2px 6px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
 }
@@ -4669,7 +4672,7 @@ td.no_del_check input[type=text]{
 	display: block;
 	position : absolute;
 	font-size : 7pt;
-	top: 11px;
+	top: 5px;
 	cursor : pointer;
 }
 
@@ -4678,7 +4681,7 @@ td.no_del_check input[type=text]{
 	display: block;
 	position : absolute;
 	font-size : 7pt;
-	top: 22px;
+	top: 16px;
 	cursor : pointer;
 }
 
@@ -4689,11 +4692,11 @@ td.no_del_check input[type=text]{
 
 .prod_master_table th.product_modal_img_cnt .img_ds,
 .prod_master_table th.product_modal_img_cnt .img_as{
-	right: 13px;
+	right: 5px;
 }
 
 .prod_master_table td{
-    padding: 14px 16px;
+    padding: 4px 6px;
     border: 1px solid #d0d0d0;
     background-color: #fafafa;
 	text-overflow : ellipsis;

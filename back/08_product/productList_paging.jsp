@@ -10,16 +10,14 @@
 <%	
 	String searchText = (request.getParameter("searchText")==null)? "0":request.getParameter("searchText");
 	String pageNo = (request.getParameter("pageNo")==null)? "0":request.getParameter("pageNo");
-	String pdNameOrder = (request.getParameter("pdNameOrder")==null)? "asc":request.getParameter("pdNameOrder");
-	String keyOrder = (request.getParameter("keyOrder")==null)? "asc":request.getParameter("keyOrder");
-	String tagOrder = (request.getParameter("tagOrder")==null)? "":request.getParameter("tagOrder");
+	String orderByText = (request.getParameter("orderByText")==null)? "asc":request.getParameter("orderByText");
 	Integer pageNo_new = Integer.parseInt(pageNo);
 
 //	페이징 - 한페이지에 리스팅 row 갯수
-	Integer list_size = 6;
+	Integer list_size = 10;
 
 //	페이징 - 총 페이징 사이즈 ( 페이징 리스트에 보여줄 페이징 숫자의 갯수 )
-	Integer paging_cnt_num = 6;
+	Integer paging_cnt_num = 10;
 
 	JSONObject bdListJSON = new JSONObject();
 	
@@ -27,14 +25,11 @@
 
 		sql = "select count(a.pd_no) as pd_cnt "
 		    + " from vm_product AS a "
-			+ " WHERE a.pd_code IS NOT null "
-			+ " AND a.pd_code <> 'blank' ";
+			+ " WHERE 1=1 ";
 
-		if (searchText != ""){
-           sql = sql + " and ( a.pd_name like '%"+searchText+"%' or a.group_tag like '%"+searchText+"%' or a.pd_code like '%"+searchText+"%' )";
-		}else{
-		   sql = sql + " ";
-		}
+			if (searchText != ""){
+				sql = sql + " and ( a.pd_name like '%"+searchText+"%' or a.group_tag like '%"+searchText+"%' or a.pd_code like '%"+searchText+"%' )";
+			}	
 	
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);

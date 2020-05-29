@@ -170,7 +170,8 @@
                     var resultSplit = result.trim().split(',');
                     //console.log(resultSplit);
 					if(resultSplit[0] != "upload error"){
-                        location.reload();
+                        //location.reload();
+                        alert("업로드 완료:"+resultSplit);
                     }else{
                         alert("업로드 실패:"+resultSplit);
                     }
