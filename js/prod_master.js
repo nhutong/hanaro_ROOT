@@ -1,17 +1,60 @@
+var order_arr = [];
+var orderByText = "";
+var pageNo = "";
+var searchTextbox = "";
+var orderByParam = "";
+
 $(function () {
 
-	var searchTextbox = getParameterByName('searchText');
-	if (searchTextbox == "")
-	{
+	pageNo = getParameterByName('pageNo');
+	if (pageNo == ""){
+	    pageNo = 1;
+	}
+
+	searchTextbox = getParameterByName('searchText');
+	if (searchTextbox == ""){
+		searchTextbox = "";
 	}else{
 	   $("#searchTextbox").val(searchTextbox);
 	}
 
-	var pageNo = getParameterByName('pageNo');
-	if (pageNo == "")
-	{
-	    pageNo = 1;
+	orderByParam = getParameterByName('orderByParam');
+	if (orderByParam == ""){ 
+		order_arr = [
+			["2","asc",1], //pd_code
+			["3","asc",2], //pd_name
+			["4","asc",3], //group_tag
+			["5","asc",4], //img_cnt
+			["6","asc",5]  //group_img_cnt
+		];	
+		orderByParam = JSON.stringify(order_arr);
+
+		orderByText = "";
+		for( var i = 0; i < order_arr.length; i++){
+			orderByText = orderByText + order_arr[i][0] + " ";
+			orderByText = orderByText + order_arr[i][1];
+			if( i != (order_arr.length - 1) ) orderByText += ", ";
+			//console.log(orderByText);
+		}
+	}else{ 
+		order_arr = JSON.parse(orderByParam);
+		//console.log(orderByParam);			
+		//console.log(order_arr);					
+		orderByText = "";
+		for( var i = 0; i < order_arr.length; i++){
+			orderByText = orderByText + order_arr[i][0] + " ";
+			orderByText = orderByText + order_arr[i][1];
+			if( i != (order_arr.length - 1) ) orderByText += ", ";			
+		}
 	}
+
+	// var newarr = [];
+	// int i = 0;
+	// var newarr[i] = [];
+
+	//console.log(orderByParam);	
+	//console.log(order_arr);
+	//console.log(orderByText);		
 
 	getHeader();
 	$(".nav_product").addClass("active");
@@ -20,17 +63,20 @@ $(function () {
 	getLeftMenu('product');
 	$("#nh_product_prodmaster").addClass("active");
 
-	prodList(pageNo, searchTextbox);
-	prodList_paging(pageNo, searchTextbox);
+	prodList(pageNo, searchTextbox, orderByText);
+	prodList_paging(pageNo, searchTextbox, orderByText, orderByParam);
 
 	var input = document.getElementById("searchTextbox");
 	input.addEventListener("keyup", function(event) {
 		event.preventDefault();
 		if (event.keyCode === 13) {
-			location.href="prod_master.html?pageNo="+pageNo+"&searchText="+encodeURIComponent($("#searchTextbox").val());
+			searchTextbox = $("#searchTextbox").val();
+			prodList(pageNo, searchTextbox, orderByText);
+			prodList_paging(pageNo, searchTextbox, orderByText, orderByParam);			
+			//location.href="prod_master.html?pageNo="+pageNo+"&searchText="+encodeURIComponent($("#searchTextbox").val())+"&orderByParam="+orderByParam;
 		}
 	});
-	
+
 	/*검색필터*/
 	$(".search_keyword_wrap").hide();
 
@@ -81,7 +127,9 @@ $(function () {
 					$("#prodModalCode").val("");
 					$("#prodModalName").val("");
 					$("#prodModalKeyword").val("");
-					location.href="/product/prod_master.html?pageNo="+pageNo+"&searchText="+searchTextbox;
+					//location.href="prod_master.html?pageNo="+pageNo+"&searchText="+encodeURIComponent($("#searchTextbox").val())+"&orderByParam="+orderByParam;
+					prodList(pageNo, searchTextbox, orderByText);
+					prodList_paging(pageNo, searchTextbox, orderByText, orderByParam);			
 				}
 			});
 		}else{
@@ -100,7 +148,9 @@ $(function () {
 					$("#prodModalCode").val("");
 					$("#prodModalName").val("");
 					$("#prodModalKeyword").val("");
-					location.href="/product/prod_master.html?pageNo="+pageNo+"&searchText="+searchTextbox;
+					//location.href="prod_master.html?pageNo="+pageNo+"&searchText="+encodeURIComponent($("#searchTextbox").val())+"&orderByParam="+orderByParam;
+					prodList(pageNo, searchTextbox, orderByText);
+					prodList_paging(pageNo, searchTextbox, orderByText, orderByParam);			
 				}
 			});
 		}
@@ -164,47 +214,91 @@ $(function () {
 	$("#droped_zone").hide();
 	localStorage.setItem("selectedPdCode","");
 
-	if (getCookie("userRoleCd") == "ROLE2" )
-	{
+	if (getCookie("userRoleCd") == "ROLE2" ){
 		$("#prodTableDel").hide();
 		$("#prodTableAdd").hide();
 		$("#prod_upload_wrap").hide();
 		$("#prodSelectDel").hide();
-
 	}
 
+	$("#pd_code_asc").click(function(){
+		arraySort( "2", "asc");
+	});
+	$("#pd_code_desc").click(function(){
+		arraySort( "2", "desc");
+	});	
 	$("#pd_name_asc").click(function(){
-		prodList(pageNo, searchTextbox, "asc", "", "");
-		prodList_paging(pageNo, searchTextbox, "asc", "", "");
+		arraySort( "3", "asc");
 	});
 	$("#pd_name_desc").click(function(){
-		prodList(pageNo, searchTextbox, "desc", "", "");
-		prodList_paging(pageNo, searchTextbox, "desc", "", "");
+		arraySort( "3", "desc");
 	});
-
-	$("#key_asc").click(function(){
-		prodList(pageNo, searchTextbox, "", "asc", "");
-		prodList_paging(pageNo, searchTextbox, "", "asc", "");
+	$("#group_tag_asc").click(function(){
+		arraySort( "4", "asc");		
 	});
-	$("#key_desc").click(function(){
-		prodList(pageNo, searchTextbox, "", "desc", "");
-		prodList_paging(pageNo, searchTextbox, "", "desc", "");
+	$("#group_tag_desc").click(function(){
+		arraySort( "4", "desc");
 	});
-
-	$("#tag_asc").click(function(){
-		prodList(pageNo, searchTextbox, "", "", "asc");
-		prodList_paging(pageNo, searchTextbox, "", "", "asc");
+	$("#img_cnt_asc").click(function(){
+		arraySort( "5", "asc");
 	});
-	$("#tag_desc").click(function(){
-		prodList(pageNo, searchTextbox, "", "", "desc");
-		prodList_paging(pageNo, searchTextbox, "", "", "desc");
+	$("#img_cnt_desc").click(function(){
+		arraySort( "5", "desc");
 	});
+	$("#group_img_cnt_asc").click(function(){
+		arraySort( "6", "asc");
+	});
+	$("#group_img_cnt_desc").click(function(){
+		arraySort( "6", "desc");
+	});	
 
 	$('#excel_down_stat').on('click', function(){ 
 		productListForExcel();
 	});		
 
+	
 });
+
+function arraySort(rcvName, rcvSortMathod){
+	var newArray = [];
+	var j = 0;
+	var i = 0;
+	//console.log(order_arr);
+	//console.log(rcvName);
+	//console.log(rcvSortMathod);
+	for( i = 0; i < order_arr.length; i++){
+		//console.log("i:"+i+",j:"+j);
+		if( order_arr[i][0] == rcvName){			
+			newArray[0] = [];			
+			newArray[0][0] = order_arr[i][0];
+			newArray[0][1] = rcvSortMathod;
+			newArray[0][2] = 1;
+			j--;			
+			//console.log("0:"+newArray);
+		}else{		
+			newArray[j+1] = [];				
+			newArray[j+1][0] = order_arr[i][0];
+			newArray[j+1][1] = order_arr[i][1];
+			newArray[j+1][2] = i + 1;
+			//console.log(j+1+":"+newArray);
+		}
+		j++;
+	}
+	order_arr = newArray;
+	orderByParam = JSON.stringify(newArray);
+
+	orderByText = "";
+	for( i = 0; i < newArray.length; i++){
+		orderByText = orderByText + newArray[i][0] + " ";
+		orderByText = orderByText + newArray[i][1];
+		if( i != (newArray.length - 1) ) orderByText += ", ";
+	}
+
+	pageNo = 1;
+
+	prodList(pageNo, searchTextbox, orderByText);
+	prodList_paging(pageNo, searchTextbox, orderByText, orderByParam);	
+}
 
 function productListForExcel(){
 	// var keyword1 = onSelectCompanyNo;
@@ -243,6 +337,8 @@ enterUpload2.addEventListener('click', function(evt){
 	var selectedPdCode = localStorage.getItem("selectedPdCode");
 	//console.log("selectedPdCode:"+selectedPdCode);
 	uploadFile(selectedPdCode);
+	location.reload();
+	//editModal(selectedPdCode, '백설찰밀가루', '');
 });
 
 
@@ -262,7 +358,9 @@ function deleteProd(rcvPdCode){
 			$("#prodModalCode").val("");
 			$("#prodModalName").val("");
 			$("#prodModalKeyword").val("");
-			location.href="/product/prod_master.html";
+			//location.href="prod_master.html?pageNo="+pageNo+"&searchText="+encodeURIComponent($("#searchTextbox").val())+"&orderByParam="+orderByParam;
+			prodList(pageNo, searchTextbox, orderByText);
+			prodList_paging(pageNo, searchTextbox, orderByText, orderByParam);			
 		}
 	});
 }
@@ -389,85 +487,45 @@ function editModal(rcvPdCode, rcvPdName, rcvGroupTag){
 }
 
 // 상품리스트를 가져온다
-function prodList(rcvPageNo, rcvSearchText, rcvPdNameOrder, rcvKeyOrder, rcvTagOrder) {
-
+function prodList(rcvPageNo, rcvSearchText, rcvOrderByText) {
 	$.ajax({
         url:'/back/08_product/productList.jsp?random=' + (Math.random()*99999), 
-        data : {pageNo: rcvPageNo ,searchText: rcvSearchText, pdNameOrder: rcvPdNameOrder, keyOrder: rcvKeyOrder, tagOrder: rcvTagOrder},
+        data : {pageNo: rcvPageNo ,searchText: rcvSearchText, orderByText: rcvOrderByText},
         method : 'GET' 
     }).done(function(result){
-
-        console.log("noticeList=========================================");
+        //console.log("noticeList=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
             $("#pdList").html("");
-            console.log("============= notice callback ========================");
-            console.log(result);
+            //console.log("============= notice callback ========================");
+            //console.log(result);
             var data = JSON.parse(result);
 			var text = "";
-
-            data['CompanyList'].forEach(function(item, index){                        
-				
+            data['CompanyList'].forEach(function(item, index){                        				
 				text +='<tr>';
 				text +='	<td><input type="checkbox" name="box_chk" value="'+decodeURIComponent(item['pd_code'])+'"></td>';
 				text +='    <td><span class="prod_code" onclick="editModal(\''+decodeURIComponent(item['pd_code'])+'\', \''+item['pd_name']+'\', \''+decodeURIComponent(item['group_tag'])+'\');">'+decodeURIComponent(item['pd_code'])+'</span></td>';
 				text +='    <td>'+item['pd_name']+'</td>';
                 text +='    <td>'+decodeURIComponent(item['group_tag'])+'</td>';
-                text +='    <td><span id=pdCode_'+decodeURIComponent(item['pd_code'])+'>'+decodeURIComponent(item['img_cnt'])+'</span></td>';
-                text +='</tr>';
-
-//				localStorage.setItem("row_"+index+"_pd_code",item['pd_code']);
+				text +='    <td>'+decodeURIComponent(item['pd_code_cnt'])+'</td>';
+                text +='    <td>'+decodeURIComponent(item['group_tag_cnt'])+'</td>';				
+				text +='</tr>';
+				//if(index == 1) console.log(item['sql']);
 			});
 			$("#pdList").append(text);
-
-//			//여기서 이미지수를 넣는 함수를 0~5 로 6번 루프돌려서 이미지수를 넣는다.
-//			prodImageCnt(localStorage.getItem("row_0_pd_code"));
-//			prodImageCnt(localStorage.getItem("row_1_pd_code"));
-//			prodImageCnt(localStorage.getItem("row_2_pd_code"));
-//			prodImageCnt(localStorage.getItem("row_3_pd_code"));
-//			prodImageCnt(localStorage.getItem("row_4_pd_code"));
-//			prodImageCnt(localStorage.getItem("row_5_pd_code"));
         }
     });
 
 }
 
-//// 상품별 이미지수를 가져온다
-//function prodImageCnt(rcvPdCode) {
-//
-//	$.ajax({
-//        url:'/back/08_product/productImageCnt.jsp?random=' + (Math.random()*99999), 
-//        data : {pdCode: rcvPdCode},
-//        method : 'GET' 
-//    }).done(function(result){
-//
-//        console.log("noticeList=========================================");
-//        if(result == ('NoN') || result == 'list error' || result == 'empty'){
-//            console.log(result);
-//        }else{
-//            console.log("============= notice callback ========================");
-//            console.log(result);
-//            var data = JSON.parse(result);
-//			var text = "";
-//
-//            data['CompanyList'].forEach(function(item, index){                        
-//				
-//                text +=decodeURIComponent(item['img_cnt']);
-//
-//			});
-//			$("#pdCode_"+rcvPdCode).append(text);
-//        }
-//    });
-//
-//}
 
 // 상품리스트 페이징를 가져온다
-function prodList_paging(rcvPageNo, rcvSearchText, rcvPdNameOrder, rcvKeyOrder) {
+function prodList_paging(rcvPageNo, rcvSearchText, rcvOrderByText, rcvOrderByParam) {
 
 	$.ajax({
         url:'/back/08_product/productList_paging.jsp?random=' + (Math.random()*99999), 
-        data : {pageNo: rcvPageNo ,searchText: rcvSearchText, pdNameOrder: rcvPdNameOrder, keyOrder: rcvKeyOrder},
+        data : {pageNo: rcvPageNo ,searchText: rcvSearchText, orderByText: rcvOrderByText},
         method : 'GET' 
     }).done(function(result){
 
@@ -488,29 +546,26 @@ function prodList_paging(rcvPageNo, rcvSearchText, rcvPdNameOrder, rcvKeyOrder) 
 
 			var text = "";
 
-           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -4)
-			{
+            if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -4){
 			}else if(total_paging_cnt < 5 || pre_no < 1){
 				text += '<li class="page-item"><a class="page-link" href="prod_master.html?pageNo=1&searchText=">«</a></li>';
 			}else{
-				text += '<li class="page-item"><a class="page-link" href="prod_master.html?pageNo='+pre_no+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">«</a></li>';
+				text += '<li class="page-item"><a class="page-link" href="prod_master.html?pageNo='+pre_no+"&searchText="+encodeURIComponent($("#searchTextbox").val())+"&orderByParam="+encodeURIComponent(rcvOrderByParam)+'">«</a></li>';
+				
 			}
 
 			for( var k = paging_init_num; k <= paging_end_num; k++){
 				if (parseInt(rcvPageNo) == k)
 				{
-					text += '<li class="page-item active"><a class="page-link" href="prod_master.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
-//					text += '<li class="page-item" active><a class="page-link" onclick="prodList('+k+', \''+encodeURIComponent($("#searchTextbox").val())+'\')">'+k+'</a></li>';
+					text += '<li class="page-item active"><a class="page-link" href="prod_master.html?pageNo='+k+"&searchText="+encodeURIComponent($("#searchTextbox").val())+"&orderByParam="+encodeURIComponent(rcvOrderByParam)+'">'+k+'</a></li>';
 				}else{
-					text += '<li class="page-item"><a class="page-link" href="prod_master.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
-//					text += '<li class="page-item"><a class="page-link" onclick="prodList('+k+', \''+encodeURIComponent($("#searchTextbox").val())+'\')">'+k+'</a></li>';
+					text += '<li class="page-item"><a class="page-link" href="prod_master.html?pageNo='+k+"&searchText="+encodeURIComponent($("#searchTextbox").val())+"&orderByParam="+encodeURIComponent(rcvOrderByParam)+'">'+k+'</a></li>';
 				}
 			}
 
-			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)
-			{
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt){
 			}else{
-				text += '<li class="page-item"><a class="page-link" href="prod_master.html?pageNo='+next_no+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">»</a></li>';
+				text += '<li class="page-item"><a class="page-link" href="prod_master.html?pageNo='+next_no+"&searchText="+encodeURIComponent($("#searchTextbox").val())+"&orderByParam="+encodeURIComponent(rcvOrderByParam)+'">»</a></li>';
 			}
 			$('#pagination').empty();
 			$('#pagination').append(text);	
@@ -555,7 +610,9 @@ $("#jundan_excel_new").on("click",function(){
 			}
 		}else{
             alert("등록오류");
-			location.href="/product/prod_master.html";
+			//location.href="/product/prod_master.html";
+			prodList(pageNo, searchTextbox, orderByText);
+			prodList_paging(pageNo, searchTextbox, orderByText, orderByParam);			
         }
     });
 });
@@ -598,7 +655,9 @@ function excelInsertAndUpdate(){
             //console.log("============= notice callback ========================");
             //console.log(resultSplit);
             alert("등록이 완료되었습니다(총 "+resultSplit[1]+"건, 성공 "+resultSplit[2]+"건, 실패 "+resultSplit[3]+"건)");
-			location.href="/product/prod_master.html";
+			//location.href="/product/prod_master.html";
+			prodList(pageNo, searchTextbox, orderByText);
+			prodList_paging(pageNo, searchTextbox, orderByText, orderByParam);			
         }
     });
 }

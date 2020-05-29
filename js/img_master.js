@@ -13,20 +13,21 @@ $(function () {
 });
 
 /*이미지그룹 업로더*/
-var enterUpload1 = document.getElementById('imgGroup_btn');
-enterUpload1.addEventListener('click', function(evt){
-	var inputFile_img = document.getElementById('uploadFile_img');
-	new UploadImgGroup(inputFile_img, function(result){
-		$("#imgGroup_path").val(result);
-		alert("파일을 업로드하였습니다.");
-		location.reload();
-	});
-});
+// var enterUpload1 = document.getElementById('imgGroup_btn');
+// enterUpload1.addEventListener('click', function(evt){
+// 	var inputFile_img = document.getElementById('uploadFile_img');
+// 	new UploadImgGroup(inputFile_img, function(result){
+// 		$("#imgGroup_path").val(result);
+// 		alert("파일을 업로드하였습니다.");
+// 		location.reload();
+// 	});
+// });
 
 /*이미지그룹 업로더 드래그앤드랍*/
 var enterUpload2 = document.getElementById('imgMulti_btn');
 enterUpload2.addEventListener('click', function(evt){
 	uploadFile(""); //pdcode없이 이미지만 등록
+	location.reload();
 });
 
 /*엑셀파일 업로더*/
