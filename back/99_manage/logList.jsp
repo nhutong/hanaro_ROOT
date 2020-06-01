@@ -20,8 +20,11 @@
 	
 	try{
 
-        sql = " SELECT a.LST_UPDATE_DATE, ifnull(b.vm_name,'anonymous') as name, a.PAGE_NAME "
-		    + " from eb_page_contact_log AS a inner join vm_user as b on a.session_id_name = b.vm_no WHERE LEFT(a.LST_UPDATE_DATE,10) >= date_add(now(),INTERVAL -14 DAY) order by a.LST_UPDATE_DATE desc "
+        sql = " SELECT a.LST_UPDATE_DATE, a.session_id_name, ifnull(b.vm_name, '' ) as name, a.PAGE_NAME "
+			+ " from eb_page_contact_log AS a "
+			+ " left outer join vm_user as b on a.session_id_name = b.vm_no "
+			//+ " WHERE LEFT(a.LST_UPDATE_DATE,10) >= date_add(now(),INTERVAL -14 DAY)
+			+ " order by a.LST_UPDATE_DATE desc "
 			+ " LIMIT "+pageNo_new+" ,20; "; 
 	
 		stmt = conn.createStatement();
@@ -42,12 +45,14 @@
 			String LST_UPDATE_DATE   = rs.getString("LST_UPDATE_DATE");        // 긴급공지번호
 			String name = rs.getString("name");   // 긴급공지내용
 			String PAGE_NAME = rs.getString("PAGE_NAME");   // 긴급공지내용
+			String session_id_name = rs.getString("session_id_name");   // 긴급공지내용
 			
 			JSONObject obj = new JSONObject();
 						
 			obj.put("LST_UPDATE_DATE", LST_UPDATE_DATE);
 			obj.put("name", name);
 			obj.put("PAGE_NAME", PAGE_NAME);
+			obj.put("session_id_name", session_id_name);
 
 			if(obj != null){
 				arr.add(obj);
