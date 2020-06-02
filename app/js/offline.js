@@ -3,7 +3,6 @@
 	getMapContent();
 })
 
-
 //지도 불러오기
 function getMapContent(){
 

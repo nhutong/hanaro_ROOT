@@ -37,16 +37,13 @@ $(function(){
          alert("비밀번호를 입력해주세요");
          return;
      }
-     if(user_pw != "asdf1234"){
+     if(user_pw != "asdf1234" && user_pw != "asdf12345" ){
         alert("비밀번호가 틀립니다");
         return;
     }     
 
-    //  https://www.nhhanaromart.com/back/02_app/mSelectMemberInfo.jsp
-    //  /back/02_app/mLoginPc.jsp
-
     $.ajax({
-        url:'/back/02_app/mLoginPc.jsp?random=' + (Math.random()*99999), 
+        url: serverUrl + '/back/02_app/mLoginPc.jsp?random=' + (Math.random()*99999), 
         data: {
             tel : tel
         },
@@ -79,6 +76,7 @@ $(function(){
             localStorage.setItem("push_user_agent", jsonResult_member_info[0].push_user_agent);
             localStorage.setItem("mem_resign_date", jsonResult_member_info[0].mem_resign_date);
             localStorage.setItem("mem_resign_fg", jsonResult_member_info[0].mem_resign_fg);
+            localStorage.setItem("pw", user_pw );
             
 			location.href="../home/main.html";
         }
