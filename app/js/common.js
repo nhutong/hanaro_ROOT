@@ -35,6 +35,17 @@ $(function(){
 
 })
 
+function ismobile(){
+	if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+		return true;
+		//document.addEventListener("deviceready", onDeviceReady, false);
+	} else {
+		return false;
+		//onDeviceReady(); //this is the browser
+	}
+}
+
+
 // 파라미터를 받는 공통 함수
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
