@@ -6,37 +6,47 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <title>(주)농협유통</title>
     
-    <link rel="stylesheet" href="./css/reset.css" type="text/css">
-    <link rel="stylesheet" href="./css/common.css" type="text/css">
-    <link rel="stylesheet" href="./css/style.css" type="text/css"> 
-    <style>
-        body{
-            background-color: #eeeeee
-        }
-    </style>
+    <!-- <link rel="stylesheet" href="./css/reset.css" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="./css/common.css" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="./css/style.css" type="text/css">  -->
+    <!-- <style> body { background-color: #eeeeee } </style> -->
     
+    <script src="./js/common.js"></script>
+        
 </head>
 
 <body>
     <script>
 
-        var initTel = localStorage.getItem("tel");
-        var initvm_cp_no = localStorage.getItem("vm_cp_no");
-        if (initTel == null){
-            location.href= "login/login.html";
-        }else{
-            if(initvm_cp_no == null){
-                location.href="login/check_location.html";
+        // function ismobile(){
+        //     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // }
+
+        if( ismobile() ){
+            var initTel = localStorage.getItem("tel");
+            var initvm_cp_no = localStorage.getItem("vm_cp_no");
+            if (initTel == null){
+                location.href= "./login/login.html";
             }else{
-                location.href= "home/main.html";
+                if(initvm_cp_no == null){
+                    location.href="./login/check_location.html";
+                }else{
+                    location.href= "./home/main.html";
+                }
             }
+        }else{
+            location.href= "./login/login_pc.html";
         }
     </script>
 
 </body>
-<script src="./js/google.3.4.1.jquery.min.js"></script>
-<script src="./js/common.js"></script>
-<script src="./js/sha256.js"></script>
-<script src="./js/login.js"></script>
+<!-- <script src="./js/google.3.4.1.jquery.min.js"></script> -->
+<!-- <script src="./js/common.js"></script> -->
+<!-- <script src="./js/sha256.js"></script> -->
+<!-- <script src="./js/login.js"></script> -->
 
 </html>
