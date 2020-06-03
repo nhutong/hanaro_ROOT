@@ -431,7 +431,7 @@ function getPdContent(rcv_jd_no) {
 				text += '    					   </td>'
 				text += '    					  <td>'		
 				var cardncoupon = Number(item['card_discount']) + Number(item['coupon_discount']);
-				text += '    					   '+comma(item['cardncoupon'])+'원'
+				text += '    					   '+comma(cardncoupon)+'원'
 				text += '    					  </td>'
 				text += '    					 </tr>'
 			}
