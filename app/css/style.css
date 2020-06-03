@@ -1259,7 +1259,7 @@ header nav ul li.active a{
 }
 
 .leaflet_modal_wrap .leaflet_modal_price{
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     color: #333;
     font-weight: 900;
@@ -1269,7 +1269,7 @@ header nav ul li.active a{
 .leaflet_modal_wrap .leaflet_modal_price2{
     font-size: 20px;
     text-align: center;
-    color: #333;
+    color: #ff0000;
     font-weight: 900;
     font-family: 'Roboto';
 }
@@ -1277,7 +1277,7 @@ header nav ul li.active a{
 .leaflet_modal_wrap .leaflet_modal_price3{
     font-size: 20px;
     text-align: center;
-    color: #333;
+    color: #417361;
     font-weight: 900;
     font-family: 'Roboto';
 }
