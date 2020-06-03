@@ -79,15 +79,20 @@
                 text += '       <a class="product">'+item['pd_name']+'</a>';
 				if (item['img_path'] == "/upload/blank.png"){
 				}else{
-					text += '       <a class="price">'+comma(item['price'])+'</a>'; //2020-05-07 원 삭제 - 미솔
+					text += '       <a class="price">'+comma(item['price'])+'</a>' //2020-05-07 원 삭제 - 미솔
 				}
 
-				if (item['card_discount'] != "")
+				//200603 김수경 최종혜택가 표시
+				if (item['card_discount'] != "" && item['coupon_discount'] != ""){
+					var summed = Number(item['price']) - Number(item['card_discount']) - Number(item['coupon_discount']);
+					text += '    	  <a class="price4">'+comma(summed)+'</a>'
+			    }else if (item['card_discount'] != "")
 				{
 					var carded = Number(item['price']) - Number(item['card_discount']);
-					text += '   <a class="price2">'+comma(carded)+'</a>'; //2020-05-07 원 삭제 - 미솔
+					text += '   <a class="price2">'+comma(carded)+'</a>' //2020-05-07 원 삭제 - 미솔
 				}else if(item['coupon_discount'] != "")
 				{
+					
 					//2020-06-03 김수경 쿠폰할인가 살림		
 					//                    var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
 					//					text += '   <a class="price3">'+comma(couponed)+'원</a>'
