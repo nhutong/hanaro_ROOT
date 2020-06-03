@@ -1034,7 +1034,7 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
-.figure1 .price2{
+.figure1 .price2,.price3{
     font-size: 24px;
     letter-spacing: -1px;
     height: 28px;
@@ -1056,7 +1056,7 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
-.figure2 .price2{
+.figure2 .price2,.price3{
     display: block;
     letter-spacing: -1px;
     font-size: 18px;
