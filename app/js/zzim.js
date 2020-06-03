@@ -103,9 +103,9 @@
 				}
 
 				if (item['from_date'] == item['to_date']){
-					text += '    <span>(전단일자:'+item['to_date']+')</span>';
+					text += '    <span>('+item['to_date']+')</span>';
 				}else{
-					text += '    <span>(전단일자:'+item['from_date']+'~'+item['to_date']+')</span>';
+					text += '    <span>('+item['from_date']+'~'+item['to_date']+')</span>';
 				}			
 
 				text += '    </div>'
