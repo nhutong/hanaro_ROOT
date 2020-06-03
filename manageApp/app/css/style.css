@@ -1037,16 +1037,20 @@ header nav ul li.active a{
 
 
 
+/* 2020-06-03 width값 수정 및 가운데정렬 미솔*/
 .leaflet_modal_wrap .leaflet_thumb_wrap{
     padding: 10px;
+    text-align: center;
 }
 
 .leaflet_modal_wrap .leaflet_thumb_wrap img{
-    width: 100%;
+    width: 70%;
 }
+/* 2020-06-03 width값 수정 및 가운데정렬 미솔*/
 
+/* 2020-06-03 폰트사이즈 수정 미솔*/
 .leaflet_modal_wrap .leaflet_modal_title{
-    font-size: 16px;
+    font-size: 20px;
     border-top: 1px dotted #d0d0d0;
     padding-top: 9px;   
     text-align: center;
@@ -1054,10 +1058,13 @@ header nav ul li.active a{
 }
 
 .leaflet_modal_wrap .leaflet_modal_price{
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
     color: #333;
+    font-weight: 900;
+    font-family: 'Roboto';
 }
+/* 2020-06-03 폰트사이즈 수정 미솔*/
 
 .leaflet_modal_wrap #table{
     width: 100%;
@@ -1067,21 +1074,23 @@ header nav ul li.active a{
     margin-top: 20px;
 }
 
+/* 2020-06-03 폰트사이즈 수정 및 height값 수정 미솔*/
 .leaflet_discount h5{
     margin-bottom: 10px;
-    font-size: 13px;
+    font-size: 16px;
     padding-left: 5px;
 }
 
 .leaflet_discount h5:before{
     content: '';
-    height: 11px;
+    height: 18px;
     width: 3px;
     vertical-align: middle;
     margin-right: 5px;
     display: inline-block;
-    background-color: #55B190;
+    background-color: #55b190;
 }
+/* 2020-06-03 폰트사이즈 수정 및 height값 수정 미솔*/
 
 .leaflet_modal_wrap #table tr th,
 .leaflet_modal_wrap #table tr td{

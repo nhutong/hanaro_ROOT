@@ -45,12 +45,12 @@
 		if (agree_push.equals("Y")){
 			 sql = "insert into vm_member (tel, company_no, agree_privacy, agree_push, agree_location, reg_date, usim, push_agree_date)"+
 		    	   "values"+
-			       "('"+tel+"', if('"+company_no+"'='"+company_no+"',0,'"+company_no+"'), '"+agree_privacy+"', '"+agree_push+"', '"+agree_location+"', now(), '"+usim+"', now() )";
+			       "('"+tel+"', if('"+company_no+"'='',0,'"+company_no+"'), '"+agree_privacy+"', '"+agree_push+"', '"+agree_location+"', now(), '"+usim+"', now() )";
 
 		}else{
 			sql = "insert into vm_member (tel, company_no, agree_privacy, agree_push, agree_location, reg_date, usim)"+
 		      "values"+
-			  "('"+tel+"', if('"+company_no+"'='"+company_no+"',0,'"+company_no+"'), '"+agree_privacy+"', '"+agree_push+"', '"+agree_location+"', now(), '"+usim+"')";
+			  "('"+tel+"', if('"+company_no+"'='',0,'"+company_no+"'), '"+agree_privacy+"', '"+agree_push+"', '"+agree_location+"', now(), '"+usim+"')";
 		}
 
 		insertSql = sql;

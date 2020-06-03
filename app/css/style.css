@@ -1,5 +1,90 @@
 body{-webkit-text-size-adjust: none;}
 
+/*pc Login page start*/
+
+.modal-header {
+    text-align: center;
+}
+
+.modal-header h1 {
+    width: 150px;
+    margin: auto;
+}
+
+.modal-header h1 img {
+    width: 150px;
+}
+
+.modal-header span {
+    font-size: 14px;
+}
+
+button.btn-primary {
+    background-color: #55B190;
+    border-color: #55B190;
+}
+
+button.btn-primary:hover {
+    background-color: #00a03a;
+    border-color: #00a03a;
+}
+
+.modal_sign_btn {
+    color: #a2a2a2 !important;
+}
+
+.modal-footer{
+    padding-top: 0 !important;
+}
+
+.modal-footer .modal_sign_btn:not(:last-child):after{
+    content: "|";
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.modal-footer>:not(:first-child) {
+    margin-left: 0 !important;
+}
+
+div.modal-header {
+    padding: 3rem 1rem 0rem;
+}
+
+.modal-dialog #btnSave{
+    padding: 10px 15px;
+}
+
+:-ms-input-placeholder.form-control {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.logo_img {
+    width: 160px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.form-control:focus {
+    border-color: rgb(0, 177, 64) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 177, 64, .25) !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+    background-color: #00a03a !important;
+    border-color: #00a03a !important;
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(00, 143, 66, 0.5) !important;
+}
+
+/*pc Login page end*/
+
 /*#share_btn*/
 
 #share_btn{
@@ -1108,16 +1193,20 @@ header nav ul li.active a{
 
 
 
+/* 2020-06-03 width값 수정 및 가운데정렬 미솔*/
 .leaflet_modal_wrap .leaflet_thumb_wrap{
     padding: 10px;
+    text-align: center;
 }
 
 .leaflet_modal_wrap .leaflet_thumb_wrap img{
-    width: 100%;
+    width: 70%;
 }
+/* 2020-06-03 width값 수정 및 가운데정렬 미솔*/
 
+/* 2020-06-03 폰트사이즈 수정 미솔*/
 .leaflet_modal_wrap .leaflet_modal_title{
-    font-size: 16px;
+    font-size: 20px;
     border-top: 1px dotted #d0d0d0;
     padding-top: 9px;   
     text-align: center;
@@ -1125,10 +1214,13 @@ header nav ul li.active a{
 }
 
 .leaflet_modal_wrap .leaflet_modal_price{
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
     color: #333;
+    font-weight: 900;
+    font-family: 'Roboto';
 }
+/* 2020-06-03 폰트사이즈 수정 미솔*/
 
 .leaflet_modal_wrap #table{
     width: 100%;
@@ -1138,21 +1230,23 @@ header nav ul li.active a{
     margin-top: 20px;
 }
 
+/* 2020-06-03 폰트사이즈 수정 및 height값 수정 미솔*/
 .leaflet_discount h5{
     margin-bottom: 10px;
-    font-size: 13px;
+    font-size: 16px;
     padding-left: 5px;
 }
 
 .leaflet_discount h5:before{
     content: '';
-    height: 11px;
+    height: 18px;
     width: 3px;
     vertical-align: middle;
     margin-right: 5px;
     display: inline-block;
-    background-color: #55B190;
+    background-color: #55b190;
 }
+/* 2020-06-03 폰트사이즈 수정 및 height값 수정 미솔*/
 
 .leaflet_modal_wrap #table tr th,
 .leaflet_modal_wrap #table tr td{
@@ -2338,11 +2432,22 @@ margin-bottom: 3px;
     display: block;
 }
 
-/*2020.05.22 심규문 매장주소 css 추가*/
+/* 2020.05.22 심규문 매장주소 css 추가
 .offline_address{
     font-size: 14px;
     vertical-align: top;
     width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+} */
+
+/*2020.06.03 김수경 매장주소 css 수정*/
+.offline_address{
+    font-size: 11px;
+    vertical-align: top;
+    width: 90%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -81,6 +81,8 @@ function getCouponHistoryForExcel(){
 	var keyword2 = $('#excel_start_date').val();	
 	var keyword3 = $('#excel_end_date').val();
 
+	console.log("aa");
+
 	//데이터 조회 후 엑셀 함수 호출
 	$.get('/back/05_event/couponHistoryExcelExport.jsp?keyword1='+keyword1 +'&keyword2='+keyword2+'&keyword3='+keyword3 + '&pageNumber=1&pageSize=99999999',
 	function(result){

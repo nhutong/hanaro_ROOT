@@ -1,3 +1,8 @@
+//모바일에 serverUrl을 추가하기 위해 전역변수 선언
+var serverUrl = "";
+if(isapp()) serverUrl = "https://www.nhhanaromart.com";
+else serverUrl = "";
+
 $(function(){
 
 	header_notice();
@@ -11,29 +16,35 @@ $(function(){
     
 	/* 웹에서는 iframe 안의 앱의 로그인한 사람 tel 과 vm_cp_no 를 알수 없으므로 tel은 임의로 지정하고, vm_cp_no 는 하기와 같이 지정한다. */
 	var tel = localStorage.getItem("tel");
-//	tel = "01023998512";
-//	localStorage.setItem("tel","01023998512");
 
 	var isInIFrame = ( window.location != window.parent.location );
-	if (isInIFrame == true)
-	{ 
+	if (isInIFrame == true){ 
 		localStorage.setItem("memberNo","13");
-
 	}else{ 
-		
 	}
 
-	if (getCookie("userRoleCd") == "ROLE2")
-	{
+	if (getCookie("userRoleCd") == "ROLE2"){
 		var userCompanyNo = getCookie("userCompanyNo");
 	}else{
 		var userCompanyNo = getCookie("onSelectCompanyNo");
 	}
 
-//	zzimCount(tel, vm_cp_no);
-//	pushCount(tel);
-
+	jd_no = getParameterByName('jd_no');
 })
+
+// app인지 web인지 판단
+function isapp(){
+    console.log("navigator.userAgent:"+navigator.userAgent);    
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+        return true;
+		//document.addEventListener("deviceready", onDeviceReady, false);
+	} else {
+		return false;
+		//onDeviceReady(); //this is the browser
+    }
+    // if ( document.URL.indexOf('http://') || document.URL.indexOf('https://') ){
+    // } 
+}
 
 // 파라미터를 받는 공통 함수
 function getParameterByName(name) {
