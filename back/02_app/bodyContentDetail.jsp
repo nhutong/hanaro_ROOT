@@ -24,7 +24,8 @@
 		    +" ifnull(b.pd_name,'') as pd_name, ifnull(b.price,'') as price, ifnull(b.card_discount,'') as card_discount, "
 			+" b.card_discount_from_date, b.card_discount_end_date, "
 			+" ifnull(b.card_info,'') as card_info, ifnull(b.card_restrict,'') as card_restrict, "
-			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, ifnull(b.etc,'') as etc, c.pd_no, c.pd_code, ifnull(e.vmjz_no,'') as vmjz_no "
+			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, "
+			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, ifnull(e.vmjz_no,'') as vmjz_no, b.weight "
 			+" FROM vm_jundan AS a "
 			+" inner join vm_menu as ab "
 			+" on a.menu_no = ab.menu_no "
@@ -46,7 +47,8 @@
 		    +" ifnull(b.pd_name,'') as pd_name, ifnull(b.price,'') as price, ifnull(b.card_discount,'') as card_discount, "
 			+" b.card_discount_from_date, b.card_discount_end_date, "
 			+" ifnull(b.card_info,'') as card_info, ifnull(b.card_restrict,'') as card_restrict, "
-			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, ifnull(b.etc,'') as etc, c.pd_no, c.pd_code, '' as vmjz_no "
+			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, "
+			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, '' as vmjz_no, b.weight "
 			+" FROM vm_jundan AS a "
 			+" inner join vm_menu as ab "
 			+" on a.menu_no = ab.menu_no "
@@ -109,6 +111,7 @@
 			String pd_no				   = rs.getString("pd_no");									  // 전단 매핑상품번호
 			String pd_code				   = rs.getString("pd_code");								  // 전단 상품코드
 			String vmjz_no				   = rs.getString("vmjz_no");
+			String weight				   = rs.getString("weight");
 			
 			JSONObject obj = new JSONObject();
 						
@@ -120,7 +123,7 @@
 				obj.put("img_path", "/upload/"+img_path);
 			}
 			
-			obj.put("pd_name", URLDecoder.decode(pd_name));
+			obj.put("pd_name", strDecode(pd_name));
 			obj.put("price", price);
 			obj.put("card_discount", card_discount);
 			obj.put("card_discount_from_date", card_discount_from_date);
@@ -134,6 +137,7 @@
 			obj.put("pd_no", pd_no);
 			obj.put("pd_code", strDecode(pd_code));
 			obj.put("vmjz_no", strDecode(vmjz_no));
+			obj.put("weight", strDecode(weight));
 			
 			if(obj != null){
 				arr.add(obj);
