@@ -56,17 +56,17 @@ $(function(){
             var jsonResult = JSON.parse(result);
             var jsonResult_member_info = jsonResult.memberList;
 
-            localStorage.setItem("no", jsonResult_member_info[0].no);
+            localStorage.setItem("memberNo", jsonResult_member_info[0].no);
             localStorage.setItem("name", jsonResult_member_info[0].name);
             localStorage.setItem("tel", tel);
-            localStorage.setItem("company_no", jsonResult_member_info[0].company_no);
+            localStorage.setItem("vm_cp_no", jsonResult_member_info[0].company_no);
             localStorage.setItem("agree_privacy", jsonResult_member_info[0].agree_privacy);
             localStorage.setItem("agree_push", jsonResult_member_info[0].agree_push);
             localStorage.setItem("agree_location", jsonResult_member_info[0].agree_location);
             localStorage.setItem("reg_date", jsonResult_member_info[0].reg_date);
             localStorage.setItem("last_date", jsonResult_member_info[0].last_date);
             localStorage.setItem("member_status_cd", jsonResult_member_info[0].member_status_cd);
-            localStorage.setItem("usim", jsonResult_member_info[0].usim);
+            // localStorage.setItem("usim", jsonResult_member_info[0].usim);
             localStorage.setItem("memo", jsonResult_member_info[0].memo);
             localStorage.setItem("address1", jsonResult_member_info[0].address1);
             localStorage.setItem("address2", jsonResult_member_info[0].address2);

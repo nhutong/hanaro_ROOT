@@ -48,7 +48,7 @@ function isApp(){
 
 function isPrivateIp(){
     $.ajax({
-       url: 'ping.html',
+       url: 'https://www.nhhanaromart.com/ping.html',
        type: 'HEAD',
        success: function(result){
           alert('reply');
@@ -647,4 +647,195 @@ function logInsert(rcvNo, rcv_vm_cp_no, rcv_menu_no){
             console.log(result);
         }
     });
+}
+
+var LayerPopup =
+{
+	target :
+	{
+			alert : $(".popup.alert_popup"),
+			confirm : $(".popup.confirm_popup"),
+			progress : $(".popup.status_progress_popup")
+	},
+	
+	overflow : $('body').css('overflow'),
+
+	show : function( target, mode, msg )
+	{
+			// target을 초기화 후 다시 셋팅
+			var cloneObj;
+			if( mode == "alert" ) cloneObj = LayerPopup.target.alert.clone();
+			if( mode == "confirm" ) cloneObj = LayerPopup.target.confirm.clone();
+			if( mode == "progress" ) cloneObj = LayerPopup.target.progress.clone();
+
+			target.empty().append( cloneObj.html() );
+
+			if( msg ) target.find(".message").html( msg );
+			
+			var oHeight = target.height();
+			var wHeight = $(window).height();
+			var oWidth = target.width();
+
+			if( $('.modal_bg').length > 0 )
+			{
+				var zIndex = $('.modal_bg:last').css('z-Index');
+				$('html,body').css('overflow','hidden');
+				target.css({
+					top:(wHeight-oHeight)/2,
+					marginLeft:(-(oWidth/2)),
+					visibility:'visible',
+					zIndex:(parseInt(zIndex)+3)
+				});
+				$('body').append('<div class="modal_bg" style="z-index:'+(parseInt(zIndex)+2)+'"></div>');
+			}
+			else
+			{
+				$('html,body').css('overflow','hidden');
+				target.css({
+					top:(wHeight-oHeight)/2,
+					marginLeft:(-(oWidth/2)),
+					visibility:'visible'
+				});
+				$('body').append('<div class="modal_bg"></div>');
+			}
+			
+			// target.draggable();
+		
+			$('.modal_alert_close', target).click(function(e){
+				e.preventDefault();
+				$('html,body').css('overflow', LayerPopup.overflow); 
+				$('.modal_bg:last-child').remove();
+				$(this).parents('.popup').css({top:'-9999px',visibility:'hidden'});
+			});
+	},
+	
+	//alert_popup
+	alert : function( msg, callback )
+	{
+			LayerPopup.show( LayerPopup.target.alert, "alert", msg );
+			
+			if( typeof callback != 'undefined' && callback)
+			{
+				$('.modal_alert_confirm', LayerPopup.target.alert).click(function(e){
+					e.preventDefault();
+					$('html,body').css('overflow', LayerPopup.overflow);
+					$('.modal_bg:last-child').remove();
+					$(this).parents('.popup').css({top:'-9999px',visibility:'hidden'});
+			
+					if (typeof callback == 'function') {
+						callback();
+					} else {
+						if( callback ) {
+							if( callback.indexOf("(") == -1 ) eval( callback +"()");
+							else eval( callback );
+						} else {
+							if( typeof( confirmAfter ) == "function" ) {
+								confirmAfter();
+							}
+						}
+					}
+					
+					$(this).unbind("click");
+				});
+			}
+			else
+			{
+				$('.modal_alert_confirm', LayerPopup.target.alert).click(function(e){
+					e.preventDefault();
+					$('html,body').css('overflow', LayerPopup.overflow);
+					$('.modal_bg:last-child').remove();
+					$(this).parents('.popup').css({top:'-9999px',visibility:'hidden'});
+				});
+			}
+	},
+	
+	//confirm_popup
+	confirm : function( msg, callback )
+	{
+			LayerPopup.show( LayerPopup.target.confirm, "confirm", msg );
+		
+			$('.modal_alert_confirm', LayerPopup.target.confirm).click(function(e){
+				e.preventDefault();
+				$('html,body').css('overflow', LayerPopup.overflow);
+				$('.modal_bg:last-child').remove();
+				$(this).parents('.popup').css({top:'-9999px',visibility:'hidden'});
+		
+				if (typeof callback == 'function') {
+					callback();
+				} else {
+					if( callback ) {
+						if( callback.indexOf("(") == -1 ) eval( callback +"()");
+						else eval( callback );
+					} else {
+						if( typeof( confirmAfter ) == "function" ) {
+							confirmAfter();
+						}
+					}
+				}
+				
+				$(this).unbind("click");
+			});
+	},
+
+	// progress 팝업은 close 에 callback
+	progress : function(msg, callback)
+	{
+			LayerPopup.show( LayerPopup.target.progress, "progress", msg );
+			
+			if( typeof callback != 'undefined' && callback)
+			{
+				$('.modal_progress_close', LayerPopup.target.progress).click(function(e){
+					e.preventDefault();
+					$('html,body').css('overflow', LayerPopup.overflow);
+					$('.modal_bg:last-child').remove();
+					$(this).parents('.popup').css({top:'-9999px',visibility:'hidden'});
+			
+					if (typeof callback == 'function') {
+						callback();
+					} else {
+						if( callback ) {
+							if( callback.indexOf("(") == -1 ) eval( callback +"()");
+							else eval( callback );
+						} else {
+							if( typeof( confirmAfter ) == "function" ) {
+								confirmAfter();
+							}
+						}
+					}
+					
+					$(this).unbind("click");
+				});
+			}
+			else
+			{
+				$('.modal_progress_close', LayerPopup.target.progress).click(function(e){
+					e.preventDefault();
+					$('html,body').css('overflow', LayerPopup.overflow);
+					$('.modal_bg:last-child').remove();
+					$(this).parents('.popup').css({top:'-9999px',visibility:'hidden'});
+				});
+			}
+	},
+	
+	// popup close
+	closeProgress : function() 
+	{
+		$('.modal_progress_close', LayerPopup.target.progress).click();
+	}
+}
+
+function alertPopup() {
+	LayerPopup.alert("테스트내용 양식 파일이 올바르지 않거나 공백이 존재합니다.<br/> 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
+}
+
+function confirmPopup() {
+	LayerPopup.confirm("테스트내용 양식 파일이 올바르지 않거나 공백이 존재합니다.<br/> 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!", function(){
+		LayerPopup.alert("감사합니다.");
+	});
+}
+
+function progressPopup() {
+	LayerPopup.progress("상태진행중 팝업입니다.", function() {
+		LayerPopup.alert("감사합니다.");
+	});
 }

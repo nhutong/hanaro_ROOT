@@ -32,7 +32,7 @@
     <div id="nav_header"></div>
     <!--header ends-->
     <!--push_cont starts-->
-     <div id="coupon_list_wrap">
+        <div id="coupon_list_wrap">
        
         
         <ul class="coupon_choice">
@@ -57,16 +57,58 @@
         <!--list_3 start-->
         <div class="item_list_inner_wrap" id="list_3">
         </div>
-        <!--list_3 end-->
+        <!--list_3 end-->        
     </div>
 
+    <!-- layer popup start -->
+    <!-- <div>
+        <button onclick="alertPopup()">alert 팝업</button>
+        <button onclick="confirmPopup()">confirm 팝업</button>
+        <button onclick="progressPopup()">상태진행중 팝업</button>
+    </div> -->
+    
+    <!-- alert 팝업 -->
+    <div class="popup s260 alert_popup" draggable="true">
+        <!-- <div class="pop_header"></div> -->
+        <div class="pop_container">
+            <div class="txt_dialog message"></div>
+            <p class="foot_btn">
+                <a href="#" class="btn_n bg_red modal_alert_confirm">확인</a>
+            </p>
+        </div>
+        <!-- <a href="#" class="popup_close modal_alert_close">닫기</a> -->
+    </div>
+    
+    <!-- confirm 팝업 -->
+    <div class="popup s260 confirm_popup" draggable="true">
+        <!-- <div class="pop_header"></div> -->
+        <div class="pop_container">
+            <div class="txt_dialog message"></div>
+            <p class="foot_btn">
+                <a href="#" class="btn_n_cf bg_gray modal_alert_close">취소</a>                
+                <a href="#" class="btn_n_cf bg_red modal_alert_confirm">확인</a>
+            </p>
+        </div>
+        <!-- <a href="#" class="popup_close modal_alert_close">닫기</a> -->
+    </div>
+    
+    <!-- 상태 진행중 팝업 -->
+    <div class="popup s260 status_progress_popup" draggable="true">
+        <!-- <div class="pop_header"></div> -->
+        <div class="pop_container">
+            <div class="txt_dialog">
+                <div class="ajax_loader"><div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div><div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div><div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div><div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div></div>
+                <p class="txt_dialog3 message"></p>
+            </div>
+        </div>
+        <!-- <a href="#" class="popup_close modal_progress_close">닫기</a> -->
+    </div>    
+    <!-- layer popup end -->
+
+    
    <!--js-->
-<!--     <script -->
-<!--       src="../js/jquery-2.2.4.js" -->
-<!--       integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" -->
-<!--       crossorigin="anonymous"></script> -->
-      <script src="../js/jquery-2.2.4.js"></script>
-      <script type="text/javascript" src="../js/jquery-barcode.js"></script>	      
+      <script src="../js/google.3.4.1.jquery.min.js"></script>
+      <script src="../js/jquery-barcode.js" type="text/javascript" ></script>	      
 	  <script src="../js/common.js"></script>
       <script src="../js/link.js"></script>
       <script src="../js/header_menu.js"></script>

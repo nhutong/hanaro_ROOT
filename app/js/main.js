@@ -44,6 +44,28 @@ $(function(){
 	logInsert(localStorage.getItem("memberNo"), vm_cp_no, "-1");
 })
 
+	//판매장정보 업데이트
+	updateVmCpNo();
+
+	function updateVmCpNo(){
+		var mem_no = localStorage.getItem("memberNo");
+		var cp_no = localStorage.getItem("vm_cp_no");
+		if( typeof cp_no != undefined && typeof mem_no != undefined ){
+			$.post("/back/02_app/myCompanyUpdateImsi.jsp",
+			{
+				memberNo : mem_no,
+				company_no : cp_no
+			},
+			function(result){						
+				if(result.trim() === 'exception error' || result.trim() === 'NoN'){
+					console.log("판매장 번호 업데이트 실패");
+				}else{
+					console.log("판매장 번호 업데이트 완료");
+				}
+			});
+		}
+	}
+
 
 //메인페이지 모달
 function adModal(){

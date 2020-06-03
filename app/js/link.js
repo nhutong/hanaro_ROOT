@@ -1,3 +1,17 @@
+// app인지 web인지 판단
+function isApp(){
+    console.log("navigator.userAgent:"+navigator.userAgent);    
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+        return true;
+		//document.addEventListener("deviceready", onDeviceReady, false);
+	} else {
+		return false;
+		//onDeviceReady(); //this is the browser
+    }
+    // if ( document.URL.indexOf('http://') || document.URL.indexOf('https://') ){
+    // } 
+}
+
 if( localStorage.getItem("pw") == "asdf12345" || isApp() ){
     //header
     function home(){window.location.href="../home/main.html"} // 홈
