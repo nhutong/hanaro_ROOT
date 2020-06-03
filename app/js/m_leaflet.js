@@ -310,7 +310,7 @@ function getPdContent(rcv_jd_no) {
 				{
 					text += '		<img src="../images/leaflet_icon0.png" alt="최종혜택">'
 				// 카드할인
-				if (item['card_discount'] != "")
+				}else if (item['card_discount'] != "")
 				{
 					text += '		<img src="../images/leaflet_icon1.png" alt="카드할인">'
 				// 쿠폰할인
@@ -422,7 +422,7 @@ function getPdContent(rcv_jd_no) {
 				}
 
 				//최종혜택(200603 김수경 추가)
-				if (item['card_discount'] != "" && item['coupon_discount'] != ""){}
+				if (item['card_discount'] != "" && item['coupon_discount'] != ""){
 				text += '    					<tr class="hide table-line">'
 				text += '    					   <td>'
 				text += '    						  <div class="discount_img">'
@@ -435,7 +435,7 @@ function getPdContent(rcv_jd_no) {
 				text += '    					  </td>'
 				text += '    					 </tr>'
 			}
-			
+
 				// 카드할인
 				if (decodeURIComponent(item['card_discount']) != ""){
 					text += '    				   <tr class="hide table-line">'
