@@ -352,8 +352,10 @@ function getPdContent(rcv_jd_no) {
 					text += '   <a class="price2">'+comma(carded)+'</a>' //2020-05-07 원 삭제 - 미솔
 				}else if(item['coupon_discount'] != "")
 				{
-					//                    var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
-					//					text += '   <a class="price3">'+comma(couponed)+'원</a>'
+						//2020-06-03 김수경 쿠폰할인가 살림
+					                   var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
+										text += '   <a class="price3">'+comma(couponed)+'원</a>'
+						//2020-06-03 김수경 쿠폰할인가 살림
 				}else{
 					
 				}
@@ -438,8 +440,9 @@ function getPdContent(rcv_jd_no) {
 					text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
 					text += '    						  </div>'
 					text += '    					   </td>'
-					text += '    					  <td>'					
-					text += '    					   '+ decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원 추가할인'
+					text += '    					  <td>'		
+						//2020-06-03 김수경 쿠폰할인가 살림			
+					text += '    					   '+ decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원'
 					text += '    					  </td>'
 					text += '    					 </tr>'
 				}
