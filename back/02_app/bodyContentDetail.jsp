@@ -38,7 +38,8 @@
 			+" on b.jd_prod_con_no = e.jd_prod_con_no "
 			+" WHERE a.jd_no = "+jd_no
 			+"   and IFNULL(a.show_fg,'N') = 'Y' "
-			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,3";
+			<!-- +" order by cast(b.order_number AS UNSIGNED ) asc limit 0,3"; -->
+			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,6";
 
 		}else{
 
