@@ -309,15 +309,15 @@ function getPdContent(rcv_jd_no) {
 				if (item['card_discount'] != "")
 				{
 					text += '		<img src="../images/leaflet_icon1.png" alt="카드할인">'
-				// 다다익선
-				}else if (item['dadaiksun'] != "")
-				{
-					text += '		<img src="../images/leaflet_icon3.png" alt="다다익선">'
-					text += '       '
 				// 쿠폰할인
 				}else if (item['coupon_discount'] != "")
 				{
 					text += '		<img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
+					text += '       '
+				// 다다익선
+				}else if (item['dadaiksun'] != "")
+				{
+					text += '		<img src="../images/leaflet_icon3.png" alt="다다익선">'
 					text += '       '
 				// 적용사항 없음
 				}else{
@@ -354,7 +354,7 @@ function getPdContent(rcv_jd_no) {
 				{
 						//2020-06-03 김수경 쿠폰할인가 살림
 					                   var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
-										text += '   <a class="price3">'+comma(couponed)+'원</a>'
+										text += '   <a class="price3">'+comma(couponed)+'</a>'
 						//2020-06-03 김수경 쿠폰할인가 살림
 				}else{
 					
@@ -417,21 +417,6 @@ function getPdContent(rcv_jd_no) {
 					text += '    					</tr>'
 				}
 
-				//다다익선
-				if (decodeURIComponent(item['dadaiksun']) != ""){				
-					text += '    					<tr class="hide table-line">'
-					text += '    					   <td>'
-					text += '    						  <div class="discount_img">'
-					text += '    							 <img src="../images/leaflet_icon3.png" alt="다다익선">'
-					text += '    						  </div>'
-					text += '    					   </td>'
-					text += '    					  <td>'					
-					text += '    					   '+item['dadaiksun']
-					text += '    					   / '+item['dadaiksun_info']
-					text += '    					  </td>'					
-					text += '    					 </tr>'
-				}
-
 				//쿠폰할인
 				if (decodeURIComponent(item['coupon_discount']) != ""){
 					text += '    					<tr class="hide table-line">'
@@ -444,6 +429,22 @@ function getPdContent(rcv_jd_no) {
 						//2020-06-03 김수경 쿠폰할인가 살림			
 					text += '    					   '+ decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원'
 					text += '    					  </td>'
+					text += '    					 </tr>'
+				}
+				
+				
+				//다다익선
+				if (decodeURIComponent(item['dadaiksun']) != ""){				
+					text += '    					<tr class="hide table-line">'
+					text += '    					   <td>'
+					text += '    						  <div class="discount_img">'
+					text += '    							 <img src="../images/leaflet_icon3.png" alt="다다익선">'
+					text += '    						  </div>'
+					text += '    					   </td>'
+					text += '    					  <td>'					
+					text += '    					   '+item['dadaiksun']
+					text += '    					   / '+item['dadaiksun_info']
+					text += '    					  </td>'					
 					text += '    					 </tr>'
 				}
 
