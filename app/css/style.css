@@ -1098,18 +1098,16 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
-.figure2 .price4{
-    display: block;
+.figure1 .price4{
+    font-size: 24px;
     letter-spacing: -1px;
-    font-size: 18px;
+    height: 28px;
     overflow: hidden;
-    height: 23px;
-    text-overflow: ellipsis;
     font-weight: 900;
     font-family: 'Roboto';
 }
 
-.figure2 .price, .price2, .price3, .price4{
+.figure2 .price,.price2,.price3,.price4{
     display: block;
     letter-spacing: -1px;
     font-size: 18px;
@@ -1153,7 +1151,7 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
-.figure3 .price, .price2, .price3, .price4{
+.figure3 .price,.price2,.price3,.price4{
     display: block;
     letter-spacing: -1px;
     font-size: 16px;
@@ -1288,7 +1286,7 @@ header nav ul li.active a{
     text-align: center;
     font-weight: 500;
 }
-
+/* 2020-06-03 폰트사이즈 수정 수경*/
 .leaflet_modal_wrap .leaflet_modal_price{
     font-size: 18px;
     text-align: center;
@@ -1320,7 +1318,6 @@ header nav ul li.active a{
     font-weight: 900;
     font-family: 'Roboto';
 }
-
 
 /* 2020-06-03 폰트사이즈 수정 미솔*/
 

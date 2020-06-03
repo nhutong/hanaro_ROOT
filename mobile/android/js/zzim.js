@@ -37,10 +37,14 @@
                 text += '		<a ><img src="https://www.nhhanaromart.com'+item['img_path']+'" alt="'+item['pd_name']+'"></a>';
                 text += '		<div class="discount_info">';
 
-				// 카드할인
-				if (item['card_discount'] != "")
+				// 최종혜택(20200603 김수경 추가)
+				if (item['card_discount'] != "" && item['coupon_discount'] != "")
 				{
-					text += '		<img src="../images/leaflet_icon1.png" alt="카드할인">';
+					text += '		<img src="../images/leaflet_icon0.png" alt="최종혜택">'
+				// 카드할인
+				}else if (item['card_discount'] != "")
+				{
+					text += '		<img src="../images/leaflet_icon1.png" alt="카드할인">'
 				// 쿠폰할인
 				}else if (item['coupon_discount'] != "")
 				{
@@ -110,7 +114,20 @@
 				text += '    		 <img src="https://www.nhhanaromart.com'+item['img_path']+'" alt="'+item['pd_name']+'">'
 				text += '    	  </div>'
 				text += '    	  <div class="leaflet_modal_title">'+item['pd_name']+'</div>'
-				text += '    	  <div class="leaflet_modal_price">'+comma(item['price'])+'원</div>'									
+				text += '    	  <div class="leaflet_modal_price">'+comma(item['price'])+'원</div>'	
+								//200603 김수경 상품상세팝업에 카드할인가와 쿠폰할인가 표시
+				if  (decodeURIComponent(item['card_discount']) != "" && decodeURIComponent(item['coupon_discount']) != ""){
+					var summed = Number(item['price']) - Number(item['card_discount']) - Number(item['coupon_discount']);
+					text += '    	  <div class="leaflet_modal_price4"><h6 style="font-family: Noto Sans KR; display:inline-block;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
+				}else if (decodeURIComponent(item['card_discount']) != ""){
+					var carded = Number(item['price']) - Number(item['card_discount']);
+					text += '    	  <div class="leaflet_modal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block;">카드할인가</h6> '+comma(carded)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
+			    }else if (decodeURIComponent(item['coupon_discount']) != ""){
+					var couponed = Number(item['price']) - Number(item['coupon_discount']);
+					text += '    	  <div class="leaflet_modal_price3"><h6 style="font-family: Noto Sans KR; display:inline-block;">쿠폰할인가</h6> '+comma(couponed)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
+				}
+				//200603 김수경 상품상세팝업에 카드할인가와 쿠폰할인가 표시
+								
 				text += '    	  <div class="leaflet_txt">'
 				text += '    		  <div class="leaflet_discount">'                 
 				text += '    			 <h5>혜택 및 상품 정보 안내</h5>'
@@ -173,6 +190,21 @@
 					text += '    					 </tr>'
 				}
 
+				//최종혜택(200603 김수경 추가)
+				if (item['card_discount'] != "" && item['coupon_discount'] != ""){
+					text += '    					<tr class="hide table-line">'
+					text += '    					   <td>'
+					text += '    						  <div class="discount_img">'
+					text += '    							 <img src="../images/leaflet_icon0.png" alt="최종혜택">'
+					text += '    						  </div>'
+					text += '    					   </td>'
+					text += '    					  <td>'		
+					var cardncoupon = Number(item['card_discount']) + Number(item['coupon_discount']);
+					text += '    					   '+comma(cardncoupon)+'원 (카드+쿠폰)'
+					text += '    					  </td>'
+					text += '    					 </tr>'
+				}
+				
 				//다다익선
 				if (decodeURIComponent(item['dadaiksun']) != ""){				
 					text += '    					<tr class="hide table-line">'
@@ -187,7 +219,7 @@
 					text += '    					  </td>'					
 					text += '    					 </tr>'
 				}
-
+	
 				//기타내용
 				if (decodeURIComponent(item['etc']) != ""){		
 					text += '    					<tr class="hide table-line">'
