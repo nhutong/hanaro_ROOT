@@ -378,7 +378,7 @@ function getPdContent(rcv_jd_no) {
 			    }else if (decodeURIComponent(item['coupon_discount']) != ""){
 					var couponed = Number(item['price']) - Number(item['coupon_discount']);
 					text += '    	  <div class="leaflet_modal_price3"><h6 style="font-family: Noto Sans KR; display:inline-block;">쿠폰할인가 '+comma(couponed)+'원</div>'
-				}else if (ecodeURIComponent(item['card_discount']) != "" && (item['coupon_discount']) != "");{
+				}else if (decodeURIComponent(item['card_discount']) != "" && (item['coupon_discount']) != "");{
 					var summed = Number(item['price']) - Number(item['card_discount'])- Number(item['coupon_discount']);
 					text += '    	  <div class="leaflet_modal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block;">최종혜택가</h6> '+comma(summed)+'원</div>'
 				}
