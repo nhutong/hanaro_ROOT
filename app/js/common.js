@@ -1,6 +1,6 @@
 //모바일에 serverUrl을 추가하기 위해 전역변수 선언
 var serverUrl = "";
-if(ismobile()) serverUrl = "https://www.nhhanaromart.com";
+if(isapp()) serverUrl = "https://www.nhhanaromart.com";
 else serverUrl = "";
 
 $(function(){
@@ -32,15 +32,18 @@ $(function(){
 	jd_no = getParameterByName('jd_no');
 })
 
-// 모바일인지 PC인지 여부 판단
-function ismobile(){
-	if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-		return true;
+// app인지 web인지 판단
+function isapp(){
+    console.log("navigator.userAgent:"+navigator.userAgent);    
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+        return true;
 		//document.addEventListener("deviceready", onDeviceReady, false);
 	} else {
 		return false;
 		//onDeviceReady(); //this is the browser
-	}
+    }
+    // if ( document.URL.indexOf('http://') || document.URL.indexOf('https://') ){
+    // } 
 }
 
 // 파라미터를 받는 공통 함수

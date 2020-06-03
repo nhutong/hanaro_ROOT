@@ -1,4 +1,4 @@
-if( localStorage.getItem("pw") == "asdf12345" ){
+if( localStorage.getItem("pw") == "asdf12345" || isapp() ){
     //header
     function home(){window.location.href="../home/main.html"} // 홈
     function m_leaflet(){window.location.href="../m_leaflet/m_leaflet.html"} // 전단행사
