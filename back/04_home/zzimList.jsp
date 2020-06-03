@@ -95,7 +95,7 @@
 			String pd_no				   = rs.getString("pd_no");									  // 전단 매핑상품번호
 			String pd_code				   = rs.getString("pd_code");								  // 전단 상품코드
 			String vmjz_no				   = rs.getString("vmjz_no");
-			String weight				   = rs.getString("weight");
+
 			String from_date			   = rs.getString("from_date");
 			String to_date				   = rs.getString("to_date");
 			
@@ -109,7 +109,7 @@
 				obj.put("img_path", "/upload/"+img_path);
 			}
 			
-			obj.put("pd_name", strDecode(pd_name));
+			obj.put("pd_name", URLDecoder.decode(pd_name));
 			obj.put("price", price);
 			obj.put("card_discount", card_discount);
 			obj.put("card_discount_from_date", card_discount_from_date);
@@ -123,7 +123,7 @@
 			obj.put("pd_no", pd_no);
 			obj.put("pd_code", strDecode(pd_code));
 			obj.put("vmjz_no", strDecode(vmjz_no));
-			obj.put("weight", strDecode(weight));
+
 			obj.put("from_date", strDecode(from_date));
 			obj.put("to_date", strDecode(to_date));
 			
