@@ -426,8 +426,8 @@ function getPdContent(rcv_jd_no) {
 					text += '    						  </div>'
 					text += '    					   </td>'
 					text += '    					  <td>'		
-						//2020-06-03 김수경 쿠폰할인가 살림			
-					text += '    					   '+ decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원'
+					//2020-06-03 김수경 쿠폰 추가할인 문구 삭제				
+					text += '    					   '+comma(item['coupon_discount'])+'원'
 					text += '    					  </td>'
 					text += '    					 </tr>'
 				}
