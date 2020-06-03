@@ -353,7 +353,7 @@ function getPdContent(rcv_jd_no) {
 				}else if(item['coupon_discount'] != "")
 				{
 						//2020-06-03 김수경 쿠폰할인가 살림
-					                   var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
+					                   var couponed = Number(item['price']) - Number(item['coupon_discount']);
 										text += '   <a class="price3">'+comma(couponed)+'</a>'
 						//2020-06-03 김수경 쿠폰할인가 살림
 				}else{
