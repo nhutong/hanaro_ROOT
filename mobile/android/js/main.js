@@ -300,7 +300,9 @@ function adModal(){
 					text +='	</div>';
 					text +='	<div class="main_modal_btn_wrap">';		
 					text +='		<div class="main_modal_week_close" id="mainModalWeekCls">';
-					text +='			일주일간 보지 않기';
+					// 2020.06.03 김수경 하루동안 보지 않기로 변경
+					// text +='			일주일간 보지 않기';
+					text +='			하루동안 보지 않기';
 					text +='		</div>';
 					text +='		<div class="main_modal_close" id="mainModalCls">';
 					text +='			닫기';	
@@ -341,7 +343,9 @@ function adModal(){
 //						setCookies( popUpName, "done" , expdate );
 
 						var expdate = new Date();
-						localStorage.setItem("popupDate",expdate.setDate(expdate.getDate()+7));
+						// 2020.06.03 김수경 하루동안 보지 않기로 변경
+						// localStorage.setItem("popupDate",expdate.setDate(expdate.getDate()+7));
+						localStorage.setItem("popupDate",expdate.setDate(expdate.getDate()+1));
 
 						$open_popmsg.hide();
 						e.preventDefault();

@@ -95,7 +95,9 @@ function adModal(){
 					text +='	</div>';
 					text +='	<div class="main_modal_btn_wrap">';		
 					text +='		<div class="main_modal_week_close" id="mainModalWeekCls">';
-					text +='			일주일간 보지 않기';
+					// 20.06.03 김수경 하루동안 보지 않기로 변경
+					// text +='			일주일간 보지 않기'; 
+					text +='			하루동안 보지 않기';
 					text +='		</div>';
 					text +='		<div class="main_modal_close" id="mainModalCls">';
 					text +='			닫기';	
@@ -120,11 +122,14 @@ function adModal(){
 						$open_popmsg.hide();
 				})
 
-				//일주일간 닫기 버튼
+				// 20.06.03 김수경 하루동안 보지 않기로 변경
+				//하루동안 닫기 버튼
 				$close_btn2.click(function(e) {
 					var expdate = new Date(),
-						remainHours = 167 - expdate.getHours(),
-						remainMin = 60 - expdate.getMinutes();			
+					remainHours = 23 - expdate.getHours(),
+					remainMin = 60 - expdate.getMinutes();			
+					// remainHours = 167 - expdate.getHours(),
+					// 	remainMin = 60 - expdate.getMinutes();			
 						expdate.setTime( expdate.getTime() + ( remainHours * 60 * 60 * 1000 ) + ( remainMin * 60 * 1000 ) );
 						   
 						setCookies( popUpName, "done" , expdate );
