@@ -352,7 +352,7 @@ function getPdContent(rcv_jd_no) {
 				//200603 김수경 최종혜택가 표시
 				if (item['card_discount'] != "" && item['coupon_discount'] != ""){
 					var summed = Number(item['price']) - Number(item['card_discount']) - Number(item['coupon_discount']);
-					text += '    	  <a class="price2">'+comma(summed)+'</a>'
+					text += '    	  <a class="price4">'+comma(summed)+'</a>'
 			    }else if (item['card_discount'] != "")
 				{
 					var carded = Number(item['price']) - Number(item['card_discount']);
@@ -381,7 +381,7 @@ function getPdContent(rcv_jd_no) {
 				//200603 김수경 상품상세팝업에 카드할인가와 쿠폰할인가 표시
 				if  (decodeURIComponent(item['card_discount']) != "" && decodeURIComponent(item['coupon_discount']) != ""){
 					var summed = Number(item['price']) - Number(item['card_discount']) - Number(item['coupon_discount']);
-					text += '    	  <div class="leaflet_modal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
+					text += '    	  <div class="leaflet_modal_price4"><h6 style="font-family: Noto Sans KR; display:inline-block;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
 				}else if (decodeURIComponent(item['card_discount']) != ""){
 					var carded = Number(item['price']) - Number(item['card_discount']);
 					text += '    	  <div class="leaflet_modal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block;">카드할인가</h6> '+comma(carded)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
@@ -420,7 +420,22 @@ function getPdContent(rcv_jd_no) {
 					text += '    					  </td>'
 					text += '    					</tr>'
 				}
-				
+
+				//최종혜택(200603 김수경 추가)
+				if (item['card_discount'] != "" && item['coupon_discount'] != ""){}
+				text += '    					<tr class="hide table-line">'
+				text += '    					   <td>'
+				text += '    						  <div class="discount_img">'
+				text += '    							 <img src="../images/leaflet_icon0.png" alt="최종혜택">'
+				text += '    						  </div>'
+				text += '    					   </td>'
+				text += '    					  <td>'		
+				var cardncoupon = Number(item['card_discount']) + Number(item['coupon_discount']);
+				text += '    					   '+comma(item['cardncoupon'])+'원'
+				text += '    					  </td>'
+				text += '    					 </tr>'
+			}
+			
 				// 카드할인
 				if (decodeURIComponent(item['card_discount']) != ""){
 					text += '    				   <tr class="hide table-line">'
@@ -452,20 +467,6 @@ function getPdContent(rcv_jd_no) {
 					text += '    					 </tr>'
 				}
 				
-				//최종혜택(200603 김수경 추가)
-				if (item['card_discount'] != "" && item['coupon_discount'] != ""){}
-				text += '    					<tr class="hide table-line">'
-				text += '    					   <td>'
-				text += '    						  <div class="discount_img">'
-				text += '    							 <img src="../images/leaflet_icon0.png" alt="최종혜택">'
-				text += '    						  </div>'
-				text += '    					   </td>'
-				text += '    					  <td>'		
-				var cardncoupon = Number(item['card_discount']) + Number(item['coupon_discount']);
-				text += '    					   '+comma(item['cardncoupon'])+'원'
-				text += '    					  </td>'
-				text += '    					 </tr>'
-			}
 				//다다익선
 				if (decodeURIComponent(item['dadaiksun']) != ""){				
 					text += '    					<tr class="hide table-line">'

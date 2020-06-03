@@ -1052,6 +1052,15 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
+.figure1 .price4{
+    font-size: 24px;
+    letter-spacing: -1px;
+    height: 28px;
+    overflow: hidden;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
 /*2020-05-11 전단1열 행사가격 크기 수정 - 미솔*/
 
 
@@ -1079,6 +1088,17 @@ header nav ul li.active a{
 }
 
 .figure2 .price3{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 18px;
+    overflow: hidden;
+    height: 23px;
+    text-overflow: ellipsis;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.figure2 .price4{
     display: block;
     letter-spacing: -1px;
     font-size: 18px;
@@ -1122,6 +1142,17 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
+.figure3 .price4{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 16px;
+    overflow: hidden;
+    height: 19px;
+    text-overflow: ellipsis;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
 .figure3 .price, .price2, .price3, .price4{
     display: block;
     letter-spacing: -1px;
@@ -1149,7 +1180,7 @@ header nav ul li.active a{
 }
 
 .price4{
-    color: #55B190;
+    color: #005ba1;
 }
 
 
@@ -1281,6 +1312,15 @@ header nav ul li.active a{
     font-weight: 900;
     font-family: 'Roboto';
 }
+
+.leaflet_modal_wrap .leaflet_modal_price4{
+    font-size: 20px;
+    text-align: center;
+    color: #005ba1;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
 
 /* 2020-06-03 폰트사이즈 수정 미솔*/
 
