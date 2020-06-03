@@ -1,6 +1,6 @@
 //모바일에 serverUrl을 추가하기 위해 전역변수 선언
 var serverUrl = "";
-if(isapp()) serverUrl = "https://www.nhhanaromart.com";
+if(isApp()) serverUrl = "https://www.nhhanaromart.com";
 else serverUrl = "";
 
 $(function(){
@@ -33,7 +33,7 @@ $(function(){
 })
 
 // app인지 web인지 판단
-function isapp(){
+function isApp(){
     console.log("navigator.userAgent:"+navigator.userAgent);    
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
         return true;
@@ -45,6 +45,19 @@ function isapp(){
     // if ( document.URL.indexOf('http://') || document.URL.indexOf('https://') ){
     // } 
 }
+
+function isPrivateIp(){
+    $.ajax({
+       url: 'ping.html',
+       type: 'HEAD',
+       success: function(result){
+          alert('reply');
+       },     
+       error: function(result){
+           alert('timeout/error');
+       }
+    });
+ }
 
 // 파라미터를 받는 공통 함수
 function getParameterByName(name) {
