@@ -405,21 +405,6 @@ function getPdContent(rcv_jd_no) {
 					text += '    					</tr>'
 				}
 
-				//다다익선
-				if (decodeURIComponent(item['dadaiksun']) != ""){				
-					text += '    					<tr class="hide table-line">'
-					text += '    					   <td>'
-					text += '    						  <div class="discount_img">'
-					text += '    							 <img src="../images/leaflet_icon3.png" alt="다다익선">'
-					text += '    						  </div>'
-					text += '    					   </td>'
-					text += '    					  <td>'					
-					text += '    					   '+item['dadaiksun']
-					text += '    					   / '+item['dadaiksun_info']
-					text += '    					  </td>'					
-					text += '    					 </tr>'
-				}
-
 				//쿠폰할인
 				if (decodeURIComponent(item['coupon_discount']) != ""){
 					text += '    					<tr class="hide table-line">'
@@ -433,6 +418,21 @@ function getPdContent(rcv_jd_no) {
 					text += '    					   '+comma(item['coupon_discount'])+'원'					
 					// text += '    					   '+ decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원'
 					text += '    					  </td>'
+					text += '    					 </tr>'
+				}
+
+				//다다익선
+				if (decodeURIComponent(item['dadaiksun']) != ""){				
+					text += '    					<tr class="hide table-line">'
+					text += '    					   <td>'
+					text += '    						  <div class="discount_img">'
+					text += '    							 <img src="../images/leaflet_icon3.png" alt="다다익선">'
+					text += '    						  </div>'
+					text += '    					   </td>'
+					text += '    					  <td>'					
+					text += '    					   '+item['dadaiksun']
+					text += '    					   / '+item['dadaiksun_info']
+					text += '    					  </td>'					
 					text += '    					 </tr>'
 				}
 
