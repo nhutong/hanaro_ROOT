@@ -398,7 +398,7 @@
 /* 찜하기 버튼 클릭한다. */
 function addRmZzim(rcv_jd_prod_con_no){
 	$.ajax({
-        url:'https://www.nhhanaromart.com/back/02_app/mLeafletZzim.jsp?random=' + (Math.random()*99999),
+        url:'/back/02_app/mLeafletZzim.jsp?random=' + (Math.random()*99999),
 		data : {
 			memberNo: localStorage.getItem("memberNo"),
 			jd_prod_con_no: rcv_jd_prod_con_no, 
