@@ -20,10 +20,11 @@
         if(result.trim() == 'NoN' || result == 'list error' || result == 'empty'){
             console.log(result);
 
-			text +='<div class="list_no_item">찜한 상품이 없습니다.<br> 마음에 드는 상품을 찜해두었다가 매장에서 확인하세요!</div>'
+			text +='<div class="list_no_item">마음에 드는 상품을 찜해두셨다가 매장에서 확인하세요!</div>'
 
 			$("#zzimListWrap").empty();
 			$("#zzimListWrap").append(text);
+            $("#zzim_guide").hide();
         }else{
             console.log("============= notice callback ========================");
             console.log(result);
@@ -34,8 +35,29 @@
 				text += '<div class="figure figure3" id="item'+item['jd_prod_con_no']+'">';
                 text += '   <div class="thumb_wrap">';
                 text += '		<a ><img src="'+item['img_path']+'" alt="'+item['pd_name']+'"></a>';
-                text += '		<div class="discount_info">';
+                //text += '		<div class="discount_info">';
 
+				text += '		<div class="thumb_info">'
+
+				if (localStorage.getItem("memberNo") != '')
+				{
+					if (item['img_path'] == "/upload/blank.png")
+					{
+					}else{
+						if (item['vmjz_no'] != '')
+						{
+							text += '			<div class="add_btn active" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'   
+						}else{
+							text += '			<div class="add_btn" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'
+						}		
+					}
+				}else{
+
+				}
+                
+				text += '		</div>'
+				text += '		<div class="discount_info">'
+				
 				// 최종혜택(20200603 김수경 추가)
 				if (item['card_discount'] != "" && item['coupon_discount'] != "")
 				{
@@ -354,6 +376,7 @@
 		
 			$("#zzimListWrap").empty();
 			$("#zzimListWrap").append(text);
+            $("#zzim_guide").show();
 
 			$(".product_detail").click(function(){
 			   $(this).parent(".figure").children(".leaflet_cont").addClass("active");
@@ -368,6 +391,30 @@
 				   $(this).toggleClass("like");   
 			})
 
+        }
+    });
+}
+
+/* 찜하기 버튼 클릭한다. */
+function addRmZzim(rcv_jd_prod_con_no){
+	$.ajax({
+        url:'https://www.nhhanaromart.com/back/02_app/mLeafletZzim.jsp?random=' + (Math.random()*99999),
+		data : {
+			memberNo: localStorage.getItem("memberNo"),
+			jd_prod_con_no: rcv_jd_prod_con_no, 
+			vm_cp_no: localStorage.getItem("vm_cp_no")
+			},
+        method : 'GET' 
+    }).done(function(result){
+
+        console.log("noticeList=========================================");
+        if(result == ('NoN') || result == 'exception error' || result == 'empty'){
+            console.log(result);
+        }else{
+            console.log("============= notice callback ========================");
+            console.log(result);
+			//zzimCount(localStorage.getItem("memberNo"), localStorage.getItem("vm_cp_no"));
+			zzimList(localStorage.getItem("memberNo"));
         }
     });
 }
