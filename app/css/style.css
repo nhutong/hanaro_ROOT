@@ -1040,8 +1040,9 @@ header nav ul li.active a{
     height: 28px;
     overflow: hidden;
     font-weight: 900;
-    font-family: 'Roboto'; */
-}
+    font-family: 'Roboto';
+} */
+
 /*2020-05-11 전단1열 행사가격 크기 수정 - 미솔*/
 
 
@@ -1064,8 +1065,8 @@ header nav ul li.active a{
     height: 23px;
     text-overflow: ellipsis;
     font-weight: 900;
-    font-family: 'Roboto'; */
-}
+    font-family: 'Roboto';
+} */
 
 .figure2 .price,.price2,.price3,.price4{
     display: block;
