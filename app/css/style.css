@@ -2423,11 +2423,22 @@ margin-bottom: 3px;
     display: block;
 }
 
-/*2020.05.22 심규문 매장주소 css 추가*/
+/* 2020.05.22 심규문 매장주소 css 추가
 .offline_address{
     font-size: 14px;
     vertical-align: top;
     width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+} */
+
+/*2020.06.03 김수경 매장주소 css 수정*/
+.offline_address{
+    font-size: 11px;
+    vertical-align: top;
+    width: 90%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

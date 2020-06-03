@@ -23,7 +23,7 @@ function getMapContent(){
 			text +=' <li class="offline_inner_wrap">';
 			text +='	<div class="locationClick" style="width:250px;" onclick="convertToStore('+jsonResult_comp[i].VM_CP_NO+', \''+jsonResult_comp[i].VM_CP_NAME+'\');">';
 			text +='      <span class="offline_title">하나로마트 '+ jsonResult_comp[i].VM_CP_NAME +'</span>';
-			text +='      <span class="offline_address">주소 : '+ jsonResult_comp[i].VM_ADDRESS +'</span>';  //2020.05.22 심규문 매장주소 추가
+			text +='      <span class="offline_address">'+ jsonResult_comp[i].VM_ADDRESS +'</span>';  //2020.05.22 심규문 매장주소 추가 //2020.06.03 김수경 '주소 :' 없앰
             text +='     <a href="#" class="offline_tel">Tel. '+ jsonResult_comp[i].VM_TEL +'</a>';
 			text +='	</div>';
             text +='     <span class="offline_btn"><img src="../images/down.png" ';
