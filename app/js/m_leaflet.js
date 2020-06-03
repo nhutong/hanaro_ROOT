@@ -370,7 +370,14 @@ function getPdContent(rcv_jd_no) {
 				text += '    		 <img src="'+item['img_path']+'" alt="'+item['pd_name']+'">'
 				text += '    	  </div>'
 				text += '    	  <div class="leaflet_modal_title">'+item['pd_name']+'</div>'
-				text += '    	  <div class="leaflet_modal_price">'+comma(item['price'])+'원</div>'									
+				text += '    	  <div class="leaflet_modal_price">'+comma(item['price'])+'원</div>'
+				//200603 김수경 상품상세팝업에 카드할인가와 쿠폰할인가 표시
+				if (decodeURIComponent(item['card_discount']) != ""){
+					text += '    	  <div class="leaflet_modal_price2">'+comma(item['card_discount'])+'원(카드할인가)</div>'
+				}else if (decodeURIComponent(item['coupon_discount']) != ""){
+					text += '    	  <div class="leaflet_modal_price3">'+comma(item['ccoupon_discount'])+'원 (쿠폰할인가)</div>'
+				}
+				//200603 김수경 상품상세팝업에 카드할인가와 쿠폰할인가 표시
 				text += '    	  <div class="leaflet_txt">'
 				text += '    		  <div class="leaflet_discount">'                 
 				text += '    			 <h5>혜택 및 상품 정보 안내</h5>'

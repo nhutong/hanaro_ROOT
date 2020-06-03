@@ -1265,6 +1265,23 @@ header nav ul li.active a{
     font-weight: 900;
     font-family: 'Roboto';
 }
+
+.leaflet_modal_wrap .leaflet_modal_price2{
+    font-size: 20px;
+    text-align: center;
+    color: #333;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.leaflet_modal_wrap .leaflet_modal_price3{
+    font-size: 20px;
+    text-align: center;
+    color: #333;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
 /* 2020-06-03 폰트사이즈 수정 미솔*/
 
 .leaflet_modal_wrap #table{
