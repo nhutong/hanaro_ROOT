@@ -993,6 +993,14 @@ header nav ul li.active a{
 }
 /*2020-05-11 전단1열 행사가격 크기 수정 - 미솔*/
 
+.figure1 .price3{
+    font-size: 24px;
+    letter-spacing: -1px;
+    height: 28px;
+    overflow: hidden;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
 
 .figure1 .price,.price2,.price3,.price4{
     display: block;
@@ -1006,6 +1014,17 @@ header nav ul li.active a{
 }
 
 .figure2 .price2{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 18px;
+    overflow: hidden;
+    height: 23px;
+    text-overflow: ellipsis;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.figure2 .price3{
     display: block;
     letter-spacing: -1px;
     font-size: 18px;
