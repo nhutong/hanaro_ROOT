@@ -536,15 +536,15 @@ function getPdContent(rcv_jd_no) {
 				if (item['card_discount'] != "")
 				{
 					text += '		<img src="../images/leaflet_icon1.png" alt="카드할인">'
-				// 다다익선
-				}else if (item['dadaiksun'] != "")
-				{
-					text += '		<img src="../images/leaflet_icon3.png" alt="다다익선">'
-					text += '       '
 				// 쿠폰할인
 				}else if (item['coupon_discount'] != "")
 				{
 					text += '		<img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
+					text += '       '
+				// 다다익선
+				}else if (item['dadaiksun'] != "")
+				{
+					text += '		<img src="../images/leaflet_icon3.png" alt="다다익선">'
 					text += '       '
 				// 적용사항 없음
 				}else{
@@ -577,8 +577,11 @@ function getPdContent(rcv_jd_no) {
 					text += '   <a class="price2">'+comma(carded)+'</a>' //2020-05-07 원 삭제 - 미솔
 				}else if(item['coupon_discount'] != "")
 				{
-//                    var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
-//					text += '   <a class="price3">'+comma(couponed)+'원</a>'
+					//2020-06-03 김수경 쿠폰할인가 살림		
+					//                    var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
+					//					text += '   <a class="price3">'+comma(couponed)+'원</a>'
+					var couponed = Number(item['price']) - Number(item['coupon_discount']);
+					text += '   <a class="price3">'+comma(couponed)+'</a>'					
 				}else{
                     
                 }
@@ -627,6 +630,19 @@ function getPdContent(rcv_jd_no) {
 					text += '    					</tr>'
 				}
 
+				//쿠폰할인
+				if (decodeURIComponent(item['coupon_discount']) != ""){
+					text += '    					<tr class="hide table-line">'
+					text += '    					   <td>'
+					text += '    						  <div class="discount_img">'
+					text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
+					text += '    						  </div>'
+					text += '    					   </td>'
+					//2020-06-03 김수경 쿠폰 추가할인 문구 삭제				
+					text += '    					   '+comma(item['coupon_discount'])+'원'
+					text += '    					 </tr>'
+				}
+				
 				//다다익선
 				if (decodeURIComponent(item['dadaiksun']) != ""){				
 					text += '    					<tr class="hide table-line">'
@@ -640,18 +656,21 @@ function getPdContent(rcv_jd_no) {
 					text += '    					 </tr>'
 				}
 
-				//쿠폰할인
-				if (decodeURIComponent(item['coupon_discount']) != ""){
+
+				//기타내용
+				if (decodeURIComponent(item['etc']) != ""){		
 					text += '    					<tr class="hide table-line">'
 					text += '    					   <td>'
 					text += '    						  <div class="discount_img">'
-					text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
+					text += '    							 <img src="../images/leaflet_icon9.png" alt="기타사항">'
 					text += '    						  </div>'
-					text += '    					   </td>'
-					text += '    					   <td colspan=3>'+decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원 추가할인</td>'
-					text += '    					 </tr>'
+					text += '    					   </td>'					
+					text += '    					  <td>'					
+					text += '                            '+ decodeURIComponent(item['etc'])
+					text += '    					  </td>'
+					text += '    					 </tr>'							
 				}
-
+				
 				text += '    				 </table>'
 				text += '    			 </div>'
 				text += '    			   <span class="discount_notice">※상품의 가격 및 내용은 공급자 사정에 따라 다소 변경될 수 있으며 조기품절 될 수 있습니다. <br> ※일부 상품 사진은 이미지컷입니다. <br> ※카드/쿠폰할인,다다익선은 매장방문고객에 한합니다.</span>'
