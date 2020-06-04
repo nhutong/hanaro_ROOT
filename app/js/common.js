@@ -31,6 +31,7 @@ $(function(){
 
 	jd_no = getParameterByName('jd_no');
 
+	// nav 메뉴 상단고정 20200604 JB
 	$( document ).ready( function() {
 		var navOffset = $( 'nav' ).offset();
 		$( window ).scroll( function() {
