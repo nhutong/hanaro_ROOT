@@ -213,24 +213,18 @@ function getBanner(rcv_jd_no_b) {
 		data : {jd_no: rcv_jd_no_b},
 		method : 'GET' 
 	}).done(function(result){
-		//console.log("aaaa  BannerList========================================="+result);
 		if(result == ('NoN') || result == 'list error' || result == 'empty'){
 			$(".bxslider").html("");
+			sliderInstance.reloadSlider();			
 			var isInIFrame = ( window.location != window.parent.location );
 			if (isInIFrame == true){
 				$(".bxslider").append('<li onclick="getBannerList('+rcv_jd_no_b+')" style="width:45%;text-align:center;color:#20469a;">전단 배너가 없어요☹(눌러서 추가하기)</a></li>');
-			}								
-			//console.log(result);
-			$(".bx-wrapper").css({minHeight:'3px', height:'3px'});
-			$(".bx-pager-item").hide();
+				$(".bxslider").css("height","20px");				
+			}					
 		}else{
 			$(".bxslider").html("");
-			//console.log("============= Banner callback ========================");
-			//console.log(result);
-			$(".bxslider").css({minHeight:'75px', height:'75px', position:'relative'});
 			var data = JSON.parse(result);
 			data['BannerList'].forEach(function(item, index){  
-				$(".bxslider").empty();
 				var isInIFrame = ( window.location != window.parent.location );
 				if (isInIFrame == true){
 					$(".bxslider").append('<li><img onclick="getBannerList('+decodeURIComponent(item['jd_no'])+')" src="'+decodeURIComponent(item['jb_img_path']).replace(/\+/g,' ')+'" style="width : 100%;"></li>');
