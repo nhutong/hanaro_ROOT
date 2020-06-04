@@ -532,8 +532,12 @@ function getPdContent(rcv_jd_no) {
 				text += '		</div>'
                 text += '		<div class="discount_info">'
 
+				// 최종혜택(20200603 김수경 추가)
+				if (item['card_discount'] != "" && item['coupon_discount'] != "")
+				{
+					text += '		<img src="../images/leaflet_icon0.png" alt="최종혜택">'
 				// 카드할인
-				if (item['card_discount'] != "")
+				}else if (item['card_discount'] != "")
 				{
 					text += '		<img src="../images/leaflet_icon1.png" alt="카드할인">'
 				// 쿠폰할인
@@ -571,12 +575,17 @@ function getPdContent(rcv_jd_no) {
 					text += '       <a class="price">'+comma(item['price'])+'</a>' //2020-05-07 원 삭제 - 미솔
 				}
 
-				if (item['card_discount'] != "")
+				//200603 김수경 최종혜택가 표시
+				if (item['card_discount'] != "" && item['coupon_discount'] != ""){
+					var summed = Number(item['price']) - Number(item['card_discount']) - Number(item['coupon_discount']);
+					text += '    	  <a class="price4">'+comma(summed)+'</a>'
+			    }else if (item['card_discount'] != "")
 				{
 					var carded = Number(item['price']) - Number(item['card_discount']);
 					text += '   <a class="price2">'+comma(carded)+'</a>' //2020-05-07 원 삭제 - 미솔
 				}else if(item['coupon_discount'] != "")
 				{
+
 					//2020-06-03 김수경 쿠폰할인가 살림		
 					//                    var couponed = Number(decodeURIComponent(item['price']).replace(/\+/g,' ')) - Number(decodeURIComponent(item['coupon_discount']).replace(/\+/g,' '));
 					//					text += '   <a class="price3">'+comma(couponed)+'원</a>'
@@ -642,7 +651,22 @@ function getPdContent(rcv_jd_no) {
 					text += '    					   '+comma(item['coupon_discount'])+'원'
 					text += '    					 </tr>'
 				}
-				
+
+				//최종혜택(200603 김수경 추가)
+				if (item['card_discount'] != "" && item['coupon_discount'] != ""){
+					text += '    					<tr class="hide table-line">'
+					text += '    					   <td>'
+					text += '    						  <div class="discount_img">'
+					text += '    							 <img src="../images/leaflet_icon0.png" alt="최종혜택">'
+					text += '    						  </div>'
+					text += '    					   </td>'
+					text += '    					  <td>'		
+					var cardncoupon = Number(item['card_discount']) + Number(item['coupon_discount']);
+					text += '    					   '+comma(cardncoupon)+'원 (카드+쿠폰)'
+					text += '    					  </td>'
+					text += '    					 </tr>'
+				}
+					
 				//다다익선
 				if (decodeURIComponent(item['dadaiksun']) != ""){				
 					text += '    					<tr class="hide table-line">'
@@ -655,7 +679,6 @@ function getPdContent(rcv_jd_no) {
 					text += '    					   <td colspan=3>'+item['dadaiksun_info']+'</td>';  
 					text += '    					 </tr>'
 				}
-
 
 				//기타내용
 				if (decodeURIComponent(item['etc']) != ""){		

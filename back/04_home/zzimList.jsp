@@ -103,7 +103,7 @@
 						
 			obj.put("menu_type_cd", menu_type_cd);
 			obj.put("jd_prod_con_no", jd_prod_con_no);
-			if (img_path == ""){
+			if (img_path.equals("")){
 				obj.put("img_path", "/images/no_thumb.png");
 			}else{
 				obj.put("img_path", "/upload/"+img_path);

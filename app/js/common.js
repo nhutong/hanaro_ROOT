@@ -30,6 +30,19 @@ $(function(){
 	}
 
 	jd_no = getParameterByName('jd_no');
+
+	// nav 메뉴 상단고정 20200604 JB
+	$( document ).ready( function() {
+		var navOffset = $( 'nav' ).offset();
+		$( window ).scroll( function() {
+		  if ( $( document ).scrollTop() > navOffset.top ) {
+			$( 'nav' ).addClass( 'active' );
+		  }
+		  else {
+			$( 'nav' ).removeClass( 'active' );
+		  }
+		});
+	  });
 })
 
 // app인지 web인지 판단

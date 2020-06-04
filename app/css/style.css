@@ -432,6 +432,18 @@ header nav{
 /*     -ms-overflow-style: none; */
 }
 
+/* nav 상단 고정 */
+header nav.active {
+    top: 0px;
+    position: fixed;
+    background-color: #FFF;
+    z-index: 9;
+/*    width: 100%;
+    overflow-x: scroll;
+/*    overflow-style: none;*/
+/*     -ms-overflow-style: none; */
+}
+
 #prod_cont_count{
     /* position: absolute; */
     display: inline-block;
@@ -1052,6 +1064,15 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
+.figure1 .price4{
+    font-size: 24px;
+    letter-spacing: -1px;
+    height: 28px;
+    overflow: hidden;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
 /*2020-05-11 전단1열 행사가격 크기 수정 - 미솔*/
 
 
@@ -1089,7 +1110,16 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
-.figure2 .price, .price2, .price3, .price4{
+.figure1 .price4{
+    font-size: 24px;
+    letter-spacing: -1px;
+    height: 28px;
+    overflow: hidden;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.figure2 .price,.price2,.price3,.price4{
     display: block;
     letter-spacing: -1px;
     font-size: 18px;
@@ -1122,7 +1152,18 @@ header nav ul li.active a{
     font-family: 'Roboto';
 }
 
-.figure3 .price, .price2, .price3, .price4{
+.figure3 .price4{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 16px;
+    overflow: hidden;
+    height: 19px;
+    text-overflow: ellipsis;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.figure3 .price,.price2,.price3,.price4{
     display: block;
     letter-spacing: -1px;
     font-size: 16px;
@@ -1149,7 +1190,7 @@ header nav ul li.active a{
 }
 
 .price4{
-    color: #55B190;
+    color: #005ba1;
 }
 
 
@@ -1257,14 +1298,39 @@ header nav ul li.active a{
     text-align: center;
     font-weight: 500;
 }
-
+/* 2020-06-03 폰트사이즈 수정 수경*/
 .leaflet_modal_wrap .leaflet_modal_price{
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     color: #333;
     font-weight: 900;
     font-family: 'Roboto';
 }
+
+.leaflet_modal_wrap .leaflet_modal_price2{
+    font-size: 20px;
+    text-align: center;
+    color: #ff0000;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.leaflet_modal_wrap .leaflet_modal_price3{
+    font-size: 20px;
+    text-align: center;
+    color: #417361;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
+.leaflet_modal_wrap .leaflet_modal_price4{
+    font-size: 20px;
+    text-align: center;
+    color: #005ba1;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
+
 /* 2020-06-03 폰트사이즈 수정 미솔*/
 
 .leaflet_modal_wrap #table{

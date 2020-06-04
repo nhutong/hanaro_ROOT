@@ -24,13 +24,14 @@
 		    +" ifnull(b.pd_name,'') as pd_name, ifnull(b.price,'') as price, ifnull(b.card_discount,'') as card_discount, "
 			+" b.card_discount_from_date, b.card_discount_end_date, "
 			+" ifnull(b.card_info,'') as card_info, ifnull(b.card_restrict,'') as card_restrict, "
-			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, ifnull(b.etc,'') as etc, c.pd_no, c.pd_code, ifnull(e.vmjz_no,'') as vmjz_no "
+			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, "
+			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, ifnull(e.vmjz_no,'') as vmjz_no, b.weight "
 			+" FROM vm_jundan AS a "
 			+" inner join vm_menu as ab "
 			+" on a.menu_no = ab.menu_no "
 			+" INNER JOIN vm_jundan_prod_content AS b "
 			+" ON a.jd_no = b.ref_jd_no "
-			+" inner join vm_product AS c "
+			+" left outer join vm_product AS c "
 			+" ON b.ref_pd_no = c.pd_no "
 			+" left outer join vm_product_image AS d "
 			+" ON b.ref_img_no = d.img_no "
@@ -38,7 +39,7 @@
 			+" on b.jd_prod_con_no = e.jd_prod_con_no "
 			+" WHERE a.jd_no = "+jd_no
 			+"   and IFNULL(a.show_fg,'N') = 'Y' "
-			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,3";
+			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,6";
 
 		}else{
 
@@ -46,19 +47,21 @@
 		    +" ifnull(b.pd_name,'') as pd_name, ifnull(b.price,'') as price, ifnull(b.card_discount,'') as card_discount, "
 			+" b.card_discount_from_date, b.card_discount_end_date, "
 			+" ifnull(b.card_info,'') as card_info, ifnull(b.card_restrict,'') as card_restrict, "
-			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, ifnull(b.etc,'') as etc, c.pd_no, c.pd_code, '' as vmjz_no "
+			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, "
+			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, '' as vmjz_no, b.weight "
 			+" FROM vm_jundan AS a "
 			+" inner join vm_menu as ab "
 			+" on a.menu_no = ab.menu_no "
 			+" INNER JOIN vm_jundan_prod_content AS b "
 			+" ON a.jd_no = b.ref_jd_no "
-			+" inner join vm_product AS c "
+			+" left outer join vm_product AS c "
 			+" ON b.ref_pd_no = c.pd_no "
 			+" left outer join vm_product_image AS d "
 			+" ON b.ref_img_no = d.img_no "
 			+" WHERE a.jd_no = "+jd_no
 			+"   and IFNULL(a.show_fg,'N') = 'Y' "
-			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,3";	
+			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,6";
+
 
 		}
 //	out.print(sql);
@@ -108,18 +111,19 @@
 			String pd_no				   = rs.getString("pd_no");									  // 전단 매핑상품번호
 			String pd_code				   = rs.getString("pd_code");								  // 전단 상품코드
 			String vmjz_no				   = rs.getString("vmjz_no");
+			String weight				   = rs.getString("weight");
 			
 			JSONObject obj = new JSONObject();
 						
 			obj.put("menu_type_cd", menu_type_cd);
 			obj.put("jd_prod_con_no", jd_prod_con_no);
-			if (img_path == ""){
+			if (img_path.equals("")){
 				obj.put("img_path", "/images/no_thumb.png");
 			}else{
 				obj.put("img_path", "/upload/"+img_path);
 			}
 			
-			obj.put("pd_name", URLDecoder.decode(pd_name));
+			obj.put("pd_name", strDecode(pd_name));
 			obj.put("price", price);
 			obj.put("card_discount", card_discount);
 			obj.put("card_discount_from_date", card_discount_from_date);
@@ -133,6 +137,7 @@
 			obj.put("pd_no", pd_no);
 			obj.put("pd_code", strDecode(pd_code));
 			obj.put("vmjz_no", strDecode(vmjz_no));
+			obj.put("weight", strDecode(weight));
 			
 			if(obj != null){
 				arr.add(obj);
