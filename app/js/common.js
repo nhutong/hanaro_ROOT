@@ -1,7 +1,31 @@
-//모바일에 serverUrl을 추가하기 위해 전역변수 선언
-var serverUrl = "";
-if(isApp()) serverUrl = "https://www.nhhanaromart.com";
-else serverUrl = "";
+var serverUrl = "https://www.nhhanaromart.com";
+$.ajax({
+	beforeSend: function(result){
+		console.log("====================[Server Ping Test Start]===================="); 	
+	},
+	url: serverUrl + '/ping.html',
+	type: 'HEAD',
+	success: function(result){ 
+		console.log("=====================[Public Access Success]===================="); 	
+		console.log("=====================[Server Ping Test End]===================="); 				
+	},     
+	error: function(result){ 
+		$.ajax({
+			url: '/ping.html',
+			type: 'HEAD',
+			success: function(result){ 
+				serverUrl = ""; 	
+				console.log("=====================[Private Access Success]====================");
+			},     
+			error: function(result){ 
+				console.log("=====================[Public & Private Access Fail]====================");
+			},
+			complete: function(result){
+				console.log("=====================[Server Ping Test End]===================="); 				
+			}
+		});		
+	}
+});
 
 $(function(){
 
@@ -44,33 +68,6 @@ $(function(){
 		});
 	  });
 })
-
-// app인지 web인지 판단
-function isApp(){
-    console.log("navigator.userAgent:"+navigator.userAgent);    
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-        return true;
-		//document.addEventListener("deviceready", onDeviceReady, false);
-	} else {
-		return false;
-		//onDeviceReady(); //this is the browser
-    }
-    // if ( document.URL.indexOf('http://') || document.URL.indexOf('https://') ){
-    // } 
-}
-
-function isPrivateIp(){
-    $.ajax({
-       url: 'https://www.nhhanaromart.com/ping.html',
-       type: 'HEAD',
-       success: function(result){
-          alert('reply');
-       },     
-       error: function(result){
-           alert('timeout/error');
-       }
-    });
- }
 
 // 파라미터를 받는 공통 함수
 function getParameterByName(name) {
