@@ -56,18 +56,24 @@ $(function(){
 	jd_no = getParameterByName('jd_no');
 
 	// nav 메뉴 상단고정 20200604 JB
-	$( document ).ready( function() {
-		var navOffset = $( 'nav' ).offset();
-		$( window ).scroll( function() {
-		  if ( $( document ).scrollTop() > navOffset.top ) {
-			$( 'nav' ).addClass( 'active' );
-		  }
-		  else {
-			$( 'nav' ).removeClass( 'active' );
-		  }
-		});
-	  });
-})
+	setTimeout(function() { 
+        var navOffset = $( 'nav' ).offset();
+        if( navOffset === undefined ) {
+        }
+        else {    
+            $( window ).scroll( function() {
+            if ( $( document ).scrollTop() > navOffset.top ) {
+                $( 'nav' ).addClass( 'active' );
+            } 
+            else {
+                $( 'nav' ).removeClass( 'active' );
+            }
+            });
+        }
+	}, 500);
+	
+});
+
 
 // 파라미터를 받는 공통 함수
 function getParameterByName(name) {
