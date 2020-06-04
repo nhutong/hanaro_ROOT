@@ -423,7 +423,7 @@ header #header_inner_wrap div img{
     top: -2px;
 }
 
-header nav{
+nav{
     border-top: 1px solid #e3e3e3;
     border-bottom: 1px solid #e3e3e3;
     width: 100%;
@@ -433,7 +433,7 @@ header nav{
 }
 
 /* nav 상단 고정 */
-header nav.active {
+nav.active {
     top: 0px;
     position: fixed;
     background-color: #FFF;
