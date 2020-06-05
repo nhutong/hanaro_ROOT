@@ -18,7 +18,8 @@
 <body>
     <script>
 
-        if( isApp() ){
+        var isCordovaApp = !!window.cordova;
+        if( isCordovaApp ){
             var initTel = localStorage.getItem("tel");
             var initvm_cp_no = localStorage.getItem("vm_cp_no");
             if (initTel == null){

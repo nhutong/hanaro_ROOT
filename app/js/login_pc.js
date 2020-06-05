@@ -76,7 +76,6 @@ $(function(){
             localStorage.setItem("push_user_agent", jsonResult_member_info[0].push_user_agent);
             localStorage.setItem("mem_resign_date", jsonResult_member_info[0].mem_resign_date);
             localStorage.setItem("mem_resign_fg", jsonResult_member_info[0].mem_resign_fg);
-            localStorage.setItem("pw", user_pw );
             
 			location.href="../home/main.html";
         }
