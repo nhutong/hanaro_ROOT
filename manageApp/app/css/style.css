@@ -1140,10 +1140,10 @@ header nav ul li.active a{
     margin-top: 20px;
 }
 
-/* 2020-06-03 폰트사이즈 수정 및 height값 수정 미솔*/
+/* 2020-06-08 폰트사이즈 수정 및 height값 수정 미솔*/
 .leaflet_discount h5{
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 14px;
     padding-left: 5px;
 }
 
@@ -1156,7 +1156,7 @@ header nav ul li.active a{
     display: inline-block;
     background-color: #55b190;
 }
-/* 2020-06-03 폰트사이즈 수정 및 height값 수정 미솔*/
+/* 2020-06-08 폰트사이즈 수정 및 height값 수정 미솔*/
 
 /*2020-06-08 width값 수정 및 폰트사이즈 수정 미솔*/
 .leaflet_modal_wrap #table tr th,
