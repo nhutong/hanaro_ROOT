@@ -93,7 +93,7 @@ $("#couponPrintApply").on("click",function(e){
 
     // 수량제한
 	$("#a4Limit").empty();
-	$("#a4Limit").append($("#popPdLimit").val()+" 한정");
+	$("#a4Limit").append($("#popPdLimit").val());
 
     // 쿠폰할인가 ( DB에 저장되어 여기에 최초로딩시 바인딩되는 쿠폰의 가격이다. 할인이 적용된 상품의 가격이 아니다. )
 	$("#a4Discount").empty();
@@ -136,7 +136,7 @@ $("#couponPrintApply").on("click",function(e){
 
     // 수량제한
 	$("#a3Limit").empty();
-	$("#a3Limit").append($("#popPdLimit").val()+" 한정");
+	$("#a3Limit").append($("#popPdLimit").val());
 
     // 쿠폰할인가 ( DB에 저장되어 여기에 최초로딩시 바인딩되는 쿠폰의 가격이다. 할인이 적용된 상품의 가격이 아니다. )
 	$("#a3Discount").empty();
@@ -174,7 +174,7 @@ $("#couponPrintApply").on("click",function(e){
 
     // 수량제한
 	$("#r200Limit").empty();
-	$("#r200Limit").append($("#popPdLimit").val()+" 한정");
+	$("#r200Limit").append($("#popPdLimit").val());
 
     // 쿠폰할인가 ( DB에 저장되어 여기에 최초로딩시 바인딩되는 쿠폰의 가격이다. 할인이 적용된 상품의 가격이 아니다. )
 	$("#r200Discount").empty();
