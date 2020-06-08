@@ -1350,26 +1350,27 @@ header nav ul li.active a{
 }
 /* 2020-06-03 폰트사이즈 수정 및 height값 수정 미솔*/
 
+/*2020-06-08 width값 수정 및 폰트사이즈 수정 미솔*/
 .leaflet_modal_wrap #table tr th,
 .leaflet_modal_wrap #table tr td{
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .leaflet_modal_wrap #table tr th{
-    background-color: #55b190;
+    background-color: #55B190;
 }
 
 .leaflet_modal_wrap #table tr td{
     background-color: #f8f8f8;
+    border-bottom: 1px solid #c1c1c1 ;
 }
 
-/*2020-06-08 width값 수정 미솔*/
 .discount_img img{
     width: 55px;
     margin: 0; padding: 0;
     text-align: left;
 }
-/*2020-06-08 width값 수정 미솔*/
+/*2020-06-08 width값 수정 및 폰트사이즈 수정 미솔*/
 
 .discount_notice{
     font-size: 12px;
@@ -1383,19 +1384,19 @@ header nav ul li.active a{
     text-align: right;
 }
 .leafletmodal_price{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 900;
     font-family: 'Roboto';
     color: #ff4141;
 }
 .leafletmodal_price2{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 900;
     font-family: 'Roboto';
     color: #417361;
 }
 .leafletmodal_price3{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 900;
     font-family: 'Roboto';
     color: #005ba1;
@@ -1404,7 +1405,7 @@ header nav ul li.active a{
     width: 100%;
 }
 .leaflet_modal_wrap #table .card_s {
-    background-color: #fd0d0d;
+    background-color: #999;
     color: #fff;
     font-weight: 100;
     padding-right: 4px;
