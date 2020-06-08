@@ -429,6 +429,7 @@ function getPdContent(rcv_jd_no) {
 					text += '                         '+comma(item['card_discount'])+'원'
 					text += '    					  </td>'
 					text += '    					  <td width="60%">'
+					var carded = Number(item['price']) - Number(item['card_discount']);
 					text += '    	  					<div class="leafletmodal_price"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">카드할인가</h6> '+comma(carded)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'
 					text += '    					  </td>'
 					text += '    					</tr>'
@@ -453,7 +454,8 @@ function getPdContent(rcv_jd_no) {
 					text += '    					   '+comma(item['coupon_discount'])+'원'					
 					// text += '    					   '+ decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원'
 					text += '    					  </td>'
-					text += '    					  <td width="60%">'			
+					text += '    					  <td width="60%">'		
+					var couponed = Number(item['price']) - Number(item['coupon_discount']);	
 					text += '    	  					<div class="leafletmodal_price"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">쿠폰할인가</h6> '+comma(couponed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'		
 					text += '    					  </td>'	
 					text += '    					 </tr>'
@@ -507,7 +509,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    					  </td>'
 					text += '    					 </tr>'							
 				}
-
+				
 				text += '    				 </table>'
 				text += '    			 </div>'
 				text += '    			   <span class="discount_notice">※상품의 가격 및 내용은 공급자 사정에 따라 다소 변경될 수 있으며 조기품절 될 수 있습니다. <br> ※일부 상품 사진은 이미지컷입니다. <br> ※카드/쿠폰할인,다다익선은 매장방문고객에 한합니다.</span>'
