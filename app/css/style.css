@@ -1404,7 +1404,7 @@ header nav ul li.active a{
     width: 100%;
 }
 .leaflet_modal_wrap #table .card_s {
-    background-color: #555;
+    background-color: #fd0d0d;
     color: #fff;
     font-weight: 100;
     padding-right: 4px;
