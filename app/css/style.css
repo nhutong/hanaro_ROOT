@@ -1414,37 +1414,47 @@ header nav ul li.active a{
 .discount_period{
     background-color: #535353;
     color: #fff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 300;
     text-align: center;
+    font-family: "noto-sans";
+    padding: 2px;
 }
 .discount_card{
     background-color: #ff4141;
     color: #fff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 300;
     text-align: center;
+    font-family: "noto-sans";
+    padding: 2px;
 }
 .discount_coupon{
     background-color: #417361;
     color: #fff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 300;
     text-align: center;
+    font-family: "noto-sans";
+    padding: 2px;
 }
 .discount_last{
     background-color: #005ba1;
     color: #fff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 300;
     text-align: center;
+    font-family: "noto-sans";
+    padding: 2px;
 }
 .discount_m{
     background-color: #f7a300;
     color: #fff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 300;
     text-align: center;
+    font-family: "noto-sans";
+    padding: 2px;
 }
 /*2020-06-08 텍스트정렬CSS추가 미솔*/
 
