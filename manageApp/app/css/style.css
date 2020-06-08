@@ -1193,6 +1193,11 @@ header nav ul li.active a{
 .table-line{
     text-align: right;
 }
+.leafletmodal_price{
+    font-size: 12px;
+    font-weight: 900;
+    font-family: 'Roboto';
+}
 /*2020-06-08 텍스트정렬CSS추가 미솔*/
 
 /*main modal start*/

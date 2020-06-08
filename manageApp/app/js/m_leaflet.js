@@ -650,7 +650,7 @@ function getPdContent(rcv_jd_no) {
 					text += '                         '+comma(item['card_discount'])+'원'
 					text += '    					  </td>'
 					text += '    					  <td width="60%">'
-					text += '    	  					<div class="leaflet_modal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">카드할인가</h6> '+comma(carded)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'
+					text += '    	  					<div class="leafletmodal_price"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">카드할인가</h6> '+comma(carded)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'
 					text += '    					  </td>'
 					text += '    					</tr>'
 					text += '    				   <tr class="hide table-line">'
@@ -675,7 +675,7 @@ function getPdContent(rcv_jd_no) {
 					// text += '    					   '+ decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원'
 					text += '    					  </td>'
 					text += '    					  <td width="60%">'			
-					text += '    	  					<div class="leaflet_modal_price3"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">쿠폰할인가</h6> '+comma(couponed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'		
+					text += '    	  					<div class="leafletmodal_price"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">쿠폰할인가</h6> '+comma(couponed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'		
 					text += '    					  </td>'	
 					text += '    					 </tr>'
 				}
@@ -693,7 +693,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    					   '+comma(cardncoupon)+'원'
 					text += '    					  </td>'
 					text += '    					  <td width="60%">'		
-					text += '    	  <div class="leaflet_modal_price4"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'
+					text += '    	  						<div class="leafletmodal_price"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'
 					text += '    					  </td>'
 					text += '    					 </tr>'
 				}
