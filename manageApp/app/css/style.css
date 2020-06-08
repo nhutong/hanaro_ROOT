@@ -1199,7 +1199,7 @@ header nav ul li.active a{
 .table{
     width: 100%;
 }
-.leaflet_modal_wrap #table tr td .card_s {
+.leaflet_modal_wrap #table .card_s {
     background-color: #333;
     color: #fff;
 }
