@@ -3124,6 +3124,10 @@ button#bannerUpdate{
 /*    margin-bottom: 5%;*/
 }
 
+.a4_04{
+    color: #ed1b24;
+}
+
 .a4_05_lft{
     float: left;
     font-size: 2em;
@@ -3144,6 +3148,7 @@ button#bannerUpdate{
 	background-color : #fff;
 /*	padding-top : 35px;*/
 }
+
 
 .a4_05 img{
     width: 100%;
