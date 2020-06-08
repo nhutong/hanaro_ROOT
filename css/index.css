@@ -3550,7 +3550,7 @@ overflow: hidden;
 .coupon_print_rgt{
     width: 400px;
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */    
-    width: 40%;
+    width: 37%;
     padding-top: 20px;
     padding-right: 20px; 
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
