@@ -615,6 +615,23 @@ function getPdContent(rcv_jd_no) {
 
 				// 2020-06-08 정미솔 테이블 수정, class추가
 
+				//찜버튼
+				if (localStorage.getItem("memberNo") != '')
+				{
+					if (item['img_path'] == "/upload/blank.png")
+					{
+					}else{
+						if (item['vmjz_no'] != '')
+						{
+							text += '			<div class="add_btn active" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'   
+						}else{
+							text += '			<div class="add_btn" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'
+						}		
+					}
+				}else{
+
+				}
+
 				// 할인기간
 				if (decodeURIComponent(item['card_discount_from_date']) != "" || decodeURIComponent(item['card_discount_end_date']) != ""){
 					text += '    				   <tr class="hide table-line">'
@@ -722,7 +739,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    					<tr class="hide table-line">'
 					text += '    					   <td width="20%">'
 					text += '    						  <div class="discount_img">'
-					text += '    							 <img src="../images/leaflet_icon9.png" alt="기타사항">'
+					text += '    							 <h6 class="discount_e">기타사항</h6>'
 					text += '    						  </div>'
 					text += '    					   </td>'					
 					text += '    					  <td class="discount2" colspan="2" width="80%">'				
