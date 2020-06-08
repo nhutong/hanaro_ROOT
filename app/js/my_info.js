@@ -68,29 +68,22 @@ $(function(){
 
 //나의 전화번호를 불러온다.
 function myInfo(rcvTel){
-
 //	$("#myInfoTel").empty();
 //	$("#myInfoTel").append(rcvTel);
-
+console.log("rcvTel:"+rcvTel);
 	$.ajax({
         url:'/back/01_sign/myInfo.jsp?random=' + (Math.random()*99999), 
 		data : {tel: rcvTel},
         method : 'GET' 
-    }).done(function(result){
-		
-		var jsonResult = JSON.parse(result);
-//		console.log(jsonResult);
-//console.log(jsonResult.CompanyList);
+    }).done(function(result){		
+		var resultSplit = result.trim().split(',');
+		console.log(resultSplit);
+		var jsonResult = JSON.parse(resultSplit[0]);
 		var jsonResult_comp = jsonResult.CompanyList
-
-			$("#myInfoTel").empty();
-			$("#myInfoTel").append(decodeURIComponent(jsonResult_comp[0].member_no));
-
-			$("#myInfoName").val(decodeURIComponent(jsonResult_comp[0].name));
-			$("#myInfoAddress1").val(decodeURIComponent(jsonResult_comp[0].address1));
-			$("#myInfoAddress2").val(decodeURIComponent(jsonResult_comp[0].address2));
-
+		$("#myInfoTel").empty();
+		$("#myInfoTel").append(decodeURIComponent(jsonResult_comp[0].member_no));
+		$("#myInfoName").val(decodeURIComponent(jsonResult_comp[0].name));
+		$("#myInfoAddress1").val(decodeURIComponent(jsonResult_comp[0].address1));
+		$("#myInfoAddress2").val(decodeURIComponent(jsonResult_comp[0].address2));
 	});
-
 }
-

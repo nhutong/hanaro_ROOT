@@ -57,19 +57,14 @@ $(function(){
 
 	// nav 메뉴 상단고정 20200604 JB
 	setTimeout(function() { 
-        var navOffset = $( 'nav' ).offset();
-        if( navOffset === undefined ) {
-        }
-        else {    
-            $( window ).scroll( function() {
-            if ( $( document ).scrollTop() > navOffset.top ) {
-                $( 'nav' ).addClass( 'active' );
-            } 
-            else {
-                $( 'nav' ).removeClass( 'active' );
-            }
-            });
-        }
+		$( window ).scroll( function() {
+			if ( $( document ).scrollTop() > 50 ) {
+				$( 'nav' ).addClass( 'active' );
+			} 
+			else {
+				$( 'nav' ).removeClass( 'active' );
+			}
+			});
 	}, 500);
 	
 });
