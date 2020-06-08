@@ -3067,7 +3067,11 @@ button#bannerUpdate{
 /*coupon_print_wrap start*/
 
 .coupon_print_wrap > div{
-    display: inline-block;
+    /* display: inline-block; */
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
+    display: table;
+    float:left;
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
     vertical-align: middle;
 }
 
@@ -3077,6 +3081,7 @@ button#bannerUpdate{
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
     width: 69%;
     height: 100%;
+    float:left;
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */   
     padding: 20px;
 }
@@ -3541,6 +3546,7 @@ overflow: hidden;
     width: 400px;
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */    
     width: 30%;
+    padding-top: 20px 
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
 }
 .size_select_wrap ul{
