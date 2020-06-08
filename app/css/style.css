@@ -1376,7 +1376,7 @@ header nav ul li.active a{
     font-size: 12px;
 }
 
-/*2020-06-08 텍스트정렬CSS추가 미솔*/
+/*2020-06-08 텍스트정렬 및 CSS추가 미솔*/
 .table-line .discount2{
     text-align: center;
 }
@@ -1410,6 +1410,31 @@ header nav ul li.active a{
     font-weight: 100;
     padding-right: 4px;
     font-size: 11px;
+}
+.discount_period{
+    background-color: #535353;
+    color: #fff;
+    font-size: 14px;
+}
+.discount_card{
+    background-color: #ff4141;
+    color: #fff;
+    font-size: 14px;
+}
+.discount_coupon{
+    background-color: #417361;
+    color: #fff;
+    font-size: 14px;
+}
+.discount_last{
+    background-color: #005ba1;
+    color: #fff;
+    font-size: 14px;
+}
+.discount_m{
+    background-color: #f7a300;
+    color: #fff;
+    font-size: 14px;
 }
 /*2020-06-08 텍스트정렬CSS추가 미솔*/
 
