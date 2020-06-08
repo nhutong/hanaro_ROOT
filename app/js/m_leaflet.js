@@ -432,7 +432,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    	  					<div class="leaflet_modal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block;">카드할인가</h6> '+comma(carded)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
 					text += '    					  </td>'
 					text += '    					</tr>'
-					text += '    				   <tr class="hide table-line">'
+					text += '    				   <tr class="hide table-line" colspan="3">'
 					text += '    					  <td class="card_s">'
 					text += '    					   '+item['card_info']
 					text += '    					   / '+item['card_restrict']
@@ -469,7 +469,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    					   </td>'
 					text += '    					  <td>'		
 					var cardncoupon = Number(item['card_discount']) + Number(item['coupon_discount']);
-					text += '    					   '-'+'+comma(cardncoupon)+'원 (카드+쿠폰)'
+					text += '    					   '+comma(cardncoupon)+'원 (카드+쿠폰)'
 					text += '    					  </td>'
 					text += '    					  <td>'		
 					text += '    	  <div class="leaflet_modal_price4"><h6 style="font-family: Noto Sans KR; display:inline-block;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
@@ -493,7 +493,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    					  </td>'			
 					text += '    					 </tr>'
 				}
-
+				
 				//기타내용
 				if (decodeURIComponent(item['etc']) != ""){		
 					text += '    					<tr class="hide table-line">'
