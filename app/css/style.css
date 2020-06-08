@@ -1363,13 +1363,28 @@ header nav ul li.active a{
     background-color: #f8f8f8;
 }
 
+/*2020-06-08 width값 수정 미솔*/
 .discount_img img{
-    width: 45px;
+    width: 50px;
 }
+/*2020-06-08 width값 수정 미솔*/
 
 .discount_notice{
     font-size: 12px;
 }
+
+/*2020-06-08 텍스트정렬CSS추가 미솔*/
+.table-line .discount2{
+    text-align: center;
+}
+.table-line .discount3{
+    text-align: center;
+}
+.table-line{
+    text-align: right;
+}
+/*2020-06-08 텍스트정렬CSS추가 미솔*/
+
 /*main modal start*/
 
 .main_modal_wrap{
