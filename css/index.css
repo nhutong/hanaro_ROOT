@@ -3072,8 +3072,12 @@ button#bannerUpdate{
 }
 
 .coupon_print_lft{
-    width: 900px;
-    height: 100vh;
+    /* width: 900px;
+    height: 100vh; */
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
+    width: 69%;
+    height: 100%;
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */   
     padding: 20px;
 }
 
@@ -3535,6 +3539,9 @@ overflow: hidden;
 
 .coupon_print_rgt{
     width: 400px;
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */    
+    width: 30%;
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
 }
 .size_select_wrap ul{
     display: -webkit-flex;
