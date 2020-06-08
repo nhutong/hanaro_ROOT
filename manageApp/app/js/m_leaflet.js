@@ -677,7 +677,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    					  </td>'
 					text += '    					  <td width="60%">'		
 					var couponed = Number(item['price']) - Number(item['coupon_discount']);	
-					text += '    	  					<div class="leafletmodal_price"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">쿠폰할인가</h6> '+comma(couponed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'		
+					text += '    	  					<div class="leafletmodal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">쿠폰할인가</h6> '+comma(couponed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'		
 					text += '    					  </td>'	
 					text += '    					 </tr>'
 				}
@@ -695,7 +695,7 @@ function getPdContent(rcv_jd_no) {
 					text += '    					   '+comma(cardncoupon)+'원'
 					text += '    					  </td>'
 					text += '    					  <td width="60%">'		
-					text += '    	  						<div class="leafletmodal_price"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'
+					text += '    	  						<div class="leafletmodal_price3"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'
 					text += '    					  </td>'
 					text += '    					 </tr>'
 				}
