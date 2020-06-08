@@ -497,12 +497,12 @@ function getPdContent(rcv_jd_no) {
 				//기타내용
 				if (decodeURIComponent(item['etc']) != ""){		
 					text += '    					<tr class="hide table-line">'
-					text += '    					   <td>'
+					text += '    					   <td width="20%">'
 					text += '    						  <div class="discount_img">'
 					text += '    							 <img src="../images/leaflet_icon9.png" alt="기타사항">'
 					text += '    						  </div>'
 					text += '    					   </td>'					
-					text += '    					  <td class="discount3">'					
+					text += '    					  <td class="discount2" colspan="2" width="80%">'				
 					text += '                            '+ decodeURIComponent(item['etc'])
 					text += '    					  </td>'
 					text += '    					 </tr>'							
