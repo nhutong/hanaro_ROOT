@@ -104,7 +104,7 @@ $(function () {
 		}
 	//200609 판매장다중선택 기능
 		console.log(formData);
-		createEvent(formData);
+		createPopup(formData);
 	});	
 });
 
