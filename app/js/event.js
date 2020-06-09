@@ -126,7 +126,8 @@ function eventList(rcv_vm_cp_no){
 					text +='		<a href="#" class="event_name">'+jsonResult_notice[i].event_title+'</a>';
 					text +='		<span class="event_date">'+jsonResult_notice[i].start_date+' ~ '+jsonResult_notice[i].end_date+'</span>';
 					text +='	</div>';
-					text +='	<div class="event_cont" id="eventCont'+jsonResult_notice[i].event_no+'">';
+					// text +='	<div class="event_cont" id="eventCont'+jsonResult_notice[i].event_no+'">';
+					text +='	<div class="event_cont">';
 					text +='		<div class="event_detail">';
 					text +='		<img src="../images/back.png" alt="되돌아가기">';
 					text +='		<a href="#" class="event_name">'+jsonResult_notice[i].event_title+'</a>';
