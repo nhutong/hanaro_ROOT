@@ -54,7 +54,7 @@
 				query,
 				popupTitle,
 				imgUrl,
-				company,
+				companyNo,
 				userNo,
 				userNo,				
 				startDate,
