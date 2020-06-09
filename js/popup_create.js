@@ -109,7 +109,7 @@ $(function () {
 });
 
 	//팝업 생성
-	function createPopup(formdata){
+	function createPopup(formData){
 		$.post( '/back/04_home/popupCreate.jsp',			
 		formData, 			
 		function(resultJSON){
