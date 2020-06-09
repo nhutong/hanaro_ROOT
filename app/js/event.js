@@ -301,7 +301,7 @@ function eventListEnd(rcv_vm_cp_no){
 
 					text +='<div class="event_list">';       
 					text +='	<div class="event_thumb">';
-					text +='	   <a href="#"><img src="..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
+					text +='	   <a href="#"><img src="'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
 					text +='	<div class="event_detail">';
 					text +='		<a href="#" class="event_name">'+jsonResult_notice[i].event_title+'</a>';
@@ -337,14 +337,12 @@ function eventListEnd(rcv_vm_cp_no){
                         text +='	</div>';
                         //text +='	  <p></p>'; 
 //                        text +='	  <button onclick="window.open(\''+jsonResult_notice[i].link_url+'\');">자세히 보기</button>';  
-						if (jsonResult_notice[i].event_alive_fg == "Y")
-						{/* 20200229 하기 1줄 수정 보러가기 */
-							text +='	  <button onclick="location.href=\'../'+jsonResult_notice[i].link_url+'\';">보러가기</button>'; 
-						}else{
+						// if (jsonResult_notice[i].event_alive_fg == "Y")
+						/* 20200229 하기 1줄 수정 보러가기 */
+						// 	text +='	  <button onclick="location.href=\'../'+jsonResult_notice[i].link_url+'\';">보러가기</button>'; 
+						// }else{
 							text +='	  <button class="end">종료된 이벤트입니다.</button>';  
-						}
-			  
-                    }
+						}			  
 					/* 20200316 수정끝 */
 
 					text +='	</div>';
