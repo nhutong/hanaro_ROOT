@@ -46,6 +46,18 @@ $(function () {
 		});
 	});
 
+		//20190609 김수경 판매장 다중선택기능 추가
+		//판매장 선택, 삭제
+		$('#companyAddBtn').on('click', function(){
+			var companyNo = $('#company').val();
+			var companyName = $('#company').find('option[value='+companyNo+']').text().trim();
+			if($('#cp'+companyNo).length) return;
+			$('#companyAddBtn').parent().append('<div data-no="'+companyNo+'" id="cp'+companyNo+'" class="selected_option">'+ companyName +'</div>');
+			$('.selected_option').on('click', function(){
+				$(this).remove();
+			});
+		});
+	
 	$('#btnPopupCreate').on('click', function(){				
 		var imgUrl =$('#imgPreview').attr('src');
 		var popupTitle = $('#popupTitle').val();

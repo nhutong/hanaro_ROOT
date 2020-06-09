@@ -77,29 +77,12 @@
                                                 <td width="80%"><input type="text" id="eventTitle" placeholder="이벤트 제목"></td>
                                             </tr>
                                             <tr>
-                                                <!-- 200609 김수경 팝업과 입력 형식 통일 -->
-                                                <th rowspan="2">기간</th>
-                                                <td>
-                                                   <select name="popupDate" id="popupDate" >
-                                                    <option value="1">계속</option>
-                                                    <option value="2">날짜입력</option>
-                                                    </select>
-                                                </td>
-                                                <tr>
-                                           
-                                                    <td class="popup_date">
-                                                        <input type="text" placeholder="2019-09-01" id="popup_from_date">
-                                                        <span class="popup_to">~</span>
-                                                        <input type="text" placeholder="2019-09-07" id="popup_end_date">
-                                                    </td>
-                                                    
-                                                </tr>            
-                                                <!-- <th >기간</th>
+                                                <th >기간</th>
                                                 <td class="event_date">
                                                     <input type="text" placeholder="2019-09-01" id="event_start_date">
                                                     <span class="event_to">~</span>
                                                     <input type="text" placeholder="2019-09-07" id="event_end_date">
-                                                </td>                                             -->
+                                                </td>                                            
                                             </tr>
                                             <tr>
                                                 <th>판매장</th>
@@ -124,9 +107,11 @@
                                     <h5>상세페이지</h5>
                                     <table class="event_create_table2">
                                         <tr>
-                                            <th><input type="checkbox" id="eventLink"><label for="eventLink">Link</label></th>
+                                            <th><input type="checkbox" id="eventLink"><label for="eventLink">Link</label><br>
+                                                <!-- 200609 김수경 링크 가이드 버튼 추가 -->
+                                            <div id="layer_popup_link_open"><button>?</button></div></th>
                                             <td><input type="text" id="linkUrl" placeholder="ex) home/event.html"></td>
-                                        </tr>
+                                        </tr>                                        
                                         <tr>
                                             <td colspan="2" style="text-indent:-16px;padding-left:25px;">
                                              ※ 체크박스 선택 시 팝업 상세이미지 하단에 [보러가기] 버튼 생성 <br/>버튼을 누르면 위에 설정된 링크로 이동    
