@@ -32,29 +32,24 @@
 	String periodType = request.getParameter("popupDateType") == null ? "" : request.getParameter("popupDateType").trim();
 	String startDate = request.getParameter("popupDateFrom") ==  null ? "2019-01-01" : request.getParameter("popupDateFrom").trim();
 	String endDate = request.getParameter("popupDateEnd") == null ? "2025-12-31" : request.getParameter("popupDateEnd").trim();
-	String company = request.getParameter("company") == null ? "" : request.getParameter("company").trim();
+	String company = request.getParameter("targetCompany") == null ? "" : request.getParameter("targetCompany").trim();
 	String showFlag = request.getParameter("showFlag") == null ? "" : request.getParameter("showFlag").trim();
 	String linkUrl = request.getParameter("linkUrl") == null ? "" : request.getParameter("linkUrl").trim();
 
  	try {
 		QueryRunner queryRunner = new QueryRunner();
 
-		String[] arr = company.split(",") ;
-		int result = 0;
-    
-		for(String companyNo : arr){
-
 		// 관리자 등록 (insert)
 		String query = " INSERT INTO hanaro.vm_popup " + 
 				" (popup_title, img_url, company, reg_no, reg_date, lst_no, lst_date, start_date, end_date, period_type, show_flag, link_url)" +
 				" VALUES(?, ?, ?, ?, now(), ?, now(), ?, ?, ?, ?, ?) ";			
 				
-		result += queryRunner.update(
+		int result = queryRunner.update(
 				conn,
 				query,
 				popupTitle,
 				imgUrl,
-				companyNo,
+				company,
 				userNo,
 				userNo,				
 				startDate,
@@ -63,7 +58,6 @@
 				showFlag,
 				linkUrl 				
 			);
-		}
 		results.put("insert", result);
 
 	} catch(Exception se) {

@@ -46,25 +46,13 @@ $(function () {
 		});
 	});
 
-		//20190609 김수경 판매장 다중선택기능 추가
-		//판매장 선택, 삭제
-		$('#companyAddBtn').on('click', function(){
-			var companyNo = $('#company').val();
-			var companyName = $('#company').find('option[value='+companyNo+']').text().trim();
-			if($('#cp'+companyNo).length) return;
-			$('#companyAddBtn').parent().append('<div data-no="'+companyNo+'" id="cp'+companyNo+'" class="selected_option">'+ companyName +'</div>');
-			$('.selected_option').on('click', function(){
-				$(this).remove();
-			});
-		});
-	
 	$('#btnPopupCreate').on('click', function(){				
 		var imgUrl =$('#imgPreview').attr('src');
 		var popupTitle = $('#popupTitle').val();
 		var popupDateType = $('#popupDate').val();
 		var popupDateFrom = $('#popup_from_date').val();
 		var popupDateEnd = $('#popup_end_date').val();		
-		var Company = $('#company').val();
+		var targetCompany = $('#company').val();
 		var showFlag = $('#showFlag').val();
 		var linkUrl = $('#linkUrl').val();
 		var userEmail = $('.user_email').text().trim();
@@ -82,49 +70,28 @@ $(function () {
 		if(!popupDateFrom) popupDateFrom = '2019-01-01';
 		if(!popupDateEnd) popupDateEnd = '2030-01-01';
 
-		// 200609 김수경 판매장 다중선택 기능 
-		var company = '';
-		$('.selected_option').each( function (idx, item) {
-			if(idx === 0 ) company += $(item).data('no');
-			else company += ',' + $(item).data('no');
-			
-		});
-
-
 		var formData = {
 			imgUrl : imgUrl,
 			popupTitle : popupTitle ,
 			popupDateType : popupDateType ,
 			popupDateFrom : popupDateFrom ,
 			popupDateEnd : popupDateEnd ,
-			Company : Company,
+			targetCompany : targetCompany,
 			showFlag : showFlag,
 			linkUrl : linkUrl,
 			userEmail : userEmail
 		}
-	//200609 판매장다중선택 기능
-		console.log(formData);
-		createPopup(formData);
-	});	
-});
-
-	//팝업 생성
-	function createPopup(formData){
-		$.post( '/back/04_home/popupCreate.jsp',			
-		formData, 			
-		function(resultJSON){
-				if(resultJSON['insert'] > 0){
+		$.post( '/back/04_home/popupCreate.jsp',
+			formData, 			
+			function(result){
+				if(result['insert'] == 1){
 					alert('등록되었습니다');
 					location.href="popup_list.html";
-			// 200609 김수경 판매장 다중선택 기능
-				}else {
-//					alert(resultJSON['error']);
-					alert("판매장을 추가해주세요.");
-					
 				}
 			}
 		);
-		}
+	
+	});
 
 	$('#layer_popup_link_open button').on('click',function(){
 		getLinkList();
@@ -135,8 +102,9 @@ $(function () {
 		$('#layer_popup_link_wrap').hide();
 	});	
 	
+});
 
-	//핀매장 리스트 가져오기
+
 function getCompanyList(){
 	$.get("/back/00_include/getCompanyList.jsp",
 		function(resultJSON){						
@@ -148,7 +116,6 @@ function getCompanyList(){
 	);
 }
 
-// 판매장 리스트 셋업
 function setCompanyOptions(companyList){
 	var options = '';	
 	$(companyList).each( function (idx, company) {		
