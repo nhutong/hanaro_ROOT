@@ -102,10 +102,11 @@ $(function () {
 			linkUrl : linkUrl,
 			userEmail : userEmail
 		}
-		$.post( '/back/04_home/popupCreate.jsp',
-			formData, 			
+
+			// 팝업 생성
 			function(result){
-				if(result['insert'] == 1){
+				$.post( '/back/04_home/popupCreate.jsp',			formData, 			
+				if(result['insert'] > 0){
 					alert('등록되었습니다');
 					location.href="popup_list.html";
 			// 200609 김수경 판매장 다중선택 기능
