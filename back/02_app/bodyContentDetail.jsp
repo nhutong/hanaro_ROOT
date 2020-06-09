@@ -38,7 +38,10 @@
 			+" left outer join ( select * from vm_jundan_zzim where no ='"+memberNo+"' ) as e "
 			+" on b.jd_prod_con_no = e.jd_prod_con_no "
 			+" WHERE a.jd_no = "+jd_no
+<<<<<<< HEAD
 			+" and IFNULL(a.show_fg,'N') = 'Y' "
+=======
+>>>>>>> 247292ae3b0d6716e33049cf3d3e472e1a4975db
 			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,6";
 
 		}else{
@@ -59,7 +62,10 @@
 			+" left outer join vm_product_image AS d "
 			+" ON b.ref_img_no = d.img_no "
 			+" WHERE a.jd_no = "+jd_no
+<<<<<<< HEAD
 			+" and IFNULL(a.show_fg,'N') = 'Y' "
+=======
+>>>>>>> 247292ae3b0d6716e33049cf3d3e472e1a4975db
 			+" order by cast(b.order_number AS UNSIGNED ) asc limit 0,6";
 
 
