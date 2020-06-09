@@ -85,12 +85,12 @@ $(function () {
 				eventLink = "N";
 			}
 			
-			if(imgUrl == "../images/image_unknown.png"){
+			if(imgUrl == "../images/image_unknown_02.png"){
 				alert('배너이미지 없이 등록할 수 없습니다.');
 				return;
 			}
 			// 200609 김수경 상세이미지 없이 등록할 경우 알럿	
-			if(detailImgPreview == ""){
+			if(detailImgUrl) {				
 				alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
 				return;
 			}
