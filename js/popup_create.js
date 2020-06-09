@@ -97,7 +97,7 @@ $(function () {
 			popupDateType : popupDateType ,
 			popupDateFrom : popupDateFrom ,
 			popupDateEnd : popupDateEnd ,
-			targetCompany : targetCompany,
+			Company : Company,
 			showFlag : showFlag,
 			linkUrl : linkUrl,
 			userEmail : userEmail
