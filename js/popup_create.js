@@ -64,7 +64,7 @@ $(function () {
 		var popupDateType = $('#popupDate').val();
 		var popupDateFrom = $('#popup_from_date').val();
 		var popupDateEnd = $('#popup_end_date').val();		
-		var targetCompany = $('#company').val();
+		var Company = $('#company').val();
 		var showFlag = $('#showFlag').val();
 		var linkUrl = $('#linkUrl').val();
 		var userEmail = $('.user_email').text().trim();
@@ -102,10 +102,9 @@ $(function () {
 			linkUrl : linkUrl,
 			userEmail : userEmail
 		}
-
-			// 팝업 생성
-			function(result){
-				$.post( '/back/04_home/popupCreate.jsp',			formData, 			
+		$.post( '/back/04_home/popupCreate.jsp',			
+		formData, 			
+		function(result){
 				if(result['insert'] > 0){
 					alert('등록되었습니다');
 					location.href="popup_list.html";
