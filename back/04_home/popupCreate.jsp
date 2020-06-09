@@ -49,7 +49,7 @@
 				" (popup_title, img_url, company, reg_no, reg_date, lst_no, lst_date, start_date, end_date, period_type, show_flag, link_url)" +
 				" VALUES(?, ?, ?, ?, now(), ?, now(), ?, ?, ?, ?, ?) ";			
 				
-		result = queryRunner.update(
+		result += queryRunner.update(
 				conn,
 				query,
 				popupTitle,
@@ -63,6 +63,7 @@
 				showFlag,
 				linkUrl 				
 			);
+		}
 		results.put("insert", result);
 
 	} catch(Exception se) {
