@@ -367,9 +367,9 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
                 text += '   <div class="thumb_wrap">'
                 text += '		<a><img src="'+item['img_path']+'" alt="'+item['pd_name']+'"></a>'
                 text += '		<div class="thumb_info">'
-				if(isInIFrame == true){
+				// if(isInIFrame == true){
 				
-				}else{
+				// }else{
 					if (localStorage.getItem("memberNo") != '')
 					{
 						if (item['img_path'] == "/upload/blank.png")
@@ -385,7 +385,7 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 					}else{
 
 					}
-                }
+                // }
 				text += '		</div>'
                 text += '		<div class="discount_info">'
 
