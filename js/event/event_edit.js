@@ -89,7 +89,7 @@ $(function () {
 			}
 
 			// 200609 김수경 상세이미지 없이 등록할 경우 알럿	
-			if(detailImgPreview == ""){
+			if(detailImgUrl == ""){
 				alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
 				return;
 			}
@@ -97,11 +97,6 @@ $(function () {
 			// 	alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
 			// 	return;
 			// }
-
-			// if(detailImgUrl == "../images/image_unknown2.png"){
-				alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
-				return;
-			});	
 
 			var formData = {
 				eventNo : eventNo,
@@ -253,7 +248,4 @@ $(function () {
 			});
 	}
 		// 200609 김수경 링크 기능 추가
-
-
-
-	
+})
