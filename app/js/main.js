@@ -367,9 +367,9 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
                 text += '   <div class="thumb_wrap">'
                 text += '		<a><img src="'+item['img_path']+'" alt="'+item['pd_name']+'"></a>'
                 text += '		<div class="thumb_info">'
-				// if(isInIFrame == true){
+				if(isInIFrame == true){
 				
-				// }else{
+				}else{
 					if (localStorage.getItem("memberNo") != '')
 					{
 						if (item['img_path'] == "/upload/blank.png")
@@ -385,7 +385,7 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 					}else{
 
 					}
-                // }
+                }
 				text += '		</div>'
                 text += '		<div class="discount_info">'
 
@@ -612,8 +612,8 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				text += '    </div>'
 				text += '</div>'
 			});
-			$("#item_list_inner_wrap").empty();
-			$("#item_list_inner_wrap").append(text);
+			$("#bodyContentDetail"+rcv_menu_no).empty();
+			$("#bodyContentDetail"+rcv_menu_no).append(text);
 
 			var isInIFrame = ( window.location != window.parent.location );
 			if (isInIFrame == true)
@@ -639,7 +639,7 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				})
 			}			
 		}
-	// });
+
     })
 }
 // 2020-06-08 정미솔 테이블 수정, class추가
