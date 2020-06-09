@@ -66,6 +66,7 @@ $(function () {
 
 			var imgUrl =$('#imgPreview').attr("src");	
 			var detailImgUrl =$('#detailImgPreview').attr("src");
+			var detailImgUrl = "";
 
 
 			var eventTitle = $('#eventTitle').val();			
@@ -90,7 +91,8 @@ $(function () {
 				return;
 			}
 			// 200609 김수경 상세이미지 없이 등록할 경우 알럿	
-			if(detailImgUrl) {				
+			if(detailImgUrl == null)
+			{				
 				alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
 				return;
 			}
