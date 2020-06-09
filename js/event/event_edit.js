@@ -87,13 +87,18 @@ $(function () {
 				alert('이벤트 종료일은 시작일보다 빠를 수 없습니다.');
 				return;
 			}
-			
-			if(imgUrl == "../images/image_unknown.png"){
-				alert('배너이미지 없이 등록할 수 없습니다.');
-				return;
-			}	
 
-			if(detailImgUrl == "../images/image_unknown2.png"){
+			// 200609 김수경 상세이미지 없이 등록할 경우 알럿	
+			if(detailImgPreview == ""){
+				alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
+				return;
+			}
+			// if(detailImgUrl == "../images/image_unknown2.png"){
+			// 	alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
+			// 	return;
+			// }
+
+			// if(detailImgUrl == "../images/image_unknown2.png"){
 				alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
 				return;
 			}	
@@ -181,5 +186,57 @@ $(function () {
 			}
 		);
 	}
+
+		// 200609 김수경 링크 기능 추가
+	$('#layer_popup_link_open button').on('click',function(){
+		getLinkList();
+		$('#layer_popup_link_wrap').show();
+	});	
+
+	$('#layer_popup_link_close button').on('click',function(){
+		$('#layer_popup_link_wrap').hide();
+	});	
+
+	function getLinkList(){
+		var companyNo = $("#company").val();
+		var formData = {
+			companyNo: companyNo
+		};
+		//console.log(companyNo);
+		$.get('/back/00_include/getLinkList.jsp',
+			formData,
+			function(result) {
+				//console.log(result);
+				var Linklist = result['list'];
+				var text = '';	
+				text +='    <tr>';
+				text +='        <td>홈화면</td>' ;
+				text +='        <td>home/main.html</td>' ;
+				text +='    </tr>';			
+				text +='    <tr>';
+				text +='        <td>쿠폰</td>' ;
+				text +='        <td>home/coupon.html</td>' ;
+				text +='    </tr>';	
+				text +='    <tr>';				
+				text +='        <td>이벤트</td>' ;
+				text +='        <td>home/event.html</td>' ;
+				text +='    </tr>';
+				text +='    <tr>';
+				text +='        <td>공지사항</td>' ;
+				text +='        <td>home/notice.html</td>' ;
+				text +='    </tr>';							
+				$(Linklist).each( function (idx, linkeach) {
+					text +='    <tr>';
+					text +='        <td>' + linkeach.select_name  + '</td>' ;
+					text +='        <td>' + linkeach.select_value + '</td>' ;
+					text +='    </tr>';
+				});
+				$("#layer_popup_link_list").empty();					
+				$("#layer_popup_link_list").append(text);				
+			});
+	}
+		// 200609 김수경 링크 기능 추가
+
+
 
 	
