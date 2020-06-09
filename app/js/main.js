@@ -612,6 +612,9 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				text += '    </div>'
 				text += '</div>'
 			});
+			// 20200609 김수경 웹 메인에도 썸네일 표시되도록 변경
+			// $("#item_list_inner_wrap").empty();
+			// $("#item_list_inner_wrap").append(text);
 			$("#bodyContentDetail"+rcv_menu_no).empty();
 			$("#bodyContentDetail"+rcv_menu_no).append(text);
 
