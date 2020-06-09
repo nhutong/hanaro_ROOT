@@ -639,7 +639,8 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				})
 			}			
 		}
-	});
+	// });
+    })
 }
 // 2020-06-08 정미솔 테이블 수정, class추가
 
