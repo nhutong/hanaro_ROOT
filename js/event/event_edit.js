@@ -193,6 +193,27 @@ $(function () {
 		$('#layer_popup_link_wrap').hide();
 	});	
 
+	//핀매장 리스트 가져오기
+	function getCompanyList(){
+		$.get("/back/00_include/getCompanyList.jsp",		
+			function(resultJSON){						
+				//console.log(resultJSON);
+				companyList = resultJSON['list'];
+				if(companyList.lengh) return;
+				setCompanyOptions(companyList);
+			}
+		);
+	}
+	
+	// 판매장 리스트 셋업
+	function setCompanyOptions(companyList){
+		var options = '';
+		$(companyList).each( function (idx, company) {
+			options += '<option value=' + company.VM_CP_NO + '>' +company.VM_CP_NAME + '</option>' ;
+		});
+		$('#company').append(options);
+	}
+
 	function getLinkList(){
 		var companyNo = $("#company").val();
 		var formData = {
