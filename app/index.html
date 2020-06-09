@@ -10,30 +10,58 @@
     <!-- <link rel="stylesheet" href="./css/common.css" type="text/css"> -->
     <!-- <link rel="stylesheet" href="./css/style.css" type="text/css">  -->
     <!-- <style> body { background-color: #eeeeee } </style> -->
-    
-    <script src="./js/common.js"></script>
         
 </head>
 
 <body>
     <script>
 
-        var isCordovaApp = !!window.cordova;
-        if( isCordovaApp ){
-            var initTel = localStorage.getItem("tel");
-            var initvm_cp_no = localStorage.getItem("vm_cp_no");
-            if (initTel == null){
-                location.href= "./login/login.html";
-            }else{
-                if(initvm_cp_no == null){
-                    location.href="./login/check_location.html";
-                }else{
-                    location.href= "./home/main.html";
-                }
-            }
+        //선언되지 않은 localStorage의 "tel"값 Get 테스트
+        //if ( localStorage.getItem("tel") ==  null        )  true
+        //if ( localStorage.getItem("tel") === null        )  true
+        //if ( localStorage.getItem("tel") ==  undefined   )  true
+        //if ( localStorage.getItem("tel") === undefined   )  false
+        //if ( localStorage.getItem("tel") ==  "null"      )  false
+        //if ( localStorage.getItem("tel") === "null"      )  false
+        //if ( localStorage.getItem("tel") ==  "undefined" )  false
+        //if ( localStorage.getItem("tel") === "undefined" )  false  
+
+        //var aa = localStorage.getItem("tel");의 aa값 테스트
+        //if ( aa ==  null        )  true
+        //if ( aa === null        )  true
+        //if ( aa ==  undefined   )  true
+        //if ( aa === undefined   )  false
+        //if ( aa ==  "null"      )  false
+        //if ( aa === "null"      )  false
+        //if ( aa ==  "undefined" )  false
+        //if ( aa === "undefined" )  false      
+        
+        //결과 : getItem은 null을 리턴( undefined를 리턴하지 않음)
+
+        if( localStorage.getItem("tel") == "Y" ){
+            console.log("aaa");
         }else{
-            location.href= "./login/login_pc.html";
+            console.log("bbb");            
         }
+
+        location.href="./login/check_location.html";
+
+        // var isCordovaApp = !!window.cordova;
+        // if( isCordovaApp ){
+        //     var initTel = localStorage.getItem("tel");
+        //     var initvm_cp_no = localStorage.getItem("vm_cp_no");
+        //     if (initTel == null){
+        //         location.href= "./login/login.html";
+        //     }else{
+        //         if(initvm_cp_no == null){
+        //             location.href="./login/check_location.html";
+        //         }else{
+        //             location.href= "./home/main.html";
+        //         }
+        //     }
+        // }else{
+        //     location.href= "./login/login_pc.html";
+        // }
     </script>
 
 </body>

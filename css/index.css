@@ -3067,13 +3067,22 @@ button#bannerUpdate{
 /*coupon_print_wrap start*/
 
 .coupon_print_wrap > div{
-    display: inline-block;
+    /* display: inline-block; */
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
+    display: table;
+    float:left;
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
     vertical-align: middle;
 }
 
 .coupon_print_lft{
-    width: 900px;
-    height: 100vh;
+    /* width: 900px;
+    height: 100vh; */
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
+    width: 60%;
+    height: 100%;
+    float:left;
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */   
     padding: 20px;
 }
 
@@ -3105,12 +3114,18 @@ button#bannerUpdate{
     font-size: 4em;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 13%;
+    /* 200608 김수경 상품명 길어져도 css무너지지 않도록 수정 */
+    height:200px;
+    /* margin-bottom: 13%; */
 }
 
 .coupon_a4_05{
     overflow: hidden;
 /*    margin-bottom: 5%;*/
+}
+
+.a4_04{
+    color: #ed1b24;
 }
 
 .a4_05_lft{
@@ -3133,6 +3148,7 @@ button#bannerUpdate{
 	background-color : #fff;
 /*	padding-top : 35px;*/
 }
+
 
 .a4_05 img{
     width: 100%;
@@ -3281,6 +3297,10 @@ button#bannerUpdate{
     font-size: 3.5em;
     font-weight: 800;
     padding: 0 5%;
+/* 200608 김수경 상품명 한줄로 보여주기 위해 수정 */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .coupon_a3_05{
@@ -3422,6 +3442,10 @@ button#bannerUpdate{
     font-weight: 800;
     margin: 10px;
 /*    border-bottom: 3px solid #555;*/
+/* 200608 김수경 상품명 한줄로 보여주기 위해 수정 */
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
 }
 
 .coupon_r200_03{
@@ -3525,6 +3549,11 @@ button#bannerUpdate{
 
 .coupon_print_rgt{
     width: 400px;
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */    
+    width: 37%;
+    padding-top: 20px;
+    padding-right: 20px; 
+    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
 }
 .size_select_wrap ul{
     display: -webkit-flex;

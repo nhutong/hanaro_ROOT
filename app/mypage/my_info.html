@@ -59,8 +59,45 @@
          <!-- <div class="info_submit_btn" id="infoSubmitBtn">저장하기</div> -->        
     </div>
 
+    <!-- alert 팝업 -->
+    <div class="popup s260 alert_popup" draggable="true">
+        <!-- <div class="pop_header"></div> -->
+        <div class="pop_container">
+            <div class="txt_dialog message"></div>
+            <p class="foot_btn">
+                <a href="#" class="btn_n bg_red modal_alert_confirm">확인</a>
+            </p>
+        </div>
+        <!-- <a href="#" class="popup_close modal_alert_close">닫기</a> -->
+    </div>
+    
+    <!-- confirm 팝업 -->
+    <div class="popup s260 confirm_popup" draggable="true">
+        <!-- <div class="pop_header"></div> -->
+        <div class="pop_container">
+            <div class="txt_dialog message"></div>
+            <p class="foot_btn">
+                <a href="#" class="btn_n_cf bg_gray modal_alert_close">취소</a>                
+                <a href="#" class="btn_n_cf bg_red modal_alert_confirm">확인</a>
+            </p>
+        </div>
+        <!-- <a href="#" class="popup_close modal_alert_close">닫기</a> -->
+    </div>
+    
+    <!-- 상태 진행중 팝업 -->
+    <div class="popup s260 status_progress_popup" draggable="true">
+        <!-- <div class="pop_header"></div> -->
+        <div class="pop_container">
+            <div class="txt_dialog">
+                <div class="ajax_loader"><div id="circularG_1" class="circularG"></div><div id="circularG_2" class="circularG"></div><div id="circularG_3" class="circularG"></div><div id="circularG_4" class="circularG"></div><div id="circularG_5" class="circularG"></div><div id="circularG_6" class="circularG"></div><div id="circularG_7" class="circularG"></div><div id="circularG_8" class="circularG"></div></div>
+                <p class="txt_dialog3 message"></p>
+            </div>
+        </div>
+        <!-- <a href="#" class="popup_close modal_progress_close">닫기</a> -->
+    </div>    
+    <!-- layer popup end -->
+        
 	<!-- js -->
-
     <script src="../js/google.3.4.1.jquery.min.js"></script>
 	<script src="../js/common.js"></script>
 	<script src="../js/link.js"></script> 

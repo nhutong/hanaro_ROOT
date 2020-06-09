@@ -485,15 +485,17 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				
 				text += '    				<table class="table" >'
 
+				// 2020-06-08 정미솔 테이블 수정, class추가
+
 				// 할인기간
 				if (decodeURIComponent(item['card_discount_from_date']) != "" || decodeURIComponent(item['card_discount_end_date']) != ""){
 					text += '    				   <tr class="hide table-line">'
-					text += '    					   <td>'
+					text += '    					   <td width="20%">'
 					text += '    						  <div class="discount_img">'
-					text += '    							 <img src="../images/leaflet_icon8.png" alt="할인기간">'
+					text += '    							 <h6 class="discount_period">할인기간</h6>'
 					text += '    						  </div>'
 					text += '    					   </td>'					
-					text += '    					  <td> '
+					text += '    					  <td class="discount2" colspan="2" width="80%"> '
 					if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
 						text += '                        '+ item['card_discount_from_date'] + ' ~ ' + item['card_discount_end_date']
 					}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
@@ -511,14 +513,22 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				// 카드할인
 				if (decodeURIComponent(item['card_discount']) != ""){
 					text += '    				   <tr class="hide table-line">'
-					text += '    					  <td>'
+					text += '    					  <td width="20%">'
 					text += '    						<div class="discount_img">'
-					text += '    							<img src="../images/leaflet_icon1.png" alt="카드할인">'
+					text += '    							<h6 class="discount_card">카드할인</h6>'
 					text += '    						</div>'
 					text += '    					  </td>'
-					text += '    					  <td>'
+					text += '    					  <td width="30%">'
 					text += '                         '+comma(item['card_discount'])+'원'
-					text += '    					   / '+item['card_info']
+					text += '    					  </td>'
+					text += '    					  <td width="50%">'
+					var carded = Number(item['price']) - Number(item['card_discount']);
+					text += '    	  					<div class="leafletmodal_price"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">카드할인가</h6> '+comma(carded)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'
+					text += '    					  </td>'
+					text += '    					</tr>'
+					text += '    				   <tr class="hide table-line">'
+					text += '    					  <td class="card_s" colspan="3">'
+					text += '    					   '+item['card_info']
 					text += '    					   / '+item['card_restrict']
 					text += '    					  </td>'
 					text += '    					</tr>'
@@ -527,58 +537,67 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				//쿠폰할인
 				if (decodeURIComponent(item['coupon_discount']) != ""){
 					text += '    					<tr class="hide table-line">'
-					text += '    					   <td>'
+					text += '    					   <td width="20%">'
 					text += '    						  <div class="discount_img">'
-					text += '    							 <img src="../images/leaflet_icon2.png" alt="쿠폰할인">'
+					text += '    							 <h6 class="discount_coupon">쿠폰할인</h6>'
 					text += '    						  </div>'
 					text += '    					   </td>'
-					text += '    					  <td>'					
+					text += '    					  <td width="30%">'					
 					//2020-06-03 김수경 쿠폰 추가할인 문구 삭제				
 					text += '    					   '+comma(item['coupon_discount'])+'원'					
 					// text += '    					   '+ decodeURIComponent(item['coupon_discount']).replace(/\+/g,' ')+'원'
 					text += '    					  </td>'
+					text += '    					  <td width="50%">'		
+					var couponed = Number(item['price']) - Number(item['coupon_discount']);	
+					text += '    	  					<div class="leafletmodal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">쿠폰할인가</h6> '+comma(couponed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'		
+					text += '    					  </td>'	
 					text += '    					 </tr>'
-				}	
-							
+				}
+
 				//최종혜택(200603 김수경 추가)
 				if (item['card_discount'] != "" && item['coupon_discount'] != ""){
 					text += '    					<tr class="hide table-line">'
-					text += '    					   <td>'
+					text += '    					   <td width="20%">'
 					text += '    						  <div class="discount_img">'
-					text += '    							 <img src="../images/leaflet_icon0.png" alt="최종혜택">'
+					text += '    							 <h6 class="discount_last">최종혜택</h6>'
 					text += '    						  </div>'
 					text += '    					   </td>'
-					text += '    					  <td>'		
+					text += '    					  <td width="30%">'		
 					var cardncoupon = Number(item['card_discount']) + Number(item['coupon_discount']);
-					text += '    					   '+comma(cardncoupon)+'원 (카드+쿠폰)'
+					text += '    					   '+comma(cardncoupon)+'원'
+					text += '    					  </td>'
+					text += '    					  <td width="50%">'		
+					text += '    	  						<div class="leafletmodal_price3"><h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block; font-size: 12px;">원</h6></div>'
 					text += '    					  </td>'
 					text += '    					 </tr>'
 				}
-	
+				
 				//다다익선
 				if (decodeURIComponent(item['dadaiksun']) != ""){				
 					text += '    					<tr class="hide table-line">'
-					text += '    					   <td>'
+					text += '    					   <td width="20%">'
 					text += '    						  <div class="discount_img">'
-					text += '    							 <img src="../images/leaflet_icon3.png" alt="다다익선">'
+					text += '    							 <h6 class="discount_m">다다익선</h6>'
 					text += '    						  </div>'
 					text += '    					   </td>'
-					text += '    					  <td>'					
+					text += '    					  <td width="30%">'					
 					text += '    					   '+item['dadaiksun']
-					text += '    					   / '+item['dadaiksun_info']
-					text += '    					  </td>'					
+					text += '    					  </td>'
+					text += '    					  <td width="50%">'					
+					text += '    					   '+item['dadaiksun_info']
+					text += '    					  </td>'			
 					text += '    					 </tr>'
 				}
 
 				//기타내용
 				if (decodeURIComponent(item['etc']) != ""){		
 					text += '    					<tr class="hide table-line">'
-					text += '    					   <td>'
+					text += '    					   <td width="20%">'
 					text += '    						  <div class="discount_img">'
 					text += '    							 <img src="../images/leaflet_icon9.png" alt="기타사항">'
 					text += '    						  </div>'
 					text += '    					   </td>'					
-					text += '    					  <td>'					
+					text += '    					  <td class="discount2" colspan="2" width="80%">'				
 					text += '                            '+ decodeURIComponent(item['etc'])
 					text += '    					  </td>'
 					text += '    					 </tr>'							
@@ -593,8 +612,8 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				text += '    </div>'
 				text += '</div>'
 			});
-			$("#bodyContentDetail"+rcv_menu_no).empty();
-			$("#bodyContentDetail"+rcv_menu_no).append(text);
+			$("#item_list_inner_wrap").empty();
+			$("#item_list_inner_wrap").append(text);
 
 			var isInIFrame = ( window.location != window.parent.location );
 			if (isInIFrame == true)
@@ -620,8 +639,9 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				})
 			}			
 		}
-	})
+	});
 }
+// 2020-06-08 정미솔 테이블 수정, class추가
 
 /* 찜하기 버튼 클릭한다. */
 function addRmZzim(rcv_jd_prod_con_no){
