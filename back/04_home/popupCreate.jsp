@@ -32,7 +32,7 @@
 	String periodType = request.getParameter("popupDateType") == null ? "" : request.getParameter("popupDateType").trim();
 	String startDate = request.getParameter("popupDateFrom") ==  null ? "2019-01-01" : request.getParameter("popupDateFrom").trim();
 	String endDate = request.getParameter("popupDateEnd") == null ? "2025-12-31" : request.getParameter("popupDateEnd").trim();
-	String company = request.getParameter("targetCompany") == null ? "" : request.getParameter("targetCompany").trim();
+	String company = request.getParameter("company") == null ? "" : request.getParameter("company").trim();
 	String showFlag = request.getParameter("showFlag") == null ? "" : request.getParameter("showFlag").trim();
 	String linkUrl = request.getParameter("linkUrl") == null ? "" : request.getParameter("linkUrl").trim();
 
