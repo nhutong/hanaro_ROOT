@@ -101,7 +101,7 @@ $(function () {
 			// if(detailImgUrl == "../images/image_unknown2.png"){
 				alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
 				return;
-			}	
+			});	
 
 			var formData = {
 				eventNo : eventNo,
@@ -129,10 +129,6 @@ $(function () {
 			deleteEvent(formData);		
 		});
 		
-	});
-
-
-
 	function getEventInfo(eventNo){
 
 		$.get('/back/05_event/event.jsp?eventNo='+eventNo,	
