@@ -77,12 +77,29 @@
                                                 <td width="80%"><input type="text" id="eventTitle" placeholder="이벤트 제목"></td>
                                             </tr>
                                             <tr>
-                                                <th >기간</th>
+                                                <!-- 200609 김수경 팝업과 입력 형식 통일 -->
+                                                <th rowspan="2">기간</th>
+                                                <td>
+                                                   <select name="popupDate" id="popupDate" >
+                                                    <option value="1">계속</option>
+                                                    <option value="2">날짜입력</option>
+                                                    </select>
+                                                </td>
+                                                <tr>
+                                           
+                                                    <td class="popup_date">
+                                                        <input type="text" placeholder="2019-09-01" id="popup_from_date">
+                                                        <span class="popup_to">~</span>
+                                                        <input type="text" placeholder="2019-09-07" id="popup_end_date">
+                                                    </td>
+                                                    
+                                                </tr>            
+                                                <!-- <th >기간</th>
                                                 <td class="event_date">
                                                     <input type="text" placeholder="2019-09-01" id="event_start_date">
                                                     <span class="event_to">~</span>
                                                     <input type="text" placeholder="2019-09-07" id="event_end_date">
-                                                </td>                                            
+                                                </td>                                             -->
                                             </tr>
                                             <tr>
                                                 <th>판매장</th>
@@ -125,6 +142,29 @@
                              </div>
                               <!--event_create_wrap ends-->
                         </div>
+                        <!-- layer_popup_link-->
+                        <div id="layer_popup_link_wrap">
+                        <div id="layer_popup_link">
+                            <table id="layer_popup_link_table">
+                                <caption style="display: none">링크목록 테이블</caption>
+                                <colgroup>
+                                    <col style="width: 30%">
+                                    <col style="width: 70%">
+                                </colgroup>
+                                <tr>
+                                    <th width="30%">대상</th>
+                                    <th width="70%">Link</th>
+                                </tr>
+                                <tbody id="layer_popup_link_list">
+                                </tbody>
+                            </table>
+                            <div id="layer_popup_link_close">
+                                <button>닫기</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //layer_popup_link-->
+
                     </div>
                 <div class="myplanb_footer">
                     ㈜농협유통 Co. ltd. All right reserved.
