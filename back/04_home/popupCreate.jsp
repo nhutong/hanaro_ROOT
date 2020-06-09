@@ -39,6 +39,11 @@
  	try {
 		QueryRunner queryRunner = new QueryRunner();
 
+		String[] arr = company.split(",") ;
+		int result = 0;
+    
+		for(String companyNo : arr){
+
 		// 관리자 등록 (insert)
 		String query = " INSERT INTO hanaro.vm_popup " + 
 				" (popup_title, img_url, company, reg_no, reg_date, lst_no, lst_date, start_date, end_date, period_type, show_flag, link_url)" +
