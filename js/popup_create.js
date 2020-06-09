@@ -102,6 +102,14 @@ $(function () {
 			linkUrl : linkUrl,
 			userEmail : userEmail
 		}
+	//200609 판매장다중선택 기능
+		console.log(formData);
+		createEvent(formData);
+	});	
+});
+
+	//팝업 생성
+	function createPopup(formdata){
 		$.post( '/back/04_home/popupCreate.jsp',			
 		formData, 			
 		function(resultJSON){
@@ -116,8 +124,7 @@ $(function () {
 				}
 			}
 		);
-	
-	});
+		}
 
 	$('#layer_popup_link_open button').on('click',function(){
 		getLinkList();
@@ -128,7 +135,6 @@ $(function () {
 		$('#layer_popup_link_wrap').hide();
 	});	
 	
-});
 
 	//핀매장 리스트 가져오기
 function getCompanyList(){
