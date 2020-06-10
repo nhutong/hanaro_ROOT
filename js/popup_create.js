@@ -126,7 +126,12 @@ $(function () {
 
 	$('#layer_popup_link_close button').on('click',function(){
 		$('#layer_popup_link_wrap').hide();
-	});	
+	});		
+
+	$(document).on('click','.linkClick',function() {
+		$('#linkUrl').val( $(this).text() );		
+		$('#layer_popup_link_wrap').hide();
+    });		
 	
 });
 
@@ -134,7 +139,7 @@ $(function () {
 function getCompanyList(){
 	$.get("/back/00_include/getCompanyList.jsp",
 		function(resultJSON){						
-			console.log(resultJSON);
+			//console.log(resultJSON);
 			companyList = resultJSON['list'];
 			if(companyList.lengh) return;
 			setCompanyOptions(companyList);		
@@ -161,32 +166,33 @@ function getLinkList(){
 	$.get('/back/00_include/getLinkList.jsp',
 		formData,
 		function(result) {
-			//console.log(result);
-			var Linklist = result['list'];
-			var text = '';	
+		//console.log(result);
+		var Linklist = result['list'];
+		var text = '';	
+		text +='    <tr>';
+		text +='        <td>홈화면</td>' ;
+		text +='        <td class="linkClick">home/main.html</td>' ;
+		text +='    </tr>';			
+		text +='    <tr>';
+		text +='        <td>쿠폰</td>' ;
+		text +='        <td class="linkClick">home/coupon.html</td>' ;
+		text +='    </tr>';	
+		text +='    <tr>';				
+		text +='        <td>이벤트</td>' ;
+		text +='        <td class="linkClick">home/event.html</td>' ;
+		text +='    </tr>';
+		text +='    <tr>';
+		text +='        <td>공지사항</td>' ;
+		text +='        <td class="linkClick">home/notice.html</td>' ;
+		text +='    </tr>';							
+		$(Linklist).each( function (idx, linkeach) {
 			text +='    <tr>';
-			text +='        <td>홈화면</td>' ;
-			text +='        <td>home/main.html</td>' ;
-			text +='    </tr>';			
-			text +='    <tr>';
-			text +='        <td>쿠폰</td>' ;
-			text +='        <td>home/coupon.html</td>' ;
-			text +='    </tr>';	
-			text +='    <tr>';				
-			text +='        <td>이벤트</td>' ;
-			text +='        <td>home/event.html</td>' ;
+			text +='        <td>' + linkeach.select_name  + '</td>' ;
+			text +='        <td class="linkClick">' + linkeach.select_value + '</td>' ;
 			text +='    </tr>';
-			text +='    <tr>';
-			text +='        <td>공지사항</td>' ;
-			text +='        <td>home/notice.html</td>' ;
-			text +='    </tr>';							
-			$(Linklist).each( function (idx, linkeach) {
-				text +='    <tr>';
-				text +='        <td>' + linkeach.select_name  + '</td>' ;
-				text +='        <td>' + linkeach.select_value + '</td>' ;
-				text +='    </tr>';
-			});
-			$("#layer_popup_link_list").empty();					
-			$("#layer_popup_link_list").append(text);				
 		});
+		$("#layer_popup_link_list").empty();					
+		$("#layer_popup_link_list").append(text);				
+	});
+	
 }

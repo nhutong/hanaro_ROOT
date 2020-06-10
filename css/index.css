@@ -2274,6 +2274,10 @@ span.discount_notice{
     border-radius: 5px;
 }
 
+.linkClick{
+    cursor: pointer;
+    text-decoration : underline;
+}
 
 /*popup_edit start*/
 .popup_edit_wrap{

@@ -1,33 +1,10 @@
-var serverUrl = "https://www.nhhanaromart.com";
-$.ajax({
-	beforeSend: function(result){
-		console.log("====================[Server Ping Test Start]===================="); 	
-	},
-	url: serverUrl + '/ping.html',
-	type: 'HEAD',
-	success: function(result){ 
-		console.log("=====================[Public Access Success]===================="); 	
-		console.log("=====================[Server Ping Test End]===================="); 				
-	},     
-	error: function(result){ 
-		$.ajax({
-			url: '/ping.html',
-			type: 'HEAD',
-			success: function(result){ 
-				serverUrl = ""; 	
-				console.log("=====================[Private Access Success]====================");
-			},     
-			error: function(result){ 
-				console.log("=====================[Public & Private Access Fail]====================");
-			},
-			complete: function(result){
-				console.log("=====================[Server Ping Test End]===================="); 				
-			}
-		});		
-	}
-});
-
 $(function(){
+
+	serverUrl = getServerUrl("https://www.nhhanaromart.com");
+
+	if( serverUrl == ""){
+		serverUrl = "https://www.nhhanaromart.com";	
+	}
 
 	header_notice();
 	
@@ -68,6 +45,39 @@ $(function(){
 	}, 500);
 	
 });
+
+
+function getServerUrl(rcvServerUrl){
+	$.ajax({
+		beforeSend: function(result){
+			console.log("====================[Server Ping Test Start]====================");
+		},
+		url: rcvServerUrl + '/ping.html',
+		type: 'HEAD',
+		success: function(result){ 
+			console.log("=====================[Public Access Success]====================");
+			console.log("=====================[Server Ping Test End]====================");
+			return rcvServerUrl;
+		},     
+		error: function(result){ 
+			$.ajax({
+				url: '/ping.html',
+				type: 'HEAD',
+				success: function(result){ 
+					console.log("=====================[Private Access Success]====================");
+					return "";					
+				},     
+				error: function(result){ 
+					console.log("=====================[Public & Private Access Fail]====================");
+					return rcvServerUrl;					
+				},
+				complete: function(result){
+					console.log("=====================[Server Ping Test End]====================");
+				}
+			});		
+		}
+	});
+}
 
 
 // 파라미터를 받는 공통 함수
