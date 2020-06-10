@@ -15,7 +15,7 @@
 	
 	try{
 
-        sql = " SELECT a.nt_no, a.nt_title, a.nt_content, left(a.reg_date,10) as reg_date, a.reg_member_no as reg_tel "
+        sql = " SELECT a.nt_no, a.nt_title, a.nt_content, left(a.reg_date,10) as reg_date, a.reg_member_no as reg_tel, b.tel as mem_tel "
 		    + " FROM vm_company_qna AS a " 
 			+ " inner join vm_member as b "
 			+ " on a.reg_member_no = b.no "
@@ -42,6 +42,7 @@
 			String nt_content = rs.getString("nt_content");   // 긴급공지내용
 			String reg_date = rs.getString("reg_date");   // 긴급공지내용
 			String reg_tel = rs.getString("reg_tel");
+			String mem_tel = rs.getString("mem_tel");	// 회원 연락처 20200610(김중백)
 			
 			JSONObject obj = new JSONObject();
 						
@@ -50,6 +51,7 @@
 			obj.put("nt_content", nt_content);
 			obj.put("reg_date", reg_date);
 			obj.put("reg_tel", reg_tel);
+			obj.put("mem_tel", mem_tel);
 
 			if(obj != null){
 				arr.add(obj);

@@ -36,12 +36,16 @@ function noticePopup(rcvNtNo){
 				text +='					<td colspan="7">'+jsonResult_notice[0].nt_title+'</td>';
 				text +='				</tr>';
 				text +='				<tr class="menuqna_pop_sub">';
-				text +='					<td width="15%"></td>';
-				text +='					<td width="15%"></td>';
+				// text +='					<td width="15%"></td>';
+				// text +='					<td width="15%"></td>';
 				text +='					<td class="menuqna_pop_sml">작성자</td>';
-				text +='					<td colspan="2">'+jsonResult_notice[0].reg_tel+'</td>';
+				text +='					<td colspan="1">'+jsonResult_notice[0].reg_tel+'</td>';
 				text +='					<td class="menuqna_pop_sml">작성일</td>';
 				text +='					<td colspan="2">'+jsonResult_notice[0].reg_date+'</td>';
+
+				// 회원 연락처 추가 20200610 김중백
+				text +='					<td class="menuqna_pop_sml">연락처</td>';
+				text +='					<td colspan="2">'+jsonResult_notice[0].mem_tel+'</td>';
 				text +='				</tr>';
 				text +='				<tr class="menuqna_pop_text">';
 				text +='				   <td colspan="8">';
