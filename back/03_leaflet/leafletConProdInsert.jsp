@@ -71,7 +71,7 @@
 			// 순서
 		    col = 0;
 		    cell = sheet.getCell(col,i);
-		    String string0 = cell.getContents().trim().replaceAll(",", "");
+		    String string0 = cell.getContents().trim().replaceAll(",", "").replaceAll("'", "");
 
 			if ( string0.equals("") ){
 				//순서가 존재하지 않으므로 중단한다.
@@ -91,7 +91,7 @@
 			// 상품코드 ( encode )
 		    col = 1;
 		    cell = sheet.getCell(col,i);
-		    String string1 = cell.getContents().trim().replaceAll(",", "");
+		    String string1 = cell.getContents().trim().replaceAll(",", "").replaceAll("'", "");
 			if ( string1.equals("") ){
 				//상품코드를 입력하지 않았기 때문에 중단한다.
 				out.clear();
@@ -111,7 +111,7 @@
 			// 상품명 ( encode )
 			col = 2;
 		    cell = sheet.getCell(col,i);
-		    String string2 = cell.getContents().trim();
+		    String string2 = cell.getContents().trim().replaceAll("'", "");
 			if ( string2.equals("") ){
 				//상품명을 입력하지 않았기 때문에 중단한다.
 				out.clear();
@@ -124,7 +124,7 @@
 			// 규격(내용량)
 			col = 3;
 		    cell = sheet.getCell(col,i);
-		    String string15 = cell.getContents().trim();
+		    String string15 = cell.getContents().trim().replaceAll("'", "");
 			string15 = strEncode(string15);		
 			
 			//앱 전단 상품명에 규격을 추가 한 뒤 아래 내용 삭제 필요 - 20200519-김대윤
@@ -133,7 +133,7 @@
 			// 판매가
 			col = 4;
 		    cell = sheet.getCell(col,i);
-		    String string3 = cell.getContents().trim().replaceAll(",", "");
+		    String string3 = cell.getContents().trim().replaceAll(",", "").replaceAll("'", "");
 			if ( string3.equals("") ){
 				//판매가 존재하지 않으므로 중단한다.
 				out.clear();
@@ -152,7 +152,7 @@
 			// 카드할인
 			col = 7;
 		    cell = sheet.getCell(col,i);
-		    String string4 = cell.getContents().trim().replaceAll(",", "");
+		    String string4 = cell.getContents().trim().replaceAll(",", "").replaceAll("'", "");
 			if ( string4.equals("") ){
 			}else{
 				if ( isNumeric(string4) == true ){
@@ -215,19 +215,19 @@
 			// 카드정보
 			col = 8;
 		    cell = sheet.getCell(col,i);
-		    String string7 = cell.getContents().trim();
+		    String string7 = cell.getContents().trim().replaceAll("'", "");
 			string7 = strEncode(string7);
 
 			// 카드한정
 			col = 9;
 		    cell = sheet.getCell(col,i);
-		    String string8 = cell.getContents().trim();
+		    String string8 = cell.getContents().trim().replaceAll("'", "");
 			string8 = strEncode(string8);
 
 			// 쿠폰할인
 			col = 10;
 		    cell = sheet.getCell(col,i);
-		    String string9 = cell.getContents().trim().replaceAll(",", "");
+		    String string9 = cell.getContents().trim().replaceAll(",", "").replaceAll("'", "");
 			if ( string9.equals("") ){
 			}else{
 				if ( isNumeric(string9) == true ){
@@ -242,19 +242,19 @@
 			// 다다익선
 			col = 11;
 		    cell = sheet.getCell(col,i);
-		    String string10 = cell.getContents().trim();
+		    String string10 = cell.getContents().trim().replaceAll("'", "");
 			string10 = strEncode(string10);
 
 			// 다다익선정보
 			col = 12;
 		    cell = sheet.getCell(col,i);
-		    String string11 = cell.getContents().trim();
+		    String string11 = cell.getContents().trim().replaceAll("'", "");
 			string11 = strEncode(string11);
 
 			// 기타정보
 			col = 13;
 		    cell = sheet.getCell(col,i);
-		    String string12 = cell.getContents().trim();
+		    String string12 = cell.getContents().trim().replaceAll("'", "");
 			string12 = strEncode(string12);
 
 			String string13 = "";

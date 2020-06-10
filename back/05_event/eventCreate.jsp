@@ -26,8 +26,7 @@
 
 	Integer userNo = (Integer)session.getAttribute("userNo");			
 
-  // 파라미터	
-  	
+  // 파라미터	  	
 	String eventTitle = request.getParameter("eventTitle") == null ? "" : request.getParameter("eventTitle").trim();
 	String imgUrl = request.getParameter("imgUrl") == null ? "" : request.getParameter("imgUrl").trim();
 	String detailImgUrl = request.getParameter("detailImgUrl") == null ? "" : request.getParameter("detailImgUrl").trim();	

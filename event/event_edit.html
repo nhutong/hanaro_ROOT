@@ -16,7 +16,7 @@
 	<!-- fontawesome style css -->
 	<link rel="stylesheet" href="../css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	<!-- 20190917 Datapicker 를 위한 추가 김나영 -->
-<!--     <link rel="stylesheet" href="../css/jquery-ui.css" /> -->
+    <!-- <link rel="stylesheet" href="../css/jquery-ui.css" /> -->
 <!--     <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" /> -->
 	<link rel="stylesheet" href="../css/jqueryui.com.1.8.18.jquery-ui.css" />
 
@@ -56,7 +56,7 @@
                                     </div>
                                 
                                     <!--팝업파일 넣는 자리 끝-->
-                                    <h5> 상세 이미지 </h5>
+                                    <h5> 상세 이미지(필수입력) </h5>
                                      <!--팝업파일 넣는 자리-->
                                      <form action="" method="post">
 											<label for="inputDetailImgUpload" class="guide_tip">※[이벤트상세 권장사이즈] 800px*무제한</label>
@@ -70,7 +70,7 @@
                                 </div>                         
                                 
                                 <div class="event_create_rgt">
-                                    <table class="event_create_table" style="table-layout : fixed; word-break : break-all;">
+                                    <table class="event_create_table" style="table-layout : fixed; word-break:break-all;">
                                         <tbody>
                                             <tr>
                                                 <th width="20%">제목</th>
@@ -104,12 +104,11 @@
                                     <h5>상세페이지</h5>
                                     <table class="event_create_table2">
                                         <tr>
-                                            <th>
-												<input type="checkbox" id="eventLink">
-												<label for="eventLink">Link</label>
-											</th>
-                                            <td><input type="text" id="linkUrl" placeholder="ex) home/main.html"></td>
-                                        </tr>
+                                            <th><input type="checkbox" id="eventLink"><label for="eventLink">Link</label><br>
+                                                <!-- 200609 김수경 링크 가이드 버튼 추가 -->
+                                            <div id="layer_popup_link_open"><button>?</button></div></th>
+                                            <td><input type="text" id="linkUrl" placeholder="← 물음표 누르고 원하는 링크 복사해서 붙여넣기"></td>
+                                        </tr>                                        
                                         <tr>
                                             <td colspan="2" style="text-indent:-16px;padding-left:25px;">
                                              ※ 체크박스 선택 시 팝업 상세이미지 하단에 [보러가기] 버튼 생성 <br/>버튼을 누르면 위에 설정된 링크로 이동    
@@ -124,6 +123,29 @@
                              </div>
                               <!--event_create_wrap ends-->
                         </div>
+                        <!-- layer_popup_link-->
+                        <div id="layer_popup_link_wrap">
+                        <div id="layer_popup_link">
+                            <table id="layer_popup_link_table">
+                                <caption style="display: none">링크목록 테이블</caption>
+                                <colgroup>
+                                    <col style="width: 30%">
+                                    <col style="width: 70%">
+                                </colgroup>
+                                <tr>
+                                    <th width="30%">대상</th>
+                                    <th width="70%">Link</th>
+                                </tr>
+                                <tbody id="layer_popup_link_list">
+                                </tbody>
+                            </table>
+                            <div id="layer_popup_link_close">
+                                <button>닫기</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //layer_popup_link-->
+
                     </div>
                 <div class="myplanb_footer">
                     ㈜농협유통 Co. ltd. All right reserved.

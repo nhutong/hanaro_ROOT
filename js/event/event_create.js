@@ -85,7 +85,7 @@ $(function () {
 				eventLink = "N";
 			}
 			
-			if(imgUrl == "../images/image_unknown.png"){
+			if(imgUrl == "../images/image_unknown_02.png"){
 				alert('배너이미지 없이 등록할 수 없습니다.');
 				return;
 			}

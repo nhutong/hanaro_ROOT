@@ -273,8 +273,8 @@ function getHeaderMenu(ff_vm_cp_no) {
 
      getMenuListDefault(ff_vm_cp_no);
 
+	 // 20200609 style.css 로 조정
      //var ofLength = $("#headerMenuArea li").length;
-     
      //$("#headerMenuArea").width(90*ofLength);
      
      var isInIFrame = ( window.location != window.parent.location );
@@ -368,8 +368,8 @@ function getMenuListDefault(rcvCompanyNo) {
 			
         }
 
-		var ofLength = $("#headerMenuArea li").length;
-		$("#headerMenuArea").width(90*ofLength);
+		// var ofLength = $("#headerMenuArea li").length;
+		// $("#headerMenuArea").width(90*ofLength);
 
 		var locHeader = location.pathname;
             
