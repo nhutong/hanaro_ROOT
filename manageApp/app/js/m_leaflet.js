@@ -21,20 +21,24 @@ $(function () {
 	// if( typeof vm_cp_no == "undefined") console.log("444444444444444444");
 	
 	
-	if (vm_cp_no == "")
+	if (vm_cp_no == "") 
 	{
-	    vm_cp_no = getCookie("userCompanyNo");
+		// vm_cp_no = getCookie("userCompanyNo");
+		vm_cp_no = localStorage.getItem("vm_cp_no");
 	}
 
-	logInsert(localStorage.getItem("tel"), vm_cp_no, menu_no);
+	// logInsert(localStorage.getItem("tel"), vm_cp_no, menu_no);
+	logInsert(localStorage.getItem("memberNo"), vm_cp_no, menu_no);
 
 	getHeader(vm_cp_no);
 	//stopHeader();
 	
 	//$("header").hide(); //해더 숨김
 
-
+    getShare();
 	getLeft();
+
+	getCpName(vm_cp_no, menu_no, jd_no);
 
 	setTimeout(function(){ getCpName(vm_cp_no); }, 1500);
 	setTimeout(function(){ clickEventApp(); }, 2000);
