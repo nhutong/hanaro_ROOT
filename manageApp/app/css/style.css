@@ -331,12 +331,28 @@ header #header_inner_wrap div img{
     right: -5px;
     top: -2px;
 }
-
-header nav{
+/* 200611 김수경 네비메뉴 속성 앱과 통일 */
+nav{
     border-top: 1px solid #e3e3e3;
     border-bottom: 1px solid #e3e3e3;
     width: 100%;
     overflow-x: scroll;
+}
+
+/* nav 상단 고정 20200604 JB*/
+nav.active {
+    top: 0px;
+    position: fixed;
+    background-color: #FFF;
+    z-index: 9;
+}
+
+/* header nav{
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    width: 100%;
+    overflow-x: scroll; */
+
 /*    overflow-style: none;*/
 /*     -ms-overflow-style: none; */
 }
@@ -354,7 +370,6 @@ header nav{
     background-color: #ff8266;
     line-height: 18px;
 }
-
 
 /*normal*/
 ::-webkit-scrollbar-thumb {
@@ -374,16 +389,16 @@ header nav{
 
 header nav ul{
 /*    overflow: scroll;*/
-	width: 20000px;
+	width: 2000px;
 }
 
 header nav ul li{
     float: left;
     max-width: 100px;
     text-align: center;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 15px;
     font-size: 15px;
-    
+    display: inline-block;
 }
 
 header nav ul li.active{
