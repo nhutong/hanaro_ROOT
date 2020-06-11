@@ -828,6 +828,7 @@ function setPrice(rcvJdProdConNo, rcvPrice){
 		    $(parent.document).find(".leaflet_del").show();
             $(".thumb_wrap>a, .price, .price2,.price3,.price4,.product,.item_list_banner_wrap").css("background-color","#fff");
 			$(".discount_info, .thumb_wrap>a>img, .date_item_list_wrap").css("border","0");
+			// 200611 김수경 상품명 수정안되는 문제 발생하여 주석처리
 			//$(".discount_info, .thumb_wrap>a>img, .date_item_wrap").css("border","0");			
             $(this).css("background-color","#4ba8ff")
         });
