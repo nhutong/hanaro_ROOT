@@ -246,7 +246,7 @@ body{-webkit-text-size-adjust: none;}
 
 header{
     overflow: hidden;
-    position: relative
+    position: relative;
 }
 header h1{
 width: 90%;
@@ -354,8 +354,8 @@ nav.active {
     overflow-x: scroll; */
 
 /*    overflow-style: none;*/
-/*     -ms-overflow-style: none; */
-}
+/*     -ms-overflow-style: none;
+} */
 
 /* 0518 김수경 전단상품 수 카운트 css 속성 추가 */
 #prod_cont_count{
@@ -458,16 +458,75 @@ header nav ul li.active a{
 
 .item_list_wrap{
     margin-top: 10px;
-	min-height : 100vh;
+    min-height : 100vh;
+    /* 200611 김수경 관리자앱 일반앱과 css 통일 시작 */
+    overflow: hidden;
 }
 
+.item_list_header_wrap{
+    /* width: 60%; */
+    height: 35px;
+    margin: auto;
+    text-align: center;
+    /* position: relative; */
+}
+.btn_left{
+    /* position: absolute; */
+    /* left: -10px; */
+    top: 4px;
+    /* z-index: 1; */
+    font-size: 15px;
+    padding: 0px 15px;
+    height: 20px;
+    cursor: pointer;
+    color: #55B190;
+    display: inline-block;
+}
+.btn_right{
+    /* position: absolute; */
+    /* right: -10px; */
+    top: 4px;
+     /* z-index: 1; */
+    font-size: 15px;
+    padding: 0px 15px;
+    height: 20px;
+    cursor: pointer;
+    color: #55B190;
+    display: inline-block;
+}
+.date_item_list_wrap{
+    display: inline-block;
+    /* padding: 0px 20px; */
+    /* position: relative; */
+    /* overflow: hidden; */
+    /* box-sizing: border-box; */
+}
+.date_item_list_wrap ul{
+    /* display: block; */
+}
+.date_item_list_wrap ul li{
+    /* float: left; */
+    text-align: center;
+    font-size: 16px;
+    /* vertical-align: top; */
+    /* letter-spacing: 1px; */
+    color: #333;
+}
+/*20200507 폰트사이즈 수정 - 미솔*/
 
-.item_list_title_wrap{
+.selected_jd{
+    /* position: absolute;  */
+    /* overflow: hidden; */
+}
+
+/* .item_list_title_wrap{
     width: 60%;
     height: 35px;
     margin: auto;
     position: relative;
-}
+} */
+
+    /* 200611 김수경 관리자앱 일반앱과 css 통일 끝 */
 
 .item_list_banner_wrap{
 /*    height: 75px;*/
@@ -616,7 +675,7 @@ header nav ul li.active a{
     right: 0;
     bottom: 0;
     max-width: 100%;
-    width : 100%;
+    /* width : 100%; */
     height: auto;
 }
 
@@ -691,11 +750,10 @@ header nav ul li.active a{
    margin: auto 0;
     top: 0;
     left: 0;
-    left: 0;
     right: 0;
     bottom: 0;
     max-width: 100%;
-    width : 100%;
+    /* width : 100%; */
     height: auto;
 }
 
@@ -1006,10 +1064,8 @@ header nav ul li.active a{
     color: #005ba1;
 }
 
-
 .coupon_price{
     color: #417361
-
 }
 
 .card_price{
@@ -1090,8 +1146,6 @@ header nav ul li.active a{
     border-top: 10px solid #55B190;
     background-color: #fff;
 }
-
-
 
 /* 2020-06-03 width값 수정 및 가운데정렬 미솔*/
 .leaflet_modal_wrap .leaflet_thumb_wrap{
@@ -1332,7 +1386,6 @@ header nav ul li.active a{
 }
 
 /*main start*/
-
 .mobile_slider{
     width: 100%;
     overflow: hidden;
@@ -1474,7 +1527,6 @@ header nav ul li.active a{
 .tos_cont{
     padding: 20px 10px 0;
 }
-
 .tos_cont p{
     font-size: 13px;
     background-color:#fff;
@@ -1651,7 +1703,6 @@ input[id="agreeLocation"]:checked + label > .slider:before {
 .login_agree_wrap a{
     font-size: 13px
 }
-
 
 /*2020-02-18 주석처리 한 부분 - 나영*/
 
