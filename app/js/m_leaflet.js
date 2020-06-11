@@ -804,7 +804,7 @@ function setPdName(rcvJdProdConNo, rcvPdName, rcvPdWeight){
         });
 
 		window.parent.document.getElementById("pd_name").value = rcvPdName;
-		window.parent.document.getElementById("pd_weight").value = rcvPdWeight;
+		// window.parent.document.getElementById("pd_weight").value = rcvPdWeight;
 		window.parent.document.getElementById("jd_prod_con_no_prod_name").value = rcvJdProdConNo;
 	}else{
 	
