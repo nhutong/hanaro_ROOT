@@ -13,6 +13,9 @@
     <link href="../css/common.css" rel="stylesheet">
     <!-- index style css -->
     <link href="../css/index.css" rel="stylesheet">
+    <!-- index style css -->
+    <link href="../app/css/style.css" rel="stylesheet">
+
     
     <!-- bootstrap style css -->
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -253,27 +256,23 @@
                                   <table class="table leaflet_coupon_table">
                                     <tr class="hide table-line">
                                         <td>
-											<div class="icon_select">
-												<img src="../images/leaflet_icon8.png" alt="행사기간">
-											</div>
+											<div class="discount_period">행사기간</div>
 										</td>                                          
                                         <td>
-                                            <button>+</button>
+                                            <button>시작</button>
                                             <div class="manageModal">
                                               <h4>- 행사시작일</h4>  
                                               <input type="text" placeholder="예시: 1000" id="card_discount" onkeyup="javascript:Tcheck(this);"><button class="close_modal">확인</button>
                                             </div>
-
-                                        <td><input type="text" placeholder="예시: 2019-09-05" id="card_discount_end_date"></td>
-                                      </tr>
                                     </td>
                                     <td>
-                                      <button>+</button>
+                                      <button>종료</button>
                                       <div class="manageModal">
                                         <h4>- 행사종료일</h4>
                                         <input type="text" placeholder="예시: 2019-09-05" id="card_discount_end_date" onFocus="this.blur()"><button class="close_modal">확인</button>
                                     </div>
                                 </td> 
+                            </tr>
 
                                       <!-- 카드할인 -->
                                       <tr class="hide table-line">
@@ -281,19 +280,17 @@
 <!-- 											<span class="table-remove">-</span> -->
 <!--                                         </td>                                      -->
                                         <td rowspan=2>
-											<div class="icon_select">
-												<img src="../images/leaflet_icon1.png" alt="카드할인">
-											</div>
+											<div class="discount_card">카드할인</div>
 										</td>
                                         <td rowspan=2>
-                                          <button>+</button>
+                                          <button>금액</button>
                                           <div class="manageModal">
                                               <h4>- 카드할인금액 수정</h4>
                                               <input type="text" placeholder="예시: 1000" id="card_discount" onkeyup="javascript:Tcheck(this);"><button class="close_modal">확인</button>
                                           </div>
                                         </td>
 										<td>
-                                            <button>+</button>
+                                            <button>정보</button>
                                             <div class="manageModal">
                                                <h4>- 카드할인정보 수정</h4>
                                                 <textarea name="card_info" id="card_info" cols="15" rows="2" placeholder="예시: NH, NHBC, KB, 삼성 (KBBC 제외)"></textarea><button class="close_modal">확인</button>
@@ -301,7 +298,7 @@
 										</td>
 									  </tr>									
 										<td>
-                                            <button>+</button>
+                                            <button>한정</button>
                                             <div class="manageModal">
                                                 <h4>- 한정수량 수정</h4>
                                                  <textarea name="card_restrict" id="card_restrict" cols="15" rows="2" placeholder="예시: 1인 1봉 한정"></textarea><button class="close_modal">확인</button>
@@ -315,18 +312,15 @@
 <!-- 											<span class="table-remove">-</span> -->
 <!--                                         </td>                                       -->
                                         <td contenteditable="false">
-											<div class="icon_select">
-												<img src="../images/leaflet_icon2.png" alt="쿠폰할인">
-											</div>
+											<div class="discount_coupon">쿠폰할인</div>
 										</td>
                                         <td>
-                                            <button>+</button>
+                                            <button>금액</button>
                                             <div class="manageModal">
                                                <h4>- 쿠폰할인금액 수정</h4>
                                                 <input type="text" placeholder="예시: 500" id="coupon_discount" onkeyup="javascript:Tcheck(this);"><button class="close_modal">확인</button>
                                             </div>    
                                         </td>
-                                        <td>-</td>
                                         <td>-</td>
                                       </tr>
 
@@ -336,12 +330,10 @@
 <!-- 											<span class="table-remove">-</span> -->
 <!--                                         </td> -->
                                         <td>
-											<div class="icon_select">
-												<img src="../images/leaflet_icon3.png" alt="다다익선">
-											</div>
+											<div class="discount_m">다다익선</div>
 										</td>
                                         <td>
-                                            <button>+</button>
+                                            <button>혜택</button>
                                             <div class="manageModal">
                                                <h4>- 다다익선 혜택 수정</h4>
                                                 <input type="text" placeholder="예시: 2+1" id="dadaiksun"><button class="close_modal">확인</button>
@@ -349,7 +341,7 @@
                                         </td>
                                         <td>-</td>
                                         <td>
-                                           <button>+</button>
+                                           <button>내용</button>
                                            <div class="manageModal">
                                                <h4>- 다다익선 혜택상세 수정</h4>
                                                 <textarea name="dadaiksun_info" id="dadaiksun_info" cols="15" rows="2" placeholder="예시: 농심 제품 2개이상 구매 시 1개 무료 증정"></textarea><button class="close_modal">확인</button>
@@ -360,12 +352,10 @@
 									  <!-- 기타정보 -->
                                       <tr class="hide table-line">
                                         <td>
-											<div class="icon_select">
-												<img src="../images/leaflet_icon9.png" alt="기타정보">
-											</div>
+											<div class="discount_e">기타정보</div>
                                         </td>
                                         <td>
-                                        <button>+</button>
+                                        <button>내용</button>
                                         <div class="manageModal">
                                             <h4>- 기타정보 수정</h4>
                                            <input type="text" placeholder="기타정보" id="etc"><button class="close_modal">확인</button>

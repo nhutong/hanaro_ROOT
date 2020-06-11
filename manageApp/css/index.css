@@ -611,9 +611,9 @@ width: 100%;
     padding: 0 6px;
     border: 0;
     box-shadow: none;
-    border-radius: 50%;
+    border-radius: 10%;
     color: #fff;
-    background-color: #55B190;
+    background-color: ##ff8266;
     text-align: center;
 }
 
