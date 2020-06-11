@@ -22,12 +22,12 @@
 
 	
 		sql = " SELECT " 
-		+ "  p.pm_no, p.ms_content, p.event_no as event_title, a.vm_cp_name, p.pm_hour, p.pm_min, b.send_cnt, p.reg_date "
+		+ "  p.pm_no, p.ms_content, p.event_no as event_title, a.vm_cp_name, p.pm_hour, p.pm_min, ifnull(b.send_cnt,0) as send_cnt, ifnull(c.target_cnt,0) as target_cnt, p.reg_date, p.pm_from_date, p.pm_to_date, p.pm_interval, p.pm_target "
         + "  FROM vm_push_message AS p " 
 		+ "  inner join vm_company as a " 
 		+ "  on p.vm_cp_no = a.vm_cp_no "
-		+ "  left outer join ( select pm_no, count(ifnull(pmis_no,0)) as send_cnt from vm_push_message_indi_send where push_token <> '' group by pm_no ) as b "
-		+ "  on p.pm_no = b.pm_no ";
+		+ "  left outer join ( select pm_no, count(pmis_no) as send_cnt from vm_push_message_indi_send where push_token <> '' group by pm_no ) as b on p.pm_no = b.pm_no "
+		+ "  left outer join ( select pm_no, count(pmt_no) as target_cnt from vm_push_message_target where 1=1 group by pm_no ) as c on p.pm_no = c.pm_no ";
 
 		if ( companyNo.equals("0") ){
 			sql = sql + " "; 	
@@ -38,7 +38,7 @@
 		sql = sql + " ORDER BY p.reg_date desc "
 	              + " LIMIT "+pageNo_new+" ,6; ";
 
-//		out.print(sql);
+		//	out.print(sql);
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -62,7 +62,12 @@
 			String pm_hour   = rs.getString("pm_hour");
 			String pm_min   = rs.getString("pm_min");
 			String send_cnt   = rs.getString("send_cnt");
+			String target_cnt   = rs.getString("target_cnt");			
 			String reg_date   = rs.getString("reg_date");
+			String pm_from_date   = rs.getString("pm_from_date");
+			String pm_to_date   = rs.getString("pm_to_date");
+			String pm_interval   = rs.getString("pm_interval");
+			String pm_target   = rs.getString("pm_target");			
 			
 			JSONObject obj = new JSONObject();
 						
@@ -73,7 +78,12 @@
 			obj.put("pm_hour", pm_hour);
 			obj.put("pm_min", pm_min);
 			obj.put("send_cnt", send_cnt);
+			obj.put("target_cnt", target_cnt);			
 			obj.put("reg_date", reg_date);
+			obj.put("pm_from_date", pm_from_date);
+			obj.put("pm_to_date", pm_to_date);
+			obj.put("pm_interval", pm_interval);
+			obj.put("pm_target", pm_target);
 
 			if(obj != null){
 				arr.add(obj);
@@ -86,7 +96,7 @@
 	
 	}catch(Exception e){
 		out.clear();
-		out.print("exception error");	
+		out.print("exception error"+","+e);	
 	}finally{
 		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {};
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {};
