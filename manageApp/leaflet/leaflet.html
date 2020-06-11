@@ -125,18 +125,18 @@
                                             <td class="deact_empty"><input type="text" id="pd_price" onkeyup="javascript:Tcheck(this);"></td>
                                         </tr>
                                         <tr>
-                                            <td>카드할인</td>
-                                            <td class="deact_empty"><input type="text" id="card_discount1" onkeyup="javascript:Tcheck(this);"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>카드시작일</td>
+                                            <td>행사시작일</td>
                                             <td class="deact_empty"><input type="text" id="card_startDate" placeholder="0000-00-00"></td>
                                         </tr>
                                         <tr>
-                                            <td>카드종료일</td>
+                                            <td>행사종료일</td>
                                             <td class="deact_empty"><input type="text" id="card_endDate" placeholder="0000-00-00"></td>
                                         </tr>
                                         <tr>
+                                            <td>카드할인</td>
+                                            <td class="deact_empty"><input type="text" id="card_discount1" onkeyup="javascript:Tcheck(this);"></td>
+                                        </tr>
+                                        <tr>                                   
                                             <td>카드정보</td>
                                             <td class="deact_empty"><input type="text" id="card_info1"></td>
                                         </tr>
@@ -249,18 +249,32 @@
                                 <input type="text" placeholder="상품가격을 입력하세요" id="price"><button class="leaflet_submit" id="price_btn">확인</button>                       
                                 <h5>- 혜택 및 상품 정보 안내</h5>
                                 <div id="table">
-                                
+                                <!-- 행사기간 -->
                                   <table class="table leaflet_coupon_table">
-                                     <thead>
-                                      <tr>
-<!--                                         <th contenteditable="false">삭제</th> -->
-                                        <th width="23%">할인<br>종류</th>
-                                        <th width="29%">할인금액<br>및 혜택</th>
-                                        <th width="23%">기간</th>
-                                        <th width="23%">혜택<br>상세</th>                                       
+                                    <tr class="hide table-line">
+                                        <td>
+											<div class="icon_select">
+												<img src="../images/leaflet_icon8.png" alt="행사기간">
+											</div>
+										</td>                                          
+                                        <td>
+                                            <button>+</button>
+                                            <div class="manageModal">
+                                              <h4>- 행사시작일</h4>  
+                                              <input type="text" placeholder="예시: 1000" id="card_discount" onkeyup="javascript:Tcheck(this);"><button class="close_modal">확인</button>
+                                            </div>
+
+                                        <td><input type="text" placeholder="예시: 2019-09-05" id="card_discount_end_date"></td>
                                       </tr>
-                                    </thead>
-                                    <tbody>
+                                    </td>
+                                    <td>
+                                      <button>+</button>
+                                      <div class="manageModal">
+                                        <h4>- 행사종료일</h4>
+                                        <input type="text" placeholder="예시: 2019-09-05" id="card_discount_end_date" onFocus="this.blur()"><button class="close_modal">확인</button>
+                                    </div>
+                                </td> 
+
                                       <!-- 카드할인 -->
                                       <tr class="hide table-line">
 <!--                                         <td rowspan=2 contenteditable="false"> -->
@@ -274,37 +288,22 @@
                                         <td rowspan=2>
                                           <button>+</button>
                                           <div class="manageModal">
-                                              <h4>- 카드할인 할인금액 및 혜택 수정</h4>
+                                              <h4>- 카드할인금액 수정</h4>
                                               <input type="text" placeholder="예시: 1000" id="card_discount" onkeyup="javascript:Tcheck(this);"><button class="close_modal">확인</button>
                                           </div>
                                         </td>
 										<td>
-                                          <button>+</button>
-                                          <div class="manageModal">
-                                             <h4>- 카드할인 할인기간 시작일</h4>
-                                              <input type="text" placeholder="예시: 2019-09-01" id="card_discount_from_date" onFocus="this.blur()"><button class="close_modal">확인</button>
-                                          </div>
-                                          </td>	
-										<td>
                                             <button>+</button>
                                             <div class="manageModal">
-                                               <h4>- 카드할인 혜택상세 1</h4>
+                                               <h4>- 카드할인정보 수정</h4>
                                                 <textarea name="card_info" id="card_info" cols="15" rows="2" placeholder="예시: NH, NHBC, KB, 삼성 (KBBC 제외)"></textarea><button class="close_modal">확인</button>
                                             </div>
 										</td>
 									  </tr>									
-									  <tr>                                       
-										<td>
-                                             <button>+</button>
-                                             <div class="manageModal">
-                                                 <h4>- 카드할인 할인기간 종료일</h4>
-										         <input type="text" placeholder="예시: 2019-09-05" id="card_discount_end_date" onFocus="this.blur()"><button class="close_modal">확인</button>
-                                            </div>
-										</td> 
 										<td>
                                             <button>+</button>
                                             <div class="manageModal">
-                                                <h4>- 카드할인 혜택상세 2</h4>
+                                                <h4>- 한정수량 수정</h4>
                                                  <textarea name="card_restrict" id="card_restrict" cols="15" rows="2" placeholder="예시: 1인 1봉 한정"></textarea><button class="close_modal">확인</button>
                                             </div>
                                         </td>
@@ -323,7 +322,7 @@
                                         <td>
                                             <button>+</button>
                                             <div class="manageModal">
-                                               <h4>- 쿠폰할인 할인금액 및 혜택 수정</h4>
+                                               <h4>- 쿠폰할인금액 수정</h4>
                                                 <input type="text" placeholder="예시: 500" id="coupon_discount" onkeyup="javascript:Tcheck(this);"><button class="close_modal">확인</button>
                                             </div>    
                                         </td>
@@ -344,7 +343,7 @@
                                         <td>
                                             <button>+</button>
                                             <div class="manageModal">
-                                               <h4>- 다다익선 할인금액 및 혜택 수정</h4>
+                                               <h4>- 다다익선 혜택 수정</h4>
                                                 <input type="text" placeholder="예시: 2+1" id="dadaiksun"><button class="close_modal">확인</button>
                                             </div>
                                         </td>
@@ -357,12 +356,37 @@
                                             </div>
                                         </td>
                                       </tr>
+
+									  <!-- 기타정보 -->
+                                      <tr class="hide table-line">
+                                        <td>
+											<div class="icon_select">
+												<img src="../images/leaflet_icon9.png" alt="기타정보">
+											</div>
+                                        </td>
+                                        <td>
+                                        <button>+</button>
+                                        <div class="manageModal">
+                                            <h4>- 기타정보 수정</h4>
+                                           <input type="text" placeholder="기타정보" id="etc"><button class="close_modal">확인</button>
+                                        </div>
+                                    </td>
+                                      </tr>
+
+                                    </table>
+                              </div>
+                               <!-- <span class="discount_notice">※상품의 가격 및 내용은 공급자 사정에 따라 다소 변경될 수 있으며 조기품절 될 수 있습니다. <br> ※일부 상품 사진은 이미지컷입니다. <br> ※카드/쿠폰할인,다다익선은 매장방문고객에 한합니다.</span> -->
+                                <!-- <button class="leaflet_submit" id="sale_btn">확인</button>                                
+                            </div> -->
+<!-- 
+
                                 </tbody>
                               </table>
-                              </div>
-                               <span class="discount_notice">※상품의 가격 및 내용은 공급자 사정에 따라 다소 변경될 수 있으며 조기품절 될 수 있습니다. <br> ※일부 상품 사진은 이미지컷입니다. <br> ※카드/쿠폰할인,다다익선은 매장방문고객에 한합니다.</span>
+                              </div> -->
+                               <!-- <span class="discount_notice">※상품의 가격 및 내용은 공급자 사정에 따라 다소 변경될 수 있으며 조기품절 될 수 있습니다. <br> ※일부 상품 사진은 이미지컷입니다. <br> ※카드/쿠폰할인,다다익선은 매장방문고객에 한합니다.</span> -->
                                 <button class="leaflet_submit" id="sale_btn">확인</button>                                
-                            </div>                    
+                            </div>
+
                 </li>
                 <li class="leaflet_edit_wrap" id="leafletEditImg">
                             <div class="leaflet_image">
