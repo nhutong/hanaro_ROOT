@@ -470,30 +470,32 @@ header nav ul li.active a{
     text-align: center;
     /* position: relative; */
 }
-/* .btn_left{ */
-    /* position: absolute; */
-    /* left: -10px; */
-    /* top: 4px; */
-    /* z-index: 1; */
+.btn_lft{
+    position: absolute;
+    left: -10px;
+    top: 4px;
+    z-index: 1;
     /* font-size: 15px;
-    padding: 0px 15px;
+    padding: 0px 15px; */
     height: 20px;
     cursor: pointer;
     color: #55B190;
-    display: inline-block;
+    /* display: inline-block; */
+
 }
-.btn_right{ */
-    /* position: absolute; */
-    /* right: -10px; */
-    /* top: 4px; */
-     /* z-index: 1; */
-    /* font-size: 15px;
-    padding: 0px 15px;
+.btn_rgt{ 
+    position: absolute;
+    right: -10px;
+    top: 4px;
+    z-index: 1;
+    /* font-size: 15px; */
+    /* padding: 0px 15px; */
     height: 20px;
     cursor: pointer;
     color: #55B190;
-    display: inline-block;
-} */
+    /* display: inline-block; */
+}
+
 .date_item_list_wrap{
     display: inline-block;
     /* padding: 0px 20px; */
@@ -501,6 +503,7 @@ header nav ul li.active a{
     /* overflow: hidden; */
     /* box-sizing: border-box; */
 }
+
 .date_item_list_wrap ul{
     /* display: block; */
 }
@@ -583,28 +586,7 @@ header nav ul li.active a{
       align-items: center;
     }
 
-.btn_lft{
-    position: absolute;
-    left: -10px;
-    top: 4px;
-    z-index: 1;
-    height: 20px;
-    cursor: pointer;
-    color: #55B190;
-    
-}
-
-.btn_rgt{
-    position: absolute;
-    right: -10px;
-    top: 4px;
-     z-index: 1;
-    font-size: 15px;
-    height: 20px;
-    cursor: pointer;
-    color: #55B190;
-}
-.banner_btn_lft img,
+    .banner_btn_lft img,
 .banner_btn_rgt img,
 .btn_lft img,
 .btn_rgt img{
