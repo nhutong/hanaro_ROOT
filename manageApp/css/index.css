@@ -22,8 +22,8 @@ input.price_input{
 }
 
 button.btn-primary {
-    background-color: #00b140;
-    border-color: #00b140;
+    background-color: #55B190;
+    border-color: #55B190;
 }
 
 button.btn-primary:hover {
@@ -89,8 +89,8 @@ div.modal-header {
 /*find_pw1 start*/
 
 .btn_box .btn2 {
-    background-color: #00b140;
-    border: 1px solid #00b140;
+    background-color: #55B190;
+    border: 1px solid #55B190;
 }
 
 /*pagination start*/
@@ -132,7 +132,7 @@ div.modal-header {
 
 .leaflet_submit{
     padding: 6px 20px;
-    background-color: #00b140;
+    background-color: #55B190;
     border: 0;
     color: #fff;
     box-shadow: none;
@@ -388,7 +388,7 @@ width: 100%;
     width: 107px;
     padding: 5px 10px;
     margin-right: 5px;
-    background-color: #00b140;
+    background-color: #55B190;
     border: 0;
     color: #fff;
     box-shadow: none;
@@ -598,7 +598,7 @@ width: 100%;
 
 .close_modal{
     padding: 6px 20px;
-    background-color: #00b140;
+    background-color: #55B190;
     border: 0;
     color: #fff;
     box-shadow: none;
@@ -612,7 +612,7 @@ width: 100%;
     box-shadow: none;
     border-radius: 50%;
     color: #fff;
-    background-color: #00b140;
+    background-color: #55B190;
     text-align: center;
 }
 
@@ -838,7 +838,7 @@ span.discount_notice{
 
 .order_search button{
     padding: 6px 10px;
-    background-color: #00b140;
+    background-color: #55B190;
     border: 0;
     box-shadow: none;
     color: #fff;
@@ -996,7 +996,7 @@ span.discount_notice{
 }
 
 #orderItemList button.itemUpdateBtn:hover{
-	background-color : #00b140;
+	background-color : #55B190;
 }
 
 #orderItemList button.itemDelBtn:hover{
@@ -1008,7 +1008,7 @@ span.discount_notice{
 }
 
 #manageOrderSave{
-    background-color: #00b140;
+    background-color: #55B190;
     margin-right: 5px;
 }
 
@@ -1123,12 +1123,12 @@ span.discount_notice{
 
 .prod_master_table th.product_modal_name span:hover,
 .prod_master_table th.product_modal_img_cnt span:hover{
-	color : #00b140;
+	color : #55B190;
 }
 
 .prod_master_table th.product_modal_name span.active,
 .prod_master_table th.product_modal_img_cnt span.active{
-	color : #00b140;
+	color : #55B190;
 }
 
 .prod_master_table th.product_modal_name .name_ds,
@@ -1230,7 +1230,7 @@ span.discount_notice{
 
 #prodTableAdd{
     float: right;
-    background-color: #00b140;
+    background-color: #55B190;
 }
 
 .prod_upload_wrap{
@@ -1324,7 +1324,7 @@ background-color: #ab1f1f;
     margin-left: 3px;
     border-radius: 5px;
     color: #fff;
-    background-color: #00b140; 
+    background-color: #55B190; 
 }
 
 .prod_rgt_btn_wrap ul li:first-child{
@@ -1440,7 +1440,7 @@ background-color: #ab1f1f;
     box-shadow: none;
     border-radius: 3px;
     color: #fff;
-    background-color: #00b140;
+    background-color: #55B190;
 }
 
 .modal-dialog-scrollable{
