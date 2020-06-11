@@ -470,31 +470,6 @@ header nav ul li.active a{
     text-align: center;
     /* position: relative; */
 }
-.btn_lft{
-    position: absolute;
-    left: -10px;
-    top: 4px;
-    z-index: 1;
-    /* font-size: 15px;
-    padding: 0px 15px; */
-    height: 20px;
-    cursor: pointer;
-    color: #55B190;
-    /* display: inline-block; */
-
-}
-.btn_rgt{ 
-    position: absolute;
-    right: -10px;
-    top: 4px;
-    z-index: 1;
-    /* font-size: 15px; */
-    /* padding: 0px 15px; */
-    height: 20px;
-    cursor: pointer;
-    color: #55B190;
-    /* display: inline-block; */
-}
 
 .date_item_list_wrap{
     display: inline-block;
@@ -522,12 +497,38 @@ header nav ul li.active a{
     /* overflow: hidden; */
 }
 
-/* .item_list_title_wrap{
+.item_list_title_wrap{
     width: 60%;
     height: 35px;
     margin: auto;
     position: relative;
-} */
+}
+
+.btn_lft{
+    position: absolute;
+    left: -10px;
+    top: 4px;
+    z-index: 1;
+    /* font-size: 15px;
+    padding: 0px 15px; */
+    height: 20px;
+    cursor: pointer;
+    color: #55B190;
+    /* display: inline-block; */
+
+}
+.btn_rgt{ 
+    position: absolute;
+    right: -10px;
+    top: 4px;
+    z-index: 1;
+    /* font-size: 15px; */
+    /* padding: 0px 15px; */
+    height: 20px;
+    cursor: pointer;
+    color: #55B190;
+    /* display: inline-block; */
+}
 
     /* 200611 김수경 관리자앱 일반앱과 css 통일 끝 */
 
