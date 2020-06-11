@@ -428,7 +428,7 @@ nav{
     border-top: 1px solid #e3e3e3;
     border-bottom: 1px solid #e3e3e3;
     width: 100%;
-    /*overflow-x: scroll; */
+    overflow-x: scroll;
 }
 
 /* nav 상단 고정 20200604 JB*/
@@ -469,14 +469,14 @@ nav.active {
 
 
 header nav ul{
-    overflow-x: scroll;
-    /* width : 2000px; */
-    white-space: nowrap;
+    /* overflow-x: scroll; */
+    width : 2000px;
+    /* white-space: nowrap; */
 }
 
 header nav ul li{
-    /* float: left; */
-    /* max-width: 100px; */
+    float: left;
+    max-width: 100px;
     text-align: center;
     padding: 10px 15px;
     font-size: 15px;
