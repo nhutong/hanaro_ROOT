@@ -46,11 +46,15 @@
 			+ " left outer JOIN vm_member AS d "
 			+ " ON a.member_no = d.`no` "
 			+ " where c.vm_cp_no = ? "
-			+ "   and ( left(b.start_date,10) <= left( ? , 10) AND left(b.end_date,10) >= left( ? , 10) ) "
+			//+ "   and ( left(b.start_date,10) <= left( ? , 10) AND left(b.end_date,10) >= left( ? , 10) ) "
+			// 조회조건 변경 20200612 김중백
+			+ "   and (( left(b.start_date,10) >= left( ? , 10) AND left(b.start_date,10) <= left( ? , 10) ) "
+			+ "   or ( left(b.end_date,10) >= left( ? , 10) AND left(b.end_date,10) <= left( ? , 10) )) "
             + " order by a.reg_date desc "
             + " LIMIT ?, ? ; ";
                         
-		Object[] paramList = new Object[]{ keyword1, keyword2, keyword3, offset, rowCount};
+		//Object[] paramList = new Object[]{ keyword1, keyword2, keyword3, offset, rowCount}; 조회조건 변경 20200612
+		Object[] paramList = new Object[]{ keyword1, keyword2, keyword3, keyword2, keyword3, offset, rowCount};
 
 		results.put("list", 
 			queryRunner.query(

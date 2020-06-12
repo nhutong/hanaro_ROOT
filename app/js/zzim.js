@@ -438,3 +438,27 @@ function addRmZzim(rcv_jd_prod_con_no){
         }
     });
 }
+
+/* 찜리스트 일괄취소 20200611 */
+function zzimDelete() {
+
+    $.ajax({
+        url:'/back/04_home/zzimDelete.jsp?random=' + (Math.random()*99999), 
+        data : {memberNo: localStorage.getItem("memberNo"), vm_cp_no: localStorage.getItem("vm_cp_no")},
+        method : 'GET' 
+    }).done(function(result){
+		var resultSplit = result.trim().split(",");
+		var text = "";
+		console.log("noticeList=========================================JB"); 
+		console.log(resultSplit);		
+        if(resultSplit[0] == 'NoN' || resultSplit[0] == 'list error' || resultSplit[0] == 'empty'){
+			console.log(result);
+        }else{
+			text +='<div class="list_no_item">마음에 드는 상품을 찜해두셨다가 매장에서 확인하세요!</div>'
+
+			$("#zzimListWrap").empty();
+			$("#zzimListWrap").append(text);
+            $("#zzim_guide").hide();
+		}
+	});
+}
