@@ -13,10 +13,6 @@
 	
 	try{
 
-		sql = "delete from vm_jundan_zzim "
-		+" where vm_cp_no = "+vm_cp_no+
-		+" and no = "+memberNo;
-
 		sql = " delete from vm_jundan_zzim "
 	 	+ " where no = '"+memberNo+"' and vm_cp_no = "+Integer.parseInt(vm_cp_no);
 
