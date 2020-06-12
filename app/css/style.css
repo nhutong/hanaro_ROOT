@@ -1638,6 +1638,15 @@ header nav ul li.active a{
     left: 15px;
 }
 
+/* 찜리스트 일괄취소 20200611 */
+.clear_column{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+
 .title_column{
     width: 100%;
     text-align: center;
