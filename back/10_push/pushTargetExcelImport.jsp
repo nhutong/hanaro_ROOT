@@ -75,33 +75,33 @@
 
 		for(int i = 1; i < row; i++) {
 
-			// 회원번호
+			// 전화번호
 		    col = 0;
 		    cell = sheet.getCell(col,i);
-		    String string0 = cell.getContents().trim().replaceAll(",", "").replaceAll("'", "");
+		    String string0 = cell.getContents().trim().replaceAll(",", "").replaceAll("'", "").replaceAll("-", "");
 
 			if ( string0.equals("") ){
-				//회원번호가 존재하지 않으므로 중단한다.
+				//전화번호가 존재하지 않으므로 중단한다.
 				out.clear();
 				out.print("no_no_exist"+","+Integer.toString(i));
 				return;
 			}else{
 				if ( isNumeric(string0) == true ){
 				}else{
-					//회원번호가 숫자가 아니므로 중단한다.
+					//전화번호가 숫자가 아니므로 중단한다.
 					out.clear();
 					out.print("no_not_number"+","+Integer.toString(i));
 					return;
 				}
 			}
 		
-			sql = " insert into vm_push_message_target(pm_no, no, reg_date) "
-		         +" select a.pm_no, b.no, NOW() "
+			sql = " insert into vm_push_message_target(pm_no, no, reg_date, tel) "
+		         +" select a.pm_no, b.no, NOW(), b.tel "
 		         +"   from vm_push_message a "
 		         +"   inner join vm_member b on a.vm_cp_no = b.company_no "
 		         +"  where a.pm_target = '대상등록' "
 				 +"    and a.pm_no = "+pm_no+"	"
-				 +"    and b.no = "+string0+" ; ";
+				 +"    and b.tel like '%"+string0+"' ; ";
 
 			resert_cnt = 0;
 			pstmt = conn.prepareStatement(sql);
