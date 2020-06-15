@@ -33,7 +33,10 @@
 			+ " left outer JOIN vm_member AS d "
 			+ " ON a.member_no = d.`no` "
 			+ " where c.vm_cp_no = '" + vm_cp_no + "' "
-			+ "  and ( left(b.start_date,10) <= left('"+cp_start_date+"',10) AND left(b.end_date,10) >= left('"+cp_end_date+"',10) ) ";
+			//+ "  and ( left(b.start_date,10) <= left('"+cp_start_date+"',10) AND left(b.end_date,10) >= left('"+cp_end_date+"',10) ) ";
+			// 조회조건 변경 20200612 김중백
+			+ "  and (( left(b.start_date,10) >= left('"+cp_start_date+"',10) AND left(b.start_date,10) <= left('"+cp_end_date+"',10) ) "
+			+ "  or ( left(b.end_date,10) >= left('"+cp_start_date+"',10) AND left(b.end_date,10) <= left('"+cp_end_date+"',10) )) ";
 			
 			if (strDecode(rcvKeyword1).equals("")){
 			}else{

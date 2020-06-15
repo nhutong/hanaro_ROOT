@@ -557,8 +557,10 @@ function getPdContent(rcv_jd_no) {
 				}
 
 				//카드 할인기간을 카드에 한정하지 않고 값이 있을경우 표시되도록 용도변경
-				if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""){
+				if (item['card_discount_from_date'] != "" && item['card_discount_end_date'] != ""  && item['card_discount_from_date'] != item['card_discount_end_date'] ){
 					text += '		<span>'+item['card_discount_from_date']+'~'+item['card_discount_end_date']+'</span>'
+				}else if(item['card_discount_from_date'] != "" && item['card_discount_from_date'] == item['card_discount_end_date']){
+					text += '		<span>'+item['card_discount_from_date']+'</span>'					
 				}else if(item['card_discount_from_date'] != ""){
 					text += '		<span>'+item['card_discount_from_date']+'</span>'
 				}else if(item['card_discount_end_date'] != ""){

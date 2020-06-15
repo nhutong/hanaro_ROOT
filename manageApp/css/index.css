@@ -423,7 +423,7 @@ width: 100%;
 
 .leaflet_image input[type="text"]{
     padding: 5px;
-    width: 190px;
+    width: 70%;
     border:1px solid #e0e0e0;
     font-size: 13px;
 }
@@ -442,6 +442,7 @@ width: 100%;
     border: 0;
     padding: 6px 10px;
     font-size: 13px;
+    width: 30%;
 }
 
 .leaflet_image span{
@@ -610,9 +611,9 @@ width: 100%;
     padding: 0 6px;
     border: 0;
     box-shadow: none;
-    border-radius: 50%;
+    border-radius: 10%;
     color: #fff;
-    background-color: #55B190;
+    background-color: #ff8266;
     text-align: center;
 }
 

@@ -1598,7 +1598,9 @@ header nav ul li.active a{
 
 .main_view_more{
     padding: 0 20px 20px;
-    text-align: right;
+    /* 200612 김수경 상품더보기+ 플로팅버튼 겹침 현상으로 가운데정렬로 수정 */
+    /* text-align: right; */
+    text-align: center;
     font-size: 13px;
     letter-spacing: -1px;
 }
@@ -1636,6 +1638,15 @@ header nav ul li.active a{
     position: absolute;
     top: 15px;
     left: 15px;
+}
+
+/* 찜리스트 일괄취소 20200611 */
+.clear_column{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    right: 25px;
 }
 
 .title_column{
