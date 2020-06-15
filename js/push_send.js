@@ -71,27 +71,44 @@ $("#pushSendBtn").on("click",function(e){
 	var pushSendMin = $("#pushSendMin").val();
 	var pm_img_path = $("#push_img_path").attr("src");
 
+	var pushSendFromDate = $("#pushSendFromDate").val();
+	var pushSendToDate = $("#pushSendToDate").val();
+	var pushInterval = $("#pushInterval").val();
+	var pushTarget   = $("#pushTarget").val();
+
 	if ( pushTopTxt == null || chrLen(pushTopTxt) == 0)
 	{
 		alert("PUSH 내용을 입력하시기 바랍니다.");
 		return false;
 	}
 
+	if ( pushSendFromDate == null || chrLen(pushSendFromDate) == 0)
+	{
+		alert("전송시작일자를 입력하시기 바랍니다.");
+		return false;
+	}	
+
+	if ( pushSendToDate == null || chrLen(pushSendToDate) == 0)
+	{
+		alert("전송종료일자를 입력하시기 바랍니다.");
+		return false;
+	}		
+
 	e.preventDefault();
 	if(confirm('등록하시겠습니까??')) {
 
 		$.ajax({
 			url:'/back/10_push/postCreateInsert.jsp?random=' + (Math.random()*99999),
-			data : {pm_img_path: pm_img_path, pushTopTxt: pushTopTxt, vm_cp_no: vm_cp_select, reg_no: getCookie("userNo"), event_no: event_no, pushSendHr:pushSendHr, pushSendMin:pushSendMin},
+			data : {pm_img_path: pm_img_path, pushTopTxt: pushTopTxt, vm_cp_no: vm_cp_select, reg_no: getCookie("userNo"), event_no: event_no, pushSendHr:pushSendHr, pushSendMin:pushSendMin, pushSendFromDate: pushSendFromDate, pushSendToDate: pushSendToDate, pushInterval: pushInterval, pushTarget: pushTarget},
 			method : 'GET' 
 		}).done(function(result){
-
-			console.log("noticeList=========================================");
-			if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-				console.log(result);
+			var resultSplit = result.trim().split(",");
+			//console.log("noticeList=========================================");
+			if(resultSplit[0] == ('NoN') || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
+				console.log(resultSplit);
 			}else{
-				console.log("============= notice callback ========================");
-				console.log(result);
+				//console.log("============= notice callback ========================");
+				//console.log(resultSplit);
 				alert("등록이 완료되었습니다.");
 				push();
 			}

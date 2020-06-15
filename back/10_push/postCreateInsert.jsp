@@ -27,6 +27,9 @@
 	
 	try{
 
+		pushSendFromDate = pushSendFromDate.replaceAll("-", "");
+		pushSendToDate = pushSendToDate.replaceAll("-", "");
+				
 		// 전달받은 정보를 바탕으로 전단상품을 insert 한다.
 		sql = " insert into vm_push_message (ms_content, vm_cp_no, event_no, reg_no, reg_date, pm_hour, pm_min, pm_img_path, pm_from_date, pm_to_date, pm_interval, pm_target) "
 			+ " values('[광고] "+pushTopTxt+" 수신거부 | 메뉴>설정>동의 해제', '"+vm_cp_no+"', '"+event_no+"', '"+reg_no+"', now(), '"+pushSendHr+"', '"+pushSendMin+"', '"+pm_img_path+"', '"+pushSendFromDate+"', '"+pushSendToDate+"', '"+pushInterval+"', '"+pushTarget+"'); ";
@@ -35,11 +38,11 @@
 		pstmt.executeUpdate();
 
 		out.clear();
-		out.print("success");
+		out.print("success"+","+sql);
 
 	}catch(Exception e){
 		out.clear();
-		out.print("exception error");	
+		out.print("exception error"+","+sql+","+e);	
 	}finally{
 		if(pstmt != null) try{ pstmt.close(); }catch(SQLException sqle) {}
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {}

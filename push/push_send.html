@@ -86,8 +86,10 @@
 											    </td>
                                            </tr>
                                            <tr>
-                                               <th>전송<br/>시각</th>
+                                               <th>전송<br/>일시</th>
                                                <td>
+                                                   <input type="date" id="pushSendFromDate">~<input type="date" id="pushSendToDate">
+                                                   <span>&nbsp;&nbsp;</span>
                                                    <select name="pushSendHr" id="pushSendHr">
                                                        <option value="09">09</option>
                                                        <option value="10">10</option>
@@ -167,6 +169,32 @@
                                                    </select>
                                                </td>
                                            </tr>
+                                           <tr>
+                                                <th>반복<br/>설정</th>
+                                                <td>
+                                                    <select name="pushInterval" id="pushInterval">
+                                                        <option value="월,화,수,목,금,토,일">월,화,수,목,금,토,일</option>                                                        
+                                                        <option value="월,화,수,목,금">월,화,수,목,금</option>                                                        
+                                                        <option value="토,일">토,일</option>
+                                                        <option value="월">월</option>
+                                                        <option value="화">화</option>
+                                                        <option value="수">수</option>
+                                                        <option value="목">목</option>
+                                                        <option value="금">금</option>
+                                                        <option value="토">토</option>
+                                                        <option value="일">일</option>
+                                                    </select>
+                                                </td>
+                                           </tr>
+                                           <tr>
+                                                <th>전송<br/>대상</th>
+                                                <td>
+                                                    <select name="pushTarget" id="pushTarget">
+                                                        <option value="고객전체">고객전체(비동의 고객 자동제외)</option>
+                                                        <option value="대상등록">대상등록(비동의 고객 자동제외)</option>
+                                                    </select>
+                                                </td>
+                                       </tr>                                           
                                        </tbody>
                                    </table>
                                    <div class="push_send_btn_wrap">
