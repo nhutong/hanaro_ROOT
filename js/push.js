@@ -86,7 +86,8 @@ function prodList(rcvPageNo, rcvCompanyNo) {
 
 				text +='<tr>';
 				text +='	<td>'+decodeURIComponent(item['pm_no'])+'</td>';
-                text +='    <td>'+item['ms_content'].replace(re,"<br>")+'</td>';
+				//text +='    <td>'+item['ms_content'].replace(re,"<br>")+'</td>';
+				text +='    <td><a href="push_edit.html?pm_no='+decodeURIComponent(item['pm_no'])+'">'+item['ms_content'].replace(re,"<br>")+'</a></td>';
                 text +='    <td>'+decodeURIComponent(item['event_title'])+'</td>';
 				text +='    <td>'+decodeURIComponent(item['vm_cp_name'])+'</td>';
                 text +='    <td>'+decodeURIComponent(item['pm_type'])+'</td>';																
@@ -104,6 +105,7 @@ function prodList(rcvPageNo, rcvCompanyNo) {
                 text +='    <td>'+decodeURIComponent(item['pm_target'])+'</td>';								
 				text +='    <td>'+decodeURIComponent(item['target_cnt'])+'</td>';				
 				text +='    <td>'+decodeURIComponent(item['send_cnt'])+'</td>';
+				text +='    <td>'+decodeURIComponent(item['del_fg'])+'</td>';				
                 text +='</tr>';
 			});
 			$("#pushList").empty();

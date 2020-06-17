@@ -15,8 +15,10 @@
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<!-- fontawesome style css -->
 <!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
-	<link rel="stylesheet" href="../css/all.css">
-
+    <link rel="stylesheet" href="../css/all.css">
+	<!-- 20200617 Datapicker 를 위한 추가 -->
+	<link rel="stylesheet" href="/css/jqueryui.com.1.8.22.jquery-ui.css" />    
+    
 </head>
 
 <body>
@@ -97,7 +99,12 @@
                                            <tr>
                                                <th>전송<br/>일시</th>
                                                <td>
-                                                   <input type="date" id="pushSendFromDate" disabled>~<input type="date" id="pushSendToDate" disabled>
+                                                   <!-- <input type="date" id="pushSendFromDate" disabled>~<input type="date" id="pushSendToDate" disabled> -->
+
+                                                    <input type="text" placeholder="2019-09-01" id="pushSendFromDate" >
+                                                    <span class="event_to">~</span>
+                                                    <input type="text" placeholder="2019-09-07" id="pushSendToDate" >
+                                                   
                                                    <span>&nbsp;&nbsp;</span>
                                                    <select name="pushSendHr" id="pushSendHr" disabled>
                                                        <option value="09">09</option>
@@ -257,13 +264,46 @@
         </div>
 
 
-	<script src="../js/google.3.4.1.jquery.min.js"></script>
-	<script src="../js/link.js"></script>
-	<script src="../js/common.js"></script><!-- common2 -->
-    <script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
-   <script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="../js/bootstrap.min.js"></script>
+        <script src="/js/google.3.4.1.jquery.min.js"></script>
+        <script src="../js/link.js"></script>
+        <script src="../js/common.js"></script>
+        <script src="/js/jquery-1.12.4.js"></script>
+        <script language="javascript" src="/js/google.jqueryui.1.8.22.jquery-ui.min.js"></script>
+        <script src="../js/jquery-ui.js"></script>
+        <script>
+        // jQuery import 바로아래에 넣어 주면 됩니다.
+        // Cannot read property 'msie' of undefined 에러 나올때
+        jQuery.browser = {};
+        (function () {
+            jQuery.browser.msie = false;
+            jQuery.browser.version = 0;
+            if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                jQuery.browser.msie = true;
+                jQuery.browser.version = RegExp.$1;
+            }
+        })();
+        </script>
+        <script src="../js/sortable.js"></script>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
     <script src="../js/push_send.js"></script>
-    
+    <script>
+		$.datepicker.setDefaults({
+			dateFormat: 'yy-mm-dd',
+			prevText: '이전 달',
+			nextText: '다음 달',
+			monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			showMonthAfterYear: true,
+			yearSuffix: '년'
+		});
+		$(function() {
+			$("#pushSendFromDate").datepicker();
+			$("#pushSendToDate").datepicker();
+		});
+	</script>
 </body>
 </html>

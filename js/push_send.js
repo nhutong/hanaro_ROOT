@@ -34,6 +34,16 @@ $(function () {
 	getManagerList(CuserCompanyNo, targetCompanyNo);
 	//getEventList(CuserCompanyNo, targetCompanyNo);
 
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = leadingZeros(today.getMonth()+1,2);
+	var day = leadingZeros(today.getDate(),2);
+
+	$("#pushSendFromDate").val(year+'-'+month+'-'+day);
+	$("#pushSendToDate").val(year+'-'+month+'-'+day);
+	
+	
+
 	$('#layer_popup_link_open button').on('click',function(){
 		getLinkList();
 		$('#layer_popup_link_wrap').show();
@@ -48,23 +58,23 @@ $(function () {
 		$('#layer_popup_link_wrap').hide();
 	});	
 	
-	$("#pushType").on("change",function(){
-		if ($("#pushType").val() == "realtime" ){
-			$("#pushSendFromDate").prop('disabled', true);
-			$("#pushSendToDate").prop('disabled', true);
+	// $("#pushType").on("change",function(){
+	// 	if ($("#pushType").val() == "realtime" ){
+	// 		$("#pushSendFromDate").prop('disabled', true);
+	// 		$("#pushSendToDate").prop('disabled', true);
 
-			$("#pushSendHr").prop('disabled', true);
-			$("#pushSendMin").prop('disabled', true);
-			$("#pushInterval").prop('disabled', true);
-		}else{
-			$("#pushSendFromDate").prop('disabled', false);
-			$("#pushSendToDate").prop('disabled', false);
+	// 		$("#pushSendHr").prop('disabled', true);
+	// 		$("#pushSendMin").prop('disabled', true);
+	// 		$("#pushInterval").prop('disabled', true);
+	// 	}else{
+	// 		$("#pushSendFromDate").prop('disabled', false);
+	// 		$("#pushSendToDate").prop('disabled', false);
 
-			$("#pushSendHr").prop('disabled', false);
-			$("#pushSendMin").prop('disabled', false);
-			$("#pushInterval").prop('disabled', false);	
-		}
-	});
+	// 		$("#pushSendHr").prop('disabled', false);
+	// 		$("#pushSendMin").prop('disabled', false);
+	// 		$("#pushInterval").prop('disabled', false);	
+	// 	}
+	// });
 
 	$("#pushTarget").on("change",function(){
 		if ($("#pushTarget").val() == "대상등록" ){		
@@ -116,7 +126,7 @@ $("#pushSendBtn").on("click",function(e){
 		return false;
 	}
 
-	if ($("#pushType").val() == "realtime" ){
+	if ( pushType == "realtime" ){
 	}else{		
 		if ( pushType == 'reserve' && ( pushSendFromDate == null || chrLen(pushSendFromDate) == 0 ) ){
 			alert("전송시작일자를 입력하시기 바랍니다.");
@@ -129,7 +139,7 @@ $("#pushSendBtn").on("click",function(e){
 		}			
 	}
 
-	if ($("#pushTarget").val() == "대상등록" ){	
+	if ( pushTarget == "대상등록" ){	
 		if ( excel_path == null || chrLen(excel_path) == 0){
 			alert("푸시대상 엑셀파일을 업로드하시기 바랍니다.");
 			return false;
@@ -148,9 +158,12 @@ $("#pushSendBtn").on("click",function(e){
 			console.log(resultSplit1);
 		}else{
 			//console.log("============= notice callback ========================");
-			//console.log(resultSplit);
+			console.log(resultSplit1);
 			pm_no = resultSplit1[1];
-			if( pm_no == "" || pm_no == null || pm_no <= "0" ){
+			if( pushTarget == "고객전체" ){
+				alert("푸시등록이 완료되었습니다.");
+				push();						
+		    }else if( pm_no == "" || pm_no == null || pm_no <= "0" ){
 				alert("[오류]푸시 저장 후 푸시번호가 생성되지 않았습니다.");
 			}else{
 				$.ajax({
