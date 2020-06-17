@@ -86,11 +86,20 @@
 											    </td>
                                            </tr>
                                            <tr>
+                                                <th>전송<br/>방법</th>
+                                                <td>
+                                                    <select name="pushType" id="pushType">
+                                                        <option value="realtime">전송버튼누르기</option>
+                                                        <option value="reserve">전송예약일시설정</option>
+                                                    </select>
+                                                </td>
+                                            </tr>                                           
+                                           <tr>
                                                <th>전송<br/>일시</th>
                                                <td>
-                                                   <input type="date" id="pushSendFromDate">~<input type="date" id="pushSendToDate">
+                                                   <input type="date" id="pushSendFromDate" disabled>~<input type="date" id="pushSendToDate" disabled>
                                                    <span>&nbsp;&nbsp;</span>
-                                                   <select name="pushSendHr" id="pushSendHr">
+                                                   <select name="pushSendHr" id="pushSendHr" disabled>
                                                        <option value="09">09</option>
                                                        <option value="10">10</option>
                                                        <option value="11">11</option>
@@ -105,7 +114,7 @@
                                                        <option value="20">20</option>
                                                    </select>
                                                    <span>&nbsp;:&nbsp;</span>
-                                                   <select name="pushSendMin" id="pushSendMin">
+                                                   <select name="pushSendMin" id="pushSendMin" disabled>
 													   <option value="00">00</option>
                                                        <option value="01">01</option>
                                                        <option value="02">02</option>
@@ -172,7 +181,7 @@
                                            <tr>
                                                 <th>반복<br/>설정</th>
                                                 <td>
-                                                    <select name="pushInterval" id="pushInterval">
+                                                    <select name="pushInterval" id="pushInterval" disabled>
                                                         <option value="월,화,수,목,금,토,일">월,화,수,목,금,토,일</option>                                                        
                                                         <option value="월,화,수,목,금">월,화,수,목,금</option>                                                        
                                                         <option value="토,일">토,일</option>
@@ -189,16 +198,30 @@
                                            <tr>
                                                 <th>전송<br/>대상</th>
                                                 <td>
-                                                    <select name="pushTarget" id="pushTarget">
-                                                        <option value="고객전체">고객전체(비동의 고객 자동제외)</option>
-                                                        <option value="대상등록">대상등록(비동의 고객 자동제외)</option>
-                                                    </select>
+                                                    <div>
+                                                        <select name="pushTarget" id="pushTarget">
+                                                            <option value="고객전체">고객전체(비동의 고객 자동제외)</option>
+                                                            <option value="대상등록">대상등록(비동의 고객 자동제외)</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="push_target_import_cont">
+                                                        <span>*푸시대상 양식 : </span>
+                                                        <span id="attachFile"><a href="/download/push_target_members.xls">push_target_members.xls</a></span>
+                                                        <div class="push_file_add">
+                                                            <form enctype="multipart/form-data" action="/include/fileUpload.jsp" method="POST" >
+                                                                <input type="file" id="excelUploadFile" name="excelUploadFile">
+                                                            </form>
+                                                            <input type="hidden" id="excel_path" value="">
+                                                            <!-- <button class="push_submit_jundan" id="push_excel_btn">업로드</button> -->
+                                                            <!-- <button class="push_submit_jundan1" id="push_excel_new">등록하기</button> -->
+                                                        </div>  
+                                                    </div>
                                                 </td>
-                                       </tr>                                           
+                                            </tr>
                                        </tbody>
                                    </table>
                                    <div class="push_send_btn_wrap">
-                                       <button id="pushSendBtn">발송</button>
+                                       <button id="pushSendBtn">신규푸시등록</button>
                                    </div>
                                </div> 
                                <!--push_send_wrap end--> 
