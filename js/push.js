@@ -93,11 +93,11 @@ function prodList(rcvPageNo, rcvCompanyNo) {
                 text +='    <td>'+decodeURIComponent(item['pm_type'])+'</td>';																
 				if( decodeURIComponent(item['pm_type']) == 'realtime'){
 					text +='    <td>'+decodeURIComponent(item['send_date'])+'</td>';
-					if( decodeURIComponent(item['send_cnt']) >= '1'){
-						text +='    <td><button onclick="pushSend('+decodeURIComponent(item['pm_no'])+')" disabled>전송완료</button></td>';
-					}else{
+					// if( decodeURIComponent(item['send_cnt']) >= '1'){
+						// text +='    <td><button onclick="pushSend('+decodeURIComponent(item['pm_no'])+')" disabled>전송완료</button></td>';
+					// }else{
 						text +='    <td><button onclick="pushSend('+decodeURIComponent(item['pm_no'])+')">즉시전송</button></td>';
-					}
+					// }
 				}else{
 					text +='    <td>'+decodeURIComponent(item['pm_from_date'])+'<br> ~ '+decodeURIComponent(item['pm_to_date'])+'<br>'+decodeURIComponent(item['pm_hour'])+'시'+decodeURIComponent(item['pm_min'])+'분</td>';
 					text +='    <td>'+decodeURIComponent(item['pm_interval'])+'</td>';	

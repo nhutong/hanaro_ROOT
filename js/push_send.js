@@ -1,4 +1,3 @@
-
 $(function () {
 
 	//  var Result = getParameterByName('Test'); // 결과 : 111
@@ -58,23 +57,23 @@ $(function () {
 		$('#layer_popup_link_wrap').hide();
 	});	
 	
-	// $("#pushType").on("change",function(){
-	// 	if ($("#pushType").val() == "realtime" ){
-	// 		$("#pushSendFromDate").prop('disabled', true);
-	// 		$("#pushSendToDate").prop('disabled', true);
+	$("#pushType").on("change",function(){
+		if ($("#pushType").val() == "realtime" ){
+			$("#pushSendFromDate").prop('disabled', true);
+			$("#pushSendToDate").prop('disabled', true);
 
-	// 		$("#pushSendHr").prop('disabled', true);
-	// 		$("#pushSendMin").prop('disabled', true);
-	// 		$("#pushInterval").prop('disabled', true);
-	// 	}else{
-	// 		$("#pushSendFromDate").prop('disabled', false);
-	// 		$("#pushSendToDate").prop('disabled', false);
+			$("#pushSendHr").prop('disabled', true);
+			$("#pushSendMin").prop('disabled', true);
+			$("#pushInterval").prop('disabled', true);
+		}else{
+			$("#pushSendFromDate").prop('disabled', false);
+			$("#pushSendToDate").prop('disabled', false);
 
-	// 		$("#pushSendHr").prop('disabled', false);
-	// 		$("#pushSendMin").prop('disabled', false);
-	// 		$("#pushInterval").prop('disabled', false);	
-	// 	}
-	// });
+			$("#pushSendHr").prop('disabled', false);
+			$("#pushSendMin").prop('disabled', false);
+			$("#pushInterval").prop('disabled', false);	
+		}
+	});
 
 	$("#pushTarget").on("change",function(){
 		if ($("#pushTarget").val() == "대상등록" ){		
