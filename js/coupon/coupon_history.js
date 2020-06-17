@@ -109,7 +109,7 @@ function noticeCont(rcvonSelectCompanyNo){
 
 		$.ajax({
 			url:'/back/05_event/coupon_history.jsp?random=' + (Math.random()*99999),
-			data : {vm_cp_no: rcvonSelectCompanyNo, rcvKeyword: keyword1, rcvKeyword2: keyword2, cp_start_date: cp_start_date, cp_end_date: cp_end_date},
+			data : {vm_cp_no: rcvonSelectCompanyNo, rcvKeyword1: keyword1, rcvKeyword2: keyword2, cp_start_date: cp_start_date, cp_end_date: cp_end_date},
 			method : 'GET' 
 		}).done(function(result){
 			
