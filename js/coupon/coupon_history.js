@@ -52,7 +52,7 @@ $(function () {
 
 	/*판매장 변경시, */
 	$("#btnUserSearch").on("click",function(){
-		noticeCont(onSelectCompanyNo);
+		noticeCont(getCookie("onSelectCompanyNo"));
 	});
 
 	$('#excel_down_stat').on('click', function(){ 
