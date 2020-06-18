@@ -720,14 +720,16 @@ header nav ul li.active a{
 /*item_list 3열*/
 
 
+/*2020-06-18 min-height값 수정 미솔*/
 .item_list_inner_wrap .figure.figure3{
     /*어디서 깨지는지 확인*/
     width: calc(33.333% - 20px);
     float: left;
     margin: 15px 10px 0;
-    min-height: 191px;
+    min-height: 205px;
     max-height: 210px;
 }
+/*2020-06-18 min-height값 수정 미솔*/
 
 .item_list_inner_wrap .figure.figure3 .product_detail{
     min-height: 65px;
@@ -783,10 +785,12 @@ header nav ul li.active a{
 
 /*2020-03-06 수정 여기까지*/
 
+/*2020-06-18 discount_info bottom:0px로 수정 미솔*/
+
 .item_list_inner_wrap .figure.figure3 .thumb_wrap .discount_info{
     position: absolute;
     box-sizing: border-box;
-    bottom: 5px;
+    bottom: 0px;
     left: 0;
     width: 100%;
 }
@@ -867,7 +871,7 @@ header nav ul li.active a{
 
 .item_list_inner_wrap .figure.figure2 .thumb_wrap .discount_info{
     position: absolute;
-    bottom: 5px;
+    bottom: 0px;
     left: 0;
     width: 100%;
 }
@@ -962,7 +966,7 @@ header nav ul li.active a{
 
 .item_list_inner_wrap .figure.figure1 .thumb_wrap .discount_info{
     position: absolute;
-    bottom: 5px;
+    bottom: 0px;
     left: 0;
     width: 100%;
 }
@@ -996,6 +1000,8 @@ header nav ul li.active a{
 }
 
 /*2020-02-18 주석처리 한 부분 - 나영*/
+
+/*2020-06-18 discount_info bottom:0px로 수정 미솔*/
 
 
 /*2020-05-07 figure1,2 폰트사이즈 변경 - 미솔*/
