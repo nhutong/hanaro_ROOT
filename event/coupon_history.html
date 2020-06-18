@@ -77,10 +77,17 @@
 						<tbody id="tab1_table">								  					
 						</tbody>
 					</table>
+					<!--pagination start-->
+					<div class="pagination_wrap">
+						<ul class="pagination justify-content-center" id="pagination" style="width : 50%; margin : 10px auto;">
+						</ul>
+				 	</div>
+				 	<!--pagination end-->					
+					
 
 				</div>
 				<!-- #tab1 -->
-				<p id="paging_area" class="paging_area"></p>
+				<!-- <p id="paging_area" class="paging_area"></p> -->
 				
 				
 			</div>
@@ -100,5 +107,25 @@
 <script src="../js/sha256.js"></script>
 <script src="../js/lib/xlsx.full.min.js"></script>
 <script src="../js/coupon/coupon_history.js"></script>
+
+<!-- <script>
+	$.datepicker.setDefaults({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		yearSuffix: '년'
+	});
+	$(function() {
+		$("#coupon_start_date").datepicker();
+		$("#coupon_end_date").datepicker();
+	});
+</script> -->
+
 </body>
 </html>
