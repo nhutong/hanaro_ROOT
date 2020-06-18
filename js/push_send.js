@@ -1,4 +1,3 @@
-
 $(function () {
 
 	//  var Result = getParameterByName('Test'); // 결과 : 111
@@ -34,6 +33,16 @@ $(function () {
 	getManagerList(CuserCompanyNo, targetCompanyNo);
 	//getEventList(CuserCompanyNo, targetCompanyNo);
 
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = leadingZeros(today.getMonth()+1,2);
+	var day = leadingZeros(today.getDate(),2);
+
+	$("#pushSendFromDate").val(year+'-'+month+'-'+day);
+	$("#pushSendToDate").val(year+'-'+month+'-'+day);
+	
+	
+
 	$('#layer_popup_link_open button').on('click',function(){
 		getLinkList();
 		$('#layer_popup_link_wrap').show();
@@ -46,7 +55,34 @@ $(function () {
 	$(document).on('click','.linkClick',function() {
 		$('#event_no').val( $(this).text() );		
 		$('#layer_popup_link_wrap').hide();
-    });		
+	});	
+	
+	$("#pushType").on("change",function(){
+		if ($("#pushType").val() == "realtime" ){
+			$("#pushSendFromDate").prop('disabled', true);
+			$("#pushSendToDate").prop('disabled', true);
+
+			$("#pushSendHr").prop('disabled', true);
+			$("#pushSendMin").prop('disabled', true);
+			$("#pushInterval").prop('disabled', true);
+		}else{
+			$("#pushSendFromDate").prop('disabled', false);
+			$("#pushSendToDate").prop('disabled', false);
+
+			$("#pushSendHr").prop('disabled', false);
+			$("#pushSendMin").prop('disabled', false);
+			$("#pushInterval").prop('disabled', false);	
+		}
+	});
+
+	$("#pushTarget").on("change",function(){
+		if ($("#pushTarget").val() == "대상등록" ){		
+			$(".push_target_import_cont").show();
+		}else{
+			$(".push_target_import_cont").hide();			
+		}			
+	});		
+	
 
 });
 
@@ -63,7 +99,8 @@ enterUpload.addEventListener('change', function(evt){
 
 // 푸쉬입력
 $("#pushSendBtn").on("click",function(e){
-	
+	e.preventDefault();
+
 	var pushTopTxt = $("#pushTopTxt").val();
 	var vm_cp_select = $("#sort_select").val();
 	var event_no = $("#event_no").val();
@@ -74,7 +111,13 @@ $("#pushSendBtn").on("click",function(e){
 	var pushSendFromDate = $("#pushSendFromDate").val();
 	var pushSendToDate = $("#pushSendToDate").val();
 	var pushInterval = $("#pushInterval").val();
+
 	var pushTarget   = $("#pushTarget").val();
+	var pushType   =  $("#pushType").val();	
+
+	var excel_path = $("#excel_path").val();	
+
+	var pm_no = "";
 
 	if ( pushTopTxt == null || chrLen(pushTopTxt) == 0)
 	{
@@ -82,42 +125,197 @@ $("#pushSendBtn").on("click",function(e){
 		return false;
 	}
 
-	if ( pushSendFromDate == null || chrLen(pushSendFromDate) == 0)
-	{
-		alert("전송시작일자를 입력하시기 바랍니다.");
-		return false;
+	if ( pushType == "realtime" ){
+	}else{		
+		if ( pushType == 'reserve' && ( pushSendFromDate == null || chrLen(pushSendFromDate) == 0 ) ){
+			alert("전송시작일자를 입력하시기 바랍니다.");
+			return false;
+		}	
+	
+		if ( pushType == 'reserve' && ( pushSendToDate == null || chrLen(pushSendToDate) == 0 ) ){
+			alert("전송종료일자를 입력하시기 바랍니다.");
+			return false;
+		}			
+	}
+
+	if ( pushTarget == "대상등록" ){	
+		if ( excel_path == null || chrLen(excel_path) == 0){
+			alert("푸시대상 엑셀파일을 업로드하시기 바랍니다.");
+			return false;
+		}		
+	}else{
 	}	
 
-	if ( pushSendToDate == null || chrLen(pushSendToDate) == 0)
-	{
-		alert("전송종료일자를 입력하시기 바랍니다.");
-		return false;
-	}		
-
-	e.preventDefault();
-	if(confirm('등록하시겠습니까??')) {
-
-		$.ajax({
-			url:'/back/10_push/postCreateInsert.jsp?random=' + (Math.random()*99999),
-			data : {pm_img_path: pm_img_path, pushTopTxt: pushTopTxt, vm_cp_no: vm_cp_select, reg_no: getCookie("userNo"), event_no: event_no, pushSendHr:pushSendHr, pushSendMin:pushSendMin, pushSendFromDate: pushSendFromDate, pushSendToDate: pushSendToDate, pushInterval: pushInterval, pushTarget: pushTarget},
-			method : 'GET' 
-		}).done(function(result){
-			var resultSplit = result.trim().split(",");
-			//console.log("noticeList=========================================");
-			if(resultSplit[0] == ('NoN') || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
-				console.log(resultSplit);
+	$.ajax({
+		url:'/back/10_push/postCreateInsert.jsp?random=' + (Math.random()*99999),
+		data : {pm_img_path: pm_img_path, pushTopTxt: pushTopTxt, vm_cp_no: vm_cp_select, reg_no: getCookie("userNo"), event_no: event_no, pushSendHr:pushSendHr, pushSendMin:pushSendMin, pushSendFromDate: pushSendFromDate, pushSendToDate: pushSendToDate, pushInterval: pushInterval, pushTarget: pushTarget, pushType: pushType},
+		method : 'GET' 
+	}).done(function(result){
+		var resultSplit1 = result.trim().split(",");
+		//console.log("noticeList=========================================");
+		if(resultSplit1[0] == ('NoN') || resultSplit1[0] == 'exception error' || resultSplit1[0] == 'empty'){
+			console.log(resultSplit1);
+		}else{
+			//console.log("============= notice callback ========================");
+			console.log(resultSplit1);
+			pm_no = resultSplit1[1];
+			if( pushTarget == "고객전체" ){
+				alert("푸시등록이 완료되었습니다.");
+				push();						
+		    }else if( pm_no == "" || pm_no == null || pm_no <= "0" ){
+				alert("[오류]푸시 저장 후 푸시번호가 생성되지 않았습니다.");
 			}else{
-				//console.log("============= notice callback ========================");
-				//console.log(resultSplit);
-				alert("등록이 완료되었습니다.");
-				push();
-			}
-		});
-
-	} else {
-		
-	}
+				$.ajax({
+					url:'/back/10_push/pushTargetExcelImport.jsp?random=' + (Math.random()*99999),
+					data : {excel_path: excel_path, pm_no: pm_no, overwrite: "N"},
+					method : 'GET' 
+				}).done(function(result){
+					var resultSplit = result.trim().split(",");
+					//console.log("leafletConProdInsert=========================================");
+					console.log(resultSplit);
+					if(resultSplit[0] == 'NoN' || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
+						alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!"+resultSplit[1]);
+					}else if(resultSplit[0] == 'no_pm'){
+						alert(pm_no+"번 푸시메시지는 등록되어 있지 않습니다.");			
+					}else if(resultSplit[0] == 'pmt_no_dup'){
+						if(confirm('푸시대상이 이미 등록되어 있습니다. 삭제 및 대체하시겠습니까?')) {
+							$.ajax({
+								url:'/back/10_push/pushTargetExcelImport.jsp?random=' + (Math.random()*99999),
+								data : {excel_path: excel_path, pm_no: pm_no, overwrite: "Y"},
+								method : 'GET' 
+							}).done(function(result){
+								var resultSplit = result.trim().split(",");
+								if(resultSplit[0] == 'NoN' || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
+									alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!"+resultSplit[1]);
+								}else if(resultSplit[0] == 'no_pm'){
+									alert(pm_no+"번 푸시메시지는 등록되어 있지 않습니다.");			
+								}else if(resultSplit[0] == 'pmt_no_dup'){
+									alert("푸시대상이 이미 등록되어 있습니다.");
+								}else if(resultSplit[0] == 'no_no_exist'){
+									alert("회원번호가 없는 행("+resultSplit[1]+")이 존재합니다");
+								}else if(resultSplit[0] == 'no_not_number'){
+									alert("회원번호가 숫자가 아닌 행("+resultSplit[1]+")이 존재합니다.");			
+								}else{
+									push_target_import_close();
+									alert("삭제 및 등록이 완료되었습니다. 영향 받은 행:"+resultSplit[1]);
+									prodList(1, targetCompanyNo);
+									prodList_paging(1, targetCompanyNo);
+								}
+							});
+						}else{
+						}
+					}else if(resultSplit[0] == 'no_no_exist'){
+						alert("회원번호가 없는 행("+resultSplit[1]+")이 존재합니다");
+					}else if(resultSplit[0] == 'no_not_number'){
+						alert("회원번호가 숫자가 아닌 행("+resultSplit[1]+")이 존재합니다.");			
+					}else{
+						//console.log("============= notice callback ========================");
+						//console.log(result);
+						//alert("등록이 완료되었습니다.");
+						alert("등록이 완료되었습니다(푸시대상 엑셀파일 영향 받은 행:"+resultSplit[1]+")");
+						push();						
+					}
+				});	
+			}			
+		}
+	});
 });
+
+/*엑셀파일 업로더*/
+//var enterUpload = document.getElementById('push_excel_btn');
+//enterUpload.addEventListener('click', function(evt){
+var enterUpload = document.getElementById('excelUploadFile');
+enterUpload.addEventListener('change', function(evt){	
+	var inputFile = document.getElementById('excelUploadFile');
+	new Upload(inputFile, function(result){
+		$("#excel_path").val(result);
+		//alert("업로드 완료 - 등록하기 버튼을 눌러주세요.");
+		alert("업로드 완료");
+	});
+});
+
+/*파일 업로더*/
+// var enterUpload = document.getElementById('uploadFile');
+// enterUpload.addEventListener('change', function(evt){
+// 	var inputFile = document.getElementById('uploadFile');
+// 	new Upload(inputFile, function(result){
+// //		$("#excel_path").val(result);
+// 		$("#push_img_path").attr("src", "/upload/"+result.trim());
+// 		alert("업로드 완료");
+// 	});
+// });
+
+// /*신규등록하기 버튼 클릭시, 신규전단을 등록한다.*/
+// $("#push_excel_new").on("click",function(){
+
+// 	var excel_path = $("#excel_path").val();
+// 	var pm_no = $("#push_message_no").val();
+
+// 	if ( excel_path == null || chrLen(excel_path) == 0)
+// 	{
+// 		alert("파일을 업로드하시기 바랍니다.");
+// 		return false;
+// 	}
+
+// 	if ( pm_no == null || chrLen(pm_no) == 0)
+// 	{
+// 		alert("푸시번호를 알 수 없습니다.");
+// 		return false;
+// 	}	
+
+// 	$.ajax({
+//         url:'/back/10_push/pushTargetExcelImport.jsp?random=' + (Math.random()*99999),
+// 		data : {excel_path: excel_path, pm_no: pm_no, overwrite: "N"},
+//         method : 'GET' 
+//     }).done(function(result){
+// 		var resultSplit = result.trim().split(",");
+// 		//console.log("leafletConProdInsert=========================================");
+// 		console.log(resultSplit);
+// 		if(resultSplit[0] == 'NoN' || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
+// 			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!"+resultSplit[1]);
+//         }else if(resultSplit[0] == 'no_pm'){
+// 			alert(pm_no+"번 푸시메시지는 등록되어 있지 않습니다.");			
+//         }else if(resultSplit[0] == 'pmt_no_dup'){
+// 			if(confirm('푸시대상이 이미 등록되어 있습니다. 삭제 및 대체하시겠습니까?')) {
+// 				$.ajax({
+// 					url:'/back/10_push/pushTargetExcelImport.jsp?random=' + (Math.random()*99999),
+// 					data : {excel_path: excel_path, pm_no: pm_no, overwrite: "Y"},
+// 					method : 'GET' 
+// 				}).done(function(result){
+// 					var resultSplit = result.trim().split(",");
+// 					if(resultSplit[0] == 'NoN' || resultSplit[0] == 'exception error' || resultSplit[0] == 'empty'){
+// 						alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!"+resultSplit[1]);
+// 					}else if(resultSplit[0] == 'no_pm'){
+// 						alert(pm_no+"번 푸시메시지는 등록되어 있지 않습니다.");			
+// 					}else if(resultSplit[0] == 'pmt_no_dup'){
+// 						alert("푸시대상이 이미 등록되어 있습니다.");
+// 					}else if(resultSplit[0] == 'no_no_exist'){
+// 						alert("회원번호가 없는 행("+resultSplit[1]+")이 존재합니다");
+// 					}else if(resultSplit[0] == 'no_not_number'){
+// 						alert("회원번호가 숫자가 아닌 행("+resultSplit[1]+")이 존재합니다.");			
+// 					}else{
+// 						push_target_import_close();
+// 						alert("삭제 및 등록이 완료되었습니다. 영향 받은 행:"+resultSplit[1]);
+// 						prodList(1, targetCompanyNo);
+// 						prodList_paging(1, targetCompanyNo);
+// 					}
+// 				});
+// 			}else{
+// 			}
+// 		}else if(resultSplit[0] == 'no_no_exist'){
+// 			alert("회원번호가 없는 행("+resultSplit[1]+")이 존재합니다");
+// 		}else if(resultSplit[0] == 'no_not_number'){
+// 			alert("회원번호가 숫자가 아닌 행("+resultSplit[1]+")이 존재합니다.");			
+// 		}else{
+//             //console.log("============= notice callback ========================");
+// 			//console.log(result);
+// 			push_target_import_close();
+//             alert("등록이 완료되었습니다. 영향 받은 행:"+resultSplit[1]);
+// 			prodList(1, targetCompanyNo);
+// 			prodList_paging(1, targetCompanyNo);
+//         }
+//     });
+// });
 
 function getLinkList(){
 	var companyNo = $("#sort_select").val();

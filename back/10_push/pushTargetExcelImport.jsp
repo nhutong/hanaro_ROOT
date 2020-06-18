@@ -99,7 +99,8 @@
 		         +" select a.pm_no, b.no, NOW(), b.tel "
 		         +"   from vm_push_message a "
 		         +"   inner join vm_member b on a.vm_cp_no = b.company_no "
-		         +"  where a.pm_target = '대상등록' "
+				 +"  where a.pm_target = '대상등록' "
+				 +"    and length(b.tel) IN (13, 11) "
 				 +"    and a.pm_no = "+pm_no+"	"
 				 +"    and b.tel like '%"+string0+"' ; ";
 

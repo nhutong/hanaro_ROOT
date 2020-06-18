@@ -48,11 +48,17 @@
 <!--                                                <th>제목</th> -->
 <!--                                                <td><input type="text" placeholder="제목을 입력하세요"></td> -->
 <!--                                            </tr> -->
+                                            <tr>
+                                                <th>NO</th>
+                                                <td class="push_send_no_border">
+                                                    <input type="text" id="pushNo" disabled>
+                                                </td>
+                                            </tr>
                                            <tr>
                                                <th>PUSH<br/>내용</th>
                                                <td class="push_send_no_border">
 												   <textarea name="pushTopTxt" id="pushTopTxt" cols="67" rows="5"></textarea>									   
-                                                   <textarea name="pushBtmTxt" id="pushBtmTxt" cols="67" rows="1" readonly>수신거부 | 메뉴>설정>동의 해제</textarea>
+                                                   <!-- <textarea name="pushBtmTxt" id="pushBtmTxt" cols="67" rows="1" readonly>수신거부 | 메뉴>설정>동의 해제</textarea> -->
                                                    <!--광고문자 입력부분-->
                                                </td>
                                            </tr>
@@ -206,10 +212,12 @@
                                                 <th>전송<br/>대상</th>
                                                 <td>
                                                     <div>
-                                                        <select name="pushTarget" id="pushTarget">
+                                                        <select name="pushTarget" id="pushTarget" style="margin-right:20px;">
                                                             <option value="고객전체">고객전체(비동의 고객 자동제외)</option>
                                                             <option value="대상등록">대상등록(비동의 고객 자동제외)</option>
                                                         </select>
+                                                        <span id="pmt_no_cnt_title"></span>
+                                                        <input type="hidden" id="pmt_no_cnt" value="">
                                                     </div>
                                                     <div class="push_target_import_cont">
                                                         <span>*푸시대상 양식 : </span>
@@ -225,10 +233,19 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <th>삭제<br/>여부</th>
+                                                <td>
+                                                    <select name="pushDel" id="pushDel">
+                                                        <option value="N">부(정상)</option>                                                        
+                                                        <option value="Y">여(삭제)</option>
+                                                    </select>
+                                                </td>
+                                           </tr>                                                   
                                        </tbody>
                                    </table>
                                    <div class="push_send_btn_wrap">
-                                       <button id="pushSendBtn">신규푸시등록</button>
+                                       <button id="pushSendBtn">변경사항수정</button>
                                    </div>
                                </div> 
                                <!--push_send_wrap end--> 
@@ -286,7 +303,7 @@
         <script src="../js/sortable.js"></script>
         <script src="../js/popper.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/push_send.js"></script>
+    <script src="../js/push_edit.js"></script>
     <script>
 		$.datepicker.setDefaults({
 			dateFormat: 'yy-mm-dd',

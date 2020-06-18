@@ -4078,79 +4078,7 @@ button#btnCreate{
     background-color: #55B190;
 }
 
-/*PUSH 기능개선 추가 시작*/
-#layer_popup_push_wrap{
-    width: 900px;
-    margin-left: 30px;
-    text-align: center;
-}
-
-#layer_popup_push{
-    width: 540px;
-    border:1px solid #d0d0d0;
-    padding: 20px 10px;
-    text-align: center;
-    position: relative;
-    background-color: #eeeeee;
-}
-
-#push_message_no{
-    border: 0;
-    background-color: transparent;
-}
-
-.close_btn img{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 15px;
-    height: 15px;
-}
-
-.push_message_no_title,
-#push_message_no{
-    float: left;
-    display: inline;
-    font-size: 12px;
-    text-align: left;
-    color: gray;
-}
-
-.push_target_import_cont{
-    display: inline-block;
-}
-
-.push_txt_save{
-    color: red;
-}
-.push_file_add{
-    display: inline-block;
-    width: 450px;
-}
-
-.push_file_add input {
-    font-size: 13px;
-    margin: 5px 0;
-    background-color: #fff;
-    float: left;
-}
-.push_submit_jundan,
-.push_submit_jundan1 {
-    padding: 5px 10px;
-    background-color: #55B190;
-    border: 0;
-    color: #fff;
-    box-shadow: none;
-    font-size: 14px;
-    margin: 0 5px 5px 5px;
-    float: left;
-    display: inline;
-}
-/*PUSH 기능개선 추가 끝*/
-
 /*push_send start*/
-
-
 .push_send_wrap{
     width: 900px;
     font-size: 14px;
@@ -4159,13 +4087,13 @@ button#btnCreate{
 }
 
 .push_send_table{
-    width: 600px;
+    width: 700px;
     font-size: 14px;
     border: 1px solid #d0d0d0;
 }
 
 .push_send_table th {
-    padding: 14px 16px;
+    padding: 10px 16px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
     background-color: #e0e0e0;
@@ -4173,7 +4101,7 @@ button#btnCreate{
 }
 
 .push_send_table td {
-    padding: 14px 16px;
+    padding: 10px 16px;
     border: 1px solid #d0d0d0;
 }
 
@@ -4182,6 +4110,11 @@ button#btnCreate{
     height: 200px;
     display: block;
     margin-left: 40px;
+}
+
+.push_send_table input[disabled],
+.push_send_table select[disabled]{
+    background-color: rgb(233, 233, 233);
 }
 
 .push_send_table input {
@@ -4201,11 +4134,13 @@ button#btnCreate{
 }
 
 .push_send_table textarea{
+    border: 1px solid #aaaaaa;;    
     display: block;
 	resize : none;
 }
 
 .push_send_table textarea#pushTopTxt{
+    border: 1px solid #aaaaaa;;    
     margin-bottom: 5px;
 	resize : none;
 }
@@ -4242,6 +4177,81 @@ button#btnCreate{
 }
 
 /*PUSH 기능개선 추가 시작*/
+/* #layer_popup_push_wrap{
+    width: 900px;
+    margin-left: 30px;
+    text-align: center;
+}
+
+#layer_popup_push{
+    width: 540px;
+    border:1px solid #d0d0d0;
+    padding: 20px 10px;
+    text-align: center;
+    position: relative;
+    background-color: #eeeeee;
+}
+
+#push_message_no{
+    border: 0;
+    background-color: transparent;
+}
+
+.close_btn img{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+}
+
+.push_message_no_title,
+#push_message_no{
+    float: left;
+    display: inline;
+    font-size: 12px;
+    text-align: left;
+    color: gray;
+} */
+
+.push_target_import_cont{
+    /* display:inline-block; */
+    display:none;
+}
+
+.push_target_import_cont span{
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.push_file_add{
+    /* display: inline-block; */
+    /* width: 450px; */
+}
+
+.push_file_add form {
+    display: inline-block;
+    width: 500px;
+}
+
+.push_file_add input {
+    font-size: 13px;
+    margin: 5px 0;
+    background-color: #fff;
+}
+.push_submit_jundan,
+.push_submit_jundan1 {
+    /* display: inline-block;     */
+    padding: 5px 10px;
+    background-color: #55B190;
+    border: 0;
+    color: #fff;
+    box-shadow: none;
+    font-size: 14px;
+    margin: 0 5px 5px 5px;
+
+}
+
 #pushSendFromDate,
 #pushSendToDate{
     width: 150px;

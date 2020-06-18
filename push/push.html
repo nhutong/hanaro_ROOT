@@ -50,13 +50,14 @@
 												<th width="7%">No</th>
 												<th width="18%">PUSH 내용</th>
 												<th width="15%">링크</th>
-												<th width="7%">대상지점</th>
+                                                <th width="7%">대상지점</th>
+                                                <th width="7%">전송방법</th>                                                
                                                 <th width="15%">전송일시</th>
-                                                <th width="8%">반복설정</th>
+                                                <th width="7%">반복설정</th>
                                                 <th width="7%">전송대상</th>
                                                 <th width="4%">대상수</th>
-                                                <th width="4%">대상등록</th>
-                                                <th width="4%">전송수</th>                                                
+                                                <th width="4%">전송수</th>
+                                                <th width="4%">삭제</th>                                                
                                                 <!--<th width="10%">수신수</th> -->
 											</tr>
 										</thead>
@@ -84,34 +85,11 @@
                                  <!--submit_btn start-->
                                  <div class="push_submit_btn_wrap">
                                      <button id="pushSubmit" onclick="push_send();">
-                                         PUSH 발송
+                                         신규푸시등록
                                      </button>
                                  </div>
                                  <!--submit_btn end--> 
 
-                            </div>
-
-                            <!-- layer_popup_push -->
-                            <div id="layer_popup_push_wrap">
-                                <div id="layer_popup_push">
-                                    <div class="push_message_no_title">푸시번호</div>
-                                    <input type="text" id="push_message_no" readonly>
-                                    <span class="close_btn"><img src="../images/close_btn.png" alt="닫기" onclick="push_target_import_close();"></span>
-                                    <div class="push_target_import_cont">
-                                        <span>*푸시대상 양식 : </span>
-                                        <span id="attachFile"><a href="/download/push_target_members.xls">push_target_members.xls</a></span>
-                                        <p class="push_text">푸시대상 양식 다운로드 시, <span class="push_txt_save">반드시 [저장]</span>을 이용해 주세요! (열기X)</p> 
-                                        <div class="push_file_add">
-                                            <form enctype="multipart/form-data" action="/include/fileUpload.jsp" method="POST">
-                                                <input type="file" id="uploadFile" name="uploadFile">
-                                            </form>
-                                            <input type="hidden" id="excel_path" value="">
-                                            <button class="push_submit_jundan" id="push_excel_btn">업로드</button>
-                                            <button class="push_submit_jundan1" id="push_excel_new">등록하기</button>
-                                        </div>  
-                                    </div>
-
-                                </div>
                             </div>
 
                         </div>
