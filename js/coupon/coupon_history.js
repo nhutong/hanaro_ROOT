@@ -77,28 +77,11 @@ $(function () {
 	var sday = leadingZeros(today.getDate()-2,2);
 	var eday = leadingZeros(today.getDate(),2);
 
-	$("#excel_start_date").val(year+'-'+month+'-'+sday);
-	$("#excel_end_date").val(year+'-'+month+'-'+eday);		
+	// $("#excel_start_date").val(year+'-'+month+'-'+sday);
+	// $("#excel_end_date").val(year+'-'+month+'-'+eday);		
 
 	$("#coupon_start_date").val(year+'-'+month+'-'+sday);
 	$("#coupon_end_date").val(year+'-'+month+'-'+eday);	
-
-	// $.datepicker.setDefaults({
-	// 	dateFormat: 'yy-mm-dd',
-	// 	prevText: '이전 달',
-	// 	nextText: '다음 달',
-	// 	monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-	// 	monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-	// 	dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-	// 	dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-	// 	dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-	// 	showMonthAfterYear: true,
-	// 	yearSuffix: '년'
-	// });
-	// $(function() {
-	// 	$("#coupon_start_date").datepicker();
-	// 	$("#coupon_end_date").datepicker();
-	// });	
 
 	// noticeCont(targetCompanyNo, pageNo);
 	// noticeCont_paging(targetCompanyNo, pageNo);
@@ -108,8 +91,10 @@ $(function () {
 
 function getCouponHistoryForExcel(){
 	var keyword1 = onSelectCompanyNo;
-	var keyword2 = $('#excel_start_date').val();	
-	var keyword3 = $('#excel_end_date').val();
+	// var keyword2 = $('#excel_start_date').val();	
+	// var keyword3 = $('#excel_end_date').val();
+	var keyword2 = $('#coupon_start_date').val();	
+	var keyword3 = $('#coupon_end_date').val();
 
 	console.log("aa");
 
@@ -186,7 +171,7 @@ function noticeCont(rcvonSelectCompanyNo, rcvPageNo) {
 			
 			if(result == "NoN"){
 					text +='      <tr>';
-					text +='			 <td colspan="6">등록된 사항이 없습니다.</td>';
+					text +='			 <td colspan="7">등록된 사항이 없습니다.</td>';
 					text +='       </tr>';
 			}else{
 				$("#tab1_table").html("");
