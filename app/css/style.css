@@ -824,6 +824,8 @@ header nav ul li.active a{
     width: calc(50% - 23px) !important;
     float: left;
     margin: 15px 15px 0;
+    /*200619 김수경 가격폰트 변경 - 2열 간격 주기*/
+    padding-bottom: 15px;
 }
 
 .item_list_inner_wrap .figure.figure2:nth-child(2n){
@@ -1015,7 +1017,7 @@ header nav ul li.active a{
  /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     /* min-height: 40px; */
     min-height: 2.6em;
-    height: 2.6em;
+    height: 3em;
 /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     line-height: 1.3em;
     text-overflow: ellipsis;
@@ -1033,7 +1035,7 @@ header nav ul li.active a{
  /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     /* min-height: 40px; */
     min-height: 2.6em;
-    height: 2.6em;
+    height: 3em;
 /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     line-height: 1.3em;
     text-overflow: ellipsis;
@@ -1054,7 +1056,7 @@ header nav ul li.active a{
  /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     /* min-height: 40px; */
     min-height: 2.6em;
-    height: 2.6em;
+    height: 3em;
 /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     line-height: 1.3em;
     text-overflow: ellipsis;
@@ -1068,7 +1070,7 @@ header nav ul li.active a{
 /*2020-05-07 상품명 두줄로 변경 - 미솔*/
 
 .price{
-    font-weight: 900;
+    font-weight: 500;
     font-family: 'Roboto';
 }
 
@@ -1077,7 +1079,7 @@ header nav ul li.active a{
     letter-spacing: -1px;
     height: 28px;
     overflow: hidden;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1086,7 +1088,7 @@ header nav ul li.active a{
     letter-spacing: -1px;
     height: 28px;
     overflow: hidden;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1095,7 +1097,7 @@ header nav ul li.active a{
     letter-spacing: -1px;
     height: 28px;
     overflow: hidden;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1109,7 +1111,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 28px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 500;
     font-family: 'Roboto';
 }
 
@@ -1120,7 +1122,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 23px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1131,7 +1133,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 23px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1142,7 +1144,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 23px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1153,7 +1155,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 23px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 500;
     font-family: 'Roboto';
 }
 
@@ -1164,7 +1166,40 @@ header nav ul li.active a{
     overflow: hidden;
     height: 19px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 500;
+    font-family: 'Roboto';
+}
+
+.figure3 .price2{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 16px;
+    overflow: hidden;
+    height: 19px;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    font-family: 'Roboto';
+}
+
+.figure3 .price3{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 16px;
+    overflow: hidden;
+    height: 19px;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    font-family: 'Roboto';
+}
+
+.figure3 .price4{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 16px;
+    overflow: hidden;
+    height: 19px;
+    text-overflow: ellipsis;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 /*2020-05-07 가격 글씨체 굵게, 폰트 Roboto로 수정 - 미솔*/
@@ -1300,7 +1335,7 @@ header nav ul li.active a{
     font-size: 20px;
     text-align: center;
     color: #ff0000;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1308,7 +1343,7 @@ header nav ul li.active a{
     font-size: 20px;
     text-align: center;
     color: #417361;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1316,7 +1351,7 @@ header nav ul li.active a{
     font-size: 20px;
     text-align: center;
     color: #005ba1;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1393,19 +1428,19 @@ header nav ul li.active a{
 }
 .leafletmodal_price{
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
     color: #ff4141;
 }
 .leafletmodal_price2{
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
     color: #417361;
 }
 .leafletmodal_price3{
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
     color: #005ba1;
 }
