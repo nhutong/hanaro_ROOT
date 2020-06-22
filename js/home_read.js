@@ -222,40 +222,6 @@ $("#readDelBtn").on("click",function(e){
 // 글수정모드로 변경
 function changeEditMode(rcvPostNo){
 
-// 200622 김수경 썸머노트 적용 테스트
-	$('#summernote').summernote({
-		height: 300,                 // 에디터 높이
-		minHeight: null,             // 최소 높이
-		maxHeight: null,             // 최대 높이
-		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-		lang: "ko-KR",					// 한글 설정
-		callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-			onImageUpload : function(files) {
-				uploadSummernoteImageFile(files[0],this);
-			}
-		}
-});
-
-/**
-* 이미지 파일 업로드
-*/
-function uploadSummernoteImageFile(file, editor) {
-data = new FormData();
-data.append("file", file);
-$.ajax({
-	data : data,
-	type : "POST",
-	url : "/uploadSummernoteImageFile",
-	contentType : false,
-	processData : false,
-	success : function(data) {
-		//항상 업로드된 파일의 url이 있어야 한다.
-		$(editor).summernote('insertImage', data.url);
-	}
-});
-}
-  	// 200622 김수경 썸머노트 적용 테스트
-
 	$.ajax({
         url:'/back/04_home/postRead.jsp?random=' + (Math.random()*99999), 
         data : {postNo: rcvPostNo},
@@ -273,11 +239,9 @@ $.ajax({
             data['CompanyList'].forEach(function(item, index){                        
 				
 				$("#post_title_input").val(decodeURIComponent(item['title']));
-				$("#post_content_textarea").append(decodeURIComponent(item['content']))
-	// 200622 김수경 썸머노트 적용 테스트
-				.summernote({focus: true});
-	// 200622 김수경 썸머노트 적용 테스트
-			});
+				$("#post_content_textarea").append(decodeURIComponent(item['content'])).summernote({focus: true});
+			})
+;
         }
     });
 }
