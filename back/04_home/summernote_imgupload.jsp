@@ -6,13 +6,7 @@
 <%
 
     // 웹서버 컨테이너 경로
-    //String root = request.getSession().getServletContext().getRealPath("/");
     String uploadPath = request.getRealPath("/upload/");
-//    String root = "C:\\Users\\visualwave17\\Desktop\\JSP_TEST\\test\\";
-//  	out.print(root);
-    // 파일 저장 경로(ex : /home/tour/web/ROOT/upload)
-    String savePath = root;
-
     int size = 10 * 1024 * 1024;  // 업로드 사이즈 제한 10M 이하
 	
 	String fileName = ""; // 파일명
