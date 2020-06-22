@@ -19,8 +19,9 @@
 
 	try{
 
-		int resert_cnt = 0;
-		int all_cnt = 0;
+        int del_cnt = 0;
+		int ins_cnt = 0;   
+		int all_ins_cnt = 0;   		
 
 		// 푸시메시지 있는지 확인
 		sql = " SELECT pm_no from vm_push_message	WHERE pm_target = '대상등록' and pm_no = "+pm_no+" ;";
@@ -55,7 +56,7 @@
 				//삭제하고 계속 진행
 				sql = " delete from vm_push_message_target where pm_no = "+pm_no+"; "; 
 				pstmt = conn.prepareStatement(sql);
-				pstmt.executeUpdate();
+				del_cnt = pstmt.executeUpdate();
 			}else{
 				//멈춤
 				out.clear();
@@ -104,11 +105,10 @@
 				 +"    and a.pm_no = "+pm_no+"	"
 				 +"    and b.tel like '%"+string0+"' ; ";
 
-			resert_cnt = 0;
 			pstmt = conn.prepareStatement(sql);
-			resert_cnt = pstmt.executeUpdate();
+			ins_cnt = pstmt.executeUpdate();
 
-			all_cnt += resert_cnt;
+			all_ins_cnt += ins_cnt;
 			// 엑셀 row 루프끝
 		}
 
@@ -116,7 +116,7 @@
 		workbook.close();
 		
 		out.clear();
-		out.print("success"+","+Integer.toString(all_cnt)+","+sql);
+		out.print("success"+","+Integer.toString(all_ins_cnt)+","+Integer.toString(del_cnt)+","+sql);
 	}catch(Exception e){
 		out.clear();
 		out.print("exception error"+","+e);	

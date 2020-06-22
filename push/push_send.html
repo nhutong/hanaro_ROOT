@@ -44,23 +44,20 @@
                                    
                                    <table class="push_send_table">
                                        <tbody>
-<!--                                            <tr> -->
-<!--                                                <th>제목</th> -->
-<!--                                                <td><input type="text" placeholder="제목을 입력하세요"></td> -->
-<!--                                            </tr> -->
-                                           <tr>
-                                               <th>PUSH<br/>내용</th>
-                                               <td class="push_send_no_border">
+                                            <tr>
+                                                <th>NO</th>
+                                                <td class="push_send_no_border">
+                                                    <input type="text" id="pushNo" disabled>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>PUSH<br/>내용</th>
+                                                <td class="push_send_no_border">
 												   <textarea name="pushTopTxt" id="pushTopTxt" cols="67" rows="5"></textarea>									   
                                                    <textarea name="pushBtmTxt" id="pushBtmTxt" cols="67" rows="1" readonly>수신거부 | 메뉴>설정>동의 해제</textarea>
                                                    <!--광고문자 입력부분-->
-                                               </td>
-                                           </tr>
-                                           
-<!--                                            <tr> -->
-<!--                                                <th>Link</th> -->
-<!--                                                <td><input type="text"></td> -->
-<!--                                            </tr> -->
+                                                </td>
+                                            </tr>
                                            <tr>
                                                <th>이미지</th>
                                                <td class="push_send_no_border">
@@ -211,25 +208,68 @@
                                                             <option value="대상등록">대상등록(비동의 고객 자동제외)</option>
                                                         </select>
                                                     </div>
-                                                    <div class="push_target_import_cont">
-                                                        <span>*푸시대상 양식 : </span>
-                                                        <span id="attachFile"><a href="/download/push_target_members.xls">push_target_members.xls</a></span>
-                                                        <div class="push_file_add">
-                                                            <form enctype="multipart/form-data" action="/include/fileUpload.jsp" method="POST" >
-                                                                <input type="file" id="excelUploadFile" name="excelUploadFile">
-                                                            </form>
-                                                            <input type="hidden" id="excel_path" value="">
-                                                            <!-- <button class="push_submit_jundan" id="push_excel_btn">업로드</button> -->
-                                                            <!-- <button class="push_submit_jundan1" id="push_excel_new">등록하기</button> -->
-                                                        </div>  
-                                                    </div>
                                                 </td>
                                             </tr>
-                                       </tbody>
-                                   </table>
-                                   <div class="push_send_btn_wrap">
-                                       <button id="pushSendBtn">신규푸시등록</button>
-                                   </div>
+                                            <tr class="push_target">
+                                                <th>푸시<br/>대상</th>
+                                                <td>
+                                                    <table class="push_send_target_table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>대상수</th>
+                                                                <td>
+                                                                    <span id="pmt_no_cnt_title">0명</span>
+                                                                    <input type="hidden" id="pmt_no_cnt" value="">                                                                    
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>건별입력</th>
+                                                                <td>
+                                                                    <input type="text" id="push_target_tel" placeholder="전화번호 입력 후 앤터" disabled>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>대량입력</th>
+                                                                <td>
+                                                                    <span>*푸시대상 양식 : </span>
+                                                                    <span id="attachFile"><a href="/download/push_target_members.xls">push_target_members.xls</a></span>
+                                                                    <form enctype="multipart/form-data" action="/include/fileUpload.jsp" method="POST" >
+                                                                        <input type="file" id="excelUploadFile" name="excelUploadFile" disabled>
+                                                                    </form>
+                                                                    <input type="hidden" id="excel_path" value="">
+                                                                </td>
+                                                            </tr>                                                                                                                        
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>  
+                                            <tr id="pushDelTr">
+                                                <th>삭제<br/>여부</th>
+                                                <td>
+                                                    <select name="pushDel" id="pushDel" disabled>
+                                                        <option value="N">N</option>
+                                                        <option value="Y">Y</option>
+                                                    </select>                                                    
+                                                </td>
+                                            </tr>                                                                                      
+                                            <tr id="pushStatusTr">
+                                                <th>푸시<br/>상태</th>
+                                                <td>
+                                                    <select name="pushStatus" id="pushStatus" disabled>
+                                                        <option value="신규">입력중...</option>                                                        
+                                                        <option value="저장">저장</option>
+                                                        <option value="전송">전송</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="push_send_btn_wrap">
+                                        <button id="pushSaveBtn">저장</button>                                        
+                                        <button id="pushSendBtn">즉시/예약 전송</button>                                        
+                                        <button id="pushDelBtn">삭제</button>                                        
+                                    </div>
                                </div> 
                                <!--push_send_wrap end--> 
                             </div>

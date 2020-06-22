@@ -87,25 +87,15 @@ function prodList(rcvPageNo, rcvCompanyNo) {
 				text +='<tr>';
 				text +='	<td>'+decodeURIComponent(item['pm_no'])+'</td>';
 				//text +='    <td>'+item['ms_content'].replace(re,"<br>")+'</td>';
-				text +='    <td><a href="push_edit.html?pm_no='+decodeURIComponent(item['pm_no'])+'">'+item['ms_content'].replace(re,"<br>")+'</a></td>';
-                text +='    <td>'+decodeURIComponent(item['event_title'])+'</td>';
+				text +='    <td><a href="push_send.html?pm_no='+decodeURIComponent(item['pm_no'])+'">'+item['ms_content'].replace(re,"<br>")+'</a></td>';
 				text +='    <td>'+decodeURIComponent(item['vm_cp_name'])+'</td>';
                 text +='    <td>'+decodeURIComponent(item['pm_type'])+'</td>';																
-				if( decodeURIComponent(item['pm_type']) == 'realtime'){
-					text +='    <td>'+decodeURIComponent(item['send_date'])+'</td>';
-					// if( decodeURIComponent(item['send_cnt']) >= '1'){
-						// text +='    <td><button onclick="pushSend('+decodeURIComponent(item['pm_no'])+')" disabled>전송완료</button></td>';
-					// }else{
-						text +='    <td><button onclick="pushSend('+decodeURIComponent(item['pm_no'])+')">즉시전송</button></td>';
-					// }
-				}else{
-					text +='    <td>'+decodeURIComponent(item['pm_from_date'])+'<br> ~ '+decodeURIComponent(item['pm_to_date'])+'<br>'+decodeURIComponent(item['pm_hour'])+'시'+decodeURIComponent(item['pm_min'])+'분</td>';
-					text +='    <td>'+decodeURIComponent(item['pm_interval'])+'</td>';	
-				}
-                text +='    <td>'+decodeURIComponent(item['pm_target'])+'</td>';								
+				text +='    <td>'+decodeURIComponent(item['pm_from_date'])+'<br> ~ '+decodeURIComponent(item['pm_to_date'])+'<br>'+decodeURIComponent(item['pm_hour'])+'시'+decodeURIComponent(item['pm_min'])+'분</td>';
+				text +='    <td>'+decodeURIComponent(item['pm_interval'])+'</td>';	
 				text +='    <td>'+decodeURIComponent(item['target_cnt'])+'</td>';				
 				text +='    <td>'+decodeURIComponent(item['send_cnt'])+'</td>';
 				text +='    <td>'+decodeURIComponent(item['del_fg'])+'</td>';				
+				text +='    <td>'+decodeURIComponent(item['pm_status'])+'</td>';								
                 text +='</tr>';
 			});
 			$("#pushList").empty();
@@ -113,25 +103,6 @@ function prodList(rcvPageNo, rcvCompanyNo) {
         }
     });
 
-}
-
-function pushSend(rcvPmNo){
-	$.ajax({
-        url:'https://172.16.9.21//PushSms/back-end/pushRealtime.php?random=' + (Math.random()*99999), 
-        data : {pm_no: rcvPmNo},
-        method : 'GET' 
-    }).done(function(result){
-        // console.log("noticeList=========================================");
-        if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            console.log(result);
-        }else{
-            //console.log("============= notice callback ========================");
-			console.log(result);
-			alert("푸시 발송이 완료되었습니다");
-			prodList(pageNo, targetCompanyNo);
-			prodList_paging(pageNo, targetCompanyNo);			
-        }
-    });			
 }
 
 // 상품리스트 페이징를 가져온다
