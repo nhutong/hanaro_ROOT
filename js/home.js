@@ -78,7 +78,7 @@ $(function () {
 
 });
 
-// 상품리스트를 가져온다
+// 관리자 게시판 게시물 리스트를 가져온다
 function prodList(rcvPageNo, rcvSearchText) {
 
 	$.ajax({
@@ -143,8 +143,6 @@ function home_post_create() {
 		}
 });
 
-
-
 /**
 * 이미지 파일 업로드
 */
@@ -173,10 +171,7 @@ function canclePost(){
 // 게시물 등록
 function createPost() {
 	var post_title = $("#post_title").val();
-	// 200622 김수경 썸머노트 적용 테스트
-	// var post_content = $("#post_content").val();
-	var post_content = $("#summernote").val();
-	// 200622 김수경 썸머노트 적용 테스트
+	var post_content = $("#post_content").val();
 	var notice_fg = $("#notice_fg").val();
 
 	if ( post_title == null || chrLen(post_title) == 0)
