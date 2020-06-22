@@ -239,7 +239,10 @@ function changeEditMode(rcvPostNo){
             data['CompanyList'].forEach(function(item, index){                        
 				
 				$("#post_title_input").val(decodeURIComponent(item['title']));
-				$("#post_content_textarea").append(decodeURIComponent(item['content']));
+	// 200622 김수경 썸머노트 적용 테스트	
+				// $("#post_content_textarea").append(decodeURIComponent(item['content']));
+				$("#post_content_textarea").summernote({focus: true});
+	// 200622 김수경 썸머노트 적용 테스트	
 
 			});
         }
