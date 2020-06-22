@@ -17,11 +17,11 @@ $(function () {
 		e.preventDefault();
 		$("#post_title").hide();
 	    // 200622 김수경 썸머노트 적용 테스트
-		$("#post_content").hide();
-		$("#post_title_input").show();
-		$("#post_content_textarea").show();
-		// $("#post_content").show();
+		// $("#post_content").hide();
 		// $("#post_title_input").show();
+		// $("#post_content_textarea").show();
+		$("#post_content").show();
+		$("#post_title_input").show();
 	    // 200622 김수경 썸머노트 적용 테스트
 		$("#readEditBtn").hide();
 		$("#actEditBtn").show();
@@ -244,27 +244,28 @@ function changeEditMode(rcvPostNo){
 	        	// 200622 김수경 썸머노트 적용 테스트
 				$("#post_title_input").val(decodeURIComponent(item['title']));
 				// $("#post_content_textarea").append(decodeURIComponent(item['content']));
-				$("#post_content_textarea").append(decodeURIComponent(item['content'])).summernote({
+				$("#post_content").summernote({
 					height: 300,                 // 에디터 높이
 					minHeight: null,             // 최소 높이
 					maxHeight: null,             // 최대 높이
 					focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 					lang: "ko-KR",					// 한글 설정
-			})
-			});
+			});;
 				// 200622 김수경 썸머노트 적용 테스트	
-		}	  
-    });
-}
+			});
+		}
+			});
+		}
 
 // 글 수정
 $("#actEditBtn").on("click",function(e){
 
 	var postTitle = $("#post_title_input").val();
 	 // 200622 김수경 썸머노트 적용 테스트
-	var postContent = $("#post_content_textarea").val();
-	// var postContent = $("#post_content").val();
+	// var postContent = $("#post_content_textarea").val();
+	var postContent = $("#post_content").val();
 	// 200622 김수경 썸머노트 적용 테스트
+
 	var noticeFg = $("#notice_fg").val();
 
 	if ( postTitle == null || chrLen(postTitle) == 0)
