@@ -137,8 +137,23 @@ function canclePost(){
 // 게시물 등록
 function createPost() {
 
+	// 200622 김수경 썸머노트 적용 테스트
+	$('#summernote').summernote({
+		height: 300,                 // 에디터 높이
+		minHeight: null,             // 최소 높이
+		maxHeight: null,             // 최대 높이
+		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		lang: "ko-KR",					// 한글 설정
+		placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+		
+  });
+  	// 200622 김수경 썸머노트 적용 테스트
+
 	var post_title = $("#post_title").val();
-	var post_content = $("#post_content").val();
+	// 200622 김수경 썸머노트 적용 테스트
+	// var post_content = $("#post_content").val();
+	var post_content = $("#summernote").val();
+	// 200622 김수경 썸머노트 적용 테스트
 	var notice_fg = $("#notice_fg").val();
 
 	if ( post_title == null || chrLen(post_title) == 0)
@@ -152,6 +167,12 @@ function createPost() {
 		alert("내용을 입력하시기 바랍니다.");
 		return false;
 	}
+		if ( post_content == null || chrLen(post_content) == 0)
+	{
+		alert("내용을 입력하시기 바랍니다.");
+		return false;
+	}
+
 
 	$.ajax({
         url:'/back/04_home/postInsert.jsp?random=' + (Math.random()*99999),
