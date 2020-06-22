@@ -137,7 +137,6 @@ function home_post_create() {
 		lang: "ko-KR",					// 한글 설정
 		placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
 });
-
   	// 200622 김수경 썸머노트 적용 테스트
 
 // 게시물 등록취소
