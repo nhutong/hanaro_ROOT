@@ -118,7 +118,7 @@ function prodList(rcvPageNo, rcvSearchText) {
 // 게시물 읽기 팝업
 function home_post_popup(no){
 	var popupX = (window.screen.width/2) - (400/2);
-	window.open('home_read.html?no=' + no,'관리자 게시판 읽기','width=600,height=600,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')
+	window.open('home_read.html?no=' + no,'관리자 게시판 읽기','width=800,height=800,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')
 }
 
 function home_post_create() {
@@ -136,7 +136,7 @@ function home_post_create() {
 		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 		lang: "ko-KR",					// 한글 설정
 		placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
-		callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+		callbacks: {	//여기 부분이 이미지를 첨부하는 부분 (***미완성***)
 			onImageUpload : function(files) {
 				sendfile(files[0],this);
 			}
