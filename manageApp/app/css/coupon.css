@@ -67,11 +67,14 @@ header {
     width: 100%;
 }
 
+/*2020-06-18 padding값 추가-미솔*/
 .dicount_date {
     display: block;
     font-size: 13px;
     line-height: 13px;
+    padding-bottom: 6%;
 }
+/*2020-06-18 padding값 추가-미솔*/
 
 .discount_info {
 	width: calc(100% - 10px);

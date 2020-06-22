@@ -1,5 +1,13 @@
+var pageNo = "";
+
 $(function () {
 
+	var pageNo = getParameterByName('pageNo');
+	if (pageNo == "")
+	{
+	    pageNo = 1;
+	}
+	
 //  var Result = getParameterByName('Test'); // 결과 : 111
 
 	/* 공통부분 시작======================================================================== */
@@ -44,7 +52,9 @@ $(function () {
 		{
 		}else{
 			setCookie1("onSelectCompanyNo",$("#sort_select").val());
-			noticeCont(getCookie("onSelectCompanyNo"));
+			//noticeCont(getCookie("onSelectCompanyNo"));
+			noticeCont(getCookie("onSelectCompanyNo"), pageNo);
+			noticeCont_paging(getCookie("onSelectCompanyNo"), pageNo);
 			localStorage.setItem("vm_cp_no",$("#sort_select").val());
 		}
 	});
@@ -52,7 +62,8 @@ $(function () {
 
 	/*판매장 변경시, */
 	$("#btnUserSearch").on("click",function(){
-		noticeCont(onSelectCompanyNo);
+		noticeCont(getCookie("onSelectCompanyNo"), pageNo);
+		noticeCont_paging(getCookie("onSelectCompanyNo"), pageNo);
 	});
 
 	$('#excel_down_stat').on('click', function(){ 
@@ -66,20 +77,24 @@ $(function () {
 	var sday = leadingZeros(today.getDate()-2,2);
 	var eday = leadingZeros(today.getDate(),2);
 
-	$("#excel_start_date").val(year+'-'+month+'-'+sday);
-	$("#excel_end_date").val(year+'-'+month+'-'+eday);		
+	// $("#excel_start_date").val(year+'-'+month+'-'+sday);
+	// $("#excel_end_date").val(year+'-'+month+'-'+eday);		
 
 	$("#coupon_start_date").val(year+'-'+month+'-'+sday);
 	$("#coupon_end_date").val(year+'-'+month+'-'+eday);	
 
-	noticeCont(targetCompanyNo);
-
+	// noticeCont(targetCompanyNo, pageNo);
+	// noticeCont_paging(targetCompanyNo, pageNo);
+	noticeCont(getCookie("onSelectCompanyNo"), pageNo);
+	noticeCont_paging(getCookie("onSelectCompanyNo"), pageNo);
 });
 
 function getCouponHistoryForExcel(){
 	var keyword1 = onSelectCompanyNo;
-	var keyword2 = $('#excel_start_date').val();	
-	var keyword3 = $('#excel_end_date').val();
+	// var keyword2 = $('#excel_start_date').val();	
+	// var keyword3 = $('#excel_end_date').val();
+	var keyword2 = $('#coupon_start_date').val();	
+	var keyword3 = $('#coupon_end_date').val();
 
 	console.log("aa");
 
@@ -97,29 +112,73 @@ function getCouponHistoryForExcel(){
 	});
 }
 
+// 기존 소스 - 페이징 위해 수정 20200618
+// 공지사항 리스트를 불러온다.
+// function noticeCont(rcvonSelectCompanyNo){
+// 		var keyword1 = encodeURIComponent($("#keyword1").val());
+// 		var keyword2 = encodeURIComponent($("#keyword2").val());		
+// 		var text = '';
+
+// 		var cp_start_date = $("#coupon_start_date").val();
+// 		var cp_end_date = $("#coupon_end_date").val();
+
+// 		$.ajax({
+// 			url:'/back/05_event/coupon_history.jsp?random=' + (Math.random()*99999),
+// 			data : {vm_cp_no: rcvonSelectCompanyNo, rcvKeyword: keyword1, rcvKeyword2: keyword2, cp_start_date: cp_start_date, cp_end_date: cp_end_date},
+// 			method : 'GET' 
+// 		}).done(function(result){
+			
+// 			if(result == "NoN"){
+// 					text +='      <tr>';
+// 					text +='			 <td colspan="6">등록된 사항이 없습니다.</td>';
+// 					text +='       </tr>';
+// 			}else{
+// 				var jsonResult = JSON.parse(result);
+// 				var jsonResult_notice = jsonResult.CompanyList
+// 				for(var i in jsonResult_notice){
+					
+// 					text +='      <tr>';
+// 					text +='			 <td>'+jsonResult_notice[i].cp_date+'</td>';
+// 					text +='			 <td>'+jsonResult_notice[i].std_date+'</td>';
+// 					text +='			 <td>'+jsonResult_notice[i].VM_CP_NAME+'</td>';
+// 					text +='			 <td>'+jsonResult_notice[i].tel+'</td>';
+// 					text +='			 <td>'+jsonResult_notice[i].mem_no+'</td>';
+// 					text +='			 <td>'+jsonResult_notice[i].coupon_code+'</td>';
+// 					text +='			 <td>'+jsonResult_notice[i].staff_cert_fg+'</td>';
+// 					text +='       </tr>';
+// 				}
+// 			}
+// 				$("#tab1_table").empty();
+// 				$("#tab1_table").append(text);		
+
+// 	})
+
+// }
 
 // 공지사항 리스트를 불러온다.
-function noticeCont(rcvonSelectCompanyNo){
+function noticeCont(rcvonSelectCompanyNo, rcvPageNo) {
 		var keyword1 = encodeURIComponent($("#keyword1").val());
 		var keyword2 = encodeURIComponent($("#keyword2").val());		
-		var text = '';
-
 		var cp_start_date = $("#coupon_start_date").val();
 		var cp_end_date = $("#coupon_end_date").val();
+		var text = '';
 
 		$.ajax({
 			url:'/back/05_event/coupon_history.jsp?random=' + (Math.random()*99999),
-			data : {vm_cp_no: rcvonSelectCompanyNo, rcvKeyword: keyword1, rcvKeyword2: keyword2, cp_start_date: cp_start_date, cp_end_date: cp_end_date},
+			data : {vm_cp_no: rcvonSelectCompanyNo, pageNo: rcvPageNo, rcvKeyword1: keyword1, rcvKeyword2: keyword2, cp_start_date: cp_start_date, cp_end_date: cp_end_date},
 			method : 'GET' 
 		}).done(function(result){
 			
 			if(result == "NoN"){
 					text +='      <tr>';
-					text +='			 <td colspan="6">등록된 사항이 없습니다.</td>';
+					text +='			 <td colspan="7">등록된 사항이 없습니다.</td>';
 					text +='       </tr>';
 			}else{
+				$("#tab1_table").html("");
+				console.log("============= postlist callback ========================");
+            	console.log(result);
 				var jsonResult = JSON.parse(result);
-				var jsonResult_notice = jsonResult.CompanyList
+				var jsonResult_notice = jsonResult.CompanyList;
 				for(var i in jsonResult_notice){
 					
 					text +='      <tr>';
@@ -138,4 +197,68 @@ function noticeCont(rcvonSelectCompanyNo){
 
 	})
 
+}
+
+
+// 상품리스트 페이징를 가져온다
+function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
+	var keyword1 = encodeURIComponent($("#keyword1").val());
+	var keyword2 = encodeURIComponent($("#keyword2").val());		
+	var cp_start_date = $("#coupon_start_date").val();
+	var cp_end_date = $("#coupon_end_date").val();
+
+	$.ajax({
+        url:'/back/05_event/coupon_history_paging.jsp?random=' + (Math.random()*99999), 
+        data : {vm_cp_no: rcvonSelectCompanyNo, pageNo: rcvPageNo, rcvKeyword1: keyword1, rcvKeyword2: keyword2, cp_start_date: cp_start_date, cp_end_date: cp_end_date},
+        method : 'GET' 
+    }).done(function(result){
+
+        console.log("coupon_history_paging=========================================");
+        if(result == ('NoN') || result == 'list error' || result == 'empty'){
+            console.log(result);
+        }else{
+            $("#pagination").html("");
+            console.log("============= coupon_history_paging callback ========================");
+            console.log(result);
+			var data = JSON.parse(result);
+			//var data = '';
+                                                                                                                                                                                                                                                                                                                                                                                    
+			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
+			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
+			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
+			var pre_no = parseInt(rcvPageNo) - 6;
+			var next_no = parseInt(rcvPageNo) + 6;
+
+			var text = "";
+
+           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -4)
+			{
+			}else if(total_paging_cnt < 5 || pre_no < 1){
+				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+',1), noticeCont_paging('+rcvonSelectCompanyNo+',1);">«</a></li>';
+			}else{
+				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+pre_no+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+pre_no+');">«</a></li>';  
+			}
+
+			for( var k = paging_init_num; k <= paging_end_num; k++){
+				if (parseInt(rcvPageNo) == k)
+				{
+					console.log(k);
+					text += '<li class="page-item active"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+k+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+k+');">'+k+'</a></li>';
+				}else{
+					console.log(k);
+					text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+k+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+k+');">'+k+'</a></li>';
+				}
+			}
+
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)
+			{
+			}else{
+				console.log(next_no);
+				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+next_no+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+next_no+');">»</a></li>';  		
+				//text += '<li class="page-item"><a class="page-link" href="coupon_history.html?vm_cp_no='+rcvonSelectCompanyNo+"&pageNo="+next_no+"&rcvKeyword1="+keyword1+"&rcvKeyword2="+keyword2+"&cp_start_date="+cp_start_date+"&cp_end_date="+cp_end_date+'">»</a></li>';		
+			}
+			$('#pagination').empty();
+			$('#pagination').append(text);	
+        }
+    });
 }

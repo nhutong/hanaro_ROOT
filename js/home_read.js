@@ -7,7 +7,7 @@ $(function () {
 	postCommentList(postNo);
 
 	$("#post_title_input").hide();
-	$("#post_content_textarea").hide();
+	// $("#post_content_textarea").hide();
 	$("#actEditBtn").hide();
 	$("#notice_fg").hide();
 
@@ -16,9 +16,13 @@ $(function () {
 
 		e.preventDefault();
 		$("#post_title").hide();
-		$("#post_content").hide();
+	    // 200622 김수경 썸머노트 적용 테스트
+		// $("#post_content").hide();
+		// $("#post_title_input").show();
+		// $("#post_content_textarea").show();
+		$("#post_content").show();
 		$("#post_title_input").show();
-		$("#post_content_textarea").show();
+	    // 200622 김수경 썸머노트 적용 테스트
 		$("#readEditBtn").hide();
 		$("#actEditBtn").show();
 		$("#readDelBtn").hide();
@@ -237,12 +241,13 @@ function changeEditMode(rcvPostNo){
             var data = JSON.parse(result);
 
             data['CompanyList'].forEach(function(item, index){                        
-				
+	        	// 200622 김수경 썸머노트 적용 테스트
 				$("#post_title_input").val(decodeURIComponent(item['title']));
-				$("#post_content_textarea").append(decodeURIComponent(item['content']));
-
+				// $("#post_content_textarea").append(decodeURIComponent(item['content']));
+				$("#post_content").summernote();;
 			});
-        }
+				// 200622 김수경 썸머노트 적용 테스트	
+		}	  
     });
 }
 
@@ -250,7 +255,11 @@ function changeEditMode(rcvPostNo){
 $("#actEditBtn").on("click",function(e){
 
 	var postTitle = $("#post_title_input").val();
-	var postContent = $("#post_content_textarea").val();
+	 // 200622 김수경 썸머노트 적용 테스트
+	// var postContent = $("#post_content_textarea").val();
+	var postContent = $("#post_content").val();
+	// 200622 김수경 썸머노트 적용 테스트
+
 	var noticeFg = $("#notice_fg").val();
 
 	if ( postTitle == null || chrLen(postTitle) == 0)

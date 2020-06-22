@@ -20,10 +20,12 @@
 	JSONObject bdListJSON = new JSONObject();
 	
 	try{
-
+        
         sql = " SELECT a.pd_no, a.pd_code, a.pd_name, a.group_tag, " //a.reg_no, a.reg_date, a.lst_no, a.lst_date, "
             + " ifnull(bb.pd_code_cnt,0) AS pd_code_cnt, ifnull(cc.group_tag_cnt,0) AS group_tag_cnt "
             + " from vm_product a "
+			+ " LEFT OUTER JOIN vm_product_image d "    //2020.06.18 심규문 상품검색 이미지명 추가
+            + " ON a.pd_code = d.pd_code "
             + " LEFT OUTER JOIN ( "
             + "     SELECT b.pd_code, COUNT(b.img_no) pd_code_cnt "
             + "     from vm_product_image AS b "
@@ -43,7 +45,7 @@
 			+ " WHERE 1 = 1 ";
 			
 			if (searchText != ""){
-				sql = sql + " and ( a.pd_name like '%"+searchText+"%' or a.group_tag like '%"+searchText+"%' or a.pd_code like '%"+searchText+"%' )";
+				sql = sql + " and ( a.pd_name like '%"+searchText+"%' or a.group_tag like '%"+searchText+"%' or a.pd_code like '%"+searchText+"%' or d.img_path like '%"+searchText+"%')";  //2020.06.18 심규문 상품검색 이미지명 추가
 			}			
 
 			if (orderByText != ""){

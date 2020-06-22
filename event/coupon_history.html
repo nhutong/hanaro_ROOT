@@ -16,10 +16,9 @@
 	<!-- fontawesome style css -->
 <!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
 	<link rel="stylesheet" href="../css/all.css">
+	<link rel="stylesheet" href="/css/jqueryui.com.1.8.22.jquery-ui.css" />    
+
 	
-	<script src="../js/google.3.4.1.jquery.min.js"></script>
-	<script src="../js/link.js"></script>
-	<script src="../js/common.js"></script><!-- common2 -->
 </head>
 
 <body>
@@ -45,11 +44,13 @@
 					</div>					
 					<input id="keyword1" type="text" placeholder="전화번호를 입력하세요">
 					<input id="keyword2" type="text" placeholder="쿠폰코드를 입력하세요">
-					<button id="btnUserSearch">검색</button>					
+					<button id="btnUserSearch">검색</button>	
+					<span id="excel_down_stat" style="cursor: pointer;"><img src="../images/excel.png" alt="엑셀다운로드">엑셀</span>				
 				</div>			    
 			</div>
-
-			<div class="excel_export_wrap">
+			
+			<!-- 엑셀 조회조건 제거 - 일반조건 사용 20200618 -->
+			<!-- <div class="excel_export_wrap">
 				<div class="excel_export_title" >
 					엑셀 Export 
 				</div>
@@ -57,7 +58,7 @@
 					쿠폰기간 <input type="text" placeholder="2020-02-01" id="excel_start_date">~<input type="text" placeholder="2020-02-07" id="excel_end_date">                        
 				</div>			    
 				<span id="excel_down_stat" style="cursor: pointer;"><img src="../images/excel.png" alt="엑셀다운로드"></span>
-			</div>
+			</div> -->
 
 			<div class="tab_container">
 				<div id="tab1" class="tab_content">
@@ -77,10 +78,17 @@
 						<tbody id="tab1_table">								  					
 						</tbody>
 					</table>
+					<!--pagination start-->
+					<div class="pagination_wrap" style="width : 900px; margin-left: 40;">
+						<ul class="pagination justify-content-center" id="pagination" style="width : 50%; margin : 10px auto;">
+						</ul>
+				 	</div>
+				 	<!--pagination end-->					
+					
 
 				</div>
 				<!-- #tab1 -->
-				<p id="paging_area" class="paging_area"></p>
+				<!-- <p id="paging_area" class="paging_area"></p> -->
 				
 				
 			</div>
@@ -93,12 +101,51 @@
 </div>
 
 <!-- bootstrap -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-<script src="../js/jquery.com.jquery-3.3.1.min.js"></script>
 <script src="../js/cloudflare.1.14.7.umd.popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="../js/bootstrap.min.js"></script>
 <script src="../js/sha256.js"></script>
 <script src="../js/lib/xlsx.full.min.js"></script>
+
+<script src="/js/google.3.4.1.jquery.min.js"></script>
+<script src="../js/link.js"></script>
+<script src="../js/common.js"></script>
+<script src="/js/jquery-1.12.4.js"></script>
+<script language="javascript" src="/js/google.jqueryui.1.8.22.jquery-ui.min.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script>
+// jQuery import 바로아래에 넣어 주면 됩니다.
+// Cannot read property 'msie' of undefined 에러 나올때
+jQuery.browser = {};
+(function () {
+	jQuery.browser.msie = false;
+	jQuery.browser.version = 0;
+	if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+		jQuery.browser.msie = true;
+		jQuery.browser.version = RegExp.$1;
+	}
+})();
+</script>
+<script src="../js/sortable.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 <script src="../js/coupon/coupon_history.js"></script>
+<script>
+	$.datepicker.setDefaults({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		yearSuffix: '년'
+	});
+	$(function() {
+		$("#coupon_start_date").datepicker();
+		$("#coupon_end_date").datepicker();
+	});
+</script>
+
 </body>
 </html>

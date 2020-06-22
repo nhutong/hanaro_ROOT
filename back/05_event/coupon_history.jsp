@@ -10,12 +10,18 @@
 
 <%	
 
-	String vm_cp_no = (request.getParameter("vm_cp_no")==null)? "0":request.getParameter("vm_cp_no");
-	String rcvKeyword1 = (request.getParameter("rcvKeyword1")==null)? "0":request.getParameter("rcvKeyword1");
-	String rcvKeyword2 = (request.getParameter("rcvKeyword2")==null)? "0":request.getParameter("rcvKeyword2");	
+	String vm_cp_no = (request.getParameter("vm_cp_no")==null)? "":request.getParameter("vm_cp_no");
+	String rcvKeyword1 = (request.getParameter("rcvKeyword1")==null)? "":request.getParameter("rcvKeyword1");
+	String rcvKeyword2 = (request.getParameter("rcvKeyword2")==null)? "":request.getParameter("rcvKeyword2");	
 	String cp_start_date = (request.getParameter("cp_start_date")==null)? "0":request.getParameter("cp_start_date");
 	String cp_end_date = (request.getParameter("cp_end_date")==null)? "0":request.getParameter("cp_end_date");
+	String pageNo = (request.getParameter("pageNo")==null)? "":request.getParameter("pageNo");
+	Integer pageNo_new;
 
+	//mariadb의 페이징 시작 쿼리를 위해 1을 뺀다.
+	pageNo_new = Integer.parseInt(pageNo) - 1;
+	pageNo_new = pageNo_new * 10;
+	
 	//cp_start_date = cp_start_date.replaceAll("-", "");
 	//cp_end_date = cp_end_date.replaceAll("-", "");
 
@@ -46,9 +52,12 @@
 			if (strDecode(rcvKeyword2).equals("")){
 			}else{
 				sql = sql + " and b.coupon_code like '%"+strDecode(rcvKeyword2)+"%' ";
+				
 			}			
 
 			sql = sql +" order by a.reg_date desc "; 
+
+			sql = sql + " LIMIT "+pageNo_new+" , 10; ";
 
 		out.print(sql);			
 

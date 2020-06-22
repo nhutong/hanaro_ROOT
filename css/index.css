@@ -1049,16 +1049,20 @@ span.shopUrl:hover{
 .home_read_wrap table tr.home_read_text td{
     border-top: 1px solid #d0d0d0;
     border-bottom: 1px solid #d0d0d0;
+    padding: 15px;
 /*    padding-top: 10px;*/
 /*    padding-bottom: 10px;*/
     font-size: 13px;
 }
 
-.home_read_text td div{
+/* 200622 김수경 썸머노트 적용 테스트 */
+/* .home_read_text td div{
 	height : 250px;
 	overflow-y: scroll;
 	padding : 15px;	
-}
+} */
+/* 200622 김수경 썸머노트 적용 테스트 */
+
 
 .home_read_comment form{
     overflow: hidden;
