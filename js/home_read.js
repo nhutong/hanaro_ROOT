@@ -239,9 +239,8 @@ function changeEditMode(rcvPostNo){
             data['CompanyList'].forEach(function(item, index){                        
 				
 				$("#post_title_input").val(decodeURIComponent(item['title']));
-				$("#post_content_textarea").append(decodeURIComponent(item['content'])).summernote({focus: true});
-			})
-;
+				$("#post_content_textarea").append(decodeURIComponent(item['content']));
+			});
         }
     });
 }
