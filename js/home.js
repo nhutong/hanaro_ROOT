@@ -135,8 +135,34 @@ function home_post_create() {
 		maxHeight: null,             // 최대 높이
 		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 		lang: "ko-KR",					// 한글 설정
-		placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+		placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+		callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+			onImageUpload : function(files) {
+				sendfile(files[0],this);
+			}
+		}
 });
+
+/**
+* 이미지 파일 업로드
+*/
+function sendfile(file, editor) {
+data = new FormData();
+data.append("file", file);
+$.ajax({
+	data : data,
+	type : "POST",
+	url : "/back/04_home/summernote_imgupload.jsp",
+	contentType : false,
+	processData : false,
+	success : function(data) {
+		//항상 업로드된 파일의 url이 있어야 한다.
+		$(editor).summernote('insertImage', data.url);
+	}
+});
+}
+
+
   	// 200622 김수경 썸머노트 적용 테스트
 
 // 게시물 등록취소
