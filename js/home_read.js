@@ -244,7 +244,7 @@ function changeEditMode(rcvPostNo){
 	        	// 200622 김수경 썸머노트 적용 테스트
 				$("#post_title_input").val(decodeURIComponent(item['title']));
 				// $("#post_content_textarea").append(decodeURIComponent(item['content']));
-				$("#post_content").append(decodeURIComponent(item['content'])).summernote();;
+				$("#post_content").summernote();;
 			});
 				// 200622 김수경 썸머노트 적용 테스트	
 		}	  
