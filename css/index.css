@@ -1054,11 +1054,14 @@ span.shopUrl:hover{
     font-size: 13px;
 }
 
-.home_read_text td div{
+/* 200622 김수경 썸머노트 적용 테스트 */
+/* .home_read_text td div{
 	height : 250px;
 	overflow-y: scroll;
 	padding : 15px;	
-}
+} */
+/* 200622 김수경 썸머노트 적용 테스트 */
+
 
 .home_read_comment form{
     overflow: hidden;
