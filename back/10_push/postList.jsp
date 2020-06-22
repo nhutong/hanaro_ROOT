@@ -22,7 +22,7 @@
 
 	
 		sql = " SELECT " 
-		+ "  p.pm_no, p.ms_content, p.event_no as event_title, a.vm_cp_name, p.pm_hour, p.pm_min, ifnull(b.send_cnt,0) as send_cnt, ifnull(c.target_cnt,0) as target_cnt, p.reg_date, p.pm_from_date, p.pm_to_date, p.pm_interval, p.pm_target, p.pm_type, ifnull(p.send_date,'') as send_date, ifnull(p.del_fg,'') as del_fg "
+		+ "  p.pm_no, p.ms_content, p.event_no as event_title, a.vm_cp_name, p.pm_hour, p.pm_min, ifnull(b.send_cnt,0) as send_cnt, ifnull(c.target_cnt,0) as target_cnt, p.reg_date, p.pm_from_date, p.pm_to_date, p.pm_interval, p.pm_target, p.pm_type, ifnull(p.send_date,'') as send_date, ifnull(p.del_fg,'') as del_fg, pm_status "
         + "  FROM vm_push_message AS p " 
 		+ "  inner join vm_company as a " 
 		+ "  on p.vm_cp_no = a.vm_cp_no "
@@ -71,6 +71,7 @@
 			String pm_type   = rs.getString("pm_type");			
 			String send_date   = rs.getString("send_date");						
 			String del_fg   = rs.getString("del_fg");						
+			String pm_status   = rs.getString("pm_status");						
 
 			JSONObject obj = new JSONObject();
 						
@@ -90,6 +91,7 @@
 			obj.put("pm_type", pm_type);
 			obj.put("send_date", send_date);
 			obj.put("del_fg", del_fg);			
+			obj.put("pm_status", pm_status);			
 			
 			if(obj != null){
 				arr.add(obj);

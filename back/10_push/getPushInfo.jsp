@@ -29,7 +29,7 @@
 
 		// 리스트 조회 
         String queryList =
-            " select pm_no, ms_content, vm_cp_no, event_no, reg_no, reg_date, LPAD(pm_hour,2,'0') as pm_hour, LPAD(pm_min,2,'0') as pm_min, pm_img_path, DATE_FORMAT(pm_from_date,'%Y-%m-%d') as pm_from_date, DATE_FORMAT(pm_to_date,'%Y-%m-%d') as pm_to_date, pm_interval, pm_target, pm_type, del_fg "+
+            " select pm_no, ms_content, vm_cp_no, event_no, reg_no, reg_date, LPAD(pm_hour,2,'0') as pm_hour, LPAD(pm_min,2,'0') as pm_min, pm_img_path, DATE_FORMAT(pm_from_date,'%Y-%m-%d') as pm_from_date, DATE_FORMAT(pm_to_date,'%Y-%m-%d') as pm_to_date, pm_interval, pm_target, pm_type, del_fg, pm_status "+
             " from vm_push_message "+
             " where pm_no = ? ;";
 
