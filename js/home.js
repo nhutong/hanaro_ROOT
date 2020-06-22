@@ -122,9 +122,7 @@ function home_post_popup(no){
 }
 
 function home_post_create() {
-	var popupX = (window.screen.width/2) - (400/2);
-	window.open('home_post_wrap','width=800,height=800,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')
-	// document.getElementById('home_post_wrap').style.display = "block";
+	document.getElementById('home_post_wrap').style.display = "block";
 	if (getCookie("userRoleCd") != "ROLE1")
 	{
 		$("#notice_fg").hide();

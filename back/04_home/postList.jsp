@@ -14,7 +14,7 @@
 
 //	mariadb의 페이징 시작 쿼리를 위해 1을 뺀다.
 	pageNo_new = Integer.parseInt(pageNo) - 1;
-	pageNo_new = pageNo_new * 10;
+	pageNo_new = pageNo_new * 6;
 
 	JSONObject bdListJSON = new JSONObject();
 	
@@ -44,7 +44,7 @@
 	
 	sql = sql + " ) "
 	          + " ORDER BY post_type_cd ASC, lst_date desc "
-	          + " LIMIT "+pageNo_new+" ,10; ";
+	          + " LIMIT "+pageNo_new+" ,6; ";
 
 //		out.print(sql);
 
