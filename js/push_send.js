@@ -297,8 +297,7 @@ $("#pushSendBtn").on("click",function(e){
 		pushInterval : $('#pushInterval').val(),
 		pushTarget : $('#pushTarget').val(),
 		pushType : $('#pushType').val(),
-		pushDel : $('#pushDel').val(),
-		pushStatus : '저장'
+		pushDel : $('#pushDel').val()
 	} ;
 
 	if ( formData.pushTopTxt == null || chrLen(formData.pushTopTxt) == 0){
@@ -332,48 +331,49 @@ $("#pushSendBtn").on("click",function(e){
 	}
 
 	if( $('#pushStatus').val() == '저장' ){	
-		if ($("#pushType").val() == "realtime" ){	
-			var pm_no = $("#pushNo").val();	
-			$.ajax({
-				url:'https://172.16.9.21//PushSms/back-end/pushRealtime.php?random=' + (Math.random()*99999), 
-				data : {pm_no: pm_no},
-				method : 'GET' 
-			}).done(function(result){
-				// console.log("noticeList=========================================");
-				if(result == ('NoN') || result == 'list error' || result == 'empty'){
-					console.log(result);
-					alert("푸시 즉시전송 중 에러가 발생하였습니다.");					
-				}else{
-					//console.log("============= notice callback ========================");
-					console.log(result);
-					alert("푸시 즉시전송이 완료되었습니다");
-					getPushInfo(formData.pm_no);
-				}
-			});	
-		}else{
-
-			var formData = {
-				pm_no : $("#pushNo").val(),
-				reg_no : getCookie("userNo"),
-				pushStatus : $('#pushStatus').val()
-			} ;
-
-			$.post( '/back/10_push/pushReserve.jsp',
-			formData, 			
-			function(resultJSON){
-				if(resultJSON['update'] > 0){
-					alert('푸시 전송예약이 완료되었습니다.');
-					getPushInfo(formData.pm_no);
-				}else {
-					console.log(resultJSON['error']);
-					alert("푸시 전송예약 중 에러가 발생하였습니다.");
-				}
-			});				
-		}
 	}else{
 		alert("[오류]저장 후 전송하여 주세요!");
 		return false;
 	}
+
+	if ($("#pushType").val() == "realtime" ){	
+		var pm_no = $("#pushNo").val();	
+		$.ajax({
+			url:'https://172.16.9.21//PushSms/back-end/pushRealtime.php?random=' + (Math.random()*99999), 
+			data : {pm_no: pm_no},
+			method : 'GET' 
+		}).done(function(result){
+			// console.log("noticeList=========================================");
+			if(result == ('NoN') || result == 'list error' || result == 'empty'){
+				console.log(result);
+				alert("푸시 즉시전송 중 에러가 발생하였습니다.");					
+			}else{
+				//console.log("============= notice callback ========================");
+				console.log(result);
+				alert("푸시 즉시전송이 완료되었습니다");
+				getPushInfo(formData.pm_no);
+			}
+		});	
+	}else{
+
+		var formData = {
+			pm_no : $("#pushNo").val(),
+			reg_no : getCookie("userNo")
+		} ;
+
+		$.post( '/back/10_push/pushReserve.jsp',
+		formData, 			
+		function(resultJSON){
+			if(resultJSON['update'] > 0){
+				alert('푸시 전송예약이 완료되었습니다.');
+				getPushInfo(formData.pm_no);
+			}else {
+				console.log(resultJSON['error']);
+				alert("푸시 전송예약 중 에러가 발생하였습니다.");
+			}
+		});				
+	}
+
 		
 });
 
