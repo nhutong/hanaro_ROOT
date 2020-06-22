@@ -257,7 +257,7 @@ $("#actEditBtn").on("click",function(e){
 	var postTitle = $("#post_title_input").val();
 	 // 200622 김수경 썸머노트 적용 테스트
 	// var postContent = $("#post_content_textarea").val();
-	var postContent = $("#post_content").val();
+	var postContent = $("#post_content").summernote('code');val();
 	// 200622 김수경 썸머노트 적용 테스트
 
 	var noticeFg = $("#notice_fg").val();
