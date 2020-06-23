@@ -29,7 +29,8 @@
         
     // 파라미터	  	
     String pm_no = request.getParameter("pm_no") == null ? "" : request.getParameter("pm_no").trim();
-	String ms_content = request.getParameter("ms_content") == null ? "" : request.getParameter("ms_content").trim();
+
+	String pushTopTxt = request.getParameter("pushTopTxt") == null ? "" : request.getParameter("pushTopTxt").trim();
 	String vm_cp_no = request.getParameter("vm_cp_no") == null ? "" : request.getParameter("vm_cp_no").trim();	
 	String event_no = request.getParameter("event_no") ==  null ? "" : request.getParameter("event_no").trim();
 	String reg_no = request.getParameter("reg_no") == null ? "" : request.getParameter("reg_no").trim();
@@ -41,7 +42,8 @@
 	String pushInterval = request.getParameter("pushInterval") == null ? "" : request.getParameter("pushInterval").trim();
 	String pushTarget = request.getParameter("pushTarget") == null ? "" : request.getParameter("pushTarget").trim();
 	String pushType = request.getParameter("pushType") == null ? "" : request.getParameter("pushType").trim();
-	String pushDel = request.getParameter("pushDel") == null ? "N" : request.getParameter("pushDel").trim();
+    String pushDel = request.getParameter("pushDel") == null ? "N" : request.getParameter("pushDel").trim();
+    String pushStatus = request.getParameter("pushStatus") == null ? "N" : request.getParameter("pushStatus").trim();
 
  	try {
 		QueryRunner queryRunner = new QueryRunner();
@@ -50,13 +52,13 @@
 		String query = "  UPDATE vm_push_message " + 
 					   " SET ms_content= ?, vm_cp_no= ? , event_no=?, reg_no= ? ,  " +
 					   " reg_date= now(), pm_hour= ?, pm_min= ?, pm_img_path= ?,  " +
-					   " pm_from_date= ? , pm_to_date= ? , pm_interval= ?, pm_target= ? , pm_type = ?, del_fg = ? " +
+					   " pm_from_date= ? , pm_to_date= ? , pm_interval= ?, pm_target= ? , pm_type = ?, del_fg = ?, pm_status = ? " +
 					   "  WHERE pm_no= ? " ;
 				
 		int result = queryRunner.update(
                     conn,
                     query,		            
-                    ms_content,
+                    pushTopTxt,
                     vm_cp_no,						
                     event_no,
                     reg_no,
@@ -69,6 +71,7 @@
                     pushTarget, 
                     pushType, 
                     pushDel, 
+                    pushStatus,
                     pm_no
 					);
 

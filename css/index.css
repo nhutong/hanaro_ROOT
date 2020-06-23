@@ -1049,16 +1049,20 @@ span.shopUrl:hover{
 .home_read_wrap table tr.home_read_text td{
     border-top: 1px solid #d0d0d0;
     border-bottom: 1px solid #d0d0d0;
+    padding: 15px;
 /*    padding-top: 10px;*/
 /*    padding-bottom: 10px;*/
     font-size: 13px;
 }
 
-.home_read_text td div{
+/* 200622 김수경 썸머노트 적용 테스트 */
+/* .home_read_text td div{
 	height : 250px;
 	overflow-y: scroll;
 	padding : 15px;	
-}
+} */
+/* 200622 김수경 썸머노트 적용 테스트 */
+
 
 .home_read_comment form{
     overflow: hidden;
@@ -4138,19 +4142,19 @@ button#btnCreate{
     border: 1px solid #ccc;
 }
 .push_send_table input[type=file]{
-    border: 1px solid #aaaaaa;;
+    border: 1px solid #aaaaaa;
     padding: 0;
     width:100%;
 }
 
 .push_send_table textarea{
-    border: 1px solid #aaaaaa;;    
+    border: 1px solid #aaaaaa;    
     display: block;
 	resize : none;
 }
 
 .push_send_table textarea#pushTopTxt{
-    border: 1px solid #aaaaaa;;    
+    border: 1px solid #aaaaaa;    
     margin-bottom: 5px;
 	resize : none;
 }
@@ -4166,19 +4170,18 @@ button#btnCreate{
 
 .push_send_btn_wrap{
     text-align: right;
-    width: 600px;
+    width: 700px;
 }
+
 .push_send_btn_wrap button{
-    margin-top: 20px;    
+    margin: 20px 2px;    
+    margin-bottom: 15px;
     color: #fff;
     border: 0;
     box-shadow: none;
-    padding: 10px 15px;
-    text-align: center;
+    padding: 10px 16px;
     border-radius: 5px;
-}
-.push_send_btn_wrap button#pushSendBtn{
-    background-color: #55B190;
+    background-color: #55B190;    
 }
 
 .push_send_no_border{
@@ -4186,85 +4189,18 @@ button#btnCreate{
     border-bottom: 0 !important;
 }
 
-/*PUSH 기능개선 추가 시작*/
-/* #layer_popup_push_wrap{
-    width: 900px;
-    margin-left: 30px;
-    text-align: center;
-}
-
-#layer_popup_push{
-    width: 540px;
-    border:1px solid #d0d0d0;
-    padding: 20px 10px;
-    text-align: center;
-    position: relative;
-    background-color: #eeeeee;
-}
-
-#push_message_no{
+#push_target_tel{
     border: 0;
-    background-color: transparent;
-}
-
-.close_btn img{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 15px;
-    height: 15px;
-}
-
-.push_message_no_title,
-#push_message_no{
-    float: left;
-    display: inline;
-    font-size: 12px;
-    text-align: left;
-    color: gray;
-} */
-
-.push_target_import_cont{
-    /* display:inline-block; */
-    display:none;
-}
-
-.push_target_import_cont span{
-    margin-top: 20px;
-    display: inline-block;
-}
-
-.push_file_add{
-    /* display: inline-block; */
-    /* width: 450px; */
-}
-
-.push_file_add form {
-    display: inline-block;
-    width: 500px;
-}
-
-.push_file_add input {
-    font-size: 13px;
-    margin: 5px 0;
-    background-color: #fff;
-}
-.push_submit_jundan,
-.push_submit_jundan1 {
-    /* display: inline-block;     */
-    padding: 5px 10px;
-    background-color: #55B190;
-    border: 0;
-    color: #fff;
-    box-shadow: none;
-    font-size: 14px;
-    margin: 0 5px 5px 5px;
-
+    width: 450px;
 }
 
 #pushSendFromDate,
 #pushSendToDate{
     width: 150px;
+}
+
+#pushDelBtn{
+    background-color: #ab1f1f;    
 }
 /*PUSH 기능개선 추가 끝*/
 

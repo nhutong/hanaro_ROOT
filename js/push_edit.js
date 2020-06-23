@@ -2,9 +2,11 @@ $(function () {
 
 	pm_no = getParameterByName('pm_no');   // 푸시번호
 
-	// if (pm_no == ""){
-	// }else{
-    // }
+	if (pm_no == ""){
+        $("#pushNo").val('신규등록');
+	}else{
+        $("#pushNo").val(pm_no);        
+    }
 
 	getLeft();
 
@@ -96,8 +98,6 @@ function getPushInfo(rcv_pm_no){
     function(result) {
         console.log(result);
         var info = result.list[0];
-        //ms_content, vm_cp_no, event_no, reg_no, reg_date, pm_hour, pm_min, pm_img_path, pm_from_date, pm_to_date, pm_interval, pm_target, pm_type, del_fg
-        $("#pushNo").val(info.pm_no);
         $("#pushTopTxt").val(info.ms_content);
         $("#sort_select").val(info.vm_cp_no);
         $("#event_no").val(info.event_no);
