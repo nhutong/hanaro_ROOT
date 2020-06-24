@@ -1,5 +1,3 @@
-var pageNo = "";
-
 $(function () {
 
 	var pageNo = getParameterByName('pageNo');
@@ -104,7 +102,7 @@ function getCouponHistoryForExcel(rcvonSelectCompanyNo){
 		if (result == "exception error"){
 			alert("exception error"+result);
 		}else if ( result.list.length > 0 ){
-			console.log("result: ", result.list);
+			//console.log("result: ", result.list);
 			var headList = ['쿠폰기간', '받은(사용)일자', '매장명', '전화번호',	'앱회원번호', '쿠폰코드', '사용여부'];
 			ExcelExportStart("엑셀다운로드_쿠폰히스토리", headList, result.list);
 		}else{
@@ -136,7 +134,7 @@ function noticeCont(rcvonSelectCompanyNo, rcvPageNo) {
 			}else{
 				$("#tab1_table").html("");
 				console.log("============= postlist callback ========================");
-            	console.log(result);
+				console.log(result);
 				var jsonResult = JSON.parse(result);
 				var jsonResult_notice = jsonResult.CompanyList;
 				for(var i in jsonResult_notice){
@@ -191,7 +189,7 @@ function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
 
 			var text = "";
 
-           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -4)
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -4)
 			{
 			}else if(total_paging_cnt < 5 || pre_no < 1){
 				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+',1), noticeCont_paging('+rcvonSelectCompanyNo+',1);">«</a></li>';
