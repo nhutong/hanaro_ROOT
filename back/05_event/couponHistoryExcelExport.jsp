@@ -52,26 +52,11 @@
 			// 조회조건 변경 20200612 김중백
 			+ "   and (( left(b.start_date,10) >= left( ? , 10) AND left(b.start_date,10) <= left( ? , 10) ) "
 			+ "   or ( left(b.end_date,10) >= left( ? , 10) AND left(b.end_date,10) <= left( ? , 10) )) "
-
-			//if (strDecode(keyword4).equals("")){
-			//}else{
-			//	queryList = queryList + " and d.tel like '%'||?||'%' ";
-			//}
-
-			//if (strDecode(keyword5).equals("")){
-			//}else{
-			//	queryList = queryList + " and b.coupon_code like '%'||?||'%' ";
-			//}
-
-			//queryList = queryList + " order by a.reg_date desc ";
-			//queryList = queryList + " LIMIT ?, ? ; ";
-
 			+ " and d.tel like ? "
 			+ " and b.coupon_code like ? "
 			+ " order by a.reg_date desc ;" ;
 			//+ " LIMIT ?, ? ; ";
                         
-		//Object[] paramList = new Object[]{ keyword1, keyword2, keyword3, offset, rowCount}; 조회조건 변경 20200612
 		Object[] paramList = new Object[]{ keyword1, keyword2, keyword3, keyword2, keyword3, "%"+keyword4+"%", "%"+keyword5+"%"};
 
 		results.put("list", 
