@@ -67,7 +67,7 @@ $(function () {
 	});
 
 	$('#excel_down_stat').on('click', function(){ 
-		getCouponHistoryForExcel();
+		getCouponHistoryForExcel(getCookie("onSelectCompanyNo"));
 	});	
 
 	/*input box 일자 기본값 셋팅*/
@@ -89,71 +89,31 @@ $(function () {
 	noticeCont_paging(getCookie("onSelectCompanyNo"), pageNo);
 });
 
-function getCouponHistoryForExcel(){
-	var keyword1 = onSelectCompanyNo;
+function getCouponHistoryForExcel(rcvonSelectCompanyNo){
+	var keyword1 = rcvonSelectCompanyNo;
 	// var keyword2 = $('#excel_start_date').val();	
 	// var keyword3 = $('#excel_end_date').val();
 	var keyword2 = $('#coupon_start_date').val();	
 	var keyword3 = $('#coupon_end_date').val();
-
-	console.log("aa");
+	var keyword4 = $("#keyword1").val();
+	var keyword5 = $("#keyword2").val();
 
 	//데이터 조회 후 엑셀 함수 호출
-	$.get('/back/05_event/couponHistoryExcelExport.jsp?keyword1='+keyword1 +'&keyword2='+keyword2+'&keyword3='+keyword3 + '&pageNumber=1&pageSize=99999999',
+	$.get('/back/05_event/couponHistoryExcelExport.jsp?keyword1='+keyword1+'&keyword2='+keyword2+'&keyword3='+keyword3+'&keyword4='+keyword4+'&keyword5='+keyword5+'&pageNumber=1&pageSize=99999999',
 	function(result){
 		if (result == "exception error"){
 			alert("exception error"+result);
 		}else if ( result.list.length > 0 ){
+			console.log("result: ", result.list);
 			var headList = ['쿠폰기간', '받은(사용)일자', '매장명', '전화번호',	'앱회원번호', '쿠폰코드', '사용여부'];
 			ExcelExportStart("엑셀다운로드_쿠폰히스토리", headList, result.list);
 		}else{
+			console.log("result: ", result);
 			alert("조회된 내역이 없어 엑셀Exort를 취소합니다.");
 		}
 	});
 }
 
-// 기존 소스 - 페이징 위해 수정 20200618
-// 공지사항 리스트를 불러온다.
-// function noticeCont(rcvonSelectCompanyNo){
-// 		var keyword1 = encodeURIComponent($("#keyword1").val());
-// 		var keyword2 = encodeURIComponent($("#keyword2").val());		
-// 		var text = '';
-
-// 		var cp_start_date = $("#coupon_start_date").val();
-// 		var cp_end_date = $("#coupon_end_date").val();
-
-// 		$.ajax({
-// 			url:'/back/05_event/coupon_history.jsp?random=' + (Math.random()*99999),
-// 			data : {vm_cp_no: rcvonSelectCompanyNo, rcvKeyword: keyword1, rcvKeyword2: keyword2, cp_start_date: cp_start_date, cp_end_date: cp_end_date},
-// 			method : 'GET' 
-// 		}).done(function(result){
-			
-// 			if(result == "NoN"){
-// 					text +='      <tr>';
-// 					text +='			 <td colspan="6">등록된 사항이 없습니다.</td>';
-// 					text +='       </tr>';
-// 			}else{
-// 				var jsonResult = JSON.parse(result);
-// 				var jsonResult_notice = jsonResult.CompanyList
-// 				for(var i in jsonResult_notice){
-					
-// 					text +='      <tr>';
-// 					text +='			 <td>'+jsonResult_notice[i].cp_date+'</td>';
-// 					text +='			 <td>'+jsonResult_notice[i].std_date+'</td>';
-// 					text +='			 <td>'+jsonResult_notice[i].VM_CP_NAME+'</td>';
-// 					text +='			 <td>'+jsonResult_notice[i].tel+'</td>';
-// 					text +='			 <td>'+jsonResult_notice[i].mem_no+'</td>';
-// 					text +='			 <td>'+jsonResult_notice[i].coupon_code+'</td>';
-// 					text +='			 <td>'+jsonResult_notice[i].staff_cert_fg+'</td>';
-// 					text +='       </tr>';
-// 				}
-// 			}
-// 				$("#tab1_table").empty();
-// 				$("#tab1_table").append(text);		
-
-// 	})
-
-// }
 
 // 공지사항 리스트를 불러온다.
 function noticeCont(rcvonSelectCompanyNo, rcvPageNo) {
@@ -242,10 +202,8 @@ function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
 			for( var k = paging_init_num; k <= paging_end_num; k++){
 				if (parseInt(rcvPageNo) == k)
 				{
-					console.log(k);
 					text += '<li class="page-item active"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+k+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+k+');">'+k+'</a></li>';
 				}else{
-					console.log(k);
 					text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+k+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+k+');">'+k+'</a></li>';
 				}
 			}
