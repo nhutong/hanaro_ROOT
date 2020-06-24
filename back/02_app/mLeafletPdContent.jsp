@@ -25,7 +25,7 @@
 			+" b.card_discount_from_date, b.card_discount_end_date, "
 			+" ifnull(b.card_info,'') as card_info, ifnull(b.card_restrict,'') as card_restrict, "
 			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, "
-			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, ifnull(e.vmjz_no,'') as vmjz_no "
+			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, ifnull(e.vmjz_no,'') as vmjz_no, b.weight "
 			+" FROM vm_jundan AS a "
 			+" inner join vm_menu as ab "
 			+" on a.menu_no = ab.menu_no "
