@@ -25,7 +25,7 @@
 			+" b.card_discount_from_date, b.card_discount_end_date, "
 			+" ifnull(b.card_info,'') as card_info, ifnull(b.card_restrict,'') as card_restrict, "
 			+" ifnull(b.coupon_discount,'') as coupon_discount, ifnull(b.dadaiksun,'') as dadaiksun, ifnull(b.dadaiksun_info,'') as dadaiksun_info, "
-			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, ifnull(e.vmjz_no,'') as vmjz_no, b.weight "
+			+" ifnull(b.etc,'') as etc, ifnull(c.pd_no,'') as pd_no, ifnull(c.pd_code,b.pd_code) as pd_code, ifnull(e.vmjz_no,'') as vmjz_no "
 			+" FROM vm_jundan AS a "
 			+" inner join vm_menu as ab "
 			+" on a.menu_no = ab.menu_no "
@@ -58,10 +58,10 @@
 			+" left outer join vm_product_image AS d "
 			+" ON b.ref_img_no = d.img_no "
 			+" WHERE a.jd_no = "+jd_no
-			+" order by cast(b.order_number AS UNSIGNED ) asc ";	
+			+" order by cast(b.order_number AS UNSIGNED ) asc ";
 
 		}
-		//	out.print(sql);
+		// out.print(sql);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
@@ -74,9 +74,8 @@
 		};
 		rs.beforeFirst();
 		
-		JSONArray arr = new JSONArray();		
+		JSONArray arr = new JSONArray();
 		while(rs.next()){
-			
 			String menu_type_cd		   = rs.getString("menu_type_cd");
 			String jd_prod_con_no		   = rs.getString("jd_prod_con_no");						  // 전단 상품번호
 			String img_path			       = rs.getString("img_path");					              // 전단 상품이미지경로
@@ -91,7 +90,6 @@
 			}else{
 				card_discount_from_date = rs.getString("card_discount_from_date").substring(5,10); // 전단 카드할인시작일
 			}
-			
 			String card_discount_end_date = "";
 			if ( rs.getString("card_discount_end_date") == null ){
 				
@@ -108,7 +106,7 @@
 			String pd_no				   = rs.getString("pd_no");									  // 전단 매핑상품번호
 			String pd_code				   = rs.getString("pd_code");								  // 전단 상품코드
 			String vmjz_no				   = rs.getString("vmjz_no");
-			String weight				   = rs.getString("weight");
+			// String weight				   = rs.getString("weight");
 			
 			JSONObject obj = new JSONObject();
 						
@@ -130,17 +128,15 @@
 			obj.put("coupon_discount", coupon_discount);
 			obj.put("dadaiksun", strDecode(dadaiksun));
 			obj.put("dadaiksun_info", strDecode(dadaiksun_info));
-			obj.put("etc", strDecode(etc));
+			obj.put("etc", java.net.URLEncoder.encode(etc,"UTF-8"));
 			obj.put("pd_no", pd_no);
 			obj.put("pd_code", strDecode(pd_code));
 			obj.put("vmjz_no", strDecode(vmjz_no));
-			obj.put("weight", strDecode(weight));
-			
+			// obj.put("weight", strDecode(weight));
 			if(obj != null){
 				arr.add(obj);
 			}
 		};
-
 		bdListJSON.put("PdContentList", arr);
 		out.clear();
 		out.print(bdListJSON);

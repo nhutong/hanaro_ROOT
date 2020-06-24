@@ -126,7 +126,7 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
         method : 'GET' 
     }).done(function(result){
 		//console.log("============= mLeafletGetJd callback ========================");
-		//console.log(result);
+		// console.log(result);
         if(result == ('NoN') || result.substring(0,15) == 'exception error' || result == 'empty'  || result == 'interval error'){
 			modify_jd_no = "0";
 			if(rcv_jd_no == 0){
@@ -161,7 +161,7 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 			//console.log("else:"+result);
 			//console.log("else:"+decodeURIComponent(item['sql']));
 			$("#selected_jd").empty();
-            var data = JSON.parse(result);			
+			var data = JSON.parse(result);
             data['List'].forEach(function(item, index){
 				modify_jd_no = decodeURIComponent(item['jd_no']);
 				if (decodeURIComponent(item['menu_type_cd']) == "MENU1" || decodeURIComponent(item['menu_type_cd']) == "MENU2" || decodeURIComponent(item['menu_type_cd']) == "MENU3"){
@@ -245,6 +245,7 @@ function getPdContent(rcv_jd_no) {
 		data : {jd_no: rcv_jd_no, memberNo: localStorage.getItem("memberNo")},
 		method : 'GET' 
 	}).done(function(result){
+		console.log(result);
 		var text = "";
 		//console.log("PdContent=========================================");
 		if(result.trim() == 'NoN' || result == 'list error' || result == 'empty'){
@@ -271,10 +272,9 @@ function getPdContent(rcv_jd_no) {
 				}else{
 					figure_type_cd = "figure3";
 				}
-
 				text += '<div class="figure '+figure_type_cd+'" id='+item['jd_prod_con_no']+'>'
 				text += '   <div class="thumb_wrap">'
-				text += '		<a onclick="setThumImg(\''+item['jd_prod_con_no']+'\', \''+item['pd_no']+'\', \''+item['pd_code']+'\');"><img src="'+item['img_path']+'" alt="'+item['pd_name']+'"></a>'
+				text += '		<a onclick="setThumImg(\''+item['jd_prod_con_no']+'\', \''+item['pd_no']+'\', \''+item['pd_code']+'\', \''+item['pd_name']+'\');"><img src="'+item['img_path']+'" alt="'+item['pd_name']+'"></a>'
 				text += '		<div class="thumb_info">'
 				
 				if(isInIFrame == true){
@@ -341,21 +341,21 @@ function getPdContent(rcv_jd_no) {
 				text += '       <a class="product" onclick="setPdName('+item['jd_prod_con_no']+', \''+item['pd_name']+'\', \''+item['weight']+'\');">'+item['pd_name']+'</a>'
 				if (item['img_path'] == "/upload/blank.png"){
 				}else{
-					text += '       <a class="price"   onclick="setPrice('+item['jd_prod_con_no']+', \''+item['price']+'\');">'+comma(item['price'])+'</a>' //2020-05-07 원 삭제 - 미솔
+					text += '       <a class="price"   onclick="setPrice('+item['jd_prod_con_no']+', \''+item['price']+'\');">'+comma(item['price'])+'<h6 style="font-family: Noto Sans KR;display:inline-block;font-weight: 500;">원</h6></a>' // 20200619 김수경 원 살림
 				}
 				//200603 김수경 최종혜택가 표시
 				if (item['card_discount'] != "" && item['coupon_discount'] != ""){
 					var summed = Number(item['price']) - Number(item['card_discount']) - Number(item['coupon_discount']);
-					text += '    	  <a class="price4">'+comma(summed)+'</a>'
+					text += '    	  <a class="price4">'+comma(summed)+'<h6 style="font-family: Noto Sans KR;display:inline-block;font-weight: 500;">원</h6></a>'
 			    }else if (item['card_discount'] != "")
 				{
 					var carded = Number(item['price']) - Number(item['card_discount']);
-					text += '   <a class="price2">'+comma(carded)+'</a>' //2020-05-07 원 삭제 - 미솔
+					text += '   <a class="price2">'+comma(carded)+'<h6 style="font-family: Noto Sans KR;display:inline-block;font-weight: 500;">원</h6></a>' // 20200619 김수경 원 살림
 				}else if(item['coupon_discount'] != "")
 				{
 						//2020-06-03 김수경 쿠폰할인가 살림
 					                   var couponed = Number(item['price']) - Number(item['coupon_discount']);
-										text += '   <a class="price3">'+comma(couponed)+'</a>'
+										text += '   <a class="price3">'+comma(couponed)+'<h6 style="font-family: Noto Sans KR;display:inline-block;font-weight: 500;">원</h6></a>'
 						//2020-06-03 김수경 쿠폰할인가 살림
 				}else{
 					
@@ -371,17 +371,17 @@ function getPdContent(rcv_jd_no) {
 				text += '    		 <img src="'+item['img_path']+'" alt="'+item['pd_name']+'">'
 				text += '    	  </div>'
 				text += '    	  <div class="leaflet_modal_title">'+item['pd_name']+'</div>'
-				text += '    	  <div class="leaflet_modal_price">'+comma(item['price'])+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
+				text += '    	  <div class="leaflet_modal_price">'+comma(item['price'])+'<h6 style="font-family: Noto Sans KR;display:inline-block;font-weight: 500;">원</h6></div>'
 				//200603 김수경 상품상세팝업에 카드할인가와 쿠폰할인가 표시
 				if  (decodeURIComponent(item['card_discount']) != "" && decodeURIComponent(item['coupon_discount']) != ""){
 					var summed = Number(item['price']) - Number(item['card_discount']) - Number(item['coupon_discount']);
-					text += '    	  <div class="leaflet_modal_price4"><h6 style="font-family: Noto Sans KR; display:inline-block;">최종혜택가</h6> '+comma(summed)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
+					text += '    	  <div class="leaflet_modal_price4"><h6 style="font-family: Noto Sans KR; display:inline-block;">최종혜택가</h6>'+comma(summed)+'<h6 style="font-family: Noto Sans KR;display:inline-block;font-weight: 500;">원</h6></div>'
 				}else if (decodeURIComponent(item['card_discount']) != ""){
 					var carded = Number(item['price']) - Number(item['card_discount']);
-					text += '    	  <div class="leaflet_modal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block;">카드할인가</h6> '+comma(carded)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
+					text += '    	  <div class="leaflet_modal_price2"><h6 style="font-family: Noto Sans KR; display:inline-block;">카드할인가</h6>'+comma(carded)+'<h6 style="font-family: Noto Sans KR;display:inline-block;font-weight: 500;">원</h6></div>'
 			    }else if (decodeURIComponent(item['coupon_discount']) != ""){
 					var couponed = Number(item['price']) - Number(item['coupon_discount']);
-					text += '    	  <div class="leaflet_modal_price3"><h6 style="font-family: Noto Sans KR; display:inline-block;">쿠폰할인가</h6> '+comma(couponed)+' <h6 style="font-family: Noto Sans KR; display:inline-block;">원</h6></div>'
+					text += '    	  <div class="leaflet_modal_price3"><h6 style="font-family: Noto Sans KR; display:inline-block;">쿠폰할인가</h6>'+comma(couponed)+'<h6 style="font-family: Noto Sans KR;display:inline-block;font-weight: 500;">원</h6></div>'
 				}
 				//200603 김수경 상품상세팝업에 카드할인가와 쿠폰할인가 표시
 
@@ -691,7 +691,7 @@ function getBannerList(rcv_jd_no) {
 }
 
 // 썸네일이미지를 업데이트시 사용할 정보를 부모창에 바인딩한다.
-function setThumImg(rcvJdProdConNo, rcvPdNo, rcvPdCode){
+function setThumImg(rcvJdProdConNo, rcvPdNo, rcvPdCode, rcvPdName){
 
 	var isInIFrame = ( window.location != window.parent.location );
 	if (isInIFrame == true)
@@ -700,7 +700,9 @@ function setThumImg(rcvJdProdConNo, rcvPdNo, rcvPdCode){
 		$(parent.document).find(".leaflet_del").show();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
+		// $(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvPdCode);
+		$(parent.document).find("#modify_jd_prod_con_name").text(rcvPdName);
 
 		$("#nh_leaflet").contents().find(".thumb_info, .thumb_wrap>a").click(function(){
            $(".new_item_wrap").hide();

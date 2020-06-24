@@ -131,7 +131,7 @@ function noticeCont(rcvonSelectCompanyNo, rcvPageNo) {
 			
 			if(result == "NoN"){
 					text +='      <tr>';
-					text +='			 <td colspan="6">등록된 사항이 없습니다.</td>';
+					text +='			 <td colspan="7">등록된 사항이 없습니다.</td>';
 					text +='       </tr>';
 			}else{
 				$("#tab1_table").html("");

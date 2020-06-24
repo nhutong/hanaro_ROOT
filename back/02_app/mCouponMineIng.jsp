@@ -17,7 +17,7 @@
 		
 		//sql = " SELECT a.coupon_no, a.discount_price, case when min(c.img_path) IS NULL then min(cc.img_path) ELSE min(c.img_path) end as img_path, a.coupon_type, date_format(a.start_date,'%m-%d') as start_date, date_format(a.end_date,'%m-%d') AS end_date, ifnull(b.pd_name,a.product_name) as pd_name, "
 		// my쿠폰에서도 쿠폰명을 쿠폰테이블(기존 상품테이블) 참조하도록 수정 - 20200615 김중백
-		sql = " SELECT a.coupon_no, a.discount_price, case when min(c.img_path) IS NULL then min(cc.img_path) ELSE min(c.img_path) end as img_path, a.coupon_type, date_format(a.start_date,'%m-%d') as start_date, date_format(a.end_date,'%m-%d') AS end_date, ifnull(ifnull(a.product_name,'') as pd_name, "
+		sql = " SELECT a.coupon_no, a.discount_price, case when min(c.img_path) IS NULL then min(cc.img_path) ELSE min(c.img_path) end as img_path, a.coupon_type, date_format(a.start_date,'%m-%d') as start_date, date_format(a.end_date,'%m-%d') AS end_date, ifnull(a.product_name,'') as pd_name, "
 			+" (a.limit_qty - ifnull(d.coupon_save_cnt,0)) AS asisCnt, s.mc_no, a.coupon_code, a.min_price, a.coupon_detail "
 			+" from vm_member_coupon as s "
 			+" inner join vm_member as ss "
