@@ -16,6 +16,8 @@
 	
 		sql = " SELECT event_no, event_title, img_url, detail_img_url, company, banner_yn FROM vm_event t " +
 			  " WHERE banner_yn = 'Y' AND activated = 'Y' AND company = " + userCompanyNo +
+			  " AND date_format(end_date , 'Y%m%d%') < date_format(curdate(), 'Y%m%d%')" +   // 2020.06.25 / 심규문 / 스와이프 배너 활성 이벤트 기간 조건 추가
+              " AND date_format(lst_date , 'Y%m%d%') >= date_format(curdate(), 'Y%m%d%')" +  // 2020.06.25 / 심규문 / 스와이프 배너 활성 이벤트 기간 조건 추가
 			  " order by order_no asc; ";
 	
 		stmt = conn.createStatement();
