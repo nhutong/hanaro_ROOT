@@ -69,17 +69,17 @@ $(function () {
 	$("#searchKeyword").keypress(function (e) {
         if (e.which == 13){
 			prodList(1, $("#searchKeyword").val());
-			prodList_paging(1, $("#searchKeyword").val());
+			// prodList_paging(1, $("#searchKeyword").val());
         }
     });
 
 	prodList(pageNo, searchTextbox);
-	prodList_paging(pageNo, searchTextbox);
+	// prodList_paging(pageNo, searchTextbox);
 
 });
 
 // 관리자 게시판 게시물 리스트를 가져온다
-function prodList(rcvPageNo, rcvSearchText) {
+function prodList(rcvPageNo, rcvSearchText = "") {
 
 	$.ajax({
         url:'/back/04_home/postList.jsp?random=' + (Math.random()*99999), 
@@ -110,7 +110,8 @@ function prodList(rcvPageNo, rcvSearchText) {
 			});
 			$("#tab1_table").empty();
 			$("#tab1_table").append(text);
-        }
+		}
+		prodList_paging(rcvPageNo, rcvSearchText);
     });
 
 }
@@ -118,11 +119,10 @@ function prodList(rcvPageNo, rcvSearchText) {
 // 게시물 읽기 팝업
 function home_post_popup(no){
 	var popupX = (window.screen.width/2) - (400/2);
-	window.open('home_read.html?no=' + no,'관리자 게시판 읽기','width=600,height=600,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')
+	window.open('home_read.html?no=' + no,'관리자 게시판 읽기','width=800,height=800,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')
 }
 
 function home_post_create() {
-	document.getElementById('home_post_wrap').style.display = "block";
 	if (getCookie("userRoleCd") != "ROLE1")
 	{
 		$("#notice_fg").hide();
@@ -135,8 +135,43 @@ function home_post_create() {
 		maxHeight: null,             // 최대 높이
 		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 		lang: "ko-KR",					// 한글 설정
-		placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
-});
+		placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+		toolbar: [
+			['style', ['bold', 'italic', 'underline', 'clear']],
+			['fontsize', ['fontsize']],
+			['fontname', ['fontname']],
+			['color', ['color']],
+			['para', ['ul', 'ol', 'paragraph']],
+			['table', ['table']],
+			['insert', ['link', 'picture', 'video']],
+			['view', ['fullscreen', 'codeview', 'help']],
+		  ],			
+		callbacks: { // 콜백을 사용
+			// 이미지를 업로드할 경우 이벤트를 발생
+			onImageUpload: function(files, editor, welEditable) {
+				sendFile(files[0], this);
+			}
+		}
+	});
+	
+  /* summernote에서 이미지 업로드시 실행할 함수 */
+			function sendFile(file, editor) {
+				// 파일 전송을 위한 폼생성
+				 data = new FormData();
+				 data.append("uploadFile", file);
+				 $.ajax({ // ajax를 통해 파일 업로드 처리
+					 data : data,
+					 type : "POST",
+					 url : "../back/00_include/summernote_imageUpload.jsp",
+					 cache : false,
+					 contentType : false,
+					 processData : false,
+					 success : function(data) { // 처리가 성공할 경우
+						// 에디터에 이미지 출력
+						 $(editor).summernote('editor.insertImage', data.url);
+						}
+					});
+				}
   	// 200622 김수경 썸머노트 적용 테스트
 
 // 게시물 등록취소
@@ -221,12 +256,14 @@ function prodList_paging(rcvPageNo, rcvSearchText) {
 			}
 
 			for( var k = paging_init_num; k <= paging_end_num; k++){
-				if (parseInt(rcvPageNo) == k)
-				{
-					text += '<li class="page-item active"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
-				}else{
-					text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
-				}
+				const className = (parseInt(rcvPageNo) == k) ? "page-item active" : "page-item";
+				text += '<li class="'+className+'"><a class="page-link" onclick="prodList('+k+')" href="javascript:void(0);">'+k+'</a></li>';
+				// if (parseInt(rcvPageNo) == k)
+				// {
+				// 	text += '<li class="page-item active"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				// }else{
+				// 	text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				// }
 			}
 
 			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)

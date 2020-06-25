@@ -8739,8 +8739,9 @@ var ImageDialog_ImageDialog = /*#__PURE__*/function () {
 
 
           $imageInput.replaceWith($imageInput.clone().on('change', function (event) {
-            deferred.resolve(event.target.files || event.target.value);
+            deferred.resolve("/upload/" + event.target.files[0].name || event.target.value);
           }).val(''));
+           
           $imageUrl.on('input paste propertychange', function () {
             _this2.ui.toggleBtn($imageBtn, $imageUrl.val());
           }).val('');

@@ -391,12 +391,20 @@ span.shopUrl:hover{
     background: #fff;
 }
 
-
+/* 200625 김수경 화면 정비(메뉴 타이틀과 매장 셀렉트박스 한줄로)
 .store_list_wrap{
     display: block;
     text-align: right;
     padding: 0px 40px 0px 0px;
+} */
+.store_list_wrap{
+    display: block;
+    text-align: right;
+    padding: 30px 15px 30px 30px;
+    width: 30%;
+    float: left;
 }
+
 
 .store_list_wrap .store_list_name,
 .store_list_wrap .nh_store_list{
@@ -915,22 +923,38 @@ span.shopUrl:hover{
     border-radius: 5px;
 }
 
-#home_post_wrap{
+#home_post_wraps{
     margin-top: 20px;
 }
 
-#home_post_wrap table{
-    width: 500px;
+#home_post_wraps table{
+    width: 650px;
     font-size: 14px;
     border:1px solid #d0d0d0;
 }
 
-#home_post_wrap table td{
+#home_post_wraps table td{
     padding: 10px;
 }
 
-#home_post_wrap table tr:first-child td{
+#home_post_wraps table tr:first-child td{
 	padding-top : 20px;
+}
+
+#home_post_wraps table .selectList {
+    border-right: none;
+    width: 100px;
+    padding: 5px;
+    display: inline-block;
+    border: 1px solid #d0d0d0;
+    vertical-align: top;
+}
+#home_post_wraps table .inputTitle {
+    padding: 5.5px;
+    width: calc(100% - 104px);
+    display: inline-block;
+    border: 1px solid #d0d0d0;
+    vertical-align: top;
 }
 
 #home_post_wrap table td select,
@@ -1365,6 +1389,16 @@ span.shopUrl:hover{
     height: 30px;    
 }
 #modify_jd_prod_con_no{
+    display: inline-block;
+    font-size: 15px;  
+    font-weight: bold;
+    padding: 2px 12px;  
+    margin: -10px 0px;
+    border:1px solid #e0e0e0;
+    text-align: center;
+    height: 30px;
+}
+#modify_jd_prod_con_name{
     display: inline-block;
     font-size: 15px;  
     font-weight: bold;
@@ -5472,7 +5506,13 @@ background-color: #ab1f1f;
 	/* color : #fff */
 }
 
-
+.changeBtn {
+    width: 55px;
+    height: 38px;
+    font-size: 16px;
+    padding: 6px 12px;
+    font-weight: 400;
+}
 
 
 

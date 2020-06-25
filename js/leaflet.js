@@ -517,7 +517,6 @@ function manage_pagination_jdbtn(){
 		pageSize: 8,
 		className: 'paginationjs-theme-green paginationjs-big',
 		callback: function(list, pagination) {
-			console.log(list);
 			var $tbody = $('#layer_popup_leaflet_list').empty();
 			_.forEach(list,
 				function(item) {
@@ -767,7 +766,7 @@ $("#banner_edit_btn").on("click",function(){
 			$('#nh_leaflet').get(0).contentDocument.location.reload();
 			$(".leaflet_banner").removeClass("active");
 			$(".item_list_banner_wrap").removeClass("active");
-			setTimeout(function(){ cssRetach(); }, 1500);
+			setTimeout(function(){ cssRetaRetach(); }, 1500);
         }
     });
 });
@@ -799,12 +798,25 @@ function thumnailInsert(imgPath){
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
             //console.log(result);
         }else{
-            //console.log("============= notice callback ========================");
-            //console.log(result);
+			//console.log("============= notice callback ========================");
 			thumnailUpdate(result);
 			//$('#nh_leaflet').get(0).contentDocument.location.reload();
         }
     });
+}
+//
+function isUploadData(imgNo, imgPaths){
+	// modal을 오픈 하고, modal에서 ok 버튼 클릭시
+	// thumnailUpdate(imgNo) 를 넘겨 준다.
+	console.log(imgPaths);
+	var vhtml = "<img src='/upload/"+imgPaths+"' />";
+	vhtml += "<input type='hidden' id='changeImgNo' value='"+imgNo+"'/>";
+	document.querySelector("#input_img_Data").innerHTML = vhtml;
+}
+
+function changeThumbnailData() {
+	var id = document.getElementById("changeImgNo").value;
+	thumnailUpdate(id);
 }
 
 /*썸네일 이미지 클릭시, 이미지번호를 받아, 업데이트 한다.*/
@@ -832,10 +844,16 @@ function thumnailUpdate(imgNo){
             $("#searchText").val("");
             $("#searchResultGroup").empty();
 			$(".leaflet_image").removeClass("active");
-			$('#nh_leaflet').get(0).contentDocument.location.reload();
+			// 해당 부분이 iframe 새로고침을 해줌
+			// 따라서 변경된 URL에 parameter를 같이 던져주면 됨
+			console.log($('#nh_leaflet').get(0).contentDocument.location.href);
+			// $('#nh_leaflet').get(0).contentDocument.location.reload();
+			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
+			$('#nh_leaflet').get(0).contentDocument.location.href = $('#nh_leaflet').get(0).contentDocument.location.href + "&jd_no="+fix_jd_no;
 			//setTimeout(function(){ ThumCSS(); }, 1500);
 			setTimeout(function(){ cssRetach(); }, 1500);
-        }
+		}
+		$('.modal_cancel_btn').click();
     });
 }
 
@@ -921,9 +939,9 @@ $("#searchText").on("keyup",function(){
 				var i = 1;
 				data['imgList'].forEach(function(item, index){
 					if ( i % 4 == 0 ){
-						$("#searchResultGroup").append('<li onclick="thumnailUpdate('+item['img_no']+')"><img src="/upload/'+item['img_path']+'"></li><br>');
+						$("#searchResultGroup").append('<li data-toggle="modal" data-target="#exampleModal" onclick="isUploadData('+item['img_no']+', &quot;'+item['img_path']+'&quot;)"><img src="/upload/'+item['img_path']+'"></li><br>');
 					}else{
-						$("#searchResultGroup").append('<li onclick="thumnailUpdate('+item['img_no']+')"><img src="/upload/'+item['img_path']+'"></li>');
+						$("#searchResultGroup").append('<li data-toggle="modal" data-target="#exampleModal" onclick="isUploadData('+item['img_no']+', &quot;'+item['img_path']+'&quot;)"><img src="/upload/'+item['img_path']+'"></li>');
 					}					
 					i++;
 				});
@@ -1125,7 +1143,7 @@ $("#price_btn").on("click",function(){
 			$('#nh_leaflet').get(0).contentDocument.location.reload();
             $("#price").val("");
             $(".leaflet_goods_price").removeClass("active");
-			setTimeout(function(){ cssRetach(); }, 1500);
+			// setTimeout(function(){ cssRetach(); }, 1500);
         }
     });
 });

@@ -91,7 +91,7 @@
 			// 상품코드 ( encode )
 		    col = 1;
 		    cell = sheet.getCell(col,i);
-		    String string1 = cell.getContents().trim().replaceAll(",", "").replaceAll("'", "");
+		    String string1 = cell.getContents().trim().replaceAll(",", "").replaceAll("'", "").replaceall(" ","");
 			if ( string1.equals("") ){
 				//상품코드를 입력하지 않았기 때문에 중단한다.
 				out.clear();

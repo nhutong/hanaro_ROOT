@@ -130,7 +130,7 @@ function getLeftMenu(menu) {
 				// 본사관리자만 표시
 				$leftmenu.append('<li id="nh_product_imgmaster" onclick="img_master();">이미지마스터</li>');
 			}
-			$leftmenu.append('<li id="nh_product_storeimgmaster" onclick="store_imgmaster();">판매장 상품이미지</li>');
+			$leftmenu.append('<li id="nh_product_storeimgmaster" onclick="store_imgmaster();">판매장 등록</li>');
 			break;
 
 		case 'delivery':
@@ -352,7 +352,7 @@ function getLeftMenu(menu) {
 				// 본사관리자만 표시
 				$leftmenu.append('<li id="nh_product_imgmaster" onclick="img_master();">이미지마스터</li>');
 			}
-			$leftmenu.append('<li id="nh_product_storeimgmaster" onclick="store_imgmaster();">판매장 상품이미지</li>');
+			$leftmenu.append('<li id="nh_product_storeimgmaster" onclick="store_imgmaster();">판매장 등록</li>');
 			break;
 
 		case 'delivery':
