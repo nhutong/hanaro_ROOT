@@ -133,6 +133,7 @@ function coupon_upload_create(){
     });
 }
 
-	function coupon_popup(rcvCouponNum){
-		window.open('coupon_print.html?coupon_no='+rcvCouponNum+'',"pop출력창",'location=no,status=no,scrollbars=yes,left=300,top=300, width = 1350, height = 800')  
-	}
+function coupon_popup(rcvCouponNum){
+	location.href="/event/coupon_print.html?coupon_no="+rcvCouponNum;
+	//window.open('coupon_print.html?coupon_no='+rcvCouponNum+'',"pop출력창",'location=no,status=no,scrollbars=yes,left=300,top=300, width = 1350, height = 800')  
+}
