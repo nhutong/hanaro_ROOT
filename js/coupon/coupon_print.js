@@ -1,7 +1,21 @@
 $(function(){
 
-		var coupon_no = location.search.split('=')[1];
-		getCouponInfo(coupon_no);
+	getHeader();
+	getLeft();
+	getLeftMenu('event');
+
+	var coupon_no = location.search.split('=')[1];
+
+	getCouponInfo(coupon_no);
+
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = leadingZeros(today.getMonth()+1,2);
+	var day = leadingZeros(today.getDate(),2);
+
+	$("#popPdStartDate").val(year+'-'+month+'-'+day);
+	$("#popPdEndDate").val(year+'-'+month+'-'+day);	
+
 })
 
 
@@ -19,32 +33,28 @@ function getCouponInfo(coupon_no){
 		function(result) {
 			console.log(result);
 			var info = result.list[0];			
-			
-			var startDate = (info.start_date).substring(5,10);
-			var endDate = (info.end_date).substring(5,10);
 						
-			$('#popPdStart').val(startDate);
-			$('#popPdEnd').val(endDate);
-			$('#popPdLimit').val(info.limit_qty);		
+			$('#popPdCouponNo').val(info.coupon_no);
 			$('#popPdCode').val(info.product_code);
 			$('#popPdName').val(info.product_name);
-			$('#popPdDiscount').val(info.discount_price);
 			$('#popPdPrice').val(info.min_price);
-//			$('#company_name').append(info.company_name);
-//			$('#status_cd').val(info.status_cd);
+			$('#popPdWeight').val(info.weight);
+			$('#popPdUnitPrice').val(info.unit_price);
+			$('#popPdOrigin').val(info.origin);
+			$('#popPdDiscount').val(info.discount_price);
 
-//			$('#a4Qr').append('<span class="coupon_barcode" id="a4QrSpan" style="display : block; margin : auto;">');
-//			$('#a4QrSpan').barcode(info.coupon_code, "code128",{barWidth:1, barHeight:50});
-//
-//			$('#a3Qr').append('<span class="coupon_barcode" id="a3QrSpan" style="display : block; margin : auto;">');
-//			$('#a3QrSpan').barcode(info.coupon_code, "code128",{barWidth:1, barHeight:50});
-//
-//			$('#r200Qr').append('<span class="coupon_barcode" id="r200QrSpan" style="display : block; margin : auto;">');
-//			$('#r200QrSpan').barcode(info.coupon_code, "code128",{barWidth:1, barHeight:50});
+			$('#popPdStartDate').val(info.start_date);
+			var start = (info.start_date).substring(5,7).replace(/(^0+)/, "").concat( "/" , (info.start_date).substring(8,10).replace(/(^0+)/, "") );
+			$('#popPdStart').val(start);
 
-			if (info.img_path == null)
-			{
-//				$('#a4_pd_img').attr("src","/images/thumb.png");
+			$('#popPdEndDate').val(info.end_date);			
+			var end = (info.end_date).substring(5,7).replace(/(^0+)/, "").concat( "/" , (info.end_date).substring(8,10).replace(/(^0+)/, "") );
+			$('#popPdEnd').val(end);
+
+			$('#popPdLimit').val(info.limit_qty);
+			$('#popPdEtcInfo').val(info.etc_info);												
+
+			if (info.img_path == null){
 			}else{
 				$('#a4_pd_img').append("<img src='/upload/"+info.img_path+"' alt='상품이미지'>");
 				
@@ -61,8 +71,51 @@ function getCouponInfo(coupon_no){
 		});
 	}
 
+//저장하기
+$("#couponPrintSave").on("click",function(e){
+	e.preventDefault();	
+	var formData = {
+		coupon_no : $('#popPdCouponNo').val(),
+		product_code : $('#popPdCode').val(),
+		product_name : $('#popPdName').val(),
+		min_price : $('#popPdPrice').val(),
+		weight : $('#popPdWeight').val(),
+		unit_price : $('#popPdUnitPrice').val(),
+		origin : $('#popPdOrigin').val(),
+		discount_price : $('#popPdDiscount').val(),
+		start_date : $('#popPdStartDate').val(),
+		end_date : $('#popPdEndDate').val(),
+		limit_qty : $('#popPdLimit').val(),
+		etc_info : $('#popPdEtcInfo').val(),
+		lst_no : getCookie("userNo")
+	} ;
+	// console.log(formData);
+	$.post( '/back/05_event/couponUpdate.jsp',
+	formData, 			
+	function(resultJSON){
+		if(resultJSON['update'] > 0){
+			alert('저장이 완료되었습니다');
+		}else {
+			console.log(resultJSON['error']);
+			alert("저장 중 에러가 발생하였습니다.");
+		}
+	});	
+});
+
+$("#popPdStartDate").on("change",function(e){
+	e.preventDefault();
+	var start = $("#popPdStartDate").val().substring(5,7).replace(/(^0+)/, "").concat( "/" ,  $("#popPdStartDate").val().substring(8,10).replace(/(^0+)/, "") );
+	$('#popPdStart').val(start);
+});
+
+$("#popPdEndDate").on("change",function(e){
+	e.preventDefault();
+	var end = $("#popPdEndDate").val().substring(5,7).replace(/(^0+)/, "").concat( "/" , $("#popPdEndDate").val().substring(8,10).replace(/(^0+)/, "") );
+	$('#popPdEnd').val(end);		
+});
+
+//적용하기
 $("#couponPrintApply").on("click",function(e){
-	
 	e.preventDefault();
 
 	/* A4 세로형 */
@@ -183,26 +236,75 @@ $("#couponPrintApply").on("click",function(e){
 
 	
     if( $("#popPdInfo").val() == ""){
-          
-       }else{
-           $(".pop_pd_info").empty();
-	       $(".pop_pd_info").append($("#popPdInfo").val());
-       }
+	}else{
+		$(".pop_pd_info").empty();
+		$(".pop_pd_info").append($("#popPdInfo").val());
+	}
     
+});
 
+$("#couponPrintPrint").on("click",function(e){
+	e.preventDefault();
+	var width = $("#coupon_print_lft").outerWidth();
+	var height = $("#coupon_print_lft").outerHeight();
+
+	// alert($("#coupon_print_lft").outerHeight());
+	// alert($("#coupon_print_lft").outerWidth());
+	//$("#coupon_print_lft").outerHeight()
+
+	/** 프린트 버튼 클릭 시 이벤트 */
+    var $container = $("#coupon_print_lft").clone();  // 프린트 할 특정 영역 복사
+	// var cssText = "";                                 // 스타일 복사
+	// console.log("aaaa");
+	// console.log($("style"));
+    // for ( var node of $("style") ) {
+    //     cssText += node.innerHTML;
+    // }
+    /** 팝업 */
+    var innerHtml = $container[0].innerHTML;
+	var popupWindow = window.open("", "_blank", "width="+width+"px,height="+height+"px");
+	//var popupWindow = window.open("", "_blank", "width=500px,height=600px");
+    popupWindow.document.write("<!DOCTYPE html>"+
+	  "<html>"+
+	  	"<link href='../css/common.css'        rel='stylesheet'>"+
+	  	"<link href='../css/index.css'         rel='stylesheet'>"+
+	  	// "<link href='../css/page_print.css'    rel='stylesheet'>"+
+	  	"<link href='../css/bootstrap.min.css' rel='stylesheet'>"+
+	  	"<link href='../css/all.css'           rel='stylesheet'>"+
+	  	"<head>"+
+        // "<style>"+cssText+"</style>"+
+        "</head>"+
+        "<body>"+innerHtml+"</body>"+
+      "</html>");
+
+    popupWindow.document.close();
+    popupWindow.focus();
+
+    /** 1초 지연 */
+    // setTimeout(() => {
+    //     popupWindow.print();         // 팝업의 프린트 도구 시작
+    //     popupWindow.close();         // 프린트 도구 닫혔을 경우 팝업 닫기
+	// }, 1000);	
+	
+	setTimeout(function() {
+        // popupWindow.print();         // 팝업의 프린트 도구 시작
+        // popupWindow.close();         // 프린트 도구 닫혔을 경우 팝업 닫기
+	}, 1000);
 
 });
 
-function onPopPrint(){
-	$(".coupon_print_rgt").hide();
-    $(".coupon03").clone().appendTo(".coupon_print_lft");
-    $(".coupon03").clone().appendTo(".coupon_print_lft");
-	pagePrintPreview();
-	$(".coupon_print_rgt").show();
-    $(".coupon03").not(":first").remove();
-    
-    
 
+function onPopPrint(){
+	//window.open("print_popup.html","print_open","width=760,height=750,top=0,left=0,noresizable,toolbar=no,status=no,scrollbars=yes,directory=n");
+	//var mapContainer = document.getElementById('coupon01');
+	//document.body.innerHTML = mapContainer.innerHTML;
+	//window.print();
+	// $(".coupon_print_rgt").hide();
+    // $(".coupon03").clone().appendTo(".coupon_print_lft");
+    // $(".coupon03").clone().appendTo(".coupon_print_lft");
+	// pagePrintPreview();
+	// $(".coupon_print_rgt").show();
+	// $(".coupon03").not(":first").remove();
 }
 
 
@@ -236,6 +338,3 @@ function onPopPrint(){
 
 
 
-// var mapContainer = document.getElementById('coupon01');
-// document.body.innerHTML = mapContainer.innerHTML;
-// window.print();

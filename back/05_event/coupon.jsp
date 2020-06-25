@@ -61,7 +61,7 @@
 
 		// 리스트 조회 
 		String queryList =
-			" SELECT coupon_no, coupon_name, coupon_type, coupon_code, reg_no, lst_no, product_code, product_name, discount_price, min_price, limit_qty, extra, "+ 
+			" SELECT coupon_no, coupon_name, coupon_type, coupon_code, reg_no, lst_no, product_code, product_name, discount_price, min_price, limit_qty, extra, weight, unit_price, origin, etc_info, "+ 
 			"		 (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.reg_no) as reg_name, " +
 			"		 (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.lst_no) as lst_name, " +			
 			"		 DATE_FORMAT(reg_date, '%Y-%m-%d %H:%i:%s') AS reg_date, " +
