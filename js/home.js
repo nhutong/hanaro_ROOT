@@ -69,17 +69,17 @@ $(function () {
 	$("#searchKeyword").keypress(function (e) {
         if (e.which == 13){
 			prodList(1, $("#searchKeyword").val());
-			prodList_paging(1, $("#searchKeyword").val());
+			// prodList_paging(1, $("#searchKeyword").val());
         }
     });
 
 	prodList(pageNo, searchTextbox);
-	prodList_paging(pageNo, searchTextbox);
+	// prodList_paging(pageNo, searchTextbox);
 
 });
 
 // 관리자 게시판 게시물 리스트를 가져온다
-function prodList(rcvPageNo, rcvSearchText) {
+function prodList(rcvPageNo, rcvSearchText = "") {
 
 	$.ajax({
         url:'/back/04_home/postList.jsp?random=' + (Math.random()*99999), 
@@ -110,7 +110,8 @@ function prodList(rcvPageNo, rcvSearchText) {
 			});
 			$("#tab1_table").empty();
 			$("#tab1_table").append(text);
-        }
+		}
+		prodList_paging(rcvPageNo, rcvSearchText);
     });
 
 }
@@ -246,12 +247,14 @@ function prodList_paging(rcvPageNo, rcvSearchText) {
 			}
 
 			for( var k = paging_init_num; k <= paging_end_num; k++){
-				if (parseInt(rcvPageNo) == k)
-				{
-					text += '<li class="page-item active"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
-				}else{
-					text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
-				}
+				const className = (parseInt(rcvPageNo) == k) ? "page-item active" : "page-item";
+				text += '<li class="'+className+'"><a class="page-link" onclick="prodList('+k+')" href="javascript:void(0);">'+k+'</a></li>';
+				// if (parseInt(rcvPageNo) == k)
+				// {
+				// 	text += '<li class="page-item active"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				// }else{
+				// 	text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				// }
 			}
 
 			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)

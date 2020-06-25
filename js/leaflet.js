@@ -929,7 +929,7 @@ $("#searchText").on("keyup",function(){
 			//console.log("noticeList=========================================");
 			if(result == ('NoN') || result == 'list error' || result == 'empty'){
 				//console.log(result);
-				$("#searchResultGroup").empty();
+				$("#").empty();
 			}else{
 				//console.log("============= notice callback ========================");
 				//console.log(result);
