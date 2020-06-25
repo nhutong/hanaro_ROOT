@@ -5,6 +5,7 @@
 <%@page import="java.io.*" %>
 <%@page import="java.util.*" %>
 <%@page import="java.text.SimpleDateFormat" %>
+<%@ page import="org.json.simple.JSONObject"%>
 
 <%@ include file = "../00_include/imgResize.jsp" %> 
 
@@ -113,9 +114,8 @@
     	out.print("upload error");
 //         e.printStackTrace();
     } 
-
     // 업로드된 경로와 파일명을 통해 이미지의 경로를 생성
-	String uploadPath = "/upload/" + fileName;
+	String uploadPath = "/upload/" + newFileName;
 	
     // 생성된 경로를 JSON 형식으로 보내주기 위한 설정
 	JSONObject jobj = new JSONObject();

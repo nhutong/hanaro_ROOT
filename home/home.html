@@ -62,7 +62,7 @@
                               </table>
 
                               <div class="home_write_btn">
-                                  <button type="button" onclick="home_post_create()">새글작성</button>
+                                  <button data-toggle="modal" data-target="#writeModal" type="button" onclick="home_post_create()">새글작성</button>
                               </div>
 
                             <div class="pagination" style="width : inherit;">
@@ -73,35 +73,43 @@
 								</div>
 							</div>
                             </div>
-
-						  <div id="home_post_wrap" style="display:none;">
-							<!-- 200622 김수경 썸머노트 적용 테스트 -->
-							<!-- <form> -->
-								<form method="post">
-							<!-- 200622 김수경 썸머노트 적용 테스트 -->
-									<table>
-									<tr>
-										<td>제목</td>
-										<td><select id="notice_fg">
-												<option value="NOTICE">상단공지</option>
-												<option value="POST" selected>일반게시물</option>
-											</select><input type="text" name="title" id="post_title"></td>
-									</tr>
-									<tr>
-										<td>내용</td>
-										<td><textarea name="content" cols="30" rows="5" id="post_content"></textarea></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>
-											<button type="button" onclick="canclePost()">취소</button>
-											<button type="button" onclick="createPost()">등록</button>
-										</td>
-									</tr>
-								</table>
-							</form>
-						  </div>
-
+						<div class="modal fade" id="writeModal" tabindex="-1" role="dialog" aria-labelledby="writeModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document" style="max-width: 800px;">
+								<div class="modal-content">
+								<div class="modal-header" style="padding-top: 20px;">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true" style="font-size: 25px;">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body" id="input_img_Data" style="display:flex; justify-content: center;">
+									<div id="home_post_wraps">
+										<!-- 200622 김수경 썸머노트 적용 테스트 -->
+										<!-- <form> -->
+											<form method="post">
+										<!-- 200622 김수경 썸머노트 적용 테스트 -->
+												<table>
+												<tr>
+													<td>제목</td>
+													<td><select id="notice_fg" class="selectList">
+															<option value="NOTICE">상단공지</option>
+															<option value="POST" selected>일반게시물</option>
+														</select><input type="text" name="title" id="post_title" class="inputTitle"></td>
+												</tr>
+												<tr>
+													<td>내용</td>
+													<td><textarea name="content" cols="30" rows="5" id="post_content"></textarea></td>
+												</tr>
+											</table>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary modal_cancel_btn" data-dismiss="modal">취소</button>
+									<button type="button" class="btn btn-primary changeBtn" onclick="createPost()" style="font-size: 16px;font-weight: 400;padding: 6px 12px;">등록</button>
+								</div>
+								</div>
+							</div>
+						</div>
                         </div>
     
                     </div>
