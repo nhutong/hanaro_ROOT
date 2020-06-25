@@ -517,7 +517,6 @@ function manage_pagination_jdbtn(){
 		pageSize: 8,
 		className: 'paginationjs-theme-green paginationjs-big',
 		callback: function(list, pagination) {
-			console.log(list);
 			var $tbody = $('#layer_popup_leaflet_list').empty();
 			_.forEach(list,
 				function(item) {
