@@ -391,12 +391,20 @@ span.shopUrl:hover{
     background: #fff;
 }
 
-
+/* 200625 김수경 화면 정비(메뉴 타이틀과 매장 셀렉트박스 한줄로)
 .store_list_wrap{
     display: block;
     text-align: right;
     padding: 0px 40px 0px 0px;
+} */
+.store_list_wrap{
+    display: block;
+    text-align: right;
+    padding: 30px 15px 30px 30px;
+    width: 30%;
+    float: left;
 }
+
 
 .store_list_wrap .store_list_name,
 .store_list_wrap .nh_store_list{
@@ -920,7 +928,7 @@ span.shopUrl:hover{
 }
 
 #home_post_wraps table{
-    width: 500px;
+    width: 650px;
     font-size: 14px;
     border:1px solid #d0d0d0;
 }
