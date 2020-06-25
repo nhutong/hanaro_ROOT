@@ -74,9 +74,8 @@
             +" WHERE a.ref_company_no = "+userCompanyNo
             +" AND a.menu_no = "+menuNo
 			+" AND ifnull(a.del_fg,'N') != 'Y' "
-            +" ORDER BY a.from_date "
+            +" ORDER BY a.from_date DESC "
 			+" limit ?,? ; ";
-
 		Object[] paramList = new Object[]{ offset, rowCount } ;
 
 		results.put("list", 

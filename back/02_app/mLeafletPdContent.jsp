@@ -58,10 +58,10 @@
 			+" left outer join vm_product_image AS d "
 			+" ON b.ref_img_no = d.img_no "
 			+" WHERE a.jd_no = "+jd_no
-			+" order by cast(b.order_number AS UNSIGNED ) asc ";	
+			+" order by cast(b.order_number AS UNSIGNED ) asc ";
 
 		}
-		//	out.print(sql);
+		// out.print(sql);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
@@ -74,9 +74,8 @@
 		};
 		rs.beforeFirst();
 		
-		JSONArray arr = new JSONArray();		
+		JSONArray arr = new JSONArray();
 		while(rs.next()){
-			
 			String menu_type_cd		   = rs.getString("menu_type_cd");
 			String jd_prod_con_no		   = rs.getString("jd_prod_con_no");						  // 전단 상품번호
 			String img_path			       = rs.getString("img_path");					              // 전단 상품이미지경로
@@ -91,7 +90,6 @@
 			}else{
 				card_discount_from_date = rs.getString("card_discount_from_date").substring(5,10); // 전단 카드할인시작일
 			}
-			
 			String card_discount_end_date = "";
 			if ( rs.getString("card_discount_end_date") == null ){
 				
@@ -108,7 +106,7 @@
 			String pd_no				   = rs.getString("pd_no");									  // 전단 매핑상품번호
 			String pd_code				   = rs.getString("pd_code");								  // 전단 상품코드
 			String vmjz_no				   = rs.getString("vmjz_no");
-			String weight				   = rs.getString("weight");
+			// String weight				   = rs.getString("weight");
 			
 			JSONObject obj = new JSONObject();
 						
@@ -134,13 +132,11 @@
 			obj.put("pd_no", pd_no);
 			obj.put("pd_code", strDecode(pd_code));
 			obj.put("vmjz_no", strDecode(vmjz_no));
-			obj.put("weight", strDecode(weight));
-			
+			// obj.put("weight", strDecode(weight));
 			if(obj != null){
 				arr.add(obj);
 			}
 		};
-
 		bdListJSON.put("PdContentList", arr);
 		out.clear();
 		out.print(bdListJSON);

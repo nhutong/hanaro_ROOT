@@ -22,16 +22,18 @@
 	String requiredRoles = "ROLE1,ROLE2";
 %><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 
-    int pageNumber = Integer.parseInt(request.getParameter("pageNumber") == null ? "1" : request.getParameter("pageNumber").trim(), 10);
-    int pageSize = Integer.parseInt(request.getParameter("pageSize") == null ? "8" : request.getParameter("pageSize").trim(), 10);
+    //int pageNumber = Integer.parseInt(request.getParameter("pageNumber") == null ? "1" : request.getParameter("pageNumber").trim(), 10);
+    //int pageSize = Integer.parseInt(request.getParameter("pageSize") == null ? "8" : request.getParameter("pageSize").trim(), 10);
     String keyword1 = request.getParameter("keyword1") == null ? "" : request.getParameter("keyword1").trim() ;
     String keyword2 = request.getParameter("keyword2") == null ? "" : request.getParameter("keyword2").trim() ;
     String keyword3 = request.getParameter("keyword3") == null ? "" : request.getParameter("keyword3").trim() ;
+	String keyword4 = request.getParameter("keyword4") == null ? "" : request.getParameter("keyword4").trim() ;
+	String keyword5 = request.getParameter("keyword5") == null ? "" : request.getParameter("keyword5").trim() ;
 
-	int offset = pageSize * (pageNumber - 1);
-	int rowCount = pageSize;
- 
- 	try {
+	//int offset = pageSize * (pageNumber - 1);
+	//int rowCount = pageSize;
+
+	try {
 		QueryRunner queryRunner = new QueryRunner();
 
         // 리스트 조회
@@ -50,11 +52,12 @@
 			// 조회조건 변경 20200612 김중백
 			+ "   and (( left(b.start_date,10) >= left( ? , 10) AND left(b.start_date,10) <= left( ? , 10) ) "
 			+ "   or ( left(b.end_date,10) >= left( ? , 10) AND left(b.end_date,10) <= left( ? , 10) )) "
-            + " order by a.reg_date desc "
-            + " LIMIT ?, ? ; ";
+			+ " and d.tel like ? "
+			+ " and b.coupon_code like ? "
+			+ " order by a.reg_date desc ;" ;
+			//+ " LIMIT ?, ? ; ";
                         
-		//Object[] paramList = new Object[]{ keyword1, keyword2, keyword3, offset, rowCount}; 조회조건 변경 20200612
-		Object[] paramList = new Object[]{ keyword1, keyword2, keyword3, keyword2, keyword3, offset, rowCount};
+		Object[] paramList = new Object[]{ keyword1, keyword2, keyword3, keyword2, keyword3, "%"+keyword4+"%", "%"+keyword5+"%"};
 
 		results.put("list", 
 			queryRunner.query(
