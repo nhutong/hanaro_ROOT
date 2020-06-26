@@ -27,9 +27,34 @@
             </table>
 			<table>
             <tbody id="menuqna_pop_read_table_re">
+				<tr class="menuqna_pop_title">
+					<th>답변제목</th>
+					<td colspan="6">
+						<div id="nt_titleQna"></div>
+						<input type="text" id="nt_titleQna_re" style="display: none;border: 0;width: 100%;background-color: whitesmoke;"/>
+					</td>
+				</tr>
+				<tr class="menuqna_pop_sub">
+					<td width="15%"></td>
+					<td width="15%"></td>
+					<td class="menuqna_pop_sml">답변자</td>
+					<td>
+						<span id="reg_telQna"></span>
+					</td>
+					<td class="menuqna_pop_sml">답변일</td>
+					<td>
+						<span id="reg_dateQna"></span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6">
+					<div style="width: 100%;border: 0px;resize: none;height: auto;overflow-y: scroll;padding: 15px;border-collapse: collapse;font-size: 13px;" id="nt_contentQna">
+					</div>
+					</td>
+				</tr>
 			</tbody>
             </table>
-            <div class="qna_answer" id="qna_answer">
+            <!-- <div class="qna_answer" id="qna_answer">
 				 <table>
 					<tbody id="menuqna_pop_write_table">
 						<tr class="menuqna_pop_title">
@@ -47,16 +72,26 @@
 					</tbody>
 				</table>
                 
-            </div>
-            <div class="menuqna_pop_btn_wrap" id="menuqna_pop_btn_wrap">
-                <button id="qnaPopSubmitBtn">등록</button>
-            </div>
+			</div> -->
+			<div style="display: flex;">
+				<div style="font-size: 13px;display: none;" id="textCounting">글자수 <span id="countTxt">0</span></div>
+				<div class="menuqna_pop_btn_wrap" id="menuqna_pop_btn_wrap" style="position: absolute; right: 0;">
+					<!-- <button class="btn btn-success" id="qnaPopSubmitBtn">등록</button> -->
+					<button class="btn" id="qnaPopModifyBtn" onclick="event.preventDefault();changeEditMode();">수정</button>
+					<button class="btn" id="qnaPopSubmitBtn" style="display: none;">수정완료</button>
+					<button class="btn" id="qnaPopDeleteBtn"onclick="event.preventDefault();deleteQna();">삭제</button>
+				</div>
+			</div>
         </form>
     </div>
     
 <script src="../js/google.3.4.1.jquery.min.js"></script>
 <script src="../js/common.js"></script><!-- common2 -->
-
+<!-- 200622 김수경 썸머노트 적용 테스트 -->
+<script src="../js/summernote/summernote-lite.js"></script>
+<script src="../js/summernote/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="../css/summernote-0.8.18-dist/summernote-lite.css">
+<!-- 200622 김수경 썸머노트 적용 테스트 -->
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/menuqnapop.js"></script>
 
