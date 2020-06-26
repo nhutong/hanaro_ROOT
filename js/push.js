@@ -87,7 +87,8 @@ function prodList(rcvPageNo, rcvCompanyNo) {
 				text +='<tr>';
 				text +='	<td>'+decodeURIComponent(item['pm_no'])+'</td>';
 				//text +='    <td>'+item['ms_content'].replace(re,"<br>")+'</td>';
-				text +='    <td><a href="push_send.html?pm_no='+decodeURIComponent(item['pm_no'])+'">'+item['ms_content'].replace(re,"<br>")+'</a></td>';
+				// text +='    <td><a href="push_send.html?pm_no='+decodeURIComponent(item['pm_no'])+'">'+item['ms_content'].replace(re,"<br>")+'</a></td>';
+				text +='    <td><a href="push_send.html?pm_no='+decodeURIComponent(item['pm_no'])+'">'+item['ms_content'].replace(re,"<br>").replace("[광고]","").replace("수신거부 | 메뉴>설정>동의 해제","")+'</a></td>';
 				text +='    <td>'+decodeURIComponent(item['vm_cp_name'])+'</td>';
                 text +='    <td>'+decodeURIComponent(item['pm_type'])+'</td>';																
 				text +='    <td>'+decodeURIComponent(item['pm_from_date'])+'<br> ~ '+decodeURIComponent(item['pm_to_date'])+'<br>'+decodeURIComponent(item['pm_hour'])+'시'+decodeURIComponent(item['pm_min'])+'분</td>';

@@ -28,49 +28,43 @@
 
   // 파라미터	  	
     String coupon_no = request.getParameter("coupon_no") == null ? "" : request.getParameter("coupon_no").trim();
-	String coupon_name = request.getParameter("coupon_name") == null ? "" : request.getParameter("coupon_name").trim();
-	String limit_qty = request.getParameter("limit_qty") == null ? "" : request.getParameter("limit_qty").trim();	
-	String start_date = request.getParameter("start_date") ==  null ? "2019-01-01" : request.getParameter("start_date").trim();
-	String end_date = request.getParameter("end_date") == null ? "2025-12-31" : request.getParameter("end_date").trim();
-	String coupon_type = request.getParameter("coupon_type") == null ? "" : request.getParameter("coupon_type").trim();
 	String product_code = request.getParameter("product_code") == null ? "" : request.getParameter("product_code").trim();
-	String coupon_code = request.getParameter("coupon_code") == null ? "" : request.getParameter("coupon_code").trim();
-	String discount_price = request.getParameter("discount_price") == null ? "" : request.getParameter("discount_price").trim();
+	String product_name = request.getParameter("product_name") == null ? "" : request.getParameter("product_name").trim();	
 	String min_price = request.getParameter("min_price") == null ? "" : request.getParameter("min_price").trim();
-	String extra = request.getParameter("extra") == null ? "" : request.getParameter("extra").trim();
-	String status_cd = request.getParameter("status_cd") == null ? "NOAPPLY" : request.getParameter("status_cd").trim();
-	String stamp_fg = request.getParameter("stamp_fg") == null ? "N" : request.getParameter("stamp_fg").trim();
-	String coupon_detail = request.getParameter("coupon_detail") == null ? "N" : request.getParameter("coupon_detail").trim();
+	String weight = request.getParameter("weight") == null ? "" : request.getParameter("weight").trim();
+	String unit_price = request.getParameter("unit_price") == null ? "" : request.getParameter("unit_price").trim();
+	String origin = request.getParameter("origin") == null ? "" : request.getParameter("origin").trim();
+	String discount_price = request.getParameter("discount_price") == null ? "" : request.getParameter("discount_price").trim();
+	String start_date = request.getParameter("start_date") ==  null ? "" : request.getParameter("start_date").trim();
+	String end_date = request.getParameter("end_date") == null ? "" : request.getParameter("end_date").trim();
+	String limit_qty = request.getParameter("limit_qty") == null ? "" : request.getParameter("limit_qty").trim();	
+	String etc_info = request.getParameter("etc_info") == null ? "" : request.getParameter("etc_info").trim();		
+	String lst_no = request.getParameter("lst_no") == null ? "" : request.getParameter("lst_no").trim();
 
  	try {
 		QueryRunner queryRunner = new QueryRunner();
 	
-		
 		// 관리자 등록 (insert)
-		String query = "  UPDATE hanaro.vm_coupon " + 
-					  " SET coupon_name= ?, coupon_type= ? , coupon_code=?, lst_no= ? ,  " +
-					  " lst_date= now(), start_date= ?, end_date= ?, product_code= ?,  " +
-					  " discount_price= ? , min_price= ? , limit_qty= ?, extra= ? , status_cd = ?, stamp_fg = ?, coupon_detail = ? " +
-					 "  WHERE coupon_no= ? " ;
+		String query = " UPDATE hanaro.vm_coupon " + 
+					   " SET product_code = ?, product_name = ?, min_price = ?, weight = ?, unit_price = ?, origin = ?, " +
+					   " discount_price = ?, start_date = ?, end_date = ?, limit_qty = ?, etc_info = ?, lst_no = ?, lst_date = now() " +
+					   " WHERE coupon_no= ? ;" ;
 				
 		int result = queryRunner.update(
 						conn,
-						query,						
-						coupon_name,
-						coupon_type,
-						coupon_code,						
-						userNo,
-						start_date,
-						end_date,
-						product_code, 
-						// product_name, 
-						discount_price, 
-						min_price, 
-						limit_qty, 
-						extra,
-						status_cd,
-						stamp_fg,
-						coupon_detail,
+						query,
+						product_code,
+						product_name,
+						min_price,
+						weight,
+						unit_price,
+						origin,
+						discount_price,
+						start_date + " 00:00:00",
+						end_date + " 00:00:00",
+						limit_qty,
+						etc_info,
+						lst_no,
 						coupon_no
 					);
 
