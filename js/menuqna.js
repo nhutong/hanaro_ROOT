@@ -1,5 +1,11 @@
 $(function () {
 
+	var pageNo = getParameterByName('pageNo');
+	if (pageNo == "")
+	{
+		pageNo = 1;
+	}
+
 	/* 공통부분 시작======================================================================== */
 	/* 좌상단 로그인 유저의 정보를 바인딩한다. */
 	getHeader();
@@ -42,13 +48,17 @@ $(function () {
 		{
 		}else{
 			setCookie1("onSelectCompanyNo",$("#sort_select").val());
-			noticeCont(getCookie("onSelectCompanyNo"));
+			//noticeCont(getCookie("onSelectCompanyNo"));
+			noticeCont(getCookie("onSelectCompanyNo"), pageNo);
+			noticeCont_paging(getCookie("onSelectCompanyNo"), pageNo);
 			localStorage.setItem("vm_cp_no",$("#sort_select").val());
 		}
 	});
 	/* 공통부분 종료======================================================================== */
 
-	noticeCont(targetCompanyNo);
+	//noticeCont(targetCompanyNo);
+	noticeCont(getCookie("onSelectCompanyNo"), pageNo);
+	noticeCont_paging(getCookie("onSelectCompanyNo"), pageNo);
 
 });
 
@@ -87,6 +97,57 @@ function noticeCont(rcvonSelectCompanyNo, nowPage){
 
 	})
 
+}
+
+function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
+	$.ajax({
+        url:'/back/04_home/manageQna_paging.jsp?random=' + (Math.random()*99999), 
+        data : {vm_cp_no: rcvonSelectCompanyNo, pageNo: rcvPageNo},
+        method : 'GET' 
+    }).done(function(result){
+
+        console.log("coupon_history_paging=========================================");
+        if(result == ('NoN') || result == 'list error' || result == 'empty'){
+            console.log(result);
+        }else{
+            $("#pagination").html("");
+            console.log("============= coupon_history_paging callback ========================");
+            console.log(result);
+			var data = JSON.parse(result);
+                                                                                                                                                                                                                                                                                                                                                                                    
+			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
+			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
+			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
+			var pre_no = parseInt(rcvPageNo) - 6;
+			var next_no = parseInt(rcvPageNo) + 6;
+			var text = "";
+
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -4)
+			{
+			}else if(total_paging_cnt < 5 || pre_no < 1){
+				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+',1), noticeCont_paging('+rcvonSelectCompanyNo+',1);">«</a></li>';
+			}else{
+				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+pre_no+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+pre_no+');">«</a></li>';  
+			}
+
+			for( var k = paging_init_num; k <= paging_end_num; k++){
+				if (parseInt(rcvPageNo) == k)
+				{
+					text += '<li class="page-item active"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+k+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+k+');">'+k+'</a></li>';
+				}else{
+					text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+k+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+k+');">'+k+'</a></li>';
+				}
+			}
+
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)
+			{
+			}else{
+				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+next_no+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+next_no+');">»</a></li>';  		
+			}
+			$('#pagination').empty();
+			$('#pagination').append(text);	
+        }
+    });
 }
 
 //function menu_post_popup(){

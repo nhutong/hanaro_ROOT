@@ -15,12 +15,10 @@
 	JSONObject bdListJSON = new JSONObject();
 	
 	try{
-
         sql = " SELECT a.nt_no, a.nt_title, a.nt_content, left(a.reg_date,10) as reg_date "
 		    + " FROM vm_company_notice AS a " 
 		    + " where vm_cp_no = '" + vm_cp_no + "' "
-			+" order by a.reg_date desc LIMIT " + s_page + ", 5"; 
-	
+			+" order by a.reg_date desc LIMIT " + s_page + ", 5";
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
@@ -64,5 +62,4 @@
 		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {};
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {};
 	};
-	
 %>
