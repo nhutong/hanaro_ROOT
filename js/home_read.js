@@ -308,8 +308,8 @@ $("#actEditBtn").on("click",function(e){
 				console.log("============= notice callback ========================");
 				console.log(result);
 				alert("수정 완료되었습니다.");
-				opener.location.reload(true); 
-				self.close();
+				// opener.location.reload(true); 
+				// self.close();
 			}
 		});
 
