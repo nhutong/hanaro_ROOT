@@ -28,7 +28,9 @@
 		</div>
 
 		<div class="myplanb_con">
-			<h4>홈 &gt; 홈화면</h4>
+			<!-- 200625 김수경 화면 정비(메뉴 타이틀과 매장 셀렉트박스 한줄로) -->
+			<!-- <h4>홈 &gt; 홈화면</h4> -->
+			<div class="h6" style="width:70%; padding:30px; float:left;">홈 &gt; 홈화면</div>
 			 <div class="store_list_wrap"> <span class="store_list_name">판매장</span><div class="nh_store_list">
                         <select class="sort_select" id="sort_select">
                         </select>
@@ -42,8 +44,8 @@
                         <div class="home_edit_wrap">
             
                           <div class="home_edit_btm">
-                              <h5>관리자게시판</h5>
-                                <div class="prod_lft_btn_wrap">
+                              <!-- <h5>관리자게시판</h5> -->
+                                <div class="prod_lft_btn_wrap">관리자게시판
                                    <div class="prod_search">
                                       <input type="text" id="searchKeyword" name="searchKeyword" placeholder="제목,작성자"><button class="prod_search_btn" onclick="home_post_search();">검색</button>
                                    </div>
@@ -62,7 +64,7 @@
                               </table>
 
                               <div class="home_write_btn">
-                                  <button type="button" onclick="home_post_create()">새글작성</button>
+                                  <button data-toggle="modal" data-target="#writeModal" type="button" onclick="home_post_create()">새글작성</button>
                               </div>
 
                             <div class="pagination" style="width : inherit;">
@@ -73,35 +75,49 @@
 								</div>
 							</div>
                             </div>
-
-						  <div id="home_post_wrap" style="display:none;">
-							<!-- 200622 김수경 썸머노트 적용 테스트 -->
-							<!-- <form> -->
-								<form method="post">
-							<!-- 200622 김수경 썸머노트 적용 테스트 -->
-									<table>
-									<tr>
-										<td>제목</td>
-										<td><select id="notice_fg">
-												<option value="NOTICE">상단공지</option>
-												<option value="POST" selected>일반게시물</option>
-											</select><input type="text" name="title" id="post_title"></td>
-									</tr>
-									<tr>
-										<td>내용</td>
-										<td><textarea name="content" cols="30" rows="5" id="post_content"></textarea></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>
-											<button type="button" onclick="canclePost()">취소</button>
-											<button type="button" onclick="createPost()">등록</button>
-										</td>
-									</tr>
-								</table>
-							</form>
-						  </div>
-
+						<div class="modal fade" id="writeModal" tabindex="-1" role="dialog" aria-labelledby="writeModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document" style="max-width: 800px;">
+								<div class="modal-content">
+								<div class="modal-header" style="padding-top: 20px;">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true" style="font-size: 25px;">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body" id="input_img_Data" style="display:flex; justify-content: center;">
+									<div id="write_post_wraps">
+										<!-- 200622 김수경 썸머노트 적용 테스트 -->
+										<!-- <form> -->
+											<form method="post">
+										<!-- 200622 김수경 썸머노트 적용 테스트 -->
+												<table>
+												<tr>
+													<td>제목</td>
+													<td><select id="notice_fg" class="selectList">
+															<option value="NOTICE">상단공지</option>
+															<option value="POST" selected>일반게시물</option>
+														</select><input type="text" name="title" id="post_title" class="inputTitle"></td>
+												</tr>
+												<tr>
+													<td>내용</td>
+													<td><textarea name="content" cols="30" rows="5" id="post_content"></textarea></td>
+												</tr>
+											</table>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer" style="display: flex; justify-content: space-between;">
+									<div>
+										글자수
+										<span id="textCountingSpan">0</span>
+									</div>
+									<div>
+										<button type="button" class="btn btn-secondary modal_cancel_btn" data-dismiss="modal">취소</button>
+										<button type="button" class="btn btn-primary changeBtn" onclick="createPost()" style="font-size: 16px;font-weight: 400;padding: 6px 12px;">등록</button>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
                         </div>
     
                     </div>

@@ -391,12 +391,20 @@ span.shopUrl:hover{
     background: #fff;
 }
 
-
+/* 200625 김수경 화면 정비(메뉴 타이틀과 매장 셀렉트박스 한줄로)
 .store_list_wrap{
     display: block;
     text-align: right;
     padding: 0px 40px 0px 0px;
+} */
+.store_list_wrap{
+    display: block;
+    text-align: right;
+    padding: 30px 15px 30px 30px;
+    width: 30%;
+    float: left;
 }
+
 
 .store_list_wrap .store_list_name,
 .store_list_wrap .nh_store_list{
@@ -915,22 +923,46 @@ span.shopUrl:hover{
     border-radius: 5px;
 }
 
-#home_post_wrap{
+#write_post_wraps{
     margin-top: 20px;
 }
 
-#home_post_wrap table{
-    width: 500px;
+#home_post_wraps table{
+    width: 650px;
     font-size: 14px;
     border:1px solid #d0d0d0;
 }
 
-#home_post_wrap table td{
+#write_post_wraps table td{
     padding: 10px;
 }
 
-#home_post_wrap table tr:first-child td{
+#write_post_wraps table tr:first-child td{
 	padding-top : 20px;
+}
+
+#write_post_wraps table .selectList {
+    border-right: none;
+    width: 100px;
+    padding: 5px;
+    display: inline-block;
+    border: 1px solid #d0d0d0;
+    vertical-align: top;
+}
+#write_post_wraps table .inputTitle {
+    padding: 5.5px;
+    width: calc(100% - 104px);
+    display: inline-block;
+    border: 1px solid #d0d0d0;
+    vertical-align: top;
+}
+
+#write_post_wraps table .manageNoticeInputTitle {
+    padding: 5.5px;
+    width: 100%;
+    display: inline-block;
+    border: 1px solid #d0d0d0;
+    vertical-align: top;
 }
 
 #home_post_wrap table td select,
@@ -3097,7 +3129,7 @@ button#bannerUpdate{
     /* width: 900px;
     height: 100vh; */
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
-    width: 60%;
+    width: 50%;
     height: 100%;
     float:left;
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */   
@@ -3187,8 +3219,8 @@ button#bannerUpdate{
 .coupon_a4_06{
     text-align: right;
     padding-left: 55px;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 25px;
+    /* margin-bottom: 20px; */
 /*    position: relative;*/
 }
 .a4_06_lft{
@@ -3204,29 +3236,31 @@ button#bannerUpdate{
 }
 
 .a4_06_rgt{
-    position: absolute;
-    bottom: 60px;
-    right: 55px;
+    /* position: absolute; */
+    float: right;
+    /* bottom: 60px; */
+    /* right: 55px; */
+    margin-right: 30px;
 }
 
 
 .a4_price_before{
-    position: absolute;
+    /* position: absolute; */
     color: #666;
     font-weight: 700;
-    top: -80%;
-    right: 0;
+    /* top: -80%; */
     font-size: 3.5em;
+    text-decoration:line-through;
 }
 
 .a4_price_before:after{
-    content: '';
-    display: block;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    height: 5px;
-    background-color: #555;
+    /* content: ''; */
+    /* display: block; */
+    /* position: absolute; */
+    /* top: -5px; */
+    /* width: 100%; */
+    /* height: 5px; */
+    /* background-color: #555; */
 }
 .r200_price_after_tag,
 .a3_price_after_tag,
@@ -3253,12 +3287,13 @@ button#bannerUpdate{
     text-align: center;
     font-size: 1.2em;
     font-weight: 500;
-    display: block;
+    display: inline-block;
     width: 100%;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    /* margin-top: 50px; */
+    /* position: absolute; */
+    /* bottom: 20px; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
 }
 
 .coupon02,

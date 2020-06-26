@@ -23,18 +23,47 @@
         <form id="menunotice_pop_post_form">
             <table style="table-layout : fixed; word-break: break-all; width : 100%;">
             <tbody id="menunotice_pop_read_table">
+                <tr class="menunotice_pop_title">
+                	<th>제목</th>
+                    <td colspan="5">
+                        <div class="reWriteTitle"></div>
+                        <input type="text" id="reWriteTitle" style="display: none;border: 0;"/>
+                    </td>
+                </tr>
+                <tr class="menunotice_pop_sub">
+                	<td width="10%"></td>
+                	<td width="10%"></td>
+                	<td width="10%" class="menunotice_pop_sml">작성자</td>
+                	<td><span id="writePeople"></span></td>
+                	<td width="10%" class="menunotice_pop_sml">작성일</td>
+                	<td><span id="writeDate"></span></td>
+                </tr>
+                <!-- <tr class="menunotice_pop_text"> -->
+                <tr>
+                   <td colspan="6">
+                   <div style="width: 100%;border: 1px solid #e0e0e0;resize: none;padding: 10px 15px;font-size: 13px;" class="reWriteBody" ></div>
+                   </td>
+                </tr>
             </tbody>
             </table>
-            <div class="menunotice_pop_btn_wrap">
-                <button id="noticePopEditBtn" onclick="event.preventDefault();noticeUpdate();">수정</button>
-                <button id="noticePopDelBtn" onclick="event.preventDefault();noticeDel();">삭제</button>
+            <div style="display:flex;justify-content: space-between;">
+                <div style="font-size: 13px;display: none;" id="textCounting">글자수 <span id="countTxt">0</span></div>
+                <div class="menunotice_pop_btn_wrap" style="position: absolute; right: 0;">
+                    <button id="noticePopEditBtn" onclick="event.preventDefault();noticeUpdate();">수정</button>
+                    <button id="noticePopEditBtnAfter" onclick="event.preventDefault();noticeUpdateAfter();" style="display:none;">수정완료</button>
+                    <button id="noticePopDelBtn" onclick="event.preventDefault();noticeDel();">삭제</button>
+                </div>
             </div>
         </form>
     </div>
     
 <script src="../js/google.3.4.1.jquery.min.js"></script>
 <script src="../js/common.js"></script><!-- common2 -->
-
+<!-- 200622 김수경 썸머노트 적용 테스트 -->
+<script src="../js/summernote/summernote-lite.js"></script>
+<script src="../js/summernote/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="../css/summernote-0.8.18-dist/summernote-lite.css">
+<!-- 200622 김수경 썸머노트 적용 테스트 -->
 <script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->
 <script src="../js/jquery.validate.min.js"></script><!-- jQuery Validation Plugin : https://jqueryvalidation.org/ -->
 <script src="../js/localization/messages_ko.min.js"></script><!-- jQuery Validation Plugin : https://jqueryvalidation.org/ -->

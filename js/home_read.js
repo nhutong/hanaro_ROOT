@@ -250,7 +250,17 @@ function changeEditMode(rcvPostNo){
 					maxHeight: null,             // 최대 높이
 					focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 					lang: "ko-KR",					// 한글 설정
-			});;
+					toolbar: [
+						['style', ['bold', 'italic', 'underline', 'clear']],
+						['fontsize', ['fontsize']],
+						['fontname', ['fontname']],
+						['color', ['color']],
+						['para', ['ul', 'ol', 'paragraph']],
+						['table', ['table']],
+						['insert', ['link', 'picture', 'video']],
+						['view', ['fullscreen', 'codeview', 'help']],
+					  ]
+			});
 				// 200622 김수경 썸머노트 적용 테스트	
 			});
 		}
@@ -297,8 +307,8 @@ $("#actEditBtn").on("click",function(e){
 				console.log("============= notice callback ========================");
 				console.log(result);
 				alert("수정 완료되었습니다.");
-				opener.location.reload(true); 
-				self.close();
+				// opener.location.reload(true); 
+				// self.close();
 			}
 		});
 
