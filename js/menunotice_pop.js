@@ -188,8 +188,8 @@ function noticeUpdateAfter(){
 				console.log(result);
 			}else{
 				console.log(result);
-				opener.location.reload(true);
-				window.close();		
+				// opener.location.reload(true);
+				 // window.close();		
 			}
 		})
 
