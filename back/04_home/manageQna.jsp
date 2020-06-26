@@ -9,14 +9,10 @@
 
 <%	
 
+	Integer list_size = 5;
 	String vm_cp_no = (request.getParameter("vm_cp_no")==null)? "0":request.getParameter("vm_cp_no");
-	String pageNo = (request.getParameter("pageNo")==null)? "":request.getParameter("pageNo");
-	Integer pageNo_new;
-
-	//mariadb의 페이징 시작 쿼리를 위해 1을 뺀다.
-	pageNo_new = Integer.parseInt(pageNo) - 1;
-	pageNo_new = pageNo_new * 10;
-
+	Integer n_page = (request.getParameter("n_page")==null)? 1:Integer.parseInt(request.getParameter("n_page"));
+	Integer s_page = (n_page - 1) * list_size;
 	JSONObject bdListJSON = new JSONObject();
 	
 	try{
@@ -24,8 +20,7 @@
         sql = " SELECT a.nt_no, a.nt_title, a.nt_content, left(a.reg_date,10) as reg_date, case when ref_nt_no is null then 'N' else 'Y' end as ref_nt_no "
 		    + " FROM vm_company_qna AS a " 
 		    + " where vm_cp_no = '" + vm_cp_no + "' and a.reg_member_no is not null "
-			+" order by a.reg_date desc "
-			+ " LIMIT "+pageNo_new+" , 10; ";
+			+" order by a.reg_date desc  LIMIT " + s_page + ", 5"; 
 	
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);

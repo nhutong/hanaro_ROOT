@@ -37,6 +37,7 @@ $(function () {
 
 	/* 최초 로그인한 유저번호로 바인딩한다. */
 	getManagerList(CuserCompanyNo, targetCompanyNo);
+	menunotice_paging(1, targetCompanyNo);
 	// 200622 김수경 썸머노트 적용 테스트
 	function getByte(str) {
 		var byte = 0;
@@ -125,13 +126,14 @@ $(function () {
 });
 
 // 공지사항 리스트를 불러온다.
-function noticeCont(rcvonSelectCompanyNo, rcvPageNo){
-
+function noticeCont(rcvonSelectCompanyNo, nowPage){
+		if (!nowPage) nowPage = 1;
+		console.log(nowPage);
 		var text = '';
 
 		$.ajax({
 			url:'/back/04_home/notice.jsp?random=' + (Math.random()*99999),
-			data : {vm_cp_no: rcvonSelectCompanyNo, pageNo: rcvPageNo},
+			data : {vm_cp_no: rcvonSelectCompanyNo, n_page: nowPage },
 			method : 'GET' 
 		}).done(function(result){
 			if(result == "NoN"){
@@ -216,20 +218,12 @@ function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
 
 function menu_post_popup(rcvNtNo){
 	var popupX = (window.screen.width/2) - (400/2);
-<<<<<<< HEAD
 	window.open('menunotice_pop.html?nt_no='+rcvNtNo+'','공지사항 읽기','width=440,height=400,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')  
-=======
-   window.open('menunotice_pop.html?nt_no='+rcvNtNo+'','공지사항 읽기','width=800,height=800,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')  
->>>>>>> 8a6ff8e5608e0d5d3854df5ca93f93549dbf27e0
 }
 
 	function menu_create_popup(){
 	var popupX = (window.screen.width/2) - (400/2);
-<<<<<<< HEAD
 	window.open('menunotice_create.html','공지사항 등록','width=440,height=400,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')  
-}
-=======
-   window.open('menunotice_create.html','공지사항 등록','width=440,height=400,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')  
 }
 
 function writeNotice(){
@@ -265,4 +259,61 @@ function writeNotice(){
 		})
 
 }
->>>>>>> 8a6ff8e5608e0d5d3854df5ca93f93549dbf27e0
+
+// 공지 페이징를 가져온다
+function menunotice_paging(rcvPageNo, targetCompanyNo) {
+	console.log(targetCompanyNo);
+	$.ajax({
+        url:'/back/04_home/menunotice_paging.jsp?random=' + (Math.random()*99999), 
+        data : {pageNo: rcvPageNo ,vm_cp_no: targetCompanyNo},
+        method : 'GET' 
+    }).done(function(result){
+
+        console.log("prodlist_paging=========================================");
+        if(result == ('NoN') || result == 'list error' || result == 'empty'){
+            console.log(result);
+        }else{
+            $("#pagination").html("");
+            console.log("============= prodlist_paging callback ========================");
+            console.log(result);
+            var data = JSON.parse(result);
+
+			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
+			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
+			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
+			var pre_no = parseInt(rcvPageNo) - 6;
+			var next_no = parseInt(rcvPageNo) + 6;
+
+			var text = "";
+
+           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -5)
+			{
+			}else if(total_paging_cnt < 5 || pre_no < 1){
+				text += '<li class="page-item"><a class="page-link" onclick="menunotice_paging(1, '+targetCompanyNo+')" href="javascript:void(0);">«</a></li>';
+			}else{
+				text += '<li class="page-item"><a class="page-link" onclick="menunotice_paging('+pre_no+', '+targetCompanyNo+')" href="javascript:void(0);">«</a></li>';
+			}
+
+			for( var k = paging_init_num; k <= paging_end_num; k++){
+				const className = (parseInt(rcvPageNo) == k) ? "page-item active" : "page-item";
+				const binstr = "";
+				text += '<li class="'+className+'"><a class="page-link" onclick="menunotice_paging('+k+', '+targetCompanyNo+')" href="javascript:void(0);">'+k+'</a></li>';
+				// if (parseInt(rcvPageNo) == k)
+				// {
+				// 	text += '<li class="page-item active"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				// }else{
+				// 	text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				// }
+			}
+
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)
+			{
+			}else{
+				text += '<li class="page-item"><a class="page-link" onclick="menunotice_paging('+next_no+', '+targetCompanyNo+')" href="javascript:void(0);">»</a></li>';
+			}
+			$('#pagination').empty();
+			$('#pagination').append(text);	
+		}
+    });
+	noticeCont(targetCompanyNo, rcvPageNo);
+}
