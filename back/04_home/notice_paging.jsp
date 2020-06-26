@@ -10,20 +10,21 @@
 <%	
 	String vm_cp_no = (request.getParameter("vm_cp_no")==null)? "0":request.getParameter("vm_cp_no");
 	String pageNo = (request.getParameter("pageNo")==null)? "":request.getParameter("pageNo");
-	Integer pageNo_new;
+	Integer pageNo_new = Integer.parseInt(pageNo);
 
-	//mariadb의 페이징 시작 쿼리를 위해 1을 뺀다.
-	pageNo_new = Integer.parseInt(pageNo) - 1;
-	pageNo_new = pageNo_new * 10;
+	//	페이징 - 한페이지에 리스팅 row 갯수
+	Integer list_size = 10;
+
+	//	페이징 - 총 페이징 사이즈 ( 페이징 리스트에 보여줄 페이징 숫자의 갯수 )
+	Integer paging_cnt_num = 10;
 
 	JSONObject bdListJSON = new JSONObject();
 	
 	try{
-        sql = " SELECT a.nt_no, a.nt_title, a.nt_content, left(a.reg_date,10) as reg_date "
-			+ " FROM vm_company_notice AS a " 
-			+ " where vm_cp_no = '" + vm_cp_no + "' "
-			+" order by a.reg_date desc "
-			+ " LIMIT "+pageNo_new+" , 10; ";
+		sql = " SELECT count(a.nt_no) as nt_cnt "
+		+ " FROM vm_company_notice AS a " 
+		+ " where vm_cp_no = '" + vm_cp_no + "' "
+		+" order by a.reg_date desc "; 
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -40,17 +41,25 @@
 		JSONArray arr = new JSONArray();		
 		while(rs.next()){
 			
-			String nt_no   = rs.getString("nt_no");        // 긴급공지번호
-			String nt_title = rs.getString("nt_title");   // 긴급공지내용
-			String nt_content = rs.getString("nt_content");   // 긴급공지내용
-			String reg_date = rs.getString("reg_date");   // 긴급공지내용
-			
+			//전체 Row 갯수
+			Integer row_cnt_num   = Integer.parseInt(rs.getString("nt_cnt"));
+
+			//	페이징수를 계산한다.
+			Integer total_paging_cnt = (int)(( row_cnt_num - 1) / list_size) + 1;
+
+			//	페이징번호 구하기 ( 시작과 끝)
+			Integer paging_init_num = ( (int)(( pageNo_new - 1) / paging_cnt_num)) * paging_cnt_num + 1;
+			Integer paging_end_num = paging_init_num + paging_cnt_num - 1;
+
+			if ( total_paging_cnt <= paging_end_num){
+				paging_end_num = total_paging_cnt;
+			}
+
 			JSONObject obj = new JSONObject();
 						
-			obj.put("nt_no", nt_no);
-			obj.put("nt_title", nt_title);
-			obj.put("nt_content", nt_content);
-			obj.put("reg_date", reg_date);
+			obj.put("total_paging_cnt", total_paging_cnt);
+			obj.put("paging_init_num", paging_init_num);
+			obj.put("paging_end_num", paging_end_num);
 
 			if(obj != null){
 				arr.add(obj);
@@ -63,9 +72,10 @@
 	
 	}catch(Exception e){
 		out.clear();
-		out.print("exception error");	
+		out.print("'exception error");	
 	}finally{
 		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {};
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {};
 	};
+	
 %>
