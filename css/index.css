@@ -915,25 +915,25 @@ span.shopUrl:hover{
     border-radius: 5px;
 }
 
-#home_post_wraps{
+#write_post_wraps{
     margin-top: 20px;
 }
 
-#home_post_wraps table{
-    width: 500px;
+#write_post_wraps table{
+    width: 100%;
     font-size: 14px;
     border:1px solid #d0d0d0;
 }
 
-#home_post_wraps table td{
+#write_post_wraps table td{
     padding: 10px;
 }
 
-#home_post_wraps table tr:first-child td{
+#write_post_wraps table tr:first-child td{
 	padding-top : 20px;
 }
 
-#home_post_wraps table .selectList {
+#write_post_wraps table .selectList {
     border-right: none;
     width: 100px;
     padding: 5px;
@@ -941,9 +941,17 @@ span.shopUrl:hover{
     border: 1px solid #d0d0d0;
     vertical-align: top;
 }
-#home_post_wraps table .inputTitle {
+#write_post_wraps table .inputTitle {
     padding: 5.5px;
     width: calc(100% - 104px);
+    display: inline-block;
+    border: 1px solid #d0d0d0;
+    vertical-align: top;
+}
+
+#write_post_wraps table .manageNoticeInputTitle {
+    padding: 5.5px;
+    width: 100%;
     display: inline-block;
     border: 1px solid #d0d0d0;
     vertical-align: top;
