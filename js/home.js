@@ -150,7 +150,7 @@ function home_post_create() {
 		maxHeight: null,             // 최대 높이
 		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 		lang: "ko-KR",					// 한글 설정
-		placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+		fontNames: ['Noto Sans KR', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'sans-serif'],
 		toolbar: [
 			['style', ['bold', 'italic', 'underline', 'clear']],
 			['fontsize', ['fontsize']],
@@ -161,6 +161,7 @@ function home_post_create() {
 			['insert', ['link', 'picture', 'video']],
 			['view', ['fullscreen', 'codeview', 'help']],
 		  ],			
+		placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
 		callbacks: { // 콜백을 사용
 			// 이미지를 업로드할 경우 이벤트를 발생
 			onImageUpload: function(files, editor, welEditable) {

@@ -250,6 +250,7 @@ function changeEditMode(rcvPostNo){
 					maxHeight: null,             // 최대 높이
 					focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 					lang: "ko-KR",					// 한글 설정
+					fontNames: ['Noto Sans KR', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'sans-serif'],
 					toolbar: [
 						['style', ['bold', 'italic', 'underline', 'clear']],
 						['fontsize', ['fontsize']],

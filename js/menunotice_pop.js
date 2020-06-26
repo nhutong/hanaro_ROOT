@@ -138,7 +138,18 @@ function changeEditMode(rcvNtNo) {
 			maxHeight: null,             // 최대 높이
 			focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 			lang: "ko-KR",
-			callbacks: { // 콜백을 사용
+			fontNames: ['Noto Sans KR', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'sans-serif'],
+			toolbar: [
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['fontsize', ['fontsize']],
+				['fontname', ['fontname']],
+				['color', ['color']],
+				['para', ['ul', 'ol', 'paragraph']],
+				['table', ['table']],
+				['insert', ['link', 'picture', 'video']],
+				['view', ['fullscreen', 'codeview', 'help']],
+			  ],
+	callbacks: { // 콜백을 사용
 				// 이미지를 업로드할 경우 이벤트를 발생
 				onImageUpload: function(files, editor, welEditable) {
 					sendFile(files[0], this);
