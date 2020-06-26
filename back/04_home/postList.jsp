@@ -20,8 +20,12 @@
 	
 	try{
 
-	
-		sql = " (SELECT " 
+		sql = " SELECT notice.*, ( "
+		+ " SELECT COUNT(*) AS cnt FROM vm_notice AS r "
+		+ " WHERE notice.post_no = r.ref_post_no "
+		+ " AND r.post_type_cd = 'COMMENT' "
+		+ " ) AS cnt FROM "
+		+ " ((SELECT " 
 		+ "  pp.post_no, concat('[공지] ',pp.title) as title, a.vm_name, DATE_FORMAT(pp.reg_date, '%Y-%m-%d') AS regDate, pp.view_count, post_type_cd, lst_date "
         + "  FROM vm_notice AS pp " 
 		+ "  inner join vm_user as a " 
@@ -44,7 +48,7 @@
 	
 	sql = sql + " ) "
 	          + " ORDER BY post_type_cd ASC, lst_date desc "
-	          + " LIMIT "+pageNo_new+" ,6; ";
+	          + " LIMIT "+pageNo_new+" ,6 ) AS notice; ";
 
 //		out.print(sql);
 
@@ -68,6 +72,7 @@
 			String vm_name   = rs.getString("vm_name");   // 판매장명
 			String regDate   = rs.getString("regDate");   // 판매장명
 			String view_count   = rs.getString("view_count");
+			String cnt     = rs.getString("cnt"); 
 			
 			JSONObject obj = new JSONObject();
 						
@@ -76,6 +81,7 @@
 			obj.put("vm_name", vm_name);
 			obj.put("regDate", regDate);
 			obj.put("view_count", view_count);
+			obj.put("cnt", cnt);
 
 			if(obj != null){
 				arr.add(obj);
