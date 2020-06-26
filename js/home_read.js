@@ -259,7 +259,7 @@ function changeEditMode(rcvPostNo){
 						['table', ['table']],
 						['insert', ['link', 'picture', 'video']],
 						['view', ['fullscreen', 'codeview', 'help']],
-					  ],					
+					  ]
 			});
 				// 200622 김수경 썸머노트 적용 테스트	
 			});

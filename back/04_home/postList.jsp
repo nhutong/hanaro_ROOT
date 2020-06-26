@@ -49,7 +49,6 @@
 	sql = sql + " ) "
 	          + " ORDER BY post_type_cd ASC, lst_date desc "
 	          + " LIMIT "+pageNo_new+" ,15 ) AS notice; ";
-
 //		out.print(sql);
 
 		stmt = conn.createStatement();
