@@ -27,9 +27,11 @@
                     <th>제목</th>
                     <td><input type="text" id="noticeCreateTitle" placeholder="여기에 제목을 입력하세요" style="width: 100%; border:0; padding : 5px; box-shadow:none;" ></td>
                 </tr>
-	            <tr class="menunotice_pop_text">
+	            <!-- <tr class="menunotice_pop_text"> -->
+                <tr>
                    <td colspan="2">
-                   <textarea name="noticeCreate" id="noticeCreate" placeholder="여기에 내용을 입력하세요" style="width: 100%; border: 0px;resize: none; height : 250px; padding : 10px;" ></textarea>
+                   <!-- <textarea cols="30" rows="5" name="noticeCreate" id="noticeCreate" style="width: 100%; border: 0px;resize: none; height : 250px; padding : 10px;" ></textarea> -->
+                   <textarea cols="30" rows="5"name="noticeCreate" id="noticeCreate"></textarea>
                    </td>
                </tr>
                 
@@ -44,6 +46,11 @@
 <script src="../js/google.3.4.1.jquery.min.js"></script>
 <script src="../js/common.js"></script><!-- common2 -->
 <script src="../js/bootstrap.min.js"></script>
+<!-- 200622 김수경 썸머노트 적용 테스트 -->
+<script src="../js/summernote/summernote-lite.js"></script>
+<script src="../js/summernote/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="../css/summernote-0.8.18-dist/summernote-lite.css">
+<!-- 200622 김수경 썸머노트 적용 테스트 -->
 <script src="../js/menunotice_update.js"></script>
 </body>
 </html>
