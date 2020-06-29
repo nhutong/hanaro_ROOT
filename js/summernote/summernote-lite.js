@@ -3627,10 +3627,12 @@ function readFileAsDataURL(file) {
 function createImage(url) {
   return external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.Deferred(function (deferred) {
     var $img = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<img>');
-    $img.one('load', function () {
-      $img.off('error abort');
+    $img.on('load', function () {
+      console.log("load finish !!");
       deferred.resolve($img);
+      $img.off('error abort');
     }).one('error abort', function () {
+      console.log("error abort !!");
       $img.off('load').detach();
       deferred.reject($img);
     }).css({
@@ -5940,7 +5942,6 @@ var Editor_Editor = /*#__PURE__*/function () {
     key: "insertImage",
     value: function insertImage(src, param) {
       var _this3 = this;
-
       return createImage(src, param).then(function ($image) {
         _this3.beforeCommand();
 
@@ -5974,7 +5975,6 @@ var Editor_Editor = /*#__PURE__*/function () {
     key: "insertImagesAsDataURL",
     value: function insertImagesAsDataURL(files) {
       var _this4 = this;
-
       external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(files, function (idx, file) {
         var filename = file.name;
 
@@ -5998,7 +5998,6 @@ var Editor_Editor = /*#__PURE__*/function () {
     key: "insertImagesOrCallback",
     value: function insertImagesOrCallback(files) {
       var callbacks = this.options.callbacks; // If onImageUpload set,
-
       if (callbacks.onImageUpload) {
         this.context.triggerEvent('image.upload', files); // else insert Image as dataURL
       } else {
@@ -9645,7 +9644,6 @@ var HintPopover_HintPopover = /*#__PURE__*/function () {
         var wordRange, keyword;
 
         if (this.options.hintMode === 'words') {
-          console.log('zxczxczxczxczxczxczx');
           wordRange = _range.getWordsRange(_range);
           keyword = wordRange.toString();
           this.hints.forEach(function (hint) {
