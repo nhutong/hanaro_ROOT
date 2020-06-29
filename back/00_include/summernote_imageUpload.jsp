@@ -59,7 +59,7 @@
         
         // 파일업로드
         uploadFile = multi.getFilesystemName("uploadFile[]");
-// out.print("ss"+uploadFile);
+        // out.print("ss"+uploadFile);
         // 실제 저장할 파일명(ex : 20140819151221.zip)
         //newFileName = simDf.format(new Date(currentTime)) + ran +"_"+ uploadFile;
         newFileName = simDf.format(new Date(currentTime))+"_"+ uploadFile;
