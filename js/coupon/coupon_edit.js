@@ -58,7 +58,8 @@ $(function () {
 				discount_price : $('#discount_price').val() || "0",
 				min_price : $('#min_price').val() || "0",
 				status_cd : $('#status_cd').val(),
-				stamp_fg : $('#status_stamp').val()
+				stamp_fg : $('#status_stamp').val(),
+				lst_no = getCookie("userNo");
 			} ;
 
 			console.log(formData);

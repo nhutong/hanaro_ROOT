@@ -24,9 +24,7 @@
 	String requiredRoles = "ROLE1,ROLE2";
 %><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 
-	//Integer userNo = (Integer)session.getAttribute("userNo");
-	Integer lst_no = (Integer)session.getAttribute("userNo");
-
+	Integer userNo = (Integer)session.getAttribute("userNo");
 
   // 파라미터	  	
     String coupon_no = request.getParameter("coupon_no") == null ? "" : request.getParameter("coupon_no").trim();
@@ -41,7 +39,7 @@
 	String end_date = request.getParameter("end_date") == null ? "" : request.getParameter("end_date").trim();
 	String limit_qty = request.getParameter("limit_qty") == null ? "" : request.getParameter("limit_qty").trim();	
 	String etc_info = request.getParameter("etc_info") == null ? "" : request.getParameter("etc_info").trim();		
-	//String lst_no = request.getParameter("lst_no") == null ? "" : request.getParameter("lst_no").trim();
+	String lst_no = request.getParameter("lst_no") == null ? "" : request.getParameter("lst_no").trim();
 
  	try {
 		QueryRunner queryRunner = new QueryRunner();
