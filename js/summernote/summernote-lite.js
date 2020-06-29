@@ -5940,7 +5940,8 @@ var Editor_Editor = /*#__PURE__*/function () {
     key: "insertImage",
     value: function insertImage(src, param) {
       var _this3 = this;
-
+      console.log(src, " : this is src");
+      console.log(param, " : this is param");
       return createImage(src, param).then(function ($image) {
         _this3.beforeCommand();
 
@@ -5974,7 +5975,6 @@ var Editor_Editor = /*#__PURE__*/function () {
     key: "insertImagesAsDataURL",
     value: function insertImagesAsDataURL(files) {
       var _this4 = this;
-
       external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(files, function (idx, file) {
         var filename = file.name;
 
@@ -5998,7 +5998,6 @@ var Editor_Editor = /*#__PURE__*/function () {
     key: "insertImagesOrCallback",
     value: function insertImagesOrCallback(files) {
       var callbacks = this.options.callbacks; // If onImageUpload set,
-
       if (callbacks.onImageUpload) {
         this.context.triggerEvent('image.upload', files); // else insert Image as dataURL
       } else {
