@@ -32,7 +32,10 @@
 
 		// 리스트 조회 
 		String query = " SELECT event_no, event_title, img_url, detail_img_url, company, banner_yn FROM vm_event t " +
-					   " WHERE activated = 'Y' AND company = " + companyNo ;
+					   " WHERE activated = 'Y' " +
+					   " AND date_format(start_date, '%Y%m%d') <= date_format(curdate(), '%Y%m%d') " +
+					   " AND date_format(end_date, '%Y%m%d') >= date_format(curdate(), '%Y%m%d') " +					   
+					   " AND company = " + companyNo ;
 
 		results.put("list", 
 			queryRunner.query(
@@ -42,8 +45,10 @@
 			)
 		);
 
-		String bannerQuery = " SELECT event_no, event_title, img_url, detail_img_url, company, banner_yn, order_no FROM vm_event t " +
-					   " WHERE banner_yn = 'Y' AND activated = 'Y' AND company = " + companyNo ;
+		String bannerQuery = " SELECT event_no, event_title, img_url, detail_img_url, company, banner_yn, order_no, " +
+		               " date_format(start_date, '%Y%m%d') as start_date , date_format(end_date, '%Y%m%d') as end_date FROM vm_event t " +
+					   " WHERE banner_yn = 'Y' AND activated = 'Y' " + 					 
+					   " AND company = " + companyNo ;
 		
 		results.put("bannerList", 
 			queryRunner.query(
@@ -52,6 +57,8 @@
 				new MapListHandler()
 			)
 		);
+
+		
 
 
 	} catch(Exception se) {

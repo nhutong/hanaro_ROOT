@@ -5,9 +5,9 @@ $(function () {
 	getHeader();
 	getLeft();
 	getLeftMenu('home');
-	$("#nh_home_swipe").addClass("active");
-	$(".nav_home").addClass("active");
-	getEventList(getCookie("onSelectCompanyNo"));
+	$("#nh_home_swipe").addClass("active"); //LEFT MENU의 스와이프 배너 
+	$(".nav_home").addClass("active");      //HOME MENU
+	getEventList(getCookie("onSelectCompanyNo"));  //쿠키에서의 판매장번호 
 
   	/* 현재로그인한 유저의 판매장번호 정보를 정보를 담는다. */
 	CuserCompanyNo = getCookie("userCompanyNo");
@@ -145,12 +145,12 @@ function getEventList(companyNo){
 			$('.swipeBannerList').each(function(_, elSelect){
 				$(elSelect).empty();
 				$(elSelect).append(options);
-			});
-			
-			bannerList = resultJSON['bannerList'];
+			});			
+			bannerList = resultJSON['bannerList'];			
 			$(bannerList).each( function (jdx, banner) {
 				orderNo = banner.order_no || 3;
 				$('#swipeBannerList'+orderNo).val(banner.event_no);
+				$('#event_startdate'+orderNo).val(banner.start_date.substr(0,4)+"-"+banner.start_date.substr(4,2)+"-"+banner.start_date.substr(6,2)+" ~ "+banner.end_date.substr(0,4)+"-"+banner.end_date.substr(4,2)+"-"+banner.end_date.substr(6,2));								
 				$('#swipeOff'+orderNo).prop('checked', true);
 				$('#imgBanner'+orderNo).attr('src', banner.img_url);
 			});

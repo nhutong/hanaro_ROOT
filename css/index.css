@@ -2520,7 +2520,7 @@ span.discount_notice{
 }
 
 .swipe_banner_cont ul li table tr td select{
-    width: 250px;
+    width: 172px;
 }
 
 button#bannerUpdate{
@@ -3117,23 +3117,27 @@ button#bannerUpdate{
 /*coupon_print_wrap start*/
 
 .coupon_print_wrap > div{
-    /* display: inline-block; */
-    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
     display: table;
     float:left;
-    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
     vertical-align: middle;
 }
 
 .coupon_print_lft{
-    /* width: 900px;
-    height: 100vh; */
-    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
     width: 50%;
     height: 100%;
     float:left;
-    /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */   
     padding: 20px;
+}
+
+/* coupon01 a4 start */
+.coupon01{
+    width: 201mm;
+    height: 288mm;
+    background-image: url(../images/a3_bg.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-print-color-adjust: exact; 
+    position: relative;
 }
 
 .coupon_a4_01{
@@ -3150,7 +3154,6 @@ button#bannerUpdate{
     font-weight: 800;
     font-size: 4em;
     color: #ed1b24;
-/*    border-bottom: 3px solid #555;*/
 }
 
 .coupon_a4_03{
@@ -3164,14 +3167,11 @@ button#bannerUpdate{
     font-size: 4em;
     font-weight: 600;
     text-align: center;
-    /* 200608 김수경 상품명 길어져도 css무너지지 않도록 수정 */
     height:200px;
-    /* margin-bottom: 13%; */
 }
 
 .coupon_a4_05{
     overflow: hidden;
-/*    margin-bottom: 5%;*/
 }
 
 .a4_04{
@@ -3196,9 +3196,7 @@ button#bannerUpdate{
     margin-top: 20px;
 	border : 1px solid #d0d0d0;
 	background-color : #fff;
-/*	padding-top : 35px;*/
 }
-
 
 .a4_05 img{
     width: 100%;
@@ -3220,8 +3218,6 @@ button#bannerUpdate{
     text-align: right;
     padding-left: 55px;
     margin-top: 25px;
-    /* margin-bottom: 20px; */
-/*    position: relative;*/
 }
 .a4_06_lft{
     float: left;
@@ -3236,32 +3232,21 @@ button#bannerUpdate{
 }
 
 .a4_06_rgt{
-    /* position: absolute; */
     float: right;
-    /* bottom: 60px; */
-    /* right: 55px; */
     margin-right: 30px;
 }
 
 
 .a4_price_before{
-    /* position: absolute; */
     color: #666;
     font-weight: 700;
-    /* top: -80%; */
     font-size: 3.5em;
     text-decoration:line-through;
 }
 
 .a4_price_before:after{
-    /* content: ''; */
-    /* display: block; */
-    /* position: absolute; */
-    /* top: -5px; */
-    /* width: 100%; */
-    /* height: 5px; */
-    /* background-color: #555; */
 }
+
 .r200_price_after_tag,
 .a3_price_after_tag,
 .a4_price_after_tag{
@@ -3276,11 +3261,6 @@ button#bannerUpdate{
     color: #ed1b24;
     font-weight: 800;
     font-size: 4em;
-/*
-    position: absolute;
-    right: 55px;
-    top : 55px;
-*/
 }
 
 .coupon_a4_07{
@@ -3289,26 +3269,11 @@ button#bannerUpdate{
     font-weight: 500;
     display: inline-block;
     width: 100%;
-    /* margin-top: 50px; */
-    /* position: absolute; */
-    /* bottom: 20px; */
-    /* left: 50%; */
-    /* transform: translateX(-50%); */
 }
 
-.coupon02,
-.coupon03{
+/* coupon02 a3 start */
+.coupon02{
     display: none;
-}
-
-.coupon01{
-    width: 201mm;
-    height: 288mm;
-    background-image: url(../images/a3_bg.jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    -webkit-print-color-adjust: exact; 
-    position: relative;
 }
 
 .coupon02{
@@ -3333,7 +3298,6 @@ button#bannerUpdate{
     font-size: 3.5em;
     padding: 1.5% 5%;
     font-weight: 800;
-/*    border-bottom: 3px solid #555;*/
     vertical-align: bottom;
     color: #ed1b24;
 }
@@ -3350,7 +3314,6 @@ button#bannerUpdate{
     font-size: 3.5em;
     font-weight: 800;
     padding: 0 5%;
-/* 200608 김수경 상품명 한줄로 보여주기 위해 수정 */
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -3396,7 +3359,6 @@ button#bannerUpdate{
     width: 123px;
     height: 123px;
     background-color: #fff;
-/*	padding-top : 30px;*/
 	border : 1px solid #d0d0d0;
     margin-right: 10px;
 }
@@ -3448,14 +3410,16 @@ button#bannerUpdate{
     transform: translateX(-50%);
 }
 
-/*200_70*/
+/* coupon02 200_70 start */
+.coupon03{
+    display: none;
+}
 
 .coupon03{
     width: 200mm;
     height: 70mm;
     background-image: url(../images/r200_bg.jpg);
     background-size: contain;
-    
     -webkit-print-color-adjust: exact; 
     margin-bottom: 10px;
 }
@@ -3465,7 +3429,6 @@ button#bannerUpdate{
     height: 250px;
     float: left;
     vertical-align: top;
-/*    background-color: #ed1b24;*/
 }
 
 .coupon03 .r200_lft span{
@@ -3479,7 +3442,6 @@ button#bannerUpdate{
     font-size: 2em;
     background-color: #fff;
     text-align: center;
-/*    line-height: 40px;*/
     font-weight: 600;
     color: #ed1b24;
 }
@@ -3494,11 +3456,9 @@ button#bannerUpdate{
     font-size: 27pt;
     font-weight: 800;
     margin: 10px;
-/*    border-bottom: 3px solid #555;*/
-/* 200608 김수경 상품명 한줄로 보여주기 위해 수정 */
-text-overflow: ellipsis;
-white-space: nowrap;
-overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .coupon_r200_03{
@@ -3517,7 +3477,6 @@ overflow: hidden;
 }
 
 .coupon_r200_04{
-/*    padding: 0 20px;*/
     position: relative;
 }
 
