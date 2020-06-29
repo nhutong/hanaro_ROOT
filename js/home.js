@@ -186,7 +186,8 @@ function home_post_create() {
 					 contentType : false,
 					 processData : false,
 					 success : function(data) { // 처리가 성공할 경우
-						$(editor).summernote('editor.insertImage', data.url);
+						console.log(data, " : this is data Object");
+						$(editor).summernote('insertImage', data.url);
 					}
 					});
 				}

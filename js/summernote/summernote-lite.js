@@ -3627,7 +3627,7 @@ function readFileAsDataURL(file) {
 function createImage(url) {
   return external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.Deferred(function (deferred) {
     var $img = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<img>');
-    $img.on('load', function () {
+    $img.one('load', function () {
       console.log("load finish !!");
       deferred.resolve($img);
       $img.off('error abort');
