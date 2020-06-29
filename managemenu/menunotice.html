@@ -68,14 +68,62 @@
                 </div>
 							<!-- #tab1 -->
 				<div class="btn_box2">
-					<span class="admin_btn sign_up_menu" onclick="menu_create_popup();">등록</span>
+					<!-- <span class="admin_btn sign_up_menu" onclick="menu_create_popup();">등록</span> -->
+					<span data-toggle="modal" data-target="#writeNoticeModal" class="admin_btn sign_up_menu">등록</span>
 				</div>
-				
-				<div class="pagination">
+				<div class="pagination" style="width : inherit;margin: 0;justify-content: center;">
+				<!-- <div class="pagination">
 					<div id="pagination" class="pagination_wrap"></div>
-				</div>
+				</div> -->
+
+				<!--pagination start-->
+				<div class="pagination_wrap" style="width : 900px; margin-left: 40;">
+					<ul class="pagination justify-content-center" id="pagination" style="width : 50%; margin : 10px auto;">
+					</ul>
+				 </div>
+				 <!--pagination end-->	
 			<div class="myplanb_footer">
 				㈜농협유통 Co. ltd. All right reserved.
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="writeNoticeModal" tabindex="-1" role="dialog" aria-labelledby="writeNoticeModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document" style="max-width: 800px;">
+			<div class="modal-content">
+			<div class="modal-header" style="padding-top: 20px;">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true" style="font-size: 25px;">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" id="input_img_Data" style="display:flex; justify-content: center;">
+				<div id="write_post_wraps">
+					<!-- 200622 김수경 썸머노트 적용 테스트 -->
+					<!-- <form> -->
+						<form method="post">
+					<!-- 200622 김수경 썸머노트 적용 테스트 -->
+							<table>
+							<tr>
+								<td>제목</td>
+								<td><input type="text" name="title" id="noticeCreateTitle" class="manageNoticeInputTitle"></td>
+							</tr>
+							<tr>
+								<td>내용</td>
+								<td><textarea cols="30" rows="5"name="noticeCreate" id="noticeCreate"></textarea></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer" style="display: flex; justify-content: space-between;">
+				<div>
+					글자수
+					<span id="textCountingSpan">0</span>
+				</div>
+				<div>
+					<button type="button" class="btn btn-secondary modal_cancel_btn" data-dismiss="modal">취소</button>
+					<button type="button" id="noticeCreateBtn" class="btn btn-primary changeBtn" onclick="event.preventDefault();writeNotice();" style="font-size: 16px;font-weight: 400;padding: 6px 12px;">등록</button>
+				</div>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -92,6 +140,12 @@
 
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/menunotice.js"></script>
+<!-- 200622 김수경 썸머노트 적용 테스트 -->
+<script src="../js/summernote/summernote-lite.js"></script>
+<script src="../js/summernote/summernote-ko-KR.js"></script>
+
+<link rel="stylesheet" href="../css/summernote-0.8.18-dist/summernote-lite.css">
+<!-- 200622 김수경 썸머노트 적용 테스트 -->
 
 </body>
 </html>

@@ -1075,7 +1075,9 @@ $("#sale_btn").on("click",function(){
             alert("등록이 완료되었습니다.");
             $("#card_discount,#card_discount_from_date,#card_discount_end_date,#card_info,#card_restrict,#coupon_discount,#dadaiksun,#dadaiksun_info").val("");
 			$(document).find(".leaflet_discount").removeClass("active");  
-			$('#nh_leaflet').get(0).contentDocument.location.reload();
+			// $('#nh_leaflet').get(0).contentDocument.location.reload();
+			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
+			$('#nh_leaflet').get(0).contentDocument.location.href = $('#nh_leaflet').get(0).contentDocument.location.href + "&jd_no="+fix_jd_no;
 			setTimeout(function(){ cssRetach(); }, 1500);
         }
     });
@@ -1107,7 +1109,9 @@ $("#pd_name_btn").on("click",function(){
             //console.log("============= notice callback ========================");
             //console.log(result);
             alert("수정이 완료되었습니다.");
-			$('#nh_leaflet').get(0).contentDocument.location.reload();
+			// $('#nh_leaflet').get(0).contentDocument.location.reload();
+			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
+			$('#nh_leaflet').get(0).contentDocument.location.href = $('#nh_leaflet').get(0).contentDocument.location.href + "&jd_no="+fix_jd_no;
             $("#pd_name").val("");
             $(".leaflet_goods_name").removeClass("active");
 			setTimeout(function(){ cssRetach(); }, 1500);
@@ -1140,7 +1144,9 @@ $("#price_btn").on("click",function(){
             //console.log("============= notice callback ========================");
             //console.log(result);
             alert("수정이 완료되었습니다.");
-			$('#nh_leaflet').get(0).contentDocument.location.reload();
+			// $('#nh_leaflet').get(0).contentDocument.location.reload();
+			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
+			$('#nh_leaflet').get(0).contentDocument.location.href = $('#nh_leaflet').get(0).contentDocument.location.href + "&jd_no="+fix_jd_no;
             $("#price").val("");
             $(".leaflet_goods_price").removeClass("active");
 			// setTimeout(function(){ cssRetach(); }, 1500);

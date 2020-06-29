@@ -84,7 +84,7 @@
 									</button>
 								</div>
 								<div class="modal-body" id="input_img_Data" style="display:flex; justify-content: center;">
-									<div id="home_post_wraps">
+									<div id="write_post_wraps">
 										<!-- 200622 김수경 썸머노트 적용 테스트 -->
 										<!-- <form> -->
 											<form method="post">
@@ -105,9 +105,15 @@
 										</form>
 									</div>
 								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary modal_cancel_btn" data-dismiss="modal">취소</button>
-									<button type="button" class="btn btn-primary changeBtn" onclick="createPost()" style="font-size: 16px;font-weight: 400;padding: 6px 12px;">등록</button>
+								<div class="modal-footer" style="display: flex; justify-content: space-between;">
+									<div>
+										글자수
+										<span id="textCountingSpan">0</span>
+									</div>
+									<div>
+										<button type="button" class="btn btn-secondary modal_cancel_btn" data-dismiss="modal">취소</button>
+										<button type="button" class="btn btn-primary changeBtn" onclick="createPost()" style="font-size: 16px;font-weight: 400;padding: 6px 12px;">등록</button>
+									</div>
 								</div>
 								</div>
 							</div>

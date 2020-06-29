@@ -8,7 +8,7 @@ body{-webkit-text-size-adjust: none;}
     right: 20px;
     width: 50px;
     height: 50px;
-    background-color: #55B190;
+    background-color: #55b190;
     border-radius: 50%;
     z-index: 99;
     box-shadow: 0 0 2px 2px rgba(0,0,0,.1);
@@ -79,7 +79,7 @@ body{-webkit-text-size-adjust: none;}
     left: 0;
     height: 100vh;
     z-index: 999;
-    width: 100%;   
+    width: 100%;
 }
 
 #aside_black{
@@ -165,7 +165,7 @@ body{-webkit-text-size-adjust: none;}
 }
 
 #aside_icons{
-  padding: 20px !important;  
+  padding: 20px !important;
 }
 
 #aside_copyright{
@@ -241,13 +241,13 @@ body{-webkit-text-size-adjust: none;}
 .aside_category{
     padding-top: 0 !important;
 }
-
 /*Header starts*/
 
 header{
     overflow: hidden;
     position: relative;
 }
+
 header h1{
 width: 90%;
 text-align: center;
@@ -261,7 +261,7 @@ header h1 a{
 }
 
 header h1 a span{
-    color: #55B190;
+    color: #55b190;
     font-family: "농협체M","noto-sans";
     font-weight: 500;
     text-shadow: #fff 0px 1px 1px;
@@ -402,11 +402,11 @@ header nav ul li{
 }
 
 header nav ul li.active{
-    border-bottom: 2px solid #55B190;
+    border-bottom: 2px solid #55b190;
 }
 
 header nav ul li.active a{
-    color: #55B190;
+    color: #55b190;
     font-weight: 600;
 }
 
@@ -587,7 +587,7 @@ header nav ul li.active a{
       align-items: center;
     }
 
-    .banner_btn_lft img,
+.banner_btn_lft img,
 .banner_btn_rgt img,
 .btn_lft img,
 .btn_rgt img{
@@ -618,7 +618,6 @@ header nav ul li.active a{
 
 /*item_list 3열*/
 
-
 /*2020-06-18 min-height값 수정 미솔*/
 .item_list_inner_wrap .figure.figure3{
     /*어디서 깨지는지 확인*/
@@ -647,7 +646,7 @@ header nav ul li.active a{
 
 .item_list_inner_wrap .figure.figure3 .thumb_wrap > a{
     display: block;
-	position: relative;
+    position: relative;
     padding-top: 100%;
     overflow: hidden;
 }
@@ -703,6 +702,8 @@ header nav ul li.active a{
     width: calc(50% - 23px) !important;
     float: left;
     margin: 15px 15px 0;
+    /*200619 김수경 가격폰트 변경 - 2열 간격 주기*/
+    padding-bottom: 15px;
 }
 
 .item_list_inner_wrap .figure.figure2:nth-child(2n){
@@ -725,7 +726,7 @@ header nav ul li.active a{
 
 .item_list_inner_wrap .figure.figure2 .thumb_wrap > a{
     display: block;
-	position: relative;
+    position: relative;
     padding-top: 100%;
     overflow: hidden;
 }
@@ -845,9 +846,9 @@ header nav ul li.active a{
 
 .item_list_inner_wrap .figure.figure1 .thumb_wrap .discount_info img{
     /* width: 16%; */
-	height: 33px;
-	min-height : 33px;
-	max-height : 33px;
+    height: 33px;
+    min-height : 33px;
+    max-height : 33px;
     float: left;
     vertical-align: bottom;
 }
@@ -857,8 +858,8 @@ header nav ul li.active a{
     float: left;
     min-width: 50%;
     max-height:33px;
-	min-height: 33px;
-	height : 33px;
+    min-height: 33px;
+    height : 33px;
     overflow: hidden;
     text-align: center;
 /*    padding: 1px 0px;*/
@@ -878,7 +879,7 @@ header nav ul li.active a{
     font-size: 20px;
     color: #000;
     letter-spacing: -1px;
-  /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
+ /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     /* min-height: 40px; */
     min-height: 2.6em;
     height: 2.6em;
@@ -896,7 +897,7 @@ header nav ul li.active a{
     font-size: 16px;
     color: #000;
     letter-spacing: -1px;
-      /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
+ /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     /* min-height: 40px; */
     min-height: 2.6em;
     height: 2.6em;
@@ -917,7 +918,7 @@ header nav ul li.active a{
     font-size: 14px;
     color: #000;
     letter-spacing: -1px;
-     /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
+ /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     /* min-height: 40px; */
     min-height: 2.6em;
     height: 2.6em;
@@ -934,7 +935,7 @@ header nav ul li.active a{
 /*2020-05-07 상품명 두줄로 변경 - 미솔*/
 
 .price{
-    font-weight: 900;
+    font-weight: 500;
     font-family: 'Roboto';
 }
 
@@ -943,7 +944,7 @@ header nav ul li.active a{
     letter-spacing: -1px;
     height: 28px;
     overflow: hidden;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 /*2020-05-11 전단1열 행사가격 크기 수정 - 미솔*/
@@ -953,7 +954,7 @@ header nav ul li.active a{
     letter-spacing: -1px;
     height: 28px;
     overflow: hidden;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -962,7 +963,7 @@ header nav ul li.active a{
     letter-spacing: -1px;
     height: 28px;
     overflow: hidden;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -974,7 +975,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 28px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 500;
     font-family: 'Roboto';
 }
 
@@ -985,7 +986,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 23px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -996,7 +997,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 23px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1007,7 +1008,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 23px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1018,7 +1019,7 @@ header nav ul li.active a{
     overflow: hidden;
     height: 23px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 500;
     font-family: 'Roboto';
 }
 
@@ -1029,7 +1030,40 @@ header nav ul li.active a{
     overflow: hidden;
     height: 19px;
     text-overflow: ellipsis;
-    font-weight: 900;
+    font-weight: 500;
+    font-family: 'Roboto';
+}
+
+.figure3 .price2{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 16px;
+    overflow: hidden;
+    height: 19px;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    font-family: 'Roboto';
+}
+
+.figure3 .price3{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 16px;
+    overflow: hidden;
+    height: 19px;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    font-family: 'Roboto';
+}
+
+.figure3 .price4{
+    display: block;
+    letter-spacing: -1px;
+    font-size: 16px;
+    overflow: hidden;
+    height: 19px;
+    text-overflow: ellipsis;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 /*2020-05-07 가격 글씨체 굵게, 폰트 Roboto로 수정 - 미솔*/
@@ -1059,7 +1093,7 @@ header nav ul li.active a{
 }
 
 .more_price{
-    color: #55B190;
+    color: #55b190
 }
 
 .thumb_info{
@@ -1082,7 +1116,7 @@ header nav ul li.active a{
 }
 .add_btn.like,
 .add_btn.active{
-     background-color: #55B190;
+     background-color: #55b190;
     position: relative;
 }
 
@@ -1128,8 +1162,8 @@ header nav ul li.active a{
     position: relative;
     margin: 20px;
     padding: 40px 20px;
-    border-bottom: 5px solid #55B190;
-    border-top: 10px solid #55B190;
+    border-bottom: 5px solid #55b190;
+    border-top: 10px solid #55b190;
     background-color: #fff;
 }
 
@@ -1165,7 +1199,7 @@ header nav ul li.active a{
     font-size: 20px;
     text-align: center;
     color: #ff0000;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1173,7 +1207,7 @@ header nav ul li.active a{
     font-size: 20px;
     text-align: center;
     color: #417361;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1181,7 +1215,7 @@ header nav ul li.active a{
     font-size: 20px;
     text-align: center;
     color: #005ba1;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
 }
 
@@ -1248,19 +1282,19 @@ header nav ul li.active a{
 }
 .leafletmodal_price{
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
     color: #ff4141;
 }
 .leafletmodal_price2{
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
     color: #417361;
 }
 .leafletmodal_price3{
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Roboto';
     color: #005ba1;
 }
@@ -1506,7 +1540,7 @@ header nav ul li.active a{
     text-align: center;
     padding: 8px 0 12px;
     font-size: 16px;
-    color: #55B190;
+    color: #55b190;
     font-weight: 500;
 }
 
@@ -1574,7 +1608,7 @@ header nav ul li.active a{
 }
 
 input[type=checkbox]:checked + label > .slider{
-  background-color: #55B190;
+  background-color: #55b190;
 }
 
 input[id="agreePush"]:focus + label > .slider,
@@ -1648,18 +1682,18 @@ input[id="agreeLocation"]:checked + label > .slider:before {
 }
 
 .agree_modal_wrap button{
-	display : block;
+    display : block;
     width: calc(100% - 20px);
-    background-color: #55B190;
+    background-color: #55b190;
     color: #fff;
     padding: 10px;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
     cursor: pointer;
-	box-shadow : none;
-	border : 0;
-	z-index : 1;
+    box-shadow : none;
+    border : 0;
+    z-index : 1;
 }
 
 
@@ -1667,20 +1701,20 @@ input[id="agreeLocation"]:checked + label > .slider:before {
     font-size: 12px;
     background-color:#fff;
     margin: 0 20px 10px;
-	padding : 10px;
+    padding : 10px;
     overflow: scroll;
     border-top: 1px solid #e3e3e3;
     color : #888;
 }
 
 .inner_of_login .login_cont:first-child{
-	border-bottom : 1px solid #d8d5d5;
-	padding : 10px 0;
-	margin : 0 5px;
+    border-bottom : 1px solid #d8d5d5;
+    padding : 10px 0;
+    margin : 0 5px;
 }
 
 .inner_of_login .login_cont:first-child .login_check_wrap{
-	margin : 10px 15px 0;
+    margin : 10px 15px 0;
 }
 
 .login_agree_wrap{
@@ -1692,7 +1726,6 @@ input[id="agreeLocation"]:checked + label > .slider:before {
     font-size: 13px
 }
 
-
 /*2020-02-18 주석처리 한 부분 - 나영*/
 
 .info_submit_btn,
@@ -1700,7 +1733,7 @@ input[id="agreeLocation"]:checked + label > .slider:before {
     position: absolute;
     bottom: 20px;
     width: calc(100% - 48px);
-    background-color: #55B190;
+    background-color: #55b190;
     color: #fff;
     margin: 0 10px;
     padding: 14px;
@@ -1714,8 +1747,8 @@ input[id="agreeLocation"]:checked + label > .slider:before {
 
 .login_check_wrap {
   position: relative;
-	margin : 10px 20px 0;
-	padding : 15px;
+    margin : 10px 20px 0;
+    padding : 15px;
   background-color : #fff;
 }
 

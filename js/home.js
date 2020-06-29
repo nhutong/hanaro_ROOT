@@ -79,8 +79,10 @@ $(function () {
 });
 
 // 관리자 게시판 게시물 리스트를 가져온다
-function prodList(rcvPageNo, rcvSearchText = "") {
-
+function prodList(rcvPageNo, rcvSearchText) {
+	if (!rcvSearchText) {
+		rcvSearchText = "";
+	}
 	$.ajax({
         url:'/back/04_home/postList.jsp?random=' + (Math.random()*99999), 
         data : {pageNo: rcvPageNo ,searchText: rcvSearchText},
@@ -89,11 +91,9 @@ function prodList(rcvPageNo, rcvSearchText = "") {
 
         console.log("postlist=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
-            console.log(result);
         }else{
             $("#tab1_table").html("");
             console.log("============= postlist callback ========================");
-            console.log(result);
             var data = JSON.parse(result);
 			var text = "";
 
@@ -101,7 +101,7 @@ function prodList(rcvPageNo, rcvSearchText = "") {
 
 				text +='<tr>';
 				text +='	<td width="10%" style="text-align:center;">'+decodeURIComponent(item['post_no'])+'</td>';
-                text +='    <td width="45%" onclick="home_post_popup('+decodeURIComponent(item['post_no'])+');">'+decodeURIComponent(item['title'])+'</td>';
+                text +='    <td width="45%" onclick="home_post_popup('+decodeURIComponent(item['post_no'])+');">'+decodeURIComponent(item['title'])+'('+decodeURIComponent(item['cnt'])+')'+'</td>';
                 text +='    <td width="15%" style="text-align:center;">'+decodeURIComponent(item['vm_name'])+'</td>';
                 text +='    <td width="20%" style="text-align:center;">'+decodeURIComponent(item['regDate'])+'</td>';
                 text +='    <td width="10%" style="text-align:center;">'+decodeURIComponent(item['view_count'])+'</td>';
@@ -122,6 +122,21 @@ function home_post_popup(no){
 	window.open('home_read.html?no=' + no,'관리자 게시판 읽기','width=800,height=800,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')
 }
 
+$(".note-editable").each(function() {
+	$(this).on("keyup", function() {
+		console.log('sadasdsad');
+	})
+});
+// 바이트수 체크 로직
+function getByte(str) {
+	var byte = 0;
+	for (var i=0; i<str.length; ++i) {
+		// 기본 한글 2바이트 처리
+		(str.charCodeAt(i) > 127) ? byte += 2 : byte++ ;
+	}
+	return byte;
+}
+
 function home_post_create() {
 	if (getCookie("userRoleCd") != "ROLE1")
 	{
@@ -135,7 +150,7 @@ function home_post_create() {
 		maxHeight: null,             // 최대 높이
 		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 		lang: "ko-KR",					// 한글 설정
-		placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+		fontNames: ['Noto Sans KR', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'sans-serif'],
 		toolbar: [
 			['style', ['bold', 'italic', 'underline', 'clear']],
 			['fontsize', ['fontsize']],
@@ -146,10 +161,19 @@ function home_post_create() {
 			['insert', ['link', 'picture', 'video']],
 			['view', ['fullscreen', 'codeview', 'help']],
 		  ],			
+		placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
 		callbacks: { // 콜백을 사용
 			// 이미지를 업로드할 경우 이벤트를 발생
 			onImageUpload: function(files, editor, welEditable) {
 				sendFile(files[0], this);
+			},
+			onKeyup: function(e) {
+				const textc = getByte(document.querySelector("div.note-editable").outerText);
+				document.getElementById("textCountingSpan").innerHTML = textc;
+				if (textc > 2048) {
+					alert("글자 수가 초과하였습니다.");
+					return false;
+				}
 			}
 		}
 	});
@@ -257,7 +281,8 @@ function prodList_paging(rcvPageNo, rcvSearchText) {
 
 			for( var k = paging_init_num; k <= paging_end_num; k++){
 				const className = (parseInt(rcvPageNo) == k) ? "page-item active" : "page-item";
-				text += '<li class="'+className+'"><a class="page-link" onclick="prodList('+k+')" href="javascript:void(0);">'+k+'</a></li>';
+				const binstr = "";
+				text += '<li class="'+className+'"><a class="page-link" onclick="prodList('+k+', '+binstr+')" href="javascript:void(0);">'+k+'</a></li>';
 				// if (parseInt(rcvPageNo) == k)
 				// {
 				// 	text += '<li class="page-item active"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';

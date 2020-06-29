@@ -719,7 +719,6 @@ header nav ul li.active a{
 
 /*item_list 3열*/
 
-
 /*2020-06-18 min-height값 수정 미솔*/
 .item_list_inner_wrap .figure.figure3{
     /*어디서 깨지는지 확인*/
@@ -784,9 +783,7 @@ header nav ul li.active a{
 }
 
 /*2020-03-06 수정 여기까지*/
-
 /*2020-06-18 discount_info bottom:0px로 수정 미솔*/
-
 .item_list_inner_wrap .figure.figure3 .thumb_wrap .discount_info{
     position: absolute;
     box-sizing: border-box;
@@ -1002,9 +999,7 @@ header nav ul li.active a{
 }
 
 /*2020-02-18 주석처리 한 부분 - 나영*/
-
 /*2020-06-18 discount_info bottom:0px로 수정 미솔*/
-
 
 /*2020-05-07 figure1,2 폰트사이즈 변경 - 미솔*/
 

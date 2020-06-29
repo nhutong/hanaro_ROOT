@@ -9645,6 +9645,7 @@ var HintPopover_HintPopover = /*#__PURE__*/function () {
         var wordRange, keyword;
 
         if (this.options.hintMode === 'words') {
+          console.log('zxczxczxczxczxczxczx');
           wordRange = _range.getWordsRange(_range);
           keyword = wordRange.toString();
           this.hints.forEach(function (hint) {
