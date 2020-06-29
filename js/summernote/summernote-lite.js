@@ -3627,6 +3627,7 @@ function readFileAsDataURL(file) {
 function createImage(url) {
   return external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.Deferred(function (deferred) {
     var $img = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<img>');
+    console.log($img);
     $img.one('load', function () {
       console.log("load finish !!");
       $img.off('error abort');
@@ -9644,7 +9645,6 @@ var HintPopover_HintPopover = /*#__PURE__*/function () {
         var wordRange, keyword;
 
         if (this.options.hintMode === 'words') {
-          console.log('zxczxczxczxczxczxczx');
           wordRange = _range.getWordsRange(_range);
           keyword = wordRange.toString();
           this.hints.forEach(function (hint) {
