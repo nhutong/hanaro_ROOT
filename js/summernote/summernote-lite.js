@@ -3630,8 +3630,8 @@ function createImage(url) {
     console.log($img);
     $img.one('load', function () {
       console.log("load finish !!");
-      $img.off('error abort');
       deferred.resolve($img);
+      $img.off('error abort');
     }).one('error abort', function () {
       console.log("error abort !!");
       $img.off('load').detach();
