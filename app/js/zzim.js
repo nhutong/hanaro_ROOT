@@ -274,8 +274,8 @@
 					text += '    						  </div>'
 					text += '    					   </td>'					
 					text += '    					  <td class="discount2" colspan="2" width="80%">'				
-					text += '                            '+ decodeURIComponent(item['etc'])
-					text += '    					  </td>'
+					text += '                            <div class="card_s">'+ decodeURIComponent(item['etc'])
+					text += '    					  </div></td>'
 					text += '    					 </tr>'							
 				}
 
