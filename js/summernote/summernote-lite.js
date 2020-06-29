@@ -3628,9 +3628,11 @@ function createImage(url) {
   return external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.Deferred(function (deferred) {
     var $img = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<img>');
     $img.one('load', function () {
+      console.log("load finish !!");
       $img.off('error abort');
       deferred.resolve($img);
     }).one('error abort', function () {
+      console.log("error abort !!");
       $img.off('load').detach();
       deferred.reject($img);
     }).css({
@@ -5940,8 +5942,6 @@ var Editor_Editor = /*#__PURE__*/function () {
     key: "insertImage",
     value: function insertImage(src, param) {
       var _this3 = this;
-      console.log(src, " : this is src");
-      console.log(param, " : this is param");
       return createImage(src, param).then(function ($image) {
         _this3.beforeCommand();
 
