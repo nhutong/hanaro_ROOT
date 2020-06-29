@@ -157,7 +157,7 @@ function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
 
    function menu_post_popup(rcvNtNo){
 	var popupX = (window.screen.width/2) - (400/2);
-   window.open('menuqna_pop.html?nt_no='+rcvNtNo+'','1:1문의','width=440,height=600,location=no,status=no,scrollbars=yes,left='+ popupX +',top=250')  
+   window.open('menuqna_pop.html?nt_no='+rcvNtNo+'','1:1문의','width=800,height=600,location=no,status=no,scrollbars=yes,left='+ popupX +',top=250')  
 }
 // 공지 페이징를 가져온다
 function menunotice_paging(rcvPageNo, targetCompanyNo) {

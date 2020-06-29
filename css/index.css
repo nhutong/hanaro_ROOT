@@ -5371,6 +5371,7 @@ background-color: #ab1f1f;
 .menuqna_pop_wrap{
     width: 100%;
     font-size: 14px;
+    padding : 0px 20px 0px 20px;
 }
 
 .menuqna_pop_wrap table {
