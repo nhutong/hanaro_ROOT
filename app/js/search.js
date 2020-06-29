@@ -73,7 +73,7 @@ function getPdContent() {
                 text += '       <a class="product" >'+item['pd_name']+'</a>'
 				if (item['img_path'] == "/upload/blank.png"){
 				}else{
-					text += '       <a class="price" >'+comma(item['price'])+'</a>' //2020-05-07 원 삭제 - 미솔
+					text += '       <a class="price" >'+comma(item['price'])+'<h6 style="font-family: Noto Sans KR;display:inline-block;font-weight: 500;">원</h6></a>' // 20200619 김수경 원 살림
 				}
 
                 text += '    </div>'
