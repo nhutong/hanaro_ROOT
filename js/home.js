@@ -160,6 +160,7 @@ function home_post_create() {
 		callbacks: { // 콜백을 사용
 			// 이미지를 업로드할 경우 이벤트를 발생
 			onImageUpload: function(files, editor, welEditable) {
+				console.log(files[0].name, " : this is files's name");
 				sendFile(files[0], editor);
 			},
 			onKeyup: function(e) {
@@ -172,7 +173,6 @@ function home_post_create() {
 			}
 		}
 	});
-	
   /* summernote에서 이미지 업로드시 실행할 함수 */
 			function sendFile(file, editor) {
 				// 파일 전송을 위한 폼생성
@@ -181,13 +181,15 @@ function home_post_create() {
 				 $.ajax({ // ajax를 통해 파일 업로드 처리
 					 data : data,
 					 type : "POST",
-					 url : "../back/00_include/summernote_imageUpload.jsp",
+					 url : "../back/00_include/summernote_imageUploadSe.jsp",
 					 cache : false,
 					 contentType : false,
 					 processData : false,
+					 enctype: 'multipart/form-data',
 					 success : function(data) { // 처리가 성공할 경우
-						console.log(data, " : this is data Object");
 						$(editor).summernote('insertImage', data.url);
+					}, error: function (err) {
+						console.log(err.responseText);
 					}
 					});
 				}
