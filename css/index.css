@@ -4641,7 +4641,8 @@ background-color: #ab1f1f;
     border: 1px solid #d0d0d0;
     background-color: #fafafa;
     word-break: break-all;
-	position : relative;
+    position : relative;
+    min-width: 100px;
 }
 
 .img_master_table td img{
