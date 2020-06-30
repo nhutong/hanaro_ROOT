@@ -57,10 +57,14 @@
 						"     lst_date = now(), "+ 
 						"     start_date = ? , " + 
 						"     end_date =?, "+ 
-						"     activated = ? , " + 
+						"     activated = ? , " + 						
 						"	  link_url = ? ," +
-						"	  eventLink = ? " +
-						" WHERE event_no = ? " ;		
+						"	  eventLink = ? ";
+						if (activated.equals("N"))
+						{
+							query = query + ", banner_yn ='N'";
+						}
+						query = query + " WHERE event_no = ? " ;		
 			
 		int result = queryRunner.update(
 				conn,

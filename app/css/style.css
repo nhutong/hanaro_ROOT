@@ -1012,7 +1012,7 @@ header nav ul li.active a{
  /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     /* min-height: 40px; */
     min-height: 2.6em;
-    height: 3em;
+    height: 2.6em;
 /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     line-height: 1.3em;
     text-overflow: ellipsis;
@@ -1030,7 +1030,7 @@ header nav ul li.active a{
  /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     /* min-height: 40px; */
     min-height: 2.6em;
-    height: 3em;
+    height: 2.6em;
 /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     line-height: 1.3em;
     text-overflow: ellipsis;
@@ -1051,7 +1051,7 @@ header nav ul li.active a{
  /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     /* min-height: 40px; */
     min-height: 2.6em;
-    height: 3em;
+    height: 2.6em;
 /* 200518 상품명 두줄 ie에서도 보이도록 변경 - 수경 */
     line-height: 1.3em;
     text-overflow: ellipsis;
@@ -1438,6 +1438,12 @@ header nav ul li.active a{
     font-weight: 700;
     font-family: 'Roboto';
     color: #005ba1;
+}
+.leafletmodal_price4{
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Roboto';
+    color: #333;
 }
 .table{
     width: 100%;

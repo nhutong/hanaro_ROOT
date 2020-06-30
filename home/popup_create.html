@@ -62,8 +62,8 @@
                                 <table class="popup_create_table">
                                     <tbody>
                                         <tr>
-                                            <th>제목</th>
-                                            <td><input type="text" id="popupTitle" placeholder="팝업제목을 넣어주세요"></td>
+                                            <th width ="20%">제목</th>
+                                            <td width ="80%"><input type="text" id="popupTitle" placeholder="팝업제목을 넣어주세요"></td>
                                         </tr>
                                         <tr>
                                             <th rowspan="2">기간</th>
@@ -85,9 +85,10 @@
                                         </tr>
                                         <tr>
                                             <th>판매장</th>
-                                            <td>
+                                            <td> <!-- 2020.06.30 / 심규문 / 다중 판매장 등록 -->
                                                 <select class="sort_select" id="company">
-                                                </select>
+                                                    <option value="-1" selected="true" disabled="disabled">판매장 선택</option>
+                                                </select><button id="companyAddBtn">추가</button>                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -147,7 +148,7 @@
 	</div>
 </div>
 
-    <script src="../js/google.3.4.1.jquery.min.js"></script>
+    <script src="../js/google.3.4.1.jquery.min.js"></script>    
     <script src="../js/link.js"></script>
     <script src="../js/common.js"></script><!-- common2 -->
     <script src="../js/lodash.min.js"></script><!-- lodash : https://lodash.com/ -->

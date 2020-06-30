@@ -72,7 +72,7 @@ $(function () {
 			},
 			onKeyup: function(e) {
 				const textc = getByte(document.querySelector("div.note-editable").outerText);
-				document.getElementById("textCountingSpan").innerHTML = textc;
+				document.getElementById("textCountingSpan").innerHTML = " ( " + textc + " / 2048 ) ";
 				if (textc > 2048) {
 					alert("글자 수가 초과하였습니다.");
 					return false;

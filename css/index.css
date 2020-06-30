@@ -2520,7 +2520,7 @@ span.discount_notice{
 }
 
 .swipe_banner_cont ul li table tr td select{
-    width: 250px;
+    width: 172px;
 }
 
 button#bannerUpdate{
@@ -2702,7 +2702,7 @@ button#bannerUpdate{
     border: 2px solid #55B190;
     border-radius: 5px;
     float: left;
-    padding: 6px;
+    padding: 4px;
 	font-size : 13px;
     margin: 5px 3px;
 	cursor : pointer;

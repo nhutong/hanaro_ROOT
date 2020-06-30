@@ -37,19 +37,25 @@
 	String linkUrl = request.getParameter("linkUrl") == null ? "" : request.getParameter("linkUrl").trim();
 
  	try {
+		// 2020.06.30 / 심규문 / 다중판매장 등록 
+		// 다중판매장 배열로 순차적 등록 
 		QueryRunner queryRunner = new QueryRunner();
+		String[] arr = company.split(",") ;
+		int result = 0;
+    
+		for(String companyNo : arr){
 
 		// 관리자 등록 (insert)
 		String query = " INSERT INTO hanaro.vm_popup " + 
 				" (popup_title, img_url, company, reg_no, reg_date, lst_no, lst_date, start_date, end_date, period_type, show_flag, link_url)" +
 				" VALUES(?, ?, ?, ?, now(), ?, now(), ?, ?, ?, ?, ?) ";			
 				
-		int result = queryRunner.update(
+		result += queryRunner.update(
 				conn,
 				query,
 				popupTitle,
 				imgUrl,
-				company,
+				companyNo,
 				userNo,
 				userNo,				
 				startDate,
@@ -58,6 +64,8 @@
 				showFlag,
 				linkUrl 				
 			);
+		}	
+
 		results.put("insert", result);
 
 	} catch(Exception se) {

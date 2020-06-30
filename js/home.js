@@ -122,11 +122,6 @@ function home_post_popup(no){
 	window.open('home_read.html?no=' + no,'관리자 게시판 읽기','width=800,height=800,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')
 }
 
-$(".note-editable").each(function() {
-	$(this).on("keyup", function() {
-		console.log('sadasdsad');
-	})
-});
 // 바이트수 체크 로직
 function getByte(str) {
 	var byte = 0;
@@ -165,11 +160,12 @@ function home_post_create() {
 		callbacks: { // 콜백을 사용
 			// 이미지를 업로드할 경우 이벤트를 발생
 			onImageUpload: function(files, editor, welEditable) {
-				sendFile(files[0], this);
+				console.log(files[0].name, " : this is files's name");
+				sendFile(files[0], editor);
 			},
 			onKeyup: function(e) {
 				const textc = getByte(document.querySelector("div.note-editable").outerText);
-				document.getElementById("textCountingSpan").innerHTML = textc;
+				document.getElementById("textCountingSpan").innerHTML = "( " + textc + " / 2048 )";
 				if (textc > 2048) {
 					alert("글자 수가 초과하였습니다.");
 					return false;
@@ -177,7 +173,6 @@ function home_post_create() {
 			}
 		}
 	});
-	
   /* summernote에서 이미지 업로드시 실행할 함수 */
 			function sendFile(file, editor) {
 				// 파일 전송을 위한 폼생성
@@ -186,14 +181,16 @@ function home_post_create() {
 				 $.ajax({ // ajax를 통해 파일 업로드 처리
 					 data : data,
 					 type : "POST",
-					 url : "../back/00_include/summernote_imageUpload.jsp",
+					 url : "../back/00_include/summernote_imageUploadSe.jsp",
 					 cache : false,
 					 contentType : false,
 					 processData : false,
+					 enctype: 'multipart/form-data',
 					 success : function(data) { // 처리가 성공할 경우
-						// 에디터에 이미지 출력
-						 $(editor).summernote('editor.insertImage', data.url);
-						}
+						$(editor).summernote('insertImage', data.url);
+					}, error: function (err) {
+						console.log(err.responseText);
+					}
 					});
 				}
   	// 200622 김수경 썸머노트 적용 테스트

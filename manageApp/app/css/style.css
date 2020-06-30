@@ -1298,6 +1298,12 @@ header nav ul li.active a{
     font-family: 'Roboto';
     color: #005ba1;
 }
+.leafletmodal_price4{
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Roboto';
+    color: #333;
+}
 .table{
     width: 100%;
 }

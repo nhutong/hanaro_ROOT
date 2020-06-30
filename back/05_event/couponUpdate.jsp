@@ -24,7 +24,7 @@
 	String requiredRoles = "ROLE1,ROLE2";
 %><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 
-	Integer userNo = (Integer)session.getAttribute("userNo");			
+	Integer userNo = (Integer)session.getAttribute("userNo");
 
   // 파라미터	  	
     String coupon_no = request.getParameter("coupon_no") == null ? "" : request.getParameter("coupon_no").trim();
