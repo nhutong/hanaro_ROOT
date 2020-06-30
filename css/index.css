@@ -5059,14 +5059,14 @@ background-color: #ab1f1f;
 
 .img_master_table th{
     background-color: #e7e7e7;
-    padding: 14px 5px;
+    padding: 5px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
 }
 
 .img_master_table td{
-    padding: 14px 5px;
-   font-size: 13px;
+    padding: 5px;
+    font-size: 13px;
     border: 1px solid #d0d0d0;
     background-color: #fafafa;
     word-break: break-all;

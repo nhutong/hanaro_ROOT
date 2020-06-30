@@ -82,9 +82,9 @@ function imgList() {
 				text +='	<td><span class="prod_name">'+item['pd_names']+'</span></td>';
 				text +='	<td>';
 				text +='		<div class="img_master_btn">';
-				text +='			<button id="imgMasterDel"   onclick="imgDel(\''+item['img_no']+'\');">삭제</button>';
-				text +='			<button id="imgMasterSave"  onclick="imgSave(\''+item['img_no']+'\');">저장</button>';
-				text +='			<button id="imgMasterAdmit" onclick="imgAppr(\''+item['img_no']+'\');">승인</button>';
+				text +='			<i class="fas fa-trash-alt" style="padding:0px 5px 0px 5px; font-size:20px; color:red; cursor:pointer;" onclick="imgDel(\''+item['img_no']+'\');"></i>';
+				text +='			<i class="fas fa-save" style="padding:0px 5px 0px 5px; font-size:20px; color:#555; cursor:pointer;" onclick="imgSave(\''+item['img_no']+'\');"></i>';
+				text +='			<i class="fas fa-check-circle" style="padding:0px 5px 0px 5px; font-size:20px; color:#55b190; cursor:pointer;" onclick="imgAppr(\''+item['img_no']+'\');"></i>';
 				text +='		</div>';
 				text +='	</td>';
 				text +='</tr>';
@@ -262,5 +262,4 @@ function keywordList(rcvKeyword) {
 
         }
     });
-
 }
