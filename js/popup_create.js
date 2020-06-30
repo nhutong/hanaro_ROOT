@@ -46,13 +46,25 @@ $(function () {
 		});
 	});
 
+	// 2020.06.30 / 심규문 / 다중판매장 등록 
+		$('#companyAddBtn').on('click', function(){
+			var companyNo = $('#company').val();
+			var companyName = $('#company').find('option[value='+companyNo+']').text().trim();
+			if($('#cp'+companyNo).length) return;
+			$('#companyAddBtn').parent().append('<div data-no="'+companyNo+'" id="cp'+companyNo+'" class="selected_option">'+ companyName +'</div>');
+			$('.selected_option').on('click', function(){
+				$(this).remove();
+			});
+		});
+		
+
 	$('#btnPopupCreate').on('click', function(){				
 		var imgUrl =$('#imgPreview').attr('src');
 		var popupTitle = $('#popupTitle').val();
 		var popupDateType = $('#popupDate').val();
 		var popupDateFrom = $('#popup_from_date').val();
 		var popupDateEnd = $('#popup_end_date').val();		
-		var targetCompany = $('#company').val();
+		//var targetCompany = $('#company').val();
 		var showFlag = $('#showFlag').val();
 		var linkUrl = $('#linkUrl').val();
 		var userEmail = $('.user_email').text().trim();
@@ -70,6 +82,13 @@ $(function () {
 		if(!popupDateFrom) popupDateFrom = '2019-01-01';
 		if(!popupDateEnd) popupDateEnd = '2030-01-01';
 
+		//2020.06.30 / 심규문 / 다중판매장 등록 
+		var targetCompany = '';
+			$('.selected_option').each( function (idx, item) {
+				if(idx === 0 ) targetCompany += $(item).data('no');
+				else targetCompany += ',' + $(item).data('no');			    
+			});
+
 		var formData = {
 			imgUrl : imgUrl,
 			popupTitle : popupTitle ,
@@ -80,18 +99,21 @@ $(function () {
 			showFlag : showFlag,
 			linkUrl : linkUrl,
 			userEmail : userEmail
-		}
+		} ;
+
+		console.log(formData);		
+	
 		$.post( '/back/04_home/popupCreate.jsp',
 			formData, 			
 			function(result){
-				if(result['insert'] == 1){
+				if(result['insert'] > 0){
 					alert('등록되었습니다');
 					location.href="popup_list.html";
 				}
 			}
-		);
+		);	
 	
-	});
+   });
 
 	$('#layer_popup_link_open button').on('click',function(){
 		getLinkList();
@@ -110,6 +132,7 @@ $(function () {
 });
 
 
+//판매장 리스트 가져오기
 function getCompanyList(){
 	$.get("/back/00_include/getCompanyList.jsp",
 		function(resultJSON){						
@@ -121,6 +144,7 @@ function getCompanyList(){
 	);
 }
 
+//판매장 리스트 셋업
 function setCompanyOptions(companyList){
 	var options = '';	
 	$(companyList).each( function (idx, company) {		
@@ -129,6 +153,7 @@ function setCompanyOptions(companyList){
 	});
 	$('#company').append(options);	
 }
+
 
 function getLinkList(){
 	var companyNo = $("#company").val();
