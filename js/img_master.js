@@ -81,10 +81,10 @@ function imgList() {
 				
 				text +='	<td><span class="prod_name">'+item['pd_names']+'</span></td>';
 				text +='	<td>';
-				text +='		<div class="img_master_btn">';
-				text +='			<i class="fas fa-trash-alt" style="padding:0px 5px 0px 5px; font-size:20px; color:red; cursor:pointer;" onclick="imgDel(\''+item['img_no']+'\');"></i>';
-				text +='			<i class="fas fa-save" style="padding:0px 5px 0px 5px; font-size:20px; color:#555; cursor:pointer;" onclick="imgSave(\''+item['img_no']+'\');"></i>';
-				text +='			<i class="fas fa-check-circle" style="padding:0px 5px 0px 5px; font-size:20px; color:#55b190; cursor:pointer;" onclick="imgAppr(\''+item['img_no']+'\');"></i>';
+				text +='		<div>';
+				text +='			<i class="fa fa-trash" style="padding:0px 5px 0px 5px; font-size:20px; color:red; cursor:pointer;" onclick="imgDel(\''+item['img_no']+'\');"></i>';
+				text +='			<i class="fa fa-save" style="padding:0px 5px 0px 5px; font-size:20px; color:#555; cursor:pointer;" onclick="imgSave(\''+item['img_no']+'\');"></i>';
+				text +='			<i class="fa fa-check-circle" style="padding:0px 5px 0px 5px; font-size:20px; color:#55b190; cursor:pointer;" onclick="imgAppr(\''+item['img_no']+'\');"></i>';
 				text +='		</div>';
 				text +='	</td>';
 				text +='</tr>';
