@@ -24,7 +24,8 @@
 	String requiredRoles = "ROLE1,ROLE2";
 %><%@ include file = "../01_sign/auth.jsp" %><%-- 권한체크 --%><%
 
-	Integer userNo = (Integer)session.getAttribute("userNo");
+	//Integer userNo = (Integer)session.getAttribute("userNo");
+	Integer lst_no = (Integer)session.getAttribute("userNo");
 
   // 파라미터	  	
     String coupon_no = request.getParameter("coupon_no") == null ? "" : request.getParameter("coupon_no").trim();
@@ -38,8 +39,9 @@
 	String start_date = request.getParameter("start_date") ==  null ? "" : request.getParameter("start_date").trim();
 	String end_date = request.getParameter("end_date") == null ? "" : request.getParameter("end_date").trim();
 	String limit_qty = request.getParameter("limit_qty") == null ? "" : request.getParameter("limit_qty").trim();	
-	String etc_info = request.getParameter("etc_info") == null ? "" : request.getParameter("etc_info").trim();		
-	String lst_no = request.getParameter("lst_no") == null ? "" : request.getParameter("lst_no").trim();
+	String etc_info = request.getParameter("etc_info") == null ? "" : request.getParameter("etc_info").trim();
+	String status_cd = request.getParameter("status_cd") == null ? "NOAPPLY" : request.getParameter("status_cd").trim();		
+	//String lst_no = request.getParameter("lst_no") == null ? "" : request.getParameter("lst_no").trim();
 
  	try {
 		QueryRunner queryRunner = new QueryRunner();
@@ -47,7 +49,7 @@
 		// 관리자 등록 (insert)
 		String query = " UPDATE hanaro.vm_coupon " + 
 					   " SET product_code = ?, product_name = ?, min_price = ?, weight = ?, unit_price = ?, origin = ?, " +
-					   " discount_price = ?, start_date = ?, end_date = ?, limit_qty = ?, etc_info = ?, lst_no = ?, lst_date = now() " +
+					   " discount_price = ?, start_date = ?, end_date = ?, limit_qty = ?, etc_info = ?, lst_no = ?, lst_date = now(), status_cd = ? " +
 					   " WHERE coupon_no= ? ;" ;
 				
 		int result = queryRunner.update(
@@ -65,6 +67,7 @@
 						limit_qty,
 						etc_info,
 						lst_no,
+						status_cd,
 						coupon_no
 					);
 
