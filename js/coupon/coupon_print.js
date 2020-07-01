@@ -151,7 +151,7 @@ $("#couponPrintSave").on("click",function(e){
 		lst_no : getCookie("userNo")
 	} ;
 	// console.log(formData);
-	$.post( '/back/05_event/couponUpdate.jsp',
+	$.post( '/back/05_event/couponPrint.jsp',
 	formData, 			
 	function(resultJSON){
 		if(resultJSON['update'] > 0){
