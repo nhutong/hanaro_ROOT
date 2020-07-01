@@ -3,7 +3,10 @@ upload/
 
 # connection file
 back/00_include/dbConn.jsp
+back/00_include/dbConn_example.jsp
 back/00_include/dbConn_before.jsp
+back/00_include/dbConn_before_example.jsp
+back/00_include/dbPoolingConn.jsp
 
 # git pull
 gitPull.jsp
