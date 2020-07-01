@@ -48,7 +48,7 @@ $(function () {
 
 	// 2020.06.30 / 심규문 / 다중판매장 등록 
 		$('#companyAddBtn').on('click', function(){
-			var companyNo = $('#company').val();
+			var companyNo = $('#company').val();			
 			var companyName = $('#company').find('option[value='+companyNo+']').text().trim();
 			if($('#cp'+companyNo).length) return;
 			$('#companyAddBtn').parent().append('<div data-no="'+companyNo+'" id="cp'+companyNo+'" class="selected_option">'+ companyName +'</div>');
@@ -155,8 +155,13 @@ function setCompanyOptions(companyList){
 }
 
 
-function getLinkList(){
-	var companyNo = $("#company").val();
+function getLinkList(){	
+	//var companyNo = $("#company").val();	
+	//2020.07.01 심규문 
+	var companyNo = $(".selected_option").eq(0).data('no');
+	var companycount = $(".selected_option").length;	
+	console.log("companyNo  = "+companyNo);
+	console.log("companycount = "+companycount);
 	var formData = {
 		companyNo: companyNo
 	};
@@ -182,13 +187,16 @@ function getLinkList(){
 		text +='    <tr>';
 		text +='        <td>공지사항</td>' ;
 		text +='        <td class="linkClick">home/notice.html</td>' ;
-		text +='    </tr>';							
+		text +='    </tr>';
+		if (companycount > 1) {}
+		else {
 		$(Linklist).each( function (idx, linkeach) {
 			text +='    <tr>';
 			text +='        <td>' + linkeach.select_name  + '</td>' ;
 			text +='        <td class="linkClick">' + linkeach.select_value + '</td>' ;
 			text +='    </tr>';
 		});
+	    }
 		$("#layer_popup_link_list").empty();					
 		$("#layer_popup_link_list").append(text);				
 	});

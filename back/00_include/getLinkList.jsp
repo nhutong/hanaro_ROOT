@@ -29,8 +29,10 @@
                        +" inner join vm_menu AS b on a.menu_no = b.menu_no "
                        +" inner join vm_company AS c ON a.ref_company_no = c.vm_cp_no "
                        +" WHERE a.ref_company_no = "+companyNo
-                       +" AND a.from_date >= date_add(now(), INTERVAL -2 WEEK) "
-                       +" AND a.to_date <= date_add(now(), INTERVAL 2 WEEK) "
+					   +" AND a.to_date >= curdate()"
+					   // 2020.07.01 심규문 
+                       //+" AND a.from_date >= date_add(now(), INTERVAL -2 WEEK) "
+                       //+" AND a.to_date <= date_add(now(), INTERVAL 2 WEEK) "
                        +" ORDER BY select_name; ";
 
 		results.put("list", 
