@@ -808,7 +808,7 @@ function thumnailInsert(imgPath){
 function isUploadData(imgNo, imgPaths){
 	// modal을 오픈 하고, modal에서 ok 버튼 클릭시
 	// thumnailUpdate(imgNo) 를 넘겨 준다.
-	console.log(imgPaths);
+	console.log(imgPaths, imgNo, " : imgpaths + imgNo");
 	var vhtml = "<img src='/upload/"+imgPaths+"' />";
 	vhtml += "<input type='hidden' id='changeImgNo' value='"+imgNo+"'/>";
 	document.querySelector("#input_img_Data").innerHTML = vhtml;
@@ -937,11 +937,13 @@ $("#searchText").on("keyup",function(){
 				$("#searchResultGroup").empty();
 				$("#searchResultGroup").css({overflow:'scroll', height:'400px', textAlign:'left'});
 				var i = 1;
+				var path = "";
 				data['imgList'].forEach(function(item, index){
+					path = item['img_path'].replace(/\r/g, "");
 					if ( i % 4 == 0 ){
-						$("#searchResultGroup").append('<li data-toggle="modal" data-target="#exampleModal" onclick="isUploadData('+item['img_no']+', &quot;'+item['img_path']+'&quot;)"><img src="/upload/'+item['img_path']+'"></li><br>');
+						$("#searchResultGroup").append('<li data-toggle="modal" data-target="#exampleModal" onclick="isUploadData('+item['img_no']+', &quot;'+path+'&quot; )"><img src="/upload/'+item['img_path']+'"></li><br>');
 					}else{
-						$("#searchResultGroup").append('<li data-toggle="modal" data-target="#exampleModal" onclick="isUploadData('+item['img_no']+', &quot;'+item['img_path']+'&quot;)"><img src="/upload/'+item['img_path']+'"></li>');
+						$("#searchResultGroup").append('<li data-toggle="modal" data-target="#exampleModal" onclick="isUploadData('+item['img_no']+', &quot;'+path+'&quot; )"><img src="/upload/'+item['img_path']+'"></li>');
 					}					
 					i++;
 				});
