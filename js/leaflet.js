@@ -411,7 +411,7 @@ function leafletLink(rcv_menu_no, rcv_vm_cp_no, rcv_menu_type_cd){
 
 // 상품삭제 버튼 클릭시, 함수실행된다.
 function delete_btn(){ 
-	var rcv_jd_prod_con_no = $("#modify_jd_prod_con_no").text();
+	var rcv_jd_prod_con_no = $("#hiddenKeyValue").val();
 	if ( rcv_jd_prod_con_no != "" && confirm("정말 삭제하시겠습니까(전단상품번호:"+rcv_jd_prod_con_no+")??") == true){
 		$.ajax({
 			url:'/back/03_leaflet/leafletJdProdConNoDelete.jsp?random=' + (Math.random()*99999),
