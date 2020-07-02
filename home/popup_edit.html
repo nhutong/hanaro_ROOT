@@ -82,7 +82,9 @@
                                     <tr>
                                         <th>적용범위</th>
                                         <td>
-                                        <select id="company" class="sort_select">                                              
+                                        <select id="company" class="sort_select" readonly style='background-color:#ababab'
+                                        onFocus='this.initialSelect = this.selectedIndex;'
+                                        onChange='this.selectedIndex = this.initialSelect;'>
                                         </select>
                                         </td>
                                     </tr>

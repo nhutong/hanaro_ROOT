@@ -87,7 +87,11 @@
                                             <tr>
                                                 <th>판매장</th>
                                                 <td>
-													<span id="company"> </span>                                                
+                                                    <!--<span id="company"> </span> -->                                                
+                                                    <select id="company" class="sort_select" readonly style='background-color:#ababab'
+                                                    onFocus='this.initialSelect = this.selectedIndex;'
+                                                    onChange='this.selectedIndex = this.initialSelect;'>
+                                                    </select>
                                                 </td>
                                             </tr>
                                             <tr>
