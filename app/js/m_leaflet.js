@@ -7,6 +7,7 @@ $(function () {
 	vm_cp_no = getParameterByName('vm_cp_no');   // 판매장번호
 	menu_no  = getParameterByName('menu_no');    // 메뉴번호
 	jd_no    = getParameterByName('jd_no');      // 전단번호
+	vm_sh    = getParameterByName('scroll_Height');
 
 	// 앱 또는 모바웹을 통해서 개인정보동의 화면부터 접근할 경우, 메인화면에 도달하면,
 	// 판매장 정보가 셋팅된 상태이다. 이 판매장번호를 통해 해당 판매장의 메뉴리스트를
@@ -201,7 +202,6 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 			$(parent.document).find("#modify_jd_no").text(modify_jd_no);
 		}
 		////////부모창 전단번호 바인딩
-
 	});
 }
 
@@ -545,7 +545,8 @@ function getPdContent(rcv_jd_no) {
 					}
 				})
 			}
-
+			// 스크롤 조정
+			document.scrollingElement.scrollTop = vm_sh;
 		}
 	});
 }

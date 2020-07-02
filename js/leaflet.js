@@ -1,3 +1,5 @@
+// init iframe searchUrl
+let searchUrl = document.location.origin;
 // 판매장 템플릿
 var tpl_tr_tab1_table = _.template('<tr id="member<%- jd_no %>" data-no="<%- jd_no %>">' +
     '<td><%- jd_no %></td>' +
@@ -134,6 +136,7 @@ function history_back(){
 
 // 좌측 메뉴리스트를 가져온다
 function getLeftNav(rcv_vm_cp_no) {
+	searchUrl += "/app/m_leaflet/m_leaflet.html?vm_cp_no="+rcv_vm_cp_no;
     $.ajax({
         url:'/back/03_leaflet/leafletUserMenu.jsp?random=' + (Math.random()*99999), 
         data : {userCompanyNo: rcv_vm_cp_no},
@@ -163,6 +166,7 @@ function getLeftNav(rcv_vm_cp_no) {
 						$("#modify_menu_no").text( decodeURIComponent(item['menu_no']) ); //화면에 전단번호 노출!!
 						$("#modify_menu_type_cd").text( decodeURIComponent(item['menu_type_cd']) ); //화면에 전단번호 노출!!
 						$("#myplanb_menu li:nth-child("+(index+1)+")").addClass("active");	// 메뉴를 활성화 한다.
+						searchUrl += "&menu_no="+decodeURIComponent(item['menu_no']);
 					}	
 				}else{
 					if ( menu_no == decodeURIComponent(item['menu_no']) ){
@@ -170,6 +174,7 @@ function getLeftNav(rcv_vm_cp_no) {
 						$("#modify_menu_no").text( decodeURIComponent(item['menu_no']) ); //화면에 전단번호 노출!!
 						$("#modify_menu_type_cd").text( decodeURIComponent(item['menu_type_cd']) ); //화면에 전단번호 노출!!						
 						$("#myplanb_menu li:nth-child("+(index+1)+")").addClass("active");	// 메뉴를 활성화 한다.
+						searchUrl += "&menu_no="+decodeURIComponent(item['menu_no']);
 					}	
 				}
 			});
@@ -426,7 +431,10 @@ function delete_btn(){
 				//console.log("============= notice callback ========================");
 				//console.log(result);
 				alert("삭제 완료되었습니다.");
-				$('#nh_leaflet').get(0).contentDocument.location.reload();
+				// $('#nh_leaflet').get(0).contentDocument.location.reload();
+				const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
+				var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+				$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
 				setTimeout(function(){ cssRetach(); }, 1500);
 			}
 		});
@@ -846,10 +854,10 @@ function thumnailUpdate(imgNo){
 			$(".leaflet_image").removeClass("active");
 			// 해당 부분이 iframe 새로고침을 해줌
 			// 따라서 변경된 URL에 parameter를 같이 던져주면 됨
-			console.log($('#nh_leaflet').get(0).contentDocument.location.href);
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
-			$('#nh_leaflet').get(0).contentDocument.location.href = $('#nh_leaflet').get(0).contentDocument.location.href + "&jd_no="+fix_jd_no;
+			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
 			//setTimeout(function(){ ThumCSS(); }, 1500);
 			setTimeout(function(){ cssRetach(); }, 1500);
 		}
@@ -1079,7 +1087,8 @@ $("#sale_btn").on("click",function(){
 			$(document).find(".leaflet_discount").removeClass("active");  
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
-			$('#nh_leaflet').get(0).contentDocument.location.href = $('#nh_leaflet').get(0).contentDocument.location.href + "&jd_no="+fix_jd_no;
+			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
 			setTimeout(function(){ cssRetach(); }, 1500);
         }
     });
@@ -1113,7 +1122,8 @@ $("#pd_name_btn").on("click",function(){
             alert("수정이 완료되었습니다.");
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
-			$('#nh_leaflet').get(0).contentDocument.location.href = $('#nh_leaflet').get(0).contentDocument.location.href + "&jd_no="+fix_jd_no;
+			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
             $("#pd_name").val("");
             $(".leaflet_goods_name").removeClass("active");
 			setTimeout(function(){ cssRetach(); }, 1500);
@@ -1148,7 +1158,8 @@ $("#price_btn").on("click",function(){
             alert("수정이 완료되었습니다.");
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
-			$('#nh_leaflet').get(0).contentDocument.location.href = $('#nh_leaflet').get(0).contentDocument.location.href + "&jd_no="+fix_jd_no;
+			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
             $("#price").val("");
             $(".leaflet_goods_price").removeClass("active");
 			// setTimeout(function(){ cssRetach(); }, 1500);
