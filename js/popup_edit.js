@@ -8,11 +8,12 @@ $(function () {
 	getLeft();
 	getLeftMenu('home');
 	$("#nh_home_popup").addClass("active");
-	getCompanyList();
+	
+	// getCompanyList();  //2020.07.02 심규문 LINK의 링크추가 및 판매장 고정값 수정 
 
 	var popupNo = location.search.split('=')[1];
 	getPopupInfo(popupNo);
-
+    
 	$.datepicker.setDefaults({
 		dateFormat: 'yy-mm-dd',
 		prevText: '이전 달',
@@ -124,6 +125,7 @@ $(function () {
 
 });
 
+/*  //2020.07.02 심규문 LINK의 링크추가 및 판매장 고정값 수정 
 function getCompanyList(){
 	$.get("/back/00_include/getCompanyList.jsp",
 		function(resultJSON){						
@@ -134,7 +136,7 @@ function getCompanyList(){
 		}
 	);
 }
-
+*/
 function setCompanyOptions(companyList){
 	var options = '';	
 	$(companyList).each( function (idx, company) {
@@ -143,15 +145,19 @@ function setCompanyOptions(companyList){
 	});
 	$('#company').append(options);	
 }
-	
+
 
 function getPopupInfo(popupNo){
 
 	$.get('/back/04_home/popup.jsp?popupNo='+popupNo,		
 		function(result) {
 			console.log(result);
-			var info = result.list[0];			
-			
+			var info = result.list[0];
+			//2020.07.02 심규문 LINK의 링크추가 및 판매장 고정값 수정  
+			setCompanyOptions({
+				VM_CP_NO: result.list[0].company,
+				VM_CP_NAME: result.list[0].company_name
+			});
 			$('#imgPreview').attr('src',info.img_url);
 			$('#popupTitle').val(info.popup_title);
 			$('#popupDate').val(info.period_type);

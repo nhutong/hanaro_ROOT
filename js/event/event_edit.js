@@ -8,8 +8,7 @@ $(function () {
 		getLeft();
 		getLeftMenu('event');
 		$("#nh_event_list").addClass("active");
-		getCompanyList();
-
+		//getCompanyList();
 
 		var eventNo = location.search.split('=')[1];
 		getEventInfo(eventNo);
@@ -173,6 +172,7 @@ $(function () {
 
 });	
 
+     /*
 	//핀매장 리스트 가져오기
 	function getCompanyList(){
 		$.get("/back/00_include/getCompanyList.jsp",		
@@ -184,22 +184,27 @@ $(function () {
 			}
 		);
 	}
+	*/
 	
 	// 판매장 리스트 셋업
 	function setCompanyOptions(companyList){
 		var options = '';
 		$(companyList).each( function (idx, company) {
+			if(company.VM_CP_NO == 0 ) return;
 			options += '<option value=' + company.VM_CP_NO + '>' +company.VM_CP_NAME + '</option>' ;
 		});
 		$('#company').append(options);
 	}
 
 	function getEventInfo(eventNo){
-
 		$.get('/back/05_event/event.jsp?eventNo='+eventNo,	
 		function(result) {
 			console.log(result);
 			var info = result.list[0];			
+			setCompanyOptions({
+				VM_CP_NO: result.list[0].company,
+				VM_CP_NAME: result.list[0].company_name				
+			})
 			
 			$('#imgPreview').attr('src',info.img_url);
 			$('#detailImgPreview').attr('src',info.detail_img_url);			
