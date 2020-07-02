@@ -41,24 +41,24 @@ function couponSize(kk, ss){
 		
 	$("#printSize").val(size);
 
-	if ( kk == '01' ){ //세로형
+	if ( kk == '01' ){ //세로형.
 		$('#printOrientation').val('portrait');
-		var a4_width="210mm";
-		var a4_height="297mm";
-		var a3_width="297mm";
-		var a3_height="420mm";			
+		var a4_width="202mm";
+		var a4_height="288mm";
+		var a3_width="288mm";
+		var a3_height="404mm";			
 	}else if( kk == '02' ){ //가로형
 		$('#printOrientation').val('landscape');
-		var a4_width="297mm";
-		var a4_height="210mm";
-		var a3_width="420mm";
-		var a3_height="297mm";		
+		var a4_width="288mm";
+		var a4_height="200mm";
+		var a3_width="400mm";
+		var a3_height="288mm";		
 	}else{ //세로형(엔드매대형)
 		$('#printOrientation').val('portrait');
-		var a4_width="210mm";
-		var a4_height="297mm";
-		var a3_width="297mm";
-		var a3_height="420mm";			
+		var a4_width="202mm";
+		var a4_height="288mm";
+		var a3_width="288mm";
+		var a3_height="404mm";			
 	}
 	
 	if( size == 'A4' ){
