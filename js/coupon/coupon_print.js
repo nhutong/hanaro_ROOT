@@ -337,7 +337,7 @@ $("#couponPrintPrint").on("click",function(e){
 	
     /** 팝업 */
     var innerHtml = $container[0].innerHTML;
-	var popupWindow = window.open("", "_blank", "width="+width+"px,height="+height+"px");
+	var popupWindow = window.open("./event/coupon_print.html", "_blank", "width="+width+"px,height="+height+"px");
 	//var popupWindow = window.open("", "_blank", "width=500px,height=600px");
 
 	//$('head').append('<style>@page{size: landscape;}</style>')
