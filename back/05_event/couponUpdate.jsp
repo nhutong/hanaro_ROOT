@@ -35,6 +35,7 @@
 	String end_date = request.getParameter("end_date") == null ? "2025-12-31" : request.getParameter("end_date").trim();
 	String coupon_type = request.getParameter("coupon_type") == null ? "" : request.getParameter("coupon_type").trim();
 	String product_code = request.getParameter("product_code") == null ? "" : request.getParameter("product_code").trim();
+	String product_name = request.getParameter("product_name") == null ? "" : request.getParameter("product_name").trim();
 	String coupon_code = request.getParameter("coupon_code") == null ? "" : request.getParameter("coupon_code").trim();
 	String discount_price = request.getParameter("discount_price") == null ? "" : request.getParameter("discount_price").trim();
 	String min_price = request.getParameter("min_price") == null ? "" : request.getParameter("min_price").trim();
@@ -50,7 +51,7 @@
 		// 관리자 등록 (insert)
 		String query = "  UPDATE hanaro.vm_coupon " + 
 					  " SET coupon_name= ?, coupon_type= ? , coupon_code=?, lst_no= ? ,  " +
-					  " lst_date= now(), start_date= ?, end_date= ?, product_code= ?,  " +
+					  " lst_date= now(), start_date= ?, end_date= ?, product_code= ?, product_name= ?, " +
 					  " discount_price= ? , min_price= ? , limit_qty= ?, extra= ? , status_cd = ?, stamp_fg = ?, coupon_detail = ? " +
 					 "  WHERE coupon_no= ? " ;
 
@@ -66,7 +67,7 @@
 						start_date,
 						end_date,
 						product_code, 
-						// product_name, 
+						product_name, 
 						discount_price, 
 						min_price, 
 						limit_qty, 
