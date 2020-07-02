@@ -181,7 +181,7 @@ function home_post_create() {
 				 $.ajax({ // ajax를 통해 파일 업로드 처리
 					 data : data,
 					 type : "POST",
-					 url : "../back/00_include/summernote_imageUploadSe.jsp",
+					 url : "../back/00_include/summernote_imageUpload.jsp",
 					 cache : false,
 					 contentType : false,
 					 processData : false,
