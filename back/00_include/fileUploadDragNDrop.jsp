@@ -7,7 +7,7 @@
 <%@page import="java.text.SimpleDateFormat" %>
 
 <%@ page import="java.sql.*" %>
-<%@ include file = "dbConn.jsp" %>
+<%@ include file = "dbPoolConn.jsp" %>
 
 <%@ include file = "../00_include/imgResize.jsp" %>
  
