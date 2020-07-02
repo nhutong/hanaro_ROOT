@@ -700,9 +700,10 @@ function setThumImg(rcvJdProdConNo, rcvPdNo, rcvPdCode, rcvPdName){
 		$(parent.document).find(".leaflet_del").show();
 
 		//setCookie1("jd_prod_con_no",rcvJdProdConNo, 1);
-		$(parent.document).find("#modify_jd_prod_con_no").text(rcvJdProdConNo);
+		$(parent.document).find("#modify_jd_prod_con_no").text(rcvPdCode);
 		//$(parent.document).find("#modify_jd_prod_con_no").text(rcvPdCode);
 		$(parent.document).find("#modify_jd_prod_con_name").text(rcvPdName);
+		$(parent.document).find("#hiddenKeyValue").val(rcvJdProdConNo);
 
 		$("#nh_leaflet").contents().find(".thumb_info, .thumb_wrap>a").click(function(){
            $(".new_item_wrap").hide();
