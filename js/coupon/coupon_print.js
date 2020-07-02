@@ -41,7 +41,7 @@ function couponSize(kk, ss){
 		
 	$("#printSize").val(size);
 
-	if ( kk == '01' ){ //세로형
+	if ( kk == '01' ){ //세로형.
 		$('#printOrientation').val('portrait');
 		var a4_width="202mm";
 		var a4_height="288mm";
