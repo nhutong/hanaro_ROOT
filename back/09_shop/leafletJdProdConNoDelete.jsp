@@ -5,7 +5,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
 
-<%@ include file = "../00_include/dbConn.jsp" %>
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 
 <%	
 	String jd_prod_con_no = (request.getParameter("jd_prod_con_no")==null)? "0":request.getParameter("jd_prod_con_no");
@@ -27,8 +27,8 @@
 		};
 		rs.beforeFirst();
 		while(rs.next()){
-			int ref_jd_no   = rs.getInt("ref_jd_no");           // Àü´Ü¹øÈ£
-			int order_number = rs.getInt("order_number");       // Á¤·Ä¼ø¼­
+			int ref_jd_no   = rs.getInt("ref_jd_no");           // ï¿½ï¿½ï¿½Ü¹ï¿½È£
+			int order_number = rs.getInt("order_number");       // ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 		
 		
 		sql = "update vm_shop_jundan_prod_content set order_number = order_number-1  "

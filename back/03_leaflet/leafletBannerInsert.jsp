@@ -5,7 +5,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
 
-<%@ include file = "../00_include/dbConn.jsp" %>
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 
 <%	
 	
@@ -32,7 +32,7 @@
 			JSONArray arr = new JSONArray();		
 			while(rs.next()){
 				
-				String order_no   = rs.getString("new_order_no");     // ÆÇ¸ÅÀå¹øÈ£
+				String order_no   = rs.getString("new_order_no");     // ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½È£
 
 				sql = "insert into vm_jundan_banner (jb_img_path,jb_order_no,ref_jd_no,visible_fg) "
 					+" values ('"+img_path+"', "+order_no+", "+jd_no+", 'Y'); ";

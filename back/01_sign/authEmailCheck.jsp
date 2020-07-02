@@ -12,7 +12,7 @@
 <%@ page import="javax.mail.internet.InternetAddress" %>
 <%@ page import="javax.mail.internet.MimeMessage" %>
 <%@ page import="javax.mail.internet.MimeUtility" %>
-<%@ include file = "../00_include/dbConn.jsp" %>
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 
 
 <%	

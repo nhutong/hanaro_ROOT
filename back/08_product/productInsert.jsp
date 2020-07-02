@@ -5,7 +5,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
 
-<%@ include file = "../00_include/dbConn.jsp" %>
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 
 <%	
 	String pd_name = (request.getParameter("pd_name")==null)? "0":request.getParameter("pd_name");
@@ -25,7 +25,7 @@
 	int listCount_exist = rs.getRow();
 	if(listCount_exist == 0){
 	}else{
-		//¼ø¼­°¡ ¼ýÀÚ°¡ ¾Æ´Ï¹Ç·Î Áß´ÜÇÑ´Ù.
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Æ´Ï¹Ç·ï¿½ ï¿½ß´ï¿½ï¿½Ñ´ï¿½.
 		out.clear();
 		out.print("exist");
 		return;	
@@ -55,7 +55,7 @@
 				
 		while(rs.next()){
 			
-			String new_pd_no   = rs.getString("new_pd_no");     // ½Å±Ô ÀÌ¹ÌÁö¹øÈ£
+			String new_pd_no   = rs.getString("new_pd_no");     // ï¿½Å±ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½È£
 
 			out.clear();
 			out.print(new_pd_no);

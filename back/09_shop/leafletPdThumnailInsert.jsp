@@ -5,7 +5,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
 
-<%@ include file = "../00_include/dbConn.jsp" %>
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 
 <%	
 	String imgPath = (request.getParameter("imgPath")==null)? "0":request.getParameter("imgPath");
@@ -39,7 +39,7 @@
 				
 		while(rs.next()){
 			
-			String new_img_no   = rs.getString("new_img_no");     // ½Å±Ô ÀÌ¹ÌÁö¹øÈ£
+			String new_img_no   = rs.getString("new_img_no");     // ï¿½Å±ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½È£
 
 			out.clear();
 			out.print(new_img_no);

@@ -5,13 +5,13 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
 
-<%@ include file = "../00_include/dbConn.jsp" %>
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 
 <%	
 	String jb_no = (request.getParameter("jb_no")==null)? "0":request.getParameter("jb_no");
 	
 	try{
-		// ½Å±ÔÀÔ·ÂÇÑ Àü´ÜÄÁÅÙÃ÷»óÇ°ÀÇ Àü´ÜÄÁÅÙÃ÷»óÇ°¹øÈ£¸¦ select ÇÑ´Ù.
+		// ï¿½Å±ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½È£ï¿½ï¿½ select ï¿½Ñ´ï¿½.
 		sql = " select visible_fg from vm_jundan_banner where jb_no = "+jb_no+" ;";
 	
 		stmt = conn.createStatement();
@@ -28,7 +28,7 @@
 
 		while(rs.next()){
 
-			String visible_fg = rs.getString("visible_fg");     // ½Å±Ô Àü´ÜÄÁÅÙÃ÷»óÇ°¹øÈ£	
+			String visible_fg = rs.getString("visible_fg");     // ï¿½Å±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½È£	
 	
 			if (visible_fg.equals("Y")){
 
