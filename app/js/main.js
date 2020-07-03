@@ -69,7 +69,15 @@ $(function(){
 
 //메인페이지 모달
 function adModal(){
-
+	if (localStorage.getItem('popupLimit')) {
+		var beforeDate = new Date(localStorage.getItem('popupLimit'));
+		var nowDate = new Date();
+		if (nowDate.getDate() - beforeDate.getDate() == 0) {
+			return false;
+		} else {
+			localStorage.removeItem("popupLimit");
+		}
+	}
 	var text = '';
 		$.ajax({
 			url:'/back/04_home/popup_app.jsp?random=' + (Math.random()*99999), 
@@ -113,9 +121,9 @@ function adModal(){
 						$close_btn2 = $("#mainModalWeekCls"),
 						popUpName = "HANAROMART";
 						
-				if(getCookies( popUpName ) == "done"){
-						$open_popmsg.hide();
-				   }
+				// if(getCookies( popUpName ) == "done"){
+				// 		$open_popmsg.hide();
+				//    }
 				
 				//닫기 버튼		
 				$close_btn.click(function(e) {
@@ -125,14 +133,15 @@ function adModal(){
 				// 20.06.03 김수경 하루동안 보지 않기로 변경
 				//하루동안 닫기 버튼
 				$close_btn2.click(function(e) {
-					var expdate = new Date(),
-					remainHours = 23 - expdate.getHours(),
-					remainMin = 60 - expdate.getMinutes();			
-					// remainHours = 167 - expdate.getHours(),
-					// 	remainMin = 60 - expdate.getMinutes();			
-						expdate.setTime( expdate.getTime() + ( remainHours * 60 * 60 * 1000 ) + ( remainMin * 60 * 1000 ) );
+					var expdate = new Date();
+					// remainHours = 23 - expdate.getHours(),
+					// remainMin = 60 - expdate.getMinutes();			
+					// // remainHours = 167 - expdate.getHours(),
+					// // 	remainMin = 60 - expdate.getMinutes();			
+					// 	expdate.setTime( expdate.getTime() + ( remainHours * 60 * 60 * 1000 ) + ( remainMin * 60 * 1000 ) );
 						   
-						setCookies( popUpName, "done" , expdate );
+					// 	setCookies( popUpName, "done" , expdate );
+					localStorage.setItem("popupLimit",expdate);
 
 						$open_popmsg.hide();
 						e.preventDefault();
