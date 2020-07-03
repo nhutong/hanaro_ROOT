@@ -7,7 +7,7 @@
 <%@page import="java.text.SimpleDateFormat" %>
 
 <%@ page import="java.sql.*" %>
-<%@ include file = "dbPoolConn.jsp" %>
+<%@ include file = "./dbPoolingConn.jsp" %>
 
 <%@ include file = "../00_include/imgResize.jsp" %>
  
@@ -67,7 +67,7 @@
 		String pdCode = multi.getParameter("pdCode");
 
 		for (int i=0;i< fileCnt;i++){
-
+			System.out.println(fileCnt);
 			// 파일업로드
 			uploadFile = multi.getFilesystemName("file_"+i);
 
