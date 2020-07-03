@@ -82,7 +82,9 @@
                                     <tr>
                                         <th>적용범위</th>
                                         <td>
-                                        <select id="company" class="sort_select">                                              
+                                        <select id="company" class="sort_select" readonly style='background-color:#ababab'
+                                        onFocus='this.initialSelect = this.selectedIndex;'
+                                        onChange='this.selectedIndex = this.initialSelect;'>
                                         </select>
                                         </td>
                                     </tr>
@@ -102,7 +104,7 @@
                                                 <button>?</button>
                                             </div>
                                         </th>
-                                        <td><input type="text" id="linkUrl" placeholder="← 물음표 누르고 원하는 링크 복사해서 붙여넣기">
+                                        <td><input type="text" id="linkUrl" placeholder="← 물음표 누르고 원하는 링크 클릭!">
                                     </tr>
                                 </tbody>
                             </table>

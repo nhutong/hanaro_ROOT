@@ -8,7 +8,7 @@ $(function () {
 		getLeft();
 		getLeftMenu('event');
 		$("#nh_event_list").addClass("active");
-
+		//getCompanyList();
 
 		var eventNo = location.search.split('=')[1];
 		getEventInfo(eventNo);
@@ -58,7 +58,9 @@ $(function () {
 			var eventStartDate = $('#event_start_date').val();
 			var eventEndDate = $('#event_end_date').val();			
 			var activated = $('#activated').val();
+			var company = $('#company').val();
 			var linkUrl = $('#linkUrl').val();
+			
 			var eventLink = "";
 			
 			if ( $('input:checkbox[id="eventLink"]').is(":checked") == true )
@@ -107,6 +109,7 @@ $(function () {
 				eventEndDate : eventEndDate ,				
 				activated : activated,
 				linkUrl : linkUrl,
+				company : company,
 				eventLink : eventLink
 			} ;
 
@@ -123,32 +126,6 @@ $(function () {
 			}
 			deleteEvent(formData);		
 		});
-		
-	function getEventInfo(eventNo){
-
-		$.get('/back/05_event/event.jsp?eventNo='+eventNo,	
-		function(result) {
-			console.log(result);
-			var info = result.list[0];			
-			
-			$('#imgPreview').attr('src',info.img_url);
-			$('#detailImgPreview').attr('src',info.detail_img_url);			
-			$('#eventTitle').val(info.event_title);
-			$('#event_start_date').val(info.start_date);
-			$('#event_end_date').val(info.end_date);
-			$('#company').text(info.company_name);
-			$('#activated').val(info.activated);
-			$('#linkUrl').val(info.link_url);
-
-			if (info.eventLink == "Y")
-			{
-				$('input:checkbox[id="eventLink"]').prop("checked", true);
-			}else{
-				$('input:checkbox[id="eventLink"]').prop("checked", false);
-			}
-		});
-	}
-
 
 	function updateEvent(formData){
 		$.post( '/back/05_event/eventUpdate.jsp',
@@ -188,6 +165,14 @@ $(function () {
 		$('#layer_popup_link_wrap').hide();
 	});	
 
+	$(document).on('click','.linkClick',function() {
+		$('#linkUrl').val( $(this).text() );		
+		$('#layer_popup_link_wrap').hide();
+    });			
+
+});	
+
+     /*
 	//핀매장 리스트 가져오기
 	function getCompanyList(){
 		$.get("/back/00_include/getCompanyList.jsp",		
@@ -199,15 +184,47 @@ $(function () {
 			}
 		);
 	}
+	*/
 	
 	// 판매장 리스트 셋업
 	function setCompanyOptions(companyList){
 		var options = '';
 		$(companyList).each( function (idx, company) {
+			if(company.VM_CP_NO == 0 ) return;
 			options += '<option value=' + company.VM_CP_NO + '>' +company.VM_CP_NAME + '</option>' ;
 		});
 		$('#company').append(options);
 	}
+
+	function getEventInfo(eventNo){
+		$.get('/back/05_event/event.jsp?eventNo='+eventNo,	
+		function(result) {
+			console.log(result);
+			var info = result.list[0];			
+			setCompanyOptions({
+				VM_CP_NO: result.list[0].company,
+				VM_CP_NAME: result.list[0].company_name				
+			})
+			
+			$('#imgPreview').attr('src',info.img_url);
+			$('#detailImgPreview').attr('src',info.detail_img_url);			
+			$('#eventTitle').val(info.event_title);
+			$('#event_start_date').val(info.start_date);
+			$('#event_end_date').val(info.end_date);
+			//$('#company').val(info.company_name);
+			$('#company').val(info.company);
+			$('#activated').val(info.activated);
+			$('#linkUrl').val(info.link_url);
+
+			if (info.eventLink == "Y")
+			{
+				$('input:checkbox[id="eventLink"]').prop("checked", true);
+			}else{
+				$('input:checkbox[id="eventLink"]').prop("checked", false);
+			}
+		});
+	}
+
 
 	function getLinkList(){
 		var companyNo = $("#company").val();
@@ -223,29 +240,28 @@ $(function () {
 				var text = '';	
 				text +='    <tr>';
 				text +='        <td>홈화면</td>' ;
-				text +='        <td>home/main.html</td>' ;
+				text +='        <td class="linkClick">home/main.html</td>' ;
 				text +='    </tr>';			
 				text +='    <tr>';
 				text +='        <td>쿠폰</td>' ;
-				text +='        <td>home/coupon.html</td>' ;
+				text +='        <td class="linkClick">home/coupon.html</td>' ;
 				text +='    </tr>';	
 				text +='    <tr>';				
 				text +='        <td>이벤트</td>' ;
-				text +='        <td>home/event.html</td>' ;
+				text +='        <td class="linkClick">home/event.html</td>' ;
 				text +='    </tr>';
 				text +='    <tr>';
 				text +='        <td>공지사항</td>' ;
-				text +='        <td>home/notice.html</td>' ;
+				text +='        <td class="linkClick">home/notice.html</td>' ;
 				text +='    </tr>';							
 				$(Linklist).each( function (idx, linkeach) {
 					text +='    <tr>';
 					text +='        <td>' + linkeach.select_name  + '</td>' ;
-					text +='        <td>' + linkeach.select_value + '</td>' ;
+					text +='        <td class="linkClick">' + linkeach.select_value + '</td>' ;
 					text +='    </tr>';
 				});
 				$("#layer_popup_link_list").empty();					
 				$("#layer_popup_link_list").append(text);				
 			});
 	}
-		// 200609 김수경 링크 기능 추가
-})
+

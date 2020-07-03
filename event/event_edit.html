@@ -87,7 +87,11 @@
                                             <tr>
                                                 <th>판매장</th>
                                                 <td>
-													<span id="company"> </span>                                                
+                                                    <!--<span id="company"> </span> -->                                                
+                                                    <select id="company" class="sort_select" readonly style='background-color:#ababab'
+                                                    onFocus='this.initialSelect = this.selectedIndex;'
+                                                    onChange='this.selectedIndex = this.initialSelect;'>
+                                                    </select>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -107,7 +111,7 @@
                                             <th><input type="checkbox" id="eventLink"><label for="eventLink">Link</label><br>
                                                 <!-- 200609 김수경 링크 가이드 버튼 추가 -->
                                             <div id="layer_popup_link_open"><button>?</button></div></th>
-                                            <td><input type="text" id="linkUrl" placeholder="← 물음표 누르고 원하는 링크 복사해서 붙여넣기"></td>
+                                            <td><input type="text" id="linkUrl" placeholder="← 물음표 누르고 원하는 링크 클릭!"></td>
                                         </tr>                                        
                                         <tr>
                                             <td colspan="2" style="text-indent:-16px;padding-left:25px;">

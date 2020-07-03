@@ -54,6 +54,7 @@ $(function () {
 				end_date : $('#end_date').val(),
 				coupon_type : $('#coupon_type').val(),
 				product_code : $('#product_code').val(),
+				product_name : $('#product_name').val(),
 				coupon_code : $('#coupon_code').val(),
 				discount_price : $('#discount_price').val() || "0",
 				min_price : $('#min_price').val() || "0",
@@ -130,6 +131,7 @@ $(function () {
 			$('#coupon_type').val(info.coupon_type);
 
 			$('#product_code').val(info.product_code);
+			$('#product_name').val(info.product_name);
 			$('#coupon_code').val(info.coupon_code);
 			$('#discount_price').val(info.discount_price);
 			$('#min_price').val(info.min_price);

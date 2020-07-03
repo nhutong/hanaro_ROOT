@@ -8,7 +8,7 @@
 <%@ page import="com.google.gson.Gson" %>
 <%@ page import="com.google.gson.GsonBuilder" %>
 
-<%@ include file = "dbPoolConn.jsp" %>
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 
 <%
 	// https://stackoverflow.com/a/27669890
