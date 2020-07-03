@@ -255,9 +255,10 @@ $("#jundan_excel_new").on("click",function(){
 		alert("파일을 업로드하시기 바랍니다.");
 		return false;
 	}
-
+	const extension = excel_path.split(".")[1];
+	const baseUrl = (extension == "xls") ? "leafletConXlsReader.jsp" : (extension == "xlsx") ? "leafletConXlsxReader.jsp" : "null";
 	$.ajax({
-        url:'/back/03_leaflet/leafletConProdInsert.jsp?random=' + (Math.random()*99999),
+        url: "/back/03_leaflet/"+baseUrl+'?random=' + (Math.random()*99999),
 		data : {menu_no: menu_no, userCompanyNo: userCompanyNo, jundan_from_date: jundan_from_date, jundan_end_date: jundan_end_date, excel_path: excel_path, menu_type_cd: getCookie("menu_type_cd")},
         method : 'GET' 
     }).done(function(result){
