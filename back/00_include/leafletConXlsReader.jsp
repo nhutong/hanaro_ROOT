@@ -15,8 +15,8 @@
 <%@ page import="org.apache.poi.ss.usermodel.DateUtil"%>
 <%@ page import="org.apache.poi.ss.usermodel.Row"%>
 
-<%@ include file = "../00_include/dbPoolingConn.jsp" %>
-<%@ include file = "../00_include/common.jsp" %>
+<%@ include file = "./dbPoolingConn.jsp" %>
+<%@ include file = "./common.jsp" %>
 
 <%
 	String menu_no = (request.getParameter("menu_no")==null)? "0":request.getParameter("menu_no");

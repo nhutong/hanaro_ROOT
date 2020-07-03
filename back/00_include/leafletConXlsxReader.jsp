@@ -293,7 +293,7 @@
                     if ( string13.equals("") ){
                         // 특가행사시작일이 존재하지 않으므로 중단한다.
                         out.clear();
-                        out.print("oneDay_start_date_no_exist";
+                        out.print("oneDay_start_date_no_exist");
                         return;
                     }else{
                         // 입력받은 특가행사시작일이 유효한지 검사한다.
