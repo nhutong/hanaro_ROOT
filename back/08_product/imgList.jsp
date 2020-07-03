@@ -23,7 +23,7 @@
 //	+ " limit 0, 20; ";
 
 //		out.print(sql);
-
+		System.out.println(sql);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
