@@ -4,7 +4,7 @@
 <%@ page import="org.json.simple.*" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
-<%@ page import="java.io.File,java.util.Date,jxl.*"%>
+<%@ page import="java.io.File,java.util.Date"%>
 
 <%@ include file = "../00_include/dbPoolingConn.jsp" %>
 <%@ include file = "../00_include/common.jsp" %>

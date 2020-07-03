@@ -591,9 +591,10 @@ $("#jundan_excel_new").on("click",function(){
 		alert("파일을 업로드하시기 바랍니다.");
 		return false;
 	}
-
+	const extension = excel_path.split(".")[1];
+	const baseUrl = (extension == "xls") ? "prodInsertCheckXls.jsp" : (extension == "xlsx") ? "prodInsertCheckXlsx.jsp" : "null";
 	$.ajax({
-        url:'/back/08_product/prodInsertCheck.jsp?random=' + (Math.random()*99999),
+        url:'/back/08_product/'+baseUrl+'?random=' + (Math.random()*99999),
 		data : {userCompanyNo: userCompanyNo, excel_path: excel_path, reg_no: getCookie("userNo"), update_fg: "N"},
         method : 'GET' 
     }).done(function(result){
@@ -636,8 +637,10 @@ function excelInsertAndUpdate(){
 		alert("파일을 업로드하시기 바랍니다.");
 		return false;
 	}
+	const extension = excel_path.split(".")[1];
+	const baseUrl = (extension == "xls") ? "prodInsertXls.jsp" : (extension == "xlsx") ? "prodInsertXlsx.jsp" : "null";
 	$.ajax({
-        url:'/back/08_product/prodInsert.jsp?random=' + (Math.random()*99999),
+        url:'/back/08_product/'+baseUrl+'?random=' + (Math.random()*99999),
 		data : {userCompanyNo: userCompanyNo, excel_path: excel_path, reg_no: getCookie("userNo") },
         method : 'GET' 
     }).done(function(result){

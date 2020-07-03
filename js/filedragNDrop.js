@@ -145,7 +145,7 @@
             alert("총 용량 초과\n총 업로드 가능 용량 : " + maxUploadSize + " MB");
             return;
         }
-            
+        
         if(confirm("등록 하시겠습니까?")){
             // 등록할 파일 리스트를 formData로 데이터 입력
             //var form = $('#uploadForm');
@@ -156,7 +156,6 @@
             }
 			formData.append('fileCnt',i);
             formData.append('pdCode',rcvPdCode);
-            
             $.ajax({
                 url:"/back/00_include/fileUploadDragNDrop.jsp",
                 data:formData,

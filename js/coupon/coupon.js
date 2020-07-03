@@ -83,9 +83,11 @@ function coupon_upload_create(){
 		alert("파일을 업로드하시기 바랍니다.");
 		return ;
 	}
+	const extension = excel_path.split(".")[1];
+	const baseUrl = (extension == "xls") ? "couponXlsUploadCreate.jsp" : (extension == "xlsx") ? "couponXlsxUploadCreate.jsp" : "null";
 
 	$.ajax({
-        url:'/back/05_event/couponExcelUploadCreate.jsp?random=' + (Math.random()*99999),
+        url:'/back/05_event/'+baseUrl+'?random=' + (Math.random()*99999),
 		data : { excel_path: excel_path},
         method : 'GET' 
     }).done(function(result){

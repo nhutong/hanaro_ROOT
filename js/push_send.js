@@ -203,10 +203,12 @@ function push_target_excel_import(){
 	var pm_no = $("#pushNo").val();
 	var pushTarget = $('#pushTarget').val();
 	var excel_path = $("#excel_path").val();
+	const extension = excel_path.split(".")[1];
+	const baseUrl = (extension == "xls") ? "pushTargetXlsImport.jsp" : (extension == "xlsx") ? "pushTargetXlsxImport.jsp" : "null";
 
 	if ( pushTarget == "대상등록" ){
 		$.ajax({
-			url:'/back/10_push/pushTargetExcelImport.jsp?random=' + (Math.random()*99999),
+			url:'/back/10_push/'+baseUrl+'?random=' + (Math.random()*99999),
 			data : {excel_path: excel_path, pm_no: pm_no, overwrite: "Y"},
 			method : 'GET' 
 		}).done(function(result){
