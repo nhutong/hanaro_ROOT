@@ -203,8 +203,11 @@ function canclePost(){
 // 게시물 등록
 function createPost() {
 	var post_title = $("#post_title").val();
-	var post_content = $("#post_content").val();
+	var post_content = $(".note-editable").html();
 	var notice_fg = $("#notice_fg").val();
+	console.log(post_title);
+	console.log(post_content);
+	console.log(notice_fg);
 
 	if ( post_title == null || chrLen(post_title) == 0)
 	{
