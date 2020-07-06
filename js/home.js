@@ -227,7 +227,7 @@ function createPost() {
 	$.ajax({
         url:'/back/04_home/postInsert.jsp?random=' + (Math.random()*99999),
 		data : {post_title: post_title, post_content: post_content, reg_no: getCookie("userNo"), noticeFg: notice_fg},
-        method : 'GET' 
+        method : 'POST' 
     }).done(function(result){
 
         console.log("postinsert=========================================");

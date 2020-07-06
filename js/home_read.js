@@ -152,7 +152,7 @@ function createCommentOfPost() {
 	$.ajax({
         url:'/back/04_home/postCreateInsert.jsp?random=' + (Math.random()*99999),
 		data : {post_no: postNo, post_content: post_content, reg_no: getCookie("userNo")},
-        method : 'GET' 
+        method : 'POST' 
     }).done(function(result){
 
         console.log("noticeList=========================================");

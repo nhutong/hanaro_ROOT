@@ -35,7 +35,7 @@ function noticeCont(){
 		$.ajax({
 			url:'/back/04_home/noticeInsert.jsp?random=' + (Math.random()*99999),
 			data : {rcvTitle: noticeCreateTitle, rcvContent: noticeCreate, vm_cp_no: getCookie("onSelectCompanyNo"), userNo: getCookie("userNo") },
-			method : 'GET' 
+			method : 'POST' 
 		}).done(function(result){
 			if(result == "NoN"){
 				console.log(result);	
