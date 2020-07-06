@@ -15,7 +15,7 @@
 <%@ page import="org.apache.poi.xssf.usermodel.XSSFSheet"%>
 <%@ page import="org.apache.poi.xssf.usermodel.XSSFWorkbook"%>
 
-<%@ include file = "./dbPoolingConn.jsp" %>
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 <%@ include file = "./common.jsp" %>
 
 <%

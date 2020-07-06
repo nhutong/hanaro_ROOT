@@ -15,7 +15,7 @@
 <%@ page import="org.apache.poi.ss.usermodel.DateUtil"%>
 <%@ page import="org.apache.poi.ss.usermodel.Row"%>
 
-<%@ include file = "./dbPoolingConn.jsp" %>
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 <%@ include file = "./common.jsp" %>
 
 <%
