@@ -3,8 +3,8 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.json.simple.*" %>
-<%@ include file = "../00_include/dbConn_before.jsp" %>
 
+<%@ include file = "../00_include/dbPoolingConn.jsp" %>
 <% 
 	String user_number = request.getParameter("user_number")==null? "":request.getParameter("user_number"); // 이메일
 	String pw		   = request.getParameter("user_pw")==null? "":request.getParameter("user_pw"); // 패스워드
