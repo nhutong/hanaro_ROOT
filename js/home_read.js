@@ -298,7 +298,7 @@ $("#actEditBtn").on("click",function(e){
 		$.ajax({
 			url:'/back/04_home/postReadUpdate.jsp?random=' + (Math.random()*99999),
 			data : {post_no: postNo, post_title: postTitle, post_content: postContent, notice_fg: noticeFg },
-			method : 'GET' 
+			method : 'POST' 
 		}).done(function(result){
 
 			console.log("noticeList=========================================");

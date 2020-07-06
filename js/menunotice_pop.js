@@ -193,7 +193,7 @@ function noticeUpdateAfter(){
 		$.ajax({
 			url:'/back/04_home/noticeUpdate.jsp?random=' + (Math.random()*99999),
 			data : {rcvTitle: noticeCreateTitle, rcvContent: noticeCreate, nt_no: nt_no, userNo: getCookie("userNo") },
-			method : 'GET' 
+			method : 'POST' 
 		}).done(function(result){
 			if(result == "NoN"){
 				console.log(result);

@@ -219,7 +219,7 @@ function noticeCreate(rcv_nt_no){
 		$.ajax({
 			url:'/back/04_home/manageQnaReInsert.jsp?random=' + (Math.random()*99999),
 			data : {rcvTitle: noticeCreateTitle, rcvContent: noticeCreate, vm_cp_no: getCookie("onSelectCompanyNo"), userNo: getCookie("userNo"), nt_no: rcv_nt_no },
-			method : 'GET' 
+			method : 'POST' 
 		}).done(function(result){
 			if(result == "NoN"){
 				console.log(result);	
