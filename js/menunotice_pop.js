@@ -156,7 +156,7 @@ function changeEditMode(rcvNtNo) {
 				},
 				onKeyup: function(e) {
 					const textc = getByte(document.querySelector("div.note-editable").outerText);
-					document.getElementById("countTxt").innerHTML = textc;
+					document.getElementById("countTxt").innerHTML = " ( " + textc + " / 2048 ) ";
 					if (textc > 2048) {
 						alert("글자 수가 초과하였습니다.");
 						return false;
@@ -193,7 +193,7 @@ function noticeUpdateAfter(){
 		$.ajax({
 			url:'/back/04_home/noticeUpdate.jsp?random=' + (Math.random()*99999),
 			data : {rcvTitle: noticeCreateTitle, rcvContent: noticeCreate, nt_no: nt_no, userNo: getCookie("userNo") },
-			method : 'GET' 
+			method : 'POST' 
 		}).done(function(result){
 			if(result == "NoN"){
 				console.log(result);
