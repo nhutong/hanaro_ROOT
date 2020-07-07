@@ -74,10 +74,12 @@ function changeEditMode() {
 				},
 				onKeyup: function(e) {
 					const textc = getByte(document.querySelector("div.note-editable").outerText);
-					document.getElementById("countTxt").innerHTML = " ( " + textc + " / 2048 ) ";;
+					document.getElementById("countTxt").innerHTML = "글자수 ( " + textc + " / 2048 ) ";;
 					if (textc > 2048) {
-						alert("글자 수가 초과하였습니다.");
-						return false;
+						$("#countTxt").css('color', 'red');
+						document.getElementById("countTxt").innerHTML += "<br>※글자 수를 줄여주세요※";
+					} else {
+						$("#countTxt").css('color', 'black');
 					}
 				}
 			}
@@ -239,6 +241,10 @@ function noticeCreate(rcv_nt_no){
 	$("#qnaPopSubmitBtn").on("click",function(e){
 		
 		e.preventDefault();
+		if (getByte(document.querySelector("div.note-editable").outerText) > 2048) {
+			alert("글자 수를 줄여주세요");
+			return false;
+		}
 		noticeCreate(nt_no);
 		
 	});

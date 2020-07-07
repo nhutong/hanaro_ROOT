@@ -165,10 +165,12 @@ function home_post_create() {
 			},
 			onKeyup: function(e) {
 				const textc = getByte(document.querySelector("div.note-editable").outerText);
-				document.getElementById("textCountingSpan").innerHTML = "( " + textc + " / 2048 )";
+				document.getElementById("textCountingSpan").innerHTML = "글자수 ( " + textc + " / 2048 )";
 				if (textc > 2048) {
-					alert("글자 수가 초과하였습니다.");
-					return false;
+					$("#textCountingSpan").css('color', 'red');
+					document.getElementById("textCountingSpan").innerHTML += "<br>※글자 수를 줄여주세요※";
+				} else {
+					$("#textCountingSpan").css('color', 'black');
 				}
 			}
 		}
@@ -205,6 +207,10 @@ function createPost() {
 	var post_title = $("#post_title").val();
 	var post_content = $("#post_content").val();
 	var notice_fg = $("#notice_fg").val();
+	if (getByte(document.querySelector("div.note-editable").outerText) > 2048) {
+		alert("글자 수를 줄여주세요");
+		return false;
+	}
 
 	if ( post_title == null || chrLen(post_title) == 0)
 	{

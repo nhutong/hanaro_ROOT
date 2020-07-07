@@ -72,10 +72,12 @@ $(function () {
 			},
 			onKeyup: function(e) {
 				const textc = getByte(document.querySelector("div.note-editable").outerText);
-				document.getElementById("textCountingSpan").innerHTML = " ( " + textc + " / 2048 ) ";
+				document.getElementById("textCountingSpan").innerHTML = "글자 수 ( " + textc + " / 2048 ) ";
 				if (textc > 2048) {
-					alert("글자 수가 초과하였습니다.");
-					return false;
+					document.getElementById("textCountingSpan").innerHTML += "<br>※글자 수를 줄여주세요※";
+					$("#textCountingSpan").css('color', 'red');
+				} else {
+					$("#textCountingSpan").css('color', 'black');
 				}
 			}
 		}
@@ -227,7 +229,10 @@ function menu_post_popup(rcvNtNo){
 }
 
 function writeNotice(){
-
+	if (getByte(document.querySelector("div.note-editable").outerText) > 2048) {
+		alert("글자 수를 줄여주세요");
+		return false;
+	}
 	var noticeCreateTitle = encodeURIComponent($("#noticeCreateTitle").val());
 	var brVal = $("#noticeCreate").val();
 	var brValResult = brVal.replace(/\n/g, "<br/>");

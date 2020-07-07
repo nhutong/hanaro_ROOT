@@ -276,8 +276,10 @@ function changeEditMode(rcvPostNo){
 							const textc = getByte(document.querySelector("div.note-editable").outerText);
 							document.getElementById("writeConts").innerHTML = "글자수 ( " + textc + " / 2048 )";
 							if (textc > 2048) {
-								alert("글자 수가 초과하였습니다.");
-								return false;
+								$("#writeConts").css('color', 'red');
+								document.getElementById("writeConts").innerHTML += "<br>※글자 수를 줄여주세요※";
+							} else {
+								$("#writeConts").css('color', 'black');
 							}
 						}
 					  }
@@ -293,7 +295,10 @@ function changeEditMode(rcvPostNo){
 
 // 글 수정
 $("#actEditBtn").on("click",function(e){
-
+	if (getByte(document.querySelector("div.note-editable").outerText) > 2048) {
+		alert("글자 수를 줄여주세요");
+		return false;
+	}
 	var postTitle = $("#post_title_input").val();
 	 // 200622 김수경 썸머노트 적용 테스트
 	// var postContent = $("#post_content_textarea").val();
