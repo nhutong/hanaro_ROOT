@@ -3,7 +3,7 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.json.simple.*" %>
-<%@ include file = "../00_include/dbPoolingConn.jsp" %>
+<%@ include file = "../00_include/dbConn.jsp" %>
 
 
 <%	

@@ -7,7 +7,7 @@
 <%@ page import="java.net.*" %>
 <%@ page import="java.sql.*" %>
  
-<%@ include file = "../00_include/dbPoolingConn.jsp" %>
+<%@ include file = "../00_include/dbConn.jsp" %>
  
 <%
     request.setCharacterEncoding("UTF-8");
