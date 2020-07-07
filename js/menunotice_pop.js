@@ -156,7 +156,7 @@ function changeEditMode(rcvNtNo) {
 				},
 				onKeyup: function(e) {
 					const textc = getByte(document.querySelector("div.note-editable").outerText);
-					document.getElementById("countTxt").innerHTML = textc;
+					document.getElementById("countTxt").innerHTML = " ( " + textc + " / 2048 ) ";
 					if (textc > 2048) {
 						alert("글자 수가 초과하였습니다.");
 						return false;
