@@ -51,10 +51,15 @@
 				</tr>
 			</tbody>
             </table>
-            <div class="read_btn_wrap">
-                <button id="readEditBtn">수정</button>
-				<button id="actEditBtn">수정하기</button>
-                <button id="readDelBtn">삭제</button>
+            <div class="read_btn_wrap" style="display: flex; justify-content: space-between;">
+				<div id="isWriteConts">
+					<span id="writeConts" style="font-size: 13px;display: none;">글자수 0</span>
+				</div>
+				<div>
+					<button id="readEditBtn">수정</button>
+					<button id="actEditBtn">수정완료</button>
+					<button id="readDelBtn">삭제</button>
+				</div>
             </div>
         </form>
 		<!-- 댓글달기-->

@@ -223,6 +223,16 @@ $("#readDelBtn").on("click",function(e){
 	}
 });
 
+// 바이트수 체크 로직
+function getByte(str) {
+	var byte = 0;
+	for (var i=0; i<str.length; ++i) {
+		// 기본 한글 2바이트 처리
+		(str.charCodeAt(i) > 127) ? byte += 2 : byte++ ;
+	}
+	return byte;
+}
+
 // 글수정모드로 변경
 function changeEditMode(rcvPostNo){
 
@@ -260,11 +270,24 @@ function changeEditMode(rcvPostNo){
 						['table', ['table']],
 						['insert', ['link', 'picture', 'video']],
 						['view', ['fullscreen', 'codeview', 'help']],
-					  ]
+					  ],
+					  callbacks: {
+						onKeyup: function(e) {
+							const textc = getByte(document.querySelector("div.note-editable").outerText);
+							document.getElementById("writeConts").innerHTML = "글자수 ( " + textc + " / 2048 )";
+							if (textc > 2048) {
+								alert("글자 수가 초과하였습니다.");
+								return false;
+							}
+						}
+					  }
 			});
 				// 200622 김수경 썸머노트 적용 테스트	
 			});
 		}
+		document.getElementById("writeConts").style.display = 'block';
+		const textc = getByte(document.querySelector("div.note-editable").outerText);
+		document.getElementById("writeConts").innerHTML = "글자수 ( " + textc + " / 2048 )";
 			});
 		}
 

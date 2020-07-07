@@ -218,7 +218,7 @@ function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
 
 function menu_post_popup(rcvNtNo){
 	var popupX = (window.screen.width/2) - (400/2);
-	window.open('menunotice_pop.html?nt_no='+rcvNtNo+'','공지사항 읽기','width=440,height=400,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')  
+	window.open('menunotice_pop.html?nt_no='+rcvNtNo+'','공지사항 읽기','width=440,height=800,location=no,status=no,scrollbars=yes,left='+ popupX +',top=200')  
 }
 
 	function menu_create_popup(){
