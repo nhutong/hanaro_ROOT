@@ -11,7 +11,7 @@
 <%@ page import="javax.mail.internet.*" %>
 <%@ page import="java.sql.*" %>
 
-<%@ include file = "../00_include/dbPoolingConn.jsp" %>
+<%@ include file = "../00_include/dbConn.jsp" %>
 
 <%	
 	// https://stackoverflow.com/a/27669890

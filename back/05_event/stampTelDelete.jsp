@@ -5,7 +5,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
 
-<%@ include file = "../00_include/dbPoolingConn.jsp" %>
+<%@ include file = "../00_include/dbConn.jsp" %>
 
 <%	
 	String rcv_ms_no = (request.getParameter("rcv_ms_no")==null)? "0":request.getParameter("rcv_ms_no");

@@ -5,7 +5,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
 
-<%@ include file = "../00_include/dbPoolingConn.jsp" %>
+<%@ include file = "../00_include/dbConn.jsp" %>
 
 <%	
 	String menu_name = (request.getParameter("menu_name")==null)? "0":request.getParameter("menu_name");

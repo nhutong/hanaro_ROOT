@@ -8,7 +8,7 @@
 
 <%@ page import="java.sql.*" %>
 
-<%@ include file = "../00_include/dbPoolingConn.jsp" %>
+<%@ include file = "../00_include/dbConn.jsp" %>
 <%@ include file = "../00_include/imgResize.jsp" %>
  
 <%
