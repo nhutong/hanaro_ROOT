@@ -156,7 +156,7 @@ function changeEditMode(rcvNtNo) {
 				},
 				onKeyup: function(e) {
 					const textc = getByte(document.querySelector("div.note-editable").outerText);
-					document.getElementById("countTxt").innerHTML = " ( " + textc + " / 2048 ) ";
+					document.getElementById("countTxt").innerHTML = "글자수 ( " + textc + " / 2048 ) ";
 					if (textc > 2048) {
 						$("#countTxt").css('color', 'red');
 						document.getElementById("countTxt").innerHTML += "<br>※글자 수를 줄여주세요※";
