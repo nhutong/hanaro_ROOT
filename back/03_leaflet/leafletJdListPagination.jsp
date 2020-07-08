@@ -76,7 +76,9 @@
 			+" AND ifnull(a.del_fg,'N') != 'Y' "
             +" ORDER BY a.from_date"
 			+" limit ?,? ; ";
-		Object[] paramList = new Object[]{ offset, rowCount } ;
+			System.out.println(queryList);
+			System.out.println(offset + " : " + rowCount);
+		Object[] paramList = new Object[]{ offset, rowCount + 1 } ;
 
 		results.put("list", 
 			queryRunner.query(
