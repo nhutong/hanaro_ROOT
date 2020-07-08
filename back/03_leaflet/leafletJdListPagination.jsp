@@ -39,7 +39,8 @@
 	} catch(NumberFormatException nfe) {
 	}
 
-	int offset = pageSize * (pageNumber - 1);
+	int offset = (pageSize * (pageNumber - 1));
+	if (offset != 0) { offset += 1; }
 	int rowCount = pageSize;
  
  	try {
