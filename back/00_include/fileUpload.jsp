@@ -24,8 +24,8 @@
 	    }
 	}
 
-    // 10Mbyte 제한
-    int maxSize  = 1024*1024*10;       
+    // 100Mbyte 제한
+    int maxSize  = 1024*1024*100;       
  
     // 웹서버 컨테이너 경로
     //String root = request.getSession().getServletContext().getRealPath("/");

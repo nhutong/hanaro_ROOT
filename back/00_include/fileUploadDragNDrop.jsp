@@ -66,8 +66,7 @@
 
 		String pdCode = multi.getParameter("pdCode");
 
-		for (int i=0;i< fileCnt;i++){
-			System.out.println(fileCnt);
+		for (int i=0;i< fileCnt;i++){			
 			// 파일업로드
 			uploadFile = multi.getFilesystemName("file_"+i);
 
