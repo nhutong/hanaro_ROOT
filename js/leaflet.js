@@ -136,7 +136,7 @@ function history_back(){
 
 // 좌측 메뉴리스트를 가져온다
 function getLeftNav(rcv_vm_cp_no) {
-	searchUrl += "/app/m_leaflet/m_leaflet.html?vm_cp_no="+rcv_vm_cp_no;
+	searchUrl += "/app/m_leaflet/m_leaflet.html";
     $.ajax({
         url:'/back/03_leaflet/leafletUserMenu.jsp?random=' + (Math.random()*99999), 
         data : {userCompanyNo: rcv_vm_cp_no},
@@ -166,7 +166,7 @@ function getLeftNav(rcv_vm_cp_no) {
 						$("#modify_menu_no").text( decodeURIComponent(item['menu_no']) ); //화면에 전단번호 노출!!
 						$("#modify_menu_type_cd").text( decodeURIComponent(item['menu_type_cd']) ); //화면에 전단번호 노출!!
 						$("#myplanb_menu li:nth-child("+(index+1)+")").addClass("active");	// 메뉴를 활성화 한다.
-						searchUrl += "&menu_no="+decodeURIComponent(item['menu_no']);
+						// searchUrl += "&menu_no="+decodeURIComponent(item['menu_no']);
 					}	
 				}else{
 					if ( menu_no == decodeURIComponent(item['menu_no']) ){
@@ -174,7 +174,7 @@ function getLeftNav(rcv_vm_cp_no) {
 						$("#modify_menu_no").text( decodeURIComponent(item['menu_no']) ); //화면에 전단번호 노출!!
 						$("#modify_menu_type_cd").text( decodeURIComponent(item['menu_type_cd']) ); //화면에 전단번호 노출!!						
 						$("#myplanb_menu li:nth-child("+(index+1)+")").addClass("active");	// 메뉴를 활성화 한다.
-						searchUrl += "&menu_no="+decodeURIComponent(item['menu_no']);
+						// searchUrl += "&menu_no="+decodeURIComponent(item['menu_no']);
 					}	
 				}
 			});
@@ -434,6 +434,7 @@ function delete_btn(){
 				// $('#nh_leaflet').get(0).contentDocument.location.reload();
 				const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 				var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+				searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
 				$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
 				setTimeout(function(){ cssRetach(); }, 1500);
 			}
@@ -857,6 +858,7 @@ function thumnailUpdate(imgNo){
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+			searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
 			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
 			//setTimeout(function(){ ThumCSS(); }, 1500);
 			setTimeout(function(){ cssRetach(); }, 1500);
@@ -1088,6 +1090,7 @@ $("#sale_btn").on("click",function(){
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+			searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
 			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
 			setTimeout(function(){ cssRetach(); }, 1500);
         }
@@ -1123,6 +1126,7 @@ $("#pd_name_btn").on("click",function(){
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+			searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
 			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
             $("#pd_name").val("");
             $(".leaflet_goods_name").removeClass("active");
@@ -1159,6 +1163,7 @@ $("#price_btn").on("click",function(){
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
+			searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
 			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
             $("#price").val("");
             $(".leaflet_goods_price").removeClass("active");

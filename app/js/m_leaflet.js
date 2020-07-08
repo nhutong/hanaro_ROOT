@@ -200,6 +200,8 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 		if (isInIFrame == true)
 		{
 			$(parent.document).find("#modify_jd_no").text(modify_jd_no);
+			$(parent.document).find("#rcv_vm_cp_no").val(rcv_vm_cp_no);
+			$(parent.document).find("#rcv_menu_no").val(rcv_menu_no);
 		}
 		////////부모창 전단번호 바인딩
 	});
