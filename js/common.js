@@ -227,6 +227,15 @@ function deleteAllCookies()
   location.href="../index.html";
  }
 
+ function getByte(str) {
+	var byte = 0;
+	for (var i=0; i<str.length; ++i) {
+		// 기본 한글 2바이트 처리
+		(str.charCodeAt(i) > 127) ? byte += 2 : byte++ ;
+	}
+	return byte;
+}
+
 /*공통 업로드 파일*/
 function Upload(targetInput, complete){
 	var uploadFiles = targetInput.files[0];
