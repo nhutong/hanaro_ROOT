@@ -120,7 +120,7 @@ function getJd(rcv_vm_cp_no, rcv_menu_no, rcv_jd_no, rcv_interval){
 	}
 	////////관리자 페이지에서는 숨긴 전단도 보여줌!
 
-	console.log("mLeaflet_GetJd=========================================",rcv_vm_cp_no,"/",rcv_menu_no,"/",rcv_jd_no,"/",rcv_interval);
+	// console.log("mLeaflet_GetJd=========================================",rcv_vm_cp_no,"/",rcv_menu_no,"/",rcv_jd_no,"/",rcv_interval);
     $.ajax({
         url:'/back/02_app/mLeafletGetJd.jsp?random=' + (Math.random()*99999), 
         data : {userCompanyNo: rcv_vm_cp_no, menuNo: rcv_menu_no, rcv_jd_no: rcv_jd_no, interval: rcv_interval, rcv_show_fg: rcv_show_fg},
