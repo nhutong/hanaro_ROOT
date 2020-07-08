@@ -545,9 +545,9 @@ function getPdContent(rcv_jd_no) {
 					}
 				})
 			}
-			// 스크롤 조정
-			document.scrollingElement.scrollTop = vm_sh;
 		}
+	}).done(function() {
+		document.documentElement.scrollTop = Number(vm_sh);
 	});
 }
 // 2020-06-08 정미솔 테이블 수정, class추가
