@@ -11,7 +11,7 @@
 	String jb_no = (request.getParameter("jb_no")==null)? "0":request.getParameter("jb_no");
 	
 	try{
-		// �ű��Է��� ������������ǰ�� ������������ǰ��ȣ�� select �Ѵ�.
+		// 신규입력한 전단컨텐츠상품의 전단컨텐츠상품번호를 select 한다.
 		sql = " select visible_fg from vm_jundan_banner where jb_no = "+jb_no+" ;";
 	
 		stmt = conn.createStatement();
@@ -28,7 +28,7 @@
 
 		while(rs.next()){
 
-			String visible_fg = rs.getString("visible_fg");     // �ű� ������������ǰ��ȣ	
+			String visible_fg = rs.getString("visible_fg");     // 신규 전단컨텐츠상품번호	
 	
 			if (visible_fg.equals("Y")){
 

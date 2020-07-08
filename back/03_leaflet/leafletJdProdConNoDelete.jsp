@@ -27,8 +27,8 @@
 		};
 		rs.beforeFirst();
 		while(rs.next()){
-			int ref_jd_no   = rs.getInt("ref_jd_no");           // ���ܹ�ȣ
-			int order_number = rs.getInt("order_number");       // ���ļ���
+			int ref_jd_no   = rs.getInt("ref_jd_no");           // 전단번호
+			int order_number = rs.getInt("order_number");       // 정렬순서
 		
 		
 		sql = "update vm_jundan_prod_content set order_number = order_number-1  "

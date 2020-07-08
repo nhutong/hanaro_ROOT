@@ -25,7 +25,7 @@
 	int listCount_exist = rs.getRow();
 	if(listCount_exist == 0){
 	}else{
-		//������ ���ڰ� �ƴϹǷ� �ߴ��Ѵ�.
+		//순서가 숫자가 아니므로 중단한다.
 		out.clear();
 		out.print("exist");
 		return;	
@@ -55,7 +55,7 @@
 				
 		while(rs.next()){
 			
-			String new_pd_no   = rs.getString("new_pd_no");     // �ű� �̹�����ȣ
+			String new_pd_no   = rs.getString("new_pd_no");     // 신규 이미지번호
 
 			out.clear();
 			out.print(new_pd_no);

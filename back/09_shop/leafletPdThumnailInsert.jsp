@@ -39,7 +39,7 @@
 				
 		while(rs.next()){
 			
-			String new_img_no   = rs.getString("new_img_no");     // �ű� �̹�����ȣ
+			String new_img_no   = rs.getString("new_img_no");     // 신규 이미지번호
 
 			out.clear();
 			out.print(new_img_no);
