@@ -158,7 +158,7 @@ function getLeftMenu(menu) {
 			$leftmenu.append('<li id="nh_product_prodmaster" onclick="prod_master();">상품마스터</li>');
 			if(userRoleCd === 'ROLE1'){ 
 				// 본사관리자만 표시
-				$leftmenu.append('<li id="nh_product_imgmaster" onclick="img_master();">이미지마스터</li>');
+				$leftmenu.append('<li id="nh_product_imgmaster" onclick="img_master();">이미지업로드</li>');
 			}
 			$leftmenu.append('<li id="nh_product_storeimgmaster" onclick="store_imgmaster();">판매장 등록</li>');
 			break;

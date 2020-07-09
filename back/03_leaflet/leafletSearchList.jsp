@@ -29,7 +29,7 @@
 			+" WHERE b.pd_name LIKE '%"+searchText+"%' and a.img_path <> '' and a.std_fg = 'Y' "
 			+" ) AS k "
 			+" GROUP BY k.img_path; ";
-out.print(sql);	
+        //System.out.println(sql);	
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		

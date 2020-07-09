@@ -47,14 +47,14 @@
 			if (searchText != ""){
 				sql = sql + " and ( a.pd_name like '%"+searchText+"%' or a.group_tag like '%"+searchText+"%' or a.pd_code like '%"+searchText+"%' or d.img_path like '%"+searchText+"%')";  //2020.06.18 심규문 상품검색 이미지명 추가
 			}			
-
+			//2020.07.09 심규문 상품리스트 중복 제거
+			sql = sql + "group by a.pd_no";
 			if (orderByText != ""){
 				sql = sql + " ORDER BY " + orderByText;
-			}
-			
+			}			
 			sql = sql + " LIMIT "+pageNo_new+" , 10; ";
 			
-		out.print(sql);
+		System.out.println(sql);
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
