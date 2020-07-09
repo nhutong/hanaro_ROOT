@@ -124,7 +124,7 @@
 		}
 
 		/* 엑셀메모리를 close 한다. */
-		workbook.close();
+		// workbook.close();
 		
 		out.clear();
 		out.print("success"+","+Integer.toString(all_ins_cnt)+","+Integer.toString(del_cnt)+","+sql);

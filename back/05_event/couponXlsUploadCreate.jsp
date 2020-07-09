@@ -37,7 +37,7 @@
 	// 본사관리자(ROLE1), 판매장관리자(ROLE2) 만 접근가능
 	String requiredRoles = "ROLE1,ROLE2";
 %>
-<%@ include file = "auth.jsp" %>
+<%@ include file = "../01_sign/auth.jsp" %>
 
 <%
 
@@ -49,7 +49,7 @@
 		//===============================================================================================================
 		
 		// 엑셀 업로드
-		Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
+		// Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
 		HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)));
 
 		int col = 0;
@@ -334,7 +334,7 @@
 
 		 }
 				 
-		workbook.close();
+		// workbook.close();
 		
 		out.clear();
 //		out.print("success"+ result);
