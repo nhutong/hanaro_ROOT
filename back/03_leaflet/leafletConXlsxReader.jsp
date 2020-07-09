@@ -63,9 +63,9 @@
         String excel_extension = excel_path.substring(pos + 1);
         int sheetNum = 0;
         XSSFWorkbook workBook  =  new XSSFWorkbook(new FileInputStream(new File(request.getRealPath("/upload/")+excel_path)));
-        XSSFSheet sheet    =  null;
-        XSSFRow row     =  null;
-        XSSFCell cell    =  null;
+        XSSFSheet sheet;
+        XSSFRow row;
+        XSSFCell cell;
         sheetNum = workBook.getNumberOfSheets();
 		// 엑셀 업로드
         for (int v = 0; v < sheetNum; v++) {

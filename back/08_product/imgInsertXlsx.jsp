@@ -35,7 +35,7 @@
 
 		int col = 0;
         XSSFSheet sheet = workBook.getSheetAt(0);
-        XSSFRow row = sheet.getPhysicalNumberOfRows();
+        XSSFRow row;
         XSSFCell cell;
         int rows = sheet.getPhysicalNumberOfRows();
 

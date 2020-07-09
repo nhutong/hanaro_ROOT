@@ -37,7 +37,7 @@
 	// 본사관리자(ROLE1), 판매장관리자(ROLE2) 만 접근가능
 	String requiredRoles = "ROLE1,ROLE2";
 %>
-<%@ include file = "auth.jsp" %>
+<%@ include file = "../01_sign/auth.jsp" %>
 
 <%
 
