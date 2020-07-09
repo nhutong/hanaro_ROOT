@@ -1,5 +1,5 @@
 // init iframe searchUrl
-let searchUrl = document.location.origin;
+let	searchUrl = document.location.origin + "/app/m_leaflet/m_leaflet.html";
 // 판매장 템플릿
 var tpl_tr_tab1_table = _.template('<tr id="member<%- jd_no %>" data-no="<%- jd_no %>">' +
     '<td><%- jd_no %></td>' +
@@ -136,7 +136,6 @@ function history_back(){
 
 // 좌측 메뉴리스트를 가져온다
 function getLeftNav(rcv_vm_cp_no) {
-	searchUrl += "/app/m_leaflet/m_leaflet.html";
     $.ajax({
         url:'/back/03_leaflet/leafletUserMenu.jsp?random=' + (Math.random()*99999), 
         data : {userCompanyNo: rcv_vm_cp_no},
@@ -158,8 +157,6 @@ function getLeftNav(rcv_vm_cp_no) {
 				//console.log("bbbbb");
 				$('#myplanb_menu').append('<li id="menu_'+decodeURIComponent(item['menu_no'])+'" onclick="leafletLink('+decodeURIComponent(item['menu_no'])+','+rcv_vm_cp_no+',\''+decodeURIComponent(item['menu_type_cd'])+'\');">'+decodeURIComponent(item['menu_name']).replace(/\+/g,' ')+'('+decodeURIComponent(item['menu_no'])+')</li>');
 				// 해당메뉴에 매핑된 최초전단을 설정한다.
-				console.log("menu_no 1:"+menu_no);
-				console.log("menu_no 2:"+decodeURIComponent(item['menu_no']));
 				if ( menu_no == "" ){
 					if ( index == 0 ){
 						document.getElementById("nh_leaflet").src = "../app/m_leaflet/m_leaflet.html?vm_cp_no="+rcv_vm_cp_no+"&menu_no="+decodeURIComponent(item['menu_no']); //iframe바인딩					

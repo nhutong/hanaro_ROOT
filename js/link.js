@@ -54,7 +54,7 @@ function delivery_time(){window.location.href="../delivery/delivery_time.html"} 
 function manage_order(){window.location.href="../delivery/manage_order.html"} // delivery - 주문관리
 
 //product
-function img_master(){window.location.href="../product/img_master.html"}//상품 - 이미지마스터
+function img_master(){window.location.href="../product/img_master.html"}//상품 - 이미지업로드
 function prod_master(){window.location.href="../product/prod_master.html"}//상품 - 상품마스터
 function store_imgmaster(){window.location.href="../product/store_imgmaster.html"}//상품 - 판매장상품이미지
 

@@ -239,13 +239,12 @@ function getHeaderMenu(ff_vm_cp_no) {
      data : {userCompanyNo: ff_vm_cp_no, rcv_show_fg: rcv_show_fg},
      method : 'GET' 
  }).done(function(result){
-
-     console.log("getHeaderMenu========================================="+result);
+     // console.log("getHeaderMenu========================================="+result);
      if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-         console.log("getHeaderMenu"+result);
+         // console.log("getHeaderMenu"+result);
      }else{
          console.log("============= getHeaderMenu callback ========================");
-         console.log("getHeaderMenu callback"+result);
+         // console.log("getHeaderMenu callback"+result);
          var data = JSON.parse(result);
 
          var text = '<li id="headerHome"><a href="#" onclick="home();" class="home">홈</a></li>';
@@ -339,7 +338,7 @@ function getMenuListDefault(rcvCompanyNo) {
         }else{
 
             console.log("============= getMenuListDefault callback ========================");
-            console.log(result);
+            // console.log(result);
             var data = JSON.parse(result);
 			
 			var jsonResult_menu = data.CompanyList
@@ -665,7 +664,7 @@ function logInsert(rcvNo, rcv_vm_cp_no, rcv_menu_no){
             console.log(result);
         }else{
             console.log("============= logInsert callback ========================");
-            console.log(result);
+            // console.log(result);
         }
     });
 }
