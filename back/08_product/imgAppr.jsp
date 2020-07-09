@@ -28,13 +28,16 @@
 			while(rs.next()){
 				pd_no   = rs.getString("ref_pd_no");
 				pd_code = rs.getString("pd_code");
-				if (pd_no != "" && pd_no != null) {
+				System.out.println(pd_no);
+				if (!pd_no.equals("")) {
+					System.out.println("NULL 아님");
 					sql = "update vm_product_image set std_fg = 'Y' "
 						+" where img_no = '"+img_no+"'; ";
 
 					pstmt = conn.prepareStatement(sql);
 					pstmt.executeUpdate();
 				} else {
+					System.out.println("NULL 임");
 					sql = "SELECT * FROM vm_product WHERE pd_code = " + pd_code;
 					stmt = conn.createStatement();
 					rs = stmt.executeQuery(sql);
