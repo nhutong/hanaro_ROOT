@@ -5,6 +5,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
 <%@ page import="java.io.File,java.util.Date"%>
+<%@ page import="java.io.FileInputStream"%>
 <%@ page import="org.apache.poi.hssf.usermodel.HSSFCell"%>
 <%@ page import="org.apache.poi.hssf.usermodel.HSSFRow"%>
 <%@ page import="org.apache.poi.hssf.usermodel.HSSFSheet"%>
@@ -30,7 +31,7 @@
 		
 		// 엑셀 업로드
 		// Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
-        HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File(request.getRealPath("/upload/")+excel_path)));		
+        HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File(request.getRealPath("/upload/")+excel_path)));
 
 		int col = 0;
         HSSFSheet sheet = workBook.getSheetAt(0);
@@ -115,7 +116,7 @@
 
 		 }
 		 
-		 workbook.close();
+		 // workbook.close();
 		
 		out.clear();
 		out.print("success");

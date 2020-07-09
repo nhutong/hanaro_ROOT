@@ -5,6 +5,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
 <%@ page import="java.io.File,java.util.Date"%>
+<%@ page import="java.io.FileInputStream"%>
 <%@ page import="org.apache.poi.poifs.filesystem.POIFSFileSystem"%>
 <%@ page import="org.apache.poi.ss.usermodel.Cell"%>
 <%@ page import="org.apache.poi.ss.usermodel.DateUtil"%>
@@ -32,9 +33,9 @@
 		//Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
         XSSFWorkbook workBook  =  new XSSFWorkbook(new FileInputStream(new File(request.getRealPath("/upload/")+excel_path)));
 
-		HSSFSheet sheet = workBook.getSheetAt(0);
-        HSSFRow row;
-        HSSFCell cell;
+		XSSFSheet sheet = workBook.getSheetAt(0);
+        XSSFRow row;
+        XSSFCell cell;
         int rows = sheet.getPhysicalNumberOfRows();
         int col = 0;
 
