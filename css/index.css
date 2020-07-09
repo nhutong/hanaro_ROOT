@@ -4740,11 +4740,12 @@ background-color: #ab1f1f;
     padding: 14px 5px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
+    min-width: 100px;
 }
 
 .store_imgmaster_table td{
     padding: 14px 5px;
-   font-size: 13px;
+    font-size: 13px;
     border: 1px solid #d0d0d0;
     background-color: #fafafa;
 }
