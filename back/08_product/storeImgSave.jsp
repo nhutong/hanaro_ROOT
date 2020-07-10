@@ -18,10 +18,13 @@
 
 	try{
 
-		//sql = "update vm_product_image set std_fg = 'N' where img_no = "+img_no;
+		// sql = "update vm_product_image set std_fg = 'S' where img_no = "+img_no;
+
+		// pstmt = conn.prepareStatement(sql);
+		// pstmt.executeUpdate();
 
 		sql = "update vm_product_image "
-			+" set pd_code = '"+pd_code+"', group_tag = '"+group_tag+"' "
+			+" set pd_code = '"+pd_code+"', group_tag = '"+group_tag+"'"
 			+" where img_no = '"+img_no+"' ";
 
 		pstmt = conn.prepareStatement(sql);

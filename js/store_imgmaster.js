@@ -8,16 +8,34 @@ $(function () {
 	getLeftMenu('product');
 	$("#nh_product_storeimgmaster").addClass("active");
 
-	imgList();
+	/* 현재로그인한 유저의 판매장번호 정보를 정보를 담는다. */
+	CuserCompanyNo = getCookie("userCompanyNo");
+
+	/* 우상단 선택된 판매장번호 정보를 담는다. */
+	onSelectCompanyNo = getCookie("onSelectCompanyNo");
+
+	var targetCompanyNo = "";
+	if (onSelectCompanyNo != "")
+	{
+		if (onSelectCompanyNo != CuserCompanyNo)
+		{
+			targetCompanyNo = onSelectCompanyNo;
+		}else{
+			targetCompanyNo = CuserCompanyNo;
+		}
+	}else{
+		targetCompanyNo = CuserCompanyNo;
+	}
+	storeMenuPageNavi(1, targetCompanyNo);
 });
 
 
 // 상품리스트를 가져온다
-function imgList() {
-
+function imgList(nowPage) {
+	if (!nowPage) nowPage = 1;
 	$.ajax({
         url:'/back/08_product/storeImgList.jsp?random=' + (Math.random()*99999), 
-        data : {vm_cp_no: getCookie("userCompanyNo")},
+        data : {vm_cp_no: getCookie("userCompanyNo"), n_page: nowPage},
         method : 'GET' 
     }).done(function(result){
 
@@ -42,7 +60,7 @@ function imgList() {
                 text +='    <td>'+item['pd_name']+'</td>';
 				//text +='    <td>'+item['group_tag']+'</td>';
 				text +='	<td><input type="text" value="'+item['group_tag']+'" id="groupTag_'+item['img_no']+'" class="groupTagClass" onkeyup="searchFunc(this);" onblur="focusOut();">';							
-                text +='    <td><img src="/upload/'+item['img_path']+'" alt="이미지"></td>';
+                text +='    <td data-toggle="modal" data-target="#imgmasterModal" onclick="javascript:viewBigImage(\''+item['img_path']+'\')"><img src="/upload/'+item['img_path']+'" alt="이미지"></td>';
                 text +='    <td>'+item['img_path']+'</td>';
                 text +='    <td>'+item['vm_cp_name']+'</td>';
                 text +='    <td>'+item['vm_name']+'</td>';
@@ -74,9 +92,15 @@ function imgList() {
 
 }
 
+// 이미지 크게보기
+function viewBigImage(path) {
+	const imgPath = '/upload/' + path;
+	document.getElementById("input_img_Data").innerHTML = '<img src="' + imgPath + '" />';
+}
+
 function imgAppr(rcvImgNo){
 	$.ajax({
-		url:'/back/08_product/imgAppr.jsp?random=' + (Math.random()*99999),
+		url:'/back/08_product/storeImgAppr.jsp?random=' + (Math.random()*99999),
 		data : { img_no: rcvImgNo },
 		method : 'GET' 
 	}).done(function(result){
@@ -191,4 +215,60 @@ function keywordList(rcvKeyword) {
         }
     });
 
+}
+
+function storeMenuPageNavi(rcvPageNo, targetCompanyNo) {
+	$.ajax({
+        url:'/back/08_product/storePageNavi.jsp?random=' + (Math.random()*99999), 
+        data : {pageNo: rcvPageNo ,vm_cp_no: targetCompanyNo},
+        method : 'GET' 
+    }).done(function(result){
+
+        console.log("prodlist_paging=========================================");
+        if(result == ('NoN') || result == 'list error' || result == 'empty'){
+            console.log(result);
+        }else{
+            $("#pagination").html("");
+            console.log("============= prodlist_paging callback ========================");
+            console.log(result);
+            var data = JSON.parse(result);
+
+			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
+			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
+			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
+			var pre_no = parseInt(rcvPageNo) - 6;
+			var next_no = parseInt(rcvPageNo) + 6;
+
+			var text = "";
+
+           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -5)
+			{
+			}else if(total_paging_cnt < 5 || pre_no < 1){
+				text += '<li class="page-item"><a class="page-link" onclick="storeMenuPageNavi(1, '+targetCompanyNo+')" href="javascript:void(0);">«</a></li>';
+			}else{
+				text += '<li class="page-item"><a class="page-link" onclick="storeMenuPageNavi('+pre_no+', '+targetCompanyNo+')" href="javascript:void(0);">«</a></li>';
+			}
+
+			for( var k = paging_init_num; k <= paging_end_num; k++){
+				const className = (parseInt(rcvPageNo) == k) ? "page-item active" : "page-item";
+				const binstr = "";
+				text += '<li class="'+className+'"><a class="page-link" onclick="storeMenuPageNavi('+k+', '+targetCompanyNo+')" href="javascript:void(0);">'+k+'</a></li>';
+				// if (parseInt(rcvPageNo) == k)
+				// {
+				// 	text += '<li class="page-item active"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				// }else{
+				// 	text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				// }
+			}
+
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)
+			{
+			}else{
+				text += '<li class="page-item"><a class="page-link" onclick="storeMenuPageNavi('+next_no+', '+targetCompanyNo+')" href="javascript:void(0);">»</a></li>';
+			}
+			$('#pagination').empty();
+			$('#pagination').append(text);	
+		}
+    });
+	imgList(rcvPageNo);
 }

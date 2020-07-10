@@ -36,7 +36,7 @@
 			</ul>
 		</div>
 
-		<div class="myplanb_con">
+		<div class="myplanb_con" style="overflow-x: scroll;">
 			<!-- 200625 김수경 화면 정비(메뉴 타이틀과 매장 셀렉트박스 한줄로) -->
 			<!-- <h4>상품 &gt; 판매장 등록</h4> -->
 			<div class="h6" style="width:70%; padding:30px; float:left;">상품 &gt; 판매장 등록</div>
@@ -64,14 +64,32 @@
                        </div>
                        <!--store_imgmaster_wrap end-->
 						<!--pagination start-->
-						<div class="pagination_wrap">
-							<ul class="pagination justify-content-center" id="pagination" style="width : 50%; margin : 10px auto;">
-							</ul>
-					 </div>
+						<div class="pagination" style="width : inherit;margin: 0;justify-content: center;">
+                            <div class="pagination_wrap">
+                                <ul class="pagination justify-content-center" id="pagination" style="width : 50%; margin : 10px auto;">
+                                </ul>
+                            </div>
+                        </div>
                          <!--pagination end-->
                     </div>
                 </div>
-			
+				<div class="modal fade" id="imgmasterModal" tabindex="-1" role="dialog" aria-labelledby="imgmasterModal" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					  <div class="modal-content">
+						<div class="modal-header" style="padding-top: 20px;">
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true" style="font-size: 25px;">&times;</span>
+						  </button>
+						</div>
+						<div class="modal-body" id="input_img_Data" style="text-align: center;">
+						</div>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-secondary modal_cancel_btn" data-dismiss="modal">취소</button>
+						  <!-- <button type="button" class="btn btn-primary changeBtn" onclick="changeThumbnailData()" style="font-size: 16px;font-weight: 400;padding: 6px 12px;">변경</button> -->
+						</div>
+					  </div>
+					</div>
+				  </div>
 			<div class="myplanb_footer">
 				㈜농협유통 Co. ltd. All right reserved.
 			</div>
