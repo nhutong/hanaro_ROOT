@@ -53,9 +53,13 @@ function imgList() {
 				if (getCookie("userRoleCd") == "ROLE1"){
 					//console.log("aaaa"+item['std_fg']);
 					if ( item['std_fg'] == null ){
-						text +='      <button class="prod_img_del" onclick="delReason(\''+item['img_no']+'\');">삭제</button>';
-						text +='      <button class="prod_img_save" onclick="imgSave(\''+item['img_no']+'\');">저장</button>';					
-						text +='      <button class="prod_img_appr" onclick="imgAppr(\''+item['img_no']+'\');">승인</button>';	
+						// 200709 김수경 status 조작버튼을 아이콘으로 간소화
+						// text +='      <button class="prod_img_del" onclick="delReason(\''+item['img_no']+'\');">삭제</button>';
+						// text +='      <button class="prod_img_save" onclick="imgSave(\''+item['img_no']+'\');">저장</button>';					
+						// text +='      <button class="prod_img_appr" onclick="imgAppr(\''+item['img_no']+'\');">승인</button>';	
+						text +='      <i class="fa fa-trash" style="padding:0px 5px 0px 5px; font-size:20px; color:red; cursor:pointer;" onclick="delReason(\''+item['img_no']+'\');"></i>';
+						text +='      <i class="fa fa-save" style="padding:0px 5px 0px 5px; font-size:20px; color:#555; cursor:pointer;" onclick="imgSave(\''+item['img_no']+'\');"></i>';					
+						text +='      <i class="fa fa-check-circle" style="padding:0px 5px 0px 5px; font-size:20px; color:#55b190; cursor:pointer;" onclick="imgAppr(\''+item['img_no']+'\');"></i>';	
 					}
 				}else{
 
