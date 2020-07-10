@@ -1,5 +1,5 @@
 // init iframe searchUrl
-let	searchUrl = document.location.origin + "/app/m_leaflet/m_leaflet.html";
+const	searchUrl = document.location.origin + "/app/m_leaflet/m_leaflet.html";
 // 판매장 템플릿
 var tpl_tr_tab1_table = _.template('<tr id="member<%- jd_no %>" data-no="<%- jd_no %>">' +
     '<td><%- jd_no %></td>' +
@@ -431,8 +431,8 @@ function delete_btn(){
 				// $('#nh_leaflet').get(0).contentDocument.location.reload();
 				const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 				var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
-				searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
-				$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
+				const searchUrlFix = searchUrl + "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
+				$('#nh_leaflet').get(0).contentDocument.location.href = searchUrlFix + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
 				setTimeout(function(){ cssRetach(); }, 1500);
 			}
 		});
@@ -855,8 +855,8 @@ function thumnailUpdate(imgNo){
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
-			searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
-			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
+			const searchUrlFix = searchUrl + "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
+			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrlFix + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
 			//setTimeout(function(){ ThumCSS(); }, 1500);
 			setTimeout(function(){ cssRetach(); }, 1500);
 		}
@@ -1087,8 +1087,8 @@ $("#sale_btn").on("click",function(){
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
-			searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
-			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
+			const searchUrlFix = searchUrl + "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
+			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrlFix + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
 			setTimeout(function(){ cssRetach(); }, 1500);
         }
     });
@@ -1123,8 +1123,8 @@ $("#pd_name_btn").on("click",function(){
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
-			searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
-			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
+			const searchUrlFix = searchUrl + "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
+			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrlFix + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
             $("#pd_name").val("");
             $(".leaflet_goods_name").removeClass("active");
 			setTimeout(function(){ cssRetach(); }, 1500);
@@ -1160,8 +1160,8 @@ $("#price_btn").on("click",function(){
 			// $('#nh_leaflet').get(0).contentDocument.location.reload();
 			const fix_jd_no = $('#nh_leaflet').get(0).contentDocument.body.querySelector(".date_item").getAttribute("data-jd_no");
 			var scrollHeight = $('#nh_leaflet').get(0).contentDocument.documentElement.scrollTop;
-			searchUrl += "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
-			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrl + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
+			const searchUrlFix = searchUrl + "?vm_cp_no=" + document.getElementById("rcv_vm_cp_no").value + "&menu_no=" + document.getElementById("rcv_menu_no").value;
+			$('#nh_leaflet').get(0).contentDocument.location.href = searchUrlFix + "&jd_no="+fix_jd_no + "&scroll_Height=" + scrollHeight;
             $("#price").val("");
             $(".leaflet_goods_price").removeClass("active");
 			// setTimeout(function(){ cssRetach(); }, 1500);
