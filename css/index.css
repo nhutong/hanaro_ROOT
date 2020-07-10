@@ -1336,7 +1336,7 @@ span.shopUrl:hover{
     border:1px solid #e0e0e0;
     background-color: #eaeaea;
     margin: 0px;
-    height: 30px;    
+    height: 30px;
 }
 #modify_jd_no{
     display: inline-block;
@@ -1347,6 +1347,10 @@ span.shopUrl:hover{
     border:1px solid #e0e0e0;
     text-align: center;
     height: 30px;
+    max-width: 80px;
+    white-space: nowrap;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;    
 }
 
 .modify_menu_no_name{
@@ -1356,7 +1360,7 @@ span.shopUrl:hover{
     border:1px solid #e0e0e0;
     background-color: #eaeaea;
     margin: 0px;
-    height: 30px;    
+    height: 30px;
 }
 #modify_menu_no{
     display: inline-block;
@@ -1367,6 +1371,9 @@ span.shopUrl:hover{
     border:1px solid #e0e0e0;
     text-align: center;
     height: 30px;
+    white-space: nowrap;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
 }
 .modify_menu_type_cd_name{
     display: inline-block;
@@ -1375,7 +1382,7 @@ span.shopUrl:hover{
     border:1px solid #e0e0e0;
     background-color: #eaeaea;
     margin: 0px;
-    height: 30px;    
+    height: 30px;
 }
 #modify_menu_type_cd{
     display: inline-block;
@@ -1394,7 +1401,7 @@ span.shopUrl:hover{
     border:1px solid #e0e0e0;
     background-color: #eaeaea;
     margin: 0px;
-    height: 30px;    
+    height: 30px;
 }
 #modify_jd_prod_con_no{
     display: inline-block;
@@ -1405,6 +1412,10 @@ span.shopUrl:hover{
     border:1px solid #e0e0e0;
     text-align: center;
     height: 30px;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;    
 }
 #modify_jd_prod_con_name{
     display: inline-block;
@@ -1415,6 +1426,10 @@ span.shopUrl:hover{
     border:1px solid #e0e0e0;
     text-align: center;
     height: 30px;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
