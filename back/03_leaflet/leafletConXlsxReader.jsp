@@ -100,7 +100,8 @@
                 col = 1;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                String string1 = cell.getStringCellValue().trim();
+                //String string1 = cell.getStringCellValue().trim();
+                String string1 = cell.toString().replaceAll(",","").replaceAll("'","");
                 if ( string1.equals("") ){
                     //상품코드를 입력하지 않았기 때문에 중단한다.
                     out.clear();
@@ -109,6 +110,8 @@
                 }else{
                     string1 = strEncode(string1);
                     if ( isNumeric(string1) == true ){
+                        string1 = String.valueOf(Math.round(Double.parseDouble(string1)));
+                        System.out.println(string1);
                     }else{
                         //상품코드가 숫자가 아니므로 중단한다.
                         out.clear();
@@ -145,7 +148,8 @@
                 col = 4;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                //String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                String string3 = cell.toString().replaceAll(",","").replaceAll("'","");
                 if ( string3.equals("") ){
                     //판매가 존재하지 않으므로 중단한다.
                     out.clear();
@@ -153,6 +157,8 @@
                     return;
                 }else{
                     if ( isNumeric(string3) == true ){
+                        string3 = String.valueOf(Math.round(Double.parseDouble(string3)));
+                        System.out.println(string3);
                     }else{
                         //판매가가 숫자가 아니므로 중단한다.
                         out.clear();
@@ -165,10 +171,13 @@
                 col = 7;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                String string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                //String string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                String string4 = cell.toString().replaceAll(",","").replaceAll("'","");
                 if ( string4.equals("") ){
                 }else{
                     if ( isNumeric(string4) == true ){
+                        string4 = String.valueOf(Math.round(Double.parseDouble(string3)));
+                        System.out.println(string4);
                     }else{
                         //카드할인이 숫자가 아니므로 중단한다.
                         out.clear();
@@ -242,12 +251,14 @@
                 // 쿠폰할인
                 col = 10;
                 cell = row.getCell(col);
-                if (cell == null) { cell = row.createCell(col); }
-                System.out.println(cell.getStringCellValue() + " : is string9");
-                String string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                if (cell == null) { cell = row.createCell(col); }                
+                //String string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                String string9 = cell.toString().replaceAll(",","").replaceAll("'","");
                 if ( string9.equals("") ){
                 }else{
                     if ( isNumeric(string9) == true ){
+                        string9 = String.valueOf(Math.round(Double.parseDouble(string3)));
+                        System.out.println(string9);
                     }else{
                         //쿠폰할인이 숫자가 아니므로 중단한다.
                         out.clear();

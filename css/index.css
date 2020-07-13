@@ -855,6 +855,8 @@ span.shopUrl:hover{
 .home_edit_wrap{
     display: inline-block;
     vertical-align: top;
+    width: 50%;
+    margin: 0px 0px 0px 20px
 }
 
 
@@ -873,7 +875,7 @@ span.shopUrl:hover{
 }
 
 .home_edit_btm table{
-    width: 500px;
+    width: 100%;
     font-size: 14px;
     border: 1px solid #d0d0d0;
 }
