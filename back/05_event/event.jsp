@@ -44,7 +44,7 @@
 
 	int offset = pageSize * (pageNumber - 1);
 	int rowCount = pageSize;
-	userCompanyNo = Integer.parseInt(company);
+	userCompanyNo = "".equals(company) ? 0 : Integer.parseInt(company);
  
  	try {
 		QueryRunner queryRunner = new QueryRunner();
@@ -58,7 +58,7 @@
 		String queryTotal =
 			" SELECT COUNT(*) AS count"  +
 			" FROM vm_event AS p " +
-			("0".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
 			("".equals(eventNo) ? "" : " AND event_no = " + eventNo ) +
 			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
 			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
@@ -87,7 +87,7 @@
 			" 		 case when activated = 'Y' then '반영' else '미반영' end as activated_status, " +			
 			"		 activated, link_url, eventLink " +
 			" FROM hanaro.vm_event p " +
-			("0".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
 			("".equals(eventNo) ? "" : " AND event_no = " + eventNo )+	
 			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
 			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
