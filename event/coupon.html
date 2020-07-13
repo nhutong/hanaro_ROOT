@@ -19,7 +19,8 @@
 <!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
 	<link rel="stylesheet" href="../css/all.css">
 
-    <link href="../css/pagination.css" rel="stylesheet"><!-- Pagination.js : https://pagination.js.org/ -->	
+	<link href="../css/pagination.css" rel="stylesheet"><!-- Pagination.js : https://pagination.js.org/ -->
+	<link rel="stylesheet" href="/css/jqueryui.com.1.8.22.jquery-ui.css" />
    
 </head>
 
@@ -40,26 +41,36 @@
 			<!-- 200625 김수경 화면 정비(메뉴 타이틀과 매장 셀렉트박스 한줄로) -->
 			<!-- <h4>이벤트&sol;쿠폰 &gt; 쿠폰</h4> -->
 			<div class="h6" style="width:70%; padding:30px; float:left;">이벤트&sol;쿠폰 &gt; 쿠폰</div>
+			<div class="stat_period_wrap coupon_search_wrap">
+			    <select name="statStore"  id="sort_select">
+			    </select>
+			    <div class="coupon_search_wrap">
+					<div class="coupon_search_date" id="coupon_search_date">                       
+						<input type="text" placeholder="2020-02-01" id="coupon_start_date">~<input type="text" placeholder="2020-02-07" id="coupon_end_date">
+					</div>					
+					<select class="search_select">
+						<option value="coupon_name">쿠폰명</option>
+						<option value="product_code">상품코드</option>
+                        <option value="reg_name">등록자</option>
+                    </select>
+					<input id="keyword2" type="text" placeholder="검색어를 입력해 주세요." onKeyUp="javascript:searchEnter()">
+                    <button id="btnSearch">조회</button>
+                    <span id="excel_down_stat" style="cursor: pointer; width: 11%;">
+                        <!-- <input type="checkbox" id="YNstatusChange" class="form-control" style="width: 30px;margin-right: 5px;"/>
+                        <span id="YNstatus" style="cursor: auto;">반영</span>
+                        <img src="../images/excel.png" alt="엑셀다운로드">엑셀 -->
+                        <select class="search_select" id="show_flag_status" style="width: 100%;">
+                            <option value="%%" selected>전체</option>
+                            <option value="APPLY">반영</option>
+                            <option value="NOAPPLY">미반영</option>
+                        </select>
+                    </span>				
+				</div>			    
+			</div>
                 <div class="tab_container">
                     <div id="tab1" class="tab_content">
                         <!--coupon_wrap start-->
                         <div class="coupon_wrap">
-							<div class="guide_tip">
-							   ※[쿠폰 일괄등록] 상품쿠폰만 가능하며, 미반영 상태로 리스팅 되므로 쿠폰명을 눌러서 상태를 반영으로 변경하시기 바랍니다.
-							</div>
-                            <div class="coupon_upload_wrap">
-								<span class="coupon_upload_form">* 쿠폰 양식 다운로드 ▶ </span> <a href="/download/coupon_upload.xls">coupon_upload.xls</a>
-								<div class="coupon_upload_file_add">
-									<form enctype="multipart/form-data" action="/include/fileUpload.jsp" method="POST">
-										<input type="file" id="uploadFile" name="uploadFile">
-									</form>
-									<input type="hidden" id="excel_path" value="">
-									<button class="coupon_submit" id="couponListFileUpload" onclick="coupon_file_upload()">파일 업로드</button>
-								</div>
-								<button id="couponUploadSubmit" onclick="coupon_upload_create();">
-									일괄 등록하기
-								</button>								                                
-                            </div>
                             <table class="coupon_table" style="table-layout : fixed; word-break : break-all;">
                                 <thead>
 									<tr>
@@ -86,8 +97,27 @@
                         <!--pagination start-->
                          <div class="pagination">
 							<div id="pagination" class="pagination_wrap"></div>
-						</div>                               
-                         <!--pagination end-->
+						</div>
+						 <!--pagination end-->
+						<div style="margin-left: 40px;display: flex; width: 900px;">
+						<div style="width: 260%;">
+						 <div class="guide_tip" style="text-align:left;">
+							※[쿠폰 일괄등록] 상품쿠폰만 가능하며, 미반영 상태로 리스팅 되므로 쿠폰명을 눌러서 상태를 반영으로 변경하시기 바랍니다.
+						 </div>
+						 <div class="coupon_upload_wrap" style="text-align:left;">
+							 <span class="coupon_upload_form">* 쿠폰 양식 다운로드 ▶ </span> <a href="/download/coupon_upload.xls">coupon_upload.xls</a>
+							 <div class="coupon_upload_file_add">
+								 <form enctype="multipart/form-data" action="/include/fileUpload.jsp" method="POST">
+									 <input type="file" id="uploadFile" name="uploadFile">
+								 </form>
+								 <input type="hidden" id="excel_path" value="">
+								 <button class="coupon_submit" id="couponListFileUpload" onclick="coupon_file_upload()">파일 업로드</button>
+							 </div>
+							 <button id="couponUploadSubmit" onclick="coupon_upload_create();">
+								 일괄 등록하기
+							 </button>								                                
+						 </div>
+						</div>
                          <!--submit_btn start-->
                          <div class="coupon_submit_wrap">
                              <button id="couponSubmit" onclick="coupon_create();">
@@ -95,6 +125,7 @@
                              </button>
                          </div>
                          <!--submit_btn end-->
+						</div>
                     </div>
                 </div>
 			
@@ -113,8 +144,35 @@
 <script src="../js/pagination.min.js"></script><!-- Pagination.js : https://pagination.js.org/ -->
 <script src="../js/popper.min.js" ></script>
 <script src="../js/bootstrap.min.js"></script>
+<script language="javascript" src="/js/google.jqueryui.1.8.22.jquery-ui.min.js"></script>
+<script>
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+	$.datepicker.setDefaults({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		yearSuffix: '년'
+	});
+	$(function() {
+		$("#coupon_start_date").datepicker();
+		$("#coupon_end_date").datepicker();
+	});
+</script>
 <script src="../js/coupon/coupon.js"></script>
-
 
 </body>
 </html>

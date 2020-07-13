@@ -19,18 +19,80 @@ $(function () {
 	getLeft();
 	getLeftMenu('event');
 	$("#nh_event_coupon").addClass("active");
-	
-	getCouponList();
 
 	// 권한코드 가져오기
 	var userRoleCd = getCookie('userRoleCd');
 	
+	/* 현재로그인한 유저의 판매장번호 정보를 정보를 담는다. */
+	CuserCompanyNo = getCookie("userCompanyNo");
+
+	/* 우상단 선택된 판매장번호 정보를 담는다. */
+	onSelectCompanyNo = getCookie("onSelectCompanyNo");
+
+	var targetCompanyNo = "";
+	if (onSelectCompanyNo != "")
+	{
+		if (onSelectCompanyNo != CuserCompanyNo)
+		{
+			targetCompanyNo = onSelectCompanyNo;
+		}else{
+			targetCompanyNo = CuserCompanyNo;
+		}
+	}else{
+		targetCompanyNo = CuserCompanyNo;
+	}
+
+	/* 최초 로그인한 유저번호로 바인딩한다. */
+	getManagerList(CuserCompanyNo, targetCompanyNo);
+	/*input box 일자 기본값 셋팅*/
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = leadingZeros(today.getMonth()+1,2);
+	var sday = leadingZeros(today.getDate()-2,2);
+	var eday = leadingZeros(today.getDate(),2);
+
+	// $("#excel_start_date").val(year+'-'+month+'-'+sday);
+	// $("#excel_end_date").val(year+'-'+month+'-'+eday);		
+
+	$("#coupon_start_date").val(year+'-'+month+'-'+sday);
+	$("#coupon_end_date").val(year+'-'+month+'-'+eday);	
+
+	$("#sort_select").on("change",function(){
+		if ($("#sort_select").val())
+		{
+			setCookie1("onSelectCompanyNo",$("#sort_select").val());
+			//noticeCont(getCookie("onSelectCompanyNo"));
+			getCouponList(getCookie("onSelectCompanyNo"));
+			localStorage.setItem("vm_cp_no",$("#sort_select").val());
+		}
+	});
+
+	$("#btnSearch").on("click",function(){
+		getCouponList(getCookie("onSelectCompanyNo"));
+	});
+	$("#show_flag_status").on("change", function() {
+		getCouponList(getCookie("onSelectCompanyNo"));
+	});
+	getCouponList();
 });
 
-function getCouponList(){
+function searchEnter(e) {
+	getCouponList(getCookie("onSelectCompanyNo"));
+}
 
+function getCouponList(compNo){
+	if (!compNo) compNo = getCookie("onSelectCompanyNo");
+	const s_date = $("#coupon_start_date").val();
+	console.log(s_date);
+	const e_date = $("#coupon_end_date").val();
+	const category = $(".search_select").val();
+	const keyword = $("#keyword2").val();
+	const flag = $("#show_flag_status").val();
+	let dataSourceUrl = '/back/05_event/coupon.jsp?company='+compNo+'&s_date='+s_date+'&e_date='+e_date+'&category='+category+'&keyword='+keyword;
+	dataSourceUrl += "&status="+flag;
+	console.log(dataSourceUrl);
 	$('#pagination').pagination({
-		dataSource: '/back/05_event/coupon.jsp',
+		dataSource: dataSourceUrl,
 		locator: 'list',
 		totalNumberLocator: function(data) {
 			return data.total;
