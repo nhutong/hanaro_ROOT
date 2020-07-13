@@ -11,6 +11,11 @@
 	String companyNo = (request.getParameter("companyNo")==null)? "0":request.getParameter("companyNo");
 	String pageNo = (request.getParameter("pageNo")==null)? "0":request.getParameter("pageNo");
 	Integer pageNo_new = Integer.parseInt(pageNo);
+	String s_date = request.getParameter("s_date") ==  null ? "" : request.getParameter("s_date").trim();
+	String e_date = request.getParameter("e_date") ==  null ? "" : request.getParameter("e_date").trim();
+	String category = request.getParameter("category") ==  null ? "" : request.getParameter("category").trim();
+	String keyword = request.getParameter("keyword") ==  null ? "" : request.getParameter("keyword").trim();
+	String status = request.getParameter("status") ==  null ? "" : request.getParameter("status").trim();
 
 //	페이징 - 한페이지에 리스팅 row 갯수
 	Integer list_size = 6;
@@ -29,12 +34,15 @@
 		+ "  on p.vm_cp_no = a.vm_cp_no ";
 //		+ "  inner join vm_event as b "
 //		+ "  on p.event_no = b.event_no ";
-        
 		if ( companyNo.equals("0") ){
-			sql = sql + " "; 	
+			sql = sql + " WHERE 1=1 "; 	
 		}else{
 			sql = sql + "  WHERE p.vm_cp_no = '"+companyNo+"' "; 
 		}
+		sql += ("".equals(s_date) ? "" : " AND '" + s_date + "' <= pm_to_date ");
+		sql += ("".equals(e_date) ? "" : " AND pm_to_date <= '" + e_date + "' ");
+		sql += ("".equals(keyword) ? "" : " AND " + category + " LIKE '%" + keyword + "%'");
+		sql += ("".equals(status) ? "" : " AND pm_status LIKE '" + status + "'");
 	
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);

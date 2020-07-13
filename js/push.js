@@ -51,23 +51,51 @@ $(function () {
 		}else{
 			setCookie1("onSelectCompanyNo",$("#sort_select").val());
 			prodList(pageNo, getCookie("onSelectCompanyNo"));
-			prodList_paging(pageNo, getCookie("onSelectCompanyNo"));
+			// prodList_paging(pageNo, getCookie("onSelectCompanyNo"));
 			localStorage.setItem("vm_cp_no",$("#sort_select").val());
 		}
 	});
 	
+	$("#btnSearch").on("click",function(){
+		prodList(pageNo, getCookie("onSelectCompanyNo"));
+	});
+	$("#show_flag_status").on("change", function() {
+		prodList(pageNo, getCookie("onSelectCompanyNo"));
+	});
+
+	/*input box 일자 기본값 셋팅*/
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = leadingZeros(today.getMonth()+1,2);
+	var sday = leadingZeros(today.getDate()-2,2);
+	var eday = leadingZeros(today.getDate(),2);
+
+	// $("#excel_start_date").val(year+'-'+month+'-'+sday);
+	// $("#excel_end_date").val(year+'-'+month+'-'+eday);		
+
+	$("#push_start_date").val(year+'-'+month+'-'+sday);
+	$("#push_end_date").val(year+'-'+month+'-'+eday);	
+	
 	prodList(pageNo, targetCompanyNo);
-	prodList_paging(pageNo, targetCompanyNo);
+	// prodList_paging(pageNo, targetCompanyNo);
 
 });
 
+function searchEnter(e) {
+	prodList(pageNo, getCookie("onSelectCompanyNo"));
+}
 // 상품리스트를 가져온다
 function prodList(rcvPageNo, rcvCompanyNo) {
+	const s_date = $("#push_start_date").val();
+	const e_date = $("#push_end_date").val();
+	const category = $(".search_select").val();
+	const keyword = $("#keyword2").val();
+	const status = $("#show_flag_status").val();
 
 	$.ajax({
         url:'/back/10_push/postList.jsp?random=' + (Math.random()*99999), 
-        data : {pageNo: rcvPageNo ,companyNo: rcvCompanyNo},
-        method : 'GET' 
+        data : {pageNo: rcvPageNo ,companyNo: rcvCompanyNo, s_date, e_date, category, keyword, status},
+        method : 'POST' 
     }).done(function(result){
 		var resultSplit = result.trim().split(",");
         //console.log("noticeList=========================================");
@@ -101,17 +129,25 @@ function prodList(rcvPageNo, rcvCompanyNo) {
 			});
 			$("#pushList").empty();
 			$("#pushList").append(text);
-        }
+		}
+		prodList_paging(rcvPageNo, targetCompanyNo);
     });
 
 }
-
+function changePageing(rcvPageNo) {
+	prodList(rcvPageNo, getCookie("onSelectCompanyNo"));
+}
 // 상품리스트 페이징를 가져온다
 function prodList_paging(rcvPageNo, rcvCompanyNo) {
+	const s_date = $("#push_start_date").val();
+	const e_date = $("#push_end_date").val();
+	const category = $(".search_select").val();
+	const keyword = $("#keyword2").val();
+	const status = $("#show_flag_status").val();
 
 	$.ajax({
         url:'/back/10_push/postList_paging.jsp?random=' + (Math.random()*99999), 
-        data : {pageNo: rcvPageNo ,companyNo: rcvCompanyNo},
+        data : {pageNo: rcvPageNo ,companyNo: rcvCompanyNo, s_date, e_date, category, keyword, status},
         method : 'GET' 
     }).done(function(result){
 
@@ -135,24 +171,25 @@ function prodList_paging(rcvPageNo, rcvCompanyNo) {
            if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -5)
 			{
 			}else if(total_paging_cnt < 5 || pre_no < 1){
-				text += '<li class="page-item"><a class="page-link" href="push.html?pageNo=1&searchText=">«</a></li>';
+				text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing(1)">«</a></li>';
 			}else{
-				text += '<li class="page-item"><a class="page-link" href="push.html?pageNo='+pre_no+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">«</a></li>';
+				text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing('+pre_no+')">«</a></li>';
 			}
 
 			for( var k = paging_init_num; k <= paging_end_num; k++){
 				if (parseInt(rcvPageNo) == k)
 				{
-					text += '<li class="page-item active"><a class="page-link" href="push.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+					console.log(k + " : " + parseInt(rcvPageNo) + " : this page info");
+					text += '<li class="page-item active"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing('+k+')">'+k+'</a></li>';
 				}else{
-					text += '<li class="page-item"><a class="page-link" href="push.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+					text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing('+k+')">'+k+'</a></li>';
 				}
 			}
 
 			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)
 			{
 			}else{
-				text += '<li class="page-item"><a class="page-link" href="push.html?pageNo='+next_no+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">»</a></li>';
+				text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing('+next_no+')">»</a></li>';
 			}
 			$('#pagination').empty();
 			$('#pagination').append(text);	
