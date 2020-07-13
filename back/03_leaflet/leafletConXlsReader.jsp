@@ -110,6 +110,8 @@
                 }else{
                     string1 = strEncode(string1);
                     if ( isNumeric(string1) == true ){
+                        string1 = String.valueOf(Math.round(Double.parseDouble(string1)));
+                        System.out.println(string1);
                     }else{
                         //상품코드가 숫자가 아니므로 중단한다.
                         out.clear();
@@ -155,6 +157,8 @@
                     return;
                 }else{
                     if ( isNumeric(string3) == true ){
+                        string3 = String.valueOf(Math.round(Double.parseDouble(string3)));
+                        System.out.println(string3);
                     }else{
                         //판매가가 숫자가 아니므로 중단한다.
                         out.clear();
@@ -172,6 +176,8 @@
                 if ( string4.equals("") ){
                 }else{
                     if ( isNumeric(string4) == true ){
+                        string4 = String.valueOf(Math.round(Double.parseDouble(string4)));
+                        System.out.println(string4);
                     }else{
                         //카드할인이 숫자가 아니므로 중단한다.
                         out.clear();
