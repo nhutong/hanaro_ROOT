@@ -28,29 +28,46 @@
 	int pageNumber = 1;
 	String coupon_no = "";
 	String coupon_code = "";
+	String company = "";
+	String s_date = request.getParameter("s_date") ==  null ? "2019-01-01" : request.getParameter("s_date").trim();
+	String e_date = request.getParameter("e_date") ==  null ? "2999-12-31" : request.getParameter("e_date").trim();
+	String category = request.getParameter("category") ==  null ? "" : request.getParameter("category").trim();
+	String keyword = request.getParameter("keyword") ==  null ? "" : request.getParameter("keyword").trim();
+	String status = request.getParameter("status") ==  null ? "" : request.getParameter("status").trim();
 	
 	try {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber") == null ? "1" : request.getParameter("pageNumber").trim(), 10);
 		pageSize = Integer.parseInt(request.getParameter("pageSize") == null ? "8" : request.getParameter("pageSize").trim(), 10);
 		coupon_no = request.getParameter("coupon_no") == null ? "" : request.getParameter("coupon_no");
 		coupon_code = request.getParameter("coupon_code") == null ? "" : request.getParameter("coupon_code");
+		company = request.getParameter("company") == null ? "" : request.getParameter("company");
 	} catch(NumberFormatException nfe) {
 	}
 
 	int offset = pageSize * (pageNumber - 1);
 	int rowCount = pageSize;
+	userCompanyNo = "".equals(company) ? 0 : Integer.parseInt(company);
  
  	try {
 		QueryRunner queryRunner = new QueryRunner();
-
+		String acategory = "";
+		if ("reg_name".equals(category)) {
+			acategory = " (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.reg_no) ";
+		} else {
+			acategory = category;
+		}
 		// 전체 건수 조회 (일반 게시물)
 		String queryTotal =
 			" SELECT COUNT(*) AS count"  +
-			" FROM vm_coupon " +
-			("ROLE1".equals(userRoleCd) ? " WHERE 1=1" : "WHERE company_no = " + userCompanyNo ) +	
+			" FROM vm_coupon AS p " +
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company_no = " + userCompanyNo ) +	
 			("".equals(coupon_no) ? "" : " AND coupon_no = " + coupon_no ) +
-			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") ;
-
+			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") +
+			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
+			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
+			("".equals(status) ? "" : " AND status_cd LIKE '" + status + "' ") ;
+		System.out.println(queryTotal);
 		results.put("total", 
 			queryRunner.query(
 				conn,
@@ -61,7 +78,7 @@
 
 		// 리스트 조회 
 		String queryList =
-			" SELECT coupon_no, coupon_name, coupon_type, coupon_code, reg_no, lst_no, product_code, product_name, discount_price, min_price, limit_qty, extra, weight, unit_price, origin, etc_info, "+ 
+			" SELECT coupon_no, coupon_name, coupon_type, coupon_code, reg_no, lst_no, product_code, product_name, discount_price, min_price, limit_qty, extra, weight, unit_price, origin, etc_info, company_no,"+ 
 			"		 (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.reg_no) as reg_name, " +
 			"		 (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.lst_no) as lst_name, " +			
 			"		 DATE_FORMAT(reg_date, '%Y-%m-%d %H:%i:%s') AS reg_date, " +
@@ -76,12 +93,16 @@
 			"   FROM hanaro.vm_coupon p " +	
 			"   left outer join ( SELECT g.img_path, g.pd_code, MAX(g.reg_date) from vm_product_image AS g GROUP BY g.pd_code ) as b " +
 			"   on p.product_code = b.pd_code " +
-			("ROLE1".equals(userRoleCd) ? " WHERE 1=1" : " WHERE company_no = " + userCompanyNo ) +
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : " WHERE company_no = " + userCompanyNo ) +
 			("".equals(coupon_no) ? "" : "   AND coupon_no = " + coupon_no )+
 			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") +
+			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
+			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
+			("".equals(status) ? "" : " AND status_cd LIKE '" + status + "' ") +
 			" ORDER BY p.reg_date desc " +
 			" limit ?,? ";
-
+		System.out.println(queryList);
 		Object[] paramList = new Object[]{ offset, rowCount } ;
 
 		results.put("list", 

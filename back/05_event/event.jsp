@@ -27,27 +27,43 @@
 	int pageSize = 8;
 	int pageNumber = 1;
 	String eventNo = "";
+	String s_date = request.getParameter("s_date") ==  null ? "2019-01-01" : request.getParameter("s_date").trim();
+	String e_date = request.getParameter("e_date") ==  null ? "2999-12-31" : request.getParameter("e_date").trim();
+	String category = request.getParameter("category") ==  null ? "" : request.getParameter("category").trim();
+	String keyword = request.getParameter("keyword") ==  null ? "" : request.getParameter("keyword").trim();
+	String status = request.getParameter("status") ==  null ? "" : request.getParameter("status").trim();
+	String company = "";
 	
 	try {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber") == null ? "1" : request.getParameter("pageNumber").trim(), 10);
 		pageSize = Integer.parseInt(request.getParameter("pageSize") == null ? "8" : request.getParameter("pageSize").trim(), 10);
-		eventNo = request.getParameter("eventNo") == null ? "" : request.getParameter("eventNo");		
+		eventNo = request.getParameter("eventNo") == null ? "" : request.getParameter("eventNo");
+		company = request.getParameter("company") == null ? "" : request.getParameter("company");	
 	} catch(NumberFormatException nfe) {
 	}
 
 	int offset = pageSize * (pageNumber - 1);
 	int rowCount = pageSize;
+	userCompanyNo = "".equals(company) ? 0 : Integer.parseInt(company);
  
  	try {
 		QueryRunner queryRunner = new QueryRunner();
-
+		String acategory = "";
+		if ("reg_name".equals(category)) {
+			acategory = " (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.reg_no) ";
+		} else {
+			acategory = category;
+		}
 		// 전체 건수 조회 (일반 게시물)
 		String queryTotal =
 			" SELECT COUNT(*) AS count"  +
-			" FROM vm_event " +
-			("ROLE1".equals(userRoleCd) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
-			("".equals(eventNo) ? "" : " AND event_no = " + eventNo ) ;
-
+			" FROM vm_event AS p " +
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
+			("".equals(eventNo) ? "" : " AND event_no = " + eventNo ) +
+			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
+			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
+			("".equals(status) ? "" : " AND activated LIKE '" + status + "' ");
 		results.put("total", 
 			queryRunner.query(
 				conn,
@@ -71,11 +87,14 @@
 			" 		 case when activated = 'Y' then '반영' else '미반영' end as activated_status, " +			
 			"		 activated, link_url, eventLink " +
 			" FROM hanaro.vm_event p " +
-			("ROLE1".equals(userRoleCd) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
 			("".equals(eventNo) ? "" : " AND event_no = " + eventNo )+	
+			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
+			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
+			("".equals(status) ? "" : " AND activated LIKE '" + status + "' ") +
 			" ORDER BY event_no desc " +
 			" limit ?,? ";
-
 		Object[] paramList = new Object[]{ offset, rowCount } ;
 
 		results.put("list", 

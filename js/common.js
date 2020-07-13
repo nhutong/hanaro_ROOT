@@ -408,13 +408,19 @@ function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
 				//console.log(result);
 				var data = JSON.parse(result);
 				$("#sort_select").empty();
+				let isSelected_flag = true;
+				if (getCookie("userRoleCd") == "ROLE1" && (location.pathname == "/home/popup_list.html" || location.pathname == "/event/event_list.html" || location.pathname == "/event/coupon.html")) {
+					$("#sort_select").append('<option value="0" selected>＊ 전체</option>');
+					isSelected_flag = false;
+				}
 				data['CompanyList'].forEach(function(item, index){
-					if (rcvTargetCompanyNo == decodeURIComponent(item['VM_CP_NO']))
+					if (rcvTargetCompanyNo == decodeURIComponent(item['VM_CP_NO']) && isSelected_flag)
 					{
 						$("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'" selected>'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
 					}else{
 						$("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'">'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
 					}
+					// $("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'">'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
 				});
 
 				setCookie1("onSelectCompanyNo",$("#sort_select").val());			
