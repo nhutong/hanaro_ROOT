@@ -44,7 +44,7 @@
 
 	int offset = pageSize * (pageNumber - 1);
 	int rowCount = pageSize;
-	userCompanyNo = Integer.parseInt(company);
+	userCompanyNo = "".equals(company) ? 0 : Integer.parseInt(company);
  	try {
 		QueryRunner queryRunner = new QueryRunner();
 		String acategory = "";
@@ -57,7 +57,7 @@
 		String queryTotal =
 			" SELECT COUNT(*) AS count"  +
 			" FROM vm_popup AS p " +
-			("0".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
 			("".equals(popupNo) ? "" : " AND popup_no = " + popupNo ) +
 			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
 			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
@@ -83,7 +83,7 @@
 			"		 CASE WHEN period_type = 1 THEN '계속' ELSE CONCAT(DATE_FORMAT(start_date, '%Y-%m-%d'), ' ~ ', DATE_FORMAT(end_date, '%Y-%m-%d')) END AS period, " +
 			" 		 show_flag, link_url" +
 			" FROM hanaro.vm_popup p " +			
-			("0".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +
 			("".equals(popupNo) ? "" : " AND popup_no = " + popupNo ) +
 			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
 			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +

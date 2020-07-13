@@ -46,7 +46,7 @@
 
 	int offset = pageSize * (pageNumber - 1);
 	int rowCount = pageSize;
-	userCompanyNo = Integer.parseInt(company);
+	userCompanyNo = "".equals(company) ? 0 : Integer.parseInt(company);
  
  	try {
 		QueryRunner queryRunner = new QueryRunner();
@@ -60,7 +60,7 @@
 		String queryTotal =
 			" SELECT COUNT(*) AS count"  +
 			" FROM vm_coupon AS p " +
-			("0".equals(company) ? " WHERE 1=1" : "WHERE company_no = " + userCompanyNo ) +	
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company_no = " + userCompanyNo ) +	
 			("".equals(coupon_no) ? "" : " AND coupon_no = " + coupon_no ) +
 			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") +
 			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
@@ -93,7 +93,7 @@
 			"   FROM hanaro.vm_coupon p " +	
 			"   left outer join ( SELECT g.img_path, g.pd_code, MAX(g.reg_date) from vm_product_image AS g GROUP BY g.pd_code ) as b " +
 			"   on p.product_code = b.pd_code " +
-			("0".equals(company) ? " WHERE 1=1" : " WHERE company_no = " + userCompanyNo ) +
+			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : " WHERE company_no = " + userCompanyNo ) +
 			("".equals(coupon_no) ? "" : "   AND coupon_no = " + coupon_no )+
 			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") +
 			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
