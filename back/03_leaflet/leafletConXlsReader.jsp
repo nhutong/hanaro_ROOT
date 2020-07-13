@@ -100,7 +100,8 @@
                 col = 1;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                String string1 = cell.getStringCellValue().trim();
+                // String string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                String string1 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 if ( string1.equals("") ){
                     //상품코드를 입력하지 않았기 때문에 중단한다.
                     out.clear();
@@ -145,7 +146,8 @@
                 col = 4;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                // String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                String string3 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 if ( string3.equals("") ){
                     //판매가 존재하지 않으므로 중단한다.
                     out.clear();
@@ -165,7 +167,8 @@
                 col = 7;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                String string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                // String string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                String string4 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 if ( string4.equals("") ){
                 }else{
                     if ( isNumeric(string4) == true ){
@@ -238,12 +241,11 @@
                 if (cell == null) { cell = row.createCell(col); }
                 String string8 = cell.getStringCellValue().trim().replaceAll("'", "");
                 string8 = strEncode(string8);
-                System.out.println("Card Limit");
+
                 // 쿠폰할인
                 col = 10;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                System.out.println(cell.getStringCellValue() + " : is string9");
                 String string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
                 if ( string9.equals("") ){
                 }else{
@@ -255,7 +257,6 @@
                         return;
                     }
                 }
-                System.out.println("Coupon DC");
 
                 // 다다익선
                 col = 11;
