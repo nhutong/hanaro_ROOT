@@ -55,14 +55,18 @@
 		}
 		// 전체 건수 조회 (일반 게시물)
 		String queryTotal =
-			" SELECT COUNT(*) AS count"  +
+			" (SELECT COUNT(*) AS count"  +
 			" FROM vm_popup AS p " +
 			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
 			("".equals(popupNo) ? "" : " AND popup_no = " + popupNo ) +
 			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
 			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
 			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
-			("".equals(status) ? "" : " AND show_flag LIKE '" + status + "' ");
+			("".equals(status) ? "" : " AND show_flag LIKE '" + status + "' ") +
+			" ) UNION ( " +
+			" SELECT COUNT(*) AS count"  +
+			" FROM vm_popup AS p " +
+			" WHERE period_type = 1 )";
 		results.put("total", 
 			queryRunner.query(
 				conn,
@@ -72,7 +76,7 @@
 		);
 		// 리스트 조회 
 		String queryList =
-			" SELECT popup_no, popup_title, img_url, "+ 
+			" (SELECT popup_no, popup_title, img_url, "+ 
 			" 		 (SELECT VM_CP_NAME FROM vm_company c WHERE c.VM_CP_NO = p.company) as company_name, " +
 			"		 company, reg_no, reg_date, lst_no, lst_date, " +
 			"		 (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.reg_no) as reg_name, " +
@@ -89,6 +93,18 @@
 			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
 			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
 			("".equals(status) ? "" : " AND show_flag LIKE '" + status + "' ") +
+			") UNION (" +
+			" SELECT popup_no, popup_title, img_url, "+ 
+			" 		 (SELECT VM_CP_NAME FROM vm_company c WHERE c.VM_CP_NO = p.company) as company_name, " +
+			"		 company, reg_no, reg_date, lst_no, lst_date, " +
+			"		 (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.reg_no) as reg_name, " +
+			"		 (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.lst_no) as lst_name, " +
+			"		 period_type, " + 
+			"		 DATE_FORMAT(start_date, '%Y-%m-%d') AS start_date, " +
+			"		 DATE_FORMAT(end_date, '%Y-%m-%d')  AS end_date, " +
+			"		 CASE WHEN period_type = 1 THEN '계속' ELSE CONCAT(DATE_FORMAT(start_date, '%Y-%m-%d'), ' ~ ', DATE_FORMAT(end_date, '%Y-%m-%d')) END AS period, " +
+			" 		 show_flag, link_url" +
+			" FROM hanaro.vm_popup p WHERE period_type = 1 )" +	
 			" ORDER BY popup_no desc " +
 			" limit ?,? ";
 		Object[] paramList = new Object[]{ offset, rowCount } ;
