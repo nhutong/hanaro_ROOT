@@ -83,7 +83,6 @@ function searchEnter(e) {
 function getCouponList(compNo){
 	if (!compNo) compNo = getCookie("onSelectCompanyNo");
 	const s_date = $("#coupon_start_date").val();
-	console.log(s_date);
 	const e_date = $("#coupon_end_date").val();
 	const category = $(".search_select").val();
 	const keyword = $("#keyword2").val();

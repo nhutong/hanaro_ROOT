@@ -11,6 +11,11 @@
 	String companyNo = (request.getParameter("companyNo")==null)? "0":request.getParameter("companyNo");
 	String pageNo = (request.getParameter("pageNo")==null)? "0":request.getParameter("pageNo");
 	Integer pageNo_new;
+	String s_date = request.getParameter("s_date") ==  null ? "" : request.getParameter("s_date").trim();
+	String e_date = request.getParameter("e_date") ==  null ? "" : request.getParameter("e_date").trim();
+	String category = request.getParameter("category") ==  null ? "" : request.getParameter("category").trim();
+	String keyword = request.getParameter("keyword") ==  null ? "" : request.getParameter("keyword").trim();
+	String status = request.getParameter("status") ==  null ? "" : request.getParameter("status").trim();
 
 //	mariadb의 페이징 시작 쿼리를 위해 1을 뺀다.
 	pageNo_new = Integer.parseInt(pageNo) - 1;
@@ -19,8 +24,6 @@
 	JSONObject bdListJSON = new JSONObject();
 	
 	try{
-
-	
 		sql = " SELECT " 
 		+ "  p.pm_no, p.ms_content, p.event_no as event_title, a.vm_cp_name, p.pm_hour, p.pm_min, ifnull(b.send_cnt,0) as send_cnt, ifnull(c.target_cnt,0) as target_cnt, p.reg_date, p.pm_from_date, p.pm_to_date, p.pm_interval, p.pm_target, p.pm_type, ifnull(p.send_date,'') as send_date, ifnull(p.del_fg,'') as del_fg, pm_status "
         + "  FROM vm_push_message AS p " 
@@ -28,16 +31,17 @@
 		+ "  on p.vm_cp_no = a.vm_cp_no "
 		+ "  left outer join ( select pm_no, count(pmis_no) as send_cnt from vm_push_message_indi_send where push_token <> '' group by pm_no ) as b on p.pm_no = b.pm_no "
 		+ "  left outer join ( select pm_no, count(pmt_no) as target_cnt from vm_push_message_target where 1=1 group by pm_no ) as c on p.pm_no = c.pm_no ";
-
 		if ( companyNo.equals("0") ){
-			sql = sql + " "; 	
+			sql = sql + " WHERE 1=1 "; 	
 		}else{
 			sql = sql + "  WHERE p.vm_cp_no = '"+companyNo+"' "; 
 		}
-	    
+	    sql += ("".equals(s_date) ? "" : " AND '" + s_date + "' <= pm_to_date ");
+		sql += ("".equals(e_date) ? "" : " AND pm_to_date <= '" + e_date + "' ");
+		sql += ("".equals(keyword) ? "" : " AND " + category + " LIKE '%" + keyword + "%'");
+		sql += ("".equals(status) ? "" : " AND pm_status LIKE '" + status + "'");
 		sql = sql + " ORDER BY p.reg_date desc "
 	              + " LIMIT "+pageNo_new+" ,6; ";
-
 		//	out.print(sql);
 
 		stmt = conn.createStatement();

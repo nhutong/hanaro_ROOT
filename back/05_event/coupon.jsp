@@ -67,7 +67,6 @@
 			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
 			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
 			("".equals(status) ? "" : " AND status_cd LIKE '" + status + "' ") ;
-		System.out.println(queryTotal);
 		results.put("total", 
 			queryRunner.query(
 				conn,
@@ -102,7 +101,6 @@
 			("".equals(status) ? "" : " AND status_cd LIKE '" + status + "' ") +
 			" ORDER BY p.reg_date desc " +
 			" limit ?,? ";
-		System.out.println(queryList);
 		Object[] paramList = new Object[]{ offset, rowCount } ;
 
 		results.put("list", 
