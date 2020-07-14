@@ -48,12 +48,12 @@
 					<div class="coupon_search_date" id="coupon_search_date">                       
 						<input type="text" placeholder="2020-02-01" id="coupon_start_date">~<input type="text" placeholder="2020-02-07" id="coupon_end_date">
 					</div>					
-					<select class="search_select">
+					<select class="search_select" id="searchCategory">
 						<option value="coupon_name">쿠폰명</option>
 						<option value="product_code">상품코드</option>
                         <option value="reg_name">등록자</option>
                     </select>
-					<input id="keyword2" type="text" placeholder="검색어를 입력해 주세요." onKeyUp="javascript:searchEnter()">
+					<input id="keyword" type="text" placeholder="검색어를 입력해 주세요." onKeyUp="javascript:searchEnter(event)">
                     <button id="btnSearch">조회</button>
                     <span id="excel_down_stat" style="cursor: pointer; width: 11%;">
                         <!-- <input type="checkbox" id="YNstatusChange" class="form-control" style="width: 30px;margin-right: 5px;"/>

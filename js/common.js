@@ -385,7 +385,15 @@ function leadingZeros(n, digits) {
   }
   return zero + n;
 }
-
+function selectBoxLoadEvent(d) {
+	return new Promise(function (resolve, reject) {
+		if (d == "popupList") {
+			resolve();
+		} else {
+			reject("Not Popup Page");
+		}
+	});
+}
 // 우상단 판매장을 리스팅한다. param1을 기준으로 판매장 리스트를 가지고 옮(0이면 전 판매장, 아니면 해당 판매장), param2는 선택 될 판매장
 function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
 	if ( rcvCompanyNo == "" ){
@@ -422,6 +430,42 @@ function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
 					}
 					// $("#sort_select").append('<option value="'+decodeURIComponent(item['VM_CP_NO']).replace(/\+/g,' ')+'">'+decodeURIComponent(item['VM_CP_NAME']).replace(/\+/g,' ')+'</option>');
 				});
+				if (location.pathname == "/home/popup_list.html") {
+					const popupJson = JSON.parse(localStorage.getItem("popupList"));
+					if (popupJson !== null) {
+						(popupJson.s_date) ? $("#popup_start_date").val(popupJson.s_date) : "";
+						(popupJson.e_date) ? $("#popup_end_date").val(popupJson.e_date) : "";
+						(popupJson.flag) ? $("#show_flag_status").val(String(popupJson.flag)).prop("selected", true) : "";
+						(popupJson.keyword) ? $("#keyword2").val(popupJson.keyword) : "";
+						(popupJson.category) ? $("#searchCategory").val(popupJson.category) : "";
+						$("#sort_select").val(getCookie("onSelectCompanyNo"));
+						localStorage.removeItem("popupList"); 
+					}
+				} else if (location.pathname == "/event/coupon.html") {
+					const couponJson = JSON.parse(localStorage.getItem("couponList"));
+					if (couponJson !== null) {
+						(couponJson.s_date) ? $("#coupon_start_date").val(couponJson.s_date) : "";
+						(couponJson.e_date) ? $("#coupon_end_date").val(couponJson.e_date) : "";
+						(couponJson.flag) ? $("#show_flag_status").val(String(couponJson.flag)).prop("selected", true) : "";
+						(couponJson.keyword) ? $("#keyword").val(couponJson.keyword) : "";
+						(couponJson.category) ? $("#searchCategory").val(couponJson.category) : "";
+						$("#sort_select").val(getCookie("onSelectCompanyNo"));
+						$("#btnSearch").click();
+						localStorage.removeItem("couponList");
+					}
+				} else if (location.pathname == "/event/event_list.html") {
+					const eventJson = JSON.parse(localStorage.getItem("eventList"));
+					if (eventJson !== null) {
+						(eventJson.s_date) ? $("#event_start_date").val(eventJson.s_date) : "";
+						(eventJson.e_date) ? $("#event_end_date").val(eventJson.e_date) : "";
+						(eventJson.flag) ? $("#show_flag_status").val(String(eventJson.flag)).prop("selected", true) : "";
+						(eventJson.keyword) ? $("#keyword2").val(eventJson.keyword) : "";
+						(eventJson.category) ? $("#searchCategory").val(eventJson.category) : "";
+						$("#sort_select").val(getCookie("onSelectCompanyNo"));
+						$("#btnSearch").click();
+						localStorage.removeItem("eventList");
+					}
+				}
 
 				setCookie1("onSelectCompanyNo",$("#sort_select").val());			
 

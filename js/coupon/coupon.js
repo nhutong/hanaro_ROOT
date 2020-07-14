@@ -13,12 +13,6 @@ var tpl_tr_tab1_table = _.template('<tr id="coupon<%- coupon_no %>" data-no="<%-
 	);
 
 $(function () {
-	getHeader();
-	$(".nav_event").addClass("active");
-
-	getLeft();
-	getLeftMenu('event');
-	$("#nh_event_coupon").addClass("active");
 
 	// 권한코드 가져오기
 	var userRoleCd = getCookie('userRoleCd');
@@ -66,23 +60,51 @@ $(function () {
 	});
 
 	$("#btnSearch").on("click",function(){
-		getCouponList(getCookie("onSelectCompanyNo"));
+		settingInfo();
 	});
 	getCouponList();
 });
 
+function settingInfo() {
+	const s_date = $("#coupon_start_date").val();
+	const e_date = $("#coupon_end_date").val();
+	const category = $("#searchCategory").val();
+	const keyword = $("#keyword").val();
+	const flag = $("#show_flag_status").val();
+	const params = {
+		s_date: s_date,
+		e_date: e_date,
+		category: category,
+		keyword: keyword,
+		flag: flag
+	}
+	localStorage.setItem("couponList", JSON.stringify(params));
+	getCouponList(getCookie("onSelectCompanyNo"));
+}
+
 function searchEnter(e) {
 	if(e.keyCode == 13) {
-		getCouponList(getCookie("onSelectCompanyNo"));
+		settingInfo(getCookie("onSelectCompanyNo"));
 	}
 }
 
+$(function () {
+	getHeader();
+	$(".nav_event").addClass("active");
+
+	getLeft();
+	getLeftMenu('event');
+	$("#nh_event_coupon").addClass("active");
+
+	getCouponList();
+
+});
 function getCouponList(compNo){
 	if (!compNo) compNo = getCookie("onSelectCompanyNo");
 	const s_date = $("#coupon_start_date").val();
 	const e_date = $("#coupon_end_date").val();
-	const category = $(".search_select").val();
-	const keyword = $("#keyword2").val();
+	const category = $("#searchCategory").val();
+	const keyword = $("#keyword").val();
 	const flag = $("#show_flag_status").val();
 	let dataSourceUrl = '/back/05_event/coupon.jsp?company='+compNo+'&s_date='+s_date+'&e_date='+e_date+'&category='+category+'&keyword='+keyword;
 	dataSourceUrl += "&status="+flag;

@@ -42,14 +42,31 @@ $(function() {
 	});
 
 	$("#btnSearch").on("click",function(){
-		getPopupList(getCookie("onSelectCompanyNo"));
+		settingInfo();
 	});
 });
 
 function searchEnter(e) {
 	if (e.keyCode == 13) {
-		getPopupList(getCookie("onSelectCompanyNo"));
+		settingInfo();
 	}
+}
+
+function settingInfo() {
+	const s_date = $("#popup_start_date").val();
+	const e_date = $("#popup_end_date").val();
+	const category = $("#searchCategory").val();
+	const keyword = $("#keyword2").val();
+	const flag = $("#show_flag_status").val();
+	const params = {
+		s_date: s_date,
+		e_date: e_date,
+		category: category,
+		keyword: keyword,
+		flag: flag
+	}
+	localStorage.setItem("popupList", JSON.stringify(params));
+	getPopupList(getCookie("onSelectCompanyNo"));
 }
 
 // 판매장 템플릿
@@ -69,11 +86,10 @@ $(function () {
 	var userRoleCd = getCookie('userRoleCd');
 	if(userRoleCd === 'ROLE1' || userRoleCd === 'ROLE2' ){
 		$('#popup_submit').append('<button id="popupSubmit" onclick="popup_create();">등록 </button>') ;
-	}	
+	}
 	getPopupList();
 
 });
-
 function getPopupList(compNo){
 	if (!compNo) compNo = getCookie("onSelectCompanyNo");
 	const s_date = $("#popup_start_date").val();
@@ -83,6 +99,7 @@ function getPopupList(compNo){
 	const flag = $("#show_flag_status").val();
 	let dataSourceUrl = '/back/04_home/popup.jsp?company='+compNo+'&s_date='+s_date+'&e_date='+e_date+'&category='+category+'&keyword='+keyword;
 	dataSourceUrl += "&status="+flag;
+
 	$('#pagination').pagination({
 		dataSource: dataSourceUrl,
 		locator: 'list',
@@ -93,8 +110,7 @@ function getPopupList(compNo){
 		className: 'paginationjs-theme-green paginationjs-big',
 		callback: function(list, pagination) {
 			var $tbody = $('#popupListTbody').empty();
-			console.log(list);
-
+			
 			_.forEach(list,
 				function(item) {
 					if (item['show_flag'] == 'Y') {

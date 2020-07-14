@@ -64,14 +64,31 @@ $(function () {
 	});
 
 	$("#btnSearch").on("click",function(){
-		getEventList(getCookie("onSelectCompanyNo"));
+		settingInfo();
 	});
 	getEventList();
 });
 function searchEnter(e) {
 	if (e.keyCode == 13) {
-		getEventList(getCookie("onSelectCompanyNo"));
+		settingInfo();
 	}
+}
+
+function settingInfo() {
+	const s_date = $("#event_start_date").val();
+	const e_date = $("#event_end_date").val();
+	const category = $("#searchCategory").val();
+	const keyword = $("#keyword2").val();
+	const flag = $("#show_flag_status").val();
+	const params = {
+		s_date: s_date,
+		e_date: e_date,
+		category: category,
+		keyword: keyword,
+		flag: flag
+	}
+	localStorage.setItem("eventList", JSON.stringify(params));
+	getEventList(getCookie("onSelectCompanyNo"));
 }
 
 function getEventList(compNo){
@@ -84,6 +101,7 @@ function getEventList(compNo){
 	const flag = $("#show_flag_status").val();
 	let dataSourceUrl = '/back/05_event/event.jsp?company='+compNo+'&s_date='+s_date+'&e_date='+e_date+'&category='+category+'&keyword='+keyword;
 	dataSourceUrl += "&status="+flag+"&userRoleCd="+userRoleCd;
+	console.log(dataSourceUrl);
 	$('#pagination').pagination({
 		dataSource: dataSourceUrl,
 		locator: 'list',
