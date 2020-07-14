@@ -61,14 +61,25 @@ $(function () {
 
 			$("#pushSendHr").prop('disabled', true);
 			$("#pushSendMin").prop('disabled', true);
-			$("#pushInterval").prop('disabled', true);
+			// $("#pushInterval").prop('disabled', true);
+			var arr = ["월", "화", "수", "목", "금", "토", "일"];
+			arr.forEach(function(item) {
+				$("#" + whatDay(item)).prop("disabled", true);
+			});
+			checkDay();
+			$(".checkBoxBtn").prop('disabled', true);
 		}else{
 			$("#pushSendFromDate").prop('disabled', false);
 			$("#pushSendToDate").prop('disabled', false);
 
 			$("#pushSendHr").prop('disabled', false);
 			$("#pushSendMin").prop('disabled', false);
-			$("#pushInterval").prop('disabled', false);	
+			// $("#pushInterval").prop('disabled', false);
+			var arr = ["월", "화", "수", "목", "금", "토", "일"];
+			arr.forEach(function(item) {
+				$("#" + whatDay(item)).prop("disabled", false);
+			});
+			$(".checkBoxBtn").prop('disabled', false);
 		}
 	});
 
@@ -110,7 +121,11 @@ function getPushInfo(rcv_pm_no){
 			$("#push_img_path").attr("src",info.pm_img_path);
 			$("#pushSendFromDate").val(info.pm_from_date);
 			$("#pushSendToDate").val(info.pm_to_date);
-			$("#pushInterval").val(info.pm_interval);
+			const arrayInterval = info.pm_interval.split(',');
+			// $("#pushInterval").val(info.pm_interval);
+			arrayInterval.forEach(function(item) {
+				$("#" + whatDay(item)).prop("checked", true);
+			});
 			$("#pushTarget").val(info.pm_target);
 			$("#pushType").val(info.pm_type);	
 			$("#pushDel").val(info.del_fg);
@@ -123,14 +138,25 @@ function getPushInfo(rcv_pm_no){
 	
 				$("#pushSendHr").prop('disabled', true);
 				$("#pushSendMin").prop('disabled', true);
-				$("#pushInterval").prop('disabled', true);
+				// $("#pushInterval").prop('disabled', true);
+				var arr = ["월", "화", "수", "목", "금", "토", "일"];
+				arr.forEach(function(item) {
+					$("#" + whatDay(item)).prop("disabled", true);
+				});
+				checkDay();
+				$(".checkBoxBtn").prop('disabled', true);
 			}else{
 				$("#pushSendFromDate").prop('disabled', false);
 				$("#pushSendToDate").prop('disabled', false);
 	
 				$("#pushSendHr").prop('disabled', false);
 				$("#pushSendMin").prop('disabled', false);
-				$("#pushInterval").prop('disabled', false);	
+				// $("#pushInterval").prop('disabled', false);	
+				var arr = ["월", "화", "수", "목", "금", "토", "일"];
+				arr.forEach(function(item) {
+					$("#" + whatDay(item)).prop("disabled", false);
+				});
+				$(".checkBoxBtn").prop('disabled', false);
 			}
 		
 			if ($("#pushTarget").val() == "고객전체" ){		
@@ -284,7 +310,17 @@ $("#push_target_tel").on("change", function(e) {
 // 즉시예약전송
 $("#pushSendBtn").on("click",function(e){
 	e.preventDefault();	
-
+	var pushArr = ["월", "화", "수", "목", "금", "토", "일"];
+	var totalPushInterval = "";
+	pushArr.forEach(function(item, idx) {
+		if ($("#" + whatDay(item)).prop("checked")) {
+			if (idx == 0) {
+				totalPushInterval += item;
+			} else {
+				totalPushInterval += "," + item;
+			}
+		}
+	});
 	var formData = {
 		pm_no : $("#pushNo").val(),
 		pushTopTxt : $("#pushTopTxt").val(),
@@ -296,11 +332,13 @@ $("#pushSendBtn").on("click",function(e){
 		pm_img_path : $("#push_img_path").attr("src"),
 		pushSendFromDate : $('#pushSendFromDate').val(),
 		pushSendToDate : $('#pushSendToDate').val(),
-		pushInterval : $('#pushInterval').val(),
+		// pushInterval : $('#pushInterval').val(),
+		pushInterval: totalPushInterval,
 		pushTarget : $('#pushTarget').val(),
 		pushType : $('#pushType').val(),
 		pushDel : $('#pushDel').val()
 	} ;
+	console.log(formData);
 
 	if ( formData.pushTopTxt == null || chrLen(formData.pushTopTxt) == 0){
 		alert("PUSH 내용을 입력하시기 바랍니다.");
@@ -382,6 +420,17 @@ $("#pushSendBtn").on("click",function(e){
 // 푸쉬저장
 $("#pushSaveBtn").on("click",function(e){
 	e.preventDefault();
+	var arrs = ["월", "화", "수", "목", "금", "토", "일"];
+	var totalPushInterval = "";
+	arrs.forEach(function(item, idx) {
+		if ($("#" + whatDay(item)).prop("checked")) {
+			if (idx == 0) {
+				totalPushInterval += item;
+			} else {
+				totalPushInterval += "," + item;
+			}
+		}
+	});
 	var formData = {
 		pm_no : $("#pushNo").val(),
 		pushTopTxt : $("#pushTopTxt").val(),
@@ -393,7 +442,8 @@ $("#pushSaveBtn").on("click",function(e){
 		pm_img_path : $("#push_img_path").attr("src"),
 		pushSendFromDate : $('#pushSendFromDate').val(),
 		pushSendToDate : $('#pushSendToDate').val(),
-		pushInterval : $('#pushInterval').val(),
+		// pushInterval : $('#pushInterval').val(),
+		pushInterval: totalPushInterval,
 		pushTarget : $('#pushTarget').val(),
 		pushType : $('#pushType').val(),
 		pushDel : $('#pushDel').val(),
@@ -542,4 +592,61 @@ function getLinkList(){
 			$("#layer_popup_link_list").empty();					
 			$("#layer_popup_link_list").append(text);				
 		});
+}
+function checkDay(c) {
+	$("#cb0").prop("checked", false);
+	$("#cb1").prop("checked", false);
+	$("#cb2").prop("checked", false);
+	$("#cb3").prop("checked", false);
+	$("#cb4").prop("checked", false);
+	$("#cb5").prop("checked", false);
+	$("#cb6").prop("checked", false);
+	if (c == 'A') {
+		$("#cb0").prop("checked", true);
+		$("#cb1").prop("checked", true);
+		$("#cb2").prop("checked", true);
+		$("#cb3").prop("checked", true);
+		$("#cb4").prop("checked", true);
+		$("#cb5").prop("checked", true);
+		$("#cb6").prop("checked", true);
+	} else if (c == 'D') {
+		$("#cb0").prop("checked", true);
+		$("#cb1").prop("checked", true);
+		$("#cb2").prop("checked", true);
+		$("#cb3").prop("checked", true);
+		$("#cb4").prop("checked", true);
+	} else if (c == 'E'){
+		$("#cb5").prop("checked", true);
+		$("#cb6").prop("checked", true);
+	}
+}
+
+function whatDay(d) {
+	let isID = "";
+	switch (d){
+      case "월" :
+		  isID = 'cb0';
+          break;
+      case "화" :
+		  isID = 'cb1';
+          break;
+      case "수" :
+		  isID = 'cb2';
+          break;
+      case "목" :
+		  isID = 'cb3';
+            break;
+      case "금" :
+		  isID = 'cb4';
+          break;
+      case "토" :
+		  isID = 'cb5';
+		  break;
+	  case "일" :
+		  isID = 'cb6';
+		  break;
+      default :
+		  isID = 'cb7';
+	}
+	return isID;
 }

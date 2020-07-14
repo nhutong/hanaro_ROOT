@@ -50,8 +50,6 @@ $(function () {
 		{
 		}else{
 			setCookie1("onSelectCompanyNo",$("#sort_select").val());
-			prodList(pageNo, getCookie("onSelectCompanyNo"));
-			// prodList_paging(pageNo, getCookie("onSelectCompanyNo"));
 			localStorage.setItem("vm_cp_no",$("#sort_select").val());
 		}
 	});
@@ -59,15 +57,12 @@ $(function () {
 	$("#btnSearch").on("click",function(){
 		prodList(pageNo, getCookie("onSelectCompanyNo"));
 	});
-	$("#show_flag_status").on("change", function() {
-		prodList(pageNo, getCookie("onSelectCompanyNo"));
-	});
 
 	/*input box 일자 기본값 셋팅*/
 	var today = new Date();
 	var year = today.getFullYear();
 	var month = leadingZeros(today.getMonth()+1,2);
-	var sday = leadingZeros(today.getDate()-2,2);
+	var sday = leadingZeros(today.getDate()-10,2);
 	var eday = leadingZeros(today.getDate(),2);
 
 	// $("#excel_start_date").val(year+'-'+month+'-'+sday);
@@ -82,7 +77,9 @@ $(function () {
 });
 
 function searchEnter(e) {
-	prodList(pageNo, getCookie("onSelectCompanyNo"));
+	if (e.keyCode == 13) {
+		prodList(pageNo, getCookie("onSelectCompanyNo"));
+	}
 }
 // 상품리스트를 가져온다
 function prodList(rcvPageNo, rcvCompanyNo) {

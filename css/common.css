@@ -1224,3 +1224,8 @@ top: 8px;
 	border-radius: .25rem;
 	transition: border-color .15s
 }
+
+.dayCheckBox {
+	padding: 5px 25px;
+	cursor: pointer;
+}

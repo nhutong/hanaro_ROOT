@@ -12,7 +12,8 @@
 	<!-- index style css -->
 	<link href="../css/index.css" rel="stylesheet">
 	<!-- bootstrap style css -->
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/pushCheckInfo.css">
 	<!-- fontawesome style css -->
 <!-- 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="../css/all.css">
@@ -184,8 +185,8 @@
                                            </tr>
                                            <tr>
                                                 <th>반복<br/>설정</th>
-                                                <td>
-                                                    <select name="pushInterval" id="pushInterval" disabled>
+                                                <td style="display: flex; flex-direction: column; ">
+                                                    <!-- <select name="pushInterval" id="pushInterval" disabled>
                                                         <option value="월,화,수,목,금,토,일">월,화,수,목,금,토,일</option>                                                        
                                                         <option value="월,화,수,목,금">월,화,수,목,금</option>                                                        
                                                         <option value="토,일">토,일</option>
@@ -196,7 +197,77 @@
                                                         <option value="금">금</option>
                                                         <option value="토">토</option>
                                                         <option value="일">일</option>
-                                                    </select>
+                                                    </select> -->
+                                                    <div class="checkBoxTopDiv">
+                                                        <button class="checkBoxBtn" onclick="javascript:checkDay('A')" disabled>매일</button>
+                                                        <button class="checkBoxBtn" onclick="javascript:checkDay('D')" disabled>평일</button>
+                                                        <button class="checkBoxBtn" onclick="javascript:checkDay('E')" disabled>주말</button>
+                                                    </div>
+                                                    <div class="checkBoxTotalDiv">
+                                                        <span>
+                                                            <ul class="tg-list">
+                                                            <li class="tg-list-item">
+                                                                <h5>월</h5>
+                                                                <input class="tgl tgl-ios" id="cb0" type="checkbox" disabled/>
+                                                                <label class="tgl-btn" for="cb0"></label>
+                                                            </li>
+                                                            </ul>
+                                                        </span>
+                                                        <span>
+                                                            <ul class="tg-list">
+                                                            <li class="tg-list-item">
+                                                                <h5>화</h5>
+                                                                <input class="tgl tgl-ios" id="cb1" type="checkbox" disabled/>
+                                                                <label class="tgl-btn" for="cb1"></label>
+                                                            </li>
+                                                            </ul>
+                                                        </span>
+                                                        <span>
+                                                            <ul class="tg-list">
+                                                            <li class="tg-list-item">
+                                                                <h5>수</h5>
+                                                                <input class="tgl tgl-ios" id="cb2" type="checkbox" disabled/>
+                                                                <label class="tgl-btn" for="cb2"></label>
+                                                            </li>
+                                                            </ul>
+                                                        </span>
+                                                        <span>
+                                                            <ul class="tg-list">
+                                                            <li class="tg-list-item">
+                                                                <h5>목</h5>
+                                                                <input class="tgl tgl-ios" id="cb3" type="checkbox" disabled/>
+                                                                <label class="tgl-btn" for="cb3"></label>
+                                                            </li>
+                                                            </ul>
+                                                        </span>
+                                                        <span>
+                                                            <ul class="tg-list">
+                                                            <li class="tg-list-item">
+                                                                <h5>금</h5>
+                                                                <input class="tgl tgl-ios" id="cb4" type="checkbox" disabled/>
+                                                                <label class="tgl-btn" for="cb4"></label>
+                                                            </li>
+                                                            </ul>
+                                                        </span>
+                                                        <span>
+                                                            <ul class="tg-list">
+                                                            <li class="tg-list-item">
+                                                                <h5>토</h5>
+                                                                <input class="tgl tgl-ios" id="cb5" type="checkbox" disabled/>
+                                                                <label class="tgl-btn" for="cb5"></label>
+                                                            </li>
+                                                            </ul>
+                                                        </span>
+                                                        <span>
+                                                            <ul class="tg-list">
+                                                            <li class="tg-list-item">
+                                                                <h5>일</h5>
+                                                                <input class="tgl tgl-ios" id="cb6" type="checkbox" disabled/>
+                                                                <label class="tgl-btn" for="cb6"></label>
+                                                            </li>
+                                                            </ul>
+                                                        </span>
+                                                    </div>
                                                 </td>
                                            </tr>
                                            <tr>
@@ -344,6 +415,6 @@
 			$("#pushSendFromDate").datepicker();
 			$("#pushSendToDate").datepicker();
 		});
-	</script>
+    </script>
 </body>
 </html>

@@ -38,7 +38,7 @@ $(function () {
 	var today = new Date();
 	var year = today.getFullYear();
 	var month = leadingZeros(today.getMonth()+1,2);
-	var sday = leadingZeros(today.getDate()-2,2);
+	var sday = leadingZeros(today.getDate()-10,2);
 	var eday = leadingZeros(today.getDate(),2);
 
 	// $("#excel_start_date").val(year+'-'+month+'-'+sday);
@@ -59,8 +59,6 @@ $(function () {
 		if ($("#sort_select").val())
 		{
 			setCookie1("onSelectCompanyNo",$("#sort_select").val());
-			//noticeCont(getCookie("onSelectCompanyNo"));
-			getEventList(getCookie("onSelectCompanyNo"));
 			localStorage.setItem("vm_cp_no",$("#sort_select").val());
 		}
 	});
@@ -68,14 +66,12 @@ $(function () {
 	$("#btnSearch").on("click",function(){
 		getEventList(getCookie("onSelectCompanyNo"));
 	});
-	$("#show_flag_status").on("change", function() {
-		getEventList(getCookie("onSelectCompanyNo"));
-	});
-
 	getEventList();
 });
 function searchEnter(e) {
-	getEventList(getCookie("onSelectCompanyNo"));
+	if (e.keyCode == 13) {
+		getEventList(getCookie("onSelectCompanyNo"));
+	}
 }
 
 function getEventList(compNo){
