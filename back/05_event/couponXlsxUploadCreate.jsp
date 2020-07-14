@@ -125,13 +125,24 @@
 			col = 2;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String product_code = cell.getStringCellValue().trim();
+		    //String product_code = cell.getStringCellValue().trim();
+			String product_code = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 			if ( "".equals(product_code) ){
 				//상품코드를 입력하지 않았기 때문에 중단한다.
 				out.clear();
 				out.print("product_code_not_exist");
 				return;
 			}else{
+				product_code = strEncode(product_code);
+				 if ( isNumeric(product_code) == true ){
+                        product_code = String.valueOf(Math.round(Double.parseDouble(product_code)));
+                        System.out.println(product_code);
+                    }else{
+                        //상품코드가 숫자가 아니므로 중단한다.
+                        out.clear();
+                        out.print("pd_code_not_number");
+                        return;
+                    }				 
 				// 신규입력한 전단상품의 상품번호(내부용)를 select 한다.
 				/*
 				sql = " select pd_no from vm_product "
@@ -153,35 +164,49 @@
 					out.clear();
 					out.print("pd_code_not_correct");
 				}
-				*/
-
-				product_code = strEncode(product_code);
+				*/			
 			}
 
 			// 쿠폰코드
 			col = 3;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String coupon_code = cell.getStringCellValue().trim();
+		    //String coupon_code = cell.getStringCellValue().trim();
+			String coupon_code = cell.toString().trim().replaceAll(",","").replaceAll("'","");
 			if ( "".equals(coupon_code) ){
 				//쿠폰코드가 존재하지 않으므로 중단한다.
 				out.clear();
 				out.print("coupon_code_not_exist");
 				return;
+			} else {
+					coupon_code = strEncode(coupon_code);
+				 if ( isNumeric(coupon_code) == true ){
+                        coupon_code = String.valueOf(Math.round(Double.parseDouble(coupon_code)));
+                        System.out.println(coupon_code);
+                    }else{
+                        //상품코드가 숫자가 아니므로 중단한다.
+                        out.clear();
+                        out.print("pd_code_not_number");
+                        return;
+                    }			
 			}
 
 			// 쿠폰 할인가
 			col = 4;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String discount_price = cell.getStringCellValue().trim();
+		    //String discount_price = cell.getStringCellValue().trim();
+			String discount_price = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 			if ( "".equals(discount_price) ){
 				//쿠폰할인가가 존재하지 않으므로 중단한다.
 				out.clear();
 				out.print("discount_price_not_exist");
 				return;
 			}else{
+				discount_price = strEncode(discount_price);
 				if ( isNumeric(discount_price) == true ){
+					discount_price = String.valueOf(Math.round(Double.parseDouble(discount_price)));
+                    System.out.println(discount_price);                    
 				}else{
 					//쿠폰할인가가 숫자가 아니므로 중단한다.
 					out.clear();
@@ -240,14 +265,18 @@
 			col = 7;			
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String limit_qty = cell.getStringCellValue().trim();
+		    //String limit_qty = cell.getStringCellValue().trim();
+			String limit_qty = cell.toString().trim().replaceAll("'","").replaceAll(",","");			
 			if ( "".equals(limit_qty) ){
 				//제한 수량이 존재하지 않으므로 중단한다.
 				out.clear();
 				out.print("max_qty_not_exist");
 				return;
 			}else{
+				limit_qty = strEncode(limit_qty);
 				if ( isNumeric(limit_qty) == true ){
+					limit_qty = String.valueOf(Math.round(Double.parseDouble(limit_qty)));
+                    System.out.println(limit_qty);                    				
 				}else{
 					//쿠폰할인가가 숫자가 아니므로 중단한다.
 					out.clear();

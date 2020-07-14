@@ -45,14 +45,24 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String string1 = cell.getStringCellValue().trim();
+		    //String string1 = cell.getStringCellValue().trim();
+			String string1 = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 			if ( string1.equals("") ){
 				//상품코드를 입력하지 않았기 때문에 중단한다.
 				out.clear();
 				out.print("pd_code_no_exist");
 				return;
-			}else{
-//				string1 = strEncode(string1);
+			}else{				
+				string1 = strEncode(string1);
+				if ( isNumeric(string1) == true ){
+					string1 = String.valueOf(Math.round(Double.parseDouble(string1)));
+					System.out.println(string1);
+				}else{
+					//쿠폰할인가가 숫자가 아니므로 중단한다.
+					out.clear();
+					out.print("discount_price_not_number");
+					return;
+				}
 			}
 
 			// 상품명 ( encode )
