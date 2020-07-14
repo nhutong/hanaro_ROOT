@@ -63,7 +63,8 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String string0 = cell.getStringCellValue().trim();
+		    //String string0 = cell.getStringCellValue().trim();
+			String string0 = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 
 			if ( string0.equals("") ){
 				//순서가 존재하지 않으므로 중단한다.
@@ -71,7 +72,10 @@
 				out.print("order_number_no_exist");
 				return;
 			}else{
+				string0 = strEncode(string0);
 				if ( isNumeric(string0) == true ){
+					string0 = String.valueOf(Math.round(Double.parseDouble(string0)));
+					System.out.println(string0);
 				}else{
 					//순서가 숫자가 아니므로 중단한다.
 					out.clear();
@@ -84,7 +88,8 @@
 		    col = 1;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String string1 = cell.getStringCellValue().trim();
+		    //String string1 = cell.getStringCellValue().trim();
+			String string1 = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 			if ( string1.equals("") ){
 				//상품코드를 입력하지 않았기 때문에 중단한다.
 				out.clear();
@@ -92,6 +97,16 @@
 				return;
 			}else{
 				string1 = strEncode(string1);
+				if (isNumeric(string1) == true )
+				{
+					string1 = String.valueOf(Math.round(Double.parseDouble(string1)));
+					System.out.println(string1);
+				}
+				else {
+					out.clear();
+					out.print("pd_code_not_number");
+					return;
+				}
 			}
 
 			// 상품명 ( encode )
@@ -112,14 +127,18 @@
 			col = 3;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String string3 = cell.getStringCellValue().trim();
+		    //String string3 = cell.getStringCellValue().trim();
+			String string3 = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 			if ( string3.equals("") ){
 				//판매가 존재하지 않으므로 중단한다.
 				out.clear();
 				out.print("price_no_exist");
 				return;
 			}else{
+				string3 = strEncode(string3);
 				if ( isNumeric(string3) == true ){
+     				string3 = String.valueOf(Math.round(Double.parseDouble(string3)));
+					System.out.println(string3);
 				}else{
 					//판매가가 숫자가 아니므로 중단한다.
 					out.clear();

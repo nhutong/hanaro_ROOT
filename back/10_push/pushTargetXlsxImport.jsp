@@ -90,7 +90,8 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "").replaceAll("-", "");
+		    //String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "").replaceAll("-", "");
+			String string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "").replaceAll("-", "");
 
 			if ( string0.equals("") ){
 				//전화번호가 존재하지 않으므로 중단한다.
@@ -98,7 +99,10 @@
 				out.print("no_no_exist"+","+Integer.toString(i));
 				return;
 			}else{
+				string0 = strEncode(string0);
 				if ( isNumeric(string0) == true ){
+					string0 = String.valueOf(Math.round(Double.parseDouble(string0)));
+					System.out.println(string0);
 				}else{
 					//전화번호가 숫자가 아니므로 중단한다.
 					out.clear();

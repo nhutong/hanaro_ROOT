@@ -252,10 +252,13 @@
                 col = 10;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                String string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                //String string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                String string9 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 if ( string9.equals("") ){
                 }else{
                     if ( isNumeric(string9) == true ){
+                        string9 = String.valueOf(Math.round(Double.parseDouble(string9)));
+                        System.out.println(string9);
                     }else{
                         //쿠폰할인이 숫자가 아니므로 중단한다.
                         out.clear();

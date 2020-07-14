@@ -176,7 +176,7 @@
                 if ( string4.equals("") ){
                 }else{
                     if ( isNumeric(string4) == true ){
-                        string4 = String.valueOf(Math.round(Double.parseDouble(string3)));
+                        string4 = String.valueOf(Math.round(Double.parseDouble(string4)));
                         System.out.println(string4);
                     }else{
                         //카드할인이 숫자가 아니므로 중단한다.
@@ -257,7 +257,7 @@
                 if ( string9.equals("") ){
                 }else{
                     if ( isNumeric(string9) == true ){
-                        string9 = String.valueOf(Math.round(Double.parseDouble(string3)));
+                        string9 = String.valueOf(Math.round(Double.parseDouble(string9)));
                         System.out.println(string9);
                     }else{
                         //쿠폰할인이 숫자가 아니므로 중단한다.
