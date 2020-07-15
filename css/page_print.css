@@ -257,10 +257,11 @@
 .a3_05_lft{
     float: left;
     font-weight: 600;
+    padding-top: 30px;
 }
 
 .a3_02{
-    margin-top: 30%; 
+    /* margin-top: 30%;  */
     font-size: 2.5em;        
 }
 
@@ -387,7 +388,7 @@
 .coupon_r200_02::after{
     content: '';
     display: block;
-    width: 95%;
+    width: 100%;
     height: 5px;
     background-color: red;
 }
@@ -395,8 +396,9 @@
 .coupon_r200_03{
     padding: 0 10px;
     font-size: 15pt;
-    margin-bottom: 5px;
     font-weight: 500;
+    display: inline-block;
+    max-width: 40%;
 }
 
 .r200_04{
@@ -405,6 +407,7 @@
 
 .coupon_r200_04{
     margin-left: 10px;
+    display: inline-block;
 }
 
 .coupon_r200_04 > div{
@@ -418,27 +421,29 @@
     color: #fff;
     text-align: right;
     font-size: 15px;    
-    padding: 7px;
+    padding: 4px;
+    margin-right: 10px;
     /* padding-right: 5px; */
 }
 
 .r200_04_center img{
-    width: 90%;
-    height: 90%;
+    width: 3em;
+    /* height: 90%; */
 }
 
 .r200_04_rgt{
     float: right;
     text-align: right;
     margin-right: 10px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
 }
 
 .r200_price_before{
     color: #666;
     font-weight: 700;
     font-size: 20pt;
-    text-decoration:line-through;    
+    text-decoration:line-through; 
+    padding-top:50px;   
 }
 
 .r200_price_after{
