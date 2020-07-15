@@ -279,7 +279,11 @@ function couponPrintApply(){
 	// 상품명
 	$("#r200PdName1").empty();
 	$("#r200PdName1").append($("#popPdName").val());
-    
+
+	//원산지
+	$("#r200PdName2").empty();
+	$("#r200PdName2").append($("#popPdOrigin").val());
+
     //상품가격
 	$("#r200BeforePrice").empty();
 	$("#r200BeforePrice").append(comma($("#popPdPrice").val())+"원"); 
@@ -296,7 +300,7 @@ function couponPrintApply(){
 	// 단위당단가 200715 김수경 오류 수정
 	$("#r200Weight").empty();
 	// $("#r200Weight").append($("#popPdWeight").val());
-	$("#r200Weight").append($("#popPdUnitPricet").val());
+	$("#r200Weight").append($("#popPdUnitPrice").val());
 
     // 수량제한
 	$("#r200Limit").empty();
