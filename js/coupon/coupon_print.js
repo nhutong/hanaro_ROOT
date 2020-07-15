@@ -202,13 +202,16 @@ function couponPrintApply(){
 	$("#a4AfterPrice").empty();
 	$("#a4AfterPrice").append(comma($("#popPdPrice").val()-$("#popPdDiscount").val())+"원");     
     
-	// 규격
+	// 규격 200715 김수경 오류 수정
 	$("#a4Count").empty();
-	$("#a4Count").append($("#popPdStan").val());
-
-	// 단위당단가
+	// $("#a4Count").append($("#popPdStan").val());
+	$("#a4Count").append($("#popPdWeight").val());
+	
+	// 단위당단가 200715 김수경 오류 수정
 	$("#a4Weight").empty();
-	$("#a4Weight").append($("#popPdWeight").val());
+	// $("#a4Weight").append($("#popPdWeight").val());
+	$("#a4Weight").append($("#popPdUnitPrice").val());
+
 
     // 수량제한
 	$("#a4Limit").empty();
@@ -245,14 +248,16 @@ function couponPrintApply(){
 	$("#a3AfterPrice").empty();
 	$("#a3AfterPrice").append(comma($("#popPdPrice").val()-$("#popPdDiscount").val())+"원");     
     
-	// 규격
+	// 규격 200715 김수경 오류 수정
 	$("#a3Count").empty();
-	$("#a3Count").append($("#popPdStan").val());
+	// $("#a3Count").append($("#popPdStan").val());
+	$("#a3Count").append($("#popPdWeight").val());
 
-	// 단위당단가
+	// 단위당단가 200715 김수경 오류 수정
 	$("#a3Weight").empty();
-	$("#a3Weight").append($("#popPdWeight").val());
-
+	// $("#a3Weight").append($("#popPdWeight").val());
+	$("#a3Weight").append($("#popPdUnitPrice").val());
+	
     // 수량제한
 	$("#a3Limit").empty();
 	$("#a3Limit").append($("#popPdLimit").val());
@@ -283,13 +288,15 @@ function couponPrintApply(){
 	$("#r200AfterPrice").empty();
 	$("#r200AfterPrice").append(comma($("#popPdPrice").val()-$("#popPdDiscount").val())+"원"); 
 
-	// 규격
+	// 규격 200715 김수경 오류 수정
 	$("#r200Count").empty();
-	$("#r200Count").append($("#popPdStan").val());
+	// $("#r200Count").append($("#popPdStan").val());
+	$("#r200Count").append($("#popPdWeight").val());
 
-	// 단위당단가
+	// 단위당단가 200715 김수경 오류 수정
 	$("#r200Weight").empty();
-	$("#r200Weight").append($("#popPdWeight").val());
+	// $("#r200Weight").append($("#popPdWeight").val());
+	$("#r200Weight").append($("#popPdUnitPricet").val());
 
     // 수량제한
 	$("#r200Limit").empty();
