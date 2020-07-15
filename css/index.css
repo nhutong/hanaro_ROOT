@@ -3207,6 +3207,7 @@ button#bannerUpdate{
 
 .coupon_print_btn_wrap{
     text-align: right;
+    margin-top: 20px;
 }
 
 .coupon_print_btn_wrap button{
