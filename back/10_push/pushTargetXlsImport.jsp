@@ -91,7 +91,7 @@
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
 		    //String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "").replaceAll("-", "");
-			String string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "").replaceAll("-", "");
+			String string0 = cell.toString().trim().replaceAll(",","").replaceAll("'","").replaceAll("-","");
 
 			if ( string0.equals("") ){
 				//전화번호가 존재하지 않으므로 중단한다.
