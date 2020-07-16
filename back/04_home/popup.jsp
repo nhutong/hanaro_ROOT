@@ -59,11 +59,9 @@
 			" FROM vm_popup AS p WHERE " +
 			("0".equals(company) || "".equals(company) ? "  1=1" : " company = " + userCompanyNo ) +	
 			("".equals(popupNo) ? "" : " AND popup_no = " + popupNo ) +
-			("".equals(s_date) ? "" : " AND (( '" + s_date + "' <= end_date ") +
-			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "') OR ( period_type = 1 )) ") +
+			("".equals(s_date) || "".equals(e_date) ? "" : " AND ((('" + s_date + "' <= end_date AND end_date <= '" + e_date + "') OR ('" + s_date + "' <= start_date AND start_date <= '" + e_date + "') OR (start_date <= '"+ s_date +"' AND '"+ e_date +"' <= end_date )) OR ( period_type = 1 )) ") +
 			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
 			("".equals(status) ? "" : " AND show_flag LIKE '" + status + "' ");
-		System.out.println(queryTotal);
 		results.put("total", 
 			queryRunner.query(
 				conn,
@@ -86,14 +84,12 @@
 			" FROM hanaro.vm_popup p WHERE " +			
 			("0".equals(company) || "".equals(company) ? "1=1" : "company = " + userCompanyNo ) +
 			("".equals(popupNo) ? "" : " AND popup_no = " + popupNo ) +
-			("".equals(s_date) ? "" : " AND (( '" + s_date + "' <= end_date ") +
-			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "') OR ( period_type = 1 )) ") +
+			("".equals(s_date) || "".equals(e_date) ? "" : " AND ((('" + s_date + "' <= end_date AND end_date <= '" + e_date + "') OR ('" + s_date + "' <= start_date AND start_date <= '" + e_date + "') OR (start_date <= '"+ s_date +"' AND '"+ e_date +"' <= end_date )) OR ( period_type = 1 )) ") +
 			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
 			("".equals(status) ? "" : " AND show_flag LIKE '" + status + "' ") +
 			" ORDER BY popup_no desc " +
 			" limit ?,? ";
 		Object[] paramList = new Object[]{ offset, rowCount } ;
-		System.out.println(queryList);
 		results.put("list", 
 			queryRunner.query(
 				conn,

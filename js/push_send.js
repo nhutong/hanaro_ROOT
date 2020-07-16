@@ -338,7 +338,6 @@ $("#pushSendBtn").on("click",function(e){
 		pushType : $('#pushType').val(),
 		pushDel : $('#pushDel').val()
 	} ;
-	console.log(formData);
 
 	if ( formData.pushTopTxt == null || chrLen(formData.pushTopTxt) == 0){
 		alert("PUSH 내용을 입력하시기 바랍니다.");
@@ -379,7 +378,7 @@ $("#pushSendBtn").on("click",function(e){
 	if ($("#pushType").val() == "realtime" ){	
 		var pm_no = $("#pushNo").val();	
 		$.ajax({
-			url:'https://172.16.9.21//PushSms/back-end/pushRealtime.php?random=' + (Math.random()*99999), 
+			url:'http://localhost:8001//PushSms/back-end/pushRealtime.php?random=' + (Math.random()*99999), 
 			data : {pm_no: pm_no},
 			method : 'GET' 
 		}).done(function(result){
