@@ -68,7 +68,8 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-		    String string0 = cell.getStringCellValue().trim();
+		    //String string0 = cell.getStringCellValue().trim();
+			String string0 = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 
 			if ( "".equals(string0) ){
 				//순서가 존재하지 않으므로 중단한다.
@@ -76,7 +77,10 @@
 				out.print("order_number_no_exist");
 				return;
 			}else{
+				string0 = strEncode(sring0);
 				if ( isNumeric(string0) == true ){
+					string0 = String.valueOf(Math.round(Double.parseDouble(string0)));
+					System.out.println(string0);
 				}else{
 					//순서가 숫자가 아니므로 중단한다.
 					out.clear();

@@ -63,11 +63,14 @@
                                     <div class="coupon_a4_05">
                                         <div class="a4_05_lft">
                                             <!-- <div class="a4_01" id="a4Count">0g(0g*0T)</div> -->
+                                            <div class="a4_02" id="a4Count">0g(0g*0ea)</div>
                                             <div class="a4_02" id="a4Weight">0원/0g</div>
                                             <div class="a4_03" id="a4PdName2">원산지</div>
                                             <div class="a4_04" id="a4Limit">수량제한(ex. 1인2개 한정)</div>
                                             <div class="a4_05" id="a4Qr">
                                                 <img src="../images/qrqrqr.png" alt="qr코드">
+                                                <!-- 200714 김수경 qr코드 설명 추가 -->
+                                            <div style="font-size:0.5em">↑하나로마트로앱 설치</div>    
                                             </div>
                                         </div>
                                         <div class="a4_05_rgt" id="a4_pd_img">
@@ -115,15 +118,17 @@
                                     <!--상품정보 및 이미지-->                                        
                                         <div class="a3_05_lft">
                                             <!-- <div class="a3_01" id="a3Count">0g(0g*0T)</div> -->
+                                            <div class="a3_02" id="a3Count">0g(0g*0ea)</div>
                                             <div class="a3_02" id="a3Weight">0원/0g</div>
                                             <div class="a3_03" id="a3PdName2">원산지</div>
                                             <div class="a3_04" id="a3Limit">수량제한(ex. 1인2개 한정)</div>
                                             <div class="a3_05">
                                                 <div class="a3_qrcode" id="a3Qr">
                                                     <img src="../images/qrqrqr.png" alt="qr코드">
+                                                <!-- 200714 김수경 qr코드 설명 추가 -->
                                                 </div>
                                                 <div class="a3_sale">
-                                                    <span class="a3_hanaro">하나로마트</span>
+                                                    <span class="a3_hanaro">하나로마트로</span>
                                                     <span class="a3_06_coupon">앱쿠폰할인</span>
                                                     <span class="a3_06_price" id="a3Discount">2,000원</span> 
                                                 </div>
@@ -131,7 +136,7 @@
                                         </div>
                                         <!--상품가격 및 할인가격-->
                                         <div class="a3_05_rgt">
-                                            <div class="a3_pd_img" id="a3_pd_img"></div>                                            
+                                            <!-- <div class="a3_pd_img" id="a3_pd_img"></div>                                             -->
                                             <div class="a3_price_before" id="a3BeforePrice">0원</div>
                                             <div class="a3_price_after"><span class="a3_price_after_tag">앱쿠폰할인가</span><span id="a3AfterPrice">0원</span></div>
                                         </div>                                            
@@ -152,19 +157,20 @@
                                                 상품명을 입력하세요
                                             </div>
                                             <div class="coupon_r200_03">
-                                                <!-- <div class="r200_01" id="r200Count">0g(0g*0T)</div> -->
+                                                <div class="r200_01" id="r200Count">0g(0g*0T)</div>
                                                 <div class="r200_02" id="r200Weight">0원/0g</div>
-                                                <div class="r200_04" id="r200Limit">수량제한(ex. 1인2개 한정)</div>
-                                            </div>
-                                            <div class="coupon_r200_04">
+                                                <div class="r200_03" id="r200PdName2">원산지</div>
+                                                <div class="r200_04" id="r200Limit">제한(ex. 1인2개 한정)</div>
+                                                <div class="coupon_r200_04">
                                                 <div class="r200_04_lft">
-                                                    <span class="r200_hanaro">하나로마트</span>
                                                     <span class="r200_06_coupon">앱쿠폰할인</span>
                                                     <span class="r200_06_price" id="r200Discount">0원</span>
                                                 </div>
                                                 <div class="r200_04_center">
                                                     <img src="../images/qrqrqr.png" alt="qr코드">                                                    
                                                 </div>
+                                            </div>
+                                        </div>
                                                 <div class="r200_04_rgt">
                                                     <div class="r200_price_before" id="r200BeforePrice">0원</div>
                                                     <div class="r200_price_after"><span class="r200_price_after_tag">앱쿠폰할인가</span><span id="r200AfterPrice">0원</span></div>
@@ -195,9 +201,9 @@
                                         <li data-new="03" onclick="couponSize('03','A4');">
                                             <img src="../images/a4_end.png" alt="엔드매대형A4">엔드매대형A4
                                         </li>
-                                        <li data-new="03" onclick="couponSize('03','A3');">
+                                        <!-- <li data-new="03" onclick="couponSize('03','A3');">
                                             <img src="../images/a3_end.png" alt="엔드매대형A3">엔드매대형A3
-                                        </li>                                                                                
+                                        </li>                                                                                 -->
                                     </ul>
                                     <input type="hidden" id="printSize" value="A4">
                                     <input type="hidden" id="printOrientation" value="portrait">
@@ -266,7 +272,7 @@
                                         <td><input type="text" id="popPdEtcInfo" placeholder="기타정보를 입력하세요"></td>
                                     </tr>
                                 </table>
-                                <span>※(주의)POP내용을 수정하시면, 쿠폰내용도 수정하셔야 합니다.<br>(자동으로 반영되지 않습니다.)</span>
+                                <span style="padding: 10px 0px 10px 0px; color:red">※(주의)POP내용 수정시, 쿠폰 수정 필요(자동반영X)<br>출력하기→마우스 우클릭→인쇄미리보기→설정 수정하여 출력</span>
                                 <div class="coupon_print_btn_wrap">
                                     <button id="couponPrintApply">적용하기</button>
                                     <button id="couponPrintSave">저장하기</button>

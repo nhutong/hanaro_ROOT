@@ -3134,25 +3134,24 @@ button#bannerUpdate{
 /*coupon_print_wrap start*/
 
 .coupon_print_wrap > div{
-    display: table;
-    float:left;
+    /* display: table; */
     vertical-align: middle;
 }
 
 .coupon_print_lft{
-    width: 50%;
-    height: 100%;
-    float:left;
-    padding: 20px;
+    float: left;
+    padding: 0px 20px;
+    zoom : 0.6;
 }
 
 /*오른쪽테이블*/
 .coupon_print_rgt{
-    width: 400px;
+    /* width: 50%; */
+    float: left;
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */    
-    width: 37%;
-    padding-top: 20px;
-    padding-right: 20px; 
+    /* width: 37%; */
+    /* padding-top: 20px;
+    padding-right: 20px;  */
     /* 200608 김수경 화면배율 변경해도 쓸 수 있도록 수정 */
 }
 .size_select_wrap ul{
@@ -3169,7 +3168,7 @@ button#bannerUpdate{
 
 .size_select_wrap ul li{
     flex: 1;
-    padding: 20px;
+    /* padding: 20px; */
     border-right: 1px solid #d0d0d0;
     cursor: pointer;
 }
@@ -3208,6 +3207,7 @@ button#bannerUpdate{
 
 .coupon_print_btn_wrap{
     text-align: right;
+    margin-top: 20px;
 }
 
 .coupon_print_btn_wrap button{

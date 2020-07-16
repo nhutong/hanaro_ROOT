@@ -80,7 +80,8 @@
                 col = 0;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                //String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                String string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
 
                 if ( string0.equals("") ){
                     //순서가 존재하지 않으므로 중단한다.
@@ -88,7 +89,10 @@
                     out.print("order_number_no_exist");
                     return;
                 }else{
+                    string0 = strEncode(string0);
                     if ( isNumeric(string0) == true ){
+                        string0 = String.valueOf(Math.round(Double.parseDouble(string0)));
+                        System.out.println(string0);
                     }else{
                         //순서가 숫자가 아니므로 중단한다.
                         out.clear();
@@ -149,13 +153,14 @@
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
                 //String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
-                String string3 = cell.toString().replaceAll(",","").replaceAll("'","");
+                String string3 = cell.toString().trim().replaceAll(",","").replaceAll("'","");
                 if ( string3.equals("") ){
                     //판매가 존재하지 않으므로 중단한다.
                     out.clear();
                     out.print("price_no_exist");
                     return;
                 }else{
+                    string3 = strEncode(string3);
                     if ( isNumeric(string3) == true ){
                         string3 = String.valueOf(Math.round(Double.parseDouble(string3)));
                         System.out.println(string3);
@@ -172,9 +177,10 @@
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
                 //String string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
-                String string4 = cell.toString().replaceAll(",","").replaceAll("'","");
+                String string4 = cell.toString().trim().replaceAll(",","").replaceAll("'","");
                 if ( string4.equals("") ){
                 }else{
+                    string4 = strEncode(string4);
                     if ( isNumeric(string4) == true ){
                         string4 = String.valueOf(Math.round(Double.parseDouble(string4)));
                         System.out.println(string4);
@@ -253,9 +259,10 @@
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }                
                 //String string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
-                String string9 = cell.toString().replaceAll(",","").replaceAll("'","");
+                String string9 = cell.toString().trim().replaceAll(",","").replaceAll("'","");
                 if ( string9.equals("") ){
                 }else{
+                    string9 = strEncode(string9);
                     if ( isNumeric(string9) == true ){
                         string9 = String.valueOf(Math.round(Double.parseDouble(string9)));
                         System.out.println(string9);
