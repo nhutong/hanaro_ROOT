@@ -144,7 +144,7 @@ function prodList_paging(rcvPageNo, rcvCompanyNo) {
 
 	$.ajax({
         url:'/back/10_push/postList_paging.jsp?random=' + (Math.random()*99999), 
-        data : {pageNo: rcvPageNo ,companyNo: rcvCompanyNo, s_date, e_date, category, keyword, status},
+        data : {pageNo: rcvPageNo ,companyNo: rcvCompanyNo, s_date: s_date, e_date: e_date, category: category, keyword: keyword, status: status},
         method : 'GET' 
     }).done(function(result){
 
