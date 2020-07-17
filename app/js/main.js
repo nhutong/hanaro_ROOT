@@ -15,6 +15,8 @@ $(function(){
 		}else{
 			vm_cp_no = localStorage.getItem("vm_cp_no");
 		}
+	} else {
+		localStorage.setItem("vm_cp_no", vm_cp_no);
 	}
 
 	getHeader(vm_cp_no);
