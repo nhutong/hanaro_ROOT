@@ -69,7 +69,7 @@
         sheetNum = workBook.getNumberOfSheets();
 		// 엑셀 업로드
         for (int v = 0; v < sheetNum; v++) {
-            sheet = workBook.getSheetAt(v);
+            sheet = workBook.getSheetAt(0);
             int rows = sheet.getPhysicalNumberOfRows();
             int col = 0;
             for(int i = 1; i < rows; i++) {
