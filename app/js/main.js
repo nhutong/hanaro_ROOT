@@ -44,11 +44,15 @@ $(function(){
 
 	console.log("== logInsert =========================================");	
 	logInsert(localStorage.getItem("memberNo"), vm_cp_no, "-1");
-	if (localStorage.getItem("viewTopBanner") != "false") {
-		$("#appTopBanner").slideDown();
-	}
-	if (localStorage.getItem("viewTopBanner2") != "false") {
-		$("#appTopBanner2").slideDown();
+	var isInIFrame = ( window.location != window.parent.location );
+	if (!isInIFrame)
+	{
+		if (localStorage.getItem("viewTopBanner") != "false") {
+			$("#appTopBanner").slideDown();
+		}
+		if (localStorage.getItem("viewTopBanner2") != "false") {
+			$("#appTopBanner2").slideDown();
+		}
 	}
 })
 
