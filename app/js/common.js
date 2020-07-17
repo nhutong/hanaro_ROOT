@@ -106,7 +106,23 @@ function getHeader(rcVm_p_no){
 	
 	var result = '';
 	var isInIFrame = ( window.location != window.parent.location );
-	 
+	result += '<div id="appTopBanner" style="display: none;">';
+	result += '	<div class="IsAppDownload" style="display: flex;align-items: center;padding: 10px 11px 3px;background-color: #cacaca;justify-content: center;">';
+	result += '		<span class="xBtn" style="display: flex;border-radius: 50%;padding: 2px;background-color: white;" id="appTopBannerClose">';
+	result += '			<img src="../images/leaflet_cls.png" width="15" height="15"/>';
+	result += '		</span>';
+	result += '		<span style="margin: 3px 7px;">';
+	result += '			<img src="../images/appIcon.png" width="70" height="70"/>';
+	result += '		</span>';
+	result += '		<div style="display: flex;flex-direction: column;margin-left: 5px;">';
+	result += '			<span style="font-size: 20px;">하나로마트로</span>';
+	result += '			<span style="font-size: 12px;">모바일앱 하나로마트로 설치하고 더 큰 혜택 받기</span>';
+	result += '		</div>';
+	result += '		<div style="width: 80px; margin-left: 5px;">';
+	result += '			<button onclick="javascript:accessApplication(event);" style="width: 100%;height: 50px;background-color: #55B190; color: white; border: 0; border-radius: 10px;">설치</button>';
+	result += '		</div>';
+	result += '	</div>';
+	result += '</div>';
 	result += '	<div id="share_btn" onclick="share_btn();">	';		
 	result += '		<div class="share_btn_inner">	';
 	result += '			<img src="../images/share_btn.png" alt="공유하기">';
@@ -228,7 +244,16 @@ function getHeader(rcVm_p_no){
 
 	$(".share_inner_btn").click(function(){
 		// alert("모바일 앱을 통해서만 사용할 수 있습니다.");
-	})	
+	})
+	var isInIFrame = ( window.location != window.parent.location );
+	if (!isInIFrame)
+	{
+		var viewSetDate = new Date(localStorage.getItem("viewTopBanner"));
+		if (new Date().getDate() != viewSetDate.getDate()) {
+			$("#appTopBanner").slideDown();
+			localStorage.removeItem("viewTopBanner");
+		}
+	}
 }
 
 // header menu를 셋팅한다. https://www.nhhanaromart.com
@@ -914,3 +939,9 @@ function checkMobile(){
         return "other";
     }
 }
+
+$(document).on("click", "#appTopBannerClose", function() {
+	$("#appTopBanner").slideUp();
+	//$("#appTopBanner").css("display", "none");
+	localStorage.setItem("viewTopBanner", new Date());
+});

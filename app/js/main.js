@@ -44,15 +44,6 @@ $(function(){
 
 	console.log("== logInsert =========================================");	
 	logInsert(localStorage.getItem("memberNo"), vm_cp_no, "-1");
-	var isInIFrame = ( window.location != window.parent.location );
-	if (!isInIFrame)
-	{
-		var viewSetDate = new Date(localStorage.getItem("viewTopBanner"));
-		if (new Date().getDate() != viewSetDate.getDate()) {
-			$("#appTopBanner").slideDown();
-			localStorage.removeItem("viewTopBanner");
-		}
-	}
 })
 
 	//판매장정보 업데이트
@@ -694,8 +685,3 @@ function addRmZzim(rcv_jd_prod_con_no){
         }
     });
 }
-$("#appTopBannerClose").click(function() {
-	$("#appTopBanner").slideUp();
-	//$("#appTopBanner").css("display", "none");
-	localStorage.setItem("viewTopBanner", new Date());
-});
