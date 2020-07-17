@@ -1,9 +1,7 @@
 //var newShortURL;
 
 $(function () {
-	
-
-	// 전역변수 파라미터 ( 판매장이 보낸 문자링크때 주로 사용된다. )	
+	// 전역변수 파라미터 ( 판매장이 보낸 문자링크때 주로 사용된다. )
 	vm_cp_no = getParameterByName('vm_cp_no');   // 판매장번호
 	menu_no  = getParameterByName('menu_no');    // 메뉴번호
 	jd_no    = getParameterByName('jd_no');      // 전단번호
@@ -16,6 +14,8 @@ $(function () {
 	if (vm_cp_no == "") 
 	{
 		vm_cp_no = localStorage.getItem("vm_cp_no");
+	} else {
+		localStorage.setItem("vm_cp_no", vm_cp_no);
 	}
 
 	logInsert(localStorage.getItem("memberNo"), vm_cp_no, menu_no);

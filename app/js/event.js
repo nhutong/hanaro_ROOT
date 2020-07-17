@@ -39,6 +39,7 @@ function eventDetail(){
     $(".event_list").removeClass("active");   
 	$(".event_cont").hide();
 	$(".event_cont_blk").hide();
+	/*
     $(".event_thumb, .event_detail").click(function(){
 		$(this).siblings(".event_cont").show();
 		$(this).siblings(".event_cont_blk").show();
@@ -49,12 +50,13 @@ function eventDetail(){
         $(".event_cont").hide();
 		$(".event_cont_blk").hide();
         $(".event_list").show();
-    }) 
+	}) 
+	*/
 
     //슬라이드에서 들어오면 이벤트페이지 펼치기
     oParams = getUrlParams();
     if(oParams.event_no == null){
-    }else{	
+    }else{
         $(".event_list").removeClass("active");   
          $("#eventCont"+oParams.event_no+"").parent(".event_list").addClass("active");   
         $("#eventCont"+oParams.event_no+"").show();
@@ -118,7 +120,7 @@ function eventList(rcv_vm_cp_no){
 				
 				for(var i in jsonResult_notice){
 
-					text +='<div class="event_list">';       
+					text +='<div class="event_list" onclick="javascript:accessApplication();">';       
 					text +='	<div class="event_thumb">';
 					text +='	   <a href="#"><img src="../..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
@@ -209,7 +211,7 @@ function eventListIng(rcv_vm_cp_no){
 				
 				for(var i in jsonResult_notice){
 
-					text +='<div class="event_list">';       
+					text +='<div class="event_list" onclick="javascript:accessApplication();">';       
 					text +='	<div class="event_thumb">';
 					text +='	   <a href="#"><img src="../..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
@@ -301,7 +303,7 @@ function eventListEnd(rcv_vm_cp_no){
 				
 				for(var i in jsonResult_notice){
 
-					text +='<div class="event_list">';       
+					text +='<div class="event_list" onclick="javascript:accessApplication();">';       
 					text +='	<div class="event_thumb">';
 					text +='	   <a href="#"><img src="'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';

@@ -273,8 +273,8 @@ function getHeaderMenu(ff_vm_cp_no) {
      getMenuListDefault(ff_vm_cp_no);
 
 	 
-     var ofLength = $("#headerMenuArea li").length;
-     $("#headerMenuArea").width(90*ofLength);
+	 var ofLength = $("#headerMenuArea li").length;
+	 $("#headerMenuArea").width(90*ofLength);
      
      var isInIFrame = ( window.location != window.parent.location );
      if (isInIFrame == true){
@@ -368,7 +368,7 @@ function getMenuListDefault(rcvCompanyNo) {
         }
 
 		var ofLength = $("#headerMenuArea li").length;
-		$("#headerMenuArea").width(90*ofLength);
+		$("#headerMenuArea").width(76*ofLength);
 
 		var locHeader = location.pathname;
             
@@ -858,4 +858,32 @@ function progressPopup() {
 	LayerPopup.progress("상태진행중 팝업입니다.", function() {
 		LayerPopup.alert("감사합니다.");
 	});
+}
+
+function accessApplication() {
+	if (confirm(" App 전용 메뉴입니다.  하나로마트로 앱을 설치하시면 \n 여러가지 혜택을 받으실수 있습니다. 설치하시겠습니까?")) {
+		if (checkMobile() == 'android') {
+			location.href="https://play.google.com/store/apps/details?id=com.nh.nhhanaromart";
+		} else if (checkMobile() == 'ios') {
+			location.href="https://apps.apple.com/app/id1506858109";
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
+function checkMobile(){
+    var varUA = navigator.userAgent.toLowerCase();
+    if ( varUA.indexOf('android') > -1) {
+        //안드로이드
+        return "android";
+    } else if ( varUA.indexOf("iphone") > -1||varUA.indexOf("ipad") > -1||varUA.indexOf("ipod") > -1 ) {
+        //IOS
+        return "ios";
+    } else {
+        //아이폰, 안드로이드 외
+        return "other";
+    }
 }
