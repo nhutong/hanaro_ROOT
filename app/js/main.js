@@ -47,11 +47,10 @@ $(function(){
 	var isInIFrame = ( window.location != window.parent.location );
 	if (!isInIFrame)
 	{
-		if (localStorage.getItem("viewTopBanner") != "false") {
+		var viewSetDate = new Date(localStorage.getItem("viewTopBanner"));
+		if (new Date().getDate() != viewSetDate.getDate()) {
 			$("#appTopBanner").slideDown();
-		}
-		if (localStorage.getItem("viewTopBanner2") != "false") {
-			$("#appTopBanner2").slideDown();
+			localStorage.removeItem("viewTopBanner");
 		}
 	}
 })
@@ -698,10 +697,5 @@ function addRmZzim(rcv_jd_prod_con_no){
 $("#appTopBannerClose").click(function() {
 	$("#appTopBanner").slideUp();
 	//$("#appTopBanner").css("display", "none");
-	localStorage.setItem("viewTopBanner", false);
-});
-$("#appTopBannerClose2").click(function() {
-	$("#appTopBanner2").slideUp();
-	localStorage.setItem("viewTopBanner2", false);
-	//$("#appTopBanner2").css("display", "none");
+	localStorage.setItem("viewTopBanner", new Date());
 });
