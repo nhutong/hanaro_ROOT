@@ -880,7 +880,7 @@ function accessApplication(e) {
 	{
 		if (confirm(" App 전용 메뉴입니다.  하나로마트로 앱을 설치하시면 \n 여러가지 혜택을 받으실수 있습니다. 설치하시겠습니까?")) {
 			if (checkMobile() == 'android') {
-				location.href="https://play.google.com/store/apps/details?id=com.nh.nhhanaromart";
+				window.open("https://play.google.com/store/apps/details?id=com.nh.nhhanaromart", "_BLANK");
 			} else if (checkMobile() == 'ios') {
 				location.href="https://apps.apple.com/app/id1506858109";
 			} else {
