@@ -113,6 +113,7 @@ function getPushInfo(rcv_pm_no){
 		function(result) {
 			//console.log(result);
 			var info = result.list[0];
+			console.log(info);
 			$("#pushTopTxt").val(info.ms_content);
 			$("#sort_select").val(info.vm_cp_no);
 			$("#event_no").val(info.event_no);
@@ -171,6 +172,7 @@ function getPushInfo(rcv_pm_no){
 			$("#pmt_no_cnt").val(total);	
 			$("#pmt_no_cnt_title").text(total+"명");	        
 
+			/*
 			var today = new Date();
 			var year = today.getFullYear();
 			var month = leadingZeros(today.getMonth()+1,2);
@@ -178,6 +180,7 @@ function getPushInfo(rcv_pm_no){
 		
 			$("#pushSendFromDate").val(year+'-'+month+'-'+day);
 			$("#pushSendToDate").val(year+'-'+month+'-'+day);	
+			*/
 			
 			// console.log("excelpath("+$("#excel_path").val()+")");			
 					
@@ -511,6 +514,8 @@ $("#pushSaveBtn").on("click",function(e){
 		function(resultJSON){
 			if(resultJSON['update'] > 0){
 				alert('저장이 완료되었습니다');
+				location.href = "./push.html";
+				/*
 				if ( push_target_tel != "" ){									
 					if( push_target_tel_import() ){
 						getPushInfo(pm_no);				
@@ -521,6 +526,7 @@ $("#pushSaveBtn").on("click",function(e){
 					}	
 				}
 				getPushInfo(formData.pm_no);
+				*/
 			}else {
 				console.log(resultJSON['error']);
 				alert("저장 중 에러가 발생하였습니다.");
