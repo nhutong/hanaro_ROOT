@@ -105,6 +105,7 @@ function getCookie(cookieName) {
 function getHeader(rcVm_p_no){
 	
 	var result = '';
+	var isInIFrame = ( window.location != window.parent.location );
 	 
 	result += '	<div id="share_btn" onclick="share_btn();">	';		
 	result += '		<div class="share_btn_inner">	';
@@ -113,11 +114,19 @@ function getHeader(rcVm_p_no){
 	result += '	</div>';
 	result += '	<div id="share_list">';  
 	result += '	   <ul>';
-	result += '		   <li class="share_inner_btn"><a href="#"><img src="../images/share.png" alt="공유하기">공유하기</a></li>';
+	if (isInIFrame == true) {
+		result += '		   <li class="share_inner_btn"><a href="#"><img src="../images/share.png" alt="공유하기">공유하기</a></li>';
+	} else {
+		result += '		   <li class="share_inner_btn" onclick="javascript:accessApplication(event);"><a href="#"><img src="../images/share.png" alt="공유하기">공유하기</a></li>';
+	}
 //	result += '		   <li><a href="../mypage/my_coupon.html"><img src="../images/coupon.png" alt="쿠폰">쿠폰</a></li>';
 // 스탬프 숨기기 200401
 //	result += '		   <li><a href="../mypage/stamp.html"><img src="../images/stamps.png" alt="스탬프">스탬프</a></li>';
-	result += '		   <li><a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"><img src="../images/coupon.png" alt="쿠폰">쿠폰</a></li>';
+	if (isInIFrame == true) {
+		result += '		   <li><a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"><img src="../images/coupon.png" alt="쿠폰">쿠폰</a></li>';
+	} else {
+		result += '		   <li><a href="#" onclick="javascript:accessApplication(event);"><img src="../images/coupon.png" alt="쿠폰">쿠폰</a></li>';
+	}
 	// result += '		   <li><a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"><img src="../images/stamps.png" alt="스탬프">스탬프</a></li>';
 	result += '	   </ul>';
 	result += '	</div>';
@@ -176,15 +185,15 @@ function getHeader(rcVm_p_no){
 	result += '			</a>';
 	result += '		</h1>';
 	result += '		<div class="aside_btn">';
-	result += '			<a href="#"> <img src="../images/menu.png" alt="네비게이션 열기"> </a>';
+	result += '			<a href="#" onclick="accessApplication(event)"> <img src="../images/menu.png" alt="네비게이션 열기"> </a>';
 	result += '		</div>';
 	result += '		<div id="header_inner_wrap">';
 	result += '			<div id="cart">';
-	result += '				<a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"> <img src="../images/like.png" alt="찜하기"> </a>';
+	result += '				<a href="#" onclick="accessApplication(event)"> <img src="../images/like.png" alt="찜하기"> </a>';
 
 	result += '			</div><div ';
 	result += '			id="alert">';
-	result += '				<a href="#" onclick="alert(\'모바일앱을 설치하여 사용하시기 바랍니다.\');"> <img src="../images/alert.png" alt="알림창"> </a>';
+	result += '				<a href="#" onclick="accessApplication(event)"> <img src="../images/alert.png" alt="알림창"> </a>';
     result += '			</div>';
     // 모바일앱 출시 전 돋보기 버튼 숨기기    
     // result += '			</div><div ';
@@ -218,7 +227,7 @@ function getHeader(rcVm_p_no){
 	}
 
 	$(".share_inner_btn").click(function(){
-		alert("모바일 앱을 통해서만 사용할 수 있습니다.");
+		// alert("모바일 앱을 통해서만 사용할 수 있습니다.");
 	})	
 }
 
@@ -550,8 +559,13 @@ function zzimCount(rcvNo, rcv_vm_cp_no){
             var data = JSON.parse(result);
 		
 			data['PdContentList'].forEach(function(item, index){ 
-
-				text += '<a href="../home/zzim.html"> <img src="../images/like.png" alt="찜하기"> </a>';
+				var isInIFrame = ( window.location != window.parent.location );
+				if (isInIFrame)
+				{
+					text += '<a href="../home/zzim.html"> <img src="../images/like.png" alt="찜하기"> </a>';
+				} else {
+					text += '<a href="#" onclick="accessApplication(event);"> <img src="../images/like.png" alt="찜하기"> </a>';
+				}
 				if(item['zzim_cnt'] == 0){
 
                }else{
@@ -562,7 +576,6 @@ function zzimCount(rcvNo, rcv_vm_cp_no){
 		
 			$("#cart").empty();
 			$("#cart").append(text);
-
         }
     });
 }
@@ -860,18 +873,31 @@ function progressPopup() {
 	});
 }
 
-function accessApplication() {
-	if (confirm(" App 전용 메뉴입니다.  하나로마트로 앱을 설치하시면 \n 여러가지 혜택을 받으실수 있습니다. 설치하시겠습니까?")) {
-		if (checkMobile() == 'android') {
-			location.href="https://play.google.com/store/apps/details?id=com.nh.nhhanaromart";
-		} else if (checkMobile() == 'ios') {
-			location.href="https://apps.apple.com/app/id1506858109";
+function accessApplication(e) {
+	var isInIFrame = ( window.location != window.parent.location );
+
+	if (!isInIFrame)
+	{
+		if (confirm(" App 전용 메뉴입니다.  하나로마트로 앱을 설치하시면 \n 여러가지 혜택을 받으실수 있습니다. 설치하시겠습니까?")) {
+			if (checkMobile() == 'android') {
+				location.href="https://play.google.com/store/apps/details?id=com.nh.nhhanaromart";
+			} else if (checkMobile() == 'ios') {
+				location.href="https://apps.apple.com/app/id1506858109";
+			} else {
+				return false;
+			}
 		} else {
+			console.log(e);
+			e.bubbles = false;
+			e.defaultPrevented = true;
+			e.cancelBubble = true;
 			return false;
 		}
-	} else {
-		return false;
 	}
+	e.preventDefault();
+	e.stopPropagation();
+	e.stopImmediatePropagation();
+	return false;
 }
 
 function checkMobile(){

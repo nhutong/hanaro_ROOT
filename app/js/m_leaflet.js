@@ -242,6 +242,7 @@ function getBanner(rcv_jd_no_b) {
 
 // 전단 컨텐츠 상품리스트를 불러온다.
 function getPdContent(rcv_jd_no) {
+	var isInIFrame = ( window.location != window.parent.location );
 	$.ajax({
 		url:'/back/02_app/mLeafletPdContent.jsp?random=' + (Math.random()*99999), 
 		data : {jd_no: rcv_jd_no, memberNo: localStorage.getItem("memberNo")},
@@ -289,9 +290,14 @@ function getPdContent(rcv_jd_no) {
 							}else{
 								if (item['vmjz_no'] != '')
 								{
-									text += '			<div class="add_btn active" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'   
+									text += '			<div class="add_btn active" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'
 								}else{
-									text += '			<div class="add_btn" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'
+									if (isInIFrame == true)
+									{
+										text += '			<div class="add_btn" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'
+									} else {
+										text += '			<div class="add_btn" onclick="accessApplication(event);"><img src="../images/like2.png" alt="추가"></div>'
+									}
 								}		
 							}
 					}else{

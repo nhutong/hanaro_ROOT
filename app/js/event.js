@@ -39,19 +39,22 @@ function eventDetail(){
     $(".event_list").removeClass("active");   
 	$(".event_cont").hide();
 	$(".event_cont_blk").hide();
-	/*
-    $(".event_thumb, .event_detail").click(function(){
-		$(this).siblings(".event_cont").show();
-		$(this).siblings(".event_cont_blk").show();
-        $(this).parent(".event_list").siblings(".event_list").hide();
-    })
+	var isInIFrame = ( window.location != window.parent.location );
 
-    $(".event_detail >img, .event_cont_blk").click(function(){
-        $(".event_cont").hide();
-		$(".event_cont_blk").hide();
-        $(".event_list").show();
-	}) 
-	*/
+	if (isInIFrame)
+	{
+		$(".event_thumb, .event_detail").click(function(){
+			$(this).siblings(".event_cont").show();
+			$(this).siblings(".event_cont_blk").show();
+			$(this).parent(".event_list").siblings(".event_list").hide();
+		})
+
+		$(".event_detail >img, .event_cont_blk").click(function(){
+			$(".event_cont").hide();
+			$(".event_cont_blk").hide();
+			$(".event_list").show();
+		})
+	}
 
     //슬라이드에서 들어오면 이벤트페이지 펼치기
     oParams = getUrlParams();
@@ -120,7 +123,7 @@ function eventList(rcv_vm_cp_no){
 				
 				for(var i in jsonResult_notice){
 
-					text +='<div class="event_list" onclick="javascript:accessApplication();">';       
+					text +='<div class="event_list" onclick="javascript:accessApplication(event);">';       
 					text +='	<div class="event_thumb">';
 					text +='	   <a href="#"><img src="../..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
@@ -211,7 +214,7 @@ function eventListIng(rcv_vm_cp_no){
 				
 				for(var i in jsonResult_notice){
 
-					text +='<div class="event_list" onclick="javascript:accessApplication();">';       
+					text +='<div class="event_list" onclick="javascript:accessApplication(event);">';       
 					text +='	<div class="event_thumb">';
 					text +='	   <a href="#"><img src="../..'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';
@@ -303,7 +306,7 @@ function eventListEnd(rcv_vm_cp_no){
 				
 				for(var i in jsonResult_notice){
 
-					text +='<div class="event_list" onclick="javascript:accessApplication();">';       
+					text +='<div class="event_list" onclick="javascript:accessApplication(event);">';       
 					text +='	<div class="event_thumb">';
 					text +='	   <a href="#"><img src="'+jsonResult_notice[i].img_url+'" alt="이미지"></a>';
 					text +='	</div>';

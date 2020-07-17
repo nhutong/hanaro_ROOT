@@ -48,7 +48,12 @@
 						{
 							text += '			<div class="add_btn active" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'   
 						}else{
-							text += '			<div class="add_btn" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'
+							if (isInIFrame == true)
+							{
+								text += '			<div class="add_btn" onclick="addRmZzim('+item['jd_prod_con_no']+');"><img src="../images/like2.png" alt="추가"></div>'
+							} else {
+								text += '			<div class="add_btn" onclick="accessApplication(event);"><img src="../images/like2.png" alt="추가"></div>'
+							}
 						}		
 					}
 				}else{

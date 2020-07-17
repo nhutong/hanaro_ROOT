@@ -1,5 +1,4 @@
 $(function(){
-		
 	// 전역변수 파라미터 ( 판매장이 보낸 문자링크때 주로 사용된다. )	
 	vm_cp_no = getParameterByName('vm_cp_no');   // 판매장번호
 
@@ -103,6 +102,7 @@ function saveCoupon(rcvCouponNo, asisCnt){
 function couponList(rcv_vm_cp_no){
 
 	var text = '';
+	var isInIFrame = ( window.location != window.parent.location );
 
 	$.ajax({
 		url:'/back/02_app/mCoupon.jsp?random=' + (Math.random()*99999), 
@@ -165,7 +165,12 @@ function couponList(rcv_vm_cp_no){
 						text +='         <div class="cp_get_button_rcv" style="font-size:13px; background-color:#5E5E5F; color:#FFF; padding:5px 0px">받은쿠폰</div>';	
 					}
 				}else{
-					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+					if (isInIFrame == true)
+					{
+						text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+					} else {
+						text +='         <button onclick="accessApplication(event)" >쿠폰받기</button>';
+					}
 				}
 
 				if(jsonResult_notice[i].asisCnt < 0){
@@ -249,6 +254,7 @@ function couponList(rcv_vm_cp_no){
 function couponListIng(rcv_vm_cp_no){
 
 	var text = '';
+	var isInIFrame = ( window.location != window.parent.location );
 
 	$.ajax({
 		url:'/back/02_app/mCouponIng.jsp?random=' + (Math.random()*99999), 
@@ -311,7 +317,12 @@ function couponListIng(rcv_vm_cp_no){
 						text +='         <div class="cp_get_button_rcv" style="font-size:13px; background-color:#5E5E5F; color:#FFF; padding:5px 0px">받은쿠폰</div>';	
 					}
 				}else{
-					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+					if (isInIFrame == true)
+					{
+						text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+					} else {
+						text +='         <button onclick="accessApplication(event)" >쿠폰받기</button>';
+					}
 				}
 
 				if(jsonResult_notice[i].asisCnt < 0){
@@ -395,6 +406,7 @@ function couponListIng(rcv_vm_cp_no){
 function couponListEnd(rcv_vm_cp_no){
 
 		var text = '';
+		var isInIFrame = ( window.location != window.parent.location );
 
 		$.ajax({
 			url:'/back/02_app/mCouponEnd.jsp?random=' + (Math.random()*99999), 
@@ -457,7 +469,12 @@ function couponListEnd(rcv_vm_cp_no){
 						text +='         <div class="cp_get_button_rcv" style="font-size:13px; background-color:#5E5E5F; color:#FFF; padding:5px 0px">받은쿠폰</div>';	
 					}
 				}else{
-					text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+					if (isInIFrame == true)
+					{
+						text +='         <button onclick="saveCoupon('+jsonResult_notice[i].coupon_no+')" >쿠폰받기</button>';
+					} else {
+						text +='         <button onclick="accessApplication(event);" >쿠폰받기</button>';
+					}
 				}
 
 				if(jsonResult_notice[i].asisCnt < 0){

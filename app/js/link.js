@@ -7,6 +7,7 @@ function search(){window.location.href="../home/search.html"} // 검색
 function notice(){window.location.href="../home/notice.html"} // 공지사항
 function offline(){window.location.href="../home/offline.html"}//매장찾기
 function events(){window.location.href="../home/event.html"}//이벤트
+function coupon(){window.location.href="../home/coupon.html"}// 쿠폰
 
 function cart(){           if(memberNo)window.location.href="../cart/cart.html";                   else alert('모바일앱에서만 이용 가능합니다.'); } // 장바구니
 function cart_submit(){    if(memberNo)window.location.href="../cart/cart_submit.html";            else alert('모바일앱에서만 이용 가능합니다.'); } // 장바구니
@@ -22,4 +23,4 @@ function qna_create(){     if(memberNo)window.location.href="../home/qna_create.
 function zzim(){           if(memberNo)window.location.href="../home/zzim.html";                   else alert('모바일앱에서만 이용 가능합니다.'); }//찜하기
 function qna_detail(ntNo){ if(memberNo)window.location.href="../home/qna_detail.html?nt_no="+ntNo; else alert('모바일앱에서만 이용 가능합니다.'); }//1:1문의_세부
 function push(){           if(memberNo)window.location.href="../home/push.html";                   else alert('모바일앱에서만 이용 가능합니다.'); }//푸시알림
-function coupon(){         if(memberNo)window.location.href="../home/coupon.html";                 else alert('모바일앱에서만 이용 가능합니다.'); }//쿠폰
+// function coupon(){         if(memberNo)window.location.href="../home/coupon.html";                 else alert('모바일앱에서만 이용 가능합니다.'); }//쿠폰

@@ -44,6 +44,12 @@ $(function(){
 
 	console.log("== logInsert =========================================");	
 	logInsert(localStorage.getItem("memberNo"), vm_cp_no, "-1");
+	if (localStorage.getItem("viewTopBanner") != "false") {
+		$("#appTopBanner").slideDown();
+	}
+	if (localStorage.getItem("viewTopBanner2") != "false") {
+		$("#appTopBanner2").slideDown();
+	}
 })
 
 	//판매장정보 업데이트
@@ -643,12 +649,17 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				$(".modal_cls").click(function(){
 					   $(this).closest(".leaflet_cont").removeClass("active");
 				})
-				$(".add_btn").click(function(){  
-					var classActive = $(this).is(".active");
-					if( classActive == true){
-						$(this).removeClass("active");
-					}else{
-						$(this).addClass("active");
+				$(".add_btn").click(function(){ 
+					var isInIFrame = ( window.location != window.parent.location );
+					if (isInIFrame == true) { 
+						var classActive = $(this).is(".active");
+						if( classActive == true){
+							$(this).removeClass("active");
+						}else{
+							$(this).addClass("active");
+						}
+					} else {
+						accessApplication();
 					}
 				})
 			}			
@@ -680,3 +691,13 @@ function addRmZzim(rcv_jd_prod_con_no){
         }
     });
 }
+$("#appTopBannerClose").click(function() {
+	$("#appTopBanner").slideUp();
+	//$("#appTopBanner").css("display", "none");
+	localStorage.setItem("viewTopBanner", false);
+});
+$("#appTopBannerClose2").click(function() {
+	$("#appTopBanner2").slideUp();
+	localStorage.setItem("viewTopBanner2", false);
+	//$("#appTopBanner2").css("display", "none");
+});
