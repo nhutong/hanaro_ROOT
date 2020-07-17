@@ -110,7 +110,7 @@ $(function () {
 				return;
 			}
 
-			if(!formData.product_code) {
+			if(!formData.product_code && formData.coupon_type == "PRODUCT") {
 				alert('상품코드(상품명)를 입력해주세요.');
 				return;
 			}
