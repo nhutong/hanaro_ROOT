@@ -4740,14 +4740,18 @@ background-color: #ab1f1f;
 /*store_imgmaster start*/
 
 .store_imgmaster_wrap{
-    width: 900px;
+    /* 200720 김수경 테이블 정비 */
+    /* width: 900px; */
+    width: 95%;
     font-size: 14px;
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .store_imgmaster_table{
-    width: 900px;
+    /* 200720 김수경 테이블 정비 */
+    /* width: 900px; */
+    width: 100%;
     text-align: center;
     font-size: 14px;
 }
@@ -4757,7 +4761,6 @@ background-color: #ab1f1f;
     padding: 14px 5px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
-    min-width: 100px;
 }
 
 .store_imgmaster_table td{
@@ -5072,9 +5075,15 @@ background-color: #ab1f1f;
     font-weight: 400;
 }
 
+.might-overflow {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    max-width: 10em;
+}
 
-
-
-
-
-
+.might-overflow:hover {
+    text-overflow: clip;
+    white-space: normal;
+    Word-break: break-all;
+}

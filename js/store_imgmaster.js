@@ -31,6 +31,7 @@ $(function () {
 
 
 // 상품리스트를 가져온다
+
 function imgList(nowPage) {
 	if (!nowPage) nowPage = 1;
 	$.ajax({
@@ -56,16 +57,16 @@ function imgList(nowPage) {
 
 				text +='<tr>';
 				//text +='    <td>'+item['pd_code']+'</td>';
-				text +='	<td><input type="text" value="'+item['pd_code']+'" id="pdCode_'+item['img_no']+'"></td>';
-                text +='    <td>'+item['pd_name']+'</td>';
+				text +='	<td><input type="text" style="max-width:150px; text-align:center" value="'+item['pd_code']+'" id="pdCode_'+item['img_no']+'"></td>';
+                text +='    <td class="might-overflow">'+item['pd_name']+'</td>';
 				//text +='    <td>'+item['group_tag']+'</td>';
-				text +='	<td><input type="text" value="'+item['group_tag']+'" id="groupTag_'+item['img_no']+'" class="groupTagClass" onkeyup="searchFunc(this);" onblur="focusOut();">';							
+				text +='	<td><input type="text" style="max-width:100px; text-align:center" value="'+item['group_tag']+'" id="groupTag_'+item['img_no']+'" class="groupTagClass" onkeyup="searchFunc(this);" onblur="focusOut();">';							
                 text +='    <td data-toggle="modal" data-target="#imgmasterModal" onclick="javascript:viewBigImage(\''+item['img_path']+'\')"><img src="/upload/'+item['img_path']+'" alt="이미지"></td>';
-                text +='    <td>'+item['img_path']+'</td>';
+                text +='    <td class="might-overflow">'+item['img_path']+'</td>';
                 text +='    <td>'+item['vm_cp_name']+'</td>';
                 text +='    <td>'+item['vm_name']+'</td>';
                 text +='    <td>'+item['reg_date']+'</td>';
-                text +='    <td>'+item['img_status']+'</td>';
+                text +='    <td class="might-overflow">'+item['img_status']+'</td>';
                 text +='    <td>';
                 // text +='      <button class="prod_img_del" onclick="delReason(\''+item['img_no']+'\');">삭제</button>';
 				if (getCookie("userRoleCd") == "ROLE1"){
