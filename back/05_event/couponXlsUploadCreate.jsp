@@ -77,7 +77,7 @@
 				out.print("order_number_no_exist");
 				return;
 			}else{
-				string0 = strEncode(sring0);
+				string0 = strEncode(string0);
 				if ( isNumeric(string0) == true ){
 					string0 = String.valueOf(Math.round(Double.parseDouble(string0)));
 					System.out.println(string0);
