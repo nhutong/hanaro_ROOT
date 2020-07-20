@@ -142,7 +142,8 @@ h4{font-weight:400;color:#888;}
 	width:100%;
 	font-size:11px;
 	color:#fff;
-	padding:40px;
+	/* 200720 김수경 footer 공간최소화 */
+	/* padding:40px; */
 	left:280px;
 }
 
