@@ -26,8 +26,14 @@ $(function () {
 /*이미지그룹 업로더 드래그앤드랍*/
 var enterUpload2 = document.getElementById('imgMulti_btn');
 enterUpload2.addEventListener('click', function(evt){
-	uploadFile(""); //pdcode없이 이미지만 등록
-	location.reload();
+	promiseUploadFile("").then(res => {
+		if(res[0] != "upload error"){
+			alert("업로드 완료");
+			location.reload();
+		}else{
+			alert("업로드 실패");
+		}
+	}); //pdcode없이 이미지만 등록
 });
 
 /*엑셀파일 업로더*/
