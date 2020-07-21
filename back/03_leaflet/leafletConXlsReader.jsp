@@ -161,7 +161,15 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             // String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
-            String string3 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+            String string3 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string3 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string3 = String.valueOf(Math.round(Double.parseDouble(string3))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string3 = "";
+            }
             if ( string3.equals("") ){
                 //판매가 존재하지 않으므로 중단한다.
                 // out.clear();
@@ -188,7 +196,15 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             // String string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
-            String string4 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+            String string4 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string4 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string4 = String.valueOf(Math.round(Double.parseDouble(string4))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string4 = "";
+            }
             if ( string4.equals("") ){
             }else{
                 string4 = strEncode(string4);
