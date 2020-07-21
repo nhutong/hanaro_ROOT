@@ -135,7 +135,7 @@
                     out.print("pd_name_no_exist");
                     return;
                 }else{
-                    string2 = strEncode(string2);
+                    string2 = strEncode(string2);                    
                 }
 
                 // 규격(내용량)
@@ -193,9 +193,12 @@
                 }
                 // 카드시작일
                 col = 5;
-                cell = row.getCell(col);
+                cell = row.getCell(col);                                
                 if (cell == null) { cell = row.createCell(col); }
-                String string5 = cell.getStringCellValue().trim();
+                //String string5 = cell.getStringCellValue().trim(); 
+                String string5 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");       
+                string5 = String.valueOf(Math.round(Double.parseDouble(string5)));        
+                
                 if ( string5.equals("") ){
                     string5 = "null";
                 }else{
@@ -214,13 +217,18 @@
                         return;
                     };
                     rs.beforeFirst();
+                    System.out.println(string5);
                 }
 
                 // 카드종료일
                 col = 6;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
-                String string6 = cell.getStringCellValue().trim();
+                //String string6 = cell.getStringCellValue().trim();
+                String string6 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");       
+                string6 = String.valueOf(Math.round(Double.parseDouble(string6)));        
+                
+
                 if ( string6.equals("") ){
                     string6 = "null";
                 }else{
@@ -239,6 +247,7 @@
                         return;
                     };
                     rs.beforeFirst();
+                    System.out.println(string6);
                 }
                 // 카드정보
                 col = 8;
