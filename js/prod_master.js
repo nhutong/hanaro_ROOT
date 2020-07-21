@@ -606,8 +606,8 @@ $("#jundan_excel_new").on("click",function(){
 			alert("엑셀파일에서 상품코드가 입력되지 않은 행" + resultSplit[1] + "이 존재합니다.");
 		}else if(resultSplit[0] == ('success')){			
 			var con_test = confirm(resultSplit[1] + "건의 상품코드를 입력 하시겠습니까?(신규 "+resultSplit[2]+"건,중복 "+resultSplit[3]+"건)");
-			if(con_test == true){			
-				excelInsertAndUpdate();			
+			if(con_test == true){
+				excelInsertAndUpdate();
 			}
 		}else{
             alert("등록오류");

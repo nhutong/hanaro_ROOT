@@ -115,7 +115,7 @@
 		// workbook.close();		
 
 		out.clear();
-		out.print("success" + "," + Integer.toString(rows) + "," + Integer.toString(forResult - 1) + "," + Integer.toString(rows-forResult) );
+		out.print("success" + "," + Integer.toString(rows) + "," + Integer.toString(forResult + 1) + "," + Integer.toString(rows-(forResult + 1)) );
 	}catch(Exception e){
 		out.clear();
 		//out.print("exception error" + "," + Integer.toString(i-1) + "행," + e );
