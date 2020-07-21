@@ -207,9 +207,16 @@
             col = 5;
             cell = row.getCell(col);                                
             if (cell == null) { cell = row.createCell(col); }
-            //String string5 = cell.getStringCellValue().trim(); 
-            String string5 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");       
-            string5 = String.valueOf(Math.round(Double.parseDouble(string5)));        
+            //String string5 = cell.getStringCellValue().trim();
+            String string5 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string5 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string5 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string5 = String.valueOf(Math.round(Double.parseDouble(string5))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string5 = "";
+            }     
             
             if ( string5.equals("") ){
                 string5 = "null";
@@ -237,10 +244,16 @@
             col = 6;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-            //String string6 = cell.getStringCellValue().trim();
-            String string6 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");       
-            string6 = String.valueOf(Math.round(Double.parseDouble(string6)));        
-            
+            //String string6 = cell.getStringCellValue().trim();      
+            String string6 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string6 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string6 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string6 = String.valueOf(Math.round(Double.parseDouble(string6))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string6 = "";
+            }
 
             if ( string6.equals("") ){
                 string6 = "null";
