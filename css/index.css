@@ -4637,14 +4637,18 @@ background-color: #ab1f1f;
 /*img_master start*/
 
 .img_master_wrap{
-    width: 900px;
+    /* 200720 김수경 테이블 정비 */
+    /* width: 900px; */
+    width: 95%;
     font-size: 14px;
     margin-left: 40px;
     margin-top: 30px;
 }
 
 .img_master_table{
-    width: 900px;
+    /* 200720 김수경 테이블 정비 */
+    /* width: 900px; */
+    width: 100%;
     text-align: center;
     font-size: 14px;
 }
