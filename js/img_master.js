@@ -26,12 +26,20 @@ $(function () {
 /*이미지그룹 업로더 드래그앤드랍*/
 var enterUpload2 = document.getElementById('imgMulti_btn');
 enterUpload2.addEventListener('click', function(evt){
+	document.getElementById("spinnerAction").style.display = "block";
+	document.scrollingElement.scrollTop = 0;
+	document.body.style.overflow = "hidden";
 	promiseUploadFile("").then(res => {
-		if(res[0] != "upload error"){
+		if(res == "cancelButton") {
+			// location.reload(true);
+			document.getElementById("spinnerAction").style.display = "none";
+			document.body.style.overflow = "auto";
+		}else if(res[0] != "upload error"){
 			alert("업로드 완료");
 			location.reload();
 		}else{
 			alert("업로드 실패");
+			location.reload();
 		}
 	}); //pdcode없이 이미지만 등록
 });

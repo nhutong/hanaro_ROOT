@@ -224,6 +224,8 @@
                         resolve(resultSplit);
                     }
                 });
+            } else {
+                resolve("cancelButton");
             }
         });
     }
