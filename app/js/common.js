@@ -402,7 +402,7 @@ function getMenuListDefault(rcvCompanyNo) {
         }
 
 		var ofLength = $("#headerMenuArea li").length;
-		$("#headerMenuArea").width(76*ofLength);
+		$("#headerMenuArea").width(84*ofLength);
 
 		var locHeader = location.pathname;
             
