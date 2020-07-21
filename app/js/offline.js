@@ -9,7 +9,8 @@ function getMapContent(){
 	var text = '';
 
 	$.ajax({
-        url:'/back/04_home/offline.jsp?random=' + (Math.random()*99999), 
+		url:'/back/04_home/offline.jsp?random=' + (Math.random()*99999),
+		data: {'userRoleCd': getCookie("userRoleCd")},
         method : 'GET' 
     }).done(function(result){
 		

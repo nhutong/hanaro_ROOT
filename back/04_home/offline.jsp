@@ -10,6 +10,7 @@
 <%	
 	String longtitude = (request.getParameter("longtitude")==null)? "0":request.getParameter("longtitude");
     String latitude = (request.getParameter("latitude")==null)? "0":request.getParameter("latitude");
+	String userRoleCd = (String)session.getAttribute("userRoleCd");
 
 	double lati = Double.parseDouble(latitude);
 	double longti = Double.parseDouble(longtitude);
@@ -20,10 +21,13 @@
 
 		if ( longtitude.equals("0") ){
 			sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME, a.VM_TEL, a.lat, a.lng, a.VM_delivery_FG, a.VM_START_TIME, a.VM_END_TIME, a.VM_OFF_NOTE, concat(a.vm_address1, a.vm_address2) as vm_address "
-			     +" FROM vm_company AS a WHERE a.VM_CP_NO <> 0 and a.VM_sales_FG = 'Y' order by a.vm_cp_name asc ; "; 
+			     +" FROM vm_company AS a WHERE a.VM_CP_NO <> 0 "
+				 + "ROLE1".equals(userRoleCd) ? "" : " AND a.VM_CP_NO <> 25 "
+				 +" and a.VM_sales_FG = 'Y' order by a.vm_cp_name asc ; "; 
 		}else{
 			sql = " SELECT a.VM_CP_NO, a.VM_CP_NAME, a.VM_TEL, a.lat, a.lng, a.VM_delivery_FG, a.VM_START_TIME, a.VM_END_TIME, a.VM_OFF_NOTE, concat(a.vm_address1, a.vm_address2) as vm_address "
 			     +"FROM vm_company AS a WHERE a.VM_CP_NO <> 0 and a.VM_sales_FG = 'Y' "
+				 + "ROLE1".equals(userRoleCd) ? "" : " AND a.VM_CP_NO <> 25 "
 			     +" order by ((a.lng - "+longti+")*(a.lng - "+longti+") + (a.lat - "+lati+")*(a.lat - "+lati+")) asc, a.vm_cp_name asc ; ";
 		}
 	
