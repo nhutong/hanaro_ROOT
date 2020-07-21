@@ -24,6 +24,7 @@
 	String excel_path = (request.getParameter("excel_path")==null)? "0":request.getParameter("excel_path");
 	excel_path = excel_path.trim();
 	String reg_no = (request.getParameter("reg_no")==null)? "0":request.getParameter("reg_no");
+	Integer forResult = 0;
 
 	try{
 
@@ -40,6 +41,7 @@
         int col = 0;
 
 		for(int i = 1; i < rows; i++) {
+			forResult = i;
 			row = sheet.getRow(i);
 			// 상품코드 ( encode )
 		    col = 0;
@@ -113,7 +115,7 @@
 		// workbook.close();		
 
 		out.clear();
-		out.print("success" + "," + Integer.toString(row-1) + "," + Integer.toString(i-1) + "," + Integer.toString(row-i) );
+		out.print("success" + "," + Integer.toString(rows) + "," + Integer.toString(forResult - 1) + "," + Integer.toString(rows-forResult) );
 	}catch(Exception e){
 		out.clear();
 		//out.print("exception error" + "," + Integer.toString(i-1) + "행," + e );
