@@ -36,8 +36,9 @@
 		}else{
 			sql = sql + "  WHERE p.vm_cp_no = '"+companyNo+"' "; 
 		}
-	    sql += ("".equals(s_date) ? "" : " AND '" + s_date + "' <= pm_to_date ");
-		sql += ("".equals(e_date) ? "" : " AND pm_to_date <= '" + e_date + "' ");
+	    //sql += ("".equals(s_date) ? "" : " AND '" + s_date + "' <= pm_to_date ");
+		//sql += ("".equals(e_date) ? "" : " AND pm_to_date <= '" + e_date + "' ");
+		sql += ("".equals(s_date) || "".equals(e_date) ? "" : " AND (('" + s_date + "' <= pm_to_date AND pm_to_date <= '" + e_date + "') OR ('" + s_date + "' <= pm_from_date AND pm_from_date <= '" + e_date + "') OR (pm_from_date <= '"+ s_date +"' AND '"+ e_date +"' <= pm_to_date ))");
 		sql += ("".equals(keyword) ? "" : " AND " + category + " LIKE '%" + keyword + "%'");
 		sql += ("".equals(status) ? "" : " AND pm_status LIKE '" + status + "'");
 		sql = sql + " ORDER BY p.reg_date desc "
