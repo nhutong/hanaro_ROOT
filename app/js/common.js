@@ -396,13 +396,12 @@ function getMenuListDefault(rcvCompanyNo) {
 				   }else{
 				   }
 			}
-
 			$("#headerMenuArea").append(text);
 			
-        }
-
-		var ofLength = $("#headerMenuArea li").length;
-		$("#headerMenuArea").width(76*ofLength);
+		}
+		const obj = $("#headerMenuArea li");
+		const navMenuWidth = getWidthInLength(obj);
+		$("#headerMenuArea").width(navMenuWidth);
 
 		var locHeader = location.pathname;
             
@@ -446,7 +445,25 @@ function getMenuListDefault(rcvCompanyNo) {
 
     });
 }
-
+function getWidthInLength(obj) {
+	let totalLen = 0;
+	let numberLen = 0;
+	let numberInText = 0;
+	for (let j = 0; j < obj.length; j++) {
+		if (obj[j].lastChild.clientWidth == 18) {
+			numberLen++;
+		}
+		if (obj[j].firstChild.innerText.match(/\d+/g) != null) {
+			totalLen += (obj[j].firstChild.innerText.length - obj[j].firstChild.innerText.match(/\d+/g).length);
+			numberInText += obj[j].firstChild.innerText.match(/\d+/g).length;
+		} else {
+			totalLen += obj[j].firstChild.innerText.length;
+		}
+	}
+	const ofLength = $("#headerMenuArea li").length;
+	const navMenuWidth = (ofLength*30) + (totalLen*13.31) + (numberLen*18) + (numberInText*7.83);
+	return navMenuWidth;
+}
 
 //aside 불러오기
 function getLeft(){
