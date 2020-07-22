@@ -63,8 +63,9 @@
 			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company_no = " + userCompanyNo ) +	
 			("".equals(coupon_no) ? "" : " AND coupon_no = " + coupon_no ) +
 			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") +
-			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
-			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			//("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
+			//("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			("".equals(s_date) || "".equals(e_date) ? "" : " AND (('" + s_date + "' <= end_date AND end_date <= '" + e_date + "') OR ('" + s_date + "' <= start_date AND start_date <= '" + e_date + "') OR (start_date <= '"+ s_date +"' AND '"+ e_date +"' <= end_date ))") +
 			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
 			("".equals(status) ? "" : " AND status_cd LIKE '" + status + "' ") ;
 		results.put("total", 
@@ -95,8 +96,9 @@
 			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : " WHERE company_no = " + userCompanyNo ) +
 			("".equals(coupon_no) ? "" : "   AND coupon_no = " + coupon_no )+
 			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") +
-			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
-			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			//("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
+			//("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			("".equals(s_date) || "".equals(e_date) ? "" : " AND (('" + s_date + "' <= end_date AND end_date <= '" + e_date + "') OR ('" + s_date + "' <= start_date AND start_date <= '" + e_date + "') OR (start_date <= '"+ s_date +"' AND '"+ e_date +"' <= end_date ))") +
 			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
 			("".equals(status) ? "" : " AND status_cd LIKE '" + status + "' ") +
 			" ORDER BY p.reg_date desc " +
