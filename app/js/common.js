@@ -402,7 +402,6 @@ function getMenuListDefault(rcvCompanyNo) {
 		const obj = $("#headerMenuArea li");
 		const navMenuWidth = getWidthInLength(obj);
 		$("#headerMenuArea").width(navMenuWidth);
-
 		var locHeader = location.pathname;
             
         var arSplitUrl   = locHeader.split("/");    //   "/" 로 전체 url 을 나눈다
