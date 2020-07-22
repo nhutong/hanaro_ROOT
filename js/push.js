@@ -116,9 +116,9 @@ function prodList(rcvPageNo, rcvCompanyNo) {
 				// text +='    <td class="might-overflow"><a href="push_send.html?pm_no='+decodeURIComponent(item['pm_no'])+'">'+item['ms_content'].replace(re,"<br>").replace("[광고]","").replace("수신거부 | 메뉴>설정>동의 해제","")+'</a></td>';
 				text +='    <td class="might-overflow"><a href="push_send.html?pm_no='+decodeURIComponent(item['pm_no'])+'">'+item['ms_content'].replace("[광고]","").replace("수신거부 | 메뉴>설정>동의 해제","")+'</a></td>';
 				text +='    <td>'+decodeURIComponent(item['vm_cp_name'])+'</td>';
-                text +='    <td>'+decodeURIComponent(item['pm_type'])+'</td>';																
+                text +='    <td>'+decodeURIComponent(item['pm_type']).replace("reserve","예약").replace("realtime","즉시")+'</td>';																
 				text +='    <td>'+decodeURIComponent(item['pm_from_date'])+'~'+decodeURIComponent(item['pm_to_date'])+'<br>'+decodeURIComponent(item['pm_hour'])+'시'+decodeURIComponent(item['pm_min'])+'분</td>';
-				text +='    <td>'+decodeURIComponent(item['pm_interval'])+'</td>';	
+				text +='    <td>'+decodeURIComponent(item['pm_interval']).replace("월,화,수,목,금,토,일","매일").replace("토,일","주말").replace("월,화,수,목,금","평일")+'</td>';	
 				text +='    <td class="might-overflow">'+decodeURIComponent(item['target_cnt'])+'</td>';				
 				text +='    <td class="might-overflow">'+decodeURIComponent(item['send_cnt'])+'</td>';
 				text +='    <td>'+decodeURIComponent(item['del_fg'])+'</td>';				
