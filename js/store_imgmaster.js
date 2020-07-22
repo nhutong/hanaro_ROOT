@@ -26,17 +26,68 @@ $(function () {
 	}else{
 		targetCompanyNo = CuserCompanyNo;
 	}
+	/* 최초 로그인한 유저번호로 바인딩한다. */
+	getManagerList(CuserCompanyNo, targetCompanyNo);
+	/*input box 일자 기본값 셋팅*/
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = leadingZeros(today.getMonth()+1,2);
+	var sday = leadingZeros(today.getDate()-10,2);
+	var eday = leadingZeros(today.getDate(),2);
+
+	// $("#excel_start_date").val(year+'-'+month+'-'+sday);
+	// $("#excel_end_date").val(year+'-'+month+'-'+eday);		
+
+	$("#imgmaster_start_date").val(year+'-'+month+'-'+sday);
+	$("#imgmaster_end_date").val(year+'-'+month+'-'+eday);	
+
+	$("#sort_select").on("change",function(){
+		if ($("#sort_select").val())
+		{
+			setCookie1("onSelectCompanyNo",$("#sort_select").val());
+			localStorage.setItem("vm_cp_no",$("#sort_select").val());
+		}
+	});
+
+	$("#btnSearch").on("click",function(){
+		settingInfo();
+	});
 	storeMenuPageNavi(1, targetCompanyNo);
 });
 
-
+function searchEnter(e) {
+	if (e.keyCode == 13) {
+		settingInfo();
+	}
+}
+function settingInfo() {
+	const s_date = $("#imgmaster_start_date").val();
+	const e_date = $("#imgmaster_end_date").val();
+	const category = $("#searchCategory").val();
+	const keyword = $("#keyword2").val();
+	const flag = $("#show_flag_status").val();
+	const params = {
+		s_date: s_date,
+		e_date: e_date,
+		category: category,
+		keyword: keyword,
+		flag: flag
+	}
+	localStorage.setItem("imgMasterList", JSON.stringify(params));
+	storeMenuPageNavi(1, getCookie("onSelectCompanyNo"));
+}
 // 상품리스트를 가져온다
 
 function imgList(nowPage) {
 	if (!nowPage) nowPage = 1;
+	const s_date = $("#imgmaster_start_date").val();
+	const e_date = $("#imgmaster_end_date").val();
+	const category = $("#searchCategory").val();
+	const keyword = $("#keyword2").val();
+	const flag = $("#show_flag_status").val();
 	$.ajax({
         url:'/back/08_product/storeImgList.jsp?random=' + (Math.random()*99999), 
-        data : {vm_cp_no: getCookie("userCompanyNo"), n_page: nowPage},
+        data : {vm_cp_no: getCookie("onSelectCompanyNo"), n_page: nowPage, s_date: s_date, e_date: e_date, category: category, keyword: keyword, status: flag },
         method : 'GET' 
     }).done(function(result){
 
@@ -88,6 +139,7 @@ function imgList(nowPage) {
                 text +='</tr>';
 			});
         }
+		$("#storeImgCon").empty();
 		$("#storeImgCon").append(text);
     });
 
@@ -219,9 +271,14 @@ function keywordList(rcvKeyword) {
 }
 
 function storeMenuPageNavi(rcvPageNo, targetCompanyNo) {
+	const s_date = $("#imgmaster_start_date").val();
+	const e_date = $("#imgmaster_end_date").val();
+	const category = $(".search_select").val();
+	const keyword = $("#keyword2").val();
+	const flag = $("#show_flag_status").val();
 	$.ajax({
         url:'/back/08_product/storePageNavi.jsp?random=' + (Math.random()*99999), 
-        data : {pageNo: rcvPageNo ,vm_cp_no: targetCompanyNo},
+        data : {pageNo: rcvPageNo ,vm_cp_no: targetCompanyNo, s_date: s_date, e_date: e_date, category: category, keyword: keyword, status: flag},
         method : 'GET' 
     }).done(function(result){
 

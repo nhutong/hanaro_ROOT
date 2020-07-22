@@ -60,8 +60,9 @@
 			" FROM vm_event AS p " +
 			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
 			("".equals(eventNo) ? "" : " AND event_no = " + eventNo ) +
-			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
-			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			//("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
+			//("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			("".equals(s_date) || "".equals(e_date) ? "" : " AND (('" + s_date + "' <= end_date AND end_date <= '" + e_date + "') OR ('" + s_date + "' <= start_date AND start_date <= '" + e_date + "') OR (start_date <= '"+ s_date +"' AND '"+ e_date +"' <= end_date ))") +
 			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
 			("".equals(status) ? "" : " AND activated LIKE '" + status + "' ");
 		results.put("total", 
@@ -89,8 +90,9 @@
 			" FROM hanaro.vm_event p " +
 			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : "WHERE company = " + userCompanyNo ) +	
 			("".equals(eventNo) ? "" : " AND event_no = " + eventNo )+	
-			("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
-			("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			//("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
+			//("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
+			("".equals(s_date) || "".equals(e_date) ? "" : " AND (('" + s_date + "' <= end_date AND end_date <= '" + e_date + "') OR ('" + s_date + "' <= start_date AND start_date <= '" + e_date + "') OR (start_date <= '"+ s_date +"' AND '"+ e_date +"' <= end_date ))") +
 			("".equals(keyword) ? "" : " AND " + acategory + " LIKE '%" + keyword + "%'") +
 			("".equals(status) ? "" : " AND activated LIKE '" + status + "' ") +
 			" ORDER BY event_no desc " +

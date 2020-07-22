@@ -11,8 +11,14 @@
 
 	Integer list_size = 8;
 	String vm_cp_no = (request.getParameter("vm_cp_no")==null)? "0":request.getParameter("vm_cp_no");
+	System.out.println(vm_cp_no);
 	Integer n_page = (request.getParameter("n_page")==null)? 1:Integer.parseInt(request.getParameter("n_page"));
 	Integer s_page = (n_page - 1) * list_size;
+	String s_date = request.getParameter("s_date") ==  null ? "2019-01-01" : request.getParameter("s_date").trim();
+	String e_date = request.getParameter("e_date") ==  null ? "2999-12-31" : request.getParameter("e_date").trim();
+	String category = request.getParameter("category") ==  null ? "" : request.getParameter("category").trim();
+	String keyword = request.getParameter("keyword") ==  null ? "" : request.getParameter("keyword").trim();
+	String status = request.getParameter("status") ==  null ? "" : request.getParameter("status").trim();
 
 	JSONObject bdListJSON = new JSONObject();
 	
@@ -32,7 +38,9 @@
 	+ " on c.vm_ref_company_no = d.vm_cp_no "
 	+ " left outer join vm_product_image_deldesc as e "
 	+ " on a.img_no = e.img_no "
-	+ " where 1=1";
+	+ " where 1=1" +
+	("".equals(s_date) || "".equals(e_date) ? "" : " AND '" + s_date + "' <= left(a.reg_date,10) AND left(a.reg_date,10) <= '" + e_date + "'") +
+	("".equals(keyword) ? "" : " AND " + category + " LIKE '%" + keyword + "%'");
 
 	if (vm_cp_no.equals("0")){
 		sql = sql + "";
@@ -41,9 +49,10 @@
 	}
 	
 	// sql = sql + " AND ( a.std_fg IS NULL OR a.std_fg = 'N' ) order by a.reg_date desc";
-	sql = sql + " AND ( a.std_fg IS NULL OR a.std_fg = ('N' OR 'S') ) order by a.reg_date desc LIMIT "+ s_page +", 8";
+	sql = sql +	("all".equals(status) ? "  AND ( a.std_fg IS NULL OR a.std_fg = ('N' OR 'S') ) " : "null".equals(status) ? " AND a.std_fg IS NULL " : " AND a.std_fg LIKE '" + status + "' ");
+	sql = sql + "order by a.reg_date desc LIMIT "+ s_page +", 8";
 		//out.print(sql);
-
+	System.out.println(sql);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		

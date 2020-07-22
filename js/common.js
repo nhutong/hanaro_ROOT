@@ -417,7 +417,7 @@ function getManagerList(rcvCompanyNo, rcvTargetCompanyNo) {
 				var data = JSON.parse(result);
 				$("#sort_select").empty();
 				let isSelected_flag = true;
-				if (getCookie("userRoleCd") == "ROLE1" && (location.pathname == "/home/popup_list.html" || location.pathname == "/event/event_list.html" || location.pathname == "/event/coupon.html")) {
+				if (getCookie("userRoleCd") == "ROLE1" && (location.pathname == "/home/popup_list.html" || location.pathname == "/event/event_list.html" || location.pathname == "/event/coupon.html" || location.pathname == "/product/store_imgmaster.html")) {
 					$("#sort_select").append('<option value="0" selected>＊ 전체</option>');
 					isSelected_flag = false;
 				}
