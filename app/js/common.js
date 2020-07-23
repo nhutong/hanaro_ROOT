@@ -460,7 +460,7 @@ function getWidthInLength(obj) {
 		}
 	}
 	const ofLength = $("#headerMenuArea li").length;
-	const navMenuWidth = (ofLength*30) + (totalLen*13.31) + (numberLen*18) + (numberInText*7.83);
+	const navMenuWidth = (ofLength*30) + (totalLen*13.31) + (numberLen*18) + (numberInText*7.83) + 1;
 	return navMenuWidth;
 }
 
