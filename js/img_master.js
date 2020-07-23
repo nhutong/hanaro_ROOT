@@ -55,6 +55,11 @@ enterUpload.addEventListener('click', function(evt){
 	});
 });
 
+function viewBigImage(path) {
+	const imgPath = '/upload/' + path;
+	document.getElementById("input_img_Data").innerHTML = '<img src="' + imgPath + '" />';
+}
+
 // 상품리스트를 가져온다
 function imgList() {
 	
@@ -87,7 +92,7 @@ function imgList() {
             data['CompanyList'].forEach(function(item, index){                        
 				
 				text +='<tr id="img_'+item['img_no']+'">';
-				text +='	<td><img src="/upload/'+item['img_path']+'" alt="nh_item1.jpg"></td>';
+				text +='	<td data-toggle="modal" data-target="#imgmasterModal" onclick="javascript:viewBigImage(\''+item['img_path']+'\')"><img src="/upload/'+item['img_path']+'" alt="nh_item1.jpg"></td>';
 				text +='	<td>'+item['img_path']+'</td>';
 				text +='	<td><input type="text" value="'+item['pd_code']+'" id="pdCode_'+item['img_no']+'"></td>';
 				text +='	<td><input type="text" value="'+item['group_tag']+'" id="groupTag_'+item['img_no']+'" class="groupTagClass" onkeyup="searchFunc(this);" onblur="focusOut();">';			
