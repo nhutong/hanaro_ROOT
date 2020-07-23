@@ -2192,7 +2192,7 @@ span.discount_notice{
 /*popup_list start*/
 
 .popup_table{
-    width: 900px;
+    width: 95%;
     font-size: 13px;
     margin-left: 40px;
     border: 1px solid #e0e0e0;
@@ -2200,8 +2200,8 @@ span.discount_notice{
 }
 
 .popup_table tr td img{
-    width: 100px;
-	height : 100px;
+    width: 40px;
+	height : 40px;
 }
 
 .popup_table th {
