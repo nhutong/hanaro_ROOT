@@ -67,5 +67,4 @@
 		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {};
 		if(conn != null) try{ conn.close(); }catch(SQLException sqle) {};
 	};
-	
 %>

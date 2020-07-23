@@ -140,7 +140,7 @@ function noticeCont(rcvonSelectCompanyNo, nowPage){
 		}).done(function(result){
 			if(result == "NoN"){
 					text +='      <tr>';
-					text +='			 <td colspan="3">등록된 공지사항이 없습니다.</td>';
+					text +='			 <td colspan="4">등록된 공지사항이 없습니다.</td>';
 					text +='       </tr>';
 			}else{
 				var jsonResult = JSON.parse(result);
@@ -154,6 +154,7 @@ function noticeCont(rcvonSelectCompanyNo, nowPage){
 					text +='			 <td>'+jsonResult_notice[i].nt_no+'</td>';
 					text +='			 <td class="menu_notice_title">';
 					text +='			 <a href="#" onclick="menu_post_popup('+jsonResult_notice[i].nt_no+');">'+jsonResult_notice[i].nt_title+'</a></td>';
+					text +='			 <td>'+jsonResult_notice[i].vm_name+'</td>';					
 					text +='			 <td>'+jsonResult_notice[i].reg_date+'</td>';
 					text +='       </tr>';
 				}

@@ -15,8 +15,10 @@
 	JSONObject bdListJSON = new JSONObject();
 	
 	try{
-        sql = " SELECT a.nt_no, a.nt_title, a.nt_content, left(a.reg_date,10) as reg_date "
-		    + " FROM vm_company_notice AS a " 
+        sql = " SELECT a.nt_no, a.nt_title, a.nt_content, left(a.reg_date,10) as reg_date, b.vm_name "
+			+ " FROM vm_company_notice AS a " 
+			+ " inner join vm_user as b "
+			+ " on a.reg_no = b.vm_no "
 		    + " where vm_cp_no = '" + vm_cp_no + "' "
 			+" order by a.reg_date desc LIMIT " + s_page + ", 5";
 		stmt = conn.createStatement();
@@ -37,6 +39,7 @@
 			String nt_no   = rs.getString("nt_no");        // 긴급공지번호
 			String nt_title = rs.getString("nt_title");   // 긴급공지내용
 			String nt_content = rs.getString("nt_content");   // 긴급공지내용
+			String vm_name = rs.getString("vm_name"); // 200723 김수경 작성자 컬럼 추가
 			String reg_date = rs.getString("reg_date");   // 긴급공지내용
 			
 			JSONObject obj = new JSONObject();
@@ -45,6 +48,7 @@
 			obj.put("nt_title", nt_title);
 			obj.put("nt_content", nt_content);
 			obj.put("reg_date", reg_date);
+			obj.put("vm_name", vm_name);
 
 			if(obj != null){
 				arr.add(obj);
