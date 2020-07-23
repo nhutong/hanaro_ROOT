@@ -416,6 +416,11 @@ function addModal(){
 	document.getElementById('prodModalCode').readOnly = false;
 }
 
+function viewBigImage(path) {
+	const imgPath = '/upload/' + path;
+	document.getElementById("input_img_Data").innerHTML = '<img src="' + imgPath + '" />';
+}
+
 function editModal(rcvPdCode, rcvPdName, rcvGroupTag){
 
 	if (localStorage.getItem("selectedPdCode") == rcvPdCode)
@@ -473,7 +478,7 @@ function editModal(rcvPdCode, rcvPdName, rcvGroupTag){
 
             data['CompanyList'].forEach(function(item, index){                        
 				
-				text += ' <div class="prod_img">';
+				text += ' <div data-toggle="modal" data-target="#prodMaster" class="prod_img" onclick="javascript:viewBigImage(\''+item['img_path']+'\')">';
 				text += '   <img src="/upload/'+decodeURIComponent(item['img_path'])+'" alt="이미지">';
 				text += '   <input type="checkbox" name="image_per_prod" value="'+decodeURIComponent(item['img_no'])+'">';
 				text += ' </div>';
