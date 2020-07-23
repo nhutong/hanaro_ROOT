@@ -311,10 +311,14 @@ function menunotice_paging(rcvPageNo, targetCompanyNo) {
 				// }
 			}
 
-			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || parseInt(rcvPageNo) >= total_paging_cnt)
 			{
 			}else{
-				text += '<li class="page-item"><a class="page-link" onclick="menunotice_paging('+next_no+', '+targetCompanyNo+')" href="javascript:void(0);">»</a></li>';
+				if (next_no > total_paging_cnt) {
+					text += '<li class="page-item"><a class="page-link" onclick="menunotice_paging('+total_paging_cnt+', '+targetCompanyNo+')" href="javascript:void(0);">»</a></li>';
+				} else {
+					text += '<li class="page-item"><a class="page-link" onclick="menunotice_paging('+next_no+', '+targetCompanyNo+')" href="javascript:void(0);">»</a></li>';
+				}
 			}
 			$('#pagination').empty();
 			$('#pagination').append(text);	

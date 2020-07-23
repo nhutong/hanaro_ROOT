@@ -294,10 +294,14 @@ function prodList_paging(rcvPageNo, rcvSearchText) {
 				// }
 			}
 
-			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || parseInt(rcvPageNo) >= total_paging_cnt)
 			{
 			}else{
-				text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+next_no+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">»</a></li>';
+				if (next_no > total_paging_cnt) {
+					text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+total_paging_cnt+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">»</a></li>';
+				} else {
+					text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+next_no+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">»</a></li>';
+				}
 			}
 			$('#pagination').empty();
 			$('#pagination').append(text);	

@@ -183,11 +183,14 @@ function prodList_paging(rcvPageNo, rcvCompanyNo) {
 					text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing('+k+')">'+k+'</a></li>';
 				}
 			}
-
-			if (total_paging_cnt == 0 || total_paging_cnt == 1 || next_no > total_paging_cnt)
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || parseInt(rcvPageNo) >= total_paging_cnt)
 			{
 			}else{
-				text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing('+next_no+')">»</a></li>';
+				if (next_no > total_paging_cnt) {
+					text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing('+total_paging_cnt+')">»</a></li>';
+				} else {
+					text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing('+next_no+')">»</a></li>';
+				}
 			}
 			$('#pagination').empty();
 			$('#pagination').append(text);	
