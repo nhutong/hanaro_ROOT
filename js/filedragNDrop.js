@@ -181,7 +181,7 @@
 
     // 파일 등록
     function promiseUploadFile(rcvPdCode){
-        return new Promise(function (resolve, reject) {
+        return new Promise(function (resolve) {
             // 등록할 파일 리스트
             var uploadFileList = Object.keys(fileList);
     

@@ -27,7 +27,7 @@ $(function () {
 var enterUpload2 = document.getElementById('imgMulti_btn');
 enterUpload2.addEventListener('click', function(evt){
 	document.getElementById("spinnerAction").style.display = "block";
-	document.scrollingElement.scrollTop = 0;
+	// document.scrollingElement.scrollTop = 0;
 	document.body.style.overflow = "hidden";
 	promiseUploadFile("").then(function(res) {
 		if(res == "cancelButton") {
