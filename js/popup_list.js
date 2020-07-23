@@ -158,7 +158,7 @@ function getPopupList(compNo){
 					item['reg_date'] 	= datey.getFullYear() + "-";
 					item['reg_date'] += ( datey.getMonth() + 1 ).toString().length > 1 ? datey.getMonth() + 1 : "0" + (datey.getMonth() + 1);
 					item['reg_date'] += "-" + ((datey.getDate().toString().length > 1) ? datey.getDate() : "0" + datey.getDate());
-					$tbody.append(tpl_tr_tab1_table(item));
+					$tbody.append(tpl_tr_tab1_table_2(item));
 				}
 			);
 		},
