@@ -52,7 +52,7 @@
 							   <input type="hidden" id="excel_path" value="">
                                <button class="leaflet_submit_jundan" id="jundan_excel_btn">업로드</button>
                                <button class="leaflet_submit_jundan1" id="jundan_excel_new">등록하기</button>
-                           </div>  
+                           </div>                        
                        </div>
                        <div class="leaflet_create_cont_1 leaflet_intro_txt">
                         <strong>※ 엑셀 업로드가 잘 되지 않을 때!</strong>
@@ -71,7 +71,11 @@
                 </div>       
                 <div class="myplanb_footer"> ㈜농협유통 Co. ltd. All right reserved. </div>
             </div>
-        </div>
+            <!--2020.07.30 심규문 spinner-->
+            <div class="loadingSplash" style="display: none;" id="spinnerAction">
+                <div class="mainSpinner"></div>
+            </div>  
+        </div>        
     </div>
 	<script src="/js/google.3.4.1.jquery.min.js"></script>
     <script src="../js/link.js"></script>
@@ -80,6 +84,7 @@
     <!-- <script src="../js/leaflet_banner.js"></script> -->
     <!-- <script src="../js/leaflet_new_item.js"></script> -->
     <!--Sortable-->
+    <script src="../js/bluebird.min.js"></script>
 	<script src="/js/jquery-1.12.4.js"></script>
 	<script language="javascript" src="/js/google.jqueryui.1.8.22.jquery-ui.min.js"></script>
     <script src="../js/jquery-ui.js"></script>

@@ -79,6 +79,22 @@
             col = 0;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+             String string0 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string0 = String.valueOf(Math.round(Double.parseDouble(string0))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string0 = "";
+                errCount++;
+                continue;                
+            }
+            if (isNumeric(string0) != true){
+                errCount++;
+                continue;
+            }            
+            /*
             //String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             String string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
             if ( string0.equals("") ){
@@ -101,10 +117,28 @@
                     continue;
                 }
             }
+            */
+
             // 상품코드 ( encode )
             col = 1;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+            String string1 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string1 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string1 = String.valueOf(Math.round(Double.parseDouble(string1))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string1 = "";
+                errCount++;
+                continue;                
+            }
+            if (isNumeric(string1) != true){
+                errCount++;
+                continue;
+            }
+            /*
             // String string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             String string1 = "";
             if (cell.getCellType().toString() == "STRING") {
@@ -135,6 +169,7 @@
                     continue;
                 }				
             }
+            */
 
             // 상품명 ( encode )
             col = 2;
@@ -146,6 +181,7 @@
                 // out.clear();
                 // out.print("pd_name_no_exist");
                 // return;
+                string2 = "";
                 errCount++;
                 continue;
             }else{
@@ -166,6 +202,22 @@
             col = 4;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+            String string3 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string3 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string3 = String.valueOf(Math.round(Double.parseDouble(string3))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string3 = "";
+                errCount++;
+                continue;                
+            }
+            if (isNumeric(string3) != true){
+                errCount++;
+                continue;
+            }
+            /*
             // String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             String string3 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
             if ( string3.equals("") ){
@@ -188,11 +240,30 @@
                     continue;
                 }
             }
+            */
 
             // 카드할인
             col = 7;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+            String string4 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string4 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string4 = String.valueOf(Math.round(Double.parseDouble(string4))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string4 = "";            
+            }            
+            if (string4.equals("")){                
+            }
+            else {
+                if (isNumeric(string4) != true){
+                    errCount++;
+                    continue;
+                }
+            }
+            /*
             // String string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             String string4 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
             if ( string4.equals("") ){
@@ -209,6 +280,8 @@
                     continue;
                 }
             }
+            */
+            
             // 카드시작일
             col = 5;
             cell = row.getCell(col);                                
@@ -297,6 +370,24 @@
             col = 10;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+            String string9 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string9 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string9 = String.valueOf(Math.round(Double.parseDouble(string9))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string9 = "";                
+            }            
+            if (string9.equals("")){                
+            }
+            else {
+                if (isNumeric(string9) != true){
+                    errCount++;
+                    continue;
+                }
+            }
+            /*
             //String string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             String string9 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
             if ( string9.equals("") ){
@@ -313,7 +404,7 @@
                     continue;
                 }
             }
-
+            */
             // 다다익선
             col = 11;
             cell = row.getCell(col);
