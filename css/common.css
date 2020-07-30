@@ -882,6 +882,9 @@ div.btn-kakao{
 }
 .tab_container{
 	min-height: 40em;
+	overflow-x: auto; /*200730 김수경*/
+	float: inherit; /*200730 김수경*/
+	width: 100%; /*200730 김수경*/
 }
 .mb0{
 	margin-bottom:0;

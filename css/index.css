@@ -701,9 +701,9 @@ span.shopUrl:hover{
 /*statistics_cu start*/
 .stat_period_wrap,
 .stat_year_wrap{
-    margin-left: 40px;
+    margin-left: 20px;
     margin-bottom: 10px;
-    width: 900px;
+    /* width: 900px; */
 }
 .stat_period_wrap select#sort_select,
 .stat_year_wrap select{
@@ -744,7 +744,7 @@ span.shopUrl:hover{
 }
 
 .stat_table{
-    width: 900px;
+    width: 95%;
     font-size: 13px;
     margin-left: 40px;
     border: 1px solid #e0e0e0;
@@ -2220,9 +2220,14 @@ span.discount_notice{
 }
 
 .popup_submit_wrap{
-    width: 900px;
+    /* width: 900px;
     margin-left: 40px;
-    margin-top: 20px;
+    margin-top: 20px; */
+    /* 200730 김수경 게시판 등록 버튼 위치 정렬 및 통일 */
+    /* width: 900px; */
+    text-align: right;
+    margin-right: 40px;
+    margin-top: 5px;
 }
 
 .page-link{
@@ -2233,10 +2238,6 @@ span.discount_notice{
     background-color: #55B190 !important;
     color: #fff !important;
     border-color: #55B190 !important;
-}
-
-.popup_submit_wrap{
-    text-align: right;
 }
 
 .popup_submit_wrap button{
@@ -2517,14 +2518,16 @@ span.discount_notice{
 }
 
 .swipe_banner_cont ul li img{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
+    float: left;
 }
 
 .swipe_banner_cont ul li table{
     border: 1px solid #d0d0d0;
     margin-left: 30px;
     font-size: 14px;
+    floate: left;
 }
 
 .swipe_banner_cont ul li table tr th{
@@ -2607,10 +2610,11 @@ button#bannerUpdate{
     text-align: center;
 }
 .event_submit_wrap{
-    width: 900px;
+    /* 200730 김수경 게시판 등록 버튼 위치 정렬 및 통일 */
+    /* width: 900px; */
     text-align: right;
-    margin-left: 40px;
-    margin-top: 20px;
+    margin-right: 40px;
+    margin-top: 5px;
 }
 .event_submit_wrap button{
     padding: 10px 25px;
@@ -2944,10 +2948,17 @@ button#bannerUpdate{
 	font-size : 13px;
 }
 .coupon_submit_wrap{
-    width: 900px;
+    /* width: 900px;
     text-align: right;
     margin-left: 40px;
+    margin-top: 20px; */
+    /* 200730 김수경 게시판 등록 버튼 위치 정렬 및 통일 */
+    width: 10%;
+    min-width: 80px;
+    text-align: right;
+    margin-right: 40px;
     margin-top: 20px;
+
 }
 .coupon_submit_wrap button{
     padding: 10px 25px;
@@ -2963,7 +2974,8 @@ button#bannerUpdate{
 .coupon_search_wrap{
     display : inline-block;
 	vertical-align : bottom;
-	margin-right : 10px;
+    margin-right : 10px;
+    margin-left : 40px;
 }
 
 .stamp_search_wrap #sort_select,
@@ -3275,10 +3287,15 @@ button#bannerUpdate{
     padding: 14px 16px;
 }
 .stamp_submit_wrap{
-    width: 900px;
+    /* width: 900px;
     text-align: right;
     margin-left: 40px;
-    margin-top: 20px;
+    margin-top: 20px; */
+    /* 200730 김수경 게시판 등록 버튼 위치 정렬 및 통일 */
+    /* width: 900px; */
+    text-align: right;
+    margin-right: 40px;
+    margin-top: 5px;
 }
 .stamp_submit_wrap button{
     padding: 10px 25px;
@@ -3601,10 +3618,11 @@ button#btnCreate{
 }
 
 .stamp_num_submit_wrap{
-    width: 900px;
+    /* 200730 김수경 게시판 등록 버튼 위치 정렬 및 통일 */
+    /* width: 900px; */
     text-align: right;
-    margin-left: 40px;
-    margin-top: 20px;
+    margin-right: 40px;
+    margin-top: 5px;
 }
 .stamp_num_submit_wrap button{
     padding: 10px 25px;
@@ -4209,10 +4227,10 @@ td.no_del_check input[type=text]{
 /*prod_master start*/
 
 .prod_master_wrap{
-    width: 900px;
+    width: 95%;
     font-size: 14px;
     margin-left: 40px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .prod_master_wrap > div{
@@ -4222,7 +4240,7 @@ td.no_del_check input[type=text]{
 }
 
 .prod_master_lft{
-    width: 600px;
+    width: 70%;
     border-right: 1px solid #d0d0d0;
     margin-right: 10px;
     padding-right: 10px;
@@ -4230,7 +4248,7 @@ td.no_del_check input[type=text]{
 }
 
 .prod_master_lft .pagination_wrap{
-    width: 600px;
+    width: 100%;
     margin-left: 0;
 }
 
@@ -4399,11 +4417,11 @@ td.no_del_check input[type=text]{
 }
 
 .prod_table_btn_wrap{
-    width: 600px;
+    width: 100%;
     overflow: hidden;
     margin-top: 10px;
     text-align: right;
-    padding-right: 10px;
+    /* padding-right: 10px; */
 }
 
 .prod_table_btn_wrap button{
@@ -4752,7 +4770,7 @@ background-color: #ab1f1f;
     /* width: 900px; */
     width: 95%;
     font-size: 14px;
-    margin-left: 20px;
+    margin-left: 40px;
     margin-top: 10px;
 }
 
