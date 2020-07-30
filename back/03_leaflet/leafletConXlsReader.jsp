@@ -80,6 +80,22 @@
             col = 0;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+            String string0 = "";
+             if (cell.getCellType().toString() == "STRING") {
+                string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string0 = String.valueOf(Math.round(Double.parseDouble(string0))); 
+            } else if (cell.getCellType().toString() == "BLANK") {   
+                string0 = "";         
+                errCount++;
+                continue;
+            }
+            if ( isNumeric(string0) != true){
+                errCount++;
+                continue;
+            }
+            /*
             //String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             String string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
 
@@ -103,10 +119,27 @@
                     continue;
                 }
             }
+            */
             // 상품코드 ( encode )
             col = 1;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+            String string1 = "";
+             if (cell.getCellType().toString() == "STRING") {
+                string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string1 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string1 = String.valueOf(Math.round(Double.parseDouble(string1))); 
+            } else if (cell.getCellType().toString() == "BLANK") {   
+                string1 = "";                  
+                errCount++;
+                continue;
+            }
+            if ( isNumeric(string1) != true){
+                errCount++;
+                continue;
+            }
+            /*
             // String string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             String string1 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
             if ( string1.equals("") ){
@@ -129,6 +162,7 @@
                     continue;
                 }				
             }
+            */
 
             // 상품명 ( encode )
             col = 2;
@@ -140,6 +174,7 @@
                 // out.clear();
                 // out.print("pd_name_no_exist");
                 // return;
+                string2 = "";         
                 errCount++;
                 continue;
             }else{
@@ -156,10 +191,27 @@
             //앱 전단 상품명에 규격을 추가 한 뒤 아래 내용 삭제 필요 - 20200519-김대윤
             string2 = string2 + string15;
 
+
             // 판매가
             col = 4;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+            String string3 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string3 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string3 = String.valueOf(Math.round(Double.parseDouble(string3))); 
+            } else if (cell.getCellType().toString() == "BLANK") { 
+                string3 = "";                    
+                errCount++;
+                continue;
+            }
+            if ( isNumeric(string3) != true){
+                errCount++;
+                continue;
+            }
+            /*
             // String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             String string3 = "";
             if (cell.getCellType().toString() == "STRING") {
@@ -190,12 +242,12 @@
                     continue;
                 }
             }
+            */
 
             // 카드할인
             col = 7;
             cell = row.getCell(col);
-            if (cell == null) { cell = row.createCell(col); }
-            // String string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            if (cell == null) { cell = row.createCell(col); }                       
             String string4 = "";
             if (cell.getCellType().toString() == "STRING") {
                 string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
@@ -206,24 +258,17 @@
                 string4 = "";
             }
             if ( string4.equals("") ){
-            }else{
-                string4 = strEncode(string4);
-                if ( isNumeric(string4) == true ){
-                    string4 = String.valueOf(Math.round(Double.parseDouble(string4)));
-                }else{
-                    //카드할인이 숫자가 아니므로 중단한다.
-                    // out.clear();
-                    // out.print("card_discount_not_number");
-                    // return;
+            }else{                
+                if ( isNumeric(string4) != true ){                    
                     errCount++;
                     continue;
                 }
             }
+            
             // 카드시작일
             col = 5;
             cell = row.getCell(col);                                
-            if (cell == null) { cell = row.createCell(col); }
-            //String string5 = cell.getStringCellValue().trim();
+            if (cell == null) { cell = row.createCell(col); }            
             String string5 = "";
             if (cell.getCellType().toString() == "STRING") {
                 string5 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
@@ -232,10 +277,9 @@
                 string5 = String.valueOf(Math.round(Double.parseDouble(string5))); 
             } else if (cell.getCellType().toString() == "BLANK") {
                 string5 = "";
-            }     
-            
-            if ( string5.equals("") ){
-                string5 = "null";
+            }                 
+            if ( string5.equals("") ){   
+                string5 = "null";             
             }else{
                 // 입력받은 카드시작일이 유효한지 검사한다.
                 sql = " SELECT id "
@@ -259,8 +303,7 @@
             // 카드종료일
             col = 6;
             cell = row.getCell(col);
-            if (cell == null) { cell = row.createCell(col); }
-            //String string6 = cell.getStringCellValue().trim();      
+            if (cell == null) { cell = row.createCell(col); }            
             String string6 = "";
             if (cell.getCellType().toString() == "STRING") {
                 string6 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
@@ -271,8 +314,8 @@
                 string6 = "";
             }
 
-            if ( string6.equals("") ){
-                string6 = "null";
+            if ( string6.equals("") ){ 
+                string6 = "null";              
             }else{
                 // 입력받은 카드시작일이 유효한지 검사한다.
                 sql = " SELECT id "
@@ -310,23 +353,22 @@
             col = 10;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-            //String string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
-            String string9 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+             String string9 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string9 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string9 = String.valueOf(Math.round(Double.parseDouble(string9))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                string9 = "";
+            }
             if ( string9.equals("") ){
-            }else{
-                string9 = strEncode(string9);
-                if ( isNumeric(string9) == true ){
-                    string9 = String.valueOf(Math.round(Double.parseDouble(string9)));
-                }else{
-                    //쿠폰할인이 숫자가 아니므로 중단한다.
-                    // out.clear();
-                    // out.print("coupon_discount_not_number");
-                    // return;
+            }else{                
+                if ( isNumeric(string9) != true ){                    
                     errCount++;
                     continue;
                 }
-            }
-
+            }                      
             // 다다익선
             col = 11;
             cell = row.getCell(col);

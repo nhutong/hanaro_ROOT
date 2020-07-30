@@ -255,6 +255,12 @@ $("#jundan_excel_new").on("click",function(){
 		alert("파일을 업로드하시기 바랍니다.");
 		return false;
 	}
+	
+	//2020.07.30 심규문 spinner 시작
+	document.getElementById("spinnerAction").style.display = "block";
+	document.documentElement.scrollTop = 0;
+	document.body.style.overflow = "hidden";
+	
 	const extension = excel_path.split(".")[1];
 	const baseUrl = (extension == "xls") ? "leafletConXlsReader.jsp" : (extension == "xlsx") ? "leafletConXlsxReader.jsp" : "null";
 	$.ajax({
@@ -262,7 +268,10 @@ $("#jundan_excel_new").on("click",function(){
 		data : {menu_no: menu_no, userCompanyNo: userCompanyNo, jundan_from_date: jundan_from_date, jundan_end_date: jundan_end_date, excel_path: excel_path, menu_type_cd: getCookie("menu_type_cd")},
         method : 'GET' 
     }).done(function(result){
-
+		
+		//2020.07.30 심규문 spinner 종료
+		document.getElementById("spinnerAction").style.display = "none";
+		document.body.style.overflow = "auto";
 		//console.log("leafletConProdInsert=========================================");
 		alert("등록이 완료되었습니다. ( 실패건수: " + result.split(":")[1]+ "건 )");
 		location.href="/leaflet/leaflet.html?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no;
