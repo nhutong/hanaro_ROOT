@@ -402,6 +402,7 @@ span.shopUrl:hover{
     text-align: right;
     padding: 30px 15px 30px 30px;
     width: 30%;
+    min-width: 300px;
     float: left;
 }
 
@@ -856,6 +857,7 @@ span.shopUrl:hover{
     display: inline-block;
     vertical-align: top;
     width: 50%;
+    min-width: 400px;
     margin: 0px 0px 0px 20px
 }
 
