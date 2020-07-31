@@ -129,7 +129,7 @@ div.modal-header {
 }
 
 .planb_table {
-    width: 900px;
+    width: 95%;
     font-size: 13px;
 }
 
@@ -138,7 +138,8 @@ div.modal-header {
 }
 
 .btn_box2 {
-    width: 900px;
+    /* width: 900px; */
+    margin-right: 40px;
 }
 
 .myplanb_tab li.active {
@@ -300,7 +301,8 @@ span.shopUrl:hover{
 /*menu_create start*/
 
 .nh_store_table{
-    width: 900px;
+    width: 95%;
+    min-width: 400px;
     font-size: 14px;
     margin-left: 40px;
     border:1px solid #e0e0e0;
@@ -400,7 +402,7 @@ span.shopUrl:hover{
 .store_list_wrap{
     display: block;
     text-align: right;
-    padding: 30px 15px 30px 30px;
+    padding: 30px 40px 30px 30px;
     width: 30%;
     min-width: 300px;
     float: left;
@@ -509,7 +511,7 @@ span.shopUrl:hover{
 /*menu_update start*/
 
 .sortable_exp{
-	width: 900px;
+    width: 95%;
 	margin-left: 40px;
 	display: block;
 	color : #888;
@@ -518,7 +520,8 @@ span.shopUrl:hover{
 
 .tab_container .menu_order_change{
     display: inline-flex;
-    width: 900px;
+    width: 95%;
+    min-width: 400px;
     margin-left: 40px;
     margin-top: 30px;
 }
@@ -572,7 +575,7 @@ span.shopUrl:hover{
 }
 
 .menu_update_iframe{
-    width: 900px;
+    width: 95%;
     height: 200px;
     overflow: hidden;
     text-align: center;
@@ -593,7 +596,7 @@ span.shopUrl:hover{
 .user_search_wrap{
     margin-left: 40px;
     margin-bottom: 10px;
-    width: 1100px;
+    width: 95%;
     text-align: right;
 }
 
@@ -622,14 +625,14 @@ span.shopUrl:hover{
 }
 
 .user_table{
-    width: 1200px;
+    width: 95%;
     font-size: 13px;
     margin-left: 40px;
     border: 1px solid #e0e0e0;
 }
 
 .user_table th {
-    padding: 22px 8px;
+    padding: 5px;
     font-weight: bold;
     text-align: center;
     border-right: 1px solid #e0e0e0;
@@ -700,12 +703,24 @@ span.shopUrl:hover{
 }
 
 /*statistics_cu start*/
-.stat_period_wrap,
-.stat_year_wrap{
+.stat_period_wrap{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+/* 200731 김수경 css 조정 */
+/* .stat_year_wrap{
     margin-left: 20px;
     margin-bottom: 10px;
     /* width: 900px; */
+.stat_year_wrap{
+    display: block;
+    text-align: right;
+    padding : 30px 40px 30px 30px;
+    width: 30%;
+    min-width: 300px;
+    float: left; 
 }
+
 .stat_period_wrap select#sort_select,
 .stat_year_wrap select{
     width: 150px;
@@ -752,7 +767,7 @@ span.shopUrl:hover{
 }
 
 .stat_table th {
-    padding: 14px 16px;
+    padding: 5px;
     font-weight: bold;
     text-align: center;
     border-right: 1px solid #e0e0e0;
@@ -809,7 +824,7 @@ span.shopUrl:hover{
     height: 30px;
 }
 .log_table{
-    width: 900px;
+    width: 95%;
     font-size: 13px;
     margin-left: 40px;
     border: 1px solid #e0e0e0;
@@ -4877,11 +4892,10 @@ background-color: #ab1f1f;
     margin-top: 10px;
     /* 200720 김수경 테이블 정비 */
     /* width: 900px; */
-    width: 100%;
+    width: 95%;
 }
 
 .menu_qna_table{
-    width: 900px;
     table-layout: fixed;
     word-break: break-all;
     border: 1px solid #d0d0d0;
@@ -4889,7 +4903,7 @@ background-color: #ab1f1f;
     font-size: 13px;
     /* 200720 김수경 테이블 정비 */
     /* width: 900px; */
-    width: 95%;
+    width: 100%;
 }
 
 .menu_qna_table th{

@@ -37,7 +37,7 @@
 			<h4>운영 &gt; 회원</h4>
 			<!-- <div class="h6" style="width:70%; padding:30px; float:left; display: block;">운영 &gt; 회원</div> -->
 			 <div class="tab_container">
-				<div id="tab1" class="tab_content" style="overflow-x:scroll;">
+				<div id="tab1" class="tab_content">
 					<div class="user_search_wrap">
 					    <input id="keyword" type="text" placeholder="검색어를 입력하세요"><button id="btnUserSearch">검색</button>
 					    <span id="user_down" style="cursor: pointer;"><img src="../images/excel.png" alt="엑셀다운로드"></span>
@@ -50,10 +50,10 @@
 								<th rowspan="2" width="10%">휴대폰번호</th>
 								<th rowspan="2" width="8%">이름</th>
 								<th rowspan="2" width="8%">회원번호</th>
-								<th colspan="6" width="33%">동의 </th>
-								<th rowspan="2" width="11%">최근 주문주소</th>
-								<th rowspan="2" width="6%">주문건수</th>
-								<th rowspan="2" width="6%">총<br>구매금액</th>
+								<th colspan="6" width="54%">동의 </th>
+								<th rowspan="2" width="0%"></th> <!-- 최근 주문주소 주석처리-->
+								<th rowspan="2" width="0%"></th> <!-- 주문건수 주석처리-->
+								<th rowspan="2" width="0%"></th> <!-- 총<br>구매금액 주석처리-->
 								<th rowspan="2" width="6%">메모</th>
 							</tr>
 							<tr>
@@ -62,7 +62,7 @@
 								<th>일자</th>
 								<th>광고
 									<div class="border_box">
-										<select id="push" style="position : absolute; bottom : -23px; left : 0px; width : 50px;">
+										<select id="push">
 										<option value="">전체</option> 
 										<option value="Y">동의</option>
 										<option value="N">비동의</option>
@@ -73,7 +73,7 @@
 								<th>해제일 </th>
 								<th>위치
 									<div class="border_box">
-										<select id="location" style="position : absolute; bottom : -23px; left : 0px;width : 50px;">
+										<select id="location">
 										<option value="">전체</option> 
 										<option value="Y">동의</option>
 										<option value="N">비동의</option>
@@ -88,7 +88,7 @@
 				<!-- #tab1 -->
 				<!--pagination start-->
 				<div class="btn_box2"></div>
-                           <div class="pagination" style="width : 1200px;">
+                           <div class="pagination">
 								<div id="pagination" class="pagination_wrap"></div>
 							</div>
 			</div>

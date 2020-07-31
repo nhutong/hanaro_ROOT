@@ -482,7 +482,7 @@ h4{font-weight:400;color:#888;}
 	font-weight:bold;
 }
 .btn_box2{
-	width:859px;
+	/* width:859px; */
 	margin:20px 0 0 40px;
 }
 .btn_box2 .btn3{
@@ -950,7 +950,7 @@ div.btn-kakao{
 	font-weight:400;
 }
 .btn_box2{
-	width:860px;
+	/* width:860px; */
 	margin-left:40px;
 	text-align:center;
 }

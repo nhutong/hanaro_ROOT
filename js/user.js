@@ -42,7 +42,7 @@ $(function () {
 		var memberNo = button.data('no');
 		var memo = button.data('memo'); 
 		var modal = $(this);
-		modal.find('.modal-title').text(name + '님 고객 메모');
+		modal.find('.modal-title').text(name + ' 회원번호 ' + memberNo + '님 고객 메모');
 		modal.find('#memo').val(memo);
 		modal.find('#memo').data('memberNo', memberNo);		
 	  });
