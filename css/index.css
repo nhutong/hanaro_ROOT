@@ -3645,7 +3645,7 @@ button#btnCreate{
     width: 95%;
      font-size: 14px;
     margin-left: 40px;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .push_wrap + .pagination_wrap{
@@ -3682,8 +3682,9 @@ button#btnCreate{
 }
 
 .push_submit_btn_wrap{
-    width: 900px;
+    /* width: 900px; */
     margin-left: 40px;
+    margin-right: 40px;
     text-align: right;
 }
 .push_submit_btn_wrap button{
