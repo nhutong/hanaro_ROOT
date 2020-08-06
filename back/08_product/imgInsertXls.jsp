@@ -45,6 +45,24 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+   		    String string1 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            }else if (cell.getCellType().toString() == "NUMERIC") {
+                string1 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string1 = String.valueOf(Math.round(Double.parseDouble(string1))); 
+            }else if (cell.getCellType().toString() == "BLANK") {   
+                string1 = "";  
+				out.clear();
+				out.print("pd_code_no_exist");
+				return;
+            }
+            if ( isNumeric(string1) != true){
+                out.clear();
+				out.print("pd_code_not_number");
+				return;
+            }
+			/*
 		    //String string1 = cell.getStringCellValue().trim();
 			String string1 = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 			if ( string1.equals("") ){
@@ -64,6 +82,7 @@
 					return;
 				}
 			}
+			*/
 
 			// 상품명 ( encode )
 			col = 1;

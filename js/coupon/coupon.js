@@ -186,32 +186,40 @@ function coupon_upload_create(){
 			alert("엑셀파일에서 순서가 입력되지 않은 행이 존재합니다.");
 		}else if(result == ('order_number_not_number')){
 			alert("엑셀파일에서 순서가 숫자가 아닌 행이 존재합니다.");
+		}else if(result == ('company_name_no_exist')){
+			alert("엑셀파일에서 지점명이 입력되지 않은 행이 존재합니다.");
+		}else if(result == ('company_name_not_correct')){
+			alert("엑셀파일에서 지점명이 잘못입력한 행이 존재합니다.");				
 		}else if(result == ('pd_code_no_exist')){
 			alert("엑셀파일에서 상품코드가 입력되지 않은 행이 존재합니다.");
+		}else if(result == ('pd_code_not_number')){
+			alert("엑셀파일에서 상품코드가 숫자가 아닌 행이 존재합니다.");	
+		}else if(result == ('coupon_code_no_exist')){
+			alert("엑셀파일에서 쿠폰코드가 입력되지 않은 행이 존재합니다.");
+		}else if(result == ('coupon_code_not_exist')){
+			alert("엑셀파일에서 쿠폰코드가 숫자가 아닌 행이 존재합니다.");			
+		}else if(result == ('discount_price_no_exist')){
+			alert("엑셀파일에서 쿠폰할인가가 입력되지 않은 행이 존재합니다.");
+		}else if(result == ('discount_price_not_exist')){
+			alert("엑셀파일에서 쿠폰할인가가 숫자가 아닌 행이 존재합니다.");
+		}else if(result == ('coupon_start_date_type_error')){
+			alert("엑셀파일에서 쿠폰시작일이 날짜형식이 아닌 행이 존재합니다.");		
+		}else if(result == ('coupon_end_date_type_error')){
+			alert("엑셀파일에서 쿠폰종료일이 날짜형식이 아닌 행이 존재합니다.");		
+		}else if(result == ('limit_qty_no_exist')){
+			alert("엑셀파일에서 쿠폰수량이 입력되지 않은 행이 존재합니다.");
+		}else if(result == ('limit_qty_not_exist')){
+			alert("엑셀파일에서 쿠폰수량이 숫자가 아닌 행이 존재합니다.");		
+		}else if(result == ('coupon_name_not_exist')){
+			alert("엑셀파일에서 쿠폰명이 입력되니 않은 행이 존재합니다.");		
 		}else if(result == ('pd_name_no_exist')){
-			alert("엑셀파일에서 상품명이 입력되지 않은 행이 존재합니다.");
-		}else if(result == ('price_no_exist')){
-			alert("엑셀파일에서 판매가격이 입력되지 않은 행이 존재합니다.");
-		}else if(result == ('price_not_number')){
-			alert("엑셀파일에서 판매가격이 숫자가 아닌 행이 존재합니다.");
-		}else if(result == ('card_discount_not_number')){
-			alert("엑셀파일에서 카드할인이 숫자가 아닌 행이 존재합니다.");
-		}else if(result == ('card_discount_from_date_type_error')){
-			alert("엑셀파일에서 카드시작일이 날짜형식이 아닌 행이 존재합니다. ex. 2019-10-01");
-		}else if(result == ('card_discount_end_date_type_error')){
-			alert("엑셀파일에서 카드종료일이 날짜형식이 아닌 행이 존재합니다. ex. 2019-10-01");
-		}else if(result == ('coupon_discount_not_number')){
-			alert("엑셀파일에서 쿠폰할인이 숫자가 아닌 행이 존재합니다.");
-		}else if(result == ('company_name_not_correct')){
-			alert("엑셀파일에서 존재하지 않는 판매장명이 존재합니다.");
-		}else if(result == ('NoNImgNo')){
-			alert("엑셀파일에서 입력하신 상품코드와 매핑되는 이미지가 없는 행이 존재합니다.");
+			alert("엑셀파일에서 상품명이 입력되니 않은 행이 존재합니다.");		
 		}else{
             console.log("============= notice callback ========================");
             console.log(result);
             alert("등록이 완료되었습니다.");
 			location.href="/event/coupon.html";
-        }
+		}		
     });
 }
 

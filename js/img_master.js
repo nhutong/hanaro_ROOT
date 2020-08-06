@@ -213,6 +213,8 @@ $("#jundan_excel_new").on("click",function(){
 			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
         }else if(resultSplit[0] == ('pd_code_no_exist')){
 			alert("엑셀파일에서 상품코드가 입력되지 않은 행이 존재합니다.");
+		}else if(resultSplit[0] == ('pd_code_not_number')){
+			alert("엑셀파일에서 상품코드가 숫자가 아닌 행이 존재합니다.");
 		}else if(resultSplit[0] == ('pd_name_no_exist')){
 			alert("엑셀파일에서 상품명이 입력되지 않은 행이 존재합니다.");
 		}else if(resultSplit[0] == ('NoN_pdCode')){
@@ -225,7 +227,6 @@ $("#jundan_excel_new").on("click",function(){
         }
     });
 });
-
 //$(".groupTagClass").keyup(function(){console.log(1);
 //	searchFunc(); 
 //});

@@ -49,7 +49,8 @@
 		//===============================================================================================================
 		
 		// 엑셀 업로드
-		XSSFWorkbook workBook  =  new XSSFWorkbook(new FileInputStream(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)));
+		//XSSFWorkbook workBook  =  new XSSFWorkbook(new FileInputStream(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)));   //운영서버
+		XSSFWorkbook workBook  =  new XSSFWorkbook(new FileInputStream(new File("C:/HANAROAPP/webapps/ROOT/upload/"+excel_path)));    //로컬서버
 
 		int col = 0;
 		XSSFSheet sheet = workBook.getSheetAt(0);
@@ -67,6 +68,24 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			String string0 = "";
+            if (cell.getCellType().toString() == "STRING") {
+                string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string0 = String.valueOf(Math.round(Double.parseDouble(string0))); 
+            } else if (cell.getCellType().toString() == "BLANK") {   
+                //string0 = "";         
+                out.clear();
+				out.print("order_number_no_exist");
+				return;				
+            }
+            if ( isNumeric(string0) != true){
+                out.clear();
+				out.print("order_number_not_number");
+				return;
+            }
+			/*
 		    //String string0 = cell.getStringCellValue().trim();
 			String string0 = cell.toSting().trim().replaceAll("'","").replaceAll(",","");
 
@@ -87,6 +106,7 @@
 					return;
 				}
 			}
+			*/
 
 			// 지점명 ( encode )
 		    col = 1;
@@ -129,6 +149,24 @@
 			col = 2;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+            String product_code = "";
+            if (cell.getCellType().toString() == "STRING") {
+                product_code = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                product_code = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                product_code = String.valueOf(Math.round(Double.parseDouble(product_code))); 
+            } else if (cell.getCellType().toString() == "BLANK") {   
+                //product_code = "";         
+                out.clear();
+				out.print("pd_code_no_exist");
+				return;				
+            }
+            if ( isNumeric(product_code) != true){
+                out.clear();
+				out.print("pd_code_not_number");
+				return;
+            }
+			/*
 		    //String product_code = cell.getStringCellValue().trim();
 			String product_code = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 			if ( "".equals(product_code) ){
@@ -148,33 +186,52 @@
                         return;
                     }				 
 				// 신규입력한 전단상품의 상품번호(내부용)를 select 한다.
-				/*
-				sql = " select pd_no from vm_product "
-					+ " where pd_code = '"+product_code+"'; ";
+				//sql = " select pd_no from vm_product "
+				//	+ " where pd_code = '"+product_code+"'; ";
 
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(sql);
+				//stmt = conn.createStatement();
+				//rs = stmt.executeQuery(sql);
 				
-				rs.last();
-				rs.beforeFirst();
-				String pd_no = "";		
-				while(rs.next()){
-					pd_no = rs.getString("pd_no");     // 신규 상품번호(내부용)	
-				}
+				//rs.last();
+				//rs.beforeFirst();
+				//String pd_no = "";		
+				//while(rs.next()){
+				//	pd_no = rs.getString("pd_no");     // 신규 상품번호(내부용)	
+				//}
 				
-				if ("".equals(pd_no)){
-					pd_no = "";
-					//잘못된 상품코드이기 때문에 중단한다.
-					out.clear();
-					out.print("pd_code_not_correct");
-				}
-				*/			
+				//if ("".equals(pd_no)){
+				//	pd_no = "";
+				//	//잘못된 상품코드이기 때문에 중단한다.
+				//	out.clear();
+				//	out.print("pd_code_not_correct");
+				//} 
+				
 			}
+			*/
 
 			// 쿠폰코드
 			col = 3;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			String coupon_code = "";
+            if (cell.getCellType().toString() == "STRING") {
+
+                coupon_code = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                coupon_code = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                coupon_code = String.valueOf(Math.round(Double.parseDouble(coupon_code))); 
+            } else if (cell.getCellType().toString() == "BLANK") {   
+                //coupon_code = "";         
+                out.clear();
+				out.print("coupon_code_no_exist");
+				return;				
+            }
+            if ( isNumeric(coupon_code) != true){
+                out.clear();
+				out.print("coupon_code_not_exist");
+				return;
+            }
+			/*
 		    //String coupon_code = cell.getStringCellValue().trim();
 			String coupon_code = cell.toString().trim().replaceAll(",","").replaceAll("'","");
 			if ( "".equals(coupon_code) ){
@@ -194,11 +251,30 @@
                         return;
                     }			
 			}
+			*/
 
 			// 쿠폰 할인가
 			col = 4;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			String discount_price = "";
+            if (cell.getCellType().toString() == "STRING") {
+                discount_price = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                discount_price = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                discount_price = String.valueOf(Math.round(Double.parseDouble(discount_price))); 
+            } else if (cell.getCellType().toString() == "BLANK") {   
+                //discount_price = "";         
+                out.clear();
+				out.print("discount_price_no_exist");
+				return;				
+            }
+            if ( isNumeric(discount_price) != true){
+                out.clear();
+				out.print("discount_price_not_exist");
+				return;
+            }
+			/*
 		    //String discount_price = cell.getStringCellValue().trim();
 			String discount_price = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 			if ( "".equals(discount_price) ){
@@ -218,11 +294,41 @@
 					return;
 				}
 			}
+			*/
 
 			// 쿠폰시작일
 			col = 5;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			String start_date = "";
+            if (cell.getCellType().toString() == "STRING") {
+                start_date = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                start_date = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                start_date = String.valueOf(Math.round(Double.parseDouble(start_date))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                start_date = "";
+            }
+			if (start_date.equals("")){	
+				start_date = "null";			
+			}
+			else {
+				sql = " SELECT id "
+				+" FROM time_dimension WHERE db_date = '"+start_date+"'";
+
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+					
+				rs.last();
+				int startDateCount = rs.getRow();
+				if(startDateCount == 0){
+					out.clear();
+					out.print("coupon_start_date_type_error : " + start_date );
+					return;
+				};
+				rs.beforeFirst();
+			}
+			/*
 		    String start_date = cell.getStringCellValue().trim();
 			if ( !"".equals(start_date) ){
 				// 입력받은 카드시작일이 유효한지 검사한다.
@@ -241,11 +347,41 @@
 				};
 				rs.beforeFirst();
 			}
+			*/
 
 			// 쿠폰 종료일
 			col = 6;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			String end_date = "";
+            if (cell.getCellType().toString() == "STRING") {
+                end_date = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                end_date = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                end_date = String.valueOf(Math.round(Double.parseDouble(end_date))); 
+            } else if (cell.getCellType().toString() == "BLANK") {
+                end_date = "";
+            }
+			if (end_date.equals("")){	
+				end_date = "null";			
+			}
+			else {
+				sql = " SELECT id "
+				+" FROM time_dimension WHERE db_date = '"+end_date+"'";
+
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+					
+				rs.last();
+				int startDateCount = rs.getRow();
+				if(startDateCount == 0){
+					out.clear();
+					out.print("coupon_end_date_type_error : " + end_date );
+					return;
+				};
+				rs.beforeFirst();
+			}
+			/*
 		    String end_date = cell.getStringCellValue().trim();
 			if ( !"".equals(end_date) ){
 				// 입력받은 카드시작일이 유효한지 검사한다.
@@ -264,11 +400,30 @@
 				};
 				rs.beforeFirst();
 			}
+			*/
 
 			// 제한 수량
 			col = 7;			
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			String limit_qty = "";
+            if (cell.getCellType().toString() == "STRING") {
+                limit_qty = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                limit_qty = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                limit_qty = String.valueOf(Math.round(Double.parseDouble(limit_qty))); 
+            } else if (cell.getCellType().toString() == "BLANK") {   
+                //limit_qty = "";         
+                out.clear();
+				out.print("limit_qty_no_exist");
+				return;				
+            }
+            if ( isNumeric(limit_qty) != true){
+                out.clear();
+				out.print("limit_qty_not_exist");
+				return;
+            }
+			/*
 		    //String limit_qty = cell.getStringCellValue().trim();
 			String limit_qty = cell.toString().trim().replaceAll("'","").replaceAll(",","");			
 			if ( "".equals(limit_qty) ){
@@ -288,6 +443,7 @@
 					return;
 				}
 			}
+			*/
 
 			// 쿠폰명
 			col = 8;			
