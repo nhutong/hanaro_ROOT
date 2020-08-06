@@ -399,8 +399,25 @@
 
                 // 특가행사시작일
                 col = 14;
-                cell = row.getCell(col);
+                cell = row.getCell(col);                
                 if (cell == null) { cell = row.createCell(col); }
+                //String string13 = "";
+                if (cell.getCellType().toString() == "STRING") {
+                string13 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+               } else if (cell.getCellType().toString() == "NUMERIC") {
+                string13 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string13 = String.valueOf(Math.round(Double.parseDouble(string13))); 
+               } else if (cell.getCellType().toString() == "BLANK") {
+                string13 = "";
+               }   
+
+             if ( string13.equals("") ){   
+                string13 = "null";
+                errCount++;
+                continue;             
+            }else{
+
+/*
                 string13 = cell.getStringCellValue().trim();
                 if ( string13.equals("") ){
                     // 특가행사시작일이 존재하지 않으므로 중단한다.
@@ -409,7 +426,9 @@
                     // return;
                     errCount++;
                     continue;
+
                 }else{
+*/
                     // 입력받은 특가행사시작일이 유효한지 검사한다.
                     sql = " SELECT id "
                     +" FROM time_dimension WHERE db_date = '"+string13+"'";
@@ -433,6 +452,22 @@
                 col = 15;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
+                //String string14 = "";
+                if (cell.getCellType().toString() == "STRING") {
+                string14 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+                } else if (cell.getCellType().toString() == "NUMERIC") {
+                string14 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string14 = String.valueOf(Math.round(Double.parseDouble(string14))); 
+                } else if (cell.getCellType().toString() == "BLANK") {
+                string14 = "";
+                }   
+
+             if ( string14.equals("") ){   
+                string14 = "null";
+                errCount++;
+                continue;             
+            }else{
+                /*
                 string14 = cell.getStringCellValue().trim();
                 if ( string14.equals("") ){
                     // 특가행사종료일이 존재하지 않으므로 중단한다.
@@ -441,7 +476,9 @@
                     // return;
                     errCount++;
                     continue;
+                    
                 }else{
+                    */
                     // 입력받은 특가행사종료일이 유효한지 검사한다.
                     sql = " SELECT id "
                     +" FROM time_dimension WHERE db_date = '"+string14+"'";
