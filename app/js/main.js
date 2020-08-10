@@ -98,8 +98,9 @@ function adModal(){
 				var jsonResult_notice = jsonResult.CompanyList
 
 				for(var i in jsonResult_notice){
-					text +='	<div class="main_modal_img_wrap">';
+					text +='	<div class="main_modal_img_wrap">';					
 					text +='		<a href="../'+jsonResult_notice[i].link_url+'">'; 
+					//text +='		<a href="'+jsonResult_notice[i].link_url+'">'; 
 					text +='			<img src="'+jsonResult_notice[i].img_url+'" alt="" />';
 					text +='		</a>';
 					text +='	</div>';
