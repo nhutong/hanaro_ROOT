@@ -72,6 +72,7 @@
             if (cell == null) { cell = row.createCell(col); }
 		    //String string0 = cell.getStringCellValue().trim();
 			String string0 = "";
+			//엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -79,10 +80,12 @@
                 string0 = String.valueOf(Math.round(Double.parseDouble(string0))); 
             } else if (cell.getCellType().toString() == "BLANK") {   
                 //string0 = "";         
+				//NULL 예외처리
                 out.clear();
 				out.print("order_number_no_exist");
 				return;				
             }
+			//숫자형 예외처리
             if ( isNumeric(string0) != true){
                 out.clear();
 				out.print("order_number_not_number");
@@ -114,15 +117,14 @@
             if (cell == null) { cell = row.createCell(col); }
 		    String company_name = cell.getStringCellValue().trim();
 			String company_no = "";
-			out.print(company_name);			
-			if ( "".equals(company_name) ){
-				//지점명 입력하지 않았기 때문에 중단한다.
+			out.print(company_name);
+			//NULL 예외처리
+			if ( "".equals(company_name) ){				
 				out.clear();
 				out.print("company_name_no_exist");
 				return;
 			}else{
-				// 지점명으로 지점 번호를 확인한다. 
-				
+				// 지점명으로 지점 번호를 확인한다. 				
 				sql = " SELECT vm_cp_no FROM vm_company WHERE VM_CP_NAME = '"+company_name+"'; ";
 
 				stmt = conn.createStatement();
@@ -134,8 +136,8 @@
 					company_no = rs.getString("vm_cp_no");     // 지점번호
 				}
 				
-				if ("".equals(company_no)){					
-					//잘못된 상품코드이기 때문에 중단한다.
+				//NULL 예외처리
+				if ("".equals(company_no)){										
 					out.clear();
 					out.print("company_name_not_correct");
 					return;
@@ -149,6 +151,7 @@
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
 			String product_code = "";
+			//엑셀 column 입력 데이터타입형별로 분기처리			
             if (cell.getCellType().toString() == "STRING") {
                 product_code = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -156,10 +159,12 @@
                 product_code = String.valueOf(Math.round(Double.parseDouble(product_code))); 
             } else if (cell.getCellType().toString() == "BLANK") {   
                 //product_code = "";         
+				//NULL 예외처리
                 out.clear();
 				out.print("pd_code_no_exist");
 				return;				
             }
+			//숫자형 예외처리
             if ( isNumeric(product_code) != true){
                 out.clear();
 				out.print("pd_code_not_number");
@@ -216,23 +221,25 @@
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
 			String coupon_code = "";
+			//엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 coupon_code = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
                 coupon_code = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 coupon_code = String.valueOf(Math.round(Double.parseDouble(coupon_code))); 
             } else if (cell.getCellType().toString() == "BLANK") {   
-                //coupon_code = "";         
+                //coupon_code = "";   
+				//NULL 예외처리      
                 out.clear();
 				out.print("coupon_code_no_exist");
 				return;				
             }
+			//숫자형 예외처리
             if ( isNumeric(coupon_code) != true){
                 out.clear();
 				out.print("coupon_code_not_exist");
 				return;
             }
-
 			/*
 		    //String coupon_code = cell.getStringCellValue().trim();			
 			String coupon_code = cell.toString().trim().replaceAll("'","").replaceAll(",","");
@@ -261,23 +268,25 @@
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
 			String discount_price = "";
+			//엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 discount_price = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
                 discount_price = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 discount_price = String.valueOf(Math.round(Double.parseDouble(discount_price))); 
             } else if (cell.getCellType().toString() == "BLANK") {   
-                //discount_price = "";         
+                //discount_price = "";   
+				//NULL 예외처리      
                 out.clear();
 				out.print("discount_price_no_exist");
 				return;				
             }
+			//숫자형 예외처리
             if ( isNumeric(discount_price) != true){
                 out.clear();
 				out.print("discount_price_not_exist");
 				return;
             }
-
 			/*
 		    //String discount_price = cell.getStringCellValue().trim();
 			String discount_price = cell.toString().trim().replaceAll("'","").replaceAll(",","");
@@ -304,6 +313,7 @@
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
 			String start_date = "";
+			//엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 start_date = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -311,7 +321,7 @@
                 start_date = String.valueOf(Math.round(Double.parseDouble(start_date))); 
             } else if (cell.getCellType().toString() == "BLANK") {
                 start_date = "";
-            }
+            }			
 			if (start_date.equals("")){	
 				start_date = "null";			
 			}
@@ -357,6 +367,7 @@
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
 			String end_date = "";
+			//엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 end_date = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -410,17 +421,20 @@
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
 			String limit_qty = "";
+			//엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 limit_qty = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
                 limit_qty = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 limit_qty = String.valueOf(Math.round(Double.parseDouble(limit_qty))); 
             } else if (cell.getCellType().toString() == "BLANK") {   
-                //limit_qty = "";         
+                //limit_qty = "";    
+				//NULL 예외처리     
                 out.clear();
 				out.print("limit_qty_no_exist");
 				return;				
             }
+			//숫자형 예외처리
             if ( isNumeric(limit_qty) != true){
                 out.clear();
 				out.print("limit_qty_not_exist");

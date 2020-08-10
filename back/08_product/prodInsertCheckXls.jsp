@@ -50,6 +50,29 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			String string1 = "";
+			//엑셀 column 입력 데이터타입형별로 분기처리
+			if (cell.getCellType().toString() == "STRING") {
+				string1 = cell.getStringCellValue().trim().replaceAll(",","").replaceAll("'","");
+			}
+			else if (cell.getCellType().toString() == "NUMBERIC") {
+				string1 = cell.toString().trim().replaceAll(",","").replaceAll("'","");
+				string1 = String.valueOf(Math.round(Duoble.parseDouble(string1)));
+			}
+			else if (cell.getCellType().toString() == "BLANK"){
+				//NULL 예외처리
+				string1 ="";
+				out.clear();
+				out.print("pd_code_no_exist");
+				return;
+			}
+			//숫자형 예외처리
+			if (isNumberic(string1) != true){
+				out.clear();
+				out.print("pd_code_not_number");
+				return;
+			}
+			/*
 		    //String string1 = cell.getStringCellValue().trim();
 			String string1 = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 
@@ -70,28 +93,22 @@
 					return;
 				}
 			}
-
+			*/
 			sql = " SELECT a.pd_no from vm_product AS a where a.pd_code = '"+string1+"'; ";
 	
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 					
 			rs.last();
-
             int listCount_exist = rs.getRow();
-
             if(listCount_exist != 0){
 				dup++;
             }else{
 				new1++;
 			}
-
             rs.beforeFirst();            
-
-		};
-		 
-		// workbook.close();
-		
+		};		 
+		// workbook.close();		
 		out.clear();
 		out.print("success" + "," + Integer.toString(i-1) + "," + Integer.toString(new1) + "," + Integer.toString(dup) );
 

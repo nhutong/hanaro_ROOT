@@ -81,6 +81,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string0 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
              if (cell.getCellType().toString() == "STRING") {
                 string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -91,6 +92,7 @@
                 errCount++;
                 continue;
             }
+            // 숫자형 예외처리 
             if ( isNumeric(string0) != true){
                 errCount++;
                 continue;
@@ -125,6 +127,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string1 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
              if (cell.getCellType().toString() == "STRING") {
                 string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -135,6 +138,7 @@
                 errCount++;
                 continue;
             }
+            //숫자형 예외처리
             if ( isNumeric(string1) != true){
                 errCount++;
                 continue;
@@ -186,17 +190,16 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string15 = cell.getStringCellValue().trim().replaceAll("'", "");
-            string15 = strEncode(string15);		
-            
+            string15 = strEncode(string15);		            
             //앱 전단 상품명에 규격을 추가 한 뒤 아래 내용 삭제 필요 - 20200519-김대윤
             string2 = string2 + string15;
-
-
+            
             // 판매가
             col = 4;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string3 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -207,6 +210,7 @@
                 errCount++;
                 continue;
             }
+            //숫자형 예외처리
             if ( isNumeric(string3) != true){
                 errCount++;
                 continue;
@@ -243,12 +247,12 @@
                 }
             }
             */
-
             // 카드할인
             col = 7;
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }                       
             String string4 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -257,8 +261,10 @@
             } else if (cell.getCellType().toString() == "BLANK") {
                 string4 = "";
             }
+            //NULL 예외처리
             if ( string4.equals("") ){
-            }else{                
+            }else{         
+                //숫자형 예외처리       
                 if ( isNumeric(string4) != true ){                    
                     errCount++;
                     continue;
@@ -270,6 +276,7 @@
             cell = row.getCell(col);                                
             if (cell == null) { cell = row.createCell(col); }            
             String string5 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string5 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -281,7 +288,7 @@
             if ( string5.equals("") ){   
                 string5 = "null";             
             }else{
-                // 입력받은 카드시작일이 유효한지 검사한다.
+                // 입력받은 카드시작일 유효검사처리
                 sql = " SELECT id "
                 +" FROM time_dimension WHERE db_date = '"+string5+"'";
 
@@ -305,6 +312,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }            
             String string6 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string6 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -317,7 +325,7 @@
             if ( string6.equals("") ){ 
                 string6 = "null";              
             }else{
-                // 입력받은 카드시작일이 유효한지 검사한다.
+                // 입력받은 카드시작일 유효검사 처리
                 sql = " SELECT id "
                 +" FROM time_dimension WHERE db_date = '"+string6+"'";
 
@@ -354,6 +362,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
              String string9 = "";
+             //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -362,8 +371,10 @@
             } else if (cell.getCellType().toString() == "BLANK") {
                 string9 = "";
             }
+            //NULL 예외처리
             if ( string9.equals("") ){
             }else{                
+                //숫자형 예외처리
                 if ( isNumeric(string9) != true ){                    
                     errCount++;
                     continue;
@@ -400,7 +411,8 @@
                 // 특가행사시작일
                 col = 14;
                 cell = row.getCell(col);                
-                if (cell == null) { cell = row.createCell(col); }                
+                if (cell == null) { cell = row.createCell(col); }    
+                //엑셀 column 입력 데이터타입형별로 분기처리            
                 if (cell.getCellType().toString() == "STRING") {
                 string13 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
                 } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -409,13 +421,13 @@
                 } else if (cell.getCellType().toString() == "BLANK") {
                 string13 = "";
                 }   
-
-            if ( string13.equals("") ){   
-                string13 = "null";
-                errCount++;
-                continue;             
-            }else{
-            /*
+                //NULL 예외처리
+                if ( string13.equals("") ){   
+                    string13 = "null";
+                    errCount++;
+                    continue;             
+                }else{
+                /*
                 string13 = cell.getStringCellValue().trim();
                 if ( string13.equals("") ){
                     // 특가행사시작일이 존재하지 않으므로 중단한다.
@@ -449,7 +461,8 @@
                 // 특가행사종료일
                 col = 15;
                 cell = row.getCell(col);
-                if (cell == null) { cell = row.createCell(col); }                
+                if (cell == null) { cell = row.createCell(col); }
+                //엑셀 column 입력 데이터타입형별로 분기처리                
                 if (cell.getCellType().toString() == "STRING") {
                 string14 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
                 } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -459,11 +472,11 @@
                 string14 = "";
                 }   
 
-             if ( string14.equals("") ){   
-                string14 = "null";
-                errCount++;
-                continue;             
-            }else{
+                if ( string14.equals("") ){   
+                    string14 = "null";
+                    errCount++;
+                    continue;             
+                }else{
                 /* 
                 string14 = cell.getStringCellValue().trim();
                 if ( string14.equals("") ){

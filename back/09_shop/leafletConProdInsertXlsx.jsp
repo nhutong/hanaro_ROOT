@@ -63,6 +63,28 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+
+			String string0 ="";
+			if (cell.getCellType().toString() == "STRING"){
+				string0 = cell.getStringCellValue().trim().replaceAll(",","").replaceAll("'","");
+			}
+			else if (cell.getCellType().toString() == "NUMBERIC"){
+				string0 = cell.toString().trim().replaceAll(",","").replaceAll("'","");
+				string0 = String.valueOf(Math.round(Double.parseDouble(string0)));			 
+			}
+			else if (cell.getCellType().toString() == "BLANK"){
+				string0 = "";
+				out.clear();
+				out.print("order_number_no_exist");
+				return;
+			}
+
+			if (isNumeric(string0) != true){
+				out.clear();
+				out.print("order_number_not_number")
+				return;
+			}
+			/*
 		    //String string0 = cell.getStringCellValue().trim();
 			String string0 = cell.toString().trim().replaceAll("'","").replaceAll(",","");
 
@@ -83,11 +105,33 @@
 					return;
 				}
 			}
+			*/
 
 			// 상품코드 ( encode )
 		    col = 1;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			String string1 ="";
+			if (cell.getCellType().toString() == "STRING"){
+				string1 = cell.getStringCellValue().trim().replaceAll(",","").replaceAll("'","");
+			}
+			else if (cell.getCellType().toString() == "NUMBERIC"){
+				string1 = cell.toString().trim().replaceAll(",","").replaceAll("'","");
+				string1 = String.valueOf(Math.round(Double.parseDouble(string1)));			 
+			}
+			else if (cell.getCellType().toString() == "BLANK"){
+				string1 = "";
+				out.clear();
+				out.print("pd_code_no_exist");
+				return;
+			}
+
+			if (isNumeric(string1) != true){
+				out.clear();
+				out.print("pd_code_not_number")
+				return;
+			}			
+			/*
 		    //String string1 = cell.getStringCellValue().trim();
 			String string1 = cell.toString().trim(),replaceAll("'","").replaceAll(",","");
 			if ( string1.equals("") ){
@@ -107,6 +151,7 @@
 					return;
 				}
 			}
+			*/
 
 			// 상품명 ( encode )
 			col = 2;
@@ -126,6 +171,27 @@
 			col = 3;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			String string1 ="";
+			if (cell.getCellType().toString() == "STRING"){
+				string3 = cell.getStringCellValue().trim().replaceAll(",","").replaceAll("'","");
+			}
+			else if (cell.getCellType().toString() == "NUMBERIC"){
+				string3 = cell.toString().trim().replaceAll(",","").replaceAll("'","");
+				string3 = String.valueOf(Math.round(Double.parseDouble(string3)));			 
+			}
+			else if (cell.getCellType().toString() == "BLANK"){
+				string3 = "";
+				out.clear();
+				out.print("price_no_exist");
+				return;
+			}
+
+			if (isNumeric(string3) != true){
+				out.clear();
+				out.print("price_not_number")
+				return;
+			}
+			/*
 		    //String string3 = cell.getStringCellValue().trim();
 			String string3 = cell.toString().trim(),replaceAll("'",""),replaceAll(",","");
 			if ( string3.equals("") ){
@@ -145,7 +211,7 @@
 					return;
 				}
 			}
-
+			*/
 			// 기타정보
 			col = 4;
 		    cell = row.getCell(col);
@@ -206,9 +272,7 @@
 					img_no = "";
 				}else{
 				}
-			}
-
-			
+			}		
 	
 			//순서가 없으면 어떤 작업도 하지 않는다.
 			if(string0 == ""){

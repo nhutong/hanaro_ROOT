@@ -131,8 +131,9 @@
 			obj.put("card_restrict", strDecode(card_restrict));
 			obj.put("coupon_discount", coupon_discount);
 			obj.put("dadaiksun", strDecode(dadaiksun));
-			obj.put("dadaiksun_info", strDecode(dadaiksun_info));
-			obj.put("etc", strDecode(etc));
+			obj.put("dadaiksun_info", strDecode(dadaiksun_info));			
+			//obj.put("etc", strDecode(etc)); // 2020.08.10 심규문 상품상세정보 기타정보 문자형 변환
+			obj.put("etc", java.net.URLEncoder.encode(etc,"UTF-8"));
 			obj.put("pd_no", pd_no);
 			obj.put("pd_code", strDecode(pd_code));
 			obj.put("vmjz_no", strDecode(vmjz_no));
