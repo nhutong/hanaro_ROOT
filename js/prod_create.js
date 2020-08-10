@@ -167,7 +167,8 @@ $("#jundan_excel_new").on("click",function(){
         if(result == ('NoN') || result == 'exception error' || result == 'empty'){
             console.log(result);
 			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
-        }else if(result == ('order_number_no_exist')){
+		
+		}else if(result == ('order_number_no_exist')){
 			alert("엑셀파일에서 순서가 입력되지 않은 행이 존재합니다.");
 		}else if(result == ('order_number_not_number')){
 			alert("엑셀파일에서 순서가 숫자가 아닌 행이 존재합니다.");

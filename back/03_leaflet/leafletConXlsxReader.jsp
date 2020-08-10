@@ -80,6 +80,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
              String string0 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -90,6 +91,7 @@
                 errCount++;
                 continue;                
             }
+            //NULL 예외처리
             if (isNumeric(string0) != true){
                 errCount++;
                 continue;
@@ -124,6 +126,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string1 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -134,6 +137,7 @@
                 errCount++;
                 continue;                
             }
+            //NULL 예외처리
             if (isNumeric(string1) != true){
                 errCount++;
                 continue;
@@ -193,8 +197,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string15 = cell.getStringCellValue().trim().replaceAll("'", "");
-            string15 = strEncode(string15);		
-            
+            string15 = strEncode(string15);		            
             //앱 전단 상품명에 규격을 추가 한 뒤 아래 내용 삭제 필요 - 20200519-김대윤
             string2 = string2 + string15;
 
@@ -203,6 +206,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string3 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -213,6 +217,7 @@
                 errCount++;
                 continue;                
             }
+            //NULL 예외처리
             if (isNumeric(string3) != true){
                 errCount++;
                 continue;
@@ -247,6 +252,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string4 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string4 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -258,6 +264,7 @@
             if (string4.equals("")){                
             }
             else {
+                //숫자형 예외처리
                 if (isNumeric(string4) != true){
                     errCount++;
                     continue;
@@ -288,6 +295,7 @@
             if (cell == null) { cell = row.createCell(col); }
             //String string5 = cell.getStringCellValue().trim(); 
             String string5 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string5 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -323,6 +331,7 @@
             if (cell == null) { cell = row.createCell(col); }
             //String string6 = cell.getStringCellValue().trim();
             String string6 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string6 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -371,6 +380,7 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string9 = "";
+            //엑셀 column 입력 데이터타입형별로 분기처리
             if (cell.getCellType().toString() == "STRING") {
                 string9 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -382,6 +392,7 @@
             if (string9.equals("")){                
             }
             else {
+                //숫자형 예외처리
                 if (isNumeric(string9) != true){
                     errCount++;
                     continue;
@@ -436,6 +447,7 @@
                 col = 14;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
+                //엑셀 column 입력 데이터타입형별로 분기처리
                 if (cell.getCellType().toString() == "STRING") {
                 string13 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
                 } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -443,13 +455,13 @@
                 string13 = String.valueOf(Math.round(Double.parseDouble(string13))); 
                 } else if (cell.getCellType().toString() == "BLANK") {
                 string13 = "";
-                }   
-
-            if ( string13.equals("") ){   
-                string13 = "null";
-                errCount++;
-                continue;             
-            }else{
+                }                   
+                //NULL 예외처리
+                if ( string13.equals("") ){   
+                    string13 = "null";
+                    errCount++;
+                    continue;             
+                }else{
                 /*
                 string13 = cell.getStringCellValue().trim();
                 if ( string13.equals("") ){
@@ -484,6 +496,7 @@
                 col = 15;
                 cell = row.getCell(col);
                 if (cell == null) { cell = row.createCell(col); }
+                //엑셀 column 입력 데이터타입형별로 분기처리
                 if (cell.getCellType().toString() == "STRING") {
                 string14 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
                 } else if (cell.getCellType().toString() == "NUMERIC") {
@@ -492,12 +505,12 @@
                 } else if (cell.getCellType().toString() == "BLANK") {
                 string14 = "";
                 }  
-
-             if ( string14.equals("") ){   
-                string14 = "null";
-                errCount++;
-                continue;             
-            }else{
+                //NULL 예외처리
+                if ( string14.equals("") ){   
+                    string14 = "null";
+                    errCount++;
+                    continue;             
+                }else{
                 /*
                 string14 = cell.getStringCellValue().trim();
                 if ( string14.equals("") ){

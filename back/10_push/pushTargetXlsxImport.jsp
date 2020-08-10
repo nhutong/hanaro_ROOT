@@ -90,6 +90,7 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+			/*
 		    //String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "").replaceAll("-", "");
 			String string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "").replaceAll("-", "");
 
@@ -109,6 +110,26 @@
 					out.print("no_not_number"+","+Integer.toString(i));
 					return;
 				}
+			}
+			*/
+			String string0 = "";
+			if (cell.getCellType().toString() == "STRING"){
+				string0 = cell.getStringCellValue().trim().replaceAll(",","").replaceAll("'","").replaceAll("-","");
+			}
+			else if (cell.getCellType().toString() == "NUMBERIC"){
+				string0 = cell.toString().trim()..replaceAll(",","").replaceAll("'","").replaceAll("-","");
+				string0 = String.valueOf(Math.round(Double.parseDouble(string0)));
+			}
+			else if (cell.getCellType().toString() == "BLANK"){
+				string0 =""
+				out.clear();
+				out.print("no_no_exist"+","+Integer.toString(i));
+				return;
+			}
+			if (isNumeric(string0) != true){
+				out.clear();
+				out.print("no_not_number"+","+Integer.toString(i));
+				return;
 			}
 		
 			sql = " insert into vm_push_message_target(pm_no, no, reg_date, tel) "
