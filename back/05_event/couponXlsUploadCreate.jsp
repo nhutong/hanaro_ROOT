@@ -50,8 +50,8 @@
 		
 		// 엑셀 업로드
 		// Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
-		//HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)));  //운영서버
-		HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File("C:/HANAROAPP/webapps/ROOT/upload/"+excel_path)));     //로컬서버
+		HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)));  //운영서버
+		//HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File("C:/HANAROAPP/webapps/ROOT/upload/"+excel_path)));     //로컬서버
 		
 
 		int col = 0;

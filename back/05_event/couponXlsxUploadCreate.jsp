@@ -49,8 +49,8 @@
 		//===============================================================================================================
 		
 		// 엑셀 업로드
-		//XSSFWorkbook workBook  =  new XSSFWorkbook(new FileInputStream(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)));   //운영서버
-		XSSFWorkbook workBook  =  new XSSFWorkbook(new FileInputStream(new File("C:/HANAROAPP/webapps/ROOT/upload/"+excel_path)));    //로컬서버
+		XSSFWorkbook workBook  =  new XSSFWorkbook(new FileInputStream(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)));   //운영서버
+		//XSSFWorkbook workBook  =  new XSSFWorkbook(new FileInputStream(new File("C:/HANAROAPP/webapps/ROOT/upload/"+excel_path)));    //로컬서버
 
 		int col = 0;
 		XSSFSheet sheet = workBook.getSheetAt(0);
