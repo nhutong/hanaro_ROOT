@@ -50,8 +50,8 @@
 		
 		// 엑셀 업로드
 		// Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
-		HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)));  //운영서버
-		//HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File("C:/HANAROAPP/webapps/ROOT/upload/"+excel_path)));     //로컬서버
+		//HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path)));  //운영서버
+		HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File("C:/HANAROAPP/webapps/ROOT/upload/"+excel_path)));     //로컬서버
 		
 
 		int col = 0;
@@ -464,7 +464,24 @@
 			// 쿠폰명
 			col = 8;			
 		    cell = row.getCell(col);
-            if (cell == null) { cell = row.createCell(col); }
+            if (cell == null) { cell = row.createCell(col); }			
+		    //String coupon_name = cell.getStringCellValue().trim();			
+			String coupon_name ="";
+			if (cell.getCellType().toString() == "STRING"){
+				coupon_name = cell.getStringCellValue().trim();					
+			}
+			else if (cell.getCellType().toString() == "NUMERIC"){
+				coupon_name = cell.toString().trim();
+				coupon_name = String.valueOf(Math.round(Double.parseDouble(coupon_name))); 					
+			}
+			else if (cell.getCellType().toString() == "BLANK"){
+				coupon_name ="";
+				out.clear();
+				out.print("coupon_name_not_exist");
+				return;
+			}
+			
+			/*
 		    String coupon_name = cell.getStringCellValue().trim();
 			if ( "".equals(coupon_name) ){
 				//쿠폰명이 존재하지 않으므로 중단한다.
@@ -472,11 +489,29 @@
 				out.print("coupon_name_not_exist");
 				return;
 			}
+			*/
 
 			// 상품명
 			col = 9;			
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
+
+			String product_name ="";
+			if (cell.getCellType().toString() == "STRING"){
+				product_name = cell.getStringCellValue().trim();					
+			}
+			else if (cell.getCellType().toString() == "NUMERIC"){
+				product_name = cell.toString().trim();
+				product_name = String.valueOf(Math.round(Double.parseDouble(product_name))); 					
+			}
+			else if (cell.getCellType().toString() == "BLANK"){
+				product_name ="";
+				out.clear();
+				out.print("product_name_not_exist");
+				return;
+			}
+
+			/*
 		    String product_name = cell.getStringCellValue().trim();
 			if ( "".equals(product_name) ){
 				//쿠폰명이 존재하지 않으므로 중단한다.
@@ -484,6 +519,7 @@
 				out.print("pd_name_no_exist");
 				return;
 			}
+			*/
 
 
 			//========================================================================================
