@@ -51,7 +51,7 @@
 			// 진행중이면, 겹친다는 alert 을 화면에 전달하고 종료한다.
 			if(listCountInt != 0){
 				out.clear();
-				out.print("Dup"+":"+rs.getString("jd_no"));
+				out.print("Dup"+","+rs.getString("jd_no"));
 				return;
 			};
 			rs.beforeFirst();
@@ -88,13 +88,19 @@
                 string0 = String.valueOf(Math.round(Double.parseDouble(string0))); 
             } else if (cell.getCellType().toString() == "BLANK") {
                 string0 = "";
-                errCount++;
-                continue;                
+                out.clear();
+                out.print("order_number_no_exist,"+Integer.toString(i));
+                return;
+                //errCount++;
+                //continue;                
             }
             //NULL 예외처리
             if (isNumeric(string0) != true){
-                errCount++;
-                continue;
+                out.clear();
+                out.print("order_number_not_number,"+Integer.toString(i));
+                return;
+                //errCount++;
+                //continue;
             }            
             /*
             //String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
@@ -134,13 +140,19 @@
                 string1 = String.valueOf(Math.round(Double.parseDouble(string1))); 
             } else if (cell.getCellType().toString() == "BLANK") {
                 string1 = "";
-                errCount++;
-                continue;                
+                out.clear();
+                out.print("pd_code_no_exist,"+Integer.toString(i));
+                return;   
+                //errCount++;
+                //continue;                
             }
             //NULL 예외처리
             if (isNumeric(string1) != true){
-                errCount++;
-                continue;
+                out.clear();
+                out.print("pd_code_not_number,"+Integer.toString(i));
+                return; 
+                //errCount++;
+                //continue;
             }
             /*
             // String string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
@@ -181,13 +193,13 @@
             if (cell == null) { cell = row.createCell(col); }
             String string2 = cell.getStringCellValue().trim().replaceAll("'", "");
             if ( string2.equals("") ){
-                //상품명을 입력하지 않았기 때문에 중단한다.
-                // out.clear();
-                // out.print("pd_name_no_exist");
-                // return;
+                //상품명을 입력하지 않았기 때문에 중단한다.                
                 string2 = "";
-                errCount++;
-                continue;
+                out.clear();
+                out.print("pd_name_no_exist,"+Integer.toString(i));
+                return;   
+                //errCount++;
+                //continue;
             }else{
                 string2 = strEncode(string2);                    
             }
@@ -214,13 +226,19 @@
                 string3 = String.valueOf(Math.round(Double.parseDouble(string3))); 
             } else if (cell.getCellType().toString() == "BLANK") {
                 string3 = "";
-                errCount++;
-                continue;                
+                out.clear();
+                out.print("price_no_exist,"+Integer.toString(i));
+                return;             
+                //errCount++;
+                //continue;                
             }
             //NULL 예외처리
             if (isNumeric(string3) != true){
-                errCount++;
-                continue;
+                out.clear();
+                out.print("price_not_number,"+Integer.toString(i));
+                return;   
+                //errCount++;
+                //continue;
             }
             /*
             // String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
@@ -266,8 +284,11 @@
             else {
                 //숫자형 예외처리
                 if (isNumeric(string4) != true){
-                    errCount++;
-                    continue;
+                    out.clear();
+                    out.print("card_discount_not_number,"+Integer.toString(i));
+                    return;   
+                    //errCount++;
+                    //continue;
                 }
             }
             /*
@@ -316,12 +337,12 @@
                     
                 rs.last();
                 int listCountInt_cardStartDate = rs.getRow();
-                if(listCountInt_cardStartDate == 0){
-                    // out.clear();
-                    // out.print("card_discount_from_date_type_error");
-                    // return;
-                    errCount++;
-                    continue;
+                if(listCountInt_cardStartDate == 0){                    
+                    out.clear();
+                    out.print("card_discount_from_date_type_error,"+Integer.toString(i));
+                    return;   
+                    //errCount++;
+                    //continue;
                 };
                 rs.beforeFirst();
             }
@@ -352,12 +373,12 @@
                     
                 rs.last();
                 int listCountInt_cardEndDate = rs.getRow();
-                if(listCountInt_cardEndDate == 0){
-                    // out.clear();
-                    // out.print("card_discount_end_date_type_error");
-                    // return;
-                    errCount++;
-                    continue;
+                if(listCountInt_cardEndDate == 0){                    
+                    out.clear();
+                    out.print("card_discount_end_date_type_error,"+Integer.toString(i));
+                    return;                       
+                    //errCount++;
+                    //continue;
                 };
                 rs.beforeFirst();
             }
@@ -394,8 +415,11 @@
             else {
                 //숫자형 예외처리
                 if (isNumeric(string9) != true){
-                    errCount++;
-                    continue;
+                    out.clear();
+                    out.print("coupon_discount_not_number,"+Integer.toString(i));
+                    return;                       
+                    //errCount++;
+                    //continue;
                 }
             }
             /*
@@ -459,8 +483,11 @@
                 //NULL 예외처리
                 if ( string13.equals("") ){   
                     string13 = "null";
-                    errCount++;
-                    continue;             
+                    out.clear();
+                    out.print("oneDay_start_date_no_exist,"+Integer.toString(i));
+                    return;   
+                    //errCount++;
+                    //continue;             
                 }else{
                 /*
                 string13 = cell.getStringCellValue().trim();
@@ -482,12 +509,12 @@
                         
                     rs.last();
                     int listCountInt_cardStartDate = rs.getRow();
-                    if(listCountInt_cardStartDate == 0){
-                        // out.clear();
-                        // out.print("oneDay_start_date_type_error");
-                        // return;
-                        errCount++;
-                        continue;
+                    if(listCountInt_cardStartDate == 0){                        
+                        out.clear();
+                        out.print("oneDay_start_date_type_error,"+Integer.toString(i));
+                        return;   
+                        //errCount++;
+                        //continue;
                     };
                     rs.beforeFirst();
                 }
@@ -508,8 +535,11 @@
                 //NULL 예외처리
                 if ( string14.equals("") ){   
                     string14 = "null";
-                    errCount++;
-                    continue;             
+                    out.clear();
+                    out.print("oneDay_end_date_no_exist,"+Integer.toString(i));
+                    return;   
+                    //errCount++;
+                    //continue;             
                 }else{
                 /*
                 string14 = cell.getStringCellValue().trim();
@@ -531,12 +561,12 @@
                         
                     rs.last();
                     int listCountInt_cardStartDate = rs.getRow();
-                    if(listCountInt_cardStartDate == 0){
-                        // out.clear();
-                        // out.print("oneDay_end_date_type_error");
-                        // return;
-                        errCount++;
-                        continue;
+                    if(listCountInt_cardStartDate == 0){  
+                        out.clear();
+                        out.print("oneDay_end_date_type_error,"+Integer.toString(i));
+                        return;                                                 
+                        //errCount++;
+                        //continue;
                     };
                     rs.beforeFirst();
                 }
@@ -663,11 +693,11 @@
                         rs.last();
                         int listCount10 = rs.getRow();
                         if(listCount10 == 0){
-                            // out.clear();
-                            // out.print("NoN0_Type1");
-                            // return;
-                            errCount++;
-                            continue;
+                            out.clear();
+                            out.print("NoN0_Type1,"+Integer.toString(i));
+                            return;                               
+                            //errCount++;
+                            //continue;
                         };
                         rs.beforeFirst();	
                         
@@ -783,8 +813,8 @@
                             int listCount30 = rs.getRow();
                             if(listCount30 == 0){
                                 out.clear();
-                                out.print("NoN0_Type2");
-                                return;
+                                out.print("NoN0_Type2,"+Integer.toString(i));                                
+                                return;                                
                             };
                             rs.beforeFirst();	
                             
@@ -847,12 +877,14 @@
         // workbook.close();
         
         out.clear();
+        out.print("success");
         //out.print("success msg"+":"+e_msg);
-        out.print("success:"+errCount);
+        //out.print("success:"+errCount);
 
 	}catch(Exception e){
 		out.clear();
-		out.print("exception error"+":("+e.getMessage()+")"+e_msg);	
+        out.print("exception error");	
+		//out.print("exception error"+":("+e.getMessage()+")"+e_msg);	
 	}finally{
 		if(pstmt != null) try{ pstmt.close(); }catch(SQLException sqle) {}
 		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {}		

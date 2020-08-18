@@ -52,7 +52,7 @@
 			// 진행중이면, 겹친다는 alert 을 화면에 전달하고 종료한다.
 			if(listCountInt != 0){
 				out.clear();
-				out.print("Dup"+":"+rs.getString("jd_no"));
+				out.print("Dup"+","+rs.getString("jd_no"));
 				return;
 			};
 			rs.beforeFirst();
@@ -88,23 +88,28 @@
                 string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 string0 = String.valueOf(Math.round(Double.parseDouble(string0))); 
             } else if (cell.getCellType().toString() == "BLANK") {   
-                string0 = "";         
-                errCount++;
-                continue;
+                string0 = "";                
+                out.clear();
+                out.print("order_number_no_exist,"+Integer.toString(i));
+                return;
+                //errCount++;
+                //continue;
             }
             // 숫자형 예외처리 
             if ( isNumeric(string0) != true){
-                errCount++;
-                continue;
+                //errCount++;
+                out.clear();
+                out.print("order_number_not_number,"+Integer.toString(i));
+                return;
             }
-            /*
+            
+            /*            
             //String string0 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
             String string0 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
-
             if ( string0.equals("") ){
                 //순서가 존재하지 않으므로 중단한다.
                 // out.clear();
-                // out.print("order_number_no_exist");
+                // out.print("order_number_no_exist");                
                 errCount++;
                 continue;
                 // return;
@@ -122,6 +127,7 @@
                 }
             }
             */
+
             // 상품코드 ( encode )
             col = 1;
             cell = row.getCell(col);
@@ -134,14 +140,21 @@
                 string1 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 string1 = String.valueOf(Math.round(Double.parseDouble(string1))); 
             } else if (cell.getCellType().toString() == "BLANK") {   
-                string1 = "";                  
-                errCount++;
-                continue;
+                string1 = "";
+                out.clear();
+                out.print("pd_code_no_exist,"+Integer.toString(i));
+                return;                  
+                
+                //errCount++;
+                //continue;
             }
             //숫자형 예외처리
             if ( isNumeric(string1) != true){
-                errCount++;
-                continue;
+                out.clear();
+                out.print("pd_code_not_number,"+Integer.toString(i));
+                return;                
+                //errCount++;
+                //continue;
             }
             /*
             // String string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
@@ -173,14 +186,13 @@
             cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
             String string2 = cell.getStringCellValue().trim().replaceAll("'", "");
-            if ( string2.equals("") ){
-                //상품명을 입력하지 않았기 때문에 중단한다.
-                // out.clear();
-                // out.print("pd_name_no_exist");
-                // return;
+            if ( string2.equals("") ){                
                 string2 = "";         
-                errCount++;
-                continue;
+                out.clear();
+                out.print("pd_name_no_exist,"+Integer.toString(i));
+                return;   
+                //errCount++;
+                //continue;
             }else{
                 string2 = strEncode(string2);                    
             }
@@ -206,14 +218,20 @@
                 string3 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
                 string3 = String.valueOf(Math.round(Double.parseDouble(string3))); 
             } else if (cell.getCellType().toString() == "BLANK") { 
-                string3 = "";                    
-                errCount++;
-                continue;
+                string3 = "";
+                out.clear();
+                out.print("price_no_exist,"+Integer.toString(i));
+                return;             
+                //errCount++;
+                //continue;
             }
             //숫자형 예외처리
             if ( isNumeric(string3) != true){
-                errCount++;
-                continue;
+                out.clear();
+                out.print("price_not_number,"+Integer.toString(i));
+                return;   
+                //errCount++;
+                //continue;
             }
             /*
             // String string3 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
@@ -266,8 +284,11 @@
             }else{         
                 //숫자형 예외처리       
                 if ( isNumeric(string4) != true ){                    
-                    errCount++;
-                    continue;
+                    out.clear();
+                    out.print("card_discount_not_number,"+Integer.toString(i));
+                    return;   
+                    //errCount++;
+                    //continue;
                 }
             }
             
@@ -298,11 +319,11 @@
                 rs.last();
                 int listCountInt_cardStartDate = rs.getRow();
                 if(listCountInt_cardStartDate == 0){
-                    // out.clear();
-                    // out.print("card_discount_from_date_type_error");
-                    // return;
-                    errCount++;
-                    continue;
+                    out.clear();
+                    out.print("card_discount_from_date_type_error,"+Integer.toString(i));
+                    return;   
+                    //errCount++;
+                    //continue;
                 };
                 rs.beforeFirst();
             }
@@ -335,11 +356,11 @@
                 rs.last();
                 int listCountInt_cardEndDate = rs.getRow();
                 if(listCountInt_cardEndDate == 0){
-                    // out.clear();
-                    // out.print("card_discount_end_date_type_error");
-                    // return;
-                    errCount++;
-                    continue;
+                    out.clear();
+                    out.print("card_discount_end_date_type_error,"+Integer.toString(i));
+                    return;                       
+                    //errCount++;
+                    //continue;
                 };
                 rs.beforeFirst();
             }
@@ -375,9 +396,12 @@
             if ( string9.equals("") ){
             }else{                
                 //숫자형 예외처리
-                if ( isNumeric(string9) != true ){                    
-                    errCount++;
-                    continue;
+                if ( isNumeric(string9) != true ){
+                    out.clear();
+                    out.print("coupon_discount_not_number,"+Integer.toString(i));
+                    return;                       
+                    //errCount++;
+                    //continue;
                 }
             }                      
             // 다다익선
@@ -424,8 +448,11 @@
                 //NULL 예외처리
                 if ( string13.equals("") ){   
                     string13 = "null";
-                    errCount++;
-                    continue;             
+                    out.clear();
+                    out.print("oneDay_start_date_no_exist,"+Integer.toString(i));
+                    return;   
+                    //errCount++;
+                    //continue;             
                 }else{
                 /*
                 string13 = cell.getStringCellValue().trim();
@@ -448,12 +475,12 @@
                         
                     rs.last();
                     int listCountInt_cardStartDate = rs.getRow();
-                    if(listCountInt_cardStartDate == 0){
-                        // out.clear();
-                        // out.print("oneDay_start_date_type_error");
-                        // return;
-                        errCount++;
-                        continue;
+                    if(listCountInt_cardStartDate == 0){                        
+                        out.clear();
+                        out.print("oneDay_start_date_type_error,"+Integer.toString(i));
+                        return;   
+                        //errCount++;
+                        //continue;
                     };
                     rs.beforeFirst();
                 }
@@ -474,8 +501,11 @@
 
                 if ( string14.equals("") ){   
                     string14 = "null";
-                    errCount++;
-                    continue;             
+                    out.clear();
+                    out.print("oneDay_end_date_no_exist,"+Integer.toString(i));
+                    return;   
+                    //errCount++;
+                    //continue;             
                 }else{
                 /* 
                 string14 = cell.getStringCellValue().trim();
@@ -498,12 +528,12 @@
                         
                     rs.last();
                     int listCountInt_cardStartDate = rs.getRow();
-                    if(listCountInt_cardStartDate == 0){
-                        // out.clear();
-                        // out.print("oneDay_end_date_type_error");
-                        // return;
-                        errCount++;
-                        continue;
+                    if(listCountInt_cardStartDate == 0){                        
+                        out.clear();
+                        out.print("oneDay_end_date_type_error,"+Integer.toString(i));
+                        return;   
+                        //errCount++;
+                        //continue;
                     };
                     rs.beforeFirst();
 
@@ -631,12 +661,12 @@
                                 
                         rs.last();
                         int listCount10 = rs.getRow();
-                        if(listCount10 == 0){
-                            // out.clear();
-                            // out.print("NoN0_Type1");
-                            // return;
-                            errCount++;
-                            continue;
+                        if(listCount10 == 0){                            
+                            out.clear();
+                            out.print("NoN0_Type1,"+Integer.toString(i));
+                            return;   
+                            //errCount++;
+                            //continue;
                         };
                         rs.beforeFirst();	
                         
@@ -678,9 +708,7 @@
                             +" WHERE ref_jd_no = "+new_jd_no
                             +" and pd_code = '"+string1+"' ;";
                     }
-
                     //e_msg += "  2(기간형 전단 insert)" + Integer.toString(i) + sql;	
-
                     pstmt = conn.prepareStatement(sql);
                     pstmt.executeUpdate();
 
@@ -688,7 +716,6 @@
                 }else{
 
                     String db_date = "";
-
                     //e_msg += "2(일자형 전단 insert)" + Integer.toString(i);	
 
                     sql = " SELECT a.db_date from time_dimension AS a WHERE a.db_date >= left('"+string13+"',10) AND a.db_date <= left('"+string14+"',10) ";
@@ -702,8 +729,6 @@
                     
                     //e_msg += "= 일자형Start(" + string1+")" + "sql(" + sql + ") ";
                     e_msg += "=일자형Start(" + string1+")";
-                
-                    
                     
                     while(rs2.next()){
 
@@ -752,7 +777,7 @@
                             int listCount30 = rs.getRow();
                             if(listCount30 == 0){
                                 out.clear();
-                                out.print("NoN0_Type2");
+                                out.print("NoN0_Type2,"+Integer.toString(i));                                
                                 return;
                             };
                             rs.beforeFirst();	
@@ -816,12 +841,14 @@
         // workbook.close();
         
         out.clear();
-        //out.print("success msg"+":"+e_msg);
-        out.print("success:"+errCount);
+        out.print("success");
+        //out.print("success msg"+","+e_msg);
+        //out.print("success:"+errCount);
 
 	}catch(Exception e){
-		out.clear();
-		out.print("exception error"+":("+e.getMessage()+")"+e_msg);	
+		out.clear();		
+        out.print("exception error");	
+        //out.print("exception error"+",("+e.getMessage()+")"+e_msg);	
 	}finally{
 		if(pstmt != null) try{ pstmt.close(); }catch(SQLException sqle) {}
 		if(stmt != null) try{ stmt.close(); }catch(SQLException sqle) {}		

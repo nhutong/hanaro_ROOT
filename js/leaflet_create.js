@@ -272,66 +272,75 @@ $("#jundan_excel_new").on("click",function(){
 		//2020.07.30 심규문 spinner 종료
 		document.getElementById("spinnerAction").style.display = "none";
 		document.body.style.overflow = "auto";
-		//console.log("leafletConProdInsert=========================================");
-		alert("등록이 완료되었습니다. ( 실패건수: " + result.split(":")[1]+ "건 )");
-		location.href="/leaflet/leaflet.html?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no;
-		/*
-		if( result.substring(0,15) == "exception error" ){
-			console.log(result);			
+		
+		console.log("leafletConProdInsert=========================================");
+		var resultSplit = result.trim().split(',');
+
+		if (resultSplit[0] == "exception error" || resultSplit[0] == "exception error" || resultSplit[0] == "exception error"){
 			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
-	    }else if(result == ('NoN') || result == 'exception error' || result == 'empty'){
-            //console.log(result);
-			alert("양식 파일이 올바르지 않거나 공백이 존재합니다. 양식의 하단 빈 공간을 모두 선택한 뒤 삭제하고 업로드해주세요!");
-        }else if(result.substr(0,3) == ('Dup')){
+		}
+		else if (resultSplit[0] == ('Dup')){		
+			alert("중복된 전단기간이 존재합니다. 전단번호(" + resultSplit[1] +" ) 중복입니다.");
+		}
+		else if (resultSplit[0] == "order_number_no_exist"){
+			alert("엑셀파일에서 순서가 입력되지 않은 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "order_number_not_number"){
+			alert("엑셀파일에서 순서가 숫자가 아닌 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "pd_code_no_exist"){
+			alert("엑셀파일에서 상품코드가 입력되지 않은 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "pd_code_not_number"){
+			alert("엑셀파일에서 상품코드가 숫자가 아닌 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "pd_name_no_exist"){
+			alert("엑셀파일에서 상품명이 입력되지 않은 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "price_no_exist"){
+			alert("엑셀파일에서 판매가가 입력되지 않은 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "price_not_number"){
+			alert("엑셀파일에서 판매가가 숫자가 아닌 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "card_discount_not_number"){
+			alert("엑셀파일에서 카드할인이 숫자가 아닌 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "card_discount_from_date_type_error"){
+			alert("엑셀파일에서 카드시작일이 날짜형이 아닌 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "card_discount_end_date_type_error"){
+			alert("엑셀파일에서 카드시작일이 날짜형이 아닌 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "coupon_discount_not_number"){
+			alert("엑셀파일에서 쿠폰할이니 숫자가 아닌 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "oneDay_start_date_no_exist"){
+			alert("엑셀파일에서 일자별행사 시작일이 입력되지 않은 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "oneDay_start_date_type_error"){
+			alert("엑셀파일에서 일자별행사 시작일이 날짜형이 아닌 행 (" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "oneDay_end_date_no_exist"){
+			alert("엑셀파일에서 일자별행사 종료일이 입력되지 않은 행(" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "oneDay_end_date_type_error"){
+			alert("엑셀파일에서 일자별행사 종료일이 날짜형이 아닌 행 (" + resultSplit[1] + ")이 존재합니다.");
+		}
+		else if (resultSplit[0] == "NoN0_Type1"){
+			alert("기간형 전단이 생성되지 못하였습니다. 엑셀자료 (" + resultSplit[1] + ")행 데이터가 문제가 있는거 같습니다.");
+		}
+		else if (resultSplit[0] == "NoN0_Type2"){
+			alert("일자형 전단이 생성되지 못하였습니다. 엑셀자료 (" + resultSplit[1] + ")행 데이터가 문제가 있는거 같습니다.");
+		}
+		else{
+			console.log("============= notice callback ========================");
 			//console.log(result);
-			alert("중복된 전단기간이 존재합니다."+result.substr(4));
-		}else if(result == ('NoN0_Type1')){
-			alert("기간형 전단번호가 생성되지 못하였습니다. 다시한번 시도해보시기 바랍니다.");
-		}else if(result == ('NoN0_Type2')){
-			alert("일자형 전단번호가 생성되지 못하였습니다. 다시한번 시도해보시기 바랍니다.");			
-		}else if(result == ('order_number_no_exist')){
-			alert("엑셀파일에서 순서가 입력되지 않은 행이 존재합니다.");
-		}else if(result == ('order_number_not_number')){
-			alert("엑셀파일에서 순서가 숫자가 아닌 행이 존재합니다.");
-		}else if(result == ('pd_code_no_exist')){
-			alert("엑셀파일에서 상품코드가 입력되지 않은 행이 존재합니다.");
-		}else if(result == ('pd_code_not_number')){
-			alert("엑셀파일에서 상품코드가 숫자가 아닌 행이 존재합니다.");			
-		}else if(result == ('pd_name_no_exist')){
-			alert("엑셀파일에서 상품명이 입력되지 않은 행이 존재합니다.");
-		}else if(result == ('price_no_exist')){
-			alert("엑셀파일에서 판매가격이 입력되지 않은 행이 존재합니다.");
-		}else if(result == ('price_not_number')){
-			alert("엑셀파일에서 판매가격이 숫자가 아닌 행이 존재합니다.");
-		}else if(result == ('card_discount_not_number')){
-			alert("엑셀파일에서 카드할인이 숫자가 아닌 행이 존재합니다.");
-		}else if(result == ('card_discount_from_date_type_error')){
-			alert("엑셀파일에서 카드시작일이 날짜형식이 아닌 행이 존재합니다. ex. 2019-10-01");
-		}else if(result == ('card_discount_end_date_type_error')){
-			alert("엑셀파일에서 카드종료일이 날짜형식이 아닌 행이 존재합니다. ex. 2019-10-01");
-		}else if(result == ('coupon_discount_not_number')){
-			alert("엑셀파일에서 쿠폰할인이 숫자가 아닌 행이 존재합니다.");
-//		}else if(result == ('NoNPdNo')){
-//			alert("엑셀파일에서 매핑되지 않는 상품코드가 입력된 행이 존재합니다.");
-		}else if(result == ('NoNImgNo')){
-			alert("엑셀파일에서 입력하신 상품코드와 매핑되는 이미지가 없는 행이 존재합니다.");
-		}else if(result == ('oneDay_start_date_no_exist')){
-			alert("행사시작일이 입력되지 않은 행이 존재합니다.");
-		}else if(result == ('oneDay_start_date_type_error')){
-			alert("행사시작일이 잘못입력된 행이 존재합니다.");
-		}else if(result == ('oneDay_end_date_no_exist')){
-			alert("행사종료일이 입력되지 않은 행이 존재합니다.");
-		}else if(result == ('oneDay_end_date_type_error')){
-			alert("행사종료일이 잘못입력된 행이 존재합니다.");
-		}else if(result == ('oneDay_date_diff')){
-			alert("행사시작일과 행사종료일이 다르게 입력된 행이 존재합니다.");
-		}else{
-            console.log("============= notice callback ========================");
-            console.log(result);
-            alert("등록이 완료되었습니다.");
+			alert("등록이 완료되었습니다.");
 			location.href="/leaflet/leaflet.html?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no;
 		}
-		*/
+		//alert("등록이 완료되었습니다. ( 실패건수: " + result.split(":")[1]+ "건 )");
+		//location.href="/leaflet/leaflet.html?vm_cp_no="+vm_cp_no+"&menu_no="+menu_no;
     });
 });
 
