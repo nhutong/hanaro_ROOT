@@ -35,6 +35,7 @@
 	String company = request.getParameter("targetCompany") == null ? "" : request.getParameter("targetCompany").trim();
 	String showFlag = request.getParameter("showFlag") == null ? "" : request.getParameter("showFlag").trim();
 	String linkUrl = request.getParameter("linkUrl") == null ? "" : request.getParameter("linkUrl").trim();
+	String popuplink = request.getParameter("popuplink") == null ? "" : request.getParameter("popuplink").trim();
 
  	try {
 		// 2020.06.30 / 심규문 / 다중판매장 등록 
@@ -47,8 +48,8 @@
 
 		// 관리자 등록 (insert)
 		String query = " INSERT INTO hanaro.vm_popup " + 
-				" (popup_title, img_url, company, reg_no, reg_date, lst_no, lst_date, start_date, end_date, period_type, show_flag, link_url)" +
-				" VALUES(?, ?, ?, ?, now(), ?, now(), ?, ?, ?, ?, ?) ";			
+				" (popup_title, img_url, company, reg_no, reg_date, lst_no, lst_date, start_date, end_date, period_type, show_flag, link_url, popuplink)" +
+				" VALUES(?, ?, ?, ?, now(), ?, now(), ?, ?, ?, ?, ?, ?) ";			
 				
 		result += queryRunner.update(
 				conn,
@@ -62,7 +63,8 @@
 				endDate,
 				periodType,
 				showFlag,
-				linkUrl 				
+				linkUrl,	
+				popuplink			
 			);
 		}	
 

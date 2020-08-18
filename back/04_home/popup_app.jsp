@@ -15,13 +15,13 @@
 	
 	try{
 
-        sql = " select kk.* from ( SELECT a.img_url, a.link_url, a.reg_date "
+        sql = " select kk.* from ( SELECT a.img_url, a.link_url, a.reg_date , a.popuplink "
 		+ " from vm_popup AS a "
 		+ " WHERE a.company = "+vm_cp_no
 		+ " AND a.period_type = 1 "
 		+ " AND a.show_flag = 'Y' "
 		+ " UNION "
-		+ " SELECT a.img_url, a.link_url, a.reg_date "
+		+ " SELECT a.img_url, a.link_url, a.reg_date , a.popuplink "
 		+ " from vm_popup AS a "
 		+ " WHERE a.company = "+vm_cp_no
 		+ " AND a.period_type = 2 "
@@ -46,11 +46,13 @@
 			
 			String img_url   = rs.getString("img_url");        // 긴급공지번호
 			String link_url = rs.getString("link_url");   // 긴급공지내용
+			String popuplink = rs.getString("popuplink");   // 긴급공지내용
 			
 			JSONObject obj = new JSONObject();
 						
 			obj.put("img_url", img_url);
 			obj.put("link_url", link_url);
+			obj.put("popuplink", popuplink);
 
 			if(obj != null){
 				arr.add(obj);

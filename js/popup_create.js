@@ -37,6 +37,16 @@ $(function () {
 		}
 	});
 
+    //2020.08.11 심규문 외부 내부링크 분기처리 
+	$("#popuplink").on("change",function(){
+		if ( $('input:checkbox[id="popuplink"]').is(":checked") == true ) {
+			$("#btn_layer_popup_link_open").prop('disabled', true);				
+		}else{
+			$("#btn_layer_popup_link_open").prop('disabled', false);							
+		}			
+	});		
+	
+
 	/*이미지 업로드*/
 	$('#inputImgUpload').on('change', function(evt){
 		var inputFile = document.getElementById('inputImgUpload');
@@ -68,6 +78,15 @@ $(function () {
 		var showFlag = $('#showFlag').val();
 		var linkUrl = $('#linkUrl').val();
 		var userEmail = $('.user_email').text().trim();
+
+		var popuplink = "";
+			
+		if ( $('input:checkbox[id="popuplink"]').is(":checked") == true )
+		{
+			popuplink = "Y";
+		}else{
+			popuplink = "N";
+		}
 		
 		if(!popupTitle){
 			alert('팝업 제목을 넣어주세요.');
@@ -98,6 +117,7 @@ $(function () {
 			targetCompany : targetCompany,
 			showFlag : showFlag,
 			linkUrl : linkUrl,
+			popuplink : popuplink,
 			userEmail : userEmail
 		} ;
 

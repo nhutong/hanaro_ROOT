@@ -42,6 +42,15 @@ $(function () {
 		}
 	});
 
+    //2020.08.11 심규문 외부 내부링크 분기처리 
+	$("#popuplink").on("change",function(){
+		if ( $('input:checkbox[id="popuplink"]').is(":checked") == true ) {
+			$("#btn_layer_popup_link_open").prop('disabled', true);				
+		}else{
+			$("#btn_layer_popup_link_open").prop('disabled', false);							
+		}			
+	});	
+
 
 	/*이미지 업로드*/
 	$('#inputImgUpload').on('change', function(evt){
@@ -64,6 +73,13 @@ $(function () {
 		var showFlag = $('#showFlag').val();
 		var linkUrl = $('#linkUrl').val();
 		var userEmail = $('.user_email').text().trim();
+		var popuplink ="";
+		if ( $('input:checkbox[id="popuplink"]').is(":checked") == true )
+		{
+			popuplink = "Y";
+		}else{
+			popuplink = "N";
+		}
 
 		if(!popupDateFrom) popupDateFrom = '2019-01-01';
 		if(!popupDateEnd) popupDateEnd = '2030-01-01';
@@ -78,6 +94,7 @@ $(function () {
 			company : company,
 			showFlag : showFlag,
 			linkUrl : linkUrl,
+			popuplink : popuplink,
 			userEmail : userEmail
 		}
 		$.post( '/back/04_home/popupUpdate.jsp',
@@ -170,6 +187,14 @@ function getPopupInfo(popupNo){
 			$('#company').val(info.company);
 			$('#showFlag').val(info.show_flag);			
 			$('#linkUrl').val(info.link_url);
+			if (info.popuplink == "Y"){
+				$('#popuplink').prop( 'checked',true);
+				$("#btn_layer_popup_link_open").prop('disabled', true);				
+			}
+			else {
+				$('#popuplink').prop( 'checked',false);
+				$("#btn_layer_popup_link_open").prop('disabled', false);				
+			}
 			
 			
 

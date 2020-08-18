@@ -80,7 +80,7 @@
 			"		 DATE_FORMAT(start_date, '%Y-%m-%d') AS start_date, " +
 			"		 DATE_FORMAT(end_date, '%Y-%m-%d')  AS end_date, " +
 			"		 CASE WHEN period_type = 1 THEN '계속' ELSE CONCAT(DATE_FORMAT(start_date, '%Y-%m-%d'), ' ~ ', DATE_FORMAT(end_date, '%Y-%m-%d')) END AS period, " +
-			" 		 show_flag, link_url" +
+			" 		 show_flag, link_url , popuplink" +
 			" FROM hanaro.vm_popup p WHERE " +			
 			("0".equals(company) || "".equals(company) ? "1=1" : "company = " + userCompanyNo ) +
 			("".equals(popupNo) ? "" : " AND popup_no = " + popupNo ) +

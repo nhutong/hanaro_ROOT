@@ -40,7 +40,9 @@
 	String endDate = request.getParameter("popupDateEnd") == null ? "2025-12-31" : request.getParameter("popupDateEnd").trim();
 	String company = request.getParameter("company") == null ? "" : request.getParameter("company").trim();
 	String showFlag = request.getParameter("showFlag") == null ? "" : request.getParameter("showFlag").trim();
+	String popuplink = request.getParameter("popuplink") == null ? "" : request.getParameter("popuplink").trim();
 	String linkUrl = request.getParameter("linkUrl") == null ? "" : request.getParameter("linkUrl").trim();
+
 
  	try {
 		QueryRunner queryRunner = new QueryRunner();
@@ -56,6 +58,7 @@
 						" 	  end_date = ? ," +
 						" 	  period_type = ? ," +
 						" 	  show_flag = ? ," +
+						" 	  popuplink = ? ," +
 						" 	  link_url = ? " +
 						" WHERE popup_no = ?" ;
 				
@@ -70,6 +73,7 @@
 				endDate,
 				periodType,
 				showFlag,
+				popuplink,
 				linkUrl,
 				popupNo 				
 			);
