@@ -45,9 +45,11 @@ $(function () {
     //2020.08.11 심규문 외부 내부링크 분기처리 
 	$("#popuplink").on("change",function(){
 		if ( $('input:checkbox[id="popuplink"]').is(":checked") == true ) {
-			$("#btn_layer_popup_link_open").prop('disabled', true);				
+			$("#btn_layer_popup_link_open").prop('disabled', true);
+			$("#linkUrl").prop('disabled', false);												
 		}else{
-			$("#btn_layer_popup_link_open").prop('disabled', false);							
+			$("#btn_layer_popup_link_open").prop('disabled', false);
+			$("#linkUrl").prop('disabled', true);															
 		}			
 	});	
 
@@ -189,11 +191,13 @@ function getPopupInfo(popupNo){
 			$('#linkUrl').val(info.link_url);
 			if (info.popuplink == "Y"){
 				$('#popuplink').prop( 'checked',true);
-				$("#btn_layer_popup_link_open").prop('disabled', true);				
+				$("#btn_layer_popup_link_open").prop('disabled', true);
+				$("#linkUrl").prop('disabled', false);								
 			}
 			else {
 				$('#popuplink').prop( 'checked',false);
-				$("#btn_layer_popup_link_open").prop('disabled', false);				
+				$("#btn_layer_popup_link_open").prop('disabled', false);
+				$("#linkUrl").prop('disabled', true);								
 			}
 			
 			
