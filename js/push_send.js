@@ -111,7 +111,7 @@ function getPushInfo(rcv_pm_no){
 		$("#pushStatusTr").show();			
 		$.get('/back/10_push/getPushInfo.jsp?pm_no='+rcv_pm_no,	
 		function(result) {
-			//console.log(result);
+			console.log(result);
 			var info = result.list[0];
 			console.log(info);
 			$("#pushTopTxt").val(info.ms_content);
@@ -434,6 +434,14 @@ $("#pushSaveBtn").on("click",function(e){
 			}
 		}
 	});
+	
+	var pushStatus = $('#pushStatus').val();
+	//console.log("pushStatus=PREV="+pushStatus);
+	if (pushStatus == "신규" || pushStatus == "저장") {
+		pushStatus = "저장";
+	}
+	//console.log("pushStatus=AFTER="+pushStatus);    
+
 	var formData = {
 		pm_no : $("#pushNo").val(),
 		pushTopTxt : $("#pushTopTxt").val(),
@@ -450,7 +458,8 @@ $("#pushSaveBtn").on("click",function(e){
 		pushTarget : $('#pushTarget').val(),
 		pushType : $('#pushType').val(),
 		pushDel : $('#pushDel').val(),
-		pushStatus : '저장'
+		pushStatus : pushStatus
+		//pushStatus : '저장'
 	} ;
 
 	var excel_path = $('#excel_path').val();
@@ -476,6 +485,11 @@ $("#pushSaveBtn").on("click",function(e){
 
 	if ( formData.pushDel == 'Y' ){
 		alert("해당 메시지는 삭제되었습니다.");
+		return false;		
+	}
+
+	if ( formData.pushStatus == '전송' ){
+		alert("전송 완료된 푸쉬는 수정이 불가합니다. ");
 		return false;		
 	}
 	
@@ -509,9 +523,11 @@ $("#pushSaveBtn").on("click",function(e){
 			}
 		});	
 	}else{
+		//console.log(formData); // log
 		$.post( '/back/10_push/pushUpdate.jsp',
-		formData, 			
-		function(resultJSON){
+		formData, 							
+		function(resultJSON){		
+
 			if(resultJSON['update'] > 0){
 				alert('저장이 완료되었습니다');
 				location.href = "./push.html";

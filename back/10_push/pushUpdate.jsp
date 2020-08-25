@@ -49,12 +49,21 @@
 		QueryRunner queryRunner = new QueryRunner();
 
 		// 관리자 등록 (insert)
+        
 		String query = "  UPDATE vm_push_message " + 
 					   " SET ms_content= ?, vm_cp_no= ? , event_no=?, reg_no= ? ,  " +
 					   " reg_date= now(), pm_hour= ?, pm_min= ?, pm_img_path= ?,  " +
-					   " pm_from_date= ? , pm_to_date= ? , pm_interval= ?, pm_target= ? , pm_type = ?, del_fg = ?, pm_status = ? " +
+					   " pm_from_date= ?  , pm_to_date= ? , pm_interval= ?, pm_target= ? , pm_type = ?, del_fg = ?, pm_status = ? " +
 					   "  WHERE pm_no= ? " ;
-				
+		
+		if (pushSendFromDate == "" || pushSendFromDate == " ") {
+            pushSendFromDate = null;
+		}
+		if (pushSendToDate == "" || pushSendToDate == " ") {
+            pushSendToDate = null;
+		}
+		pushTopTxt = "[광고]" +pushTopTxt+ "수신거부 | 메뉴>설정>동의 해제";
+
 		int result = queryRunner.update(
                     conn,
                     query,		            
@@ -64,18 +73,17 @@
                     reg_no,
                     pushSendHr,						
                     pushSendMin,
-                    pm_img_path,
-                    pushSendFromDate,
-                    pushSendToDate, 
+                    pm_img_path,                    
+					pushSendFromDate,					                    
+					pushSendToDate, 
                     pushInterval, 
                     pushTarget, 
                     pushType, 
                     pushDel, 
                     pushStatus,
                     pm_no
-					);
-
-		results.put("update", result);
+					);        
+		results.put("update", result);		
 
 	} catch(Exception se) {
 		results.put("error", se.getMessage());
