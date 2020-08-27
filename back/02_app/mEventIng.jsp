@@ -15,9 +15,11 @@
 	try{
 	
 		sql = " SELECT a.event_no, a.event_title, a.img_url, left(a.start_date,10) AS start_date, "
-             +" left(a.end_date,10) AS end_date, a.detail_img_url, a.link_url, ifnull(a.eventLink,'N') as eventLink FROM vm_event AS a WHERE a.activated = 'Y' "
+             +" left(a.end_date,10) AS end_date, a.detail_img_url, a.link_url, ifnull(a.eventLink,'N') as eventLink,"
+			 +" case when link_url is null or link_url ='' then 'N' else 'Y' end as linkurl_st"
+			 +" FROM vm_event AS a WHERE a.activated = 'Y' "
 			 +" and left(a.start_date,10) <= left(now(),10) "
-			 +" and left(a.end_date,10) >= left(now(),10) "
+			 +" and left(a.end_date,10) >= left(now(),10) "			 
 			 +" and a.company = "+userCompanyNo+" order by a.lst_date desc ";
 
 		stmt = conn.createStatement();
