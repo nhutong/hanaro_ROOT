@@ -18,6 +18,7 @@
              +" left(a.end_date,10) AS end_date, a.detail_img_url, a.link_url, ifnull(a.eventLink,'N') as eventLink, "
 			 +" case when CAST(replace(left(now(),10),'-','') AS DECIMAL(10,0))-CAST(replace(LEFT(a.end_date,10),'-','') AS DECIMAL(10,0)) >= 0 then 'N' "
 			 +" else 'Y' end as event_alive_fg "
+			 +" case when link_url is null or link_url ='' then 'N' else 'Y' end as linkurl_st"
 			 +" FROM vm_event AS a WHERE a.activated = 'Y' "
 			 +" and a.company = "+userCompanyNo+" order by a.lst_date desc ";
 
@@ -45,6 +46,7 @@
 			String link_url = rs.getString("link_url");   // 전단배너 번호
 			String eventLink = rs.getString("eventLink"); 
 			String event_alive_fg = rs.getString("event_alive_fg"); 
+			String linkurl_st = rs.getString("linkurl_st"); //링크주소 여부  
 			
 			JSONObject obj = new JSONObject();
 						
@@ -57,6 +59,7 @@
 			obj.put("link_url", link_url);
 			obj.put("eventLink", eventLink);
 			obj.put("event_alive_fg", event_alive_fg);
+			obj.put("linkurl_st", linkurl_st);
 			
 			if(obj != null){
 				arr.add(obj);
