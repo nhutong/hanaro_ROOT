@@ -45,6 +45,7 @@
 			String detail_img_url = rs.getString("detail_img_url");   // 전단배너 번호
 			String link_url = rs.getString("link_url");   // 전단배너 번호
 			String eventLink = rs.getString("eventLink"); 
+			String linkurl_st = rs.getString("linkurl_st"); 
 			
 			JSONObject obj = new JSONObject();
 						
@@ -56,6 +57,7 @@
 			obj.put("detail_img_url", detail_img_url);
 			obj.put("link_url", link_url);
 			obj.put("eventLink", eventLink);
+			obj.put("linkurl_st", linkurl_st);
 			
 			if(obj != null){
 				arr.add(obj);
