@@ -17,7 +17,7 @@
 		sql = " SELECT a.event_no, a.event_title, a.img_url, left(a.start_date,10) AS start_date, "
              +" left(a.end_date,10) AS end_date, a.detail_img_url, a.link_url, ifnull(a.eventLink,'N') as eventLink, "
 			 +" case when CAST(replace(left(now(),10),'-','') AS DECIMAL(10,0))-CAST(replace(LEFT(a.end_date,10),'-','') AS DECIMAL(10,0)) >= 0 then 'N' "
-			 +" else 'Y' end as event_alive_fg "
+			 +" else 'Y' end as event_alive_fg ,"
 			 +" case when link_url is null or link_url ='' then 'N' else 'Y' end as linkurl_st"
 			 +" FROM vm_event AS a WHERE a.activated = 'Y' "
 			 +" and a.company = "+userCompanyNo+" order by a.lst_date desc ";
