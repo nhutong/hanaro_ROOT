@@ -28,18 +28,22 @@ $(function () {
 	}
 	/* 최초 로그인한 유저번호로 바인딩한다. */
 	getManagerList(CuserCompanyNo, targetCompanyNo);
-	/*input box 일자 기본값 셋팅*/
-	var today = new Date();
-	var year = today.getFullYear();
-	var month = leadingZeros(today.getMonth()+1,2);
-	var sday = leadingZeros(today.getDate()-10,2);
-	var eday = leadingZeros(today.getDate(),2);
+	
+	/*input box 일자 기본값 셋팅  2020.09.03 심규문 fromdate 14일 default 셋팅*/	
+	var todate = new Date();
+	var fromdate = new Date();	
+	//input todate 설정
+	var toYear = todate.getFullYear();
+	var toMonth = leadingZeros(todate.getMonth() + 1 , 2);
+	var toDate = leadingZeros(todate.getDate(), 2);
+	//input fromdate 설정
+	fromdate.setDate(fromdate.getDate() - 14);
+	var fromYear = fromdate.getFullYear();
+	var fromMonth = leadingZeros(fromdate.getMonth() + 1 , 2);
+	var fromDate = leadingZeros(fromdate.getDate());
 
-	// $("#excel_start_date").val(year+'-'+month+'-'+sday);
-	// $("#excel_end_date").val(year+'-'+month+'-'+eday);		
-
-	$("#imgmaster_start_date").val(year+'-'+month+'-'+sday);
-	$("#imgmaster_end_date").val(year+'-'+month+'-'+eday);	
+	$("#imgmaster_start_date").val(fromYear+'-'+fromMonth+'-'+fromDate);
+	$("#imgmaster_end_date").val(toYear+'-'+toMonth+'-'+toDate);	
 
 	$("#sort_select").on("change",function(){
 		if ($("#sort_select").val())
