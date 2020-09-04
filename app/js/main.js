@@ -99,12 +99,15 @@ function adModal(){
 
 				for(var i in jsonResult_notice){
 					text +='	<div class="main_modal_img_wrap">';	
-					//2020.08.11 심규문 외부/내부링크 분기처리 				
-					if (jsonResult_notice[i].popuplink == "Y"){
-						text +='		<a href="'+jsonResult_notice[i].link_url+'" target="_blank">'; 
-					}					
-					else {
-						text +='		<a href="../'+jsonResult_notice[i].link_url+'">'; 
+					//2020.08.11 심규문 외부/내부링크 분기처리
+					if (jsonResult_notice[i].link_url != "Y")
+					    {
+						if (jsonResult_notice[i].popuplink == "Y"){
+							text +='		<a href="'+jsonResult_notice[i].link_url+'" target="_blank">'; 
+						}					
+						else {
+							text +='		<a href="../'+jsonResult_notice[i].link_url+'">'; 
+						}
 					}
 					//text +='		<a href="../'+jsonResult_notice[i].link_url+'">'; 
 					//text +='		<a href="'+jsonResult_notice[i].link_url+'">'; 
