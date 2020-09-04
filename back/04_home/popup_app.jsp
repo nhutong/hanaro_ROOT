@@ -15,13 +15,17 @@
 	
 	try{
 
-        sql = " select kk.* from ( SELECT a.img_url, a.link_url, a.reg_date , a.popuplink "
+        sql = " select kk.* from ( SELECT a.img_url, "
+		+ "case when a.link_url is null or a.link_url = '' then 'Y' else a.link_url end as link_url, "
+		+ "a.reg_date , a.popuplink "
 		+ " from vm_popup AS a "
 		+ " WHERE a.company = "+vm_cp_no
 		+ " AND a.period_type = 1 "
 		+ " AND a.show_flag = 'Y' "
 		+ " UNION "
-		+ " SELECT a.img_url, a.link_url, a.reg_date , a.popuplink "
+		+ " SELECT a.img_url, "
+		+ "case when a.link_url is null or a.link_url = '' then 'Y' else a.link_url end as link_url, "
+		+ "a.reg_date , a.popuplink "
 		+ " from vm_popup AS a "
 		+ " WHERE a.company = "+vm_cp_no
 		+ " AND a.period_type = 2 "
