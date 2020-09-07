@@ -269,29 +269,29 @@ function prodList_paging(rcvPageNo, rcvSearchText) {
 			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
 			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
 			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
-			var pre_no = parseInt(rcvPageNo) - 6;
-			var next_no = parseInt(rcvPageNo) + 6;
+			var pre_no = parseInt(rcvPageNo) - 10;
+			var next_no = parseInt(rcvPageNo) + 10;
 
 			var text = "";
 
-           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -5)
+           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -9)
 			{
-			}else if(total_paging_cnt < 5 || pre_no < 1){
+			}else if(total_paging_cnt < 9 || pre_no < 1){
 				text += '<li class="page-item"><a class="page-link" href="home.html?pageNo=1&searchText=">«</a></li>';
 			}else{
 				text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+pre_no+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">«</a></li>';
 			}
 
 			for( var k = paging_init_num; k <= paging_end_num; k++){
-				const className = (parseInt(rcvPageNo) == k) ? "page-item active" : "page-item";
-				const binstr = "";
-				text += '<li class="'+className+'"><a class="page-link" onclick="prodList('+k+', '+binstr+')" href="javascript:void(0);">'+k+'</a></li>';
-				// if (parseInt(rcvPageNo) == k)
-				// {
-				// 	text += '<li class="page-item active"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
-				// }else{
-				// 	text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
-				// }
+				//const className = (parseInt(rcvPageNo) == k) ? "page-item active" : "page-item";
+				//const binstr = "";
+				//text += '<li class="'+className+'"><a class="page-link" onclick="prodList('+k+', '+binstr+')" href="javascript:void(0);">'+k+'</a></li>';
+				 if (parseInt(rcvPageNo) == k)
+				 {
+				 	text += '<li class="page-item active"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				 }else{
+				 	text += '<li class="page-item"><a class="page-link" href="home.html?pageNo='+k+'&searchText='+encodeURIComponent($("#searchTextbox").val())+'">'+k+'</a></li>';
+				 }
 			}
 
 			if (total_paging_cnt == 0 || total_paging_cnt == 1 || parseInt(rcvPageNo) >= total_paging_cnt)
