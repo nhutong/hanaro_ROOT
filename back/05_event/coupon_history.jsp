@@ -20,7 +20,7 @@
 
 	//mariadb의 페이징 시작 쿼리를 위해 1을 뺀다.
 	pageNo_new = Integer.parseInt(pageNo) - 1;
-	pageNo_new = pageNo_new * 10;
+	pageNo_new = pageNo_new * 13;
 	
 	//cp_start_date = cp_start_date.replaceAll("-", "");
 	//cp_end_date = cp_end_date.replaceAll("-", "");
@@ -57,7 +57,7 @@
 
 			sql = sql +" order by a.reg_date desc "; 
 
-			sql = sql + " LIMIT "+pageNo_new+" , 10; ";
+			sql = sql + " LIMIT "+pageNo_new+" , 13; ";
 
 		out.print(sql);			
 
