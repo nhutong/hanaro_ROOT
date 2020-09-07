@@ -120,7 +120,7 @@ function prodList(rcvPageNo, rcvCompanyNo) {
 				text +='    <td class="might-overflow"><a href="push_send.html?pm_no='+decodeURIComponent(item['pm_no'])+'">'+item['ms_content'].replace("[광고]","").replace("수신거부 | 메뉴>설정>동의 해제","")+'</a></td>';
 				text +='    <td>'+decodeURIComponent(item['vm_cp_name'])+'</td>';
                 text +='    <td>'+decodeURIComponent(item['pm_type']).replace("reserve","예약").replace("realtime","즉시")+'</td>';																
-				text +='    <td>'+decodeURIComponent(item['pm_from_date'])+'~'+decodeURIComponent(item['pm_to_date'])+'<br>'+decodeURIComponent(item['pm_hour'])+'시'+decodeURIComponent(item['pm_min'])+'분</td>';
+				text +='    <td>'+decodeURIComponent(item['pm_from_date'])+'~'+decodeURIComponent(item['pm_to_date'])+'  ['+decodeURIComponent(item['pm_hour'])+'시'+decodeURIComponent(item['pm_min'])+'분]</td>';
 				text +='    <td>'+decodeURIComponent(item['pm_interval']).replace("월,화,수,목,금,토,일","매일").replace("토,일","주말").replace("월,화,수,목,금","평일")+'</td>';	
 				text +='    <td class="might-overflow">'+decodeURIComponent(item['target_cnt'])+'</td>';				
 				text +='    <td class="might-overflow">'+decodeURIComponent(item['send_cnt'])+'</td>';
@@ -164,14 +164,14 @@ function prodList_paging(rcvPageNo, rcvCompanyNo) {
 			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
 			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
 			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
-			var pre_no = parseInt(rcvPageNo) - 6;
-			var next_no = parseInt(rcvPageNo) + 6;
+			var pre_no = parseInt(rcvPageNo) - 10;
+			var next_no = parseInt(rcvPageNo) + 10;
 
 			var text = "";
 
-           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -5)
+           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -9)
 			{
-			}else if(total_paging_cnt < 5 || pre_no < 1){
+			}else if(total_paging_cnt < 9 || pre_no < 1){
 				text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing(1)">«</a></li>';
 			}else{
 				text += '<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="javascript:changePageing('+pre_no+')">«</a></li>';

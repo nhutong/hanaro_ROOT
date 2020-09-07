@@ -19,13 +19,16 @@
 
 //	mariadb의 페이징 시작 쿼리를 위해 1을 뺀다.
 	pageNo_new = Integer.parseInt(pageNo) - 1;
-	pageNo_new = pageNo_new * 6;
+	pageNo_new = pageNo_new * 10;
 
 	JSONObject bdListJSON = new JSONObject();
 	
 	try{
 		sql = " SELECT " 
-		+ "  p.pm_no, p.ms_content, p.event_no as event_title, a.vm_cp_name, p.pm_hour, p.pm_min, ifnull(b.send_cnt,0) as send_cnt, ifnull(c.target_cnt,0) as target_cnt, p.reg_date, p.pm_from_date, p.pm_to_date, p.pm_interval, p.pm_target, p.pm_type, ifnull(p.send_date,'') as send_date, ifnull(p.del_fg,'') as del_fg, pm_status "
+		+ "  p.pm_no, p.ms_content, p.event_no as event_title, a.vm_cp_name, p.pm_hour, p.pm_min, ifnull(b.send_cnt,0) as send_cnt, ifnull(c.target_cnt,0) as target_cnt, p.reg_date, "
+		+ "  case when p.pm_type = 'realtime' and p.pm_from_date is null then substr(p.reg_date,1,10) else substr(p.pm_from_date,1,10) end as pm_from_date, " 
+		+ "  case when p.pm_type = 'realtime' and p.pm_to_date is null then substr(p.reg_date,1,10) else substr(p.pm_to_date,1,10) end as pm_to_date, " 
+		+ "  p.pm_interval, p.pm_target, p.pm_type, ifnull(p.send_date,'') as send_date, ifnull(p.del_fg,'') as del_fg, pm_status "
         + "  FROM vm_push_message AS p " 
 		+ "  inner join vm_company as a " 
 		+ "  on p.vm_cp_no = a.vm_cp_no "
@@ -42,8 +45,9 @@
 		sql += ("".equals(keyword) ? "" : " AND " + category + " LIKE '%" + keyword + "%'");
 		sql += ("".equals(status) ? "" : " AND pm_status LIKE '" + status + "'");
 		sql = sql + " ORDER BY p.reg_date desc "
-	              + " LIMIT "+pageNo_new+" ,6; ";
-		//	out.print(sql);
+	              + " LIMIT "+pageNo_new+" ,10; ";
+		System.out.println("=====sql====");
+		System.out.println(sql);
 
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
