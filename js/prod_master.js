@@ -543,16 +543,18 @@ function prodList_paging(rcvPageNo, rcvSearchText, rcvOrderByText, rcvOrderByPar
             console.log(result);
             var data = JSON.parse(result);
 
-			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
-			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
-			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
-			var pre_no = parseInt(rcvPageNo) - 6;
-			var next_no = parseInt(rcvPageNo) + 6;
+			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);    // 페이징바의 start number 
+			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);      // 페이징바의 end number 
+			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);  // 페이징바의 total number
+			var pre_no = parseInt(rcvPageNo) - 10;
+			var next_no = parseInt(rcvPageNo) + 10;
+
+			console.log ("paging_init_num = " +paging_init_num+ " paging_end_num = " +paging_end_num+ "total_pagin_cnt = " +total_paging_cnt+ " pre_no = " +pre_no+ " next_no = " +next_no); 
 
 			var text = "";
 
-            if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -4){
-			}else if(total_paging_cnt < 5 || pre_no < 1){
+            if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -9){
+			}else if(total_paging_cnt < 9 || pre_no < 1){
 				text += '<li class="page-item"><a class="page-link" href="prod_master.html?pageNo=1&searchText=">«</a></li>';
 			}else{
 				text += '<li class="page-item"><a class="page-link" href="prod_master.html?pageNo='+pre_no+"&searchText="+encodeURIComponent($("#searchTextbox").val())+"&orderByParam="+encodeURIComponent(rcvOrderByParam)+'">«</a></li>';

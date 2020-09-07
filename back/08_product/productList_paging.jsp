@@ -14,7 +14,7 @@
 	Integer pageNo_new = Integer.parseInt(pageNo);
 
 //	페이징 - 한페이지에 리스팅 row 갯수
-	Integer list_size = 10;
+	Integer list_size = 20;
 
 //	페이징 - 총 페이징 사이즈 ( 페이징 리스트에 보여줄 페이징 숫자의 갯수 )
 	Integer paging_cnt_num = 10;

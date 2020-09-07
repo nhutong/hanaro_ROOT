@@ -15,7 +15,7 @@
 
 	//mariadb의 페이징 시작 쿼리를 위해 1을 뺀다.
 	pageNo_new = Integer.parseInt(pageNo) - 1;
-	pageNo_new = pageNo_new * 10;
+	pageNo_new = pageNo_new * 20;
 
 	JSONObject bdListJSON = new JSONObject();
 	
@@ -52,7 +52,7 @@
 			if (orderByText != ""){
 				sql = sql + " ORDER BY " + orderByText;
 			}			
-			sql = sql + " LIMIT "+pageNo_new+" , 10; ";
+			sql = sql + " LIMIT "+pageNo_new+" , 20; ";
 			
 		System.out.println(sql);
 
