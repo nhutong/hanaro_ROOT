@@ -9,7 +9,7 @@
 
 <%	
 
-	Integer list_size = 8;
+	Integer list_size = 15;
 	String vm_cp_no = (request.getParameter("vm_cp_no")==null)? "0":request.getParameter("vm_cp_no");
 	System.out.println(vm_cp_no);
 	Integer n_page = (request.getParameter("n_page")==null)? 1:Integer.parseInt(request.getParameter("n_page"));
@@ -50,7 +50,7 @@
 	
 	// sql = sql + " AND ( a.std_fg IS NULL OR a.std_fg = 'N' ) order by a.reg_date desc";
 	sql = sql +	("all".equals(status) ? "  AND ( a.std_fg IS NULL OR a.std_fg = ('N' OR 'S') ) " : "null".equals(status) ? " AND a.std_fg IS NULL " : " AND a.std_fg LIKE '" + status + "' ");
-	sql = sql + "order by a.reg_date desc LIMIT "+ s_page +", 8";
+	sql = sql + "order by a.reg_date desc LIMIT "+ s_page +", 15";
 		//out.print(sql);
 	System.out.println(sql);
 		stmt = conn.createStatement();

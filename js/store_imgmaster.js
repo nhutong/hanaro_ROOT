@@ -298,14 +298,14 @@ function storeMenuPageNavi(rcvPageNo, targetCompanyNo) {
 			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
 			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
 			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
-			var pre_no = parseInt(rcvPageNo) - 6;
-			var next_no = parseInt(rcvPageNo) + 6;
+			var pre_no = parseInt(rcvPageNo) - 10;
+			var next_no = parseInt(rcvPageNo) + 10;
 
 			var text = "";
 
-           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -5)
+           if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -9)
 			{
-			}else if(total_paging_cnt < 5 || pre_no < 1){
+			}else if(total_paging_cnt < 9 || pre_no < 1){
 				text += '<li class="page-item"><a class="page-link" onclick="storeMenuPageNavi(1, '+targetCompanyNo+')" href="javascript:void(0);">«</a></li>';
 			}else{
 				text += '<li class="page-item"><a class="page-link" onclick="storeMenuPageNavi('+pre_no+', '+targetCompanyNo+')" href="javascript:void(0);">«</a></li>';
