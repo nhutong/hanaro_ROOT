@@ -4815,8 +4815,8 @@ background-color: #ab1f1f;
 }
 
 .store_imgmaster_table td img{
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
 }
 
 .store_imgmaster_table tr:nth-child(2n) td{
