@@ -5,7 +5,6 @@ $(function () {
 	{
 	    pageNo = 1;
 	}
-
 	/* 공통부분 시작======================================================================== */
 	/* 좌상단 로그인 유저의 정보를 바인딩한다. */
 	getHeader();
@@ -37,7 +36,9 @@ $(function () {
 
 	/* 최초 로그인한 유저번호로 바인딩한다. */
 	getManagerList(CuserCompanyNo, targetCompanyNo);
-	menunotice_paging(1, targetCompanyNo);
+	
+	//menunotice_paging(1, targetCompanyNo);  2020.09.08 페이징네이션 관련 함수가 두개 (noticecont_paging() , menunotice_paging()) noticecont_paging 적용
+	
 	// 200622 김수경 썸머노트 적용 테스트
 	function getByte(str) {
 		var byte = 0;
@@ -119,11 +120,9 @@ $(function () {
 		}
 	});
 	/* 공통부분 종료======================================================================== */
-
-
 	//noticeCont(targetCompanyNo);
-	noticeCont(getCookie("onSelectCompanyNo"), pageNo);
-	noticeCont_paging(getCookie("onSelectCompanyNo"), pageNo);
+	noticeCont(getCookie("onSelectCompanyNo"), pageNo);         //공지사항 리스트 호출 
+	noticeCont_paging(getCookie("onSelectCompanyNo"), pageNo);  //공지사항 리스트 페이징네이션 호출
 
 });
 
@@ -174,25 +173,25 @@ function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("coupon_history_paging=========================================");
+        console.log("noticeCont_paging=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
             $("#pagination").html("");
-            console.log("============= coupon_history_paging callback ========================");
+            console.log("============= noticeCont_paging callback ========================");
             console.log(result);
 			var data = JSON.parse(result);
                                                                                                                                                                                                                                                                                                                                                                                     
 			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
 			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
 			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
-			var pre_no = parseInt(rcvPageNo) - 6;
-			var next_no = parseInt(rcvPageNo) + 6;
+			var pre_no = parseInt(rcvPageNo) - 10;
+			var next_no = parseInt(rcvPageNo) + 10;
 			var text = "";
 
-			if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -4)
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -9)
 			{
-			}else if(total_paging_cnt < 5 || pre_no < 1){
+			}else if(total_paging_cnt < 9 || pre_no < 1){
 				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+',1), noticeCont_paging('+rcvonSelectCompanyNo+',1);">«</a></li>';
 			}else{
 				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+pre_no+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+pre_no+');">«</a></li>';  
@@ -266,6 +265,8 @@ function writeNotice(){
 
 }
 
+
+/*  2020.09.08 심규문 페이징네이션 관련함수가 두개라 menunotice_paging은 주석처리
 // 공지 페이징를 가져온다
 function menunotice_paging(rcvPageNo, targetCompanyNo) {
 	console.log(targetCompanyNo);
@@ -275,12 +276,12 @@ function menunotice_paging(rcvPageNo, targetCompanyNo) {
         method : 'GET' 
     }).done(function(result){
 
-        console.log("prodlist_paging=========================================");
+        console.log("menunotice_paging=========================================");
         if(result == ('NoN') || result == 'list error' || result == 'empty'){
             console.log(result);
         }else{
             $("#pagination").html("");
-            console.log("============= prodlist_paging callback ========================");
+            console.log("============= menunotice_paging callback ========================");
             console.log(result);
             var data = JSON.parse(result);
 
@@ -327,3 +328,4 @@ function menunotice_paging(rcvPageNo, targetCompanyNo) {
     });
 	noticeCont(targetCompanyNo, rcvPageNo);
 }
+*/

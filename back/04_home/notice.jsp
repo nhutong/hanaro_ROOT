@@ -8,7 +8,7 @@
 <%@ include file = "../00_include/dbConn.jsp" %>
 
 <%	
-	Integer list_size = 5;
+	Integer list_size = 15;
 	String vm_cp_no = (request.getParameter("vm_cp_no")==null)? "0":request.getParameter("vm_cp_no");
 	Integer n_page = (request.getParameter("n_page")==null)? 1:Integer.parseInt(request.getParameter("n_page"));
 	Integer s_page = (n_page - 1) * list_size;
@@ -20,7 +20,7 @@
 			+ " inner join vm_user as b "
 			+ " on a.reg_no = b.vm_no "
 		    + " where vm_cp_no = '" + vm_cp_no + "' "
-			+" order by a.reg_date desc LIMIT " + s_page + ", 5";
+			+" order by a.reg_date desc LIMIT " + s_page + ", 15";
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		

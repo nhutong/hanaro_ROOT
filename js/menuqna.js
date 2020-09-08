@@ -37,7 +37,9 @@ $(function () {
 
 	/* 최초 로그인한 유저번호로 바인딩한다. */
 	getManagerList(CuserCompanyNo, targetCompanyNo);
-	menunotice_paging(1, targetCompanyNo);
+	
+	//menunotice_paging(1, targetCompanyNo); 2020.09.08 심규문 페이징네이션 처리 함수가 두개라 주석처리
+
 	/*판매장 변경시, 
 	1. 현재 선택한 판매장 정보를 쿠키에 저장한다.
 	2. 저장된 쿠키정보를 이용하여 긴급공지내용을 바인딩한다. 
@@ -118,13 +120,13 @@ function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
 			var paging_init_num = parseInt(data.CompanyList[0].paging_init_num);
 			var paging_end_num = parseInt(data.CompanyList[0].paging_end_num);
 			var total_paging_cnt = parseInt(data.CompanyList[0].total_paging_cnt);
-			var pre_no = parseInt(rcvPageNo) - 6;
-			var next_no = parseInt(rcvPageNo) + 6;
+			var pre_no = parseInt(rcvPageNo) - 10;
+			var next_no = parseInt(rcvPageNo) + 10;
 			var text = "";
 
-			if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -4)
+			if (total_paging_cnt == 0 || total_paging_cnt == 1 || pre_no == -9)
 			{
-			}else if(total_paging_cnt < 5 || pre_no < 1){
+			}else if(total_paging_cnt < 9 || pre_no < 1){
 				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+',1), noticeCont_paging('+rcvonSelectCompanyNo+',1);">«</a></li>';
 			}else{
 				text += '<li class="page-item"><a class="page-link" onclick="noticeCont('+rcvonSelectCompanyNo+', '+pre_no+'), noticeCont_paging('+rcvonSelectCompanyNo+', '+pre_no+');">«</a></li>';  
@@ -159,7 +161,11 @@ function noticeCont_paging(rcvonSelectCompanyNo, rcvPageNo) {
 	var popupX = (window.screen.width/2) - (400/2);
    window.open('menuqna_pop.html?nt_no='+rcvNtNo+'','1:1문의','width=800,height=800,location=no,status=no,scrollbars=yes,left='+ popupX +',top=250')  
 }
+
+
+
 // 공지 페이징를 가져온다
+/*  2020.09.08 심규문  페이징네이션 처리 함수가 두개라 주석처리
 function menunotice_paging(rcvPageNo, targetCompanyNo) {
 	$.ajax({
         url:'/back/04_home/qna_paging.jsp?random=' + (Math.random()*99999), 
@@ -215,3 +221,4 @@ function menunotice_paging(rcvPageNo, targetCompanyNo) {
     });
 	noticeCont(targetCompanyNo, rcvPageNo);
 }
+*/

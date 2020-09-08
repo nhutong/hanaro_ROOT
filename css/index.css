@@ -4871,13 +4871,13 @@ background-color: #ab1f1f;
 
 .menu_notice_table th{
     background-color: #eaeaea;
-    padding: 14px 16px;
+    padding: 10px 10px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
 }
 
 .menu_notice_table td{
-    padding: 12px 14px;
+    padding: 10px 10px;
     border: 1px solid #d0d0d0;
 }
 
@@ -4908,13 +4908,13 @@ background-color: #ab1f1f;
 
 .menu_qna_table th{
     background-color: #eaeaea;
-    padding: 14px 16px;
+    padding: 10px 10px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
 }
 
 .menu_qna_table td{
-    padding: 12px 14px;
+    padding: 10px 10px;
     border: 1px solid #d0d0d0;
 }
 
