@@ -26,7 +26,7 @@ $(function () {
 		totalNumberLocator: function(data) {
 			return data.total;
 		},
-		pageSize: 8,
+		pageSize: 15,
 		className: 'paginationjs-theme-green paginationjs-big',
 		callback: function(list, pagination) {
 			var $tbody = $('#tab1_table').empty();
