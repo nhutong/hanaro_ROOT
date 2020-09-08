@@ -831,11 +831,12 @@ span.shopUrl:hover{
 }
 
 .log_table th {
-    padding: 14px 16px;
+    padding: 10px 10px;
     font-weight: bold;
     text-align: center;
     border-right: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
+    background-color: #e0e0e0;
     
 }
 
@@ -843,6 +844,7 @@ span.shopUrl:hover{
     border-top: 1px solid #e0e0e0;
     border-left: 1px solid #e0e0e0;
     background-color: #fff;
+    
 }
 
 .log_table td {
