@@ -628,27 +628,27 @@ span.shopUrl:hover{
     width: 95%;
     font-size: 13px;
     margin-left: 40px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d0d0d0;
 }
 
 .user_table th {
-    padding: 5px;
+    padding: 1px;
     font-weight: bold;
-    text-align: center;
-    border-right: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    text-align: center;    
+    /*border-bottom: 1px solid #faf8f8;*/
+    border: 1px solid #d0d0d0;
+    background-color: #e7e7e7;
     
 }
 
-.user_table tr:nth-child(2) th{
-    border-top: 1px solid #e0e0e0;
-    border-left: 1px solid #e0e0e0;
-    background-color: #fff;
+.user_table tr:nth-child(2) th{    
+    background-color: #f0f0f0;    
 }
 
 .user_table td {
-    padding: 14px 16px;
+    padding: 8px 10px;
     text-align:center;
+    border: 1px solid #d0d0d0;
 }
 
 .user_table tr td:last-child{
@@ -763,27 +763,25 @@ span.shopUrl:hover{
     width: 95%;
     font-size: 13px;
     margin-left: 40px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d0d0d0;
 }
 
 .stat_table th {
     padding: 5px;
     font-weight: bold;
     text-align: center;
-    border-right: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
-    
+    border: 1px solid #d0d0d0;
+    background-color: #e7e7e7;
 }
 
-.stat_table tr:nth-child(2) th{
-    border-top: 1px solid #e0e0e0;
-    border-left: 1px solid #e0e0e0;
-    background-color: #fff;
+.stat_table tr:nth-child(2) th{    
+    background-color: f0f0f0;
 }
 
 .stat_table td {
     padding: 14px 16px;
     text-align:center;
+    border: 1px solid #d0d0d0;
 }
 
 .stat_table tbody tr:nth-child(2n) {
@@ -827,33 +825,31 @@ span.shopUrl:hover{
     width: 95%;
     font-size: 13px;
     margin-left: 40px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d0d0d0;
 }
 
 .log_table th {
     padding: 10px 10px;
     font-weight: bold;
     text-align: center;
-    border-right: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
-    background-color: #e0e0e0;
+    border: 1px solid #d0d0d0;
+    background-color: #e7e7e7;
     
 }
 
-.log_table tr:nth-child(2) th{
-    border-top: 1px solid #e0e0e0;
-    border-left: 1px solid #e0e0e0;
-    background-color: #fff;
+.log_table tr:nth-child(2) th{    
+    background-color: #f0f0f0;
     
 }
 
 .log_table td {
     padding: 4px 6px;
     text-align:center;
+    border: 1px solid #d0d0d0;
 }
 
 .log_table tbody tr:nth-child(2n) {
-    background-color: #fafafa;
+    background-color: #f0f0f0;
 }
 /*home start*/
 
@@ -902,7 +898,8 @@ span.shopUrl:hover{
 .home_edit_btm table th{
     background-color: #eaeaea;
     padding: 10px;
-	text-align : center;
+    text-align : center;
+    border: 1px solid #d0d0d0;
 }
 
 .home_edit_btm table tr.board_notice td{
@@ -913,7 +910,8 @@ span.shopUrl:hover{
     padding: 5px;
     overflow : hidden;
 	text-overflow : ellipsis;
-	white-space : nowrap;
+    white-space : nowrap;
+    border: 1px solid #d0d0d0;
 	
 }
 
@@ -2214,19 +2212,20 @@ span.discount_notice{
     width: 95%;
     font-size: 13px;
     margin-left: 40px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d0d0d0;
     text-align: center;
 }
 
 .popup_table tr td img{
-    width: 40px;
-	height : 40px;
+    width: 20px;
+	height : 20px;
 }
 
 .popup_table th {
-    padding: 14px 16px;
+    padding: 10px 16px;
     font-weight: bold;
-    background-color: #e0e0e0;
+    background-color: #e7e7e7;
+    border: 1px solid #d0d0d0;
     
 }
 
@@ -2235,8 +2234,10 @@ span.discount_notice{
 }
 
 .popup_table tr td{
-    padding: 14px 16px;
+    padding: 10px 16px;
+    border: 1px solid #d0d0d0;            
 }
+
 
 .popup_submit_wrap{
     /* width: 900px;
@@ -2589,7 +2590,7 @@ button#bannerUpdate{
 .event_table{
     width: 100%;
     font-size: 14px;  
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d0d0d0;
     table-layout: fixed;
     word-break: break-all;
 }
@@ -2600,11 +2601,11 @@ button#bannerUpdate{
 
 .event_table th {
     font-size: 13px;
-    padding: 14px 8px;
+    padding: 10px 8px;
     font-weight: bold;
-    background-color: #e0e0e0;
+    background-color: #e7e7e7;
     text-align: center;
-    
+    border: 1px solid #d0d0d0;
 }
 
 .event_table th span{
@@ -2624,9 +2625,10 @@ button#bannerUpdate{
 }
 
 .event_table tr td{
-    padding: 14px 16px;
+    padding: 10px 16px;
     font-size: 13px;
     text-align: center;
+    border: 1px solid #d0d0d0;
 }
 .event_submit_wrap{
     /* 200730 김수경 게시판 등록 버튼 위치 정렬 및 통일 */
@@ -2949,22 +2951,25 @@ button#bannerUpdate{
 .coupon_table{
     width: 100%;
     font-size: 14px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d0d0d0;
 }
 .coupon_table th {
-    padding: 14px 8px;
+    padding: 10px 8px;
     font-weight: bold;
-    background-color: #e0e0e0;
-/*	text-align : center;*/
-	font-size : 13px;
+    background-color: #e7e7e7;
+	text-align : center;
+    font-size : 13px;
+    border: 1px solid #d0d0d0;
 }
 .coupon_table tr:nth-child(2n) td{
     background-color: #f0f0f0;
 }
 
 .coupon_table tr td{
-    padding: 14px 9px;
-	font-size : 13px;
+    padding: 10px 9px;
+    font-size : 13px;
+    text-align : center;
+    border: 1px solid #d0d0d0;
 }
 .coupon_submit_wrap{
     /* width: 900px;
@@ -3675,7 +3680,7 @@ button#btnCreate{
     width: 100%;
     font-size: 14px;
     text-align: center;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d0d0d0;
 }
 
 .push_table tr td img{
@@ -3683,10 +3688,11 @@ button#btnCreate{
 }
 
 .push_table th {
-    padding: 14px 16px;
+    padding: 10px 16px;
     font-weight: bold;
     background-color: #e0e0e0;
     font-size : 13px;
+    border: 1px solid #d0d0d0;
 }
 
 .push_table tr:nth-child(2n) td{
@@ -3694,8 +3700,9 @@ button#btnCreate{
 }
 
 .push_table tr td{
-    padding: 14px 16px;
+    padding: 10px 16px;
     font-size : 13px;
+    border: 1px solid #d0d0d0;
 }
 
 .push_submit_btn_wrap{
@@ -4327,10 +4334,11 @@ td.no_del_check input[type=text]{
     font-size: 13px;
 }
 
-
+/*
 .prod_master_table tr:first-child{
 	background-color: #e7e7e7;
 }
+*/
 
 .prod_master_table thead tr{
     height: 40px;
@@ -4340,6 +4348,7 @@ td.no_del_check input[type=text]{
     padding: 2px 6px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
+    background-color: #e7e7e7;
 }
 
 .prod_master_table th.product_modal_name,
@@ -4387,15 +4396,14 @@ td.no_del_check input[type=text]{
 
 .prod_master_table td{
     padding: 4px 6px;
-    border: 1px solid #d0d0d0;
-    background-color: #fafafa;
+    border: 1px solid #d0d0d0;    
 	text-overflow : ellipsis;
 	white-space: nowrap;
 	overflow : hidden;
 }
 
 .prod_master_table tr:nth-child(2n) td{
-    background-color: #fff;
+    background-color: #f0f0f0;
 }
 .prod_code{
     cursor: pointer;
@@ -4719,7 +4727,7 @@ background-color: #ab1f1f;
 }
 
 .img_master_table tr:nth-child(2n) td{
-    background-color: #fff;
+    background-color: #f0f0f0;
 }
 
 /*.img_master_btn{*/
@@ -4812,8 +4820,7 @@ background-color: #ab1f1f;
 .store_imgmaster_table td{
     padding: 5px 5px;
     font-size: 13px;
-    border: 1px solid #d0d0d0;
-    background-color: #fafafa;
+    border: 1px solid #d0d0d0;    
 }
 
 .store_imgmaster_table td img{
@@ -4822,7 +4829,7 @@ background-color: #ab1f1f;
 }
 
 .store_imgmaster_table tr:nth-child(2n) td{
-    background-color: #fff;
+    background-color: #f0f0f0;
 }
 .store_imgmaster_table td button{
     display: block;
@@ -4872,7 +4879,7 @@ background-color: #ab1f1f;
 }
 
 .menu_notice_table th{
-    background-color: #eaeaea;
+    background-color: #e7e7e7;
     padding: 10px 10px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
@@ -4881,6 +4888,10 @@ background-color: #ab1f1f;
 .menu_notice_table td{
     padding: 10px 10px;
     border: 1px solid #d0d0d0;
+}
+
+.menu_notice_table tr:nth-child(2n){
+    background-color: #f0f0f0;
 }
 
 .menu_notice_title a{
@@ -4909,7 +4920,7 @@ background-color: #ab1f1f;
 }
 
 .menu_qna_table th{
-    background-color: #eaeaea;
+    background-color: #e7e7e7;
     padding: 10px 10px;
     font-weight: bold;
     border: 1px solid #d0d0d0;
@@ -4918,6 +4929,10 @@ background-color: #ab1f1f;
 .menu_qna_table td{
     padding: 10px 10px;
     border: 1px solid #d0d0d0;
+}
+
+.menu_qna_table tr:nth-child(2n){
+    background-color: #f0f0f0;
 }
 
 .menu_qna_title a{

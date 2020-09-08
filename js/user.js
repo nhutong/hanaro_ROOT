@@ -3,7 +3,7 @@
 	'<td><%- company %></td><td><%- tel.replace("+82","0") %></td><td><%- name %></td><td><%- no %></td>' + 	
 	//동의 컬럼열 
 	'<td><%- privacy %></td><td><%- regDate %></td><td><%- push %></td><td><%- push_agree_date %></td><td><%- push_disagree_date %></td><td><%- location %></td>'+	
-	'<td><%- address %></td><td><%- orderCount %></td><td><%- totalOrderPrice %>' +
+	//'<td><%- address %></td><td><%- orderCount %></td><td><%- totalOrderPrice %>' +
 	'</td><td class="memo"><a href="#" class="btn btn-sm btn-success" data-name="<%- name %>" data-no="<%- no %>" data-memo="<%- memo %>" data-toggle="modal" data-target="#memoModal"><img src="../images/iconforev_03.png" alt="메모" width="15"></a></td>'
 
 	);
@@ -72,7 +72,7 @@ function searchUser(){
 		totalNumberLocator: function(data) {
 			return data.total;
 		},
-		pageSize: 8,
+		pageSize: 10,
 		className: 'paginationjs-theme-green paginationjs-big',
 		callback: function(list, pagination) {			
 			if(keyword && !list.length) {

@@ -151,20 +151,21 @@ h4{font-weight:400;color:#888;}
 	width:860px;
 	font-size:11px;
 	margin-left:40px;
-	border:1px solid #e0e0e0;
+	border:1px solid #d0d0d0;
 	text-align : center;
 }
 .planb_table th{
 	padding: 10px 16px;
 	font-weight:bold;
-	background-color: #e0e0e0;
-	border-bottom:1px solid #e0e0e0;	
+	background-color: #e7e7e7;	
+	border:1px solid #d0d0d0;
 }
 .planb_table td{
 	padding:10px 16px;
+	border:1px solid #d0d0d0;
 }
 .planb_table tr:nth-child(2n){
-	background-color:#fafafa;
+	background-color:#f0f0f0;
 }
 .font-bold{
 	font-weight:bold;
