@@ -1,10 +1,11 @@
+/*
 // 판매장 템플릿
 var tpl_tr_tab1_table = _.template('<tr id="member<%- event_no %>" data-no="<%- event_no %>"><td><%- event_no %></td>' +
 	'<td><a href="event_edit.html?event_no=<%- event_no %>" ><img src="<%- img_url %>"/></a>'+ 
 	'</td><td><%- company_name %></td><td><a href="event_edit.html?event_no=<%- event_no %>" ><%- event_title %></a></td><td><%- period %></td>' +
 	'<td><%- reg_name %></td><td><%- reg_date %><td><%- activated_status %></td>'
 	);
-
+*/
 $(function () {
 	getHeader();
 	$(".nav_event").addClass("active");
@@ -94,6 +95,34 @@ function settingInfo() {
 	localStorage.setItem("eventList", JSON.stringify(params));
 	getEventList(getCookie("onSelectCompanyNo"));
 }
+// 판매장 템플릿 버튼
+
+var tpl_tr_tab1_table = _.template('<tr id="member<%- event_no %>" data-no="<%- event_no %>"><td><%- event_no %></td>' +
+	'<td><a href="event_edit.html?event_no=<%- event_no %>" ><img src="<%- img_url %>"/></a>'+ 
+	'</td><td><%- company_name %></td><td><a href="event_edit.html?event_no=<%- event_no %>" ><%- event_title %></a></td><td><%- period %></td>' +
+	'<td><%- reg_name %></td><td><%- reg_date %></td><td align = "center" >' +
+	'<li class="tg-list-item" style="list-style: none;">' +
+	'<input class="tgl tgl-ios" id="cb<%- event_no %>" type="checkbox" <%- activatedY %> onclick="javascript:changeEventActive(\'<%-event_no%>\')">' +
+	'<label class="tgl-btn" for="cb<%- event_no %>" align ="center"></label>' +
+	'</li>' +
+	'</td>'
+	);
+
+
+	function changeEventActive(no) {
+		let flag;
+		if ($("#cb"+no).prop("checked")) {
+			flag = "Y";
+		} else {
+			flag = "N";
+		}
+		$.ajax({
+			url:'/back/05_event/eventChangeActive.jsp?random=' + (Math.random()*99999), 
+			data : {eventNo: no, activated: flag},
+			method : 'POST' 
+		});
+	}
+
 
 function getEventList(compNo){
 	if (!compNo) compNo = getCookie("onSelectCompanyNo");
@@ -117,10 +146,18 @@ function getEventList(compNo){
 		callback: function(list, pagination) {
 			console.log(list);
 			var $tbody = $('#eventList').empty();
-			_.forEach(list,
+			_.forEach(list,				
 				function(item) {
+					if (item['activated'] == 'Y') {
+						item['activatedY'] = "checked=checked";
+						item['activatedN'] = "";
+					} else {
+						item['activatedN'] = "checked=checked";
+						item['activatedY'] = "";
+					}	
 					$tbody.append(tpl_tr_tab1_table(item));
 				}
+				
 			);
 		},
 		formatAjaxError: function(jqXHR) {

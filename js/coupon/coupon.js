@@ -1,4 +1,5 @@
 // 쿠폰리스트 템플릿
+/*
 var tpl_tr_tab1_table = _.template('<tr id="coupon<%- coupon_no %>" data-no="<%- coupon_no %>">'+
 	'<td><%- coupon_no %></td>' +
 	'<td><%- coupon_type_name %></td>' +
@@ -11,6 +12,25 @@ var tpl_tr_tab1_table = _.template('<tr id="coupon<%- coupon_no %>" data-no="<%-
 	'<td><%- reg_date %> </td>' +
 	'<td><button id="cp_<%- coupon_no %>" class="coupon_pop_btn" onclick="coupon_popup(<%- coupon_no %>);">출력</button></td>'
 	);
+*/
+// 쿠폰리스트 템플릿
+var tpl_tr_tab1_table = _.template('<tr id="coupon<%- coupon_no %>" data-no="<%- coupon_no %>">'+
+'<td><%- coupon_no %></td>' +
+'<td><%- coupon_type_name %></td>' +
+'<td><a href="coupon_edit.html?coupon_no=<%- coupon_no %>" ><%- coupon_name %></a></td>' +
+'<td><%- product_code %></td>' +	
+'<td><%- company_name %></td>' +	
+'<td align = "center"><li class="tg-list-item" style="list-style: none;">' +
+'<input class="tgl tgl-ios" id="cb<%- coupon_no %>" type="checkbox" <%- status_cdY %> onclick="javascript:changeCouponStatus(\'<%-coupon_no%>\')">' +
+'<label class="tgl-btn" for="cb<%- coupon_no %>" align ="center"></label>' +
+'</li>' +
+'</td>' +
+'<td><%- start_date %> ~ <%- end_date %></td>' +
+'<td><%- reg_name %> </td>' +
+'<td><%- reg_date %> </td>' +
+'<td><button id="cp_<%- coupon_no %>" class="coupon_pop_btn" onclick="coupon_popup(<%- coupon_no %>);">출력</button></td>'
+);
+
 
 $(function () {
 
@@ -86,6 +106,21 @@ function settingInfo() {
 	getCouponList(getCookie("onSelectCompanyNo"));
 }
 
+function changeCouponStatus(no) {
+	let flag;
+	if ($("#cb"+no).prop("checked")) {
+		flag = "APPLY";
+	} else {
+		flag = "NOAPPLY";
+	}
+	$.ajax({
+		url:'/back/05_event/couponChangeStatus.jsp?random=' + (Math.random()*99999), 
+		data : {couponNo: no, status_cd: flag},
+		method : 'POST' 
+	});
+}
+
+
 function searchEnter(e) {
 	if(e.keyCode == 13) {
 		settingInfo(getCookie("onSelectCompanyNo"));
@@ -126,6 +161,13 @@ function getCouponList(compNo){
 			var $tbody = $('#couponList').empty();
 			_.forEach(list,
 				function(item) {
+					if (item['status_cd'] == 'APPLY') {
+						item['status_cdY'] = "checked=checked";
+						item['status_cdN'] = "";
+					} else {
+						item['status_cdN'] = "checked=checked";
+						item['status_cdY'] = "";
+					}	
 					$tbody.append(tpl_tr_tab1_table(item));
 					console.log(item.coupon_type);
 					if (item.coupon_type == 'BILLING')

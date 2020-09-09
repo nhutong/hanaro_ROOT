@@ -2593,6 +2593,7 @@ button#bannerUpdate{
     border: 1px solid #d0d0d0;
     table-layout: fixed;
     word-break: break-all;
+    text-align: center;
 }
 
 .event_table tr td img{
@@ -2626,8 +2627,7 @@ button#bannerUpdate{
 
 .event_table tr td{
     padding: 10px 16px;
-    font-size: 13px;
-    text-align: center;
+    font-size: 13px;    
     border: 1px solid #d0d0d0;
 }
 .event_submit_wrap{
@@ -2952,6 +2952,7 @@ button#bannerUpdate{
     width: 100%;
     font-size: 14px;
     border: 1px solid #d0d0d0;
+    text-align : center;
 }
 .coupon_table th {
     padding: 10px 8px;
@@ -2967,8 +2968,7 @@ button#bannerUpdate{
 
 .coupon_table tr td{
     padding: 10px 9px;
-    font-size : 13px;
-    text-align : center;
+    font-size : 13px;    
     border: 1px solid #d0d0d0;
 }
 .coupon_submit_wrap{
