@@ -1,4 +1,5 @@
 <%@ page contentType = "text/html;charset=utf-8" %>
+
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.json.simple.*" %>
@@ -31,15 +32,15 @@
 		//===============================================================================================================
 		
 		// 엑셀 업로드
-        // Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));
+        // Workbook workbook = Workbook.getWorkbook(new File("D:/Tomcat 8.5/webapps/ROOT/upload/"+excel_path));		
 		HSSFWorkbook workBook  =  new HSSFWorkbook(new FileInputStream(new File(request.getRealPath("/upload/")+excel_path)));
 
+		int col = 0;
 		HSSFSheet sheet = workBook.getSheetAt(0);
         HSSFRow row;
         HSSFCell cell;
         int rows = sheet.getPhysicalNumberOfRows();
-        int col = 0;
-
+        
 		int dup = 0;
 		int new1 = 0;
 		int i;			
@@ -50,28 +51,28 @@
 		    col = 0;
 		    cell = row.getCell(col);
             if (cell == null) { cell = row.createCell(col); }
-			String string1 = "";
+			
+	        String string1 = "";
 			//엑셀 column 입력 데이터타입형별로 분기처리
-			if (cell.getCellType().toString() == "STRING") {
-				string1 = cell.getStringCellValue().trim().replaceAll(",","").replaceAll("'","");
-			}
-			else if (cell.getCellType().toString() == "NUMBERIC") {
-				string1 = cell.toString().trim().replaceAll(",","").replaceAll("'","");
-				string1 = String.valueOf(Math.round(Duoble.parseDouble(string1)));
-			}
-			else if (cell.getCellType().toString() == "BLANK"){
+            if (cell.getCellType().toString() == "STRING") {
+                string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string1 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string1 = String.valueOf(Math.round(Double.parseDouble(string1))); 
+            } else if (cell.getCellType().toString() == "BLANK") {   
+                //string1 = "";         
 				//NULL 예외처리
-				string1 ="";
-				out.clear();
+                out.clear();
 				out.print("pd_code_no_exist");
-				return;
-			}
+				return;				
+            }
 			//숫자형 예외처리
-			if (isNumberic(string1) != true){
-				out.clear();
+            if ( isNumeric(string1) != true){
+                out.clear();
 				out.print("pd_code_not_number");
 				return;
-			}
+            }
+			
 			/*
 		    //String string1 = cell.getStringCellValue().trim();
 			String string1 = cell.toString().trim().replaceAll("'","").replaceAll(",","");

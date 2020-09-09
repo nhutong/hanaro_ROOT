@@ -48,26 +48,24 @@
 
 			String string1 = "";
 			//엑셀 column 입력 데이터타입형별로 분기처리
-			if (cell.getCellType().toString() == "STRING"){
-				string1 = cell.getStringCellValue().trim().replaceAll(",","").replaceAll("''","");
-			}
-			else if (cell.getCellType().toString() == "NUMBERIC"){
-				string1 = cell.toString().trim().replaceAll().replaceAll();
-				string1 = String.valueOf(Math.round(Double.parseDouble(string1)));
-			}
-			else if (cell.getCellType().toString() == "BLANK"){
-			string1 ="";
-			//NULL 예외처리
-			out.clear();
-			out.println("pd_code_no_exist");
-			return;
-			}
+            if (cell.getCellType().toString() == "STRING") {
+                string1 = cell.getStringCellValue().trim().replaceAll(",", "").replaceAll("'", "");
+            } else if (cell.getCellType().toString() == "NUMERIC") {
+                string1 = cell.toString().trim().replaceAll(",", "").replaceAll("'", "");
+                string1 = String.valueOf(Math.round(Double.parseDouble(string1))); 
+            } else if (cell.getCellType().toString() == "BLANK") {   
+                //string1 = "";         
+				//NULL 예외처리
+                out.clear();
+				out.print("pd_code_no_exist");
+				return;				
+            }
 			//숫자형 예외처리
-			if (isNumeric(string1)){
-			out.clear();
-			out.println("pd_code_not_numvar");
-			return;
-			}
+            if ( isNumeric(string1) != true){
+                out.clear();
+				out.print("pd_code_not_number");
+				return;
+            }
 			/*
 		    //String string1 = cell.getStringCellValue().trim().replaceAll(",","");
 			String string1 = cell.toString().trim().replaceAll(",","").replaceAll("'","");
