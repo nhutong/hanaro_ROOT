@@ -28,11 +28,20 @@ $(function () {
 		$(function() {
 			$("#event_start_date").datepicker();
 			$("#event_end_date").datepicker();
-		});		
+		});	
 
-		
+    	//2020.08.127 심규문 외부 내부링크 분기처리 
+		$("#eventLink").on("change",function(){
+			if ( $('input:checkbox[id="eventLink"]').is(":checked") == true ) {
+				$("#btn_layer_popup_link_open").prop('disabled', true);
+				$("#linkUrl").prop('disabled', false);												
+			}else{
+				$("#btn_layer_popup_link_open").prop('disabled', false);
+				$("#linkUrl").prop('disabled', true);															
+			}			
+		});	
 	
-		/* 배너 이미지 업로드*/
+		// 배너 이미지 업로드
 		$('#inputImgUpload').on('change', function(evt){
 			var inputFile = document.getElementById('inputImgUpload');
 			new Upload(inputFile, function(result){			
@@ -41,7 +50,7 @@ $(function () {
 			});
 		});
 
-		/* 상세 이미지 업로드*/
+		// 상세 이미지 업로드
 		$('#inputDetailImgUpload').on('change', function(evt){
 			var inputFile = document.getElementById('inputDetailImgUpload');
 			new Upload(inputFile, function(result){			
@@ -59,10 +68,8 @@ $(function () {
 			var eventEndDate = $('#event_end_date').val();			
 			var activated = $('#activated').val();
 			var company = $('#company').val();
-			var linkUrl = $('#linkUrl').val();
-			
-			var eventLink = "";
-			
+			var linkUrl = $('#linkUrl').val();			
+			var eventLink = "";			
 			if ( $('input:checkbox[id="eventLink"]').is(":checked") == true )
 			{
 				eventLink = "Y";
@@ -95,11 +102,6 @@ $(function () {
 				alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
 				return;
 			}
-			// if(detailImgUrl == "../images/image_unknown2.png"){
-			// 	alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
-			// 	return;
-			// }
-
 			var formData = {
 				eventNo : eventNo,
 				imgUrl : imgUrl,
@@ -171,7 +173,6 @@ $(function () {
     });			
 
 });	
-
      /*
 	//핀매장 리스트 가져오기
 	function getCompanyList(){
@@ -185,7 +186,6 @@ $(function () {
 		);
 	}
 	*/
-	
 	// 판매장 리스트 셋업
 	function setCompanyOptions(companyList){
 		var options = '';
@@ -205,22 +205,26 @@ $(function () {
 				VM_CP_NO: result.list[0].company,
 				VM_CP_NAME: result.list[0].company_name				
 			})
-			
+
+			//$('#company').val(info.company_name);			
 			$('#imgPreview').attr('src',info.img_url);
 			$('#detailImgPreview').attr('src',info.detail_img_url);			
 			$('#eventTitle').val(info.event_title);
 			$('#event_start_date').val(info.start_date);
-			$('#event_end_date').val(info.end_date);
-			//$('#company').val(info.company_name);
+			$('#event_end_date').val(info.end_date);			
 			$('#company').val(info.company);
 			$('#activated').val(info.activated);
 			$('#linkUrl').val(info.link_url);
-
 			if (info.eventLink == "Y")
-			{
-				$('input:checkbox[id="eventLink"]').prop("checked", true);
-			}else{
-				$('input:checkbox[id="eventLink"]').prop("checked", false);
+			{				
+				$('#eventLink').prop( 'checked',true);
+				$("#btn_layer_popup_link_open").prop('disabled', true);
+				$("#linkUrl").prop('disabled', false);								
+
+			}else{			
+				$('#eventLink').prop( 'checked',false);
+				$("#btn_layer_popup_link_open").prop('disabled', false);
+				$("#linkUrl").prop('disabled', true);								
 			}
 		});
 	}

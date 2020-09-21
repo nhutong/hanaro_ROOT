@@ -550,8 +550,10 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 					text += '    					</tr>'
 					text += '    				   <tr class="hide table-line">'
 					text += '    					  <td class="card_s" colspan="3">'
-					text += '    					   '+item['card_info']
-					text += '    					   - '+item['card_restrict']
+					//2020.09.16 심규문 공백"+" 관련 encode 방식 변경 		
+					/*text += '    					   '+item['card_info']
+					text += '    					   - '+item['card_restrict']*/
+					text += item['card_info'] +' - '+ item['card_restrict']					
 					text += '    					  </td>'
 					text += '    					</tr>'
 				}
@@ -612,7 +614,9 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 				}
 
 				//기타내용
-				if (decodeURIComponent(item['etc']) != ""){		
+				//2020.09.16 심규문 공백"+" 관련 encode 방식 변경 		
+				//if (decodeURIComponent(item['etc']) != ""){		
+				if (item['etc'] != ""){		
 					text += '    					<tr class="hide table-line">'
 					text += '    					   <td width="20%">'
 					text += '    						  <div class="discount_img">'
@@ -620,7 +624,8 @@ function bodyContentDetail(rcv_menu_no, rcv_jd_no){
 					text += '    						  </div>'
 					text += '    					   </td>'					
 					text += '    					  <td class="discount2" colspan="2" width="80%">'				
-					text += '                            <div class="card_s">'+ decodeURIComponent(item['etc'])
+					//text += '                            <div class="card_s">'+ decodeURIComponent(item['etc'])   //2020.09.16 심규문 공백"+" 관련 encode 방식 변경 		
+					text += '                            <div class="card_s">'+ item['etc']
 					text += '    					  </div></td>'
 					text += '    					 </tr>'							
 				}

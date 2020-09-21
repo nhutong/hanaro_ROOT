@@ -389,12 +389,23 @@ function getMenuListDefault(rcvCompanyNo) {
 						text += '<li id="headerEvent"><a href="#" onclick="events();">이벤트</a></li>';
 				   }else{
 				   }
-
 					if ( jsonResult_menu[i].jang_fg == "N" )
 				   {
 						text += '<li id="headerShop"><a href="#" onclick="shop();">장보기</a></li>';
 				   }else{
 				   }
+				   /*
+				   text += '<li id="headerSNS"><a href="#" onclick="YouTube()">YouTube</a></li>';
+				   
+				   text += '<li id="headerSNS"><a href="#">SNS</a>';
+				   text += '<ul id = "headerSNS_sub">';
+				   text += '<li><a href ="https://www.naver.com">네이버</a>';
+				   text += '</li>';
+				   text += '<li><a href ="https://www.daum.net">다음</a>';
+				   text += '</li>';
+				   text += '</ul>';
+				   text += '</li>';
+				   */
 			}
 			$("#headerMenuArea").append(text);
 			

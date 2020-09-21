@@ -8,6 +8,10 @@ function notice(){window.location.href="../home/notice.html"} // 공지사항
 function offline(){window.location.href="../home/offline.html"}//매장찾기
 function events(){window.location.href="../home/event.html"}//이벤트
 function coupon(){window.location.href="../home/coupon.html"}// 쿠폰
+function YouTube(){window.location.href="https://www.youtube.com/channel/UCDbF-RX4Udl3uQ9n9M06lQw"}//YouTube
+function instagram(){window.location.href="https://www.instagram.com/nhhanaromart.kacm.official/"}//인스타그램
+function facebook(){window.location.href="https://m.facebook.com/hanaromart.kacm.official"}//페이스북
+function kakaoch(){window.location.href="https://pf.kakao.com/_gMGdK"}//카카오채널
 
 function cart(){           if(memberNo)window.location.href="../cart/cart.html";                   else alert('모바일앱에서만 이용 가능합니다.'); } // 장바구니
 function cart_submit(){    if(memberNo)window.location.href="../cart/cart_submit.html";            else alert('모바일앱에서만 이용 가능합니다.'); } // 장바구니

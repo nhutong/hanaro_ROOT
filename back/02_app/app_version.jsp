@@ -13,10 +13,16 @@
 	JSONObject appVersionJSON = new JSONObject();
 	
 	try{
-	
+	    /* 2020.09.21 심규문  appversion 1.0.9 -> 1.0.10 max함수 구별 불가로 sort limit 방식으로 변경 
 		sql = " SELECT max(a.app_version) as app_version "
 			 +" FROM app_version AS a "
 			 +" WHERE del_yn = 'N' and a.platform = '"+platform+"' ";
+		*/	 
+
+		sql = " SELECT a.app_version as app_version "
+			 +" FROM app_version AS a "
+			 +" WHERE del_yn = 'N' and a.platform = '"+platform+"' "			 
+			 +" ORDER BY a.app_version LIMIT 1";			 
 	
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);

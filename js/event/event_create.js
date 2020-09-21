@@ -28,9 +28,18 @@ $(function () {
 			$("#event_end_date").datepicker();
 		});		
 
-		
+        //2020.08.27  이벤트 내외부링크 분기처리
+		$("#eventLink").on("change",function(){
+			if ( $('input:checkbox[id="eventLink"]').is(":checked") == true ) {
+				$("#btn_layer_popup_link_open").prop('disabled', true);	
+				$("#linkUrl").prop('disabled', false);	
+			}else{
+				$("#btn_layer_popup_link_open").prop('disabled', false);
+				$("#linkUrl").prop('disabled', true);								
+			}			
+		});	
 	
-		/* 배너 이미지 업로드*/
+		// 배너 이미지 업로드
 		$('#inputImgUpload').on('change', function(evt){
 			var inputFile = document.getElementById('inputImgUpload');
 			new Upload(inputFile, function(result){			
@@ -39,7 +48,7 @@ $(function () {
 			});
 		});
 
-		/* 상세 이미지 업로드*/
+		//상세 이미지 업로드
 		$('#inputDetailImgUpload').on('change', function(evt){
 			var inputFile = document.getElementById('inputDetailImgUpload');
 			new Upload(inputFile, function(result){			
@@ -58,25 +67,22 @@ $(function () {
 				$(this).remove();
 			});
 		});
-	
+
+
 		$('#btneventCreate').on('click', function(){	
 			
 //			var imgUrl =$('#inputImgUpload').val();	
 //			var detailImgUrl =$('#inputDetailImgUpload').val();	
-
-			var imgUrl =$('#imgPreview').attr("src");	
-			//var detailImgUrl =$('#detailImgPreview').attr("src");
+//			var detailImgUrl =$('#detailImgPreview').attr("src");
+//			var company = $('#company').val();
+			var imgUrl =$('#imgPreview').attr("src");				
 			var detailImgUrl =$('#detailImgPreview').attr("src");
-
-
 			var eventTitle = $('#eventTitle').val();			
 			var eventStartDate = $('#event_start_date').val();
 			var eventEndDate = $('#event_end_date').val();
-			//var company = $('#company').val();
 			var activated = $('#activated').val();
 			var linkUrl = $('#linkUrl').val();
 			var userEmail = $('.user_email').text().trim();
-
 			var eventLink = "";
 			
 			if ( $('input:checkbox[id="eventLink"]').is(":checked") == true )
@@ -94,11 +100,7 @@ $(function () {
 			if(detailImgUrl == null ){
 				alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
 				return;
-			}
-			// if(detailImgUrl == "../images/image_unknown2.png"){
-			// 	alert('이벤트 상세이미지 없이 등록할 수 없습니다.');
-			// 	return;
-			// }
+			}			
 			
 			if(eventTitle == "") {
 				alert('이벤트 제목을 넣어주세요.');
@@ -120,8 +122,6 @@ $(function () {
 				return;
 			}
 
-
-			
 			var company = '';
 			$('.selected_option').each( function (idx, item) {
 				if(idx === 0 ) company += $(item).data('no');

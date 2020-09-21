@@ -2877,6 +2877,39 @@ margin-bottom: 3px;
     color: #444;
 }
 
+
+
+/*
+#headerMenuArea , 
+#headerSNS_sub{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#headerMenuArea > li{  
+}
+
+#headerMenuArea > li > a{
+  display: block;  
+  text-align: center;
+}
+
+#headerSNS_sub{
+  border: 2px red;
+  position: absolute;
+  opacity: 0;  
+  visibility: hidden;  
+}
+
+#headerMenuArea > li:hover #headerSNS_sub{
+  opacity: 1;
+  visibility: visible;  
+}
+*/
+
+
+
 /*레이어팝업 start*/
 .modal_bg{position:fixed;z-index:10000;left:0;top:0;width:100%;height:100%;min-height:800px;background:rgba(0,0,0,.7);}
 .popup{position:fixed;visibility:hidden;z-index:10001;left:50%;top:-9999px;border-radius:5px;background:#f9f9f9;box-shadow:0 0 20px #555;}
