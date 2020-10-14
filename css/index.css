@@ -704,8 +704,9 @@ span.shopUrl:hover{
 
 /*statistics_cu start*/
 .stat_period_wrap{
-    margin-left: 20px;
+    margin-left: 40px;
     margin-bottom: 10px;
+    display: inline-block; 
 }
 /* 200731 김수경 css 조정 */
 /* .stat_year_wrap{
@@ -748,8 +749,9 @@ span.shopUrl:hover{
     margin-left: 20px;
 }
 
-
-.stat_period_wrap span,
+.stat_period_wrap span{   
+    margin-left: 10px;
+}
 .stat_year_wrap span{
     float: right;
 }
@@ -2999,7 +3001,11 @@ button#bannerUpdate{
     display : inline-block;
 	vertical-align : bottom;
     margin-right : 10px;
-    margin-left : 40px;
+    margin-left : 40px;    
+}
+.coupon_search_wrap #excel_down_stat{
+    display : inline-block;    
+    text-align: left;
 }
 
 .stamp_search_wrap #sort_select,

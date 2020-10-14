@@ -86,7 +86,13 @@ $(function () {
 	$("#btnSearch").on("click",function(){
 		settingInfo();
 	});
-	getCouponList();
+	//getCouponList();	
+
+	$('#excel_down_stat').on('click', function(){ 
+		//console.log("excel_down_stat");
+		getCouponHistoryForExcel(getCookie("onSelectCompanyNo"));
+	});	
+
 });
 
 function settingInfo() {
@@ -138,6 +144,31 @@ $(function () {
 	getCouponList();
 
 });
+
+function getCouponHistoryForExcel(compNo){  //엑셀다운로드
+	if (!compNo) compNo = getCookie("onSelectCompanyNo");
+	const s_date = $("#coupon_start_date").val();
+	const e_date = $("#coupon_end_date").val();
+	const category = $("#searchCategory").val();
+	const keyword = $("#keyword").val();
+	const flag = $("#show_flag_status").val();
+
+	//데이터 조회 후 엑셀 함수 호출
+	$.get('/back/05_event/couponExcelExport.jsp?company='+compNo+'&s_date='+s_date+'&e_date='+e_date+'&category='+category+'&keyword='+keyword+ '&status='+flag+'&pageNumber=1&pageSize=99999999',
+	function(result){
+		if (result == "exception error"){
+			alert("exception error"+result);
+		}else if ( result.list.length > 0 ){
+			console.log("result: ", result.list);
+			var headList = ['no', '쿠폰종류', '쿠폰명', '상품코드',	'지점명', '상태', '적용기간', '등록자' ,'등록일자'];
+			ExcelExportStart("엑셀다운로드_쿠폰히스토리", headList, result.list);
+		}else{
+			console.log("result: ", result);
+			alert("조회된 내역이 없어 엑셀Exort를 취소합니다.");
+		}
+	});
+}
+
 function getCouponList(compNo){
 	if (!compNo) compNo = getCookie("onSelectCompanyNo");
 	const s_date = $("#coupon_start_date").val();

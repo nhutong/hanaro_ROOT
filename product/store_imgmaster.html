@@ -42,10 +42,10 @@
 			<!-- 200625 김수경 화면 정비(메뉴 타이틀과 매장 셀렉트박스 한줄로) -->
 			<!-- <h4>상품 &gt; 판매장 등록</h4> -->
 			<div class="h6" style="width:70%; padding:30px; float:left;">상품 &gt; 판매장 등록</div>
-			<div class="stat_period_wrap coupon_search_wrap">
+			<div class="stat_period_wrap" style ="width : 70%;">
 			    <select name="statStore"  id="sort_select">
 			    </select>
-			    <div class="coupon_search_wrap">
+			    <div class="coupon_search_wrap" style ="width : 80%;">
 					<div class="coupon_search_date" id="coupon_search_date">                       
 						<input type="text" placeholder="2020-02-01" id="imgmaster_start_date">~<input type="text" placeholder="2020-02-07" id="imgmaster_end_date">
 					</div>					
@@ -55,17 +55,13 @@
                     </select>
 					<input id="keyword2" type="text" placeholder="검색어를 입력해 주세요." onKeyUp="javascript:searchEnter(event)">
                     <button id="btnSearch" style="margin-right: 10px;">조회</button>
-                    <span id="excel_down_stat" style="cursor: pointer; width: 13%;">
-                        <!-- <input type="checkbox" id="YNstatusChange" class="form-control" style="width: 30px;margin-right: 5px;"/>
-                        <span id="YNstatus" style="cursor: auto;">반영</span>
-                        <img src="../images/excel.png" alt="엑셀다운로드">엑셀 -->
-                        <select class="search_select" id="show_flag_status" style="width: 100%;">
-							<option value="all">전체</option>
-							<option value="null" selected>승인대기</option>
-                            <option value="S">승인</option>
-                            <option value="N">거절</option>
-                        </select>
-                    </span>				
+					<select class="search_select" id="show_flag_status" style="width: 10%;">
+						<option value="all">전체</option>
+						<option value="null" selected>승인대기</option>
+						<option value="S">승인</option>
+						<option value="N">거절</option>
+					</select>
+					<!--<span id="excel_down_stat" style="cursor: pointer;"><img src="../images/excel.png" alt="엑셀다운로드">엑셀</span>-->
 				</div>			    
 			</div>
                 <div class="tab_container">					
