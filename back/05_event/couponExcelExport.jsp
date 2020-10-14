@@ -61,7 +61,7 @@
 			" DATE_FORMAT(reg_date, '%Y-%m-%d %H:%i:%s') AS reg_date " +
 			"   FROM hanaro.vm_coupon p " +	
 			"   left outer join ( SELECT g.img_path, g.pd_code, MAX(g.reg_date) from vm_product_image AS g GROUP BY g.pd_code ) as b " +
-			"   on p.product_code = b.pd_code "
+			"   on p.product_code = b.pd_code " +
 			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : " WHERE company_no = " + userCompanyNo ) +
 			("".equals(coupon_no) ? "" : "   AND coupon_no = " + coupon_no )+
 			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") +
