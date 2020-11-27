@@ -98,7 +98,7 @@
 			"   LEFT OUTER JOIN ( SELECT coupon_no, ifnull(count(mc_no),0) AS coupon_save_cnt FROM vm_member_coupon GROUP BY coupon_no ) AS d  " +
 			"   ON p.coupon_no = d.coupon_no    " +
 			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : " WHERE company_no = " + userCompanyNo ) +
-			("".equals(coupon_no) ? "" : "   AND coupon_no = " + coupon_no )+
+			("".equals(coupon_no) ? "" : "   AND p.coupon_no = " + coupon_no )+
 			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") +
 			//("".equals(s_date) ? "" : " AND '" + s_date + "' <= end_date ") +
 			//("".equals(e_date) ? "" : " AND end_date <= '" + e_date + "' ") +
