@@ -28,7 +28,8 @@ var tpl_tr_tab1_table = _.template('<tr id="coupon<%- coupon_no %>" data-no="<%-
 '<td><%- start_date %> ~ <%- end_date %></td>' +
 '<td><%- reg_name %> </td>' +
 '<td><%- reg_date %> </td>' +
-'<td><button id="cp_<%- coupon_no %>" class="coupon_pop_btn" onclick="coupon_popup(<%- coupon_no %>);">출력</button></td>'
+'<td><button id="cp_<%- coupon_no %>" class="coupon_pop_btn" onclick="coupon_popup(<%- coupon_no %>);">출력</button></td>' + 
+'<td><%- asisCnt %></td>' 
 );
 
 

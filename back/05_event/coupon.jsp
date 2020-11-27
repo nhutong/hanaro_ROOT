@@ -78,7 +78,7 @@
 
 		// 리스트 조회 
 		String queryList =
-			" SELECT coupon_no, coupon_name, coupon_type, coupon_code, reg_no, lst_no, product_code, product_name, discount_price, min_price, limit_qty, extra, weight, unit_price, origin, etc_info, company_no,"+ 
+			" SELECT p.coupon_no, coupon_name, coupon_type, coupon_code, reg_no, lst_no, product_code, product_name, discount_price, min_price, limit_qty, extra, weight, unit_price, origin, etc_info, company_no,"+ 
 			"		 (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.reg_no) as reg_name, " +
 			"		 (SELECT u.VM_NAME FROM vm_user u WHERE u.VM_NO = p.lst_no) as lst_name, " +			
 			"		 DATE_FORMAT(reg_date, '%Y-%m-%d %H:%i:%s') AS reg_date, " +
@@ -89,10 +89,14 @@
 			"		 (SELECT g.CODE_NAME FROM vm_code g WHERE g.CODE_GROUP = 'COUPON_STATUS' AND g.code = p.status_cd) as status_name, " +
 			"		 p.status_cd, ifnull(p.stamp_fg,'N') as stamp_fg, " +
 			" 		 case when coupon_type = 'PRODUCT' then '상품할인' else '결제할인' end as coupon_type_name, ifnull(coupon_detail,'') as coupon_detail, " +
-			"        b.img_path as img_path " +
+			"        b.img_path as img_path , "  +
+			"        case when p.limit_qty = '-1' then '무한쿠폰'  "  +
+			"        ELSE (p.limit_qty - ifnull(d.coupon_save_cnt,0)) end AS asisCnt "  +
 			"   FROM hanaro.vm_coupon p " +	
 			"   left outer join ( SELECT g.img_path, g.pd_code, MAX(g.reg_date) from vm_product_image AS g GROUP BY g.pd_code ) as b " +
 			"   on p.product_code = b.pd_code " +
+			"   LEFT OUTER JOIN ( SELECT coupon_no, ifnull(count(mc_no),0) AS coupon_save_cnt FROM vm_member_coupon GROUP BY coupon_no ) AS d  " +
+			"   ON p.coupon_no = d.coupon_no    " +
 			("0".equals(company) || "".equals(company) ? " WHERE 1=1" : " WHERE company_no = " + userCompanyNo ) +
 			("".equals(coupon_no) ? "" : "   AND coupon_no = " + coupon_no )+
 			("".equals(coupon_code) ? "" : " AND coupon_code = '" + coupon_code +"'") +
