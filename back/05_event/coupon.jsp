@@ -93,7 +93,8 @@
 			"        case when p.limit_qty = '-1' then '무한쿠폰'  "  +
 			"        ELSE (p.limit_qty - ifnull(d.coupon_save_cnt,0)) end AS asisCnt "  +
 			"   FROM hanaro.vm_coupon p " +	
-			"   left outer join ( SELECT g.img_path, g.pd_code, MAX(g.reg_date) from vm_product_image AS g GROUP BY g.pd_code ) as b " +
+			//"   left outer join ( SELECT g.img_path, g.pd_code, MAX(g.reg_date) from vm_product_image AS g GROUP BY g.pd_code ) as b " +  <2020.12.19 / 심규문 / 쿠폰출력 이미지>
+			"   left outer join ( SELECT g.img_path, g.pd_code, MAX(g.reg_date) from vm_product_image AS g where std_fg ='Y' GROUP BY g.pd_code ) as b " +
 			"   on p.product_code = b.pd_code " +
 			"   LEFT OUTER JOIN ( SELECT coupon_no, ifnull(count(mc_no),0) AS coupon_save_cnt FROM vm_member_coupon GROUP BY coupon_no ) AS d  " +
 			"   ON p.coupon_no = d.coupon_no    " +
