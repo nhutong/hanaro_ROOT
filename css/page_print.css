@@ -325,9 +325,9 @@
 
 .a3_pd_img{
     position: absolute;
-    transform: translate(-10%,-75%);
-    width: 20em;
-    height: 20em;
+    transform: translate(30%,-65%);
+    width: 16em;
+    height: 16em;
     margin-right: 10px;
 }
 /* 201209 김수경 a3 pop에도 상품이미지 출력되도록 수정 */
