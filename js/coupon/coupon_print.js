@@ -65,12 +65,16 @@ function couponSize(kk, ss){
 		$("#printSize").val('A4');
 		$("#width").val(a4_width);
 		$("#height").val(a4_height);
-		$(".coupon_print_lft .coupon"+c).css("font-size","14px");				
+		$(".coupon_print_lft .coupon"+c).css("font-size","14px");
+		$("#a4_pd_img img").css("width","100%");			
+		//$("#a3_pd_img img").css("width","100%");							
 	}else{
 		$("#printSize").val('A3');
 		$("#width").val(a3_width);
 		$("#height").val(a3_height);			
-		$(".coupon_print_lft .coupon"+c).css("font-size","20px");				
+		$(".coupon_print_lft .coupon"+c).css("font-size","20px");
+		$("#a4_pd_img img").css("width","150%");			
+		//$("#a3_pd_img img").css("width","150%");							
 	}				
 
 	if ( kk == '03' ){ //세로형	
