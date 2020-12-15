@@ -243,6 +243,7 @@
     white-space: nowrap;
     overflow: hidden;
     height: 10%;
+    position: relative;
 }
 
 .coupon_a3_05{
@@ -327,8 +328,8 @@
 .a3_pd_img{
     position: absolute;
     transform: translate(30%,-65%);
-    width: 16em;
-    height: 16em;
+    width: 22em;
+    height: 22em;
     margin-right: 10px;
 }
 /* 201209 김수경 a3 pop에도 상품이미지 출력되도록 수정 */
@@ -345,13 +346,15 @@
     color: #666;
     font-weight: 700;
     font-size: 2.5em;
-    text-decoration:line-through;        
+    text-decoration:line-through;    
+    position: relative;    
 }
 
 .a3_price_after{
     color: #ed1b24;
     font-weight: 800;
     font-size: 3.5em;
+    position: relative;
 }
 
 .coupon_a3_07{
