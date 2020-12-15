@@ -328,7 +328,7 @@
 
 .a3_pd_img{
     position: absolute;
-    transform: translate(30%,-65%);
+    transform: translate(0%,-65%);
     width: 20em;
     height: 20em;
     margin-right: 10px;
