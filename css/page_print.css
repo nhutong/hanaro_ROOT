@@ -244,6 +244,7 @@
     overflow: hidden;
     height: 10%;
     position: relative;
+    z-index: 1;
 }
 
 .coupon_a3_05{
@@ -328,8 +329,8 @@
 .a3_pd_img{
     position: absolute;
     transform: translate(30%,-65%);
-    width: 22em;
-    height: 22em;
+    width: 20em;
+    height: 20em;
     margin-right: 10px;
 }
 /* 201209 김수경 a3 pop에도 상품이미지 출력되도록 수정 */
