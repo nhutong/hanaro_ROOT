@@ -217,9 +217,18 @@ function couponPrintApply(){
 	$("#a4Weight").append($("#popPdUnitPrice").val());
 
 
-    // 수량제한
+	// 수량제한
+	/*
 	$("#a4Limit").empty();
 	$("#a4Limit").append($("#popPdLimit").val());
+	*/
+	//2020.12.16 쿠폰 수량 수정 
+	$("#a4Limit").empty();	
+	if ( $("#popPdLimit").val() == -1){		
+	}
+	else {
+		$("#a4Limit").append($("#popPdLimit").val()+"개");	
+	}	
 
     // 쿠폰할인가 ( DB에 저장되어 여기에 최초로딩시 바인딩되는 쿠폰의 가격이다. 할인이 적용된 상품의 가격이 아니다. )
 	$("#a4Discount").empty();
@@ -262,9 +271,18 @@ function couponPrintApply(){
 	// $("#a3Weight").append($("#popPdWeight").val());
 	$("#a3Weight").append($("#popPdUnitPrice").val());
 	
-    // 수량제한
+	// 수량제한
+	/*
 	$("#a3Limit").empty();
 	$("#a3Limit").append($("#popPdLimit").val());
+	*/
+	//2020.12.16 쿠폰 수량 수정
+	$("#a3Limit").empty();	
+	if ( $("#popPdLimit").val() == -1){		
+	}
+	else {
+		$("#a3Limit").append($("#popPdLimit").val()+"개");	
+	}	
 
     // 쿠폰할인가 ( DB에 저장되어 여기에 최초로딩시 바인딩되는 쿠폰의 가격이다. 할인이 적용된 상품의 가격이 아니다. )
 	$("#a3Discount").empty();
