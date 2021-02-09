@@ -14,6 +14,7 @@
 	String agree_privacy = request.getParameter("agree_privacy")==null? "":request.getParameter("agree_privacy"); // 이메일
 	String agree_push = request.getParameter("agree_push")==null? "":request.getParameter("agree_push"); // 전화번호	
 	String agree_location = request.getParameter("agree_location")==null? "":request.getParameter("agree_location"); // 비밀번호	
+	String agree_location = request.getParameter("agree_ft")==null? "":request.getParameter("agree_ft"); // 14세 이상 동의 
 	String company_no = request.getParameter("company_no")==null? "0":request.getParameter("company_no"); // 비밀번호	
 
 	String insertSql = "";
@@ -43,14 +44,14 @@
 	{	
 		/* 광고성 푸쉬 동여여부에 따라 인서트한다. */
 		if (agree_push.equals("Y")){
-			 sql = "insert into vm_member (tel, company_no, agree_privacy, agree_push, agree_location, reg_date, usim, push_agree_date)"+
+			 sql = "insert into vm_member (tel, company_no, agree_privacy, agree_push, agree_location, agree_ft, reg_date, usim, push_agree_date)"+
 		    	   "values"+
-			       "('"+tel+"', if('"+company_no+"'='',0,'"+company_no+"'), '"+agree_privacy+"', '"+agree_push+"', '"+agree_location+"', now(), '"+usim+"', now() )";
+			       "('"+tel+"', if('"+company_no+"'='',0,'"+company_no+"'), '"+agree_privacy+"', '"+agree_push+"', '"+agree_location+"', '"+agree_ft+"', now(), '"+usim+"', now() )";
 
 		}else{
-			sql = "insert into vm_member (tel, company_no, agree_privacy, agree_push, agree_location, reg_date, usim)"+
+			sql = "insert into vm_member (tel, company_no, agree_privacy, agree_push, agree_location, agree_ft, reg_date, usim)"+
 		      "values"+
-			  "('"+tel+"', if('"+company_no+"'='',0,'"+company_no+"'), '"+agree_privacy+"', '"+agree_push+"', '"+agree_location+"', now(), '"+usim+"')";
+			  "('"+tel+"', if('"+company_no+"'='',0,'"+company_no+"'), '"+agree_privacy+"', '"+agree_push+"', '"+agree_location+"', '"+agree_ft+"', now(), '"+usim+"')";
 		}
 
 		insertSql = sql;

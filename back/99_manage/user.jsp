@@ -29,6 +29,7 @@
 	String privacy = "";
 	String push = "";
 	String location = "";
+	String agree_ft = "";
 	
 	try {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber") == null ? "1" : request.getParameter("pageNumber").trim(), 10);
@@ -38,6 +39,7 @@
 		privacy = request.getParameter("privacy") == null ? "" : request.getParameter("privacy").trim();
 		push = request.getParameter("push") == null ? "" : request.getParameter("push").trim();
 		location = request.getParameter("location") == null ? "" : request.getParameter("location").trim();
+		agree_ft = request.getParameter("agree_ft") == null ? "" : request.getParameter("agree_ft").trim();   //2021.02.08 심규문 14세이상 동의
 
 	} catch(NumberFormatException nfe) {
 	}
@@ -58,6 +60,7 @@
 			" WHERE (name like ?  or tel like ? ) " +						
 			(push.length() > 0 ? " AND agree_push = '"+push+"' " : "") +
 			(location.length() > 0 ? " AND agree_location = '"+location+"' " : "") +
+			(agree_ft.length() > 0 ? " AND agree_ft = '"+agree_ft+"' " : "") +
 			("ROLE2".equals(userRoleCd) ? " AND company_no = ? " : "") ;
 
 		Object[] paramTotal = "ROLE2".equals(userRoleCd) ? new Object[]{ keyword, keyword, userCompanyNo } : new Object[]{ keyword, keyword };
@@ -81,6 +84,7 @@
 			" DATE_FORMAT(push_agree_date, '%Y-%m-%d') AS push_agree_date, " + 
 			" DATE_FORMAT(push_disagree_date, '%Y-%m-%d') AS push_disagree_date, " + 
 			" IF(agree_location = 'Y', '동의', '비동의') AS location, " + 
+			" IF(agree_ft = 'Y', '동의', '비동의') AS agree_ft, " + 
 			" DATE_FORMAT(last_date, '%Y-%m-%d') AS lastDate, " + 
 			"(SELECT  concat(rs_address1, rs_address2) FROM vm_reserve vr  WHERE vr.ref_member_no = vm.NO ORDER BY NO DESC LIMIT 1 ) address, " +
 			"(SELECT count(*) FROM vm_reserve vr WHERE vr.ref_member_no = vm.NO) orderCount, " +
@@ -89,6 +93,7 @@
 			" WHERE (name like ?  or tel like ? ) " +			
 			(push.length() > 0 ? " AND agree_push = '"+push+"' " : "") +
 			(location.length() > 0 ? " AND agree_location = '"+location+"' " : "") +
+			(agree_ft.length() > 0 ? " AND agree_ft = '"+agree_ft+"' " : "") +         //2021.02.08 심규문 14세이상 동의
 			("ROLE2".equals(userRoleCd) ? " AND company_no = ? " : "") + 
 			" ORDER BY 1 DESC " +
 			" LIMIT ?,? ";

@@ -2,10 +2,9 @@
 	var tpl_tr_tab1_table = _.template('<tr id="member<%- no %>" data-no="<%- no %>"><td><%- no %></td>' +
 	'<td><%- company %></td><td><%- tel.replace("+82","0") %></td><td><%- name %></td><td><%- no %></td>' + 	
 	//동의 컬럼열 
-	'<td><%- privacy %></td><td><%- regDate %></td><td><%- push %></td><td><%- push_agree_date %></td><td><%- push_disagree_date %></td><td><%- location %></td>'+	
+	'<td><%- privacy %></td><td><%- regDate %></td><td><%- push %></td><td><%- push_agree_date %></td><td><%- push_disagree_date %></td><td><%- location %></td><td><%- agree_ft %>'+	//2021.02.08 심규문 14세 동의 추가
 	//'<td><%- address %></td><td><%- orderCount %></td><td><%- totalOrderPrice %>' +
 	'</td><td class="memo"><a href="#" class="btn btn-sm btn-success" data-name="<%- name %>" data-no="<%- no %>" data-memo="<%- memo %>" data-toggle="modal" data-target="#memoModal"><img src="../images/iconforev_03.png" alt="메모" width="15"></a></td>'
-
 	);
 
 $(function () {
@@ -30,12 +29,18 @@ $(function () {
 		//console.log(event.keyCode);
 		if(event.keyCode !== 13)  return; 
 		searchUser(); 		
+
+
+
+
 	} ) ;	
 		
 	$('#user_down').on('click', function(){ getUserListNoPaging()});
 	//$('#privacy').on('change', function(){ searchUser() } ) ;
 	$('#push').on('change', function(){ searchUser() } ) ;
 	$('#location').on('change', function(){ searchUser() } ) ;
+
+	$('#agree_ft').on('change', function(){ searchUser() } ) ;
 	$('#memoModal').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget) // Button that triggered the modal
 		var name = button.data('name');
@@ -65,9 +70,10 @@ function searchUser(){
 	var keyword = encodeURIComponent($('#keyword').val());	
 	var push = $('#push').val();
 	var agree_loc = $('#location').val();
+	var agree_ft = $('#agree_ft').val();
 
 	$('#pagination').pagination({
-		dataSource: '/back/99_manage/user.jsp?keyword='+keyword+'&push='+push+'&location='+agree_loc,
+		dataSource: '/back/99_manage/user.jsp?keyword='+keyword+'&push='+push+'&location='+agree_loc+'&agree_ft='+agree_ft,   //2021.02.08 심규문
 		locator: 'list',
 		totalNumberLocator: function(data) {
 			return data.total;
@@ -126,12 +132,13 @@ function getUserListNoPaging(){
 	var keyword = $('#keyword').val();	
 	var push = $('#push').val();
 	var agree_loc = $('#location').val();
+	var agree_ft = $('#agree_ft').val();  //2021.02.08 심규문
 
 	//데이터 조회 후 엑셀 함수 호출
-	$.get('/back/99_manage/user.jsp?keyword='+keyword +'&push='+push+'&location='+agree_loc + '&pageNumber=1&pageSize=99999999',
+	$.get('/back/99_manage/user.jsp?keyword='+keyword +'&push='+push+'&location='+agree_loc+'&agree_ft='+agree_ft+'&pageNumber=1&pageSize=99999999',  //2021.02.08 심규문
 	function(result){
 		var headList = ['매장', '휴대폰번호', '이름', '회원번호',	
-						'개인정보동의',	'동의일자', '광고동의', '광고동의일시', '광고해제일시', '위치정보활용동의','최근 수정일',	
+						'개인정보동의',	'동의일자', '광고동의', '광고동의일시', '광고해제일시', '위치정보활용동의', '14세 동의', '최근 수정일',	  //2021.02.08 심규문
 						'최근주문주소',	'총주문건수',	'총주문금액', '회원 메모' ];
 		createExcel(headList, result.list);
 	});
