@@ -14,7 +14,7 @@
 	String agree_privacy = request.getParameter("agree_privacy")==null? "":request.getParameter("agree_privacy"); // 이메일
 	String agree_push = request.getParameter("agree_push")==null? "":request.getParameter("agree_push"); // 전화번호	
 	String agree_location = request.getParameter("agree_location")==null? "":request.getParameter("agree_location"); // 비밀번호	
-	String agree_location = request.getParameter("agree_ft")==null? "":request.getParameter("agree_ft"); // 14세 이상 동의 
+	String agree_ft = request.getParameter("agree_ft")==null? "":request.getParameter("agree_ft"); // 14세 이상 동의 
 	String company_no = request.getParameter("company_no")==null? "0":request.getParameter("company_no"); // 비밀번호	
 
 	String insertSql = "";
