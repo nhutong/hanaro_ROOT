@@ -313,7 +313,8 @@
     float: right;
     text-align: right;
     margin-right: 5%;
-    padding-top: 220px;
+    padding-top: 220px;    
+    position: relative;
 }
 
 /* 201209 김수경 a3 pop에도 상품이미지 출력되도록 수정 */
